@@ -28,7 +28,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.entity.player.*;
 
-@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.2.0-Alpha")
+@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.3.1-Alpha")
 @NetworkMod
 (
 clientSideRequired = true,
