@@ -4,7 +4,7 @@ CodeLyokoMod
 Code Lyoko Minecraft Mod
 
 Current Release: Minecraft 1.4.7
-Version: 0.21
+Version: 0.20
 
 Author: Matthew Warren
 
