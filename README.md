@@ -4,7 +4,7 @@ CodeLyokoMod
 Code Lyoko Minecraft Mod
 
 Current Release: Minecraft 1.4.7
-Version: 0.20
+Version: 0.3.1
 
 Author: Matthew Warren
 
@@ -15,4 +15,4 @@ Dimensions/Portals Manager: Andrew Silver
 
 Main Developer: Matthew Warren
 
-Textures: MarQ Blue
+Textures: MarQ Blue, Matthew Warren
