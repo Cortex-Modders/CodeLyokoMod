@@ -14,7 +14,7 @@ public class LyokoTab extends CreativeTabs {
 	
     public int getTabIconItemIndex()
     {
-    	return CodeLyoko.Lyoko_Log;
+    	return CodeLyoko.LyokoLog.blockID;
                            
     }
 
