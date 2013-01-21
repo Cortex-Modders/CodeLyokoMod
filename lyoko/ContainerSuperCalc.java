@@ -9,17 +9,25 @@ import net.minecraft.item.ItemStack;
 public class ContainerSuperCalc extends Container {
 
         protected TileEntitySuperCalc tileEntity;
-        private SlotSuperCalc superCalcSlot;
+        private SlotSuperCalcFuel superCalcSlot;
 
         public ContainerSuperCalc (InventoryPlayer inventoryPlayer, TileEntitySuperCalc te){
                 tileEntity = te;
 
                 //the Slot constructor takes the IInventory and the slot number in that it binds to
                 //and the x-y coordinates it resides on-screen
-                for (int i = 0; i < 1; i++) {
-                        for (int j = 0; j < 1; j++) {
-                                addSlotToContainer(this.superCalcSlot = new SlotSuperCalc(this, tileEntity, j + i * 3, 58 + j * 18, 20 + i * 18));
-                        }
+                addSlotToContainer(new SlotSuperCalcFuel(this, tileEntity, 0, 58, 20));
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                    	addSlotToContainer(new SlotSuperCalc(this, tileEntity, (j + 1) + i * 3, 174 + j * 18, 118 + i * 18));
+                    }
+                }
+                for (int j = 0; j < 3; j++) {
+                	addSlotToContainer(new SlotSuperCalc(this, tileEntity, j + 10, 174 + j * 18, 176));
+                }
+                for (int i = 0; i < 4; ++i)
+                {
+                    addSlotToContainer(new SlotSuperCalcArmor(this, tileEntity, i + 13, 192, 20 + i * 18, i));
                 }
 
                 //commonly used vanilla code that adds the player's inventory
@@ -48,6 +56,7 @@ public class ContainerSuperCalc extends Container {
         @Override
         public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
         {
+        	/*
             ItemStack var3 = null;
             Slot var4 = (Slot)this.inventorySlots.get(par2);
 
@@ -111,7 +120,9 @@ public class ContainerSuperCalc extends Container {
 
                 var4.onPickupFromSlot(par1EntityPlayer, var5);
             }
-
+            
             return var3;
+            */
+        	return null;
         }
 }

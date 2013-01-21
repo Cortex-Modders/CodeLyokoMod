@@ -13,7 +13,10 @@ public class GuiSuperCalc extends GuiContainer {
                 //the container is instanciated and passed to the superclass for handling
                 super(new ContainerSuperCalc(inventoryPlayer, tileEntity));
                 this.ySize = 200;
+                this.xSize = 234;
         }
+        
+        public String selectedSector = "";
 
         @Override
         protected void drawGuiContainerForegroundLayer(int param1, int param2) {
@@ -26,6 +29,9 @@ public class GuiSuperCalc extends GuiContainer {
                 fontRenderer.drawString("Fuel Cell: ", 8, 25, 4210752);
                 fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
                 
+                fontRenderer.drawString("Selected Sector: " + selectedSector, 8, 42, 4210752);
+                fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+                
                 //fontRenderer.drawString("Fuel Cell: ", 8, 25, 4210752);
                 //fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
         }
@@ -34,7 +40,7 @@ public class GuiSuperCalc extends GuiContainer {
         protected void drawGuiContainerBackgroundLayer(float par1, int par2,
                         int par3) {
                 //draw your Gui here, only thing you need to change is the path
-                int texture = mc.renderEngine.getTexture("/matt/lyoko/gui/supercalculator_test.png");
+                int texture = mc.renderEngine.getTexture("/matt/lyoko/gui/supercalculator.png");
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                 this.mc.renderEngine.bindTexture(texture);
                 int x = (width - xSize) / 2;
@@ -47,35 +53,33 @@ public class GuiSuperCalc extends GuiContainer {
                 super.initGui();
                 //make buttons
                                         //id, x, y, width, height, text
-                controlList.add(new GuiButton(1, 275, 130, 26, 20, "Ice"));
-                controlList.add(new GuiButton(2, 305, 130, 44, 20, "Forest"));
-                controlList.add(new GuiButton(3, 353, 130, 53, 20, "Mountain"));
-                controlList.add(new GuiButton(4, 290, 154, 44, 20, "Desert"));
-                controlList.add(new GuiButton(5, 338, 154, 54, 20, "Carthage"));
+                controlList.add(new GuiButton(1, 240, 130, 26, 20, "Ice"));
+                controlList.add(new GuiButton(2, 270, 130, 44, 20, "Forest"));
+                controlList.add(new GuiButton(3, 318, 130, 53, 20, "Mountain"));
+                controlList.add(new GuiButton(4, 255, 154, 44, 20, "Desert"));
+                controlList.add(new GuiButton(5, 303, 154, 54, 20, "Carthage"));
         }
         
         protected void actionPerformed(GuiButton guibutton) {
                 //id is the id you give your button
                 switch(guibutton.id) {
                 case 1:
-                	//Dimension stuff here
-                    //TODO
+                	selectedSector = "ice";
                     break;
                 case 2:
-                	//Dimension stuff here
-                    //TODO
+                	selectedSector = "forest";
                 	break;
                 case 3:
-                	//Dimension stuff here
-                    //TODO
+                	selectedSector = "mountain";
                 	break;
                 case 4:
-                	//Dimension stuff here
-                    //TODO
+                	selectedSector = "desert";
                 	break;
                 case 5:
-                	//Dimension stuff here
-                    //TODO
+                	selectedSector = "carthage";
+                	break;
+                default:
+                	selectedSector = "";
                 }
                 //Packet code here
                 //PacketDispatcher.sendPacketToServer(packet); //send packet

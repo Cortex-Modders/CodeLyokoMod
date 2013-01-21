@@ -13,7 +13,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         private ItemStack[] inv;
 
         public TileEntitySuperCalc(){
-                inv = new ItemStack[9];
+                inv = new ItemStack[17];
         }
         
         public int superCalcBurnTime = 0;

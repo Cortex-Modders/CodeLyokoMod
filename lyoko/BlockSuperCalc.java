@@ -19,18 +19,19 @@ public class BlockSuperCalc extends BlockContainer {
 	
         protected BlockSuperCalc (int id) {
                 super(id, Material.iron);
-        		this.setCreativeTab(CreativeTabs.tabMisc);
+        		this.setCreativeTab(CodeLyoko.LyokoTabs);
         		this.blockIndexInTexture = 0;
         		//this.blockIndexInTexture = 4;
         }
 
         @Override
-        public boolean onBlockActivated(World world, int x, int y, int z,
-                        EntityPlayer player, int idk, float what, float these, float are) {
-                TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-                if (tileEntity == null || player.isSneaking()) {
-                        return false;
-                }
+        public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
+        {
+        	TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+            if (tileEntity == null || player.isSneaking())
+            {
+            	return false;
+            }
         //code to open gui explained later
         player.openGui(CodeLyoko.instance, 0, world, x, y, z);
                 return true;
