@@ -14,8 +14,9 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
         public ArmorLyoko(int i, EnumArmorMaterial enumarmormaterial, int j, int k, String str)
         {
                 super(i, enumarmormaterial, j, k);
-                this.setCreativeTab(CreativeTabs.tabMisc);
+                this.setCreativeTab(CodeLyoko.LyokoTabs);
                 this.armorType = str;
+                this.setNoRepair();
         }
         
         private String armorType;
@@ -24,16 +25,43 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
         {
                 return "/matt/lyoko/gui/items.png";
         }
-        
-        public void onUpdate(ItemStack stack, World world, EntityPlayer ent, int par4, boolean par5, PlayerCapabilities plc)
+        /*
+        public void playerHasSpecialAbility(EntityPlayer entp, PlayerCapabilities plc)//, InventoryPlayer invp)
         {
-        	if(ent.getArmorItemForSlot(0, 0) == CodeLyoko.AelitaBoots && ent.getArmorItemForSlot(1, 0) == CodeLyoko.AelitaHelmet && ent.getArmorItemForSlot(1, 0) == CodeLyoko.AelitaLegs && ent.getArmorItemForSlot(1, 0) == CodeLyoko.AelitaChest)
+        	if(entp.username == "986523714")
         	{
         		plc.allowFlying = true;
+        		plc.disableDamage = true;
         	}
-        	else if(ent.getArmorItemForSlot(0, 0) == CodeLyoko.OddBoots && ent.getArmorItemForSlot(1, 0) == CodeLyoko.OddHelmet && ent.getArmorItemForSlot(1, 0) == CodeLyoko.OddLegs && ent.getArmorItemForSlot(1, 0) == CodeLyoko.OddChest)
+        	else if(entp.username == "MoonMagick")
         	{
         		plc.allowFlying = true;
+        		plc.disableDamage = true;
+        	}
+        	else if(entp.username == "Wolfspirit1st")
+        	{
+        		plc.allowFlying = true;
+        		plc.disableDamage = true;
+        	}
+        }
+        */
+        public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
+        {
+        	if(ent instanceof EntityPlayer)
+        	{
+        		if(((EntityPlayer)ent).inventory.hasItem(CodeLyoko.AelitaBoots.itemID) && ((EntityPlayer)ent).inventory.hasItem(CodeLyoko.AelitaChest.itemID) && ((EntityPlayer)ent).inventory.hasItem(CodeLyoko.AelitaLegs.itemID) && ((EntityPlayer)ent).inventory.hasItem(CodeLyoko.AelitaHelmet.itemID))
+        		{
+        			((EntityPlayer)ent).capabilities.allowFlying = true;
+        			((EntityPlayer)ent).capabilities.setFlySpeed(0.10F);
+        		}
+        		else if(((EntityPlayer)ent).getArmorItemForSlot(0, 0) == CodeLyoko.OddBoots && ((EntityPlayer)ent).getArmorItemForSlot(1, 0) == CodeLyoko.OddHelmet && ((EntityPlayer)ent).getArmorItemForSlot(1, 0) == CodeLyoko.OddLegs && ((EntityPlayer)ent).getArmorItemForSlot(1, 0) == CodeLyoko.OddChest)
+        		{
+        			((EntityPlayer)ent).capabilities.allowFlying = true;
+        		}
+        		else if(((EntityPlayer)ent).inventory.hasItem(CodeLyoko.UlrichBoots.itemID) && ((EntityPlayer)ent).inventory.hasItem(CodeLyoko.UlrichChest.itemID) && ((EntityPlayer)ent).inventory.hasItem(CodeLyoko.UlrichLegs.itemID) && ((EntityPlayer)ent).inventory.hasItem(CodeLyoko.UlrichHelmet.itemID))
+        		{
+        			((EntityPlayer)ent).capabilities.func_82877_b(0.2F);
+        		}
         	}
         }
         
