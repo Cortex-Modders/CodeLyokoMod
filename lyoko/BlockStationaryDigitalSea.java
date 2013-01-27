@@ -16,7 +16,7 @@ public class BlockStationaryDigitalSea extends BlockFluid
     {
         super(par1, par2Material);
         this.setTickRandomly(false);
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
     
     public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)

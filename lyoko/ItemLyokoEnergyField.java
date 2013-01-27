@@ -20,7 +20,8 @@ public class ItemLyokoEnergyField extends Item
         super(id);
         maxStackSize = 1;
         setMaxDamage(6000000);
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        this.setFull3D();
     }
     
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
@@ -52,7 +53,7 @@ public class ItemLyokoEnergyField extends Item
                 var7 = 1.0F;
             }
 
-            EntityEnergyField var8 = new EntityEnergyField(par2World, par3EntityPlayer, var7 * 2.0F);
+            EntityEnergyField var8 = new EntityEnergyField(par2World, par3EntityPlayer, var7 * 20.0F);
 
             if (var7 == 1.0F)
             {

@@ -12,7 +12,7 @@ public class ClientProxy extends CommonProxy
 	{  
 		MinecraftForgeClient.preloadTexture("/matt/lyoko/gui/items.png");
 		MinecraftForgeClient.preloadTexture("/matt/lyoko/terrain/terrain.png");
-		MinecraftForgeClient.preloadTexture("/matt/lyoko/terrain/SuperCalculator.png");
+		MinecraftForgeClient.preloadTexture("/matt/lyoko/terrain/computer.png");
 		
 		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/aelita_1");
 		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/aelita_2");

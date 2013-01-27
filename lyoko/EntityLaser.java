@@ -70,7 +70,7 @@ public class EntityLaser extends Entity implements IProjectile
 
         if (par2EntityLiving instanceof EntityPlayer)
         {
-            this.canBePickedUp = 1;
+            this.canBePickedUp = 0;
         }
 
         this.posY = par2EntityLiving.posY + (double)par2EntityLiving.getEyeHeight() - 0.10000000149011612D;
@@ -100,7 +100,7 @@ public class EntityLaser extends Entity implements IProjectile
 
         if (par2EntityLiving instanceof EntityPlayer)
         {
-            this.canBePickedUp = 1;
+            this.canBePickedUp = 0;
         }
 
         this.setSize(0.5F, 0.5F);
@@ -507,7 +507,8 @@ public class EntityLaser extends Entity implements IProjectile
             if (var2)
             {
                 this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                par1EntityPlayer.onItemPickup(this, 1);
+                par1EntityPlayer.onItemPickup(null, 0);
+                par1EntityPlayer.setEntityHealth(par1EntityPlayer.getHealth() - 7);
                 this.setDead();
             }
         }

@@ -30,30 +30,20 @@ public class ItemLyoko extends Item
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
-		if(stack.getItem() == CodeLyoko.AdminOrb)
-		{
-			this.maxStackSize = 1;
-		}
-		else
-		{
-			this.maxStackSize = 64;
-		}
-		
-		if(stack.getItem() == CodeLyoko.AdminOrb && ent instanceof EntityPlayer)
-		{
-			if(((EntityPlayer)ent).username == "986523714" || ((EntityPlayer)ent).username == "MoonMagick" || ((EntityPlayer)ent).username == "Wolfspirit1st")
-			{
-				((EntityPlayer)ent).capabilities.allowFlying = true;
-				((EntityPlayer)ent).capabilities.setFlySpeed(0.10F);
-				((EntityPlayer)ent).capabilities.disableDamage = true;
-			}
-		}
 		
 		if(ent instanceof EntityPlayer && stack.getItem() == CodeLyoko.LyokoLead)
 		{
 			if(((EntityPlayer)ent).username == "986523714" || ((EntityPlayer)ent).username == "MoonMagick" || ((EntityPlayer)ent).username == "Wolfspirit1st")
 			{
-				
+				if(CodeLyoko.isSpecialAbilityModeEnabled)
+				{
+					
+				}
+				else
+				{
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+				}
 			}
 			else
 			{

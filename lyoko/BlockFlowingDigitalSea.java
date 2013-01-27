@@ -34,7 +34,7 @@ public class BlockFlowingDigitalSea extends BlockFluid
     public BlockFlowingDigitalSea(int par1, Material par2Material)
     {
         super(par1, par2Material);
-        this.setCreativeTab(CreativeTabs.tabMisc);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     /**

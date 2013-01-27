@@ -73,7 +73,7 @@ public class CodeLyoko
 	public static int Item_Lyoko_8;// = 6094;
 	public static int Item_Lyoko_9;// = 6095;
 	public static int Item_Lyoko_10;// = 6096;
-	public static int Item_Admin_Orb;// = 6097;
+	public static int NOT_USED2;// = 6097;
 	public static int Item_Lyoko_11;// = 6098;
 	public static int Item_Lyoko_12;// = 6099;
 	public static int Item_Lyoko_13;// = 6100;
@@ -100,7 +100,7 @@ public class CodeLyoko
 	public static int William_Armor_Pants;// = 6121;
 	public static int William_Armor_Boots;// = 6122;
 	
-	public static boolean isDeveloperOrbEnabled;
+	public static boolean isSpecialAbilityModeEnabled;
 
 	public static int SuperCalcModelID;
 	static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 300, 14F, 30, 30);
@@ -154,7 +154,6 @@ public class CodeLyoko
     public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setItemName("WilliamChest");
     public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
     public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
-    public static Item AdminOrb;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
 	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -206,32 +205,28 @@ public class CodeLyoko
     	LyokoIngot = new ItemLyoko(Item_Lyoko_11).setItemName("LyokoIngot").setIconIndex(16);
     	LyokoLead = new ItemLyoko(Item_Lyoko_12).setItemName("Lead210").setIconIndex(17);
     	LyokoCell = new ItemLyoko(Item_Lyoko_13).setItemName("Cell").setIconIndex(18);
-    	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 10000).setItemName("Lead210Cell").setIconIndex(19);
+    	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 10000, LyokoDepletedLeadCell).setItemName("Lead210Cell").setIconIndex(19);
     	LyokoDepletedLeadCell = new ItemLyoko(Item_Lyoko_15).setItemName("DepletedLead210Cell").setIconIndex(20);
-    	AelitaHelmet = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "Aelita").setIconIndex(21).setItemName("AelitaHelmet");
-        AelitaChest = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "Aelita").setIconIndex(22).setItemName("AelitaChest");
-        AelitaLegs = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "Aelita").setIconIndex(23).setItemName("AelitaPants");
-        AelitaBoots = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "Aelita").setIconIndex(24).setItemName("AelitaBoots");
-        OddHelmet = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "Odd").setIconIndex(25).setItemName("OddHelmet");
-        OddChest = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "Odd").setIconIndex(26).setItemName("OddChest");
-        OddLegs = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "Odd").setIconIndex(27).setItemName("OddPants");
-        OddBoots = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "Odd").setIconIndex(28).setItemName("OddBoots");
-        UlrichHelmet = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "Ulrich").setIconIndex(29).setItemName("UlrichHelmet");
-        UlrichChest = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "Ulrich").setIconIndex(30).setItemName("UlrichChest");
-        UlrichLegs = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "Ulrich").setIconIndex(31).setItemName("UlrichPants");
-        UlrichBoots = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "Ulrich").setIconIndex(32).setItemName("UlrichBoots");
-        YumiHelmet = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "Yumi").setIconIndex(33).setItemName("YumiHelmet");
-        YumiChest = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "Yumi").setIconIndex(34).setItemName("YumiChest");
-        YumiLegs = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "Yumi").setIconIndex(35).setItemName("YumiPants");
-        YumiBoots = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "Yumi").setIconIndex(36).setItemName("YumiBoots");
-        WilliamHelmet = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "William").setIconIndex(37).setItemName("WilliamHelmet");
-        WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setItemName("WilliamChest");
-        WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
-        WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
-        if(isDeveloperOrbEnabled)
-        {
-        	AdminOrb = new ItemLyoko(Item_Admin_Orb).setItemName("AdminOrb").setIconIndex(41);
-        }
+    	AelitaHelmet = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "aelita").setIconIndex(21).setItemName("AelitaHelmet");
+        AelitaChest = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "aelita").setIconIndex(22).setItemName("AelitaChest");
+        AelitaLegs = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "aelita").setIconIndex(23).setItemName("AelitaPants");
+        AelitaBoots = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "aelita").setIconIndex(24).setItemName("AelitaBoots");
+        OddHelmet = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "odd").setIconIndex(25).setItemName("OddHelmet");
+        OddChest = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "odd").setIconIndex(26).setItemName("OddChest");
+        OddLegs = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "odd").setIconIndex(27).setItemName("OddPants");
+        OddBoots = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "odd").setIconIndex(28).setItemName("OddBoots");
+        UlrichHelmet = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "ulrich").setIconIndex(29).setItemName("UlrichHelmet");
+        UlrichChest = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "ulrich").setIconIndex(30).setItemName("UlrichChest");
+        UlrichLegs = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "ulrich").setIconIndex(31).setItemName("UlrichPants");
+        UlrichBoots = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "ulrich").setIconIndex(32).setItemName("UlrichBoots");
+        YumiHelmet = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "yumi").setIconIndex(33).setItemName("YumiHelmet");
+        YumiChest = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "yumi").setIconIndex(34).setItemName("YumiChest");
+        YumiLegs = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "yumi").setIconIndex(35).setItemName("YumiPants");
+        YumiBoots = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "yumi").setIconIndex(36).setItemName("YumiBoots");
+        WilliamHelmet = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "william").setIconIndex(37).setItemName("WilliamHelmet");
+        WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setIconIndex(38).setItemName("WilliamChest");
+        WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setIconIndex(39).setItemName("WilliamPants");
+        WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setIconIndex(40).setItemName("WilliamBoots");
     	TowerBlock = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
     	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
     	LyokoGrass = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -252,6 +247,7 @@ public class CodeLyoko
     	//Marq = Odd
     	//Andrew = Odd (Jeremy)
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
+    	proxy.registerServerTickHandler();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
@@ -314,17 +310,6 @@ public class CodeLyoko
     	
     	LanguageRegistry.addName(LyokoIngot, "Lyokoan Ingot");
     	GameRegistry.addSmelting(LyokoOre.blockID, new ItemStack(LyokoIngot, 1), 5F);
-    	
-    	if(isDeveloperOrbEnabled)
-    	{
-    		LanguageRegistry.addName(AdminOrb, "Mod Developer's Orb");
-    		GameRegistry.addShapelessRecipe(new ItemStack(AdminOrb, 1), new Object[] {
-        		Block.dirt
-        	});
-    		GameRegistry.addShapelessRecipe(new ItemStack(Block.dirt, 1), new Object[] {
-        		AdminOrb
-        	});
-    	}
     	
     	LanguageRegistry.addName(AelitaHelmet, "Aelita's Helmet");
     	LanguageRegistry.addName(AelitaChest, "Aelita's Chestplate");
@@ -553,7 +538,7 @@ public class CodeLyoko
 		Item_Lyoko_8 = config.getItem("itemLyoko8", 6094).getInt();
 		Item_Lyoko_9 = config.getItem("itemLyoko9", 6095).getInt();
 		Item_Lyoko_10 = config.getItem("itemLyoko10", 6096).getInt();
-		Item_Admin_Orb = config.getItem("itemAdminOrb", 6097).getInt();
+		NOT_USED2 = config.getItem("NOT_USED2", 6097).getInt();
 		Item_Lyoko_11 = config.getItem("itemLyoko11", 6098).getInt();
 		Item_Lyoko_12 = config.getItem("itemLyoko12", 6099).getInt();
 		Item_Lyoko_13 = config.getItem("itemLyoko13", 6100).getInt();
@@ -584,7 +569,7 @@ public class CodeLyoko
 		 * taken from my other mod so I can add booleans if needed to the config file
 		 */
         //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
-		isDeveloperOrbEnabled = config.get(Configuration.CATEGORY_GENERAL, "isDeveloperOrbEnabled", false).getBoolean(false);
+		isSpecialAbilityModeEnabled = config.get(Configuration.CATEGORY_GENERAL, "isSpecialAbilityModeEnabled", false).getBoolean(false);
 		
 		config.save();
 	}

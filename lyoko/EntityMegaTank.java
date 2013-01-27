@@ -17,25 +17,23 @@ public class EntityMegaTank extends EntityLyoko
 
     public int getMaxHealth()
     {
-        return 70;
+        return 150;
     }
     
-    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, int par5, int par6, Block block)
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
     {
-    	block.dropBlockAsItem(par1World, par2, par3, par4, par5, par6);
+    	world.setBlock(x, y, z, 0);
+    	
     }
     
-    public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
+    public void onCollideWithPlayer(EntityPlayer entp)
     {
-    	par1EntityPlayer.setDead();
-    	//this.lyokoexplode();
+    	if(!entp.capabilities.isCreativeMode)
+    	{
+    		entp.setDead();
+    	}
     }
     
-    public void onEntityDeath(Entity entity)
-    {
-    	//this.lyokoexplode();
-    }
-
     /**
      * Returns the sound this mob makes while it's alive.
      */

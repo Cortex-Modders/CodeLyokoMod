@@ -1,5 +1,7 @@
 package matt.lyoko;
 
+import java.lang.reflect.Field;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -81,13 +83,16 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         	int slot = 0;
         	ItemStack stack = getStackInSlot(slot);
         	
-        	if(stack != null && stack.getItemDamage() == 10000 && stack.getItem() == CodeLyoko.LyokoLeadCell)
+        	if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
         	{
-        		setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoDepletedLeadCell));
+        		if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == CodeLyoko.LyokoLeadCell)
+        		{
+        			setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoDepletedLeadCell));
+        		}
         	}
-        	else if(stack != null && stack.getItemDamage() < 10000 && stack.getItem() == CodeLyoko.LyokoLeadCell)
+        	else if(stack != null && stack.getItemDamage() < stack.getMaxDamage())
         	{
-        		setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoLeadCell, 1, stack.getItemDamage() + 1));
+        		setInventorySlotContents(slot, new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1));
         	}
         }
 
@@ -102,7 +107,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         
         @Override
         public int getInventoryStackLimit() {
-                return 1;
+                return 64;
         }
 
         @Override

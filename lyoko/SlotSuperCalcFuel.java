@@ -21,7 +21,15 @@ class SlotSuperCalcFuel extends Slot
      */
     public boolean isItemValid(ItemStack par1ItemStack)
     {
-        return par1ItemStack == null ? false : par1ItemStack.itemID == CodeLyoko.LyokoLeadCell.itemID || par1ItemStack.itemID == CodeLyoko.LyokoDepletedLeadCell.itemID;
+    	if(par1ItemStack.getItem() instanceof ItemLyokoFuel)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+        //return par1ItemStack == null ? false : par1ItemStack.itemID == CodeLyoko.LyokoLeadCell.itemID || par1ItemStack.itemID == CodeLyoko.LyokoDepletedLeadCell.itemID;
     }
 
     /**

@@ -15,7 +15,7 @@ public class BlockDigitalSea extends Block
 	public BlockDigitalSea(int par1, int par2)
 	{
 		super(par1, par2, Material.iron);
-		this.setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
 	public int quantityDropped(Random par1Random)

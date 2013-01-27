@@ -13,7 +13,7 @@ public class BlockTowerBase extends BlockBreakable
 	public BlockTowerBase(int par1, int par2, boolean flag)
 	{
 		super(par1, par2, Material.iron, flag);
-		this.setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)

@@ -11,7 +11,7 @@ public class BlockLyokoIce extends BlockBreakable
 	public BlockLyokoIce(int par1, int par2, Material material, boolean flag)
 	{
 		super(par1, par2, material, flag);
-		this.setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(CodeLyoko.LyokoTabs);
 		this.setBlockUnbreakable();
 		
 	}
