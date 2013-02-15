@@ -1,11 +1,12 @@
-package matt.lyoko.blocks;
+package matt.lyoko.slots;
 
+import matt.lyoko.container.ContainerSuperCalc;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-class SlotSuperCalc extends Slot
+public class SlotSuperCalc extends Slot
 {
     /** The beacon this slot belongs to. */
     final ContainerSuperCalc supercalc;

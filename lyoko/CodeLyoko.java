@@ -4,6 +4,7 @@ import java.util.Random;
 import matt.lyoko.world.*;
 import matt.lyoko.world.portals.*;
 import matt.lyoko.blocks.*;
+import matt.lyoko.client.GuiHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.entities.*;
 import net.minecraftforge.common.*;

@@ -1,6 +1,7 @@
-package matt.lyoko.blocks;
+package matt.lyoko.slots;
 
 import cpw.mods.fml.relauncher.*;
+import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.*;
@@ -18,7 +19,7 @@ public class SlotSuperCalcArmor extends Slot
      */
     final ContainerSuperCalc parent;
 
-    SlotSuperCalcArmor(ContainerSuperCalc par1ContainerPlayer, IInventory par2IInventory, int par3, int par4, int par5, int par6)
+    public SlotSuperCalcArmor(ContainerSuperCalc par1ContainerPlayer, IInventory par2IInventory, int par3, int par4, int par5, int par6)
     {
         super(par2IInventory, par3, par4, par5);
         this.parent = par1ContainerPlayer;
