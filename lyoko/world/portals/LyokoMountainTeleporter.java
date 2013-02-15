@@ -1,4 +1,4 @@
-/**package matt.lyoko.world.portals;
+package matt.lyoko.world.portals;
 
 import java.util.Random;
 
@@ -288,4 +288,3 @@ public class LyokoMountainTeleporter extends Teleporter{
 
 
 }
-**/

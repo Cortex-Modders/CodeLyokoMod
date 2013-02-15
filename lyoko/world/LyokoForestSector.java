@@ -14,7 +14,7 @@ public class LyokoForestSector extends WorldProvider{
 	
 	public int getDimensionID() 
 	 {
-	  return 39;
+	  return CodeLyoko.Forest_Sector_ID;
 	 }
 	 
 	 public void registerWorldChunkManager()

@@ -1,9 +1,14 @@
 package matt.lyoko;
 
 import net.minecraftforge.client.MinecraftForgeClient;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod.Instance;
+import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
+import matt.lyoko.entities.*;
+import matt.lyoko.render.*;
+import matt.lyoko.model.*;
 
 public class ClientProxy extends CommonProxy
 {
@@ -28,7 +33,7 @@ public class ClientProxy extends CommonProxy
 		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan());
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField());
-		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow());
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow(5));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok(new ModelBlok(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank(new ModelTank(), 0.5F));
 		/*
@@ -40,6 +45,9 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTarantula.class, new RenderTarantula(new ModelTarantula(), 0.5F));
 		*/
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderLaser(new ModelLaser(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid(new ModelSkid(), 0.5F));
+		
+		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 	}
 
 	//override any other methods that need to be handled differently client side.

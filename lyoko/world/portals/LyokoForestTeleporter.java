@@ -1,4 +1,4 @@
-/**package matt.lyoko.world.portals;
+package matt.lyoko.world.portals;
 
 import java.util.Random;
 import net.minecraft.block.Block;
@@ -287,4 +287,3 @@ public class LyokoForestTeleporter extends Teleporter{
 
 
 }
-**/

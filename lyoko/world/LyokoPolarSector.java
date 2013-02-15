@@ -14,7 +14,7 @@ public class LyokoPolarSector extends WorldProvider {
 
 	 public int getDimensionID() 
 	 {
-	  return 37;
+	  return CodeLyoko.Polar_Sector_ID;
 	 }
 	 
 	 public void registerWorldChunkManager()

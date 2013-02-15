@@ -1,4 +1,4 @@
-/**package matt.lyoko.world.portals;
+package matt.lyoko.world.portals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +10,13 @@ import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Material;
 import net.minecraft.src.Teleporter;
 import net.minecraft.src.World;
-import matt.lyoko.CodeLyoko;
 import matt.lyoko.world.LyokoMountainSector;
 
 public class LyokoMountainPortal extends BlockPortal{
 	
 	public LyokoMountainPortal(int i, int j) {
 		super(i, j);
-		 this.setCreativeTab(CodeLyoko.LyokoTabs);
+		 this.setCreativeTab(CreativeTabs.tabMisc);
 		 this.setBlockName("Mountain Portal");
 		 this.setBlockUnbreakable();
 	}
@@ -80,4 +79,3 @@ public class LyokoMountainPortal extends BlockPortal{
 
 
 }
-**/

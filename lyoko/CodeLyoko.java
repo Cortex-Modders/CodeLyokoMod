@@ -3,7 +3,11 @@ package matt.lyoko;
 import java.util.Random;
 import matt.lyoko.world.*;
 import matt.lyoko.world.portals.*;
+import matt.lyoko.blocks.*;
+import matt.lyoko.items.*;
+import matt.lyoko.entities.*;
 import net.minecraftforge.common.*;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -14,7 +18,10 @@ import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
@@ -25,7 +32,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.entity.player.*;
 
-@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.3.1-Alpha")
+@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.3.2-Alpha")
 @NetworkMod
 (
 clientSideRequired = true,
@@ -45,7 +52,7 @@ public class CodeLyoko
 	public static int Lyoko_Sea_Block;// = 1161;
 	public static int Lyoko_Sea_Flowing;// = 1162;
 	public static int Lyoko_Sea_Still;// = 1163;
-	public static int NOT_USED;// = 1164;
+	public static int Lyoko_Virtual_Block;// = 1164;
 	public static int Lyoko_Carthage;// = 1165;
 	public static int Lyoko_Ore;// = 1166;
 	public static int Lyoko_Polar_Portal;// = 1167;
@@ -73,7 +80,7 @@ public class CodeLyoko
 	public static int Item_Lyoko_8;// = 6094;
 	public static int Item_Lyoko_9;// = 6095;
 	public static int Item_Lyoko_10;// = 6096;
-	public static int NOT_USED2;// = 6097;
+	public static int Item_Skid;// = 6097;
 	public static int Item_Lyoko_11;// = 6098;
 	public static int Item_Lyoko_12;// = 6099;
 	public static int Item_Lyoko_13;// = 6100;
@@ -100,13 +107,21 @@ public class CodeLyoko
 	public static int William_Armor_Pants;// = 6121;
 	public static int William_Armor_Boots;// = 6122;
 	
+	public static int Polar_Sector_ID;
+	public static int Mountain_Sector_ID;
+	public static int Forest_Sector_ID;
+	public static int Desert_Sector_ID;
+	public static int Carthage_Sector_ID;
+	
 	public static boolean isSpecialAbilityModeEnabled;
 
-	public static int SuperCalcModelID;
+	public static int SuperCalcRenderID;
+	public static int SuperCalcTexture;
 	static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 300, 14F, 30, 30);
 	
 	static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 40, new int[] {5, 10, 8, 5}, 30);
 	
+	public static final Material LyokoTower = new Material(MapColor.ironColor);
 	public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
 	public static final BiomeGenBase lyokomountain = ((BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631)).setLyokoBiomeName("Mountain Sector");
 	public static final BiomeGenBase lyokoforest = ((BiomeGenBaseLyoko) (new BiomeGenForestSector(10)).setColor(8421631)).setLyokoBiomeName("Forest Sector");
@@ -154,6 +169,7 @@ public class CodeLyoko
     public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setItemName("WilliamChest");
     public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
     public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
+    public static Item Skid;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
 	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -167,6 +183,7 @@ public class CodeLyoko
 	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaFlowing").setRequiresSelfNotify();
 	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaStill").setRequiresSelfNotify();
 	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
+	public static Block VirtualBlock;
 	/*
 	public static final Block LyokoPolarPortal  = new LyokoPolarPortal(Lyoko_Polar_Portal, 12).setBlockName("Polar Portal");
 	public static final Block LyokoDesertPortal = new LyokoDesertPortal(Lyoko_Desert_Portal, 13).setBlockName("Desert Portal");
@@ -176,16 +193,27 @@ public class CodeLyoko
 	public static final Block LyokoOverPortal = new OverworldPortal(Lyoko_Over_Portal, 17).setBlockName("OverWorld Portal");
 	*/
 	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();
-	//public static final Item ItemSuperCalc = new ItemLyoko(Item_Lyoko_Super_Calc).setItemName("Item Super Computer").setIconIndex(0).setTextureFile("/matt/lyoko/terrain/SuperCalculator.png");
 	
 	@SidedProxy(clientSide = "matt.lyoko.ClientProxy", serverSide = "matt.lyoko.CommonProxy")
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
 	@Instance
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable
 	
+	/*public void renderInvBlock(RenderBlocks var1, Block var2, int var3, int var4)
+	{
+		renderInvBlock(var1, var2, var3, var4);
+		
+		if (var2 == SuperCalc)
+		{
+			TileEntityRenderer.instance.renderTileEntityAt(new TileEntitySuperCalc(), 0.0D, 0.0D, 0.0D, 0.0F);
+		}
+	}*/
+	
     @Init
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
+        SuperCalcRenderID = RenderingRegistry.getNextAvailableRenderId();
+    	
     	Katana = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setItemName("Katana").setIconIndex(0);
     	Zweihander = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setItemName("Zweihander").setIconIndex(1);
     	Fan = new ItemLyokoFan(Weapon_Lyoko_3).setItemName("Fan").setIconIndex(2);
@@ -227,6 +255,7 @@ public class CodeLyoko
         WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setIconIndex(38).setItemName("WilliamChest");
         WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setIconIndex(39).setItemName("WilliamPants");
         WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setIconIndex(40).setItemName("WilliamBoots");
+        Skid = new ItemLyoko(Item_Skid).setItemName("Skid").setIconIndex(41);
     	TowerBlock = new BlockLyokoTower(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
     	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
     	LyokoGrass = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -240,7 +269,8 @@ public class CodeLyoko
     	DigitalSeaFlowing = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaFlowing").setRequiresSelfNotify();
     	DigitalSeaStill = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaStill").setRequiresSelfNotify();
     	LeadOre = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();
+    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc, 12).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();//.setCreativeTab(null);
+    	VirtualBlock = new BlockLyoko(Lyoko_Virtual_Block, 11).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoVirtualBlock");
     	
     	//TODO Give mod owners special ability
     	//Matthew = Aelita
@@ -248,11 +278,15 @@ public class CodeLyoko
     	//Andrew = Odd (Jeremy)
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
     	proxy.registerServerTickHandler();
+    	proxy.registerKeyBindingHandler();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
     	//RenderSuperCalc render = new RenderSuperCalc();
     	//GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "tesc");
+    	
+    	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
+    	GameRegistry.registerTileEntity(TileEntityDigitalSea.class, "teDigitalSea");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	
@@ -261,9 +295,14 @@ public class CodeLyoko
     	
     	GameRegistry.registerBlock(SuperCalc, "Super Computer");
     	LanguageRegistry.addName(SuperCalc, "Super Computer");
-    	//GameRegistry.addRecipe(new ItemStack(ItemSuperCalc, 1), new Object[] {
-    	//	" * ", " * ", "***", Character.valueOf('*'), Block.glass
-    	//});
+    	GameRegistry.addRecipe(new ItemStack(SuperCalc, 1), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('*'), Item.netherStar
+    	});
+    	
+    	GameRegistry.registerBlock(VirtualBlock, "Virtual Block");
+    	LanguageRegistry.addName(VirtualBlock, "Virtual Block");
+    	
+    	LanguageRegistry.addName(Skid, "Skidbladnir");
     	
     	//Biomes
     	//GameRegistry.addBiome(lyokocarthage);
@@ -315,26 +354,86 @@ public class CodeLyoko
     	LanguageRegistry.addName(AelitaChest, "Aelita's Chestplate");
     	LanguageRegistry.addName(AelitaLegs, "Aelita's Leggings");
     	LanguageRegistry.addName(AelitaBoots, "Aelita's Boots");
+    	GameRegistry.addRecipe(new ItemStack(AelitaHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(AelitaChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(AelitaLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(AelitaBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    	});
     	
     	LanguageRegistry.addName(OddHelmet, "Odd's Helmet");
     	LanguageRegistry.addName(OddChest, "Odd's Chestplate");
     	LanguageRegistry.addName(OddLegs, "Odd's Leggings");
     	LanguageRegistry.addName(OddBoots, "Odd's Boots");
+    	GameRegistry.addRecipe(new ItemStack(OddHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(OddChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(OddLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(OddBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	});
     	
     	LanguageRegistry.addName(UlrichHelmet, "Ulrich's Helmet");
     	LanguageRegistry.addName(UlrichChest, "Ulrich's Chestplate");
     	LanguageRegistry.addName(UlrichLegs, "Ulrich's Leggings");
     	LanguageRegistry.addName(UlrichBoots, "Ulrich's Boots");
+    	GameRegistry.addRecipe(new ItemStack(UlrichHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(UlrichChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(UlrichLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(UlrichBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	});
     	
     	LanguageRegistry.addName(YumiHelmet, "Yumi's Helmet");
     	LanguageRegistry.addName(YumiChest, "Yumi's Chestplate");
     	LanguageRegistry.addName(YumiLegs, "Yumi's Leggings");
     	LanguageRegistry.addName(YumiBoots, "Yumi's Boots");
+    	GameRegistry.addRecipe(new ItemStack(YumiHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(YumiChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(YumiLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(YumiBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
     	
     	LanguageRegistry.addName(WilliamHelmet, "William's Helmet");
     	LanguageRegistry.addName(WilliamChest, "William's Chestplate");
     	LanguageRegistry.addName(WilliamLegs, "William's Leggings");
     	LanguageRegistry.addName(WilliamBoots, "William's Boots");
+    	GameRegistry.addRecipe(new ItemStack(WilliamHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(WilliamChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(WilliamLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(WilliamBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
     	
     	LanguageRegistry.addName(KatanaFragment1, "Katana Fragment");
     	LanguageRegistry.addName(KatanaFragment2, "Katana Fragment");
@@ -388,10 +487,13 @@ public class CodeLyoko
     		GloveFragment1, GloveFragment2
     	});
     	GameRegistry.addRecipe(new ItemStack(Glove, 1), new Object[] {
-    		"###", "#a#", "#*#", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.leather, Character.valueOf('a'), Item.arrow
+    		"###", "#a#", "#*#", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.leather, Character.valueOf('a'), LaserArrow
     	});
     	
     	LanguageRegistry.addName(LaserArrow, "Laser Arrow");
+    	GameRegistry.addRecipe(new ItemStack(LaserArrow, 1), new Object[] {
+    		"a*a", "*#*", "a*a", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar, Character.valueOf('a'), Item.arrow
+    	});
     	
     	GameRegistry.registerBlock(LeadOre,"Lead Isotope 210 Ore");
     	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
@@ -434,16 +536,16 @@ public class CodeLyoko
     	
     	
     	//Lyoko Sectors Dimension Register
-    	DimensionManager.registerProviderType(3, LyokoPolarSector.class, true);
-    	DimensionManager.registerProviderType(4, LyokoMountainSector.class, true);
-    	DimensionManager.registerProviderType(5, LyokoForestSector.class, true);
-    	DimensionManager.registerProviderType(6, LyokoDesertSector.class, true);
-    	DimensionManager.registerProviderType(7, LyokoCarthageSector.class, true);
-    	DimensionManager.registerDimension(3, 3);
-    	DimensionManager.registerDimension(4, 4);
-    	DimensionManager.registerDimension(5, 5);
-    	DimensionManager.registerDimension(6, 6);
-    	DimensionManager.registerDimension(7, 7);
+    	DimensionManager.registerProviderType(this.Polar_Sector_ID, LyokoPolarSector.class, true);
+    	DimensionManager.registerProviderType(this.Mountain_Sector_ID, LyokoMountainSector.class, true);
+    	DimensionManager.registerProviderType(this.Forest_Sector_ID, LyokoForestSector.class, true);
+    	DimensionManager.registerProviderType(this.Desert_Sector_ID, LyokoDesertSector.class, true);
+    	DimensionManager.registerProviderType(this.Carthage_Sector_ID, LyokoCarthageSector.class, true);
+    	DimensionManager.registerDimension(this.Polar_Sector_ID, this.Polar_Sector_ID);
+    	DimensionManager.registerDimension(this.Mountain_Sector_ID, this.Mountain_Sector_ID);
+    	DimensionManager.registerDimension(this.Forest_Sector_ID, this.Forest_Sector_ID);
+    	DimensionManager.registerDimension(this.Desert_Sector_ID, this.Desert_Sector_ID);
+    	DimensionManager.registerDimension(this.Carthage_Sector_ID, this.Carthage_Sector_ID);
     	
     	
     	
@@ -468,6 +570,8 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
     	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
+    	EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
     	/*
     	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
@@ -483,8 +587,9 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Tarantula.name", "en_US", "Tarantula");
     	*/
     	
-    	EntityRegistry.addSpawn(matt.lyoko.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(matt.lyoko.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
+    	EntityRegistry.addSpawn(matt.lyoko.entities.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
+    	EntityRegistry.addSpawn(matt.lyoko.entities.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
+    	EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
     	/*
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityHornet.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityKankrelat.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
@@ -511,7 +616,7 @@ public class CodeLyoko
 		Lyoko_Sea_Block = config.getBlock("lyokoSeaBlock", 1161).getInt();
 		Lyoko_Sea_Flowing = config.getBlock("lyokoSeaFlowing", 1162).getInt();
 		Lyoko_Sea_Still = config.getBlock("lyokoSeaStill", 1163).getInt();
-		NOT_USED = config.getBlock("NOT USED", 1164).getInt();
+		Lyoko_Virtual_Block = config.getBlock("lyokovirtualblock", 1164).getInt();
 		Lyoko_Carthage = config.getBlock("lyokoCarthage", 1165).getInt();
 		Lyoko_Ore = config.getBlock("lyokoOre", 1166).getInt();
 		Lyoko_Polar_Portal = config.getBlock("lyokoPolarPortal", 1167).getInt();
@@ -538,7 +643,7 @@ public class CodeLyoko
 		Item_Lyoko_8 = config.getItem("itemLyoko8", 6094).getInt();
 		Item_Lyoko_9 = config.getItem("itemLyoko9", 6095).getInt();
 		Item_Lyoko_10 = config.getItem("itemLyoko10", 6096).getInt();
-		NOT_USED2 = config.getItem("NOT_USED2", 6097).getInt();
+		Item_Skid = config.getItem("itemSkid", 6097).getInt();
 		Item_Lyoko_11 = config.getItem("itemLyoko11", 6098).getInt();
 		Item_Lyoko_12 = config.getItem("itemLyoko12", 6099).getInt();
 		Item_Lyoko_13 = config.getItem("itemLyoko13", 6100).getInt();
@@ -570,6 +675,12 @@ public class CodeLyoko
 		 */
         //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
 		isSpecialAbilityModeEnabled = config.get(Configuration.CATEGORY_GENERAL, "isSpecialAbilityModeEnabled", false).getBoolean(false);
+		
+		Polar_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", 3).getInt();
+		Mountain_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", 4).getInt();
+		Forest_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", 5).getInt();
+		Desert_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", 6).getInt();
+		Carthage_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", 8).getInt();
 		
 		config.save();
 	}
@@ -614,6 +725,7 @@ public class CodeLyoko
         addDungeonLoot(WilliamChest, 005, 1, 1);
         addDungeonLoot(WilliamLegs, 005, 1, 1);
         addDungeonLoot(WilliamBoots, 005, 1, 1);
+        addDungeonLoot(LaserArrow, 005, 1, 1);
     }
     
     public static DamageSource causeLaserArrowDamage(EntityLaserArrow par0EntityLaserArrow, Entity par1Entity)

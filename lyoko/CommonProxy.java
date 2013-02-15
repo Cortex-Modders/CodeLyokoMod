@@ -1,7 +1,9 @@
 package matt.lyoko;
 
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -21,14 +23,12 @@ public class CommonProxy implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -36,5 +36,10 @@ public class CommonProxy implements IGuiHandler
 	{
 		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 	}
-
+	
+	public void registerKeyBindingHandler()
+	{
+		KeyBinding[] keybind = new KeyBinding[]{};
+		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler(keybind));
+	}
 }

@@ -15,7 +15,7 @@ public class TowerGen implements IWorldGenerator {
 	   case 4: generateTower(world, random, chunkX*16, chunkZ*16);
 	   case 5: generateTower(world, random, chunkX*16, chunkZ*16);
 	   case 6: generateTower(world, random, chunkX*16, chunkZ*16);
-	   case 7: generateTower(world, random, chunkX*16, chunkZ*16);
+	   case 8: generateTower(world, random, chunkX*16, chunkZ*16);
 	  }
 	 }
 
@@ -24,10 +24,10 @@ public class TowerGen implements IWorldGenerator {
 	  private void generateTower(World world, Random random, int blockX, int blockZ) 
 	 {
 		  int Xcoord1 = blockX + random.nextInt(16);
-		  int Ycoord1 = random.nextInt(60);
+		  int Ycoord1 = random.nextInt(128);
 		  int Zcoord1 = blockZ + random.nextInt(16);
 		  
-		  (new WorldGen_code_lyoko_tower()).generate(world, random, Xcoord1, Ycoord1, Zcoord1); 
+		  (new WorldGenCodeLyokoTower()).generate(world, random, Xcoord1, Ycoord1, Zcoord1); 
 	 }
 
 }

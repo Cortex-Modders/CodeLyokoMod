@@ -14,7 +14,7 @@ public class LyokoDesertSector extends WorldProvider{
 	
 	 public int getDimensionID() 
 	 {
-	  return 38;
+	  return CodeLyoko.Desert_Sector_ID;
 	 }
 	 
 	 public void registerWorldChunkManager()

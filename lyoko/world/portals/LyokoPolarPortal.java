@@ -1,4 +1,4 @@
-/**package matt.lyoko.world.portals;
+package matt.lyoko.world.portals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,4 +73,3 @@ public class LyokoPolarPortal extends BlockPortal {
 	    }
 
 }
-**/

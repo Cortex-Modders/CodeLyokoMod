@@ -1,4 +1,4 @@
-/**package matt.lyoko.world.portals;
+package matt.lyoko.world.portals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class LyokoDesertPortal extends BlockPortal {
     
     public Teleporter getTeleporter()
  {
-  return new LyokoDesertTeleporter(null);
+  return new LyokoDesertTeleporter();
  }
     public List canTeleportFromDimension()
  {
@@ -75,4 +75,3 @@ public class LyokoDesertPortal extends BlockPortal {
     	return 60;
     }
 }
-**/

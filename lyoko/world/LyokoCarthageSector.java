@@ -14,7 +14,7 @@ public class LyokoCarthageSector extends WorldProvider{
 	
 	public int getDimensionID() 
 	 {
-	  return 7;
+	  return CodeLyoko.Carthage_Sector_ID;
 	 }
 	 
 	 public void registerWorldChunkManager()
