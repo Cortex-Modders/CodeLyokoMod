@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import matt.lyoko.*;
 
-public class WorldGenCodeLyokoTower extends WorldGenerator
+public class StructureTower extends WorldGenerator
 {
-	public WorldGenCodeLyokoTower() { }
+	public StructureTower() { }
 	
 	 protected int[] GetValidSpawnBlocks()
 	 {

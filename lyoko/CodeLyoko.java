@@ -290,6 +290,7 @@ public class CodeLyoko
     	GameRegistry.registerTileEntity(TileEntityDigitalSea.class, "teDigitalSea");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
+    	GameRegistry.registerWorldGenerator(new WorldGenTower());
     	
     	MinecraftForge.setBlockHarvestLevel(LyokoOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(LeadOre, "pickaxe", 2);
