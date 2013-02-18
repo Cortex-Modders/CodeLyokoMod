@@ -46,23 +46,8 @@ public class ItemLyoko extends Item
 		
 		if(ent instanceof EntityPlayer && stack.getItem() == CodeLyoko.LyokoLead)
 		{
-			if(((EntityPlayer)ent).username == "986523714" || ((EntityPlayer)ent).username == "MoonMagick" || ((EntityPlayer)ent).username == "Wolfspirit1st")
-			{
-				if(CodeLyoko.isSpecialAbilityModeEnabled)
-				{
-					
-				}
-				else
-				{
-					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
-					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
-				}
-			}
-			else
-			{
-				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
-				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
-			}
+			((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
+			((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
 		}
 	}
 	
