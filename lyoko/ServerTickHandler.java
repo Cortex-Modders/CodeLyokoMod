@@ -77,15 +77,6 @@ public class ServerTickHandler implements ITickHandler
 				player.fallDistance = 0;
 			}
 		}
-		
-		if(CodeLyoko.isSpecialAbilityModeEnabled)
-		{
-			if(player.username == "986523714" || player.username == "MoonMagick" || player.username == "Wolfspirit1st")
-			{
-				player.capabilities.allowFlying = true;
-				player.capabilities.disableDamage = true;
-			}
-		}
 	}
 	
 	private void onRenderTick(EntityPlayer player)

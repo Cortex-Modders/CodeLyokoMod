@@ -113,8 +113,6 @@ public class CodeLyoko
 	public static int Forest_Sector_ID;
 	public static int Desert_Sector_ID;
 	public static int Carthage_Sector_ID;
-	
-	public static boolean isSpecialAbilityModeEnabled;
 
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
@@ -676,7 +674,6 @@ public class CodeLyoko
 		 * taken from my other mod so I can add booleans if needed to the config file
 		 */
         //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
-		isSpecialAbilityModeEnabled = config.get(Configuration.CATEGORY_GENERAL, "isSpecialAbilityModeEnabled", false).getBoolean(false);
 		
 		Polar_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", 3).getInt();
 		Mountain_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", 4).getInt();
