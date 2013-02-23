@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
@@ -25,7 +26,6 @@ public class BlockSuperCalc extends BlockContainer {
                 super(id, Material.iron);
         		this.setCreativeTab(CodeLyoko.LyokoTabs);
         		this.blockIndexInTexture = textureIndex;
-        		//this.setBlockBounds(-1.0F, 0F, -1.0F, 2.0F, 3.0F, 2.0F);
         }
         
         public boolean isMultiBlock(World world, int x, int y, int z)
@@ -45,6 +45,88 @@ public class BlockSuperCalc extends BlockContainer {
         		return true;
         	}
         	return false;
+        }
+        
+        public int getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
+        {
+        	//case 2: //right
+        	//case 3: //left
+        	//case 4: //front
+        	//case 5: //back
+        	World world = access.getBlockTileEntity(x, y, z).worldObj;
+        	if(side == 0 || side == 1)
+        	{
+        		return 11;
+        	}
+        	if(isMultiBlock(world, x+1, y, z+1))
+        	{
+        		switch(side)
+        		{
+        		case 2: return 27; //right
+        		case 4: return 16; //front
+        		}
+        	}
+        	else if(isMultiBlock(world, x+1, y, z))
+        	{
+        		switch(side)
+        		{
+        		case 4: return 17; //front
+        		}
+        	}
+        	else if(isMultiBlock(world, x+1, y, z-1))
+        	{
+        		switch(side)
+        		{
+        		case 3: return 19; //left
+        		case 4: return 18; //front
+        		}
+        	}
+        	else if(isMultiBlock(world, x, y, z+1))
+        	{
+        		switch(side)
+        		{
+        		case 2: return 26; //right
+        		}
+        	}
+        	else if(isMultiBlock(world, x, y, z-1))
+        	{
+        		switch(side)
+        		{
+        		case 3: return 20; //left
+        		}
+        	}
+        	else if(isMultiBlock(world, x-1, y, z+1))
+        	{
+        		switch(side)
+        		{
+        		case 2: return 25; //right
+        		case 5: return 24; //back
+        		}
+        	}
+        	else if(isMultiBlock(world, x-1, y, z))
+        	{
+        		switch(side)
+        		{
+        		case 5: return 23; //back
+        		}
+        	}
+        	else if(isMultiBlock(world, x-1, y, z-1))
+        	{
+        		switch(side)
+        		{
+        		case 3: return 21; //left
+        		case 5: return 22; //back
+        		}
+        	}
+        	else if(isMultiBlock(world, x, y-1, z))
+        	{
+        		return 28;
+        	}
+        	else if(isMultiBlock(world, x, y-2, z))
+        	{
+        		return 12;
+        	}
+        	return this.blockIndexInTexture;
         }
         
         @Override
@@ -86,38 +168,7 @@ public class BlockSuperCalc extends BlockContainer {
         public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
                 dropItems(world, x, y, z);
                 super.breakBlock(world, x, y, z, par5, par6);
-                /*world.setBlockWithNotify(x, y, z, 0);
-    			world.setBlockWithNotify(x, y + 1, z, 0);
-    			world.setBlockWithNotify(x, y + 2, z, 0);
-    			world.setBlockWithNotify(x + 1, y, z + 1, 0);
-    			world.setBlockWithNotify(x + 1, y, z, 0);
-    			world.setBlockWithNotify(x + 1, y, z - 1, 0);
-    			world.setBlockWithNotify(x, y, z + 1, 0);
-    			world.setBlockWithNotify(x, y, z - 1, 0);
-    			world.setBlockWithNotify(x - 1, y, z + 1, 0);
-    			world.setBlockWithNotify(x - 1, y, z, 0);
-    			world.setBlockWithNotify(x - 1, y, z - 1, 0);*/
         }
-        
-        //public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-        //{
-        //    return AxisAlignedBB.getBoundingBox(par2 - 2, par3, par4 - 2, par2 + 3, par3 + 4, par4 + 3);
-        //}
-        /*
-        public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-        {
-        	par2 = 1;
-        	par3 = 1;
-        	par4 = 1;
-            return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double)par2 + this.minX, (double)par3 + this.minY, (double)par4 + this.minZ, (double)par2 + this.maxX, (double)par3 + this.maxY, (double)par4 + this.maxZ);
-        }
-        */
-        /*@SideOnly(Side.CLIENT)
-        
-        public int idPicked(World par1World, int par2, int par3, int par4)
-        {
-            return CodeLyoko.ItemSuperCalc.itemID;
-        }*/
         
         private void dropItems(World world, int x, int y, int z){
                 Random rand = new Random();
@@ -162,27 +213,5 @@ public class BlockSuperCalc extends BlockContainer {
         public String getTextureFile()
         {
         	return "/matt/lyoko/terrain/terrain.png";
-        	//return "/matt/lyoko/terrain/computer.png";
-        	//return "/matt/lyoko/terrain/SuperCalculator.png";
         }
-    	
-    	/*@Override
-    	public int idDropped(int par1, Random par2Random, int par3)
-        {
-            return CodeLyoko.ItemSuperCalc.itemID;
-        }
-
-    	public boolean renderAsNormalBlock() {
-    		return false;
-    	}
-    	
-    	public int getRenderType()
-        {
-    		return CodeLyoko.SuperCalcRenderID;
-        }
-    	
-    	public boolean isOpaqueCube()
-        {
-            return false;
-        }*/
 }

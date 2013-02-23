@@ -268,8 +268,8 @@ public class CodeLyoko
     	DigitalSeaFlowing = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaFlowing").setRequiresSelfNotify();
     	DigitalSeaStill = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaStill").setRequiresSelfNotify();
     	LeadOre = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc, 12).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();//.setCreativeTab(null);
-    	VirtualBlock = new BlockLyoko(Lyoko_Virtual_Block, 11).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoVirtualBlock");
+    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc, 16).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();//.setCreativeTab(null);
+    	VirtualBlock = new BlockLyokoVirtual(Lyoko_Virtual_Block, 2).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoVirtualBlock");
     	
     	//TODO Give mod owners special ability
     	//Matthew = Aelita

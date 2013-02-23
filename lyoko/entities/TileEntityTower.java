@@ -16,10 +16,9 @@ public class TileEntityTower extends TileEntity
 	public void updateEntity()
 	{
 		Random rand = new Random();
-		int shouldToggle;
+		int shouldToggle = rand.nextInt(2000);
 		if(!isActivated)
 		{
-			shouldToggle = rand.nextInt(10000);
 			if(shouldToggle == 0)
 			{
 				isActivated = true;
@@ -31,43 +30,30 @@ public class TileEntityTower extends TileEntity
 		{
 			if(owner == "xana")
 			{
-				shouldToggle = rand.nextInt(10000);
-				if(shouldToggle == 0)
+				if(shouldToggle == 1)
 				{
 					isActivated = false;
 					owner = "none";
 				}
+				//blt.activeXana(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+			}
+			else if(owner == "lyoko")
+			{
+				//display green particle effect
+			}
+			else if(owner == "franz")
+			{
+				//display white particle effect
 			}
 		}
-		
-		if(this.getBlockType() == CodeLyoko.TowerBlock)
+		else if(!isActivated)
 		{
-			//BlockLyokoTower blt = new BlockLyokoTower(CodeLyoko.TowerBlock.blockID, CodeLyoko.TowerBlock.blockIndexInTexture);
-			if(isActivated)
+			if(owner == "none")
 			{
-				if(owner == "xana")
-				{
-					//blt.activeXana(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-				}
-				else if(owner == "lyoko")
-				{
-					//display green particle effect
-				}
-				else if(owner == "franz")
-				{
-					//display white particle effect
-				}
+				//display blue particle effect
 			}
-			else if(!isActivated)
-			{
-				if(owner == "none")
-				{
-					//display blue particle effect
-				}
-			}
-
 		}
-		System.out.println(owner);
+		System.out.println(owner + " at " + this.xCoord + " "+ this.yCoord + " "+ this.zCoord);
 	}
 
 	@Override
