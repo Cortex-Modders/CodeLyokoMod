@@ -1,6 +1,9 @@
 package matt.lyoko.blocks;
 
 import java.util.Random;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,52 +45,54 @@ public class BlockLyokoTower extends BlockContainer
 		}
         return false;
     }
-	
-	public void activeXana(World par1World, int par2, int par3, int par4)
+	/*
+	@SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, int x, int y, int z, Random random)
     {
-        Random var5 = par1World.rand;
+        Random var5 = world.rand;
         double var6 = 0.0625D;
 
         for (int var8 = 0; var8 < 6; ++var8)
         {
-            double var9 = (double)((float)par2 + var5.nextFloat());
-            double var11 = (double)((float)par3 + var5.nextFloat());
-            double var13 = (double)((float)par4 + var5.nextFloat());
+            double var9 = (double)((float)x + var5.nextFloat());
+            double var11 = (double)((float)y + var5.nextFloat());
+            double var13 = (double)((float)z + var5.nextFloat());
 
-            if (var8 == 0 && !par1World.isBlockOpaqueCube(par2, par3 + 1, par4))
+            if (var8 == 0 && !world.isBlockOpaqueCube(x, y + 1, z))
             {
-                var11 = (double)(par3 + 1) + var6;
+                var11 = (double)(y + 1) + var6;
             }
 
-            if (var8 == 1 && !par1World.isBlockOpaqueCube(par2, par3 - 1, par4))
+            if (var8 == 1 && !world.isBlockOpaqueCube(x, y - 1, z))
             {
-                var11 = (double)(par3 + 0) - var6;
+                var11 = (double)(y + 0) - var6;
             }
 
-            if (var8 == 2 && !par1World.isBlockOpaqueCube(par2, par3, par4 + 1))
+            if (var8 == 2 && !world.isBlockOpaqueCube(x, y, z + 1))
             {
-                var13 = (double)(par4 + 1) + var6;
+                var13 = (double)(z + 1) + var6;
             }
 
-            if (var8 == 3 && !par1World.isBlockOpaqueCube(par2, par3, par4 - 1))
+            if (var8 == 3 && !world.isBlockOpaqueCube(x, y, z - 1))
             {
-                var13 = (double)(par4 + 0) - var6;
+                var13 = (double)(z + 0) - var6;
             }
 
-            if (var8 == 4 && !par1World.isBlockOpaqueCube(par2 + 1, par3, par4))
+            if (var8 == 4 && !world.isBlockOpaqueCube(x + 1, y, z))
             {
-                var9 = (double)(par2 + 1) + var6;
+                var9 = (double)(x + 1) + var6;
             }
 
-            if (var8 == 5 && !par1World.isBlockOpaqueCube(par2 - 1, par3, par4))
+            if (var8 == 5 && !world.isBlockOpaqueCube(x - 1, y, z))
             {
-                var9 = (double)(par2 + 0) - var6;
+                var9 = (double)(x + 0) - var6;
             }
 
-            if (var9 < (double)par2 || var9 > (double)(par2 + 1) || var11 < 0.0D || var11 > (double)(par3 + 1) || var13 < (double)par4 || var13 > (double)(par4 + 1))
+            if (var9 < (double)x || var9 > (double)(x + 1) || var11 < 0.0D || var11 > (double)(y + 1) || var13 < (double)z || var13 > (double)(z + 1))
             {
-                par1World.spawnParticle("reddust", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("reddust", var9, var11, var13, 0.0D, 0.0D, 0.0D);
             }
         }
     }
+    */
 }

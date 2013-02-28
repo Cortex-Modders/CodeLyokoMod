@@ -2,10 +2,12 @@ package matt.lyoko.client;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.entities.*;
 import matt.lyoko.items.*;
@@ -19,7 +21,10 @@ public class GuiSuperCalc extends GuiContainer {
                 this.ySize = 200;
                 this.xSize = 234;
                 tsc = tileEntity;
+                player = inventoryPlayer.player;
         }
+        
+        private EntityPlayer player;
         
         public TileEntitySuperCalc tsc;
         
@@ -32,6 +37,31 @@ public class GuiSuperCalc extends GuiContainer {
         			tsc.timeLeft = 0.0F;
         			if(tsc.selectedSector != "")
         			{
+        				if(tsc.selectedSector == "ice")
+        				{
+        					player.dimension = CodeLyoko.Polar_Sector_ID;
+        					player.closeScreen();
+        				}
+        				else if(tsc.selectedSector == "forest")
+        				{
+        					player.dimension = CodeLyoko.Forest_Sector_ID;
+        					player.closeScreen();
+        				}
+        				else if(tsc.selectedSector == "mountain")
+        				{
+        					player.dimension = CodeLyoko.Mountain_Sector_ID;
+        					player.closeScreen();
+        				}
+        				else if(tsc.selectedSector == "desert")
+        				{
+        					player.dimension = CodeLyoko.Desert_Sector_ID;
+        					player.closeScreen();
+        				}
+        				else if(tsc.selectedSector == "carthage")
+        				{
+        					player.dimension = CodeLyoko.Carthage_Sector_ID;
+        					player.closeScreen();
+        				}
         				tsc.selectedSector = "";
         				tsc.timeLeft = 10.0F;
         			}

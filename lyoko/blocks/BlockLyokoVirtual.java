@@ -15,6 +15,16 @@ public class BlockLyokoVirtual extends BlockContainer
 		this.blockIndexInTexture = par2;
 	}
 	
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z)
+	{
+		super.onBlockAdded(world, x, y, z);
+		if(world.provider.dimensionId == 0 || world.provider.dimensionId == -1 || world.provider.dimensionId == 1)
+		{
+			world.setBlockWithNotify(x, y, z, 0);
+		}
+	}
+	
 	public int getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
     {
 		if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == CodeLyoko.Forest_Sector_ID)

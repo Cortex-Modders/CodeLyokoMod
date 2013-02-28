@@ -192,7 +192,7 @@ public class BlockSuperCalc extends BlockContainer {
                                                 new ItemStack(item.itemID, item.stackSize, item.getItemDamage()));
 
                                 if (item.hasTagCompound()) {
-                                        entityItem.func_92014_d().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
+                                        entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
                                 }
 
                                 float factor = 0.05F;

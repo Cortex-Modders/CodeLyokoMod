@@ -1,8 +1,10 @@
 package matt.lyoko.entities;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.src.*;
@@ -21,9 +23,15 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         this.health = 50;
     }
     
-    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {}
+    public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    	super.writeEntityToNBT(par1NBTTagCompound);
+    }
 
-    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {}
+    public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+    	super.readEntityFromNBT(par1NBTTagCompound);
+    }
     
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
@@ -175,5 +183,10 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     public boolean getCanSpawnHere()
     {
         return this.isValidLightLevel() && super.getCanSpawnHere();
+    }
+    
+    protected int getDropItemId()
+    {
+        return 0;
     }
 }

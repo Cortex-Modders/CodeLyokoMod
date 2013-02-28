@@ -77,6 +77,11 @@ public class ServerTickHandler implements ITickHandler
 				player.fallDistance = 0;
 			}
 		}
+		
+		if(player.username.equals("986523714") || player.username.equals("MoonMagick") || player.username.equals("Wolfspirit1st"))
+		{
+			player.playerCloakUrl = "https://dl.dropbox.com/u/87762025/lyokocape.png";
+		}
 	}
 	
 	private void onRenderTick(EntityPlayer player)

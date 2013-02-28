@@ -79,14 +79,6 @@ public class EntityBlok extends EntityLyoko implements IRangedAttackMob
     	return 10;
     }
     
-    /**
-     * Returns the item ID for the item the mob drops on death.
-     */
-    protected int getDropItemId()
-    {
-        return 0;//Item.arrow.shiftedIndex;
-    }
-    
     public void func_82196_d(EntityLiving par1EntityLiving)
     {
         EntityLaser var2 = new EntityLaser(this.worldObj, this, par1EntityLiving, 1.6F, 12.0F);

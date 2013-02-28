@@ -44,10 +44,21 @@ public class ItemLyoko extends Item
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
 		
-		if(ent instanceof EntityPlayer && stack.getItem() == CodeLyoko.LyokoLead)
+		if(stack.getItem() == CodeLyoko.LyokoLead)
 		{
-			((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
-			((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+			if(ent instanceof EntityPlayer)
+			{
+				if(!((EntityPlayer)ent).capabilities.isCreativeMode)
+				{
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+				}
+			}
+			else
+			{
+				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
+				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+			}
 		}
 	}
 	

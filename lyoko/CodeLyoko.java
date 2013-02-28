@@ -8,6 +8,9 @@ import matt.lyoko.client.GuiHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.entities.*;
 import net.minecraftforge.common.*;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -26,6 +29,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.*;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.src.*;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -107,6 +111,7 @@ public class CodeLyoko
 	public static int William_Armor_Chest;// = 6120;
 	public static int William_Armor_Pants;// = 6121;
 	public static int William_Armor_Boots;// = 6122;
+	public static int Data_Fragment;
 	
 	public static int Polar_Sector_ID;
 	public static int Mountain_Sector_ID;
@@ -169,6 +174,7 @@ public class CodeLyoko
     public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
     public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
     public static Item Skid;
+    public static Item DataFragment;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
 	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -254,7 +260,8 @@ public class CodeLyoko
         WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setIconIndex(38).setItemName("WilliamChest");
         WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setIconIndex(39).setItemName("WilliamPants");
         WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setIconIndex(40).setItemName("WilliamBoots");
-        Skid = new ItemLyoko(Item_Skid).setItemName("Skid").setIconIndex(41);
+        Skid = new ItemLyoko(Item_Skid).setItemName("Skid").setIconIndex(41).setCreativeTab(null);
+        DataFragment = new ItemDataFragment(Data_Fragment).setItemName("DataFragment").setIconIndex(42);
     	TowerBlock = new BlockLyokoTower(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
     	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
     	LyokoGrass = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -278,6 +285,8 @@ public class CodeLyoko
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
     	proxy.registerServerTickHandler();
     	proxy.registerKeyBindingHandler();
+    	proxy.registerOres();
+    	proxy.registerFragmentRecipes();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
@@ -286,6 +295,7 @@ public class CodeLyoko
     	
     	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
     	GameRegistry.registerTileEntity(TileEntityDigitalSea.class, "teDigitalSea");
+    	GameRegistry.registerTileEntity(TileEntityVirtualBlock.class, "teVirtualBlock");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
@@ -326,6 +336,8 @@ public class CodeLyoko
     	GameRegistry.registerBlock(LyokoMountainPortal);
     	LanguageRegistry.addName(LyokoMountainPortal, "Mountain Portal");
     	*/
+    	LanguageRegistry.addName(DataFragment, "Data Fragment");
+    	
     	LanguageRegistry.addName(LyokoLead, "Lead Isotope 210");
     	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(LyokoLead, 1), 5F);
     	
@@ -338,12 +350,10 @@ public class CodeLyoko
     	});
     	
     	LanguageRegistry.addName(LyokoLeadCell, "Lead Isotope 210 Fuel Cell");
-    	GameRegistry.addShapelessRecipe(new ItemStack(LyokoLeadCell, 1), new Object[] {
-    		LyokoLead, LyokoCell
-    	});
-    	GameRegistry.addRecipe(new ItemStack(LyokoLeadCell, 2), new Object[] {
-    		"*#*", Character.valueOf('*'), LyokoDepletedLeadCell, Character.valueOf('#'), LyokoLead
-    	});
+    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(LyokoLeadCell),"ingotRadioactiveLead",
+    			LyokoCell));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoLeadCell, 2),"*#*",
+    			Character.valueOf('*'), LyokoDepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
     	
     	LanguageRegistry.addName(LyokoDepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
     	
@@ -570,8 +580,8 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
     	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
-    	EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
+    	//EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	//LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
     	/*
     	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
@@ -589,7 +599,7 @@ public class CodeLyoko
     	
     	EntityRegistry.addSpawn(matt.lyoko.entities.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	EntityRegistry.addSpawn(matt.lyoko.entities.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
+    	//EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
     	/*
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityHornet.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityKankrelat.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
@@ -669,6 +679,7 @@ public class CodeLyoko
 		William_Armor_Chest = config.getItem("williamArmorChest", 6120).getInt();
 		William_Armor_Pants = config.getItem("williamArmorPants", 6121).getInt();
 		William_Armor_Boots = config.getItem("williamArmorBoots", 6122).getInt();
+		Data_Fragment = config.getItem("dataFragment", 6123).getInt();
 		
 		/**
 		 * taken from my other mod so I can add booleans if needed to the config file

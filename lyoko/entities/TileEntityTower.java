@@ -12,6 +12,7 @@ public class TileEntityTower extends TileEntity
 
 	public boolean isActivated = false;
 	public String owner = "none";
+	private int sparkleTick = 0;
 
 	public void updateEntity()
 	{
@@ -35,7 +36,6 @@ public class TileEntityTower extends TileEntity
 					isActivated = false;
 					owner = "none";
 				}
-				//blt.activeXana(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 			}
 			else if(owner == "lyoko")
 			{
