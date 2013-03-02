@@ -4,9 +4,9 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.entities.*;
@@ -28,57 +28,6 @@ public class GuiSuperCalc extends GuiContainer {
         
         public TileEntitySuperCalc tsc;
         
-        public String getRemainingTime(float par1)
-        {
-        	if(tsc.getStackInSlot(0) != null && tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel)
-        	{
-        		if(par1 <= 0.0F)
-        		{
-        			tsc.timeLeft = 0.0F;
-        			if(tsc.selectedSector != "")
-        			{
-        				if(tsc.selectedSector == "ice")
-        				{
-        					player.dimension = CodeLyoko.Polar_Sector_ID;
-        					player.closeScreen();
-        				}
-        				else if(tsc.selectedSector == "forest")
-        				{
-        					player.dimension = CodeLyoko.Forest_Sector_ID;
-        					player.closeScreen();
-        				}
-        				else if(tsc.selectedSector == "mountain")
-        				{
-        					player.dimension = CodeLyoko.Mountain_Sector_ID;
-        					player.closeScreen();
-        				}
-        				else if(tsc.selectedSector == "desert")
-        				{
-        					player.dimension = CodeLyoko.Desert_Sector_ID;
-        					player.closeScreen();
-        				}
-        				else if(tsc.selectedSector == "carthage")
-        				{
-        					player.dimension = CodeLyoko.Carthage_Sector_ID;
-        					player.closeScreen();
-        				}
-        				tsc.selectedSector = "";
-        				tsc.timeLeft = 10.0F;
-        			}
-        			return Float.toString(0.0F);
-        		}
-        		if(tsc.selectedSector == "")
-        		{
-        			tsc.timeLeft = 10.0F;
-        			return Float.toString(10.0F);
-        		}
-        		par1 = par1 - 0.05F;
-        		tsc.timeLeft = par1;
-        	}
-        	
-        	return Float.toString(par1);
-        }
-        
         @Override
         protected void drawGuiContainerForegroundLayer(int param1, int param2) {
                 //draw text and stuff here
@@ -93,11 +42,8 @@ public class GuiSuperCalc extends GuiContainer {
                 fontRenderer.drawString("Selected Sector: " + tsc.selectedSector, 8, 42, 4210752);
                 fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
                 
-                fontRenderer.drawString("Time Remaining: " + getRemainingTime(tsc.timeLeft), 100, 6, 4210752);
+                fontRenderer.drawString("Time Remaining: " + tsc.getRemainingTime(), 80, 25, 4210752);
                 fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-                
-                //fontRenderer.drawString("Fuel Cell: ", 8, 25, 4210752);
-                //fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
         }
 
         @Override
@@ -122,7 +68,7 @@ public class GuiSuperCalc extends GuiContainer {
                 controlList.add(new GuiButton(3, 318, 130, 53, 20, "Mountain"));
                 controlList.add(new GuiButton(4, 255, 154, 44, 20, "Desert"));
                 controlList.add(new GuiButton(5, 303, 154, 54, 20, "Carthage"));
-                controlList.add(new GuiButton(6, 303, 180, 34, 20, "none"));
+                controlList.add(new GuiButton(6, 361, 154, 34, 20, "none"));
         }
         
         protected void actionPerformed(GuiButton guibutton) {

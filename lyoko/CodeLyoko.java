@@ -85,7 +85,7 @@ public class CodeLyoko
 	public static int Item_Lyoko_8;// = 6094;
 	public static int Item_Lyoko_9;// = 6095;
 	public static int Item_Lyoko_10;// = 6096;
-	public static int Item_Skid;// = 6097;
+	public static int Item_Portal;// = 6097;
 	public static int Item_Lyoko_11;// = 6098;
 	public static int Item_Lyoko_12;// = 6099;
 	public static int Item_Lyoko_13;// = 6100;
@@ -118,6 +118,7 @@ public class CodeLyoko
 	public static int Forest_Sector_ID;
 	public static int Desert_Sector_ID;
 	public static int Carthage_Sector_ID;
+	//public static int TEST_DIMENSION_ID_THINGY_THAT_IS_NOT_USED = DimensionManager.getNextFreeDimId();
 
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
@@ -173,7 +174,7 @@ public class CodeLyoko
     public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setItemName("WilliamChest");
     public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
     public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
-    public static Item Skid;
+    public static Item PortalItem;
     public static Item DataFragment;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
@@ -260,7 +261,7 @@ public class CodeLyoko
         WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setIconIndex(38).setItemName("WilliamChest");
         WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setIconIndex(39).setItemName("WilliamPants");
         WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setIconIndex(40).setItemName("WilliamBoots");
-        Skid = new ItemLyoko(Item_Skid).setItemName("Skid").setIconIndex(41).setCreativeTab(null);
+        PortalItem = new ItemPortal(Item_Portal).setIconIndex(41);
         DataFragment = new ItemDataFragment(Data_Fragment).setItemName("DataFragment").setIconIndex(42);
     	TowerBlock = new BlockLyokoTower(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
     	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
@@ -312,7 +313,16 @@ public class CodeLyoko
     	GameRegistry.registerBlock(VirtualBlock, "Virtual Block");
     	LanguageRegistry.addName(VirtualBlock, "Virtual Block");
     	
-    	LanguageRegistry.addName(Skid, "Skidbladnir");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 0), "Polar Portal");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 1), "Mountain Portal");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 2), "Forest Portal");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 3), "Desert Portal");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 4), "Carthage Portal");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 5), "Overworld Portal");
+    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 6), "Inactive Portal");
+    	GameRegistry.addRecipe(new ItemStack(PortalItem, 1, 6), new Object[] {
+    		" # ", "#*#", " # ", Character.valueOf('#'), Item.enderPearl, Character.valueOf('*'), Item.paper
+    	});
     	
     	//Biomes
     	//GameRegistry.addBiome(lyokocarthage);
@@ -653,7 +663,7 @@ public class CodeLyoko
 		Item_Lyoko_8 = config.getItem("itemLyoko8", 6094).getInt();
 		Item_Lyoko_9 = config.getItem("itemLyoko9", 6095).getInt();
 		Item_Lyoko_10 = config.getItem("itemLyoko10", 6096).getInt();
-		Item_Skid = config.getItem("itemSkid", 6097).getInt();
+		Item_Portal = config.getItem("itemPortal", 6097).getInt();
 		Item_Lyoko_11 = config.getItem("itemLyoko11", 6098).getInt();
 		Item_Lyoko_12 = config.getItem("itemLyoko12", 6099).getInt();
 		Item_Lyoko_13 = config.getItem("itemLyoko13", 6100).getInt();

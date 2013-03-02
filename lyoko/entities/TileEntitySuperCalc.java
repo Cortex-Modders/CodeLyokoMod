@@ -23,9 +23,9 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         //private Ticket ticket;
 
         public TileEntitySuperCalc(){
-                inv = new ItemStack[17];
+                inv = new ItemStack[3];
                 selectedSector = "";
-                timeLeft = 10.0F;
+                timeLeft = 20.0F;
                 
                 //ticket = ForgeChunkManager.requestTicket(CodeLyoko.instance, worldObj, Type.NORMAL);
                 //ticket.getModData().setInteger("SuperCalcX", xCoord);
@@ -33,6 +33,60 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
                 //ticket.getModData().setInteger("SuperCalcZ", zCoord);
                 //ForgeChunkManager.forceChunk(ticket, new ChunkCoordIntPair(xCoord, zCoord));
                 //System.out.println("chunk loaded");
+        }
+        
+        public String getRemainingTime()
+        {
+        	if(getStackInSlot(0) != null && getStackInSlot(0).getItem() instanceof ItemLyokoFuel)
+        	{
+        		if(timeLeft <= 0.0F)
+        		{
+        			timeLeft = 0.0F;
+        			if(selectedSector != "")
+        			{
+        				if(getStackInSlot(1) != null && getStackInSlot(1) == new ItemStack(CodeLyoko.PortalItem, 1, 6)
+        				&& getStackInSlot(2) == null)
+        				{
+        					if(selectedSector == "ice")
+        					{
+        						setInventorySlotContents(1, null);
+        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 0));
+        					}
+        					else if(selectedSector == "forest")
+        					{
+        						setInventorySlotContents(1, null);
+        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 1));
+        					}
+        					else if(selectedSector == "mountain")
+        					{
+        						setInventorySlotContents(1, null);
+        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 2));
+        					}
+        					else if(selectedSector == "desert")
+        					{
+        						setInventorySlotContents(1, null);
+        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 3));
+        					}
+        					else if(selectedSector == "carthage")
+        					{
+        						setInventorySlotContents(1, null);
+        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 4));
+        					}
+        				}
+        				selectedSector = "";
+        				timeLeft = 20.0F;
+        			}
+        			return Float.toString(0.0F);
+        		}
+        		if(selectedSector == "")
+        		{
+        			timeLeft = 20.0F;
+        			return Float.toString(20.0F);
+        		}
+        		timeLeft = timeLeft - 0.05F;
+        	}
+        	
+        	return Float.toString(timeLeft);
         }
         
         @Override

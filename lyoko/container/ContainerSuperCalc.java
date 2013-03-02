@@ -19,18 +19,8 @@ public class ContainerSuperCalc extends Container {
                 //the Slot constructor takes the IInventory and the slot number in that it binds to
                 //and the x-y coordinates it resides on-screen
                 addSlotToContainer(new SlotSuperCalcFuel(this, tileEntity, 0, 58, 20));
-                for (int i = 0; i < 3; i++) {
-                    for (int j = 0; j < 3; j++) {
-                    	addSlotToContainer(new SlotSuperCalc(this, tileEntity, (j + 1) + i * 3, 174 + j * 18, 118 + i * 18));
-                    }
-                }
-                for (int j = 0; j < 3; j++) {
-                	addSlotToContainer(new SlotSuperCalc(this, tileEntity, j + 10, 174 + j * 18, 176));
-                }
-                for (int i = 0; i < 4; ++i)
-                {
-                    addSlotToContainer(new SlotSuperCalcArmor(this, tileEntity, i + 13, 192, 20 + i * 18, i));
-                }
+                addSlotToContainer(new SlotSuperCalc(this, tileEntity, 1, 192, 45));
+                addSlotToContainer(new SlotSuperCalcPortal(this, tileEntity, 2, 192, 80));
 
                 //commonly used vanilla code that adds the player's inventory
                 bindPlayerInventory(inventoryPlayer);

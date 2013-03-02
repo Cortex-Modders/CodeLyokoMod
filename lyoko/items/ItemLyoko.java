@@ -21,17 +21,6 @@ public class ItemLyoko extends Item
 		this.setNoRepair();
 	}
 	
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10)
-    {
-		if(stack.getItem() == CodeLyoko.Skid)
-		{
-			world.spawnEntityInWorld(new EntitySkid(world));
-			--stack.stackSize;
-			return true;
-		}
-        return false;
-    }
-	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
 	{

@@ -1,29 +1,24 @@
 package matt.lyoko.slots;
 
 import cpw.mods.fml.relauncher.*;
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 
-public class SlotSuperCalcArmor extends Slot
+public class SlotSuperCalcPortal extends Slot
 {
-    /**
-     * The armor type that can be placed on that slot, it uses the same values of armorType field on ItemArmor.
-     */
-    final int armorType;
-
     /**
      * The parent class of this clot, ContainerPlayer, SlotArmor is a Anon inner class.
      */
     final ContainerSuperCalc parent;
 
-    public SlotSuperCalcArmor(ContainerSuperCalc par1ContainerPlayer, IInventory par2IInventory, int par3, int par4, int par5, int par6)
+    public SlotSuperCalcPortal(ContainerSuperCalc par1ContainerPlayer, IInventory par2IInventory, int par3, int par4, int par5)
     {
         super(par2IInventory, par3, par4, par5);
         this.parent = par1ContainerPlayer;
-        this.armorType = par6;
     }
 
     /**
@@ -40,16 +35,6 @@ public class SlotSuperCalcArmor extends Slot
      */
     public boolean isItemValid(ItemStack stack)
     {
-        return stack.getItem() instanceof ArmorLyoko;
-    }
-
-    @SideOnly(Side.CLIENT)
-
-    /**
-     * Returns the icon index on items.png that is used as background image of the slot.
-     */
-    public int getBackgroundIconIndex()
-    {
-        return 15 + this.armorType * 16;
+        return stack.getItem() instanceof ItemPortal && stack.getItemDamage() != 6;
     }
 }
