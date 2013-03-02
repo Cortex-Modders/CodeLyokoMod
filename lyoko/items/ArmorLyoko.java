@@ -70,6 +70,8 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     			else if (helmet.getItem() == CodeLyoko.YumiHelmet && chest.getItem() == CodeLyoko.YumiChest
     					&& legs.getItem() == CodeLyoko.YumiLegs && boots.getItem() == CodeLyoko.YumiBoots)
     			{
+    				player.getFoodStats().setFoodSaturationLevel(40.0F);
+    				player.getFoodStats().setFoodLevel(20);
     				player.fallDistance = 0;
     			}
     			else if (helmet.getItem() == CodeLyoko.WilliamHelmet && chest.getItem() == CodeLyoko.WilliamChest

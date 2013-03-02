@@ -40,7 +40,77 @@ public class BlockSuperCalc extends BlockContainer {
         			&& world.getBlockId(x, y, z-1) == CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x-1, y, z+1) == CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x-1, y, z) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.SuperCalc.blockID)
+        			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.SuperCalc.blockID
+        			&& checkNotConflicting(world, x, y, z))
+        	{
+        		return true;
+        	}
+        	return false;
+        }
+        
+        public boolean checkNotConflicting(World world, int x, int y, int z)
+        {
+        	if(world.getBlockId(x+1, y-1, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y-1, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y-1, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y-1, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y-1, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y-1, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y-1, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y-1, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y-1, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& aroundBase(world, x, y, z)
+        			&& aroundPillarLower(world, x, y, z)
+        			&& aroundPillarUpper(world, x, y, z)
+        			&& world.getBlockId(x, y+3, z) != CodeLyoko.SuperCalc.blockID)
+        	{
+        		return true;
+        	}
+        	return false;
+        }
+        
+        public boolean aroundBase(World world, int x, int y, int z)
+        {
+        	if(world.getBlockId(x-2, y, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-2, y, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-2, y, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+2, y, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+2, y, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+2, y, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z+2) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z-2) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z+2) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z-2) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z+2) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z-2) != CodeLyoko.SuperCalc.blockID)
+        	{
+        		return true;
+        	}
+        	return false;
+        }
+        
+        public boolean aroundPillarLower(World world, int x, int y, int z)
+        {
+        	if(world.getBlockId(x+1, y+1, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y+1, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y+1, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y+1, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y+1, z-1) != CodeLyoko.SuperCalc.blockID
+                	&& world.getBlockId(x-1, y+1, z+1) != CodeLyoko.SuperCalc.blockID
+                	&& world.getBlockId(x-1, y+1, z) != CodeLyoko.SuperCalc.blockID
+                	&& world.getBlockId(x-1, y+1, z-1) != CodeLyoko.SuperCalc.blockID)
+        	{
+        		return true;
+        	}
+        	return false;
+        }
+        
+        public boolean aroundPillarUpper(World world, int x, int y, int z)
+        {
+        	if(world.getBlockId(x+1, y+2, z) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y+2, z+1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x, y+2, z-1) != CodeLyoko.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y+2, z) != CodeLyoko.SuperCalc.blockID)
         	{
         		return true;
         	}
