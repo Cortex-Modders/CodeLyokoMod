@@ -1,12 +1,17 @@
 package matt.lyoko.client;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.entity.player.*;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.common.*;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.entities.*;
@@ -72,55 +77,87 @@ public class GuiSuperCalc extends GuiContainer {
         }
         
         protected void actionPerformed(GuiButton guibutton) {
-                //id is the id you give your button
-                switch(guibutton.id) {
-                case 1:
-                	if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
-                	{
-                		break;
-                	}
-                	tsc.selectedSector = "ice";
-                    break;
-                case 2:
-                	if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
-                	{
-                		break;
-                	}
-                	tsc.selectedSector = "forest";
-                	break;
-                case 3:
-                	if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
-                	{
-                		break;
-                	}
-                	tsc.selectedSector = "mountain";
-                	break;
-                case 4:
-                	if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
-                	{
-                		break;
-                	}
-                	tsc.selectedSector = "desert";
-                	break;
-                case 5:
-                	if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
-                	{
-                		break;
-                	}
-                	tsc.selectedSector = "carthage";
-                	break;
-                case 6:
-                	if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
-                	{
-                		break;
-                	}
-                	tsc.selectedSector = "";
-                	break;
-                default:
-                	tsc.selectedSector = "";
-                }
-                //Packet code here
-                //PacketDispatcher.sendPacketToServer(packet); //send packet
-        }
+            //id is the id you give your button
+        	String sectorSelection = "";
+        	switch(guibutton.id) {
+        	case 1:
+        		if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
+        		{
+        			break;
+        		}
+        		sectorSelection = "ice";
+        		break;
+        	case 2:
+        		if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
+        		{
+        			break;
+        		}
+        		sectorSelection = "forest";
+        		break;
+        	case 3:
+        		if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
+        		{
+        			break;
+        		}
+        		sectorSelection = "mountain";
+        		break;
+        	case 4:
+        		if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
+        		{
+        			break;
+        		}
+        		sectorSelection = "desert";
+        		break;
+        	case 5:
+        		if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
+        		{
+        			break;
+        		}
+        		sectorSelection = "carthage";
+        		break;
+        	case 6:
+        		if(tsc.getStackInSlot(0) == null || !(tsc.getStackInSlot(0).getItem() instanceof ItemLyokoFuel))
+        		{
+        			break;
+        		}
+        		sectorSelection = "";
+        		break;
+        	default:
+        		sectorSelection = "";
+        	}
+        	
+        	ByteArrayOutputStream bos = new ByteArrayOutputStream(22);
+        	DataOutputStream outputStream = new DataOutputStream(bos);
+        	try
+        	{
+        		outputStream.writeUTF(sectorSelection);
+        		outputStream.writeInt(tsc.xCoord);
+        		outputStream.writeInt(tsc.yCoord);
+        		outputStream.writeInt(tsc.zCoord);
+        	}
+        	catch (Exception ex)
+        	{
+        		ex.printStackTrace();
+        	}
+        	
+        	Packet250CustomPayload packet = new Packet250CustomPayload();
+        	packet.channel = "Code_Lyoko";
+        	packet.data = bos.toByteArray();
+        	packet.length = bos.size();
 
+        	Side side = FMLCommonHandler.instance().getEffectiveSide();
+        	if (side == Side.SERVER)
+        	{
+        		EntityPlayerMP playerMP = (EntityPlayerMP) player;
+        	}
+        	else if (side == Side.CLIENT)
+        	{
+        		EntityClientPlayerMP playerMP = (EntityClientPlayerMP) player;
+        		playerMP.sendQueue.addToSendQueue(packet);
+        	}
+        	else
+        	{
+        		
+        	}
+        }
 }
