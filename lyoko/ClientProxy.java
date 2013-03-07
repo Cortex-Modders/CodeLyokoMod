@@ -2,8 +2,10 @@ package matt.lyoko;
 
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod.Instance;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
 import matt.lyoko.entities.*;
@@ -48,6 +50,11 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid(new ModelSkid(), 0.5F));
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
+	}
+	
+	public void registerKeyBindingHandler()
+	{
+		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());
 	}
 
 	//override any other methods that need to be handled differently client side.

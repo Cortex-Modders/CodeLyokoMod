@@ -37,7 +37,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.entity.player.*;
 
-@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.3.2-Alpha")
+@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.4.0-Beta")
 @NetworkMod
 (
 clientSideRequired = true,
@@ -65,9 +65,9 @@ public class CodeLyoko
 	public static int Lyoko_Forest_Portal;// = 1169;
 	public static int Lyoko_Mountain_Portal;// = 1170;
 	public static int Lyoko_Carthage_Portal;// = 1171;
-	public static int Lyoko_Over_Portal;// = 1172;
 	public static int Lyoko_Super_Calc;// = 1173;
 	public static int Lyoko_Lead_Ore;// = 1174;
+	public static int Lyoko_Uranium_Ore;
 	
 	public static int Weapon_Lyoko_1;// = 6081;
 	public static int Weapon_Lyoko_2;// = 6082;
@@ -85,7 +85,7 @@ public class CodeLyoko
 	public static int Item_Lyoko_8;// = 6094;
 	public static int Item_Lyoko_9;// = 6095;
 	public static int Item_Lyoko_10;// = 6096;
-	public static int Item_Portal;// = 6097;
+	public static int Item_Lyoko_Uranium;// = 6097;
 	public static int Item_Lyoko_11;// = 6098;
 	public static int Item_Lyoko_12;// = 6099;
 	public static int Item_Lyoko_13;// = 6100;
@@ -112,6 +112,8 @@ public class CodeLyoko
 	public static int William_Armor_Pants;// = 6121;
 	public static int William_Armor_Boots;// = 6122;
 	public static int Data_Fragment;
+	public static int Item_Lyoko_Uranium_Cell;
+	public static int Item_Lyoko_Depleted_Uranium;
 	
 	public static int Polar_Sector_ID;
 	public static int Mountain_Sector_ID;
@@ -174,8 +176,10 @@ public class CodeLyoko
     public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setItemName("WilliamChest");
     public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
     public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
-    public static Item PortalItem;
     public static Item DataFragment;
+    public static Item Uranium;
+    public static Item LyokoUraniumCell;
+    public static Item LyokoDepletedUraniumCell;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
 	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -190,14 +194,12 @@ public class CodeLyoko
 	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaStill").setRequiresSelfNotify();
 	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
 	public static Block VirtualBlock;
-	/*
-	public static final Block LyokoPolarPortal  = new LyokoPolarPortal(Lyoko_Polar_Portal, 12).setBlockName("Polar Portal");
-	public static final Block LyokoDesertPortal = new LyokoDesertPortal(Lyoko_Desert_Portal, 13).setBlockName("Desert Portal");
-	public static final Block LyokoForestPortal = new LyokoForestPortal(Lyoko_Forest_Portal, 14).setBlockName("Forest Portal");
-	public static final Block LyokoMountainPortal = new LyokoMountainPortal(Lyoko_Mountain_Portal, 15).setBlockName("Mountain Portal");
-	public static final Block LyokoCarthagePortal  = new LyokoCarthagePortal(Lyoko_Carthage_Portal, 16).setBlockName("Carthage Portal");
-	public static final Block LyokoOverPortal = new OverworldPortal(Lyoko_Over_Portal, 17).setBlockName("OverWorld Portal");
-	*/
+	public static Block UraniumOre;
+	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setBlockName("Polar Portal");
+	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setBlockName("Desert Portal");
+	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setBlockName("Forest Portal");
+	public static Block LyokoMountainPortal;// = new BlockLyoko(Lyoko_Mountain_Portal, 15).setBlockName("Mountain Portal");
+	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setBlockName("Carthage Portal");
 	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();
 	
 	@SidedProxy(clientSide = "matt.lyoko.ClientProxy", serverSide = "matt.lyoko.CommonProxy")
@@ -239,7 +241,7 @@ public class CodeLyoko
     	LyokoIngot = new ItemLyoko(Item_Lyoko_11).setItemName("LyokoIngot").setIconIndex(16);
     	LyokoLead = new ItemLyoko(Item_Lyoko_12).setItemName("Lead210").setIconIndex(17);
     	LyokoCell = new ItemLyoko(Item_Lyoko_13).setItemName("Cell").setIconIndex(18);
-    	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 10000, LyokoDepletedLeadCell).setItemName("Lead210Cell").setIconIndex(19);
+    	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 1250, LyokoDepletedLeadCell).setItemName("Lead210Cell").setIconIndex(19);
     	LyokoDepletedLeadCell = new ItemLyoko(Item_Lyoko_15).setItemName("DepletedLead210Cell").setIconIndex(20);
     	AelitaHelmet = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "aelita").setIconIndex(21).setItemName("AelitaHelmet");
         AelitaChest = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "aelita").setIconIndex(22).setItemName("AelitaChest");
@@ -261,8 +263,10 @@ public class CodeLyoko
         WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setIconIndex(38).setItemName("WilliamChest");
         WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setIconIndex(39).setItemName("WilliamPants");
         WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setIconIndex(40).setItemName("WilliamBoots");
-        PortalItem = new ItemPortal(Item_Portal).setIconIndex(41);
         DataFragment = new ItemDataFragment(Data_Fragment).setItemName("DataFragment").setIconIndex(42);
+        Uranium = new ItemLyoko(Item_Lyoko_Uranium).setItemName("Uranium").setIconIndex(43);
+    	LyokoUraniumCell = new ItemLyokoFuel(Item_Lyoko_Uranium_Cell, 5000, LyokoDepletedUraniumCell).setItemName("UraniumCell").setIconIndex(44);
+    	LyokoDepletedUraniumCell = new ItemLyoko(Item_Lyoko_Depleted_Uranium).setItemName("DepletedUraniumCell").setIconIndex(45);
     	TowerBlock = new BlockLyokoTower(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
     	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
     	LyokoGrass = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -278,6 +282,13 @@ public class CodeLyoko
     	LeadOre = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
     	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc, 16).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();
     	VirtualBlock = new BlockLyokoVirtual(Lyoko_Virtual_Block, 2).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoVirtualBlock");
+    	UraniumOre = new BlockLyoko(Lyoko_Uranium_Ore, 13).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("UraniumOre").setLightValue(10F);
+    	
+    	LyokoPolarPortal  = new BlockLyoko(Lyoko_Polar_Portal, 5).setBlockName("PolarPortal");
+    	LyokoDesertPortal = new BlockLyoko(Lyoko_Desert_Portal, 4).setBlockName("DesertPortal");
+    	LyokoForestPortal = new BlockLyoko(Lyoko_Forest_Portal, 2).setBlockName("ForestPortal");
+    	LyokoMountainPortal = new BlockLyoko(Lyoko_Mountain_Portal, 3).setBlockName("MountainPortal");
+    	LyokoCarthagePortal  = new BlockLyoko(Lyoko_Carthage_Portal, 7).setBlockName("CarthagePortal");
     	
     	//TODO Give mod owners special ability
     	//Matthew = Aelita
@@ -313,40 +324,36 @@ public class CodeLyoko
     	GameRegistry.registerBlock(VirtualBlock, "Virtual Block");
     	LanguageRegistry.addName(VirtualBlock, "Virtual Block");
     	
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 0), "Polar Portal");
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 1), "Mountain Portal");
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 2), "Forest Portal");
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 3), "Desert Portal");
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 4), "Carthage Portal");
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 5), "Overworld Portal");
-    	LanguageRegistry.addName(new ItemStack(PortalItem, 1, 6), "Inactive Portal");
-    	GameRegistry.addRecipe(new ItemStack(PortalItem, 1, 6), new Object[] {
-    		" # ", "#*#", " # ", Character.valueOf('#'), Item.enderPearl, Character.valueOf('*'), Item.paper
-    	});
-    	
     	//Biomes
     	//GameRegistry.addBiome(lyokocarthage);
     	//GameRegistry.addBiome(lyokodesert);
-    	/*
     	GameRegistry.registerBlock(LyokoCarthagePortal, "Carthage Portal");
     	LanguageRegistry.addName(LyokoCarthagePortal, "Carthage Portal");
     	
-    	GameRegistry.registerBlock(LyokoOverPortal);
-    	LanguageRegistry.addName(LyokoOverPortal, "OverWorld Portal");
-    	
-    	GameRegistry.registerBlock(LyokoPolarPortal);
+    	GameRegistry.registerBlock(LyokoPolarPortal, "LyokoPolarPortal");
     	LanguageRegistry.addName(LyokoPolarPortal, "Ice Portal");
     	
-    	GameRegistry.registerBlock(LyokoDesertPortal);
+    	GameRegistry.registerBlock(LyokoDesertPortal, "Desert Portal");
     	LanguageRegistry.addName(LyokoDesertPortal, "Desert Portal");
     	
-    	GameRegistry.registerBlock(LyokoForestPortal);
+    	GameRegistry.registerBlock(LyokoForestPortal, "Forest Portal");
     	LanguageRegistry.addName(LyokoForestPortal, "Forest Portal");
     	
-    	GameRegistry.registerBlock(LyokoMountainPortal);
+    	GameRegistry.registerBlock(LyokoMountainPortal, "Mountain Portal");
     	LanguageRegistry.addName(LyokoMountainPortal, "Mountain Portal");
-    	*/
+    	
     	LanguageRegistry.addName(DataFragment, "Data Fragment");
+    	
+    	LanguageRegistry.addName(Uranium, "Uranium");
+    	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(Uranium, 1), 5F);
+    	
+    	LanguageRegistry.addName(LyokoUraniumCell, "Uranium Fuel Cell");
+    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(LyokoUraniumCell),"ingotUranium",
+    			LyokoCell));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoUraniumCell, 2),"*#*",
+    			Character.valueOf('*'), LyokoDepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
+    	
+    	LanguageRegistry.addName(LyokoDepletedUraniumCell, "Depleted Lead Isotope 210 Fuel Cell");
     	
     	LanguageRegistry.addName(LyokoLead, "Lead Isotope 210");
     	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(LyokoLead, 1), 5F);
@@ -357,6 +364,9 @@ public class CodeLyoko
     	});
     	GameRegistry.addShapelessRecipe(new ItemStack(LyokoCell, 1), new Object[] {
     		LyokoDepletedLeadCell
+    	});
+    	GameRegistry.addShapelessRecipe(new ItemStack(LyokoCell, 1), new Object[] {
+    		LyokoDepletedUraniumCell
     	});
     	
     	LanguageRegistry.addName(LyokoLeadCell, "Lead Isotope 210 Fuel Cell");
@@ -517,6 +527,9 @@ public class CodeLyoko
     	
     	GameRegistry.registerBlock(LeadOre,"Lead Isotope 210 Ore");
     	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
+    	
+    	GameRegistry.registerBlock(UraniumOre,"Uranium Ore");
+    	LanguageRegistry.addName(UraniumOre, "Uranium Ore");
     			
     	GameRegistry.registerBlock(TowerBlock,"Tower");
     	LanguageRegistry.addName(TowerBlock, "Tower");
@@ -644,7 +657,7 @@ public class CodeLyoko
 		Lyoko_Forest_Portal = config.getBlock("lyokoForestPortal", 1169).getInt();
 		Lyoko_Mountain_Portal = config.getBlock("lyokoMountainPortal", 1170).getInt();
 		Lyoko_Carthage_Portal = config.getBlock("lyokoCarthagePortal", 1171).getInt();
-		Lyoko_Over_Portal = config.getBlock("lyokoOverworldPortal", 1172).getInt();
+		Lyoko_Uranium_Ore = config.getBlock("lyokoUraniumOre", 1172).getInt();
 		Lyoko_Super_Calc = config.getBlock("lyokoSuperCalculator", 1173).getInt();
 		Lyoko_Lead_Ore = config.getBlock("lyokoLeadOre", 1174).getInt();
 		Weapon_Lyoko_1 = config.getItem("weaponLyoko1", 6081).getInt();
@@ -663,7 +676,7 @@ public class CodeLyoko
 		Item_Lyoko_8 = config.getItem("itemLyoko8", 6094).getInt();
 		Item_Lyoko_9 = config.getItem("itemLyoko9", 6095).getInt();
 		Item_Lyoko_10 = config.getItem("itemLyoko10", 6096).getInt();
-		Item_Portal = config.getItem("itemPortal", 6097).getInt();
+		Item_Lyoko_Uranium = config.getItem("itemLyokoUranium", 6097).getInt();
 		Item_Lyoko_11 = config.getItem("itemLyoko11", 6098).getInt();
 		Item_Lyoko_12 = config.getItem("itemLyoko12", 6099).getInt();
 		Item_Lyoko_13 = config.getItem("itemLyoko13", 6100).getInt();
@@ -690,6 +703,8 @@ public class CodeLyoko
 		William_Armor_Pants = config.getItem("williamArmorPants", 6121).getInt();
 		William_Armor_Boots = config.getItem("williamArmorBoots", 6122).getInt();
 		Data_Fragment = config.getItem("dataFragment", 6123).getInt();
+		Item_Lyoko_Uranium_Cell = config.getItem("itemLyokoUraniumCell", 6124).getInt();
+		Item_Lyoko_Depleted_Uranium = config.getItem("itemLyokoDepletedUranium", 6125).getInt();
 		
 		/**
 		 * taken from my other mod so I can add booleans if needed to the config file
@@ -725,6 +740,7 @@ public class CodeLyoko
         addDungeonLoot(GloveFragment2, 005, 1, 1);
         addDungeonLoot(LyokoIngot, 005, 1, 1);
         addDungeonLoot(LyokoLead, 005, 1, 1);
+        addDungeonLoot(Uranium, 005, 1, 1);
         addDungeonLoot(AelitaHelmet, 005, 1, 1);
         addDungeonLoot(AelitaChest, 005, 1, 1);
         addDungeonLoot(AelitaLegs, 005, 1, 1);

@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.ImageBufferDownload;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -18,10 +19,20 @@ public class ServerTickHandler implements ITickHandler
 	public int lifePoints = 80;
 	
 	private void onPlayerTick(EntityPlayer player)
-	{	
-		if(player.username.equals("986523714") || player.username.equals("MoonMagick") || player.username.equals("Wolfspirit1st"))
+	{	Minecraft minecraftInstance = Minecraft.getMinecraft();
+		for(int x=0; x<minecraftInstance.theWorld.playerEntities.size(); x++)
 		{
-			player.playerCloakUrl = "https://dl.dropbox.com/u/87762025/lyokocape.png";
+			EntityPlayer player1 = (EntityPlayer)minecraftInstance.theWorld.playerEntities.get(x);
+			if(player1.equals("986523714") || player1.equals("MoonMagick") || player1.equals("Wolfspirit1st"))
+			{
+				player1.playerCloakUrl = "https://dl.dropbox.com/u/87762025/lyokocapemodder.png";
+				minecraftInstance.renderEngine.obtainImageData("https://dl.dropbox.com/u/87762025/lyokocapemodder.png", new ImageBufferDownload());
+			}
+			else if(player1.equals("JadarMC") || player1.equals("MinecraftWero") || player1.equals("MHPage12") || player1.equals("Luke"))
+			{
+				player1.playerCloakUrl = "https://dl.dropbox.com/u/87762025/lyokocapecontributer.png";
+				minecraftInstance.renderEngine.obtainImageData("https://dl.dropbox.com/u/87762025/lyokocapecontributer.png", new ImageBufferDownload());
+			}
 		}
 	}
 	

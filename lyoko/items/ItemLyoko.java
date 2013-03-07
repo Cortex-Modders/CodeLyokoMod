@@ -33,7 +33,7 @@ public class ItemLyoko extends Item
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
 		
-		if(stack.getItem() == CodeLyoko.LyokoLead)
+		if(stack.getItem() == CodeLyoko.LyokoLead || stack.getItem() == CodeLyoko.Uranium)
 		{
 			if(ent instanceof EntityPlayer)
 			{

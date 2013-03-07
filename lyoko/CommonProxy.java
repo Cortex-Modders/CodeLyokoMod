@@ -44,48 +44,33 @@ public class CommonProxy implements IGuiHandler
 	
 	public void registerKeyBindingHandler()
 	{
-		KeyBinding[] keybind = new KeyBinding[]{};
-		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler(keybind));
+		
 	}
 	
 	public void registerOres()
 	{
 		OreDictionary.registerOre("ingotRadioactiveLead", CodeLyoko.LyokoLead);
 		OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);
+		OreDictionary.registerOre("ingotUranium", CodeLyoko.Uranium);
+		OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
 	}
 	
 	public void registerFragmentRecipes()
 	{
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.wood, 1), new Object[] {
-    		CodeLyoko.DataFragment
+		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoPolarPortal), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.ice
     	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Block.cobblestone, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment
+		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoMountainPortal), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.stone
     	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.coal, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment
+		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoForestPortal), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.grass
     	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.ingotIron, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment
+		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoDesertPortal), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), new ItemStack(Block.sandStone, 1, 1)
     	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.beefCooked, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment
-    	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.expBottle, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment,
-    		CodeLyoko.DataFragment
-    	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.diamond, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment,
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment
-    	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.emerald, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment,
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment
-    	});
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.netherStar, 1), new Object[] {
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment,
-    		CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment, CodeLyoko.DataFragment
+		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoCarthagePortal), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.beacon
     	});
 	}
 }
