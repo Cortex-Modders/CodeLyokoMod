@@ -28,7 +28,7 @@ public class ServerTickHandler implements ITickHandler
 				player1.playerCloakUrl = "https://dl.dropbox.com/u/87762025/lyokocapemodder.png";
 				minecraftInstance.renderEngine.obtainImageData("https://dl.dropbox.com/u/87762025/lyokocapemodder.png", new ImageBufferDownload());
 			}
-			else if(player1.equals("JadarMC") || player1.equals("MinecraftWero") || player1.equals("MHPage12") || player1.equals("Luke"))
+			else if(player1.equals("JadarMC") || player1.equals("MinecraftWero") || player1.equals("MHPage12") || player1.equals("elitehater28") || player1.equals("Thorlord14"))
 			{
 				player1.playerCloakUrl = "https://dl.dropbox.com/u/87762025/lyokocapecontributer.png";
 				minecraftInstance.renderEngine.obtainImageData("https://dl.dropbox.com/u/87762025/lyokocapecontributer.png", new ImageBufferDownload());
