@@ -43,6 +43,16 @@ public class WorldGenLyokoOre implements IWorldGenerator {
 															//Max Vein Size
 				(new WorldGenMinable(CodeLyoko.LeadOre.blockID, 5)).generate(world, rand, Xcoord, Ycoord, Zcoord);
 			}
+		   	
+		   					//rarity -smaller number = rarer
+		   	for(int x = 0; x < 2; x++)
+			{
+				int Xcoord = baseX + rand.nextInt(16);				
+				int Zcoord = baseZ + rand.nextInt(16);
+				int Ycoord = rand.nextInt(10) + 20;
+															//Max Vein Size
+				(new WorldGenMinable(CodeLyoko.UraniumOre.blockID, 1)).generate(world, rand, Xcoord, Ycoord, Zcoord);
+			}
 	}
 
 	private void generateNether(World world, Random random, int i, int j) {

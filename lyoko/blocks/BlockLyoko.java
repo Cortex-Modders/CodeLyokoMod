@@ -41,7 +41,7 @@ public class BlockLyoko extends Block
 	
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
 	{
-		if(this.blockID == CodeLyoko.LeadOre.blockID)
+		if(this.blockID == CodeLyoko.LeadOre.blockID || this.blockID == CodeLyoko.UraniumOre.blockID)
 		{
 			if(par5Entity instanceof EntityLiving)
 			{

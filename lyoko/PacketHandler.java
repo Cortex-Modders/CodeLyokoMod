@@ -18,39 +18,5 @@ public class PacketHandler implements IPacketHandler{
 	{
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
 		EntityPlayer sender = (EntityPlayer) player;
-		
-		if (packet.channel.equals("Code_Lyoko"))
-		{
-            handleButtonPush(packet, sender);
-		}
 	}
-     
-     private void handleButtonPush(Packet250CustomPayload packet, EntityPlayer player)
-     {
-    	 DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
-    	 String sector;
-    	 int x;
-    	 int y;
-    	 int z;
-    	 
-    	 try
-    	 {
-    		 sector = inputStream.readUTF();
-    		 x = inputStream.readInt();
-    		 y = inputStream.readInt();
-    		 z = inputStream.readInt();
-    	 } 
-    	 catch (IOException e)
-    	 {
-    		 e.printStackTrace();
-    		 return;
-    	 }
-    	 
-    	 System.out.println(sector + " " + x + " " + y + " " + z);
-    	 
-    	 World world = player.worldObj;
-    	 TileEntitySuperCalc tsc = (TileEntitySuperCalc)world.getBlockTileEntity(x, y, z);
-    	 tsc.selectedSector = sector;
-    	 System.out.println(tsc.selectedSector);
-     }
 }

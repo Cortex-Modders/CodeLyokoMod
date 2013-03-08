@@ -14,6 +14,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkCoordIntPair;
@@ -26,14 +29,12 @@ import net.minecraftforge.common.ForgeChunkManager.Type;
 public class TileEntitySuperCalc extends TileEntity implements IInventory {
 
         private ItemStack[] inv;
-        public String selectedSector;
         public float timeLeft;
         //private Ticket ticket;
 
         public TileEntitySuperCalc(){
-                inv = new ItemStack[3];
-                selectedSector = "";
-                timeLeft = 20.0F;
+                inv = new ItemStack[2];
+                timeLeft = 100.0F;
                 
                 //ticket = ForgeChunkManager.requestTicket(CodeLyoko.instance, worldObj, Type.NORMAL);
                 //ticket.getModData().setInteger("SuperCalcX", xCoord);
@@ -41,60 +42,6 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
                 //ticket.getModData().setInteger("SuperCalcZ", zCoord);
                 //ForgeChunkManager.forceChunk(ticket, new ChunkCoordIntPair(xCoord, zCoord));
                 //System.out.println("chunk loaded");
-        }
-        
-        public String getRemainingTime()
-        {
-        	if(getStackInSlot(0) != null && getStackInSlot(0).getItem() instanceof ItemLyokoFuel)
-        	{
-        		if(timeLeft <= 0.0F)
-        		{
-        			timeLeft = 0.0F;
-        			if(selectedSector != "")
-        			{
-        				if(getStackInSlot(1) != null && getStackInSlot(1) == new ItemStack(CodeLyoko.PortalItem, 1, 6)
-        				&& getStackInSlot(2) == null)
-        				{
-        					if(selectedSector == "ice")
-        					{
-        						setInventorySlotContents(1, null);
-        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 0));
-        					}
-        					else if(selectedSector == "forest")
-        					{
-        						setInventorySlotContents(1, null);
-        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 1));
-        					}
-        					else if(selectedSector == "mountain")
-        					{
-        						setInventorySlotContents(1, null);
-        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 2));
-        					}
-        					else if(selectedSector == "desert")
-        					{
-        						setInventorySlotContents(1, null);
-        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 3));
-        					}
-        					else if(selectedSector == "carthage")
-        					{
-        						setInventorySlotContents(1, null);
-        						setInventorySlotContents(2, new ItemStack(CodeLyoko.PortalItem, 1, 4));
-        					}
-        				}
-        				selectedSector = "";
-        				timeLeft = 20.0F;
-        			}
-        			return Float.toString(0.0F);
-        		}
-        		if(selectedSector == "")
-        		{
-        			timeLeft = 20.0F;
-        			return Float.toString(20.0F);
-        		}
-        		timeLeft = timeLeft - 0.05F;
-        	}
-        	
-        	return Float.toString(timeLeft);
         }
         
         @Override
@@ -144,7 +91,10 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         public void updateEntity()
         {
         	int slot = 0;
+        	int slot2 = 1;
+        	
         	ItemStack stack = getStackInSlot(slot);
+        	ItemStack stack2 = getStackInSlot(slot2);
         	
         	if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
         	{
@@ -152,15 +102,59 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         		{
         			setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoDepletedLeadCell));
         		}
-        		else
+        		else if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == CodeLyoko.LyokoUraniumCell)
         		{
-        			setInventorySlotContents(slot, null);
+        			setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoDepletedUraniumCell));
         		}
         	}
-        	else if(stack != null && stack.getItemDamage() < stack.getMaxDamage())
+        	else if(stack != null && stack.getItemDamage() < stack.getMaxDamage() && ((stack2 != null && stack2.stackSize < 64) || stack2 == null))
         	{
         		setInventorySlotContents(slot, new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1));
         	}
+        	
+        	if(timeLeft <= 0.0F)
+        	{
+        		if(stack2 == null)
+        		{
+        			setInventorySlotContents(slot2, new ItemStack(CodeLyoko.DataFragment));
+        		}
+        		else if(stack2.stackSize < 64)
+        		{
+        			stack2.stackSize++;
+        		}
+        		timeLeft = 100.0F;
+        	}
+        	else if(timeLeft > 0.0F && ((stack2 != null && stack2.stackSize < 64) || stack2 == null) && stack != null && stack.getItem() instanceof ItemLyokoFuel)
+        	{
+        		timeLeft = timeLeft - 0.05F;
+        	}
+        }
+        
+        private void addInfoToNBT(NBTTagCompound tag)
+        {
+            tag.setFloat("time", timeLeft);
+        }
+
+        private void loadInfoFromNBT(NBTTagCompound tag)
+        {
+            timeLeft = tag.getFloat("time");
+        }
+
+        @Override
+        public Packet getDescriptionPacket() {
+            Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+            NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+
+            addInfoToNBT(tag);
+
+            return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        }
+
+        @Override
+        public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+            super.onDataPacket(net, pkt);
+            NBTTagCompound tag = pkt.customParam1;
+            loadInfoFromNBT(tag);
         }
 
         @Override
@@ -201,13 +195,11 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
                         }
                 }
                 this.timeLeft = tagCompound.getFloat("remainingTime");
-                this.selectedSector = tagCompound.getString("sectorSelection");
         }
 
         @Override
         public void writeToNBT(NBTTagCompound tagCompound) {
                 super.writeToNBT(tagCompound);
-                tagCompound.setString("sectorSelection", this.selectedSector);
                 tagCompound.setFloat("remainingTime", this.timeLeft);
                 NBTTagList itemList = new NBTTagList();
                 for (int i = 0; i < inv.length; i++) {
