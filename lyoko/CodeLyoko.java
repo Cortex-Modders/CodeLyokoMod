@@ -344,7 +344,8 @@ public class CodeLyoko
     	
     	LanguageRegistry.addName(DataFragment, "Data Fragment");
     	
-    	LanguageRegistry.addName(Uranium, "Uranium");
+    	GameRegistry.registerBlock(UraniumOre,"Uranium Ore");
+    	LanguageRegistry.addName(UraniumOre, "Uranium Ore");
     	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(Uranium, 1), 5F);
     	
     	LanguageRegistry.addName(LyokoUraniumCell, "Uranium Fuel Cell");
@@ -353,7 +354,7 @@ public class CodeLyoko
     	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoUraniumCell, 2),"*#*",
     			Character.valueOf('*'), LyokoDepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
     	
-    	LanguageRegistry.addName(LyokoDepletedUraniumCell, "Depleted Lead Isotope 210 Fuel Cell");
+    	LanguageRegistry.addName(LyokoDepletedUraniumCell, "Depleted Uranium Fuel Cell");
     	
     	LanguageRegistry.addName(LyokoLead, "Lead Isotope 210");
     	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(LyokoLead, 1), 5F);
@@ -527,9 +528,6 @@ public class CodeLyoko
     	
     	GameRegistry.registerBlock(LeadOre,"Lead Isotope 210 Ore");
     	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
-    	
-    	GameRegistry.registerBlock(UraniumOre,"Uranium Ore");
-    	LanguageRegistry.addName(UraniumOre, "Uranium Ore");
     			
     	GameRegistry.registerBlock(TowerBlock,"Tower");
     	LanguageRegistry.addName(TowerBlock, "Tower");
