@@ -18,6 +18,11 @@ public class ServerTickHandler implements ITickHandler
 {
 	public int lifePoints = 80;
 	
+	private void onPlayerTick(EntityPlayer player)
+	{
+	
+	}
+	
 	private void onRenderTick(EntityPlayer player)
 	{
 		Minecraft mc = Minecraft.getMinecraft();
@@ -31,6 +36,10 @@ public class ServerTickHandler implements ITickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
+		if (type.equals(EnumSet.of(TickType.PLAYER)))
+		{
+				onPlayerTick((EntityPlayer)tickData[0]);
+		}
 		if (type.equals(EnumSet.of(TickType.RENDER)))
 		{
 				onRenderTick((EntityPlayer)tickData[1]);
