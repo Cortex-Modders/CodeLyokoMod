@@ -1,7 +1,6 @@
 package matt.lyoko;
 
 import java.util.Random;
-
 import matt.lyoko.world.*;
 import matt.lyoko.world.portals.*;
 import matt.lyoko.blocks.*;
@@ -345,8 +344,7 @@ public class CodeLyoko
     	
     	LanguageRegistry.addName(DataFragment, "Data Fragment");
     	
-    	GameRegistry.registerBlock(UraniumOre,"Uranium Ore");
-    	LanguageRegistry.addName(UraniumOre, "Uranium Ore");
+    	LanguageRegistry.addName(Uranium, "Uranium");
     	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(Uranium, 1), 5F);
     	
     	LanguageRegistry.addName(LyokoUraniumCell, "Uranium Fuel Cell");
@@ -529,6 +527,9 @@ public class CodeLyoko
     	
     	GameRegistry.registerBlock(LeadOre,"Lead Isotope 210 Ore");
     	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
+    	
+    	GameRegistry.registerBlock(UraniumOre,"Uranium Ore");
+    	LanguageRegistry.addName(UraniumOre, "Uranium Ore");
     			
     	GameRegistry.registerBlock(TowerBlock,"Tower");
     	LanguageRegistry.addName(TowerBlock, "Tower");
