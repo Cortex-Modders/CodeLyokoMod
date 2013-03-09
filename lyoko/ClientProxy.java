@@ -1,5 +1,7 @@
 package matt.lyoko;
 
+import com.jadarstudios.api.DeveloperCapesAPI.DeveloperCapesAPI;
+
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
@@ -50,6 +52,9 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid(new ModelSkid(), 0.5F));
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
+		
+		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
+		DeveloperCapesAPI.init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
 	}
 	
 	public void registerKeyBindingHandler()

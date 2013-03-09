@@ -1,6 +1,7 @@
 package matt.lyoko;
 
 import java.util.Random;
+
 import matt.lyoko.world.*;
 import matt.lyoko.world.portals.*;
 import matt.lyoko.blocks.*;
