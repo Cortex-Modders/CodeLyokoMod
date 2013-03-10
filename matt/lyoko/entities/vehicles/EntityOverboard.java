@@ -1,14 +1,15 @@
 package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.entities.mobs.EntityLyoko;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.world.World;
 
-public class EntityOverboard extends EntityLyoko {
+public class EntityOverboard extends EntityBoat {
 	
 	public EntityOverboard(World par1World) {
 		super(par1World);
-		texture = "/matt/lyoko/mob/overboard.png";
-        this.setSize(1.125F, 0.125F);
+		//texture = "/matt/lyoko/mob/overboard.png";
+        this.setSize(1.125F, 0.375F);
         this.ignoreFrustumCheck = true;
 	}
 

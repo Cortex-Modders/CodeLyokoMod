@@ -1,15 +1,16 @@
 package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.entities.mobs.*;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntitySkid extends EntityLyoko
+public class EntitySkid extends EntityBoat
 {
     public EntitySkid(World world)
     {
         super(world);
-        texture = "/matt/lyoko/mob/skid.png";
+        //texture = "/matt/lyoko/mob/skid.png";
         this.ignoreFrustumCheck = true;
     }
 
@@ -40,5 +41,13 @@ public class EntitySkid extends EntityLyoko
     protected String getDeathSound()
     {
         return null;
+    }
+    
+    /**
+     * Returns true if this entity should push and be pushed by other entities when colliding.
+     */
+    public boolean canBePushed()
+    {
+        return false;
     }
 }

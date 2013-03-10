@@ -605,8 +605,8 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
     	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
-    	//EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
-    	//LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
+    	EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
     	EntityRegistry.registerGlobalEntityID(EntityOverboard.class, "Overboard", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
     	/*
