@@ -53,8 +53,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTarantula.class, new RenderTarantula(new ModelTarantula(), 0.5F));
 		*/
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderLaser(new ModelLaser(), 0.5F));
-		
-		// Vehicles
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid(new ModelSkid(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard(new ModelOverboard(), 0.5F));
 		
