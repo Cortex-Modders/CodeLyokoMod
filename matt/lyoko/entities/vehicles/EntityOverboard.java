@@ -8,6 +8,8 @@ public class EntityOverboard extends EntityLyoko {
 	public EntityOverboard(World par1World) {
 		super(par1World);
 		texture = "/matt/lyoko/mob/overboard.png";
+        this.setSize(1.125F, 0.125F);
+        this.ignoreFrustumCheck = true;
 	}
 
 	/**
