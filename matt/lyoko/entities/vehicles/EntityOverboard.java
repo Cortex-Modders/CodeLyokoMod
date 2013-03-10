@@ -4,23 +4,25 @@ import matt.lyoko.entities.mobs.EntityLyoko;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.world.World;
 
-public class EntityOverboard extends EntityBoat {
-	
-	public EntityOverboard(World par1World) {
+public class EntityOverboard extends EntityLyoko
+{
+	public EntityOverboard(World par1World)
+	{
 		super(par1World);
-		//texture = "/matt/lyoko/mob/overboard.png";
+		texture = "/matt/lyoko/mob/overboard.png";
         this.setSize(1.125F, 0.375F);
         this.ignoreFrustumCheck = true;
+        this.moveSpeed = 0.0F;
 	}
-
+	
 	/**
 	 * Returns the maximum health of the entity.
 	 */
-	public int getMaxHealth() {
-		// TODO Auto-generated method stub
+	public int getMaxHealth()
+	{
 		return 1000;
 	}
-
+	
 	/**
      * Returns the sound this mob makes while it's alive.
      */
@@ -28,7 +30,7 @@ public class EntityOverboard extends EntityBoat {
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes when it is hurt.
      */
@@ -36,7 +38,7 @@ public class EntityOverboard extends EntityBoat {
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes on death.
      */
@@ -52,5 +54,4 @@ public class EntityOverboard extends EntityBoat {
     {
         return true;
     }
-	
 }

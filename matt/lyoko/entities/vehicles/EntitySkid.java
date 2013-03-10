@@ -1,24 +1,25 @@
 package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.entities.mobs.*;
-import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntitySkid extends EntityBoat
+public class EntitySkid extends EntityLyoko
 {
     public EntitySkid(World world)
     {
         super(world);
-        //texture = "/matt/lyoko/mob/skid.png";
+        texture = "/matt/lyoko/mob/skid.png";
+        this.setSize(2.0F, 6.9375F);
         this.ignoreFrustumCheck = true;
+        this.moveSpeed = 0.0F;
     }
-
+    
     public int getMaxHealth()
     {
         return 1000;
     }
-
+    
     /**
      * Returns the sound this mob makes while it's alive.
      */
@@ -26,7 +27,7 @@ public class EntitySkid extends EntityBoat
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes when it is hurt.
      */
@@ -34,7 +35,7 @@ public class EntitySkid extends EntityBoat
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes on death.
      */
