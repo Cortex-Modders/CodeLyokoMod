@@ -1,4 +1,4 @@
-package matt.lyoko.render;
+package matt.lyoko.render.mobs;
 
 import net.minecraft.src.*;
 import org.lwjgl.opengl.GL11;

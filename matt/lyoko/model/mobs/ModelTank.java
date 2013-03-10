@@ -1,4 +1,4 @@
-package matt.lyoko.model;
+package matt.lyoko.model.mobs;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

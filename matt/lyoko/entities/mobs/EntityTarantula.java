@@ -1,19 +1,21 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntitySkid extends EntityLyoko
+public class EntityTarantula extends EntityLyoko
 {
-    public EntitySkid(World par1World)
+    public EntityTarantula(World par1World)
     {
         super(par1World);
-        texture = "/matt/lyoko/mob/skid.png";
+        texture = "/matt/lyoko/mob/tarantula.png";
+        attackStrength = 6;
+        moveSpeed = 0.7F;
     }
 
     public int getMaxHealth()
     {
-        return 1000;
+        return 50;
     }
 
     /**

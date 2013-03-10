@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import matt.lyoko.CodeLyoko;
 import net.minecraft.entity.Entity;

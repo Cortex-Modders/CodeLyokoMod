@@ -3,16 +3,20 @@ package matt.lyoko;
 import com.jadarstudios.api.DeveloperCapesAPI.DeveloperCapesAPI;
 
 import net.minecraftforge.client.MinecraftForgeClient;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.Mod.Instance;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
+import matt.lyoko.entities.mobs.*;
+import matt.lyoko.render.mobs.*;
+import matt.lyoko.model.mobs.*;
 import matt.lyoko.entities.*;
 import matt.lyoko.render.*;
 import matt.lyoko.model.*;
+import matt.lyoko.entities.vehicles.*;
+import matt.lyoko.render.vehicles.*;
+import matt.lyoko.model.vehicles.*;
 
 public class ClientProxy extends CommonProxy
 {

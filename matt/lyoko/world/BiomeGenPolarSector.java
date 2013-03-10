@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.src.*;
 import net.minecraft.world.biome.SpawnListEntry;
 import matt.lyoko.*;
-import matt.lyoko.entities.*;
+import matt.lyoko.entities.mobs.*;
 
 public class BiomeGenPolarSector extends BiomeGenBaseLyoko
 {
