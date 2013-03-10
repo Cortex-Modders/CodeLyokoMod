@@ -10,16 +10,21 @@ import net.minecraft.world.World;
 
 public class BlockLyokoVirtual extends BlockContainer
 {
-	public BlockLyokoVirtual(int par1, int par2) {
+	public BlockLyokoVirtual(int par1, int par2)
+	{
 		super(par1, Material.iron);
 		this.blockIndexInTexture = par2;
+		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		super.onBlockAdded(world, x, y, z);
-		if(world.provider.dimensionId == 0 || world.provider.dimensionId == -1 || world.provider.dimensionId == 1)
+		if(world.provider.dimensionId != CodeLyoko.Polar_Sector_ID && world.provider.dimensionId != CodeLyoko.Mountain_Sector_ID
+				&& world.provider.dimensionId != CodeLyoko.Forest_Sector_ID
+				&& world.provider.dimensionId != CodeLyoko.Desert_Sector_ID
+				&& world.provider.dimensionId != CodeLyoko.Carthage_Sector_ID)
 		{
 			world.setBlockWithNotify(x, y, z, 0);
 		}
