@@ -1,4 +1,4 @@
-package matt.lyoko.model;
+package matt.lyoko.model.vehicles;
 
 import net.minecraft.client.model.*;
 import net.minecraft.entity.Entity;

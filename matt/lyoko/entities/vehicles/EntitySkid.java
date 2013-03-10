@@ -1,21 +1,21 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.vehicles;
 
+import matt.lyoko.entities.mobs.*;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntityKankrelat extends EntityLyoko
+public class EntitySkid extends EntityLyoko
 {
-    public EntityKankrelat(World par1World)
+    public EntitySkid(World world)
     {
-        super(par1World);
-        texture = "/matt/lyoko/mob/kankrelat.png";
-        attackStrength = 6;
-        moveSpeed = 0.7F;
+        super(world);
+        texture = "/matt/lyoko/mob/skid.png";
+        this.ignoreFrustumCheck = true;
     }
 
     public int getMaxHealth()
     {
-        return 50;
+        return 1000;
     }
 
     /**

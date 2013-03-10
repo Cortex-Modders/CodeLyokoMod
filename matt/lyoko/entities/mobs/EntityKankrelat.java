@@ -1,14 +1,14 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntityKrab extends EntityLyoko
+public class EntityKankrelat extends EntityLyoko
 {
-    public EntityKrab(World par1World)
+    public EntityKankrelat(World par1World)
     {
         super(par1World);
-        texture = "/matt/lyoko/mob/krab.png";
+        texture = "/matt/lyoko/mob/kankrelat.png";
         attackStrength = 6;
         moveSpeed = 0.7F;
     }

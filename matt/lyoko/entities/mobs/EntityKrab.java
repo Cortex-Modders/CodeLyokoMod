@@ -1,14 +1,14 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntityHornet extends EntityLyoko
+public class EntityKrab extends EntityLyoko
 {
-    public EntityHornet(World par1World)
+    public EntityKrab(World par1World)
     {
         super(par1World);
-        texture = "/matt/lyoko/mob/hornet.png";
+        texture = "/matt/lyoko/mob/krab.png";
         attackStrength = 6;
         moveSpeed = 0.7F;
     }

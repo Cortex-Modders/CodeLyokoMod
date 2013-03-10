@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import net.minecraft.block.Block;
 import net.minecraft.src.*;

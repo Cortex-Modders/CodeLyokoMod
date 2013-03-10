@@ -7,6 +7,8 @@ import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.mobs.*;
+import matt.lyoko.entities.vehicles.*;
 import net.minecraftforge.common.*;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -605,6 +607,8 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
     	//EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	//LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
+    	EntityRegistry.registerGlobalEntityID(EntityOverboard.class, "Overboard", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
     	/*
     	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
@@ -620,8 +624,8 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Tarantula.name", "en_US", "Tarantula");
     	*/
     	
-    	EntityRegistry.addSpawn(matt.lyoko.entities.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(matt.lyoko.entities.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
+    	EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
+    	EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	//EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
     	/*
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityHornet.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);

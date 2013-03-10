@@ -1,14 +1,14 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntityTarantula extends EntityLyoko
+public class EntityHornet extends EntityLyoko
 {
-    public EntityTarantula(World par1World)
+    public EntityHornet(World par1World)
     {
         super(par1World);
-        texture = "/matt/lyoko/mob/tarantula.png";
+        texture = "/matt/lyoko/mob/hornet.png";
         attackStrength = 6;
         moveSpeed = 0.7F;
     }

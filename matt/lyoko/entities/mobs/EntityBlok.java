@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.mobs;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -12,6 +12,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
+import matt.lyoko.entities.*;
 
 public class EntityBlok extends EntityLyoko implements IRangedAttackMob
 {
