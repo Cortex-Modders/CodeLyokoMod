@@ -116,6 +116,7 @@ public class CodeLyoko
 	public static int Data_Fragment;
 	public static int Item_Lyoko_Uranium_Cell;
 	public static int Item_Lyoko_Depleted_Uranium;
+	public static int Item_Overboard;// = 6126;
 	
 	public static int Polar_Sector_ID;
 	public static int Mountain_Sector_ID;
@@ -182,6 +183,7 @@ public class CodeLyoko
     public static Item Uranium;
     public static Item LyokoUraniumCell;
     public static Item LyokoDepletedUraniumCell;
+    public static Item Overboard;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
 	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
@@ -245,6 +247,9 @@ public class CodeLyoko
     	LyokoCell = new ItemLyoko(Item_Lyoko_13).setItemName("Cell").setIconIndex(18);
     	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 1250, LyokoDepletedLeadCell).setItemName("Lead210Cell").setIconIndex(19);
     	LyokoDepletedLeadCell = new ItemLyoko(Item_Lyoko_15).setItemName("DepletedLead210Cell").setIconIndex(20);
+    	
+    	Overboard = new ItemOverboard(Item_Overboard).setItemName("Overboard").setIconIndex(20);
+    	
     	AelitaHelmet = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "aelita").setIconIndex(21).setItemName("AelitaHelmet");
         AelitaChest = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "aelita").setIconIndex(22).setItemName("AelitaChest");
         AelitaLegs = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "aelita").setIconIndex(23).setItemName("AelitaPants");
@@ -569,6 +574,7 @@ public class CodeLyoko
     	GameRegistry.registerBlock(DigitalSeaStill, "Digital Sea Still");
     	LanguageRegistry.addName(DigitalSeaStill, "Digital Sea Still");
     	
+    	LanguageRegistry.addName(Overboard, "Overboard");
     	
     	//Lyoko Sectors Dimension Register
     	DimensionManager.registerProviderType(this.Polar_Sector_ID, LyokoPolarSector.class, true);
@@ -601,13 +607,15 @@ public class CodeLyoko
     	//seems that the vanilla entities now occupy most slots between 0-110'ish
     	//unsure on getUniqueGlobalID use for this on multi-player/servers
     	
-    	EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
-    	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
-    	EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
-    	EntityRegistry.registerGlobalEntityID(EntityOverboard.class, "Overboard", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+
+    	//EntityRegistry.registerGlobalEntityID(EntityOverboard.class, "Overboard", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityRegistry.findGlobalUniqueEntityId(), instance, 50, 1, true);
     	LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
     	/*
     	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
@@ -709,6 +717,7 @@ public class CodeLyoko
 		Data_Fragment = config.getItem("dataFragment", 6123).getInt();
 		Item_Lyoko_Uranium_Cell = config.getItem("itemLyokoUraniumCell", 6124).getInt();
 		Item_Lyoko_Depleted_Uranium = config.getItem("itemLyokoDepletedUranium", 6125).getInt();
+		Item_Overboard = config.getItem("itemOverboard", 6126).getInt();
 		
 		/**
 		 * taken from my other mod so I can add booleans if needed to the config file
