@@ -1,5 +1,6 @@
 package matt.lyoko.entities.vehicles;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.mobs.EntityLyoko;
 import net.minecraft.world.World;
 
@@ -8,22 +9,23 @@ public class EntityOverboard extends EntityVehicle
 	public EntityOverboard(World par1World)
 	{
 		super(par1World);
-		texture = "/matt/lyoko/mob/overboard.png";
+		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);
         this.ignoreFrustumCheck = true;
-//        this.moveSpeed = 0.0F;
+        this.setDroppedItem(CodeLyoko.Overboard);
 	}
 	
 	public EntityOverboard(World world, double x, double y, double z) {
 		super(world, x, y, z);
+		texture = "/mods/lyoko/textures/models/overboard.png";
+        this.setSize(1.125F, 0.375F);
+        this.ignoreFrustumCheck = true;
+        this.setDroppedItem(CodeLyoko.Overboard);
 	}
 
-	public String getTexture() {
+	public String getTexture()
+	{
 		return this.texture;
-	}
-	
-	public void onUpdate() {
-		super.onUpdate();
 	}
 	
 	
@@ -57,13 +59,5 @@ public class EntityOverboard extends EntityVehicle
     protected String getDeathSound()
     {
         return null;
-    }
-    
-    /**
-     * Returns true if this entity should push and be pushed by other entities when colliding.
-     */
-    public boolean canBePushed()
-    {
-        return true;
     }
 }

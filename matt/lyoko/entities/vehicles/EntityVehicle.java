@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -22,9 +23,16 @@ public class EntityVehicle extends Entity {
 	private float x;
 	private float z;
 	
+	private Item droppedItem = CodeLyoko.DataFragment;
+	
 	public EntityVehicle(World par1World) {
 		super(par1World);
 		this.preventEntitySpawning = true;
+	}
+	
+	public void setDroppedItem(Item item)
+	{
+		this.droppedItem = item;
 	}
 
 	@Override
@@ -88,13 +96,15 @@ public class EntityVehicle extends Entity {
 	}
 
 	@Override
-	public void readEntityFromNBT(NBTTagCompound par1) {
-
+	public void readEntityFromNBT(NBTTagCompound par1)
+	{
+		super.readFromNBT(par1);
 	}
 
 	@Override
-	public void writeEntityToNBT(NBTTagCompound par1) {
-
+	public void writeEntityToNBT(NBTTagCompound par1)
+	{
+		super.writeToNBT(par1);
 	}
 
 	public boolean interact(EntityPlayer player)
@@ -109,7 +119,7 @@ public class EntityVehicle extends Entity {
 			{
 				if(player.isSneaking()) {
 					this.kill();
-//					this.dropItem(CodeLyoko.Overboard.itemID, 1);
+					this.dropItem(droppedItem.itemID, 1);
 				}
 				else {
 					player.mountEntity(this);

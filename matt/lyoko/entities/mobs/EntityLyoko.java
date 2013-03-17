@@ -64,8 +64,10 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         if(this.health <= 0)
         {
         	this.setDead();
-        	
-        	this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 2.0F, true);
+        	if(worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") == true)
+        	{
+        		this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 2.0F, true);
+        	}
         }
     }
 

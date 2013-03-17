@@ -1,10 +1,11 @@
 package matt.lyoko.entities.vehicles;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.mobs.*;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
-public class EntitySkid extends EntityLyoko
+public class EntitySkid extends EntityVehicle
 {
     public EntitySkid(World world)
     {
@@ -12,7 +13,16 @@ public class EntitySkid extends EntityLyoko
         texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
         this.ignoreFrustumCheck = true;
-        this.moveSpeed = 0.0F;
+        //this.setDroppedItem(CodeLyoko.Skid);
+    }
+    
+    public EntitySkid(World world, double x, double y, double z)
+    {
+        super(world);
+        texture = "/mods/lyoko/textures/models/skid.png";
+        this.setSize(2.0F, 6.9375F);
+        this.ignoreFrustumCheck = true;
+        //this.setDroppedItem(CodeLyoko.Skid);
     }
     
     public int getMaxHealth()
