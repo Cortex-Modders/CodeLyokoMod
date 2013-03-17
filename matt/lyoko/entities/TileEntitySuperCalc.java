@@ -83,11 +83,13 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
                 return stack;
         }
         
+        @Override
         public boolean canUpdate()
         {
             return true;
         }
         
+        @Override
         public void updateEntity()
         {
         	int slot = 0;
@@ -219,4 +221,16 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         {
         	return "tileentitysupercalc";
         }
+
+		@Override
+		public boolean func_94042_c()
+		{
+			return false;
+		}
+
+		@Override
+		public boolean func_94041_b(int i, ItemStack itemstack)
+		{
+			return false;
+		}
 }

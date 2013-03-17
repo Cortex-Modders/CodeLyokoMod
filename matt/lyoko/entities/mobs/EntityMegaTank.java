@@ -11,19 +11,13 @@ public class EntityMegaTank extends EntityLyoko
     public EntityMegaTank(World par1World)
     {
         super(par1World);
-        texture = "/matt/lyoko/mob/tank.png";
+        texture = "/mods/lyoko/textures/models/tank.png";
         moveSpeed = 1.1F;
     }
 
     public int getMaxHealth()
     {
         return 150;
-    }
-    
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
-    {
-    	world.setBlock(x, y, z, 0);
-    	
     }
     
     public void onCollideWithPlayer(EntityPlayer entp)

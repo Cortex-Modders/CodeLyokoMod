@@ -26,7 +26,7 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.spawnableMonsterList = new ArrayList();
         this.spawnableCreatureList = new ArrayList();
         this.spawnableWaterCreatureList = new ArrayList();
-        this.field_82914_M = new ArrayList();
+        this.spawnableCaveCreatureList = new ArrayList();
         this.worldGeneratorTrees = new WorldGenTrees(false);
         this.worldGeneratorBigTree = new WorldGenBigTree(false);
         this.worldGeneratorForest = new WorldGenForest(false);
@@ -44,7 +44,7 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
         this.spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4));
         this.spawnableWaterCreatureList.add(new SpawnListEntry(EntitySquid.class, 10, 4, 4));
-        this.field_82914_M.add(new SpawnListEntry(EntityBat.class, 10, 8, 8));
+        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityBat.class, 10, 8, 8));
 	}
 	
 	public BiomeGenBase setLyokoBiomeName(String par1Str)

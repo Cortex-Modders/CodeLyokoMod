@@ -19,7 +19,7 @@ public class EntityBlok extends EntityLyoko implements IRangedAttackMob
     public EntityBlok(World par1World)
     {
         super(par1World);
-        this.texture = "/matt/lyoko/mob/blok.png";
+        this.texture = "/mods/lyoko/textures/models/blok.png";
         this.moveSpeed = 0.3F;
         this.setSize(0.9375F, 1.5F);
         this.tasks.addTask(1, new EntityAISwimming(this));
@@ -87,9 +87,9 @@ public class EntityBlok extends EntityLyoko implements IRangedAttackMob
         //this.worldObj.playSoundAtEntity(this, "random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.worldObj.spawnEntityInWorld(var2);
     }
-    
+
 	@Override
-	public void attackEntityWithRangedAttack(EntityLiving var1) {
+	public void attackEntityWithRangedAttack(EntityLiving entityliving, float f) {
 		// TODO Auto-generated method stub
 		
 	}

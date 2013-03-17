@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -15,22 +16,22 @@ import matt.lyoko.entities.*;
 public class BlockLyokoTower extends BlockContainer
 {
 
-	public BlockLyokoTower(int par1, int par2)
+	public BlockLyokoTower(int par1)
 	{
 		super(par1, Material.iron);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
-		this.blockIndexInTexture = 0;
+	}
+	
+	@Override
+	public void func_94332_a(IconRegister par1IconRegister)
+	{
+		this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:tower");
 	}
 	
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
 		return new TileEntityTower();
 	}
-	
-	public String getTextureFile()
-    {
-            return "/matt/lyoko/terrain/terrain.png";
-    }
 	
 	public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {

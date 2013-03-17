@@ -1,5 +1,6 @@
 package matt.lyoko.items;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
@@ -24,10 +25,26 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
         
         private String armorType;
         
-        public String getTextureFile()
-        {
-                return "/matt/lyoko/gui/items.png";
-        }
+        @Override
+    	public void func_94581_a(IconRegister iconRegister)
+    	{
+    		if(this.itemID == CodeLyoko.AelitaHelmet.itemID || this.itemID == CodeLyoko.OddHelmet.itemID
+    				|| this.itemID == CodeLyoko.UlrichHelmet.itemID || this.itemID == CodeLyoko.YumiHelmet.itemID
+    				|| this.itemID == CodeLyoko.WilliamHelmet.itemID)
+    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "helmet");
+    		if(this.itemID == CodeLyoko.AelitaChest.itemID || this.itemID == CodeLyoko.OddChest.itemID
+    				|| this.itemID == CodeLyoko.UlrichChest.itemID || this.itemID == CodeLyoko.YumiChest.itemID
+    				|| this.itemID == CodeLyoko.WilliamChest.itemID)
+    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "chest");
+    		if(this.itemID == CodeLyoko.AelitaLegs.itemID || this.itemID == CodeLyoko.OddLegs.itemID
+    				|| this.itemID == CodeLyoko.UlrichLegs.itemID || this.itemID == CodeLyoko.YumiLegs.itemID
+    				|| this.itemID == CodeLyoko.WilliamLegs.itemID)
+    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "legs");
+    		if(this.itemID == CodeLyoko.AelitaBoots.itemID || this.itemID == CodeLyoko.OddBoots.itemID
+    				|| this.itemID == CodeLyoko.UlrichBoots.itemID || this.itemID == CodeLyoko.YumiBoots.itemID
+    				|| this.itemID == CodeLyoko.WilliamBoots.itemID)
+    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "boots");
+    	}
         
         public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack)
         {
@@ -50,6 +67,10 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     					{
     						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.VirtualBlock, 1));
     					}
+    					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.EnergyField, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.EnergyField.itemID))
+    					{
+    						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.EnergyField, 1));
+    					}
     				}
     			}
     			else if (helmet.getItem() == CodeLyoko.OddHelmet && chest.getItem() == CodeLyoko.OddChest
@@ -57,6 +78,14 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     			{
     				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
     				player.fallDistance = 0;
+    				for(int x = 0; x < 9; x++)
+    				{
+    					ItemStack stack2 = player.inventory.getStackInSlot(x);
+    					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Glove, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Glove.itemID))
+    					{
+    						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Glove, 1));
+    					}
+    				}
     			}
     			else if (helmet.getItem() == CodeLyoko.UlrichHelmet && chest.getItem() == CodeLyoko.UlrichChest
     					&& legs.getItem() == CodeLyoko.UlrichLegs && boots.getItem() == CodeLyoko.UlrichBoots)
@@ -66,6 +95,14 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 20, 2)));
     				}
     				player.fallDistance = 0;
+    				for(int x = 0; x < 9; x++)
+    				{
+    					ItemStack stack2 = player.inventory.getStackInSlot(x);
+    					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Katana, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Katana.itemID))
+    					{
+    						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Katana, 1));
+    					}
+    				}
     			}
     			else if (helmet.getItem() == CodeLyoko.YumiHelmet && chest.getItem() == CodeLyoko.YumiChest
     					&& legs.getItem() == CodeLyoko.YumiLegs && boots.getItem() == CodeLyoko.YumiBoots)
@@ -73,6 +110,14 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     				player.getFoodStats().setFoodSaturationLevel(40.0F);
     				player.getFoodStats().setFoodLevel(20);
     				player.fallDistance = 0;
+    				for(int x = 0; x < 9; x++)
+    				{
+    					ItemStack stack2 = player.inventory.getStackInSlot(x);
+    					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Fan, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Fan.itemID))
+    					{
+    						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Fan, 1));
+    					}
+    				}
     			}
     			else if (helmet.getItem() == CodeLyoko.WilliamHelmet && chest.getItem() == CodeLyoko.WilliamChest
     					&& legs.getItem() == CodeLyoko.WilliamLegs && boots.getItem() == CodeLyoko.WilliamBoots)
@@ -83,6 +128,14 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     					player.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 20, 2)));
     				}
     				player.fallDistance = 0;
+    				for(int x = 0; x < 9; x++)
+    				{
+    					ItemStack stack2 = player.inventory.getStackInSlot(x);
+    					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Zweihander, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Zweihander.itemID))
+    					{
+    						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Zweihander, 1));
+    					}
+    				}
     			}
     		}
         	else if ((player.getCurrentItemOrArmor(4) == null || player.getCurrentItemOrArmor(3) == null

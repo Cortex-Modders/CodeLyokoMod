@@ -9,7 +9,7 @@ public class EntitySkid extends EntityLyoko
     public EntitySkid(World world)
     {
         super(world);
-        texture = "/matt/lyoko/mob/skid.png";
+        texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
         this.ignoreFrustumCheck = true;
         this.moveSpeed = 0.0F;

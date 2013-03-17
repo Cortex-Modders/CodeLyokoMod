@@ -22,21 +22,17 @@ public class ClientProxy extends CommonProxy
 {
 	@Override
 	public void registerRenderInformation() 
-	{  
-		MinecraftForgeClient.preloadTexture("/matt/lyoko/gui/items.png");
-		MinecraftForgeClient.preloadTexture("/matt/lyoko/terrain/terrain.png");
-		MinecraftForgeClient.preloadTexture("/matt/lyoko/terrain/computer.png");
-		
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/aelita_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/aelita_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/odd_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/odd_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/ulrich_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/ulrich_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/yumi_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/yumi_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/william_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/matt/lyoko/armor/william_2");
+	{
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/aelita_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/aelita_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/odd_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/odd_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/ulrich_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/ulrich_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/yumi_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/yumi_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/william_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/william_2");
 		
 		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan());

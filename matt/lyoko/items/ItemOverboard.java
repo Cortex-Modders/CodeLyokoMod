@@ -5,6 +5,7 @@ import java.util.List;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -24,6 +25,12 @@ public class ItemOverboard extends Item
         this.maxStackSize = 1;
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
+    
+    @Override
+	public void func_94581_a(IconRegister iconRegister)
+	{
+    	iconIndex = iconRegister.func_94245_a("lyoko:overboard");
+	}
 
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
@@ -116,4 +123,3 @@ public class ItemOverboard extends Item
         }
     }
 }
-

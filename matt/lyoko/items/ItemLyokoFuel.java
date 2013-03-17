@@ -1,6 +1,8 @@
 package matt.lyoko.items;
 
 import java.util.List;
+
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
@@ -14,6 +16,15 @@ public class ItemLyokoFuel extends ItemLyoko {
 		this.setMaxDamage(maxEnergy);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.depletedForm = depletedItem;
+	}
+	
+	@Override
+	public void func_94581_a(IconRegister iconRegister)
+	{
+		if(this.itemID == CodeLyoko.LyokoLeadCell.itemID)
+	         iconIndex = iconRegister.func_94245_a("lyoko:leadcell");
+		if(this.itemID == CodeLyoko.LyokoUraniumCell.itemID)
+	         iconIndex = iconRegister.func_94245_a("lyoko:uraniumcell");
 	}
 	
 	public Item depletedForm;

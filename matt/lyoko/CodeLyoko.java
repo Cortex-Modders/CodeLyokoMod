@@ -116,7 +116,7 @@ public class CodeLyoko
 	public static int Data_Fragment;
 	public static int Item_Lyoko_Uranium_Cell;
 	public static int Item_Lyoko_Depleted_Uranium;
-	public static int Item_Overboard;// = 6126;
+	public static int Item_Overboard;
 	
 	public static int Polar_Sector_ID;
 	public static int Mountain_Sector_ID;
@@ -138,73 +138,73 @@ public class CodeLyoko
 	public static final BiomeGenBase lyokodesert = ((BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631)).setLyokoBiomeName("Desert Sector");
 	public static final BiomeGenBase lyokopolar = ((BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631)).setLyokoBiomeName("Polar Sector");
 	public static final BiomeGenBase lyokocarthage = ((BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631)).setLyokoBiomeName("Carthage Sector");
-	public static Item Katana;// = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setItemName("Katana").setIconIndex(0);
-	public static Item Zweihander;// = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setItemName("Zweihander").setIconIndex(1);
-	public static Item Fan;// = new ItemLyokoFan(Weapon_Lyoko_3).setItemName("Fan").setIconIndex(2);
-	public static Item EnergyField;// = new ItemLyokoEnergyField(Weapon_Lyoko_4).setItemName("EnergyField").setIconIndex(3);
-	public static Item Glove;// = new ItemGlove(Weapon_Lyoko_5).setItemName("Glove").setIconIndex(4);
-	public static Item LaserArrow;// = new ItemLyoko(Weapon_Lyoko_6).setItemName("LaserArrow").setIconIndex(5);
-	public static Item KatanaFragment1;// = new ItemLyoko(Item_Lyoko_1).setItemName("KatanaFragment1").setIconIndex(6);
-	public static Item KatanaFragment2;// = new ItemLyoko(Item_Lyoko_2).setItemName("KatanaFragment2").setIconIndex(7);
-	public static Item ZweihanderFragment1;// = new ItemLyoko(Item_Lyoko_3).setItemName("ZweihanderFragment1").setIconIndex(8);
-	public static Item ZweihanderFragment2;// = new ItemLyoko(Item_Lyoko_4).setItemName("ZweihanderFragment2").setIconIndex(9);
-	public static Item FanFragment1;// = new ItemLyoko(Item_Lyoko_5).setItemName("FanFragment1").setIconIndex(10);
-	public static Item FanFragment2;// = new ItemLyoko(Item_Lyoko_6).setItemName("FanFragment2").setIconIndex(11);
-	public static Item EnergyFieldCore;// = new ItemLyoko(Item_Lyoko_7).setItemName("EnergyFieldCore").setIconIndex(12);
-	public static Item EnergyFieldStarter;// = new ItemLyoko(Item_Lyoko_8).setItemName("EnergyFieldStarter").setIconIndex(13);
-	public static Item GloveFragment1;// = new ItemLyoko(Item_Lyoko_9).setItemName("GloveFragment1").setIconIndex(14);
-	public static Item GloveFragment2;// = new ItemLyoko(Item_Lyoko_10).setItemName("GloveFragment2").setIconIndex(15);
-	public static Item LyokoIngot;// = new ItemLyoko(Item_Lyoko_11).setItemName("LyokoIngot").setIconIndex(16);
-	public static Item LyokoLead;// = new ItemLyoko(Item_Lyoko_12).setItemName("Lead210").setIconIndex(17);
-	public static Item LyokoCell;// = new ItemLyoko(Item_Lyoko_13).setItemName("Cell").setIconIndex(18);
-	public static Item LyokoLeadCell;// = new ItemLyokoFuel(Item_Lyoko_14, 10000).setItemName("Lead210Cell").setIconIndex(19);
-	public static Item LyokoDepletedLeadCell;// = new ItemLyoko(Item_Lyoko_15).setItemName("DepletedLead210Cell").setIconIndex(20);
-	public static Item AelitaHelmet;// = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "Aelita").setIconIndex(21).setItemName("AelitaHelmet");
-    public static Item AelitaChest;// = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "Aelita").setIconIndex(22).setItemName("AelitaChest");
-    public static Item AelitaLegs;// = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "Aelita").setIconIndex(23).setItemName("AelitaPants");
-    public static Item AelitaBoots;// = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "Aelita").setIconIndex(24).setItemName("AelitaBoots");
-    public static Item OddHelmet;// = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "Odd").setIconIndex(25).setItemName("OddHelmet");
-    public static Item OddChest;// = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "Odd").setIconIndex(26).setItemName("OddChest");
-    public static Item OddLegs;// = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "Odd").setIconIndex(27).setItemName("OddPants");
-    public static Item OddBoots;// = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "Odd").setIconIndex(28).setItemName("OddBoots");
-    public static Item UlrichHelmet;// = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "Ulrich").setIconIndex(29).setItemName("UlrichHelmet");
-    public static Item UlrichChest;// = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "Ulrich").setIconIndex(30).setItemName("UlrichChest");
-    public static Item UlrichLegs;// = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "Ulrich").setIconIndex(31).setItemName("UlrichPants");
-    public static Item UlrichBoots;// = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "Ulrich").setIconIndex(32).setItemName("UlrichBoots");
-    public static Item YumiHelmet;// = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "Yumi").setIconIndex(33).setItemName("YumiHelmet");
-    public static Item YumiChest;// = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "Yumi").setIconIndex(34).setItemName("YumiChest");
-    public static Item YumiLegs;// = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "Yumi").setIconIndex(35).setItemName("YumiPants");
-    public static Item YumiBoots;// = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "Yumi").setIconIndex(36).setItemName("YumiBoots");
-    public static Item WilliamHelmet;// = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "William").setIconIndex(37).setItemName("WilliamHelmet");
-    public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setItemName("WilliamChest");
-    public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setItemName("WilliamPants");
-    public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setItemName("WilliamBoots");
+	public static Item Katana;// = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setUnlocalizedName("Katana").setIconIndex(0);
+	public static Item Zweihander;// = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setUnlocalizedName("Zweihander").setIconIndex(1);
+	public static Item Fan;// = new ItemLyokoFan(Weapon_Lyoko_3).setUnlocalizedName("Fan").setIconIndex(2);
+	public static Item EnergyField;// = new ItemLyokoEnergyField(Weapon_Lyoko_4).setUnlocalizedName("EnergyField").setIconIndex(3);
+	public static Item Glove;// = new ItemGlove(Weapon_Lyoko_5).setUnlocalizedName("Glove").setIconIndex(4);
+	public static Item LaserArrow;// = new ItemLyoko(Weapon_Lyoko_6).setUnlocalizedName("LaserArrow").setIconIndex(5);
+	public static Item KatanaFragment1;// = new ItemLyoko(Item_Lyoko_1).setUnlocalizedName("KatanaFragment1").setIconIndex(6);
+	public static Item KatanaFragment2;// = new ItemLyoko(Item_Lyoko_2).setUnlocalizedName("KatanaFragment2").setIconIndex(7);
+	public static Item ZweihanderFragment1;// = new ItemLyoko(Item_Lyoko_3).setUnlocalizedName("ZweihanderFragment1").setIconIndex(8);
+	public static Item ZweihanderFragment2;// = new ItemLyoko(Item_Lyoko_4).setUnlocalizedName("ZweihanderFragment2").setIconIndex(9);
+	public static Item FanFragment1;// = new ItemLyoko(Item_Lyoko_5).setUnlocalizedName("FanFragment1").setIconIndex(10);
+	public static Item FanFragment2;// = new ItemLyoko(Item_Lyoko_6).setUnlocalizedName("FanFragment2").setIconIndex(11);
+	public static Item EnergyFieldCore;// = new ItemLyoko(Item_Lyoko_7).setUnlocalizedName("EnergyFieldCore").setIconIndex(12);
+	public static Item EnergyFieldStarter;// = new ItemLyoko(Item_Lyoko_8).setUnlocalizedName("EnergyFieldStarter").setIconIndex(13);
+	public static Item GloveFragment1;// = new ItemLyoko(Item_Lyoko_9).setUnlocalizedName("GloveFragment1").setIconIndex(14);
+	public static Item GloveFragment2;// = new ItemLyoko(Item_Lyoko_10).setUnlocalizedName("GloveFragment2").setIconIndex(15);
+	public static Item LyokoIngot;// = new ItemLyoko(Item_Lyoko_11).setUnlocalizedName("LyokoIngot").setIconIndex(16);
+	public static Item LyokoLead;// = new ItemLyoko(Item_Lyoko_12).setUnlocalizedName("Lead210").setIconIndex(17);
+	public static Item LyokoCell;// = new ItemLyoko(Item_Lyoko_13).setUnlocalizedName("Cell").setIconIndex(18);
+	public static Item LyokoLeadCell;// = new ItemLyokoFuel(Item_Lyoko_14, 10000).setUnlocalizedName("Lead210Cell").setIconIndex(19);
+	public static Item LyokoDepletedLeadCell;// = new ItemLyoko(Item_Lyoko_15).setUnlocalizedName("DepletedLead210Cell").setIconIndex(20);
+	public static Item AelitaHelmet;// = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "Aelita").setIconIndex(21).setUnlocalizedName("AelitaHelmet");
+    public static Item AelitaChest;// = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "Aelita").setIconIndex(22).setUnlocalizedName("AelitaChest");
+    public static Item AelitaLegs;// = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "Aelita").setIconIndex(23).setUnlocalizedName("AelitaPants");
+    public static Item AelitaBoots;// = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "Aelita").setIconIndex(24).setUnlocalizedName("AelitaBoots");
+    public static Item OddHelmet;// = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "Odd").setIconIndex(25).setUnlocalizedName("OddHelmet");
+    public static Item OddChest;// = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "Odd").setIconIndex(26).setUnlocalizedName("OddChest");
+    public static Item OddLegs;// = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "Odd").setIconIndex(27).setUnlocalizedName("OddPants");
+    public static Item OddBoots;// = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "Odd").setIconIndex(28).setUnlocalizedName("OddBoots");
+    public static Item UlrichHelmet;// = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "Ulrich").setIconIndex(29).setUnlocalizedName("UlrichHelmet");
+    public static Item UlrichChest;// = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "Ulrich").setIconIndex(30).setUnlocalizedName("UlrichChest");
+    public static Item UlrichLegs;// = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "Ulrich").setIconIndex(31).setUnlocalizedName("UlrichPants");
+    public static Item UlrichBoots;// = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "Ulrich").setIconIndex(32).setUnlocalizedName("UlrichBoots");
+    public static Item YumiHelmet;// = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "Yumi").setIconIndex(33).setUnlocalizedName("YumiHelmet");
+    public static Item YumiChest;// = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "Yumi").setIconIndex(34).setUnlocalizedName("YumiChest");
+    public static Item YumiLegs;// = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "Yumi").setIconIndex(35).setUnlocalizedName("YumiPants");
+    public static Item YumiBoots;// = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "Yumi").setIconIndex(36).setUnlocalizedName("YumiBoots");
+    public static Item WilliamHelmet;// = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "William").setIconIndex(37).setUnlocalizedName("WilliamHelmet");
+    public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setUnlocalizedName("WilliamChest");
+    public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setUnlocalizedName("WilliamPants");
+    public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setUnlocalizedName("WilliamBoots");
     public static Item DataFragment;
     public static Item Uranium;
     public static Item LyokoUraniumCell;
     public static Item LyokoDepletedUraniumCell;
     public static Item Overboard;
-	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
-	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
-	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
-	public static Block LyokoStone;// = new BlockLyoko(Lyoko_Stone, 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setBlockName("LyokoStone");
-	public static Block LyokoSand;// = new BlockLyoko(Lyoko_Sand, 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setBlockName("LyokoSand");
-	public static Block LyokoIce;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoIce");
-	public static Block LyokoLog;// = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setBlockName("LyokoLog");
-	public static Block LyokoCarthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setBlockName("LyokoCarthage");
-	public static Block LyokoOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LyokoOre");
-	public static Block DigitalSeaBlock;// = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setBlockName("DigitalSeaBlock");
-	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaFlowing").setRequiresSelfNotify();
-	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaStill").setRequiresSelfNotify();
-	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
+	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
+	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
+	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
+	public static Block LyokoStone;// = new BlockLyoko(Lyoko_Stone, 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
+	public static Block LyokoSand;// = new BlockLyoko(Lyoko_Sand, 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
+	public static Block LyokoIce;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
+	public static Block LyokoLog;// = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
+	public static Block LyokoCarthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
+	public static Block LyokoOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
+	public static Block DigitalSeaBlock;// = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
+	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
+	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill").setRequiresSelfNotify();
+	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
 	public static Block VirtualBlock;
 	public static Block UraniumOre;
-	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setBlockName("Polar Portal");
-	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setBlockName("Desert Portal");
-	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setBlockName("Forest Portal");
-	public static Block LyokoMountainPortal;// = new BlockLyoko(Lyoko_Mountain_Portal, 15).setBlockName("Mountain Portal");
-	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setBlockName("Carthage Portal");
-	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();
+	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
+	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
+	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
+	public static Block LyokoMountainPortal;// = new BlockLyoko(Lyoko_Mountain_Portal, 15).setUnlocalizedName("Mountain Portal");
+	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setUnlocalizedName("Carthage Portal");
+	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
 	
 	@SidedProxy(clientSide = "matt.lyoko.ClientProxy", serverSide = "matt.lyoko.CommonProxy")
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
@@ -226,76 +226,74 @@ public class CodeLyoko
     {
         SuperCalcRenderID = RenderingRegistry.getNextAvailableRenderId();
     	
-    	Katana = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setItemName("Katana").setIconIndex(0);
-    	Zweihander = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setItemName("Zweihander").setIconIndex(1);
-    	Fan = new ItemLyokoFan(Weapon_Lyoko_3).setItemName("Fan").setIconIndex(2);
-    	EnergyField = new ItemLyokoEnergyField(Weapon_Lyoko_4).setItemName("EnergyField").setIconIndex(3);
-    	Glove = new ItemGlove(Weapon_Lyoko_5).setItemName("Glove").setIconIndex(4);
-    	LaserArrow = new ItemLyoko(Weapon_Lyoko_6).setItemName("LaserArrow").setIconIndex(5);
-    	KatanaFragment1 = new ItemLyoko(Item_Lyoko_1).setItemName("KatanaFragment1").setIconIndex(6);
-    	KatanaFragment2 = new ItemLyoko(Item_Lyoko_2).setItemName("KatanaFragment2").setIconIndex(7);
-    	ZweihanderFragment1 = new ItemLyoko(Item_Lyoko_3).setItemName("ZweihanderFragment1").setIconIndex(8);
-    	ZweihanderFragment2 = new ItemLyoko(Item_Lyoko_4).setItemName("ZweihanderFragment2").setIconIndex(9);
-    	FanFragment1 = new ItemLyoko(Item_Lyoko_5).setItemName("FanFragment1").setIconIndex(10);
-    	FanFragment2 = new ItemLyoko(Item_Lyoko_6).setItemName("FanFragment2").setIconIndex(11);
-    	EnergyFieldCore = new ItemLyoko(Item_Lyoko_7).setItemName("EnergyFieldCore").setIconIndex(12);
-    	EnergyFieldStarter = new ItemLyoko(Item_Lyoko_8).setItemName("EnergyFieldStarter").setIconIndex(13);
-    	GloveFragment1 = new ItemLyoko(Item_Lyoko_9).setItemName("GloveFragment1").setIconIndex(14);
-    	GloveFragment2 = new ItemLyoko(Item_Lyoko_10).setItemName("GloveFragment2").setIconIndex(15);
-    	LyokoIngot = new ItemLyoko(Item_Lyoko_11).setItemName("LyokoIngot").setIconIndex(16);
-    	LyokoLead = new ItemLyoko(Item_Lyoko_12).setItemName("Lead210").setIconIndex(17);
-    	LyokoCell = new ItemLyoko(Item_Lyoko_13).setItemName("Cell").setIconIndex(18);
-    	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 1250, LyokoDepletedLeadCell).setItemName("Lead210Cell").setIconIndex(19);
-    	LyokoDepletedLeadCell = new ItemLyoko(Item_Lyoko_15).setItemName("DepletedLead210Cell").setIconIndex(20);
+    	Katana = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setUnlocalizedName("Katana");
+    	Zweihander = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setUnlocalizedName("Zweihander");
+    	Fan = new ItemLyokoFan(Weapon_Lyoko_3).setUnlocalizedName("Fan");
+    	EnergyField = new ItemLyokoEnergyField(Weapon_Lyoko_4).setUnlocalizedName("EnergyField");
+    	Glove = new ItemGlove(Weapon_Lyoko_5).setUnlocalizedName("Glove");
+    	LaserArrow = new ItemLyoko(Weapon_Lyoko_6).setUnlocalizedName("LaserArrow");
+    	KatanaFragment1 = new ItemLyoko(Item_Lyoko_1).setUnlocalizedName("KatanaFragment1");
+    	KatanaFragment2 = new ItemLyoko(Item_Lyoko_2).setUnlocalizedName("KatanaFragment2");
+    	ZweihanderFragment1 = new ItemLyoko(Item_Lyoko_3).setUnlocalizedName("ZweihanderFragment1");
+    	ZweihanderFragment2 = new ItemLyoko(Item_Lyoko_4).setUnlocalizedName("ZweihanderFragment2");
+    	FanFragment1 = new ItemLyoko(Item_Lyoko_5).setUnlocalizedName("FanFragment1");
+    	FanFragment2 = new ItemLyoko(Item_Lyoko_6).setUnlocalizedName("FanFragment2");
+    	EnergyFieldCore = new ItemLyoko(Item_Lyoko_7).setUnlocalizedName("EnergyFieldCore");
+    	EnergyFieldStarter = new ItemLyoko(Item_Lyoko_8).setUnlocalizedName("EnergyFieldStarter");
+    	GloveFragment1 = new ItemLyoko(Item_Lyoko_9).setUnlocalizedName("GloveFragment1");
+    	GloveFragment2 = new ItemLyoko(Item_Lyoko_10).setUnlocalizedName("GloveFragment2");
+    	LyokoIngot = new ItemLyoko(Item_Lyoko_11).setUnlocalizedName("LyokoIngot");
+    	LyokoLead = new ItemLyoko(Item_Lyoko_12).setUnlocalizedName("Lead210");
+    	LyokoCell = new ItemLyoko(Item_Lyoko_13).setUnlocalizedName("Cell");
+    	LyokoLeadCell = new ItemLyokoFuel(Item_Lyoko_14, 1250, LyokoDepletedLeadCell).setUnlocalizedName("Lead210Cell");
+    	LyokoDepletedLeadCell = new ItemLyoko(Item_Lyoko_15).setUnlocalizedName("DepletedLead210Cell");
+    	AelitaHelmet = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "aelita").setUnlocalizedName("AelitaHelmet");
+        AelitaChest = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "aelita").setUnlocalizedName("AelitaChest");
+        AelitaLegs = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "aelita").setUnlocalizedName("AelitaPants");
+        AelitaBoots = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "aelita").setUnlocalizedName("AelitaBoots");
+        OddHelmet = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "odd").setUnlocalizedName("OddHelmet");
+        OddChest = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "odd").setUnlocalizedName("OddChest");
+        OddLegs = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "odd").setUnlocalizedName("OddPants");
+        OddBoots = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "odd").setUnlocalizedName("OddBoots");
+        UlrichHelmet = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "ulrich").setUnlocalizedName("UlrichHelmet");
+        UlrichChest = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "ulrich").setUnlocalizedName("UlrichChest");
+        UlrichLegs = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "ulrich").setUnlocalizedName("UlrichPants");
+        UlrichBoots = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "ulrich").setUnlocalizedName("UlrichBoots");
+        YumiHelmet = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "yumi").setUnlocalizedName("YumiHelmet");
+        YumiChest = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "yumi").setUnlocalizedName("YumiChest");
+        YumiLegs = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "yumi").setUnlocalizedName("YumiPants");
+        YumiBoots = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "yumi").setUnlocalizedName("YumiBoots");
+        WilliamHelmet = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "william").setUnlocalizedName("WilliamHelmet");
+        WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setUnlocalizedName("WilliamChest");
+        WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setUnlocalizedName("WilliamPants");
+        WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setUnlocalizedName("WilliamBoots");
+        DataFragment = new ItemDataFragment(Data_Fragment).setUnlocalizedName("DataFragment");
+        Uranium = new ItemLyoko(Item_Lyoko_Uranium).setUnlocalizedName("Uranium");
+    	LyokoUraniumCell = new ItemLyokoFuel(Item_Lyoko_Uranium_Cell, 5000, LyokoDepletedUraniumCell).setUnlocalizedName("UraniumCell");
+    	LyokoDepletedUraniumCell = new ItemLyoko(Item_Lyoko_Depleted_Uranium).setUnlocalizedName("DepletedUraniumCell");
+    	Overboard = new ItemOverboard(Item_Overboard).setUnlocalizedName("Overboard");
+    	TowerBlock = new BlockLyokoTower(Lyoko_Tower).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
+    	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
+    	LyokoGrass = new BlockLyoko(Lyoko_Grass).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
+    	LyokoStone = new BlockLyoko(Lyoko_Stone).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
+    	LyokoSand = new BlockLyoko(Lyoko_Sand).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
+    	LyokoIce = new BlockLyokoIce(Lyoko_Ice, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
+    	LyokoLog = new BlockLyoko(Lyoko_Log).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
+    	LyokoCarthage = new BlockLyoko(Lyoko_Carthage).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
+    	LyokoOre = new BlockLyoko(Lyoko_Ore).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
+    	DigitalSeaBlock = new BlockDigitalSea(Lyoko_Sea_Block).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
+    	DigitalSeaFlowing = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
+    	DigitalSeaStill = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
+    	LeadOre = new BlockLyoko(Lyoko_Lead_Ore).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
+    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer");
+    	VirtualBlock = new BlockLyokoVirtual(Lyoko_Virtual_Block).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
+    	UraniumOre = new BlockLyoko(Lyoko_Uranium_Ore).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	
-    	Overboard = new ItemOverboard(Item_Overboard).setItemName("Overboard").setIconIndex(20);
-    	
-    	AelitaHelmet = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "aelita").setIconIndex(21).setItemName("AelitaHelmet");
-        AelitaChest = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "aelita").setIconIndex(22).setItemName("AelitaChest");
-        AelitaLegs = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "aelita").setIconIndex(23).setItemName("AelitaPants");
-        AelitaBoots = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "aelita").setIconIndex(24).setItemName("AelitaBoots");
-        OddHelmet = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "odd").setIconIndex(25).setItemName("OddHelmet");
-        OddChest = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "odd").setIconIndex(26).setItemName("OddChest");
-        OddLegs = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "odd").setIconIndex(27).setItemName("OddPants");
-        OddBoots = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "odd").setIconIndex(28).setItemName("OddBoots");
-        UlrichHelmet = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "ulrich").setIconIndex(29).setItemName("UlrichHelmet");
-        UlrichChest = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "ulrich").setIconIndex(30).setItemName("UlrichChest");
-        UlrichLegs = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "ulrich").setIconIndex(31).setItemName("UlrichPants");
-        UlrichBoots = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "ulrich").setIconIndex(32).setItemName("UlrichBoots");
-        YumiHelmet = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "yumi").setIconIndex(33).setItemName("YumiHelmet");
-        YumiChest = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "yumi").setIconIndex(34).setItemName("YumiChest");
-        YumiLegs = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "yumi").setIconIndex(35).setItemName("YumiPants");
-        YumiBoots = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "yumi").setIconIndex(36).setItemName("YumiBoots");
-        WilliamHelmet = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "william").setIconIndex(37).setItemName("WilliamHelmet");
-        WilliamChest = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "william").setIconIndex(38).setItemName("WilliamChest");
-        WilliamLegs = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "william").setIconIndex(39).setItemName("WilliamPants");
-        WilliamBoots = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "william").setIconIndex(40).setItemName("WilliamBoots");
-        DataFragment = new ItemDataFragment(Data_Fragment).setItemName("DataFragment").setIconIndex(42);
-        Uranium = new ItemLyoko(Item_Lyoko_Uranium).setItemName("Uranium").setIconIndex(43);
-    	LyokoUraniumCell = new ItemLyokoFuel(Item_Lyoko_Uranium_Cell, 5000, LyokoDepletedUraniumCell).setItemName("UraniumCell").setIconIndex(44);
-    	LyokoDepletedUraniumCell = new ItemLyoko(Item_Lyoko_Depleted_Uranium).setItemName("DepletedUraniumCell").setIconIndex(45);
-    	TowerBlock = new BlockLyokoTower(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBlock");
-    	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setBlockName("TowerBase");
-    	LyokoGrass = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setBlockName("LyokoGrass");
-    	LyokoStone = new BlockLyoko(Lyoko_Stone, 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setBlockName("LyokoStone");
-    	LyokoSand = new BlockLyoko(Lyoko_Sand, 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setBlockName("LyokoSand");
-    	LyokoIce = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoIce");
-    	LyokoLog = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setBlockName("LyokoLog");
-    	LyokoCarthage = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setBlockName("LyokoCarthage");
-    	LyokoOre = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LyokoOre");
-    	DigitalSeaBlock = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setBlockName("DigitalSeaBlock");
-    	DigitalSeaFlowing = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaFlowing").setRequiresSelfNotify();
-    	DigitalSeaStill = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setBlockName("DigitalSeaStill").setRequiresSelfNotify();
-    	LeadOre = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc, 16).setHardness(20).setResistance(6000000).setBlockName("Super Computer").setRequiresSelfNotify();
-    	VirtualBlock = new BlockLyokoVirtual(Lyoko_Virtual_Block, 2).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setBlockName("LyokoVirtualBlock");
-    	UraniumOre = new BlockLyoko(Lyoko_Uranium_Ore, 13).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setBlockName("UraniumOre").setLightValue(10F);
-    	
-    	LyokoPolarPortal  = new BlockLyoko(Lyoko_Polar_Portal, 5).setBlockName("PolarPortal");
-    	LyokoDesertPortal = new BlockLyoko(Lyoko_Desert_Portal, 4).setBlockName("DesertPortal");
-    	LyokoForestPortal = new BlockLyoko(Lyoko_Forest_Portal, 2).setBlockName("ForestPortal");
-    	LyokoMountainPortal = new BlockLyoko(Lyoko_Mountain_Portal, 3).setBlockName("MountainPortal");
-    	LyokoCarthagePortal  = new BlockLyoko(Lyoko_Carthage_Portal, 7).setBlockName("CarthagePortal");
+    	LyokoPolarPortal  = new BlockLyoko(Lyoko_Polar_Portal).setUnlocalizedName("PolarPortal").setCreativeTab(null);
+    	LyokoDesertPortal = new BlockLyoko(Lyoko_Desert_Portal).setUnlocalizedName("DesertPortal").setCreativeTab(null);
+    	LyokoForestPortal = new BlockLyoko(Lyoko_Forest_Portal).setUnlocalizedName("ForestPortal").setCreativeTab(null);
+    	LyokoMountainPortal = new BlockLyoko(Lyoko_Mountain_Portal).setUnlocalizedName("MountainPortal").setCreativeTab(null);
+    	LyokoCarthagePortal  = new BlockLyoko(Lyoko_Carthage_Portal).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
     	
     	//TODO Give mod owners special ability
     	//Matthew = Aelita
@@ -327,6 +325,8 @@ public class CodeLyoko
     	GameRegistry.addRecipe(new ItemStack(SuperCalc, 1), new Object[] {
     		"###", "#*#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('*'), Item.netherStar
     	});
+    	
+    	LanguageRegistry.addName(Overboard, "Overboard");
     	
     	GameRegistry.registerBlock(VirtualBlock, "Virtual Block");
     	LanguageRegistry.addName(VirtualBlock, "Virtual Block");
@@ -488,49 +488,49 @@ public class CodeLyoko
     	LanguageRegistry.addName(GloveFragment2, "Glove Fragment");
     	
     	LanguageRegistry.addName(Katana, "Katana");
-    	GameRegistry.addShapelessRecipe(new ItemStack(Katana, 1), new Object[] {
+    	/*GameRegistry.addShapelessRecipe(new ItemStack(Katana, 1), new Object[] {
     		KatanaFragment1, KatanaFragment2
     	});
     	GameRegistry.addRecipe(new ItemStack(Katana, 1), new Object[] {
     		" * ", " * ", " # ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.ingotIron
-    	});
+    	});*/
     	
     	LanguageRegistry.addName(Zweihander, "Zweihander");
-    	GameRegistry.addShapelessRecipe(new ItemStack(Zweihander, 1), new Object[] {
+    	/*GameRegistry.addShapelessRecipe(new ItemStack(Zweihander, 1), new Object[] {
     		ZweihanderFragment1, ZweihanderFragment2
     	});
     	GameRegistry.addRecipe(new ItemStack(Zweihander, 1), new Object[] {
     		"***", "***", " # ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.ingotIron
-    	});
+    	});*/
     	
     	LanguageRegistry.addName(Fan, "Fan");
-    	GameRegistry.addShapelessRecipe(new ItemStack(Fan, 1), new Object[] {
+    	/*GameRegistry.addShapelessRecipe(new ItemStack(Fan, 1), new Object[] {
     		FanFragment1, FanFragment2
     	});
     	GameRegistry.addRecipe(new ItemStack(Fan, 1), new Object[] {
     		"#f ", "#*f", "###", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.stick, Character.valueOf('f'), Item.feather
-    	});
+    	});*/
     	
     	LanguageRegistry.addName(EnergyField, "Energy Field");
-    	GameRegistry.addShapelessRecipe(new ItemStack(EnergyField, 1), new Object[] {
+    	/*GameRegistry.addShapelessRecipe(new ItemStack(EnergyField, 1), new Object[] {
     		EnergyFieldCore, EnergyFieldStarter
     	});
     	GameRegistry.addRecipe(new ItemStack(EnergyField, 1), new Object[] {
     		" * ", "*#*", " * ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar
-    	});
+    	});*/
     	
     	LanguageRegistry.addName(Glove, "Laser Arrow Glove");
-    	GameRegistry.addShapelessRecipe(new ItemStack(Glove, 1), new Object[] {
+    	/*GameRegistry.addShapelessRecipe(new ItemStack(Glove, 1), new Object[] {
     		GloveFragment1, GloveFragment2
     	});
     	GameRegistry.addRecipe(new ItemStack(Glove, 1), new Object[] {
     		"###", "#a#", "#*#", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.leather, Character.valueOf('a'), LaserArrow
-    	});
+    	});*/
     	
     	LanguageRegistry.addName(LaserArrow, "Laser Arrow");
-    	GameRegistry.addRecipe(new ItemStack(LaserArrow, 1), new Object[] {
+    	/*GameRegistry.addRecipe(new ItemStack(LaserArrow, 1), new Object[] {
     		"a*a", "*#*", "a*a", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar, Character.valueOf('a'), Item.arrow
-    	});
+    	});*/
     	
     	GameRegistry.registerBlock(LeadOre,"Lead Isotope 210 Ore");
     	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
@@ -574,7 +574,6 @@ public class CodeLyoko
     	GameRegistry.registerBlock(DigitalSeaStill, "Digital Sea Still");
     	LanguageRegistry.addName(DigitalSeaStill, "Digital Sea Still");
     	
-    	LanguageRegistry.addName(Overboard, "Overboard");
     	
     	//Lyoko Sectors Dimension Register
     	DimensionManager.registerProviderType(this.Polar_Sector_ID, LyokoPolarSector.class, true);
@@ -601,7 +600,7 @@ public class CodeLyoko
     	//differently
     	/**
     	//LanguageRegistry.instance().addStringLocalization("entity.Elephant.name", "en_US", "Elephant");
-        //EntityRegistry.registerGlobalEntityID(EntityElephant.class, "Elephant", ModLoader.getUniqueEntityId());
+        //EntityRegistry.registerGlobalEntityID(EntityElephant.class, "Elephant", EntityRegistry.findGlobalUniqueEntityId());
     	 */
     	//last param is entity ID, must be unique
     	//seems that the vanilla entities now occupy most slots between 0-110'ish
@@ -613,22 +612,21 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
     	EntityRegistry.registerGlobalEntityID(EntitySkid.class, "Skidbladnir", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
-
     	//EntityRegistry.registerGlobalEntityID(EntityOverboard.class, "Overboard", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityRegistry.findGlobalUniqueEntityId(), instance, 50, 1, true);
     	LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
     	/*
-    	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
-    	EntityRegistry.registerGlobalEntityID(EntityKankrelat.class, "Kankrelat", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityKankrelat.class, "Kankrelat", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Kankrelat.name", "en_US", "Kankrelat");
-    	EntityRegistry.registerGlobalEntityID(EntityKrab.class, "Krab", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityKrab.class, "Krab", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Krab.name", "en_US", "Krab");
-    	EntityRegistry.registerGlobalEntityID(EntityLyokoCreeper.class, "LyokoCreeper", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityLyokoCreeper.class, "LyokoCreeper", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.LyokoCreeper.name", "en_US", "Creeper");
-    	EntityRegistry.registerGlobalEntityID(EntityManta.class, "Manta", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityManta.class, "Manta", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Manta.name", "en_US", "Manta");
-    	EntityRegistry.registerGlobalEntityID(EntityTarantula.class, "Tarantula", ModLoader.getUniqueEntityId(), 0xe3b434, 0x000000);
+    	EntityRegistry.registerGlobalEntityID(EntityTarantula.class, "Tarantula", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Tarantula.name", "en_US", "Tarantula");
     	*/
     	

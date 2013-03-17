@@ -1,8 +1,10 @@
 package matt.lyoko.items;
 
 import net.minecraftforge.common.*;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.*;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.src.*;
@@ -145,8 +147,10 @@ public class ItemGlove extends Item
         return 1;
     }
     
-    public String getTextureFile()
-    {
-            return "/matt/lyoko/gui/items.png";
-    }
+    @Override
+	public void func_94581_a(IconRegister iconRegister)
+	{
+		if(this.itemID == CodeLyoko.Glove.itemID)
+	         iconIndex = iconRegister.func_94245_a("lyoko:glove");
+	}
 }

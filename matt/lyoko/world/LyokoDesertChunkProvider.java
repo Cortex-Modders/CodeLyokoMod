@@ -421,4 +421,10 @@ public class LyokoDesertChunkProvider implements IChunkProvider
 			// TODO Auto-generated method stub
 			
 		}
+
+		@Override
+		public boolean unloadQueuedChunks() {
+			// TODO Auto-generated method stub
+			return false;
+		}
 }

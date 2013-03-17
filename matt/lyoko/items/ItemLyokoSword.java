@@ -1,5 +1,6 @@
 package matt.lyoko.items;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.*;
 import net.minecraft.src.*;
@@ -12,8 +13,12 @@ public class ItemLyokoSword extends ItemSword
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
-	public String getTextureFile()
-    {
-            return "/matt/lyoko/gui/items.png";
-    }
+	@Override
+	public void func_94581_a(IconRegister iconRegister)
+	{
+		if(this.itemID == CodeLyoko.Katana.itemID)
+	         iconIndex = iconRegister.func_94245_a("lyoko:katana");
+		if(this.itemID == CodeLyoko.Zweihander.itemID)
+	         iconIndex = iconRegister.func_94245_a("lyoko:zweihander");
+	}
 }

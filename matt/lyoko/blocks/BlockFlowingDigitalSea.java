@@ -39,90 +39,159 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 		return 4;
 	}
 	
-	private void updateFlow(World world, int i, int j, int k) {
-		int l = world.getBlockMetadata(i, j, k);
-		world.setBlockAndMetadata(i, j, k, blockID + 1, l);
-		world.markBlockRangeForRenderUpdate(i, j, k, i, j, k);
-		world.markBlockForUpdate(i, j, k);
-	}
+	private void updateFlow(World world, int par2, int par3, int par4)
+    {
+        int l = world.getBlockMetadata(par2, par3, par4);
+        world.setBlockAndMetadataWithNotify(par2, par3, par4, this.blockID + 1, l, 2);
+    }
 
 	@Override
-	public void updateTick(World world, int i, int j, int k, Random random) {
-		int l = getFlowDecay(world, i, j, k);
-		byte byte0 = 1;
-		boolean flag = true;
-		if (l > 0) {
-			int i1 = -100;
-			numAdjacentSources = 0;
-			i1 = getSmallestFlowDecay(world, i - 1, j, k, i1);
-			i1 = getSmallestFlowDecay(world, i + 1, j, k, i1);
-			i1 = getSmallestFlowDecay(world, i, j, k - 1, i1);
-			i1 = getSmallestFlowDecay(world, i, j, k + 1, i1);
-			int j1 = i1 + byte0;
-			if (j1 >= 8 || i1 < 0) {
-				j1 = -1;
-			}
-			if (getFlowDecay(world, i, j + 1, k) >= 0) {
-				int l1 = getFlowDecay(world, i, j + 1, k);
-				if (l1 >= 8) {
-					j1 = l1;
-				} else {
-					j1 = l1 + 8;
-				}
-			}
-			if (j1 != l) {
-				l = j1;
-				if (l < 0) {
-					world.setBlockWithNotify(i, j, k, 0);
-				} else {
-					world.setBlockMetadataWithNotify(i, j, k, l);
-					world.scheduleBlockUpdate(i, j, k, blockID, tickRate());
-					world.notifyBlocksOfNeighborChange(i, j, k, blockID);
-				}
-			} else if (flag) {
-				updateFlow(world, i, j, k);
-			}
-		} else {
-			updateFlow(world, i, j, k);
-		}
-		if (liquidCanDisplaceBlock(world, i, j - 1, k)) {
-			if (l >= 8) {
-				world.setBlockAndMetadataWithNotify(i, j - 1, k, blockID, l);
-			} else {
-				world.setBlockAndMetadataWithNotify(i, j - 1, k, blockID, l + 8);
-			}
-		} else if (l >= 0 && (l == 0 || blockBlocksFlow(world, i, j - 1, k))) {
-			boolean aflag[] = getOptimalFlowDirections(world, i, j, k);
-			int k1 = l + byte0;
-			if (l >= 8) {
-				k1 = 1;
-			}
-			if (k1 >= 8)
-				return;
-			if (aflag[0]) {
-				flowIntoBlock(world, i - 1, j, k, k1);
-			}
-			if (aflag[1]) {
-				flowIntoBlock(world, i + 1, j, k, k1);
-			}
-			if (aflag[2]) {
-				flowIntoBlock(world, i, j, k - 1, k1);
-			}
-			if (aflag[3]) {
-				flowIntoBlock(world, i, j, k + 1, k1);
-			}
-		}
-	}
+	public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        int l = this.getFlowDecay(par1World, par2, par3, par4);
+        byte b0 = 1;
 
-	private void flowIntoBlock(World world, int i, int j, int k, int l) {
-		if (liquidCanDisplaceBlock(world, i, j, k)) {
-			int i1 = world.getBlockId(i, j, k);
-			if (i1 > 0) {
-				Block.blocksList[i1].dropBlockAsItem(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
-			}
-			world.setBlockAndMetadataWithNotify(i, j, k, blockID, l);
-		}
-	}
+        boolean flag = true;
+        int i1;
+
+        if (l > 0)
+        {
+            byte b1 = -100;
+            this.numAdjacentSources = 0;
+            int j1 = this.getSmallestFlowDecay(par1World, par2 - 1, par3, par4, b1);
+            j1 = this.getSmallestFlowDecay(par1World, par2 + 1, par3, par4, j1);
+            j1 = this.getSmallestFlowDecay(par1World, par2, par3, par4 - 1, j1);
+            j1 = this.getSmallestFlowDecay(par1World, par2, par3, par4 + 1, j1);
+            i1 = j1 + b0;
+
+            if (i1 >= 8 || j1 < 0)
+            {
+                i1 = -1;
+            }
+
+            if (this.getFlowDecay(par1World, par2, par3 + 1, par4) >= 0)
+            {
+                int k1 = this.getFlowDecay(par1World, par2, par3 + 1, par4);
+
+                if (k1 >= 8)
+                {
+                    i1 = k1;
+                }
+                else
+                {
+                    i1 = k1 + 8;
+                }
+            }
+
+            if (this.numAdjacentSources >= 2 && this.blockMaterial == Material.water)
+            {
+                if (par1World.getBlockMaterial(par2, par3 - 1, par4).isSolid())
+                {
+                    i1 = 0;
+                }
+                else if (par1World.getBlockMaterial(par2, par3 - 1, par4) == this.blockMaterial && par1World.getBlockMetadata(par2, par3 - 1, par4) == 0)
+                {
+                    i1 = 0;
+                }
+            }
+            
+            if (i1 == l)
+            {
+                if (flag)
+                {
+                    this.updateFlow(par1World, par2, par3, par4);
+                }
+            }
+            else
+            {
+                l = i1;
+
+                if (i1 < 0)
+                {
+                    par1World.func_94571_i(par2, par3, par4);
+                }
+                else
+                {
+                    par1World.setBlockMetadataWithNotify(par2, par3, par4, i1, 2);
+                    par1World.scheduleBlockUpdate(par2, par3, par4, this.blockID, this.tickRate(par1World));
+                    par1World.notifyBlocksOfNeighborChange(par2, par3, par4, this.blockID);
+                }
+            }
+        }
+        else
+        {
+            this.updateFlow(par1World, par2, par3, par4);
+        }
+
+        if (this.liquidCanDisplaceBlock(par1World, par2, par3 - 1, par4))
+        {
+            if (l >= 8)
+            {
+                this.flowIntoBlock(par1World, par2, par3 - 1, par4, l);
+            }
+            else
+            {
+                this.flowIntoBlock(par1World, par2, par3 - 1, par4, l + 8);
+            }
+        }
+        else if (l >= 0 && (l == 0 || this.blockBlocksFlow(par1World, par2, par3 - 1, par4)))
+        {
+            boolean[] aboolean = this.getOptimalFlowDirections(par1World, par2, par3, par4);
+            i1 = l + b0;
+
+            if (l >= 8)
+            {
+                i1 = 1;
+            }
+
+            if (i1 >= 8)
+            {
+                return;
+            }
+
+            if (aboolean[0])
+            {
+                this.flowIntoBlock(par1World, par2 - 1, par3, par4, i1);
+            }
+
+            if (aboolean[1])
+            {
+                this.flowIntoBlock(par1World, par2 + 1, par3, par4, i1);
+            }
+
+            if (aboolean[2])
+            {
+                this.flowIntoBlock(par1World, par2, par3, par4 - 1, i1);
+            }
+
+            if (aboolean[3])
+            {
+                this.flowIntoBlock(par1World, par2, par3, par4 + 1, i1);
+            }
+        }
+    }
+
+	private void flowIntoBlock(World par1World, int par2, int par3, int par4, int par5)
+    {
+        if (this.liquidCanDisplaceBlock(par1World, par2, par3, par4))
+        {
+            int i1 = par1World.getBlockId(par2, par3, par4);
+
+            if (i1 > 0)
+            {
+                if (this.blockMaterial == Material.lava)
+                {
+                    this.triggerLavaMixEffects(par1World, par2, par3, par4);
+                }
+                else
+                {
+                    Block.blocksList[i1].dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
+                }
+            }
+
+            par1World.setBlockAndMetadataWithNotify(par2, par3, par4, this.blockID, par5, 3);
+        }
+    }
 
 	private int calculateFlowCost(World world, int i, int j, int k, int l, int i1) {
 		int j1 = 1000;
@@ -236,7 +305,7 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 	public void onBlockAdded(World world, int i, int j, int k) {
 		super.onBlockAdded(world, i, j, k);
 		if (world.getBlockId(i, j, k) == blockID) {
-			world.scheduleBlockUpdate(i, j, k, blockID, tickRate());
+			world.scheduleBlockUpdate(i, j, k, blockID, tickRate(world));
 		}
 	}
 

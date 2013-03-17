@@ -3,6 +3,7 @@ package matt.lyoko.blocks;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -16,6 +17,12 @@ public class BlockScanner extends BlockContainer
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
 		return null;
+	}
+	
+	@Override
+	public void func_94332_a(IconRegister par1IconRegister)
+	{
+		this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:scanner");
 	}
 	
 	public boolean isMultiBlock(World world, int x, int y, int z)

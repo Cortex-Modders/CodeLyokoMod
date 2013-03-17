@@ -1,8 +1,9 @@
 /**
  * Copyright (c) Jadar, 2013
  * Developer Capes API by Jadar
+ * License: Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
- * version 1.2
+ * version 1.3
  */
 package com.jadarstudios.api.DeveloperCapesAPI;
 
@@ -43,12 +44,12 @@ public class DeveloperCapesTickHandler implements ITickHandler {
 
 					// get the player from the players list.
 					EntityPlayer player = players.get(counter);
-					String oldCloak = player.playerCloakUrl;
+					String oldCloak = player.cloakUrl;
 					
 					// make it equal the old cloak so it has something to revert to if the player in question is not in the HashMap.
 					String groupUrl = oldCloak;
 
-					if(player.playerCloakUrl.startsWith("http://skins.minecraft.net/MinecraftCloaks/")) {
+					if(player.cloakUrl.startsWith("http://skins.minecraft.net/MinecraftCloaks/")) {
 						// lowercase username, so no problems with case.
 						String lowerUsername = player.username.toLowerCase();
 						
@@ -59,13 +60,13 @@ public class DeveloperCapesTickHandler implements ITickHandler {
 							groupUrl = instance.getGroupUrl(hashUser.getGroup());
 							
 							// set cape url.
-							player.playerCloakUrl = (player.cloakUrl = groupUrl);
+							player.cloakUrl = groupUrl;
 						}
 
 						// if the set cloak does not equal the old cloak then download the cloak.
-						if ( player.playerCloakUrl != oldCloak & player.cloakUrl != oldCloak) {
+						if ( player.cloakUrl != oldCloak & player.cloakUrl != oldCloak) {
 							// download the cloak. the second arguement is an image buffer that makes sure the cape is the right dimensions.
-							mc.renderEngine.obtainImageData(player.playerCloakUrl, new ImageBufferDownload());
+							mc.renderEngine.obtainImageData(player.cloakUrl, new ImageBufferDownload());
 						}
 					}
 				}
