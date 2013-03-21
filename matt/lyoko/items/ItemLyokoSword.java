@@ -14,11 +14,11 @@ public class ItemLyokoSword extends ItemSword
 	}
 	
 	@Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.Katana.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:katana");
+	         iconIndex = iconRegister.registerIcon("lyoko:katana");
 		if(this.itemID == CodeLyoko.Zweihander.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:zweihander");
+	         iconIndex = iconRegister.registerIcon("lyoko:zweihander");
 	}
 }

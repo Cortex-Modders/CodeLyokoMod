@@ -223,14 +223,21 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         }
 
 		@Override
-		public boolean func_94042_c()
-		{
+		public boolean isInvNameLocalized() {
 			return false;
 		}
 
 		@Override
-		public boolean func_94041_b(int i, ItemStack itemstack)
+		public boolean isStackValidForSlot(int slot, ItemStack stack)
 		{
+			if(slot == 0 && stack != null && stack.getItem() instanceof ItemLyokoFuel)
+			{
+				return true;
+			}
+			else if(slot == 1 && stack != null && stack.getItem() instanceof ItemDataFragment)
+			{
+				return true;
+			}
 			return false;
 		}
 }

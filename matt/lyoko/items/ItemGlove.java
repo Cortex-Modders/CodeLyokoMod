@@ -148,9 +148,9 @@ public class ItemGlove extends Item
     }
     
     @Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.Glove.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:glove");
+	         iconIndex = iconRegister.registerIcon("lyoko:glove");
 	}
 }

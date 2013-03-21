@@ -148,9 +148,9 @@ public class ItemLyokoEnergyField extends Item
     }
     
     @Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.EnergyField.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:energyfield");
+	         iconIndex = iconRegister.registerIcon("lyoko:energyfield");
 	}
 }

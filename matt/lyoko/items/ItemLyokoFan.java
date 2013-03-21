@@ -148,9 +148,9 @@ public class ItemLyokoFan extends Item
     }
     
     @Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.Fan.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:fan");
+	         iconIndex = iconRegister.registerIcon("lyoko:fan");
 	}
 }

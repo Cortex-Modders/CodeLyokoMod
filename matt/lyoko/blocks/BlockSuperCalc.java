@@ -135,23 +135,23 @@ public class BlockSuperCalc extends BlockContainer {
         private Icon pillarLower;
         
         @Override
-    	public void func_94332_a(IconRegister par1IconRegister)
+    	public void registerIcons(IconRegister par1IconRegister)
     	{
-    		side1 = this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:computer_1");
-    		side2 = par1IconRegister.func_94245_a("lyoko:computer_2");
-    		side3 = par1IconRegister.func_94245_a("lyoko:computer_3");
-    		side4 = par1IconRegister.func_94245_a("lyoko:computer_4");
-    		side5 = par1IconRegister.func_94245_a("lyoko:computer_5");
-    		side6 = par1IconRegister.func_94245_a("lyoko:computer_6");
-    		side7 = par1IconRegister.func_94245_a("lyoko:computer_7");
-    		side8 = par1IconRegister.func_94245_a("lyoko:computer_8");
-    		side9 = par1IconRegister.func_94245_a("lyoko:computer_9");
-    		side10 = par1IconRegister.func_94245_a("lyoko:computer_10");
-    		side11 = par1IconRegister.func_94245_a("lyoko:computer_11");
-    		side12 = par1IconRegister.func_94245_a("lyoko:computer_12");
-    		topBottom = par1IconRegister.func_94245_a("lyoko:computer_0");
-    		pillarUpper = par1IconRegister.func_94245_a("lyoko:computer_13");
-    		pillarLower = par1IconRegister.func_94245_a("lyoko:computer_14");
+    		side1 = this.blockIcon = par1IconRegister.registerIcon("lyoko:computer_1");
+    		side2 = par1IconRegister.registerIcon("lyoko:computer_2");
+    		side3 = par1IconRegister.registerIcon("lyoko:computer_3");
+    		side4 = par1IconRegister.registerIcon("lyoko:computer_4");
+    		side5 = par1IconRegister.registerIcon("lyoko:computer_5");
+    		side6 = par1IconRegister.registerIcon("lyoko:computer_6");
+    		side7 = par1IconRegister.registerIcon("lyoko:computer_7");
+    		side8 = par1IconRegister.registerIcon("lyoko:computer_8");
+    		side9 = par1IconRegister.registerIcon("lyoko:computer_9");
+    		side10 = par1IconRegister.registerIcon("lyoko:computer_10");
+    		side11 = par1IconRegister.registerIcon("lyoko:computer_11");
+    		side12 = par1IconRegister.registerIcon("lyoko:computer_12");
+    		topBottom = par1IconRegister.registerIcon("lyoko:computer_0");
+    		pillarUpper = par1IconRegister.registerIcon("lyoko:computer_13");
+    		pillarLower = par1IconRegister.registerIcon("lyoko:computer_14");
     	}
         
         @Override

@@ -19,12 +19,12 @@ public class ItemLyokoFuel extends ItemLyoko {
 	}
 	
 	@Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.LyokoLeadCell.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:leadcell");
+	         iconIndex = iconRegister.registerIcon("lyoko:leadcell");
 		if(this.itemID == CodeLyoko.LyokoUraniumCell.itemID)
-	         iconIndex = iconRegister.func_94245_a("lyoko:uraniumcell");
+	         iconIndex = iconRegister.registerIcon("lyoko:uraniumcell");
 	}
 	
 	public Item depletedForm;

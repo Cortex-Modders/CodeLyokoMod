@@ -42,7 +42,7 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 	private void updateFlow(World world, int par2, int par3, int par4)
     {
         int l = world.getBlockMetadata(par2, par3, par4);
-        world.setBlockAndMetadataWithNotify(par2, par3, par4, this.blockID + 1, l, 2);
+        world.setBlock(par2, par3, par4, this.blockID + 1, l, 2);
     }
 
 	@Override
@@ -108,7 +108,7 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 
                 if (i1 < 0)
                 {
-                    par1World.func_94571_i(par2, par3, par4);
+                    par1World.setBlockToAir(par2, par3, par4);
                 }
                 else
                 {
@@ -189,7 +189,7 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
                 }
             }
 
-            par1World.setBlockAndMetadataWithNotify(par2, par3, par4, this.blockID, par5, 3);
+            par1World.setBlock(par2, par3, par4, this.blockID, par5, 3);
         }
     }
 

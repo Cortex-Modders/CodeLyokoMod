@@ -22,39 +22,39 @@ public class BlockLyoko extends Block
 	}
 	
 	@Override
-	public void func_94332_a(IconRegister par1IconRegister)
+	public void registerIcons(IconRegister par1IconRegister)
 	{
 		if(this.blockID == CodeLyoko.LyokoGrass.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:lyokograss");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
 		}
 		if(this.blockID == CodeLyoko.LyokoStone.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:lyokostone");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokostone");
 		}
 		if(this.blockID == CodeLyoko.LyokoSand.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:lyokosand");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokosand");
 		}
 		if(this.blockID == CodeLyoko.LyokoLog.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:lyokolog");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokolog");
 		}
 		if(this.blockID == CodeLyoko.LyokoCarthage.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:carthage");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:carthage");
 		}
 		if(this.blockID == CodeLyoko.LyokoOre.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:lyokoore");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokoore");
 		}
 		if(this.blockID == CodeLyoko.LeadOre.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:lead");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:lead");
 		}
 		if(this.blockID == CodeLyoko.UraniumOre.blockID)
 		{
-			this.field_94336_cN = par1IconRegister.func_94245_a("lyoko:uranium");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:uranium");
 		}
 	}
 	

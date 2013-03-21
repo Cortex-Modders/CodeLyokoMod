@@ -51,7 +51,6 @@ public class EntityVehicle extends Entity {
 		
 		// TEMPORARY
 		if(this.posY>100.0D) this.kill();
-
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)
@@ -111,7 +110,7 @@ public class EntityVehicle extends Entity {
 			{
 				if(player.isSneaking()) {
 					this.kill();
-//					this.dropItem(droppedItem.itemID, 1);
+					this.dropItem(droppedItem.itemID, 1);
 				}
 				else {
 					player.mountEntity(this);

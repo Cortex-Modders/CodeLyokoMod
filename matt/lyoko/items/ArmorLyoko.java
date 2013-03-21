@@ -26,24 +26,24 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
         private String armorType;
         
         @Override
-    	public void func_94581_a(IconRegister iconRegister)
+    	public void updateIcons(IconRegister iconRegister)
     	{
     		if(this.itemID == CodeLyoko.AelitaHelmet.itemID || this.itemID == CodeLyoko.OddHelmet.itemID
     				|| this.itemID == CodeLyoko.UlrichHelmet.itemID || this.itemID == CodeLyoko.YumiHelmet.itemID
     				|| this.itemID == CodeLyoko.WilliamHelmet.itemID)
-    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "helmet");
+    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorType + "helmet");
     		if(this.itemID == CodeLyoko.AelitaChest.itemID || this.itemID == CodeLyoko.OddChest.itemID
     				|| this.itemID == CodeLyoko.UlrichChest.itemID || this.itemID == CodeLyoko.YumiChest.itemID
     				|| this.itemID == CodeLyoko.WilliamChest.itemID)
-    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "chest");
+    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorType + "chest");
     		if(this.itemID == CodeLyoko.AelitaLegs.itemID || this.itemID == CodeLyoko.OddLegs.itemID
     				|| this.itemID == CodeLyoko.UlrichLegs.itemID || this.itemID == CodeLyoko.YumiLegs.itemID
     				|| this.itemID == CodeLyoko.WilliamLegs.itemID)
-    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "legs");
+    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorType + "legs");
     		if(this.itemID == CodeLyoko.AelitaBoots.itemID || this.itemID == CodeLyoko.OddBoots.itemID
     				|| this.itemID == CodeLyoko.UlrichBoots.itemID || this.itemID == CodeLyoko.YumiBoots.itemID
     				|| this.itemID == CodeLyoko.WilliamBoots.itemID)
-    	         iconIndex = iconRegister.func_94245_a("lyoko:" + armorType + "boots");
+    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorType + "boots");
     	}
         
         public void onArmorTickUpdate(World world, EntityPlayer player, ItemStack stack)
