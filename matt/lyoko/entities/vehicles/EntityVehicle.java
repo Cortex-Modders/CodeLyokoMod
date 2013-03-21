@@ -28,6 +28,7 @@ public class EntityVehicle extends Entity {
 	public EntityVehicle(World par1World) {
 		super(par1World);
 		this.preventEntitySpawning = true;
+		this.ignoreFrustumCheck = true;
 	}
 	
 	public void setDroppedItem(Item item)
@@ -96,16 +97,10 @@ public class EntityVehicle extends Entity {
 	}
 
 	@Override
-	public void readEntityFromNBT(NBTTagCompound par1)
-	{
-		super.readFromNBT(par1);
-	}
+	public void readEntityFromNBT(NBTTagCompound par1){}
 
 	@Override
-	public void writeEntityToNBT(NBTTagCompound par1)
-	{
-		super.writeToNBT(par1);
-	}
+	public void writeEntityToNBT(NBTTagCompound par1) {}
 
 	public boolean interact(EntityPlayer player)
 	{
@@ -119,7 +114,7 @@ public class EntityVehicle extends Entity {
 			{
 				if(player.isSneaking()) {
 					this.kill();
-					this.dropItem(droppedItem.itemID, 1);
+//					this.dropItem(droppedItem.itemID, 1);
 				}
 				else {
 					player.mountEntity(this);

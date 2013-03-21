@@ -6,12 +6,11 @@ import net.minecraft.world.World;
 
 public class EntityOverboard extends EntityVehicle
 {
-	public EntityOverboard(World par1World)
+	public EntityOverboard(World world)
 	{
-		super(par1World);
+		super(world);
 		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);
-        this.ignoreFrustumCheck = true;
         this.setDroppedItem(CodeLyoko.Overboard);
 	}
 	
@@ -19,7 +18,6 @@ public class EntityOverboard extends EntityVehicle
 		super(world, x, y, z);
 		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);
-        this.ignoreFrustumCheck = true;
         this.setDroppedItem(CodeLyoko.Overboard);
 	}
 

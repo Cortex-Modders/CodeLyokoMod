@@ -22,8 +22,6 @@ public class RenderVehicle extends Render {
         if (!parEntityVehicle.getHasActivePotion())
         {
             this.loadTexture(parEntityVehicle.getTexture());
-        	//this.loadTexture("/matt/lyoko/mob/overboard.png");
-        	//ForgeHooksClient.bindTexture("/matt/lyoko/mob/overboard.png", 0);
             this.model.render(parEntityVehicle, x, y, z, f, f1, f2);
         }
         else
