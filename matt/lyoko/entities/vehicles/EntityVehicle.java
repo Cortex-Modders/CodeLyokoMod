@@ -51,10 +51,7 @@ public class EntityVehicle extends Entity {
 		
 		// TEMPORARY
 		if(this.posY>100.0D) this.kill();
-		
-		x = 90;
-		z = 90;
-		this.setRotation(x, z);
+
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)
