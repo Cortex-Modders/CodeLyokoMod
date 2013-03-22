@@ -224,7 +224,7 @@ public class CodeLyoko
     @Init
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
-        SuperCalcRenderID = RenderingRegistry.getNextAvailableRenderId();
+        //SuperCalcRenderID = RenderingRegistry.getNextAvailableRenderId();
     	
     	Katana = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setUnlocalizedName("Katana");
     	Zweihander = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setUnlocalizedName("Zweihander");
