@@ -27,7 +27,7 @@ public class BlockLyokoVirtual extends BlockContainer
 				&& world.provider.dimensionId != CodeLyoko.Desert_Sector_ID
 				&& world.provider.dimensionId != CodeLyoko.Carthage_Sector_ID)
 		{
-			world.func_96440_m(x, y, z, 0);
+			world.setBlock(x, y, z, 0);
 		}
 	}
 	
