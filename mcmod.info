@@ -1,0 +1,20 @@
+[
+{
+  "modid" : "CodeLyoko",
+  "name" : "Code Lyoko",
+  "version" : "0.4.2-Beta",
+  "url" : "http://www.minecraftforum.net/topic/1403995-151-code-lyoko-mod-042-minecraft-forum/",
+  "credits" : "Matthew, Andrew, Marq, Jake",
+  "authors": [
+    "986523714, MoonMagick, Wolfspirit1st, and JadarMC"
+  ],
+  "description": "Recreates the TV show Code Lyoko to the best of minecraft's abilities.",
+  "logoFile" : "eye-xana.png",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ],
+  "dependancies": [
+    "Forge"
+  ]
+}
