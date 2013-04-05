@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class EntityVehicle extends Entity {
 
-	protected String texture = "/matt/lyoko/mob/overboard.png";
+	protected String texture = "";
 	private double counter = 0;
 	private double increase = 0.05;
 	private double sin;

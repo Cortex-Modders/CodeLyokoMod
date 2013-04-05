@@ -3,9 +3,9 @@
  * Developer Capes API by Jadar
  * License: Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
- * version 1.3
+ * version 1.3.1
  */
-package com.jadarstudios.api.DeveloperCapesAPI;
+package com.jadarstudios.api.developercapesapi;
 
 import java.util.EnumSet;
 import java.util.List;
@@ -19,7 +19,7 @@ import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import com.jadarstudios.api.DeveloperCapesAPI.DeveloperCapesUser;
+import com.jadarstudios.api.developercapesapi.DeveloperCapesUser;
 
 @SideOnly(Side.CLIENT)
 public class DeveloperCapesTickHandler implements ITickHandler {
@@ -44,29 +44,28 @@ public class DeveloperCapesTickHandler implements ITickHandler {
 
 					// get the player from the players list.
 					EntityPlayer player = players.get(counter);
-					String oldCloak = player.cloakUrl;
-					
-					// make it equal the old cloak so it has something to revert to if the player in question is not in the HashMap.
-					String groupUrl = oldCloak;
 
 					if(player.cloakUrl.startsWith("http://skins.minecraft.net/MinecraftCloaks/")) {
-						// lowercase username, so no problems with case.
+						// lower case username, so no problems with case.
 						String lowerUsername = player.username.toLowerCase();
 						
 						if(instance.getUser(lowerUsername) != null) {
+							System.out.println("\n\n\nRAN\n\n\n");
+							
+							String oldCloak = player.cloakUrl;
 							
 							// get the user from the hash map and get the cape url.
 							DeveloperCapesUser hashUser = (DeveloperCapesUser)instance.getUser(lowerUsername);
-							groupUrl = instance.getGroupUrl(hashUser.getGroup());
+							String groupUrl = instance.getGroupUrl(hashUser.getGroup());
 							
 							// set cape url.
 							player.cloakUrl = groupUrl;
-						}
-
-						// if the set cloak does not equal the old cloak then download the cloak.
-						if ( player.cloakUrl != oldCloak & player.cloakUrl != oldCloak) {
-							// download the cloak. the second arguement is an image buffer that makes sure the cape is the right dimensions.
-							mc.renderEngine.obtainImageData(player.cloakUrl, new ImageBufferDownload());
+						
+							// if the set cloak does not equal the old cloak then download the cloak.
+							if ( player.cloakUrl != oldCloak) {
+								// download the cloak. the second argument is an image buffer that makes sure the cape is the right dimensions.
+								mc.renderEngine.obtainImageData(player.cloakUrl, new ImageBufferDownload());
+							}
 						}
 					}
 				}

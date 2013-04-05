@@ -4,6 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.items.*;
 
@@ -21,9 +22,13 @@ public class SlotSuperCalcFuel extends Slot
     /**
      * Check if the stack is a valid item for this slot. Always true beside for the armor slots.
      */
-    public boolean isItemValid(ItemStack par1ItemStack)
+    public boolean isItemValid(ItemStack stack)
     {
-    	if(par1ItemStack.getItem() instanceof ItemLyokoFuel)
+    	if(stack.getItem() instanceof ItemLyokoFuel)
+    	{
+    		return true;
+    	}
+    	else if(stack.getItem() == CodeLyoko.LaserArrow)
     	{
     		return true;
     	}

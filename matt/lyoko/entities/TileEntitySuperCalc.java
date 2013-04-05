@@ -98,7 +98,11 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         	ItemStack stack = getStackInSlot(slot);
         	ItemStack stack2 = getStackInSlot(slot2);
         	
-        	if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
+        	if(stack != null && stack.getItem() == CodeLyoko.LaserArrow)
+        	{
+        		setInventorySlotContents(slot2, new ItemStack(CodeLyoko.DataFragment, 64));
+        	}
+        	else if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
         	{
         		if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == CodeLyoko.LyokoLeadCell)
         		{

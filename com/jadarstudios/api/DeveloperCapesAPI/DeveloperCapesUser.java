@@ -3,9 +3,9 @@
  * Developer Capes API by Jadar
  * License: Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
- * version 1.3
+ * version 1.3.1
  */
-package com.jadarstudios.api.DeveloperCapesAPI;
+package com.jadarstudios.api.developercapesapi;
 
 public class DeveloperCapesUser {
 	

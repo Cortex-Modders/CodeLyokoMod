@@ -14,7 +14,8 @@ public class EntityOverboard extends EntityVehicle
         this.setDroppedItem(CodeLyoko.Overboard);
 	}
 	
-	public EntityOverboard(World world, double x, double y, double z) {
+	public EntityOverboard(World world, double x, double y, double z)
+	{
 		super(world, x, y, z);
 		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);

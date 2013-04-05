@@ -20,9 +20,11 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
                 super(i, enumarmormaterial, j, k);
                 this.setCreativeTab(CodeLyoko.LyokoTabs);
                 this.armorType = str;
-                this.setNoRepair();
+                this.setContainerItem(this);
         }
         
+        private static double defaultReachDistance = 5;
+        private static double newReachDistance = 10;
         private String armorType;
         
         @Override
@@ -110,6 +112,14 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     				player.getFoodStats().setFoodSaturationLevel(40.0F);
     				player.getFoodStats().setFoodLevel(20);
     				player.fallDistance = 0;
+    				if(player instanceof EntityPlayerMP)
+    				{
+    					ItemInWorldManager iiwm = ((EntityPlayerMP)player).theItemInWorldManager;
+    					if(newReachDistance != iiwm.getBlockReachDistance())
+    					{
+    						iiwm.setBlockReachDistance(newReachDistance);
+    					}
+    				}
     				for(int x = 0; x < 9; x++)
     				{
     					ItemStack stack2 = player.inventory.getStackInSlot(x);
@@ -143,9 +153,18 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
     				&& player.capabilities.isCreativeMode == false)
 			{
 				player.capabilities.allowFlying = false;
+				if(player instanceof EntityPlayerMP)
+				{
+					ItemInWorldManager iiwm = ((EntityPlayerMP)player).theItemInWorldManager;
+					if(iiwm.getBlockReachDistance() != defaultReachDistance)
+					{
+						iiwm.setBlockReachDistance(defaultReachDistance);
+					}
+				}
 			}
         }
         
+        @Override
         public String getArmorTextureFile(ItemStack itemstack)
         {
         	if(itemstack.itemID == CodeLyoko.AelitaHelmet.itemID || itemstack.itemID == CodeLyoko.AelitaChest.itemID || itemstack.itemID == CodeLyoko.AelitaBoots.itemID
@@ -154,14 +173,14 @@ public class ArmorLyoko extends ItemArmor implements IArmorTextureProvider
         			|| itemstack.itemID == CodeLyoko.YumiHelmet.itemID || itemstack.itemID == CodeLyoko.YumiChest.itemID || itemstack.itemID == CodeLyoko.YumiBoots.itemID
         			|| itemstack.itemID == CodeLyoko.WilliamHelmet.itemID || itemstack.itemID == CodeLyoko.WilliamChest.itemID || itemstack.itemID == CodeLyoko.WilliamBoots.itemID)
             {
-            	return "/matt/lyoko/armor/" + this.armorType + "_1.png";
+            	return "/mods/lyoko/textures/armor/" + this.armorType + "_1.png";
             }
             if(itemstack.itemID == CodeLyoko.AelitaLegs.itemID || itemstack.itemID == CodeLyoko.OddLegs.itemID
             		|| itemstack.itemID == CodeLyoko.UlrichLegs.itemID || itemstack.itemID == CodeLyoko.YumiLegs.itemID
             		|| itemstack.itemID == CodeLyoko.WilliamLegs.itemID)
             {
-            	return "/matt/lyoko/armor/" + this.armorType + "_2.png";
+            	return "/mods/lyoko/textures/armor/" + this.armorType + "_2.png";
             }
-            return "/matt/lyoko/armor/" + this.armorType + "_1.png";
+            return "/mods/lyoko/textures/armor/" + this.armorType + "_1.png";
         }
 }

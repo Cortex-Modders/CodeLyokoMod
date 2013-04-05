@@ -2,8 +2,10 @@ package matt.lyoko.items;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.*;
 import net.minecraft.src.*;
+import net.minecraft.world.World;
 import matt.lyoko.*;
 
 public class ItemLyokoSword extends ItemSword

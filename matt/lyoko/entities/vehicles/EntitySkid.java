@@ -12,18 +12,21 @@ public class EntitySkid extends EntityVehicle
         super(world);
         texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
-        this.ignoreFrustumCheck = true;
-        //this.setDroppedItem(CodeLyoko.Skid);
+        this.setDroppedItem(CodeLyoko.Skid);
     }
     
     public EntitySkid(World world, double x, double y, double z)
     {
-        super(world);
+        super(world, x, y, z);
         texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
-        this.ignoreFrustumCheck = true;
-        //this.setDroppedItem(CodeLyoko.Skid);
+        this.setDroppedItem(CodeLyoko.Skid);
     }
+    
+    public String getTexture()
+	{
+		return this.texture;
+	}
     
     public int getMaxHealth()
     {

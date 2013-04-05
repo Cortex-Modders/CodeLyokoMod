@@ -25,10 +25,11 @@ public class ItemLyoko extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
 	{
-		//if(stack.getItem() == CodeLyoko.LaserArrow)
-		//{
-		//	list.add("If you didn't get this item from creative, then please inform 986523714 or catchaser about this glitch");
-		//}
+		if(stack.getItem() == CodeLyoko.LaserArrow)
+		{
+			list.add("This is the mod's equivalent of an infinite battery.");
+			list.add("Use this as a fuel cell in the Super Computer.");
+		}
 	}
 	
 	@Override
@@ -36,26 +37,6 @@ public class ItemLyoko extends Item
 	{
 		if(this.itemID == CodeLyoko.LaserArrow.itemID)
 	         iconIndex = iconRegister.registerIcon("lyoko:laserarrow");
-		if(this.itemID == CodeLyoko.KatanaFragment1.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:katanafragment1");
-		if(this.itemID == CodeLyoko.KatanaFragment2.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:katanafragment2");
-		if(this.itemID == CodeLyoko.ZweihanderFragment1.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:zweihanderfragment1");
-		if(this.itemID == CodeLyoko.ZweihanderFragment2.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:zweihanderfragment2");
-		if(this.itemID == CodeLyoko.FanFragment1.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:fanfragment1");
-		if(this.itemID == CodeLyoko.FanFragment2.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:fanfragment2");
-		if(this.itemID == CodeLyoko.EnergyFieldCore.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:energyfieldcore");
-		if(this.itemID == CodeLyoko.EnergyFieldStarter.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:energyfieldstarter");
-		if(this.itemID == CodeLyoko.GloveFragment1.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:glovefragment1");
-		if(this.itemID == CodeLyoko.GloveFragment2.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:glovefragment2");
 		if(this.itemID == CodeLyoko.LyokoIngot.itemID)
 	         iconIndex = iconRegister.registerIcon("lyoko:lyokoingot");
 		if(this.itemID == CodeLyoko.LyokoLead.itemID)

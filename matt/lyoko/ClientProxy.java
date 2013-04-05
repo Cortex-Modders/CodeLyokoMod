@@ -1,7 +1,8 @@
 package matt.lyoko;
 
-import com.jadarstudios.api.DeveloperCapesAPI.DeveloperCapesAPI;
+import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.Mod.Instance;
@@ -35,9 +36,9 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/william_2");
 		
 		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
-		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan());
-		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField());
-		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow(5));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(CodeLyoko.Fan));
+		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(CodeLyoko.EnergyField));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow(CodeLyoko.LaserArrow));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok(new ModelBlok(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank(new ModelTank(), 0.5F));
 		/*
@@ -49,13 +50,15 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityTarantula.class, new RenderTarantula(new ModelTarantula(), 0.5F));
 		*/
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderLaser(new ModelLaser(), 0.5F));
-		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid(new ModelSkid(), 0.5F));
+		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
+		
+		MinecraftForgeClient.registerItemRenderer(CodeLyoko.Glove.itemID, (IItemRenderer)new ItemRenderGlove());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 		
 		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
-		DeveloperCapesAPI.init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
+		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
 	}
 	
 	public void registerKeyBindingHandler()
