@@ -5,6 +5,8 @@ import matt.lyoko.entities.TileEntityVirtualBlock;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -28,6 +30,15 @@ public class BlockLyokoVirtual extends BlockContainer
 				&& world.provider.dimensionId != CodeLyoko.Carthage_Sector_ID)
 		{
 			world.setBlock(x, y, z, 0);
+		}
+	}
+	
+	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLiving ent)
+	{
+		if(ent instanceof EntityPlayer)
+		{
+			EntityPlayer entp = ((EntityPlayer)ent);
+			entp.setEntityHealth(entp.getHealth() - 1);
 		}
 	}
 	

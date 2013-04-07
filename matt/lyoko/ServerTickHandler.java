@@ -20,7 +20,7 @@ public class ServerTickHandler implements ITickHandler
 	
 	private void onPlayerTick(EntityPlayer player)
 	{
-	
+		
 	}
 	
 	private void onRenderTick(EntityPlayer player)
@@ -42,7 +42,7 @@ public class ServerTickHandler implements ITickHandler
 		}
 		if (type.equals(EnumSet.of(TickType.RENDER)))
 		{
-				onRenderTick((EntityPlayer)tickData[1]);
+				onRenderTick((EntityPlayer)tickData[0]);
 		}
 	}
 

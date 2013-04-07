@@ -10,7 +10,7 @@ import matt.lyoko.items.*;
 
 public class SlotSuperCalcFuel extends Slot
 {
-    /** The beacon this slot belongs to. */
+    /** The container this slot belongs to. */
     final ContainerSuperCalc supercalc;
 
     public SlotSuperCalcFuel(ContainerSuperCalc par1ContainerSuperCalc, IInventory par2IInventory, int par3, int par4, int par5)
@@ -24,19 +24,11 @@ public class SlotSuperCalcFuel extends Slot
      */
     public boolean isItemValid(ItemStack stack)
     {
-    	if(stack.getItem() instanceof ItemLyokoFuel)
+    	if(stack.getItem() instanceof ItemLyokoFuel || stack.getItem() == CodeLyoko.LaserArrow)
     	{
     		return true;
     	}
-    	else if(stack.getItem() == CodeLyoko.LaserArrow)
-    	{
-    		return true;
-    	}
-    	else
-    	{
-    		return false;
-    	}
-        //return par1ItemStack == null ? false : par1ItemStack.itemID == CodeLyoko.LyokoLeadCell.itemID || par1ItemStack.itemID == CodeLyoko.LyokoDepletedLeadCell.itemID;
+    	return false;
     }
 
     /**

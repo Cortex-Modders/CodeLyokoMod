@@ -1,17 +1,14 @@
 package matt.lyoko.container;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
 import matt.lyoko.entities.*;
 import matt.lyoko.slots.*;
 
 public class ContainerSuperCalc extends Container {
 
         protected TileEntitySuperCalc tileEntity;
-        private SlotSuperCalcFuel superCalcSlot;
 
         public ContainerSuperCalc (InventoryPlayer inventoryPlayer, TileEntitySuperCalc te){
                 tileEntity = te;

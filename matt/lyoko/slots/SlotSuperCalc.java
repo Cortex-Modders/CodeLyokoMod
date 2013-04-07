@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotSuperCalc extends Slot
 {
-    /** The beacon this slot belongs to. */
+    /** The container this slot belongs to. */
     final ContainerSuperCalc supercalc;
 
     public SlotSuperCalc(ContainerSuperCalc par1ContainerSuperCalc, IInventory par2IInventory, int par3, int par4, int par5)

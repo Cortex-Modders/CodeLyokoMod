@@ -1,22 +1,14 @@
 package matt.lyoko;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.World;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
 
-public class CommonProxy implements IGuiHandler
+public class CommonProxy
 {
 
 	/**
@@ -25,18 +17,6 @@ public class CommonProxy implements IGuiHandler
 	public void registerRenderInformation() 
 	{
 		//unused server side. -- see ClientProxy for implementation
-	}
-
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		return null;
-	}
-
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-	{
-		return null;
 	}
 	
 	public void registerServerTickHandler()

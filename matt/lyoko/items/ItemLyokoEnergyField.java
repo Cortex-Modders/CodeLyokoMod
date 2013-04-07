@@ -19,7 +19,7 @@ public class ItemLyokoEnergyField extends Item
     {
         super(id);
         maxStackSize = 1;
-        setMaxDamage(6000000);
+        setMaxDamage(200);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.setFull3D();
     }
@@ -152,5 +152,27 @@ public class ItemLyokoEnergyField extends Item
 	{
 		if(this.itemID == CodeLyoko.EnergyField.itemID)
 	         iconIndex = iconRegister.registerIcon("lyoko:energyfield");
+	}
+    
+    public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
+	{
+		if(ent instanceof EntityPlayer)
+		{
+			EntityPlayer player = (EntityPlayer)ent;
+			if(stack.getItemDamage() < stack.getMaxDamage())
+			{
+				stack.setItemDamage(stack.getItemDamage() + 1);
+			}
+			else
+			{
+				for(int i = 0; i < player.inventory.mainInventory.length; i++)
+				{
+					if(player.inventory.getStackInSlot(i) == stack)
+					{
+						player.inventory.setInventorySlotContents(i, null);
+					}
+				}
+			}
+		}
 	}
 }

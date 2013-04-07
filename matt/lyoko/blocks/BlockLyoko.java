@@ -63,15 +63,6 @@ public class BlockLyoko extends Block
 		return 1;
 	}
 	
-	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLiving ent)
-	{
-		if(ent instanceof EntityPlayer && blockID == CodeLyoko.VirtualBlock.blockID)
-		{
-			EntityPlayer entp = ((EntityPlayer)ent);
-			entp.setEntityHealth(entp.getHealth() - 1);
-		}
-	}
-	
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
 	{
 		if(this.blockID == CodeLyoko.LeadOre.blockID || this.blockID == CodeLyoko.UraniumOre.blockID)
@@ -85,7 +76,7 @@ public class BlockLyoko extends Block
 				((EntityLiving)par5Entity).addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 2));
 				if(par5Entity instanceof EntityPlayer)
 				{
-					((EntityLiving)par5Entity).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 500, 2));
+					((EntityPlayer)par5Entity).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 500, 2));
 				}
 			}
 		}
