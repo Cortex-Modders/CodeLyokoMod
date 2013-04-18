@@ -38,7 +38,7 @@ public class ClientProxy extends CommonProxy
 		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(CodeLyoko.Fan));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(CodeLyoko.EnergyField));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow(CodeLyoko.LaserArrow));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow());
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok(new ModelBlok(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank(new ModelTank(), 0.5F));
 		/*

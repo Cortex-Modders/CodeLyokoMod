@@ -9,7 +9,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemDataFragment extends ItemLyoko
 {
-	public ItemDataFragment(int par1) {
+	public ItemDataFragment(int par1)
+	{
 		super(par1);
 	}
 	

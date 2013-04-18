@@ -10,7 +10,7 @@ import cpw.mods.fml.common.TickType;
 
 public class KeyBindingHandler extends KeyHandler
 {
-	static KeyBinding myBinding = new KeyBinding("MyBind", Keyboard.KEY_L);
+	static KeyBinding myBinding = new KeyBinding("COMING SOON", Keyboard.KEY_L);
 
     public KeyBindingHandler() {
             //the first value is an array of KeyBindings, the second is whether or not the call 
@@ -21,7 +21,7 @@ public class KeyBindingHandler extends KeyHandler
 	@Override
 	public String getLabel()
 	{
-		return "myKeyBindingHandler";
+		return "LyokoKeyBindingHandler";
 	}
 	
 	@Override

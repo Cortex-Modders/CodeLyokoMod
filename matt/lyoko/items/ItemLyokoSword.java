@@ -18,24 +18,21 @@ public class ItemLyokoSword extends ItemSword
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
-	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
+	private int life = 10;
+	
+	public void onUpdate(ItemStack stack, World world, Entity ent, int slot, boolean par5)
 	{
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)ent;
-			if(stack.getItemDamage() < stack.getMaxDamage())
+			if(life > 0)
 			{
-				stack.setItemDamage(stack.getItemDamage() + 1);
+				life--;
 			}
 			else
 			{
-				for(int i = 0; i < player.inventory.mainInventory.length; i++)
-				{
-					if(player.inventory.getStackInSlot(i) == stack)
-					{
-						player.inventory.setInventorySlotContents(i, null);
-					}
-				}
+				player.inventory.setInventorySlotContents(slot, null);
+				life = 10;
 			}
 		}
 	}

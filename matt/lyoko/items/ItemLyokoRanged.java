@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.src.*;
@@ -13,16 +14,23 @@ import net.minecraftforge.event.entity.player.*;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
 
-public class ItemLyokoFan extends Item
+public class ItemLyokoRanged extends Item
 {       
-    public ItemLyokoFan(int id)
+    public ItemLyokoRanged(int id, Class<? extends EntityLyokoRanged> c, Item item, String text)
     {
         super(id);
         maxStackSize = 1;
         setMaxDamage(200);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.setFull3D();
+        entityLyokoRanged = c;
+        reqItem = item;
+        texture = text;
     }
+    
+    private Class<? extends EntityLyokoRanged> entityLyokoRanged;
+    private Item reqItem;
+    private String texture;
     
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
@@ -38,7 +46,7 @@ public class ItemLyokoFan extends Item
         
         boolean var5 = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (var5 || par3EntityPlayer.inventory.hasItem(CodeLyoko.Fan.itemID))
+        if (var5 || par3EntityPlayer.inventory.hasItem(reqItem.itemID))
         {
             float var7 = (float)var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -53,7 +61,16 @@ public class ItemLyokoFan extends Item
                 var7 = 1.0F;
             }
 
-            EntityFan var8 = new EntityFan(par2World, par3EntityPlayer, var7 * 20.0F);
+            EntityLyokoRanged var8;
+            
+            try
+            {
+            	var8 = entityLyokoRanged.getConstructor(World.class, EntityLiving.class, float.class).newInstance(par2World, par3EntityPlayer, var7 * 20F);
+            }
+            catch(Exception e){
+            	e.printStackTrace();
+            	return;
+            }
 
             if (var7 == 1.0F)
             {
@@ -150,18 +167,19 @@ public class ItemLyokoFan extends Item
     @Override
 	public void updateIcons(IconRegister iconRegister)
 	{
-		if(this.itemID == CodeLyoko.Fan.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:fan");
+    	iconIndex = iconRegister.registerIcon("lyoko:" + texture);
 	}
     
-    public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
+    private int life = 200;
+	
+	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)ent;
-			if(stack.getItemDamage() < stack.getMaxDamage())
+			if(life > 0)
 			{
-				stack.setItemDamage(stack.getItemDamage() + 1);
+				life--;
 			}
 			else
 			{
@@ -172,6 +190,7 @@ public class ItemLyokoFan extends Item
 						player.inventory.setInventorySlotContents(i, null);
 					}
 				}
+				life = 200;
 			}
 		}
 	}

@@ -202,26 +202,14 @@ public class CodeLyoko
 	@Instance
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable
 	
-	/*public void renderInvBlock(RenderBlocks var1, Block var2, int var3, int var4)
-	{
-		renderInvBlock(var1, var2, var3, var4);
-		
-		if (var2 == SuperCalc)
-		{
-			TileEntityRenderer.instance.renderTileEntityAt(new TileEntitySuperCalc(), 0.0D, 0.0D, 0.0D, 0.0F);
-		}
-	}*/
-	
     @Init
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
-        //SuperCalcRenderID = RenderingRegistry.getNextAvailableRenderId();
-    	
     	Katana = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setUnlocalizedName("Katana");
     	Zweihander = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setUnlocalizedName("Zweihander");
-    	Fan = new ItemLyokoFan(Weapon_Lyoko_3).setUnlocalizedName("Fan");
-    	EnergyField = new ItemLyokoEnergyField(Weapon_Lyoko_4).setUnlocalizedName("EnergyField");
-    	Glove = new ItemGlove(Weapon_Lyoko_5).setUnlocalizedName("Glove");
+    	Fan = new ItemLyokoRanged(Weapon_Lyoko_3, EntityFan.class, Fan, "fan").setUnlocalizedName("Fan");
+    	EnergyField = new ItemLyokoRanged(Weapon_Lyoko_4, EntityEnergyField.class, EnergyField, "energyfield").setUnlocalizedName("EnergyField");
+    	Glove = new ItemLyokoRanged(Weapon_Lyoko_5, EntityLaserArrow.class, Glove, "glove").setUnlocalizedName("Glove");
     	LaserArrow = new ItemLyoko(Weapon_Lyoko_6).setUnlocalizedName("LaserArrow");
     	LyokoIngot = new ItemLyoko(Item_Lyoko_11).setUnlocalizedName("LyokoIngot");
     	LyokoLead = new ItemLyoko(Item_Lyoko_12).setUnlocalizedName("Lead210");
@@ -289,9 +277,6 @@ public class CodeLyoko
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
-    	//RenderSuperCalc render = new RenderSuperCalc();
-    	//GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "tesc");
-    	
     	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
     	GameRegistry.registerTileEntity(TileEntityDigitalSea.class, "teDigitalSea");
     	GameRegistry.registerTileEntity(TileEntityVirtualBlock.class, "teVirtualBlock");
@@ -309,11 +294,11 @@ public class CodeLyoko
     	});
     	
     	LanguageRegistry.addName(Overboard, "Overboard");
-    	GameRegistry.addRecipe(new ItemStack(Overboard, 1), new Object[] {
+    	/*GameRegistry.addRecipe(new ItemStack(Overboard, 1), new Object[] {
     		"h*c", "$#$", "bml", Character.valueOf('*'), Item.boat, Character.valueOf('m'), Item.minecartEmpty, Character.valueOf('#'), Item.netherStar,
     		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
     		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
-    	});
+    	});*/
     	
     	LanguageRegistry.addName(Skid, "Skidbladnir");
     	/*GameRegistry.addRecipe(new ItemStack(Skid, 1), new Object[] {
@@ -322,7 +307,7 @@ public class CodeLyoko
     		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
     	});*/
     	
-    	GameRegistry.registerBlock(VirtualBlock, "Virtual Block");
+    	GameRegistry.registerBlock(VirtualBlock, ItemBlockVirtual.class, "Virtual Block");
     	LanguageRegistry.addName(VirtualBlock, "Virtual Block");
     	
     	//Biomes
@@ -699,19 +684,9 @@ public class CodeLyoko
     	
     }
     
-    public static DamageSource causeLaserArrowDamage(EntityLaserArrow par0EntityLaserArrow, Entity par1Entity)
+    public static DamageSource causeLyokoRangedDamage(EntityLyokoRanged par0EntityLaserArrow, Entity par1Entity)
     {
-        return (new EntityDamageSourceIndirect("laserArrow", par0EntityLaserArrow, par1Entity)).setProjectile();
-    }
-    
-    public static DamageSource causeEnergyFieldDamage(EntityEnergyField par0EntityEnergyField, Entity par1Entity)
-    {
-        return (new EntityDamageSourceIndirect("energyField", par0EntityEnergyField, par1Entity)).setProjectile();
-    }
-    
-    public static DamageSource causeFanDamage(EntityFan par0EntityFan, Entity par1Entity)
-    {
-        return (new EntityDamageSourceIndirect("fan", par0EntityFan, par1Entity)).setProjectile();
+        return (new EntityDamageSourceIndirect("lyokoRanged", par0EntityLaserArrow, par1Entity)).setProjectile();
     }
     
     public static DamageSource causeLaserDamage(EntityLaser par0EntityLaser, Entity par1Entity)
