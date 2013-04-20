@@ -1,11 +1,7 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemDataFragment extends ItemLyoko
 {

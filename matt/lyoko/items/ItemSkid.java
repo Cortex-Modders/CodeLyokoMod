@@ -1,8 +1,9 @@
 package matt.lyoko.items;
 
 import java.util.List;
+
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.vehicles.*;
+import matt.lyoko.entities.vehicles.EntitySkid;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;

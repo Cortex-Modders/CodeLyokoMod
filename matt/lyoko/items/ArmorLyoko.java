@@ -1,16 +1,17 @@
 package matt.lyoko.items;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemInWorldManager;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.src.*;
 import net.minecraft.world.World;
-import net.minecraftforge.common.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.*;
-import matt.lyoko.*;
 
 public class ArmorLyoko extends ItemArmor
 {
@@ -168,7 +169,8 @@ public class ArmorLyoko extends ItemArmor
 			}
         }
         
-        @Override
+//        @Override
+        // Fix this.
         public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
         {
         	if(itemstack.itemID == CodeLyoko.AelitaHelmet.itemID || itemstack.itemID == CodeLyoko.AelitaChest.itemID || itemstack.itemID == CodeLyoko.AelitaBoots.itemID

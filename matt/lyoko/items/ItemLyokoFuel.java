@@ -2,12 +2,13 @@ package matt.lyoko.items;
 
 import java.util.List;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import matt.lyoko.*;
 
 public class ItemLyokoFuel extends ItemLyoko {
 

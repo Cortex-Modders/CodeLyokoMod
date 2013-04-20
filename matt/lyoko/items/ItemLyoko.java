@@ -1,18 +1,16 @@
 package matt.lyoko.items;
 
 import java.util.List;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.block.Block;
+
+import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
-import net.minecraft.potion.*;
-import net.minecraft.src.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import matt.lyoko.*;
-import matt.lyoko.entities.*;
 
 public class ItemLyoko extends Item
 {
