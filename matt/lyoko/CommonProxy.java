@@ -9,53 +9,38 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class CommonProxy
-{
+public class CommonProxy {
 
-	/**
-	 * client side only register stuff...
-	 */
-	public void registerRenderInformation() 
-	{
-		//unused server side. -- see ClientProxy for implementation
-	}
-	
-	public void registerServerTickHandler()
-	{
-		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
-	}
-	
-	public void registerKeyBindingHandler() {}
-	
-	public void registerOres()
-	{
-		OreDictionary.registerOre("ingotRadioactiveLead", CodeLyoko.LyokoLead);
-		OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);
-		OreDictionary.registerOre("ingotUranium", CodeLyoko.Uranium);
-		OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
-	}
-	
-	public void registerFragmentRecipes()
-	{
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoPolarPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.ice
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoMountainPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.stone
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoForestPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.grass
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoDesertPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), new ItemStack(Block.sandStone, 1, 1)
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoCarthagePortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.beacon
-    	});
-	}
-	
-	public void addChestLoot()
-    {
+    /**
+     * client side only register stuff...
+     */
+    public void registerRenderInformation() {
+        // unused server side. -- see ClientProxy for implementation
+    }
+
+    public void registerServerTickHandler() {
+        TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+    }
+
+    public void registerKeyBindingHandler() {
+    }
+
+    public void registerOres() {
+        OreDictionary.registerOre("ingotRadioactiveLead", CodeLyoko.LyokoLead);
+        OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);
+        OreDictionary.registerOre("ingotUranium", CodeLyoko.Uranium);
+        OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
+    }
+
+    public void registerFragmentRecipes() {
+        GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoPolarPortal), new Object[] { "###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.ice });
+        GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoMountainPortal), new Object[] { "###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.stone });
+        GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoForestPortal), new Object[] { "###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.grass });
+        GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoDesertPortal), new Object[] { "###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), new ItemStack(Block.sandStone, 1, 1) });
+        GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoCarthagePortal), new Object[] { "###", "#*#", "###", Character.valueOf('#'), CodeLyoko.DataFragment, Character.valueOf('*'), Block.beacon });
+    }
+
+    public void addChestLoot() {
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(CodeLyoko.LyokoIngot), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(CodeLyoko.LyokoLead), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(CodeLyoko.Uranium), 1, 1, 005));
