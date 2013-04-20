@@ -24,10 +24,7 @@ public class CommonProxy
 		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 	}
 	
-	public void registerKeyBindingHandler()
-	{
-		
-	}
+	public void registerKeyBindingHandler() {}
 	
 	public void registerOres()
 	{
@@ -56,7 +53,7 @@ public class CommonProxy
     	});
 	}
 	
-	public static void addChestLoot()
+	public void addChestLoot()
     {
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(CodeLyoko.LyokoIngot), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(CodeLyoko.LyokoLead), 1, 1, 005));
