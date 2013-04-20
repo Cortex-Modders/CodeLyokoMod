@@ -37,11 +37,9 @@ public class EntityVehicle extends Entity {
 
 	public void onUpdate() {
 	
-		super.onUpdate();
-//		this.kill();
-		
-		// TEMPORARY
-		if(this.posY>100.0D) this.kill();
+	    this.motionY -= 0.03999999910593033D;
+	    this.moveEntity(this.motionX, this.motionY, this.motionZ);
+	    this.motionY *= 0.9800000190734863D;
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)
