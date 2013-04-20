@@ -1,7 +1,6 @@
 package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.mobs.EntityLyoko;
 import net.minecraft.world.World;
 
 public class EntityOverboard extends EntityVehicle

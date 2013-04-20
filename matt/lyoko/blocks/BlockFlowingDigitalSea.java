@@ -1,6 +1,8 @@
 package matt.lyoko.blocks;
 
 import java.util.Random;
+
+import matt.lyoko.CodeLyoko;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFluid;
 import net.minecraft.block.material.Material;
@@ -9,7 +11,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.ILiquid;
-import matt.lyoko.*;
 
 public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 

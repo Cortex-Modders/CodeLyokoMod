@@ -1,9 +1,8 @@
 package matt.lyoko.world;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraft.src.*;
 import net.minecraft.world.biome.SpawnListEntry;
-import matt.lyoko.*;
 
 public class BiomeGenDesertSector extends BiomeGenBaseLyoko
 {

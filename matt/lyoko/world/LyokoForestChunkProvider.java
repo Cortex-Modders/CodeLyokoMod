@@ -3,6 +3,7 @@ package matt.lyoko.world;
 import java.util.List;
 import java.util.Random;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
@@ -14,7 +15,6 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import matt.lyoko.*;
 
 public class LyokoForestChunkProvider implements IChunkProvider
 {

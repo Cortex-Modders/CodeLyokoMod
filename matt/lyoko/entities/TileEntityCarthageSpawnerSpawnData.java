@@ -1,7 +1,6 @@
 package matt.lyoko.entities;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomItem;
 
 class TileEntityCarthageSpawnerSpawnData extends WeightedRandomItem

@@ -1,12 +1,11 @@
 package matt.lyoko.render.vehicles;
 
-import org.lwjgl.opengl.GL11;
-
 import matt.lyoko.entities.vehicles.EntityVehicle;
 import matt.lyoko.model.vehicles.ModelVehicle;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
-import net.minecraftforge.client.ForgeHooksClient;
+
+import org.lwjgl.opengl.GL11;
 
 public class RenderVehicle extends Render {
 

@@ -1,17 +1,13 @@
 package matt.lyoko.blocks;
 
-import java.util.Random;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.TileEntityTower;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import matt.lyoko.*;
-import matt.lyoko.entities.*;
 
 public class BlockLyokoTower extends BlockContainer
 {

@@ -1,10 +1,7 @@
 package matt.lyoko.entities.mobs;
 
-import net.minecraft.block.Block;
-import net.minecraft.src.*;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
 
 public class EntityMegaTank extends EntityLyoko
 {

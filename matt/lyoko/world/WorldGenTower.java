@@ -1,10 +1,11 @@
 package matt.lyoko.world;
 
 import java.util.Random;
+
+import matt.lyoko.CodeLyoko;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
-import matt.lyoko.*;
 
 public class WorldGenTower implements IWorldGenerator {
 	

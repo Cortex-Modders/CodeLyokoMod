@@ -1,9 +1,9 @@
 package matt.lyoko.entities.mobs;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import matt.lyoko.entities.EntityLaser;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.world.World;
-import matt.lyoko.entities.*;
 
 public class EntityAILaserAttack extends EntityAIBase
 {

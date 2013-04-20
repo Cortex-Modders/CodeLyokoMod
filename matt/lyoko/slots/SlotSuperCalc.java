@@ -4,7 +4,6 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class SlotSuperCalc extends Slot
