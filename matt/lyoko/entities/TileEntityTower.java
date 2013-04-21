@@ -1,9 +1,11 @@
 package matt.lyoko.entities;
 
 import java.util.Random;
-
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import matt.lyoko.*;
 
 public class TileEntityTower extends TileEntity
 {

@@ -1,6 +1,5 @@
 package matt.lyoko.blocks;
 
-import matt.lyoko.CodeLyoko;
 import net.minecraft.block.BlockStationary;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -8,6 +7,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.ILiquid;
+import matt.lyoko.*;
 
 public class BlockStationaryDigitalSea extends BlockStationary implements ILiquid {
 

@@ -1,16 +1,18 @@
 package matt.lyoko.items;
 
 import java.util.List;
-
-import matt.lyoko.CodeLyoko;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.item.*;
+import net.minecraft.potion.*;
+import net.minecraft.src.*;
 import net.minecraft.world.World;
+import matt.lyoko.*;
+import matt.lyoko.entities.*;
 
 public class ItemLyoko extends Item
 {
@@ -31,22 +33,22 @@ public class ItemLyoko extends Item
 	}
 	
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.LaserArrow.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:laserarrow");
+			itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
 		if(this.itemID == CodeLyoko.LyokoIngot.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:lyokoingot");
+			itemIcon = iconRegister.registerIcon("lyoko:lyokoingot");
 		if(this.itemID == CodeLyoko.LyokoLead.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:leadingot");
+			itemIcon = iconRegister.registerIcon("lyoko:leadingot");
 		if(this.itemID == CodeLyoko.LyokoCell.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:emptycell");
+			itemIcon = iconRegister.registerIcon("lyoko:emptycell");
 		if(this.itemID == CodeLyoko.LyokoDepletedLeadCell.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:depletedleadcell");
+			itemIcon = iconRegister.registerIcon("lyoko:depletedleadcell");
 		if(this.itemID == CodeLyoko.Uranium.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:uraniumingot");
+			itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
 		if(this.itemID == CodeLyoko.LyokoDepletedUraniumCell.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:depleteduraniumcell");
+			itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
 	}
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)

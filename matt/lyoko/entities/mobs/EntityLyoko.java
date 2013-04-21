@@ -1,15 +1,15 @@
 package matt.lyoko.entities.mobs;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.EnumSkyBlock;
-import net.minecraft.world.World;
+import net.minecraft.src.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
 
 public abstract class EntityLyoko extends EntityMob implements IMob
 {

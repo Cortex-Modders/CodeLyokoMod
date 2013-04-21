@@ -1,5 +1,6 @@
 package matt.lyoko.entities.mobs;
 
+import net.minecraft.src.*;
 import net.minecraft.world.World;
 
 public class EntityHornet extends EntityLyoko

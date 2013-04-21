@@ -1,6 +1,7 @@
 package matt.lyoko.render.vehicles;
 
-import matt.lyoko.model.vehicles.ModelOverboard;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import matt.lyoko.model.vehicles.*;
 
 public class RenderOverboard extends RenderVehicle {
 	public RenderOverboard() {

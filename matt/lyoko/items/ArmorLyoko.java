@@ -1,17 +1,16 @@
 package matt.lyoko.items;
 
-import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemInWorldManager;
-import net.minecraft.item.ItemStack;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.src.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.*;
+import matt.lyoko.*;
 
 public class ArmorLyoko extends ItemArmor
 {
@@ -29,24 +28,24 @@ public class ArmorLyoko extends ItemArmor
         private String armorOwner;
         
         @Override
-    	public void updateIcons(IconRegister iconRegister)
+    	public void registerIcons(IconRegister iconRegister)
     	{
     		if(this.itemID == CodeLyoko.AelitaHelmet.itemID || this.itemID == CodeLyoko.OddHelmet.itemID
     				|| this.itemID == CodeLyoko.UlrichHelmet.itemID || this.itemID == CodeLyoko.YumiHelmet.itemID
     				|| this.itemID == CodeLyoko.WilliamHelmet.itemID)
-    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorOwner + "helmet");
+    	         itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "helmet");
     		if(this.itemID == CodeLyoko.AelitaChest.itemID || this.itemID == CodeLyoko.OddChest.itemID
     				|| this.itemID == CodeLyoko.UlrichChest.itemID || this.itemID == CodeLyoko.YumiChest.itemID
     				|| this.itemID == CodeLyoko.WilliamChest.itemID)
-    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorOwner + "chest");
+    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "chest");
     		if(this.itemID == CodeLyoko.AelitaLegs.itemID || this.itemID == CodeLyoko.OddLegs.itemID
     				|| this.itemID == CodeLyoko.UlrichLegs.itemID || this.itemID == CodeLyoko.YumiLegs.itemID
     				|| this.itemID == CodeLyoko.WilliamLegs.itemID)
-    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorOwner + "legs");
+    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "legs");
     		if(this.itemID == CodeLyoko.AelitaBoots.itemID || this.itemID == CodeLyoko.OddBoots.itemID
     				|| this.itemID == CodeLyoko.UlrichBoots.itemID || this.itemID == CodeLyoko.YumiBoots.itemID
     				|| this.itemID == CodeLyoko.WilliamBoots.itemID)
-    	         iconIndex = iconRegister.registerIcon("lyoko:" + armorOwner + "boots");
+    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "boots");
     	}
         
         @Override
@@ -169,8 +168,7 @@ public class ArmorLyoko extends ItemArmor
 			}
         }
         
-//        @Override
-        // Fix this.
+        @Override
         public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
         {
         	if(itemstack.itemID == CodeLyoko.AelitaHelmet.itemID || itemstack.itemID == CodeLyoko.AelitaChest.itemID || itemstack.itemID == CodeLyoko.AelitaBoots.itemID

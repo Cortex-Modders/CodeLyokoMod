@@ -3,6 +3,7 @@ package matt.lyoko.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.src.*;
 
 public class ModelLaser extends ModelBase
 {

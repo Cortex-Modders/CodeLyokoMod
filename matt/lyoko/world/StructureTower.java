@@ -2,10 +2,10 @@ package matt.lyoko.world;
 
 import java.util.Random;
 
-import matt.lyoko.CodeLyoko;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import matt.lyoko.*;
 
 public class StructureTower extends WorldGenerator
 {

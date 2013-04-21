@@ -1,6 +1,8 @@
 package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.mobs.*;
+import net.minecraft.src.*;
 import net.minecraft.world.World;
 
 public class EntitySkid extends EntityVehicle

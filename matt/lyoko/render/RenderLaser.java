@@ -1,7 +1,9 @@
 package matt.lyoko.render;
 
-import matt.lyoko.model.ModelLaser;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.src.*;
+import org.lwjgl.opengl.GL11;
+import matt.lyoko.model.*;
 
 public class RenderLaser extends RenderLiving {
 	public RenderLaser(ModelLaser modellaser, float f) {

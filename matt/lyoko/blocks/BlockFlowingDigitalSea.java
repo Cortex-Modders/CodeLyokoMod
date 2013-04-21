@@ -1,8 +1,6 @@
 package matt.lyoko.blocks;
 
 import java.util.Random;
-
-import matt.lyoko.CodeLyoko;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFluid;
 import net.minecraft.block.material.Material;
@@ -11,6 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.liquids.ILiquid;
+import matt.lyoko.*;
 
 public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 
@@ -276,7 +275,7 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 
 	private boolean blockBlocksFlow(World world, int i, int j, int k) {
 		int l = world.getBlockId(i, j, k);
-		if (l == Block.doorWood.blockID || l == Block.doorSteel.blockID || l == Block.signPost.blockID || l == Block.ladder.blockID || l == Block.reed.blockID)
+		if (l == Block.doorWood.blockID || l == Block.doorIron.blockID || l == Block.signPost.blockID || l == Block.ladder.blockID || l == Block.reed.blockID)
 			return true;
 		if (l == 0)
 			return false;

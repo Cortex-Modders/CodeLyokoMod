@@ -1,11 +1,12 @@
 package matt.lyoko.slots;
 
-import matt.lyoko.CodeLyoko;
-import matt.lyoko.container.ContainerSuperCalc;
-import matt.lyoko.items.ItemLyokoFuel;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import matt.lyoko.CodeLyoko;
+import matt.lyoko.container.ContainerSuperCalc;
+import matt.lyoko.items.*;
 
 public class SlotSuperCalcFuel extends Slot
 {

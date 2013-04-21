@@ -1,9 +1,8 @@
 package matt.lyoko.items;
 
 import java.util.List;
-
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.vehicles.EntitySkid;
+import matt.lyoko.entities.vehicles.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -27,9 +26,9 @@ public class ItemSkid extends Item
     }
     
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-    	iconIndex = iconRegister.registerIcon("lyoko:skid");
+    	itemIcon = iconRegister.registerIcon("lyoko:skid");
 	}
 
     /**

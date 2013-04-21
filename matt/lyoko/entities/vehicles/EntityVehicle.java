@@ -1,18 +1,27 @@
 package matt.lyoko.entities.vehicles;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import matt.lyoko.CodeLyoko;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityVehicle extends Entity {
 
 	protected String texture = "";
+	private double counter = 0;
+	private double increase = 0.05;
+	private double sin;
+	
+	private float x;
+	private float z;
 	
 	private Item droppedItem = CodeLyoko.DataFragment;
 	
@@ -37,9 +46,11 @@ public class EntityVehicle extends Entity {
 
 	public void onUpdate() {
 	
-	    this.motionY -= 0.03999999910593033D;
-	    this.moveEntity(this.motionX, this.motionY, this.motionZ);
-	    this.motionY *= 0.9800000190734863D;
+		super.onUpdate();
+//		this.kill();
+		
+		// TEMPORARY
+		if(this.posY>100.0D) this.kill();
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)

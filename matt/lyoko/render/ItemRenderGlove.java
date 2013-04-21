@@ -1,12 +1,12 @@
 package matt.lyoko.render;
 
+import org.lwjgl.opengl.GL11;
+
 import matt.lyoko.model.ModelGlove;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
-
-import org.lwjgl.opengl.GL11;
 
 public class ItemRenderGlove implements IItemRenderer
 {

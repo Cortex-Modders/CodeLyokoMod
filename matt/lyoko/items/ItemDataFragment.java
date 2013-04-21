@@ -1,7 +1,11 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ItemDataFragment extends ItemLyoko
 {
@@ -11,9 +15,9 @@ public class ItemDataFragment extends ItemLyoko
 	}
 	
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.DataFragment.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:datafrag");
+			itemIcon = iconRegister.registerIcon("lyoko:datafrag");
 	}
 }
