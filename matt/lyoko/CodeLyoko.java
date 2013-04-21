@@ -51,7 +51,6 @@ import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -59,8 +58,6 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -451,9 +448,14 @@ public class CodeLyoko {
         GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(Uranium, 1), 5F);
 
         LanguageRegistry.addName(LyokoUraniumCell, "Uranium Fuel Cell");
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(LyokoUraniumCell), "ingotUranium", LyokoCell));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoUraniumCell, 2), "*#*", Character.valueOf('*'), LyokoDepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
-
+        GameRegistry.addShapelessRecipe(new ItemStack(LyokoUraniumCell),
+                Uranium,
+                LyokoCell);
+        GameRegistry.addShapedRecipe(new ItemStack(LyokoUraniumCell, 2), "*#*",
+                '*', LyokoDepletedUraniumCell,
+                '#', Uranium);
+        
+        
         LanguageRegistry.addName(LyokoDepletedUraniumCell, "Depleted Uranium Fuel Cell");
 
         LanguageRegistry.addName(LyokoLead, "Lead Isotope 210");
@@ -465,9 +467,12 @@ public class CodeLyoko {
         GameRegistry.addShapelessRecipe(new ItemStack(LyokoCell, 1), new Object[] { LyokoDepletedUraniumCell });
 
         LanguageRegistry.addName(LyokoLeadCell, "Lead Isotope 210 Fuel Cell");
-        CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(LyokoLeadCell), "ingotRadioactiveLead", LyokoCell));
-        CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoLeadCell, 2), "*#*", Character.valueOf('*'), LyokoDepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
-
+        GameRegistry.addShapelessRecipe(new ItemStack(LyokoLeadCell, 1),
+               LyokoCell,
+               LyokoLead);
+        GameRegistry.addShapedRecipe(new ItemStack(LyokoLeadCell, 2), "*#*",
+                '*', LyokoDepletedLeadCell,
+                '#', LyokoLead);
         LanguageRegistry.addName(LyokoDepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
 
         LanguageRegistry.addName(LyokoIngot, "Lyokoan Ingot");
