@@ -169,8 +169,7 @@ public class ArmorLyoko extends ItemArmor
 			}
         }
         
-//        @Override
-        // Fix this.
+        @Override
         public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
         {
         	if(itemstack.itemID == CodeLyoko.AelitaHelmet.itemID || itemstack.itemID == CodeLyoko.AelitaChest.itemID || itemstack.itemID == CodeLyoko.AelitaBoots.itemID
