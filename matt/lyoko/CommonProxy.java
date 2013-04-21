@@ -32,7 +32,7 @@ public class CommonProxy
 	
 	public void registerKeyBindingHandler()
 	{
-		
+		//unused server side
 	}
 	
 	public void registerOres()
@@ -103,7 +103,7 @@ public class CommonProxy
         EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.instance.lyokocarthage, CodeLyoko.instance.lyokoforest, CodeLyoko.instance.lyokomountain, CodeLyoko.instance.lyokopolar, CodeLyoko.instance.lyokodesert);
     }
     
-    public void registerStrings() {
+    public void registerEntityNames() {
         // Monsters.
         LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
         LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");

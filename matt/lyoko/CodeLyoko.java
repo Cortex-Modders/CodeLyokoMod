@@ -1,79 +1,30 @@
 package matt.lyoko;
 
-import matt.lyoko.blocks.BlockDigitalSea;
-import matt.lyoko.blocks.BlockFlowingDigitalSea;
-import matt.lyoko.blocks.BlockLyoko;
-import matt.lyoko.blocks.BlockLyokoIce;
-import matt.lyoko.blocks.BlockLyokoTower;
-import matt.lyoko.blocks.BlockLyokoVirtual;
-import matt.lyoko.blocks.BlockStationaryDigitalSea;
-import matt.lyoko.blocks.BlockSuperCalc;
-import matt.lyoko.blocks.BlockTowerBase;
+import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
-import matt.lyoko.entities.EntityEnergyField;
-import matt.lyoko.entities.EntityFan;
-import matt.lyoko.entities.EntityLaser;
-import matt.lyoko.entities.EntityLaserArrow;
-import matt.lyoko.entities.EntityLyokoRanged;
-import matt.lyoko.entities.TileEntityDigitalSea;
-import matt.lyoko.entities.TileEntitySuperCalc;
-import matt.lyoko.entities.TileEntityVirtualBlock;
-import matt.lyoko.items.ArmorLyoko;
-import matt.lyoko.items.ItemBlockEffect;
-import matt.lyoko.items.ItemBlockVirtual;
-import matt.lyoko.items.ItemDataFragment;
-import matt.lyoko.items.ItemLyoko;
-import matt.lyoko.items.ItemLyokoFuel;
-import matt.lyoko.items.ItemLyokoRanged;
-import matt.lyoko.items.ItemLyokoSword;
-import matt.lyoko.items.ItemOverboard;
-import matt.lyoko.items.ItemSkid;
+import matt.lyoko.entities.*;
+import matt.lyoko.items.*;
 import matt.lyoko.network.PacketHandler;
-import matt.lyoko.world.BiomeGenBaseLyoko;
-import matt.lyoko.world.BiomeGenCarthageSector;
-import matt.lyoko.world.BiomeGenDesertSector;
-import matt.lyoko.world.BiomeGenForestSector;
-import matt.lyoko.world.BiomeGenMountainSector;
-import matt.lyoko.world.BiomeGenPolarSector;
-import matt.lyoko.world.LyokoCarthageSector;
-import matt.lyoko.world.LyokoDesertSector;
-import matt.lyoko.world.LyokoForestSector;
-import matt.lyoko.world.LyokoMountainSector;
-import matt.lyoko.world.LyokoPolarSector;
-import matt.lyoko.world.WorldGenLyokoOre;
-import matt.lyoko.world.WorldGenTower;
+import matt.lyoko.world.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.material.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.*;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.common.*;
+import net.minecraftforge.oredict.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.network.*;
+import cpw.mods.fml.common.registry.*;
 
 @Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.4.3-Beta")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
@@ -232,6 +183,94 @@ public class CodeLyoko
 	@Instance
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable
 	
+	@PreInit
+	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
+	{
+    	Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
+		config.load();
+		
+		Lyoko_Tower = config.getBlock("lyokoTower", 1154).getInt();
+		Lyoko_Tower_Base = config.getBlock("lyokoTowerBase", 1155).getInt();
+		Lyoko_Grass = config.getBlock("lyokoGrass", 1156).getInt();
+		Lyoko_Stone = config.getBlock("lyokoStone", 1157).getInt();
+		Lyoko_Sand = config.getBlock("lyokoSand", 1158).getInt();
+		Lyoko_Ice = config.getBlock("lyokoIce", 1159).getInt();
+		Lyoko_Log = config.getBlock("lyokoLog", 1160).getInt();
+		Lyoko_Sea_Block = config.getBlock("lyokoSeaBlock", 1161).getInt();
+		Lyoko_Sea_Flowing = config.getBlock("lyokoSeaFlowing", 1162).getInt();
+		Lyoko_Sea_Still = config.getBlock("lyokoSeaStill", 1163).getInt();
+		Lyoko_Virtual_Block = config.getBlock("lyokovirtualblock", 1164).getInt();
+		Lyoko_Carthage = config.getBlock("lyokoCarthage", 1165).getInt();
+		Lyoko_Ore = config.getBlock("lyokoOre", 1166).getInt();
+		Lyoko_Polar_Portal = config.getBlock("lyokoPolarPortal", 1167).getInt();
+		Lyoko_Desert_Portal = config.getBlock("lyokoDesertPortal", 1168).getInt();
+		Lyoko_Forest_Portal = config.getBlock("lyokoForestPortal", 1169).getInt();
+		Lyoko_Mountain_Portal = config.getBlock("lyokoMountainPortal", 1170).getInt();
+		Lyoko_Carthage_Portal = config.getBlock("lyokoCarthagePortal", 1171).getInt();
+		Lyoko_Uranium_Ore = config.getBlock("lyokoUraniumOre", 1172).getInt();
+		Lyoko_Super_Calc = config.getBlock("lyokoSuperCalculator", 1173).getInt();
+		Lyoko_Lead_Ore = config.getBlock("lyokoLeadOre", 1174).getInt();
+		Weapon_Lyoko_1 = config.getItem("weaponLyoko1", 6081).getInt();
+		Weapon_Lyoko_2 = config.getItem("weaponLyoko2", 6082).getInt();
+		Weapon_Lyoko_3 = config.getItem("weaponLyoko3", 6083).getInt();
+		Weapon_Lyoko_4 = config.getItem("weaponLyoko4", 6084).getInt();
+		Weapon_Lyoko_5 = config.getItem("weaponLyoko5", 6085).getInt();
+		Weapon_Lyoko_6 = config.getItem("weaponLyoko6", 6086).getInt();
+		Item_Skid = config.getItem("itemLyoko1", 6087).getInt();
+		NOT_USED1 = config.getItem("itemLyoko2", 6088).getInt();
+		NOT_USED2 = config.getItem("itemLyoko3", 6089).getInt();
+		NOT_USED3 = config.getItem("itemLyoko4", 6090).getInt();
+		NOT_USED4 = config.getItem("itemLyoko5", 6091).getInt();
+		NOT_USED5 = config.getItem("itemLyoko6", 6092).getInt();
+		NOT_USED6 = config.getItem("itemLyoko7", 6093).getInt();
+		NOT_USED7 = config.getItem("itemLyoko8", 6094).getInt();
+		NOT_USED8 = config.getItem("itemLyoko9", 6095).getInt();
+		NOT_USED9 = config.getItem("itemLyoko10", 6096).getInt();
+		Item_Lyoko_Uranium = config.getItem("itemLyokoUranium", 6097).getInt();
+		Item_Lyoko_11 = config.getItem("itemLyoko11", 6098).getInt();
+		Item_Lyoko_12 = config.getItem("itemLyoko12", 6099).getInt();
+		Item_Lyoko_13 = config.getItem("itemLyoko13", 6100).getInt();
+		Item_Lyoko_14 = config.getItem("itemLyoko14", 6101).getInt();
+		Item_Lyoko_15 = config.getItem("itemLyoko15", 6102).getInt();
+		Aelita_Armor_Helmet = config.getItem("aelitaArmorHelmet", 6103).getInt();
+		Aelita_Armor_Chest = config.getItem("aelitaArmorChest", 6104).getInt();
+		Aelita_Armor_Pants = config.getItem("aelitaArmorPants", 6105).getInt();
+		Aelita_Armor_Boots = config.getItem("aelitaArmorBoots", 6106).getInt();
+		Odd_Armor_Helmet = config.getItem("oddArmorHelmet", 6107).getInt();
+		Odd_Armor_Chest = config.getItem("oddArmorChest", 6108).getInt();
+		Odd_Armor_Pants = config.getItem("oddArmorPants", 6109).getInt();
+		Odd_Armor_Boots = config.getItem("oddArmorBoots", 6110).getInt();
+		Ulrich_Armor_Helmet = config.getItem("ulrichArmorHelmet", 6111).getInt();
+		Ulrich_Armor_Chest = config.getItem("ulrichArmorChest", 6112).getInt();
+		Ulrich_Armor_Pants = config.getItem("ulrichArmorPants", 6113).getInt();
+		Ulrich_Armor_Boots = config.getItem("ulrichArmorBoots", 6114).getInt();
+		Yumi_Armor_Helmet = config.getItem("yumiArmorHelmet", 6115).getInt();
+		Yumi_Armor_Chest = config.getItem("yumiArmorChest", 6116).getInt();
+		Yumi_Armor_Pants = config.getItem("yumiArmorPants", 6117).getInt();
+		Yumi_Armor_Boots = config.getItem("yumiArmorBoots", 6118).getInt();
+		William_Armor_Helmet = config.getItem("williamArmorHelmet", 6119).getInt();
+		William_Armor_Chest = config.getItem("williamArmorChest", 6120).getInt();
+		William_Armor_Pants = config.getItem("williamArmorPants", 6121).getInt();
+		William_Armor_Boots = config.getItem("williamArmorBoots", 6122).getInt();
+		Data_Fragment = config.getItem("dataFragment", 6123).getInt();
+		Item_Lyoko_Uranium_Cell = config.getItem("itemLyokoUraniumCell", 6124).getInt();
+		Item_Lyoko_Depleted_Uranium = config.getItem("itemLyokoDepletedUranium", 6125).getInt();
+		Item_Overboard = config.getItem("itemOverboard", 6126).getInt();
+		
+		/**
+		 * taken from my other mod so I can add booleans if needed to the config file
+		 */
+        //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
+		
+		Polar_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", 3).getInt();
+		Mountain_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", 4).getInt();
+		Forest_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", 5).getInt();
+		Desert_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", 6).getInt();
+		Carthage_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", 8).getInt();
+		
+		config.save();
+	}
+	
     @Init
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
@@ -295,7 +334,7 @@ public class CodeLyoko
     	LyokoMountainPortal = new BlockLyoko(Lyoko_Mountain_Portal).setUnlocalizedName("MountainPortal").setCreativeTab(null);
     	LyokoCarthagePortal  = new BlockLyoko(Lyoko_Carthage_Portal).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
     	
-    	//TODO Give mod owners special ability
+    	//TODO Give mod owners special ability?
     	//Matthew = Aelita
     	//Marq = Odd
     	//Andrew = Odd (Jeremy)
@@ -567,138 +606,9 @@ public class CodeLyoko
     	DimensionManager.registerDimension(this.Carthage_Sector_ID, this.Carthage_Sector_ID);
 
     	proxy.addChestLoot();
-    	
-    	//test recipes
-    	//GameRegistry.addShapelessRecipe(new ItemStack(DigitalSeaBlock, 10), new Object[] {
-    	//	Block.dirt
-    	//});
-    	
-    	//register your entities here
-    	//params are entClass, entName, ID, mod, trackingRange, updateFrequency, sendVelocityUpdates //just like before, just called
-    	//differently
-    	/**
-    	//LanguageRegistry.instance().addStringLocalization("entity.Elephant.name", "en_US", "Elephant");
-        //EntityRegistry.registerGlobalEntityID(EntityElephant.class, "Elephant", EntityRegistry.findGlobalUniqueEntityId());
-    	 */
-    	//last param is entity ID, must be unique
-    	//seems that the vanilla entities now occupy most slots between 0-110'ish
-    	//unsure on getUniqueGlobalID use for this on multi-player/servers
-    	
     	proxy.registerEntities();
-    	proxy.registerStrings();
-    	
-    	/*
-    	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
-    	EntityRegistry.registerGlobalEntityID(EntityKankrelat.class, "Kankrelat", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Kankrelat.name", "en_US", "Kankrelat");
-    	EntityRegistry.registerGlobalEntityID(EntityKrab.class, "Krab", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Krab.name", "en_US", "Krab");
-    	EntityRegistry.registerGlobalEntityID(EntityLyokoCreeper.class, "LyokoCreeper", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.LyokoCreeper.name", "en_US", "Creeper");
-    	EntityRegistry.registerGlobalEntityID(EntityManta.class, "Manta", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Manta.name", "en_US", "Manta");
-    	EntityRegistry.registerGlobalEntityID(EntityTarantula.class, "Tarantula", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Tarantula.name", "en_US", "Tarantula");
-    	
-    	EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
-    	
-    	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityHornet.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityKankrelat.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityKrab.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityLyokoCreeper.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityManta.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-        EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityTarantula.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-        */
+    	proxy.registerEntityNames();
     }
-    
-    @PreInit
-	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
-	{
-    	Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
-		config.load();
-		
-		Lyoko_Tower = config.getBlock("lyokoTower", 1154).getInt();
-		Lyoko_Tower_Base = config.getBlock("lyokoTowerBase", 1155).getInt();
-		Lyoko_Grass = config.getBlock("lyokoGrass", 1156).getInt();
-		Lyoko_Stone = config.getBlock("lyokoStone", 1157).getInt();
-		Lyoko_Sand = config.getBlock("lyokoSand", 1158).getInt();
-		Lyoko_Ice = config.getBlock("lyokoIce", 1159).getInt();
-		Lyoko_Log = config.getBlock("lyokoLog", 1160).getInt();
-		Lyoko_Sea_Block = config.getBlock("lyokoSeaBlock", 1161).getInt();
-		Lyoko_Sea_Flowing = config.getBlock("lyokoSeaFlowing", 1162).getInt();
-		Lyoko_Sea_Still = config.getBlock("lyokoSeaStill", 1163).getInt();
-		Lyoko_Virtual_Block = config.getBlock("lyokovirtualblock", 1164).getInt();
-		Lyoko_Carthage = config.getBlock("lyokoCarthage", 1165).getInt();
-		Lyoko_Ore = config.getBlock("lyokoOre", 1166).getInt();
-		Lyoko_Polar_Portal = config.getBlock("lyokoPolarPortal", 1167).getInt();
-		Lyoko_Desert_Portal = config.getBlock("lyokoDesertPortal", 1168).getInt();
-		Lyoko_Forest_Portal = config.getBlock("lyokoForestPortal", 1169).getInt();
-		Lyoko_Mountain_Portal = config.getBlock("lyokoMountainPortal", 1170).getInt();
-		Lyoko_Carthage_Portal = config.getBlock("lyokoCarthagePortal", 1171).getInt();
-		Lyoko_Uranium_Ore = config.getBlock("lyokoUraniumOre", 1172).getInt();
-		Lyoko_Super_Calc = config.getBlock("lyokoSuperCalculator", 1173).getInt();
-		Lyoko_Lead_Ore = config.getBlock("lyokoLeadOre", 1174).getInt();
-		Weapon_Lyoko_1 = config.getItem("weaponLyoko1", 6081).getInt();
-		Weapon_Lyoko_2 = config.getItem("weaponLyoko2", 6082).getInt();
-		Weapon_Lyoko_3 = config.getItem("weaponLyoko3", 6083).getInt();
-		Weapon_Lyoko_4 = config.getItem("weaponLyoko4", 6084).getInt();
-		Weapon_Lyoko_5 = config.getItem("weaponLyoko5", 6085).getInt();
-		Weapon_Lyoko_6 = config.getItem("weaponLyoko6", 6086).getInt();
-		Item_Skid = config.getItem("itemLyoko1", 6087).getInt();
-		NOT_USED1 = config.getItem("itemLyoko2", 6088).getInt();
-		NOT_USED2 = config.getItem("itemLyoko3", 6089).getInt();
-		NOT_USED3 = config.getItem("itemLyoko4", 6090).getInt();
-		NOT_USED4 = config.getItem("itemLyoko5", 6091).getInt();
-		NOT_USED5 = config.getItem("itemLyoko6", 6092).getInt();
-		NOT_USED6 = config.getItem("itemLyoko7", 6093).getInt();
-		NOT_USED7 = config.getItem("itemLyoko8", 6094).getInt();
-		NOT_USED8 = config.getItem("itemLyoko9", 6095).getInt();
-		NOT_USED9 = config.getItem("itemLyoko10", 6096).getInt();
-		Item_Lyoko_Uranium = config.getItem("itemLyokoUranium", 6097).getInt();
-		Item_Lyoko_11 = config.getItem("itemLyoko11", 6098).getInt();
-		Item_Lyoko_12 = config.getItem("itemLyoko12", 6099).getInt();
-		Item_Lyoko_13 = config.getItem("itemLyoko13", 6100).getInt();
-		Item_Lyoko_14 = config.getItem("itemLyoko14", 6101).getInt();
-		Item_Lyoko_15 = config.getItem("itemLyoko15", 6102).getInt();
-		Aelita_Armor_Helmet = config.getItem("aelitaArmorHelmet", 6103).getInt();
-		Aelita_Armor_Chest = config.getItem("aelitaArmorChest", 6104).getInt();
-		Aelita_Armor_Pants = config.getItem("aelitaArmorPants", 6105).getInt();
-		Aelita_Armor_Boots = config.getItem("aelitaArmorBoots", 6106).getInt();
-		Odd_Armor_Helmet = config.getItem("oddArmorHelmet", 6107).getInt();
-		Odd_Armor_Chest = config.getItem("oddArmorChest", 6108).getInt();
-		Odd_Armor_Pants = config.getItem("oddArmorPants", 6109).getInt();
-		Odd_Armor_Boots = config.getItem("oddArmorBoots", 6110).getInt();
-		Ulrich_Armor_Helmet = config.getItem("ulrichArmorHelmet", 6111).getInt();
-		Ulrich_Armor_Chest = config.getItem("ulrichArmorChest", 6112).getInt();
-		Ulrich_Armor_Pants = config.getItem("ulrichArmorPants", 6113).getInt();
-		Ulrich_Armor_Boots = config.getItem("ulrichArmorBoots", 6114).getInt();
-		Yumi_Armor_Helmet = config.getItem("yumiArmorHelmet", 6115).getInt();
-		Yumi_Armor_Chest = config.getItem("yumiArmorChest", 6116).getInt();
-		Yumi_Armor_Pants = config.getItem("yumiArmorPants", 6117).getInt();
-		Yumi_Armor_Boots = config.getItem("yumiArmorBoots", 6118).getInt();
-		William_Armor_Helmet = config.getItem("williamArmorHelmet", 6119).getInt();
-		William_Armor_Chest = config.getItem("williamArmorChest", 6120).getInt();
-		William_Armor_Pants = config.getItem("williamArmorPants", 6121).getInt();
-		William_Armor_Boots = config.getItem("williamArmorBoots", 6122).getInt();
-		Data_Fragment = config.getItem("dataFragment", 6123).getInt();
-		Item_Lyoko_Uranium_Cell = config.getItem("itemLyokoUraniumCell", 6124).getInt();
-		Item_Lyoko_Depleted_Uranium = config.getItem("itemLyokoDepletedUranium", 6125).getInt();
-		Item_Overboard = config.getItem("itemOverboard", 6126).getInt();
-		
-		/**
-		 * taken from my other mod so I can add booleans if needed to the config file
-		 */
-        //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
-		
-		Polar_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", 3).getInt();
-		Mountain_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", 4).getInt();
-		Forest_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", 5).getInt();
-		Desert_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", 6).getInt();
-		Carthage_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", 8).getInt();
-		
-		config.save();
-	}
     
     @PostInit
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
