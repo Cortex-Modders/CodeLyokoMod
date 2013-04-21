@@ -66,9 +66,10 @@ public class ClientProxy extends CommonProxy {
          * 0.5F));
          */
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderLaser(new ModelLaser(), 0.5F));
+        
         RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
         RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
-
+        
         MinecraftForgeClient.registerItemRenderer(CodeLyoko.Glove.itemID, new ItemRenderGlove());
 
         // ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class,

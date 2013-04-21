@@ -1,4 +1,4 @@
-package matt.lyoko;
+package matt.lyoko.network;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

@@ -32,6 +32,7 @@ import matt.lyoko.items.ItemLyokoRanged;
 import matt.lyoko.items.ItemLyokoSword;
 import matt.lyoko.items.ItemOverboard;
 import matt.lyoko.items.ItemSkid;
+import matt.lyoko.network.PacketHandler;
 import matt.lyoko.world.BiomeGenBaseLyoko;
 import matt.lyoko.world.BiomeGenCarthageSector;
 import matt.lyoko.world.BiomeGenDesertSector;
@@ -587,7 +588,7 @@ public class CodeLyoko
     	//register your entities here
     	//params are entClass, entName, ID, mod, trackingRange, updateFrequency, sendVelocityUpdates //just like before, just called
     	//differently
-    	/**
+    	/*
     	//LanguageRegistry.instance().addStringLocalization("entity.Elephant.name", "en_US", "Elephant");
         //EntityRegistry.registerGlobalEntityID(EntityElephant.class, "Elephant", EntityRegistry.findGlobalUniqueEntityId());
     	 */
@@ -595,31 +596,13 @@ public class CodeLyoko
     	//seems that the vanilla entities now occupy most slots between 0-110'ish
     	//unsure on getUniqueGlobalID use for this on multi-player/servers
     	
-    	EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
-    	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
-    	EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityRegistry.findGlobalUniqueEntityId(), instance, 50, 1, true);
-    	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
-    	EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityRegistry.findGlobalUniqueEntityId(), instance, 50, 1, true);
-    	LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
     	/*
-    	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
-    	EntityRegistry.registerGlobalEntityID(EntityKankrelat.class, "Kankrelat", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Kankrelat.name", "en_US", "Kankrelat");
-    	EntityRegistry.registerGlobalEntityID(EntityKrab.class, "Krab", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Krab.name", "en_US", "Krab");
-    	EntityRegistry.registerGlobalEntityID(EntityLyokoCreeper.class, "LyokoCreeper", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.LyokoCreeper.name", "en_US", "Creeper");
-    	EntityRegistry.registerGlobalEntityID(EntityManta.class, "Manta", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Manta.name", "en_US", "Manta");
-    	EntityRegistry.registerGlobalEntityID(EntityTarantula.class, "Tarantula", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Tarantula.name", "en_US", "Tarantula");
-    	*/
+    	 * Moved Entities to CommonProxy.
+    	 */
+    	// Register all the entities.
+    	proxy.registerEntities();
+    	proxy.registerStrings();
     	
-    	EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	//EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
     	/*
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityHornet.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
