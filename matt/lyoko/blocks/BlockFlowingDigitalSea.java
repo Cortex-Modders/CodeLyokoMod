@@ -276,7 +276,7 @@ public class BlockFlowingDigitalSea extends BlockFluid implements ILiquid {
 
 	private boolean blockBlocksFlow(World world, int i, int j, int k) {
 		int l = world.getBlockId(i, j, k);
-		if (l == Block.doorWood.blockID || l == Block.doorSteel.blockID || l == Block.signPost.blockID || l == Block.ladder.blockID || l == Block.reed.blockID)
+		if (l == Block.doorWood.blockID || l == Block.doorIron.blockID || l == Block.signPost.blockID || l == Block.ladder.blockID || l == Block.reed.blockID)
 			return true;
 		if (l == 0)
 			return false;

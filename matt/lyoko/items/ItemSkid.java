@@ -27,9 +27,9 @@ public class ItemSkid extends Item
     }
     
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-    	iconIndex = iconRegister.registerIcon("lyoko:skid");
+    	this.itemIcon = iconRegister.registerIcon("lyoko:skid");
 	}
 
     /**

@@ -11,9 +11,9 @@ public class ItemDataFragment extends ItemLyoko
 	}
 	
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.DataFragment.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:datafrag");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:datafrag");
 	}
 }

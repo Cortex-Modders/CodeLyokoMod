@@ -166,9 +166,9 @@ public class ItemLyokoRanged extends Item
     }
     
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-    	iconIndex = iconRegister.registerIcon("lyoko:" + texture);
+        this.itemIcon = iconRegister.registerIcon("lyoko:" + texture);
 	}
     
     private int life = 200;

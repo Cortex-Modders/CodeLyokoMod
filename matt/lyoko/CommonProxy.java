@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy {
 
-    private static CodeLyoko instance = CodeLyoko.instance;
+//    private CodeLyoko instance = CodeLyoko.instance;
     
     /**
      * client side only register stuff...
@@ -82,12 +82,12 @@ public class CommonProxy {
         EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityIds.MEGATANK, 0xe3b434, 0x000000);
 
         // Vehicles
-        EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityIds.SKID, instance, 50, 1, true);
-        EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityIds.OVERBOARD, instance, 50, 1, true);
+        EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityIds.SKID, CodeLyoko.instance, 50, 1, true);
+        EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityIds.OVERBOARD, CodeLyoko.instance, 50, 1, true);
         
         // Naturally spawn in Lyoko.
-        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, instance.lyokoCarthageBiome, instance.lyokoForestBiome, instance.lyokoMountainBiome, instance.lyokoPolarBiome, instance.lyokoDesertBiome);
-        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, instance.lyokoCarthageBiome, instance.lyokoForestBiome, instance.lyokoMountainBiome, instance.lyokoPolarBiome, instance.lyokoDesertBiome);
+        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.instance.lyokoCarthageBiome, CodeLyoko.instance.lyokoForestBiome, CodeLyoko.instance.lyokoMountainBiome, CodeLyoko.instance.lyokoPolarBiome, CodeLyoko.instance.lyokoDesertBiome);
+        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.instance.lyokoCarthageBiome, CodeLyoko.instance.lyokoForestBiome, CodeLyoko.instance.lyokoMountainBiome, CodeLyoko.instance.lyokoPolarBiome, CodeLyoko.instance.lyokoDesertBiome);
     }
     
     public void registerStrings() {

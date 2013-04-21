@@ -29,24 +29,24 @@ public class ItemLyoko extends Item
 			list.add("Use this as a fuel cell in the Super Computer.");
 		}
 	}
-	
+		
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == CodeLyoko.LaserArrow.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:laserarrow");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
 		if(this.itemID == CodeLyoko.LyokoIngot.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:lyokoingot");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:lyokoingot");
 		if(this.itemID == CodeLyoko.LyokoLead.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:leadingot");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:leadingot");
 		if(this.itemID == CodeLyoko.LyokoCell.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:emptycell");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:emptycell");
 		if(this.itemID == CodeLyoko.LyokoDepletedLeadCell.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:depletedleadcell");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:depletedleadcell");
 		if(this.itemID == CodeLyoko.Uranium.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:uraniumingot");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
 		if(this.itemID == CodeLyoko.LyokoDepletedUraniumCell.itemID)
-	         iconIndex = iconRegister.registerIcon("lyoko:depleteduraniumcell");
+		    this.itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
 	}
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)

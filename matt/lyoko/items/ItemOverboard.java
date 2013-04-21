@@ -27,9 +27,9 @@ public class ItemOverboard extends Item
     }
     
     @Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-    	iconIndex = iconRegister.registerIcon("lyoko:overboard");
+        this.itemIcon = iconRegister.registerIcon("lyoko:overboard");
 	}
 
     /**
