@@ -4,6 +4,7 @@ import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.entities.*;
 import matt.lyoko.items.*;
+import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.network.PacketHandler;
 import matt.lyoko.world.*;
 import net.minecraft.block.Block;
@@ -262,11 +263,11 @@ public class CodeLyoko
 		 */
         //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
 		
-		Polar_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", 3).getInt();
-		Mountain_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", 4).getInt();
-		Forest_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", 5).getInt();
-		Desert_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", 6).getInt();
-		Carthage_Sector_ID = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", 8).getInt();
+		DimensionIds.ICE = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
+		DimensionIds.MOUNTAIN = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
+		DimensionIds.FOREST = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
+		DimensionIds.DESERT = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
+		DimensionIds.CARTHAGE = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
 		
 		config.save();
 	}
