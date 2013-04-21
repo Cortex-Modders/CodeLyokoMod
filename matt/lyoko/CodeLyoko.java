@@ -1,52 +1,82 @@
 package matt.lyoko;
 
-import java.util.Random;
-import matt.lyoko.world.*;
-import matt.lyoko.world.portals.*;
-import matt.lyoko.blocks.*;
+import matt.lyoko.blocks.BlockDigitalSea;
+import matt.lyoko.blocks.BlockFlowingDigitalSea;
+import matt.lyoko.blocks.BlockLyoko;
+import matt.lyoko.blocks.BlockLyokoIce;
+import matt.lyoko.blocks.BlockLyokoTower;
+import matt.lyoko.blocks.BlockLyokoVirtual;
+import matt.lyoko.blocks.BlockStationaryDigitalSea;
+import matt.lyoko.blocks.BlockSuperCalc;
+import matt.lyoko.blocks.BlockTowerBase;
 import matt.lyoko.client.GuiHandler;
-import matt.lyoko.items.*;
-import matt.lyoko.entities.*;
-import matt.lyoko.entities.mobs.*;
-import matt.lyoko.entities.vehicles.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.oredict.OreDictionary;
+import matt.lyoko.entities.EntityEnergyField;
+import matt.lyoko.entities.EntityFan;
+import matt.lyoko.entities.EntityLaser;
+import matt.lyoko.entities.EntityLaserArrow;
+import matt.lyoko.entities.EntityLyokoRanged;
+import matt.lyoko.entities.TileEntityDigitalSea;
+import matt.lyoko.entities.TileEntitySuperCalc;
+import matt.lyoko.entities.TileEntityVirtualBlock;
+import matt.lyoko.items.ArmorLyoko;
+import matt.lyoko.items.ItemBlockEffect;
+import matt.lyoko.items.ItemBlockVirtual;
+import matt.lyoko.items.ItemDataFragment;
+import matt.lyoko.items.ItemLyoko;
+import matt.lyoko.items.ItemLyokoFuel;
+import matt.lyoko.items.ItemLyokoRanged;
+import matt.lyoko.items.ItemLyokoSword;
+import matt.lyoko.items.ItemOverboard;
+import matt.lyoko.items.ItemSkid;
+import matt.lyoko.network.PacketHandler;
+import matt.lyoko.world.BiomeGenBaseLyoko;
+import matt.lyoko.world.BiomeGenCarthageSector;
+import matt.lyoko.world.BiomeGenDesertSector;
+import matt.lyoko.world.BiomeGenForestSector;
+import matt.lyoko.world.BiomeGenMountainSector;
+import matt.lyoko.world.BiomeGenPolarSector;
+import matt.lyoko.world.LyokoCarthageSector;
+import matt.lyoko.world.LyokoDesertSector;
+import matt.lyoko.world.LyokoForestSector;
+import matt.lyoko.world.LyokoMountainSector;
+import matt.lyoko.world.LyokoPolarSector;
+import matt.lyoko.world.WorldGenLyokoOre;
+import matt.lyoko.world.WorldGenTower;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.network.*;
-import cpw.mods.fml.common.registry.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.src.*;
-import net.minecraft.util.*;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.entity.player.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.4.3-Beta")
-@NetworkMod
-(
-clientSideRequired = true,
-serverSideRequired = false,
-channels = {"Code_Lyoko"},
-packetHandler = PacketHandler.class
-)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	public static int Lyoko_Tower;// = 1154;
@@ -554,14 +584,9 @@ public class CodeLyoko
     	//seems that the vanilla entities now occupy most slots between 0-110'ish
     	//unsure on getUniqueGlobalID use for this on multi-player/servers
     	
-    	EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
-    	EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-    	LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
-    	EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityRegistry.findGlobalUniqueEntityId(), instance, 50, 1, true);
-    	LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
-    	EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityRegistry.findGlobalUniqueEntityId(), instance, 50, 1, true);
-    	LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
+    	proxy.registerEntities();
+    	proxy.registerStrings();
+    	
     	/*
     	EntityRegistry.registerGlobalEntityID(EntityHornet.class, "Hornet", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Hornet.name", "en_US", "Hornet");
@@ -575,12 +600,9 @@ public class CodeLyoko
     	LanguageRegistry.instance().addStringLocalization("entity.Manta.name", "en_US", "Manta");
     	EntityRegistry.registerGlobalEntityID(EntityTarantula.class, "Tarantula", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
     	LanguageRegistry.instance().addStringLocalization("entity.Tarantula.name", "en_US", "Tarantula");
-    	*/
     	
-    	EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
-    	//EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
-    	/*
+    	EntityRegistry.addSpawn(matt.lyoko.entities.EntitySkid.class, 0, 0, 1, EnumCreatureType.creature, lyokocarthage);
+    	
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityHornet.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityKankrelat.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
     	EntityRegistry.addSpawn(net.minecraft.src.lyoko.EntityKrab.class, 10, 3, 15, EnumCreatureType.monster, lyokocarthage, lyokoforest, lyokomountain, lyokopolar, lyokodesert);
