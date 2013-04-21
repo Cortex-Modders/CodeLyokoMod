@@ -20,7 +20,7 @@ public class LyokoDesertSector extends WorldProvider{
 	@Override
 	public void registerWorldChunkManager()
 	{
-		worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokodesert, 0.8F, 0F);
+		worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokoDesertBiome, 0.8F, 0F);
 	}
 
 	public IChunkProvider getChunkProvider()

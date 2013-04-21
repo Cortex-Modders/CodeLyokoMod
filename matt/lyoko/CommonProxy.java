@@ -86,8 +86,8 @@ public class CommonProxy {
         EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityIds.OVERBOARD, instance, 50, 1, true);
         
         // Naturally spawn in Lyoko.
-        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, instance.lyokocarthage, instance.lyokoforest, instance.lyokomountain, instance.lyokopolar, instance.lyokodesert);
-        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, instance.lyokocarthage, instance.lyokoforest, instance.lyokomountain, instance.lyokopolar, instance.lyokodesert);
+        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, instance.lyokoCarthageBiome, instance.lyokoForestBiome, instance.lyokoMountainBiome, instance.lyokoPolarBiome, instance.lyokoDesertBiome);
+        EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, instance.lyokoCarthageBiome, instance.lyokoForestBiome, instance.lyokoMountainBiome, instance.lyokoPolarBiome, instance.lyokoDesertBiome);
     }
     
     public void registerStrings() {
