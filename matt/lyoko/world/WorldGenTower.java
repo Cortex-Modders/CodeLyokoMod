@@ -5,6 +5,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 import matt.lyoko.*;
+import matt.lyoko.lib.DimensionIds;
 
 public class WorldGenTower implements IWorldGenerator {
 	
@@ -18,9 +19,9 @@ public class WorldGenTower implements IWorldGenerator {
 	   case 6: generateTower(world, random, chunkX*16, chunkZ*16);
 	   case 8: generateTower(world, random, chunkX*16, chunkZ*16);
 	  }*/
-		 if(world.provider.dimensionId == CodeLyoko.Polar_Sector_ID || world.provider.dimensionId == CodeLyoko.Mountain_Sector_ID
-				|| world.provider.dimensionId == CodeLyoko.Forest_Sector_ID || world.provider.dimensionId == CodeLyoko.Desert_Sector_ID
-				|| world.provider.dimensionId == CodeLyoko.Carthage_Sector_ID)
+		 if(world.provider.dimensionId == DimensionIds.ICE || world.provider.dimensionId == DimensionIds.MOUNTAIN
+				|| world.provider.dimensionId == DimensionIds.FOREST || world.provider.dimensionId == DimensionIds.DESERT
+				|| world.provider.dimensionId == DimensionIds.CARTHAGE)
 		 {
 			 generateTower(world, random, chunkX*16, chunkZ*16);
 		 }

@@ -15,6 +15,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import matt.lyoko.*;
+import matt.lyoko.lib.BlockIds;
 
 public class LyokoMountainChunkProvider implements IChunkProvider
 {
@@ -93,7 +94,7 @@ public class LyokoMountainChunkProvider implements IChunkProvider
 
 	                                if (var46 > 0.0D)
 	                                {
-	                                    var51 = CodeLyoko.Lyoko_Stone;
+	                                    var51 = BlockIds.LYOKO_STONE;
 	                                }
 
 	                                par3ArrayOfByte[var42] = (byte)var51;
@@ -123,8 +124,8 @@ public class LyokoMountainChunkProvider implements IChunkProvider
 	            {
 	                byte var7 = 1;
 	                int var8 = -1;
-	                byte var9 = (byte)CodeLyoko.Lyoko_Stone;
-	                byte var10 = (byte)CodeLyoko.Lyoko_Stone;
+	                byte var9 = (byte)BlockIds.LYOKO_STONE;
+	                byte var10 = (byte)BlockIds.LYOKO_STONE;
 
 	                for (int var11 = 127; var11 >= 0; --var11)
 	                {
@@ -142,7 +143,7 @@ public class LyokoMountainChunkProvider implements IChunkProvider
 	                            if (var7 <= 0)
 	                            {
 	                                var9 = 0;
-	                                var10 = (byte)CodeLyoko.Lyoko_Stone;
+	                                var10 = (byte)BlockIds.LYOKO_STONE;
 	                            }
 
 	                            var8 = var7;

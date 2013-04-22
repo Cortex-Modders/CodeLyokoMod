@@ -32,27 +32,6 @@ import cpw.mods.fml.common.registry.*;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
-	public static int Lyoko_Tower;// = 1154;
-	public static int Lyoko_Tower_Base;// = 1155;
-	public static int Lyoko_Grass;// = 1156;
-	public static int Lyoko_Stone;// = 1157;
-	public static int Lyoko_Sand;// = 1158;
-	public static int Lyoko_Ice;// = 1159;
-	public static int Lyoko_Log;// = 1160;
-	public static int Lyoko_Sea_Block;// = 1161;
-	public static int Lyoko_Sea_Flowing;// = 1162;
-	public static int Lyoko_Sea_Still;// = 1163;
-	public static int Lyoko_Virtual_Block;// = 1164;
-	public static int Lyoko_Carthage;// = 1165;
-	public static int Lyoko_Ore;// = 1166;
-	public static int Lyoko_Polar_Portal;// = 1167;
-	public static int Lyoko_Desert_Portal;// = 1168;
-	public static int Lyoko_Forest_Portal;// = 1169;
-	public static int Lyoko_Mountain_Portal;// = 1170;
-	public static int Lyoko_Carthage_Portal;// = 1171;
-	public static int Lyoko_Super_Calc;// = 1173;
-	public static int Lyoko_Lead_Ore;// = 1174;
-	public static int Lyoko_Uranium_Ore;
 	
 	public static int Weapon_Lyoko_1;// = 6081;
 	public static int Weapon_Lyoko_2;// = 6082;
@@ -101,11 +80,6 @@ public class CodeLyoko
 	public static int Item_Lyoko_Depleted_Uranium;
 	public static int Item_Overboard;
 	
-	public static int Polar_Sector_ID;
-	public static int Mountain_Sector_ID;
-	public static int Forest_Sector_ID;
-	public static int Desert_Sector_ID;
-	public static int Carthage_Sector_ID;
 	//public static int TEST_DIMENSION_ID_THINGY_THAT_IS_NOT_USED = DimensionManager.getNextFreeDimId();
 
 	public static int SuperCalcRenderID;
@@ -316,28 +290,28 @@ public class CodeLyoko
     	LyokoDepletedUraniumCell = new ItemLyoko(Item_Lyoko_Depleted_Uranium).setUnlocalizedName("DepletedUraniumCell");
     	Overboard = new ItemOverboard(Item_Overboard).setUnlocalizedName("Overboard");
     	Skid = new ItemSkid(Item_Skid).setUnlocalizedName("Skidbladnir");
-    	TowerBlock = new BlockLyokoTower(Lyoko_Tower).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
-    	TowerBase = new BlockTowerBase(Lyoko_Tower_Base, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-    	LyokoGrass = new BlockLyoko(Lyoko_Grass).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-    	LyokoStone = new BlockLyoko(Lyoko_Stone).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-    	LyokoSand = new BlockLyoko(Lyoko_Sand).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-    	LyokoIce = new BlockLyokoIce(Lyoko_Ice, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-    	LyokoLog = new BlockLyoko(Lyoko_Log).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-    	LyokoCarthage = new BlockLyoko(Lyoko_Carthage).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-    	LyokoOre = new BlockLyoko(Lyoko_Ore).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
-    	DigitalSeaBlock = new BlockDigitalSea(Lyoko_Sea_Block).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-    	DigitalSeaFlowing = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
-    	DigitalSeaStill = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
-    	LeadOre = new BlockLyoko(Lyoko_Lead_Ore).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer");
-    	VirtualBlock = new BlockLyokoVirtual(Lyoko_Virtual_Block).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
-    	UraniumOre = new BlockLyoko(Lyoko_Uranium_Ore).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
+    	TowerBlock = new BlockLyokoTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
+    	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
+    	LyokoGrass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
+    	LyokoStone = new BlockLyoko(BlockIds.LYOKO_STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
+    	LyokoSand = new BlockLyoko(BlockIds.LYOKO_SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
+    	LyokoIce = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
+    	LyokoLog = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
+    	LyokoCarthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
+    	LyokoOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
+    	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
+    	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
+    	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
+    	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
+    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer");
+    	VirtualBlock = new BlockLyokoVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
+    	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	
-    	LyokoPolarPortal  = new BlockLyoko(Lyoko_Polar_Portal).setUnlocalizedName("PolarPortal").setCreativeTab(null);
-    	LyokoDesertPortal = new BlockLyoko(Lyoko_Desert_Portal).setUnlocalizedName("DesertPortal").setCreativeTab(null);
-    	LyokoForestPortal = new BlockLyoko(Lyoko_Forest_Portal).setUnlocalizedName("ForestPortal").setCreativeTab(null);
-    	LyokoMountainPortal = new BlockLyoko(Lyoko_Mountain_Portal).setUnlocalizedName("MountainPortal").setCreativeTab(null);
-    	LyokoCarthagePortal  = new BlockLyoko(Lyoko_Carthage_Portal).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
+    	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
+    	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
+    	LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setUnlocalizedName("ForestPortal").setCreativeTab(null);
+    	LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
+    	LyokoCarthagePortal  = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
     	
     	//TODO Give mod owners special ability?
     	//Matthew = Aelita
@@ -599,16 +573,16 @@ public class CodeLyoko
     	
     	
     	//Lyoko Sectors Dimension Register
-    	DimensionManager.registerProviderType(this.Polar_Sector_ID, LyokoPolarSector.class, true);
-    	DimensionManager.registerProviderType(this.Mountain_Sector_ID, LyokoMountainSector.class, true);
-    	DimensionManager.registerProviderType(this.Forest_Sector_ID, LyokoForestSector.class, true);
-    	DimensionManager.registerProviderType(this.Desert_Sector_ID, LyokoDesertSector.class, true);
-    	DimensionManager.registerProviderType(this.Carthage_Sector_ID, LyokoCarthageSector.class, true);
-    	DimensionManager.registerDimension(this.Polar_Sector_ID, this.Polar_Sector_ID);
-    	DimensionManager.registerDimension(this.Mountain_Sector_ID, this.Mountain_Sector_ID);
-    	DimensionManager.registerDimension(this.Forest_Sector_ID, this.Forest_Sector_ID);
-    	DimensionManager.registerDimension(this.Desert_Sector_ID, this.Desert_Sector_ID);
-    	DimensionManager.registerDimension(this.Carthage_Sector_ID, this.Carthage_Sector_ID);
+    	DimensionManager.registerProviderType(DimensionIds.ICE, LyokoPolarSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.MOUNTAIN, LyokoMountainSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.DESERT, LyokoDesertSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.CARTHAGE, LyokoCarthageSector.class, true);
+    	DimensionManager.registerDimension(DimensionIds.ICE, DimensionIds.ICE);
+    	DimensionManager.registerDimension(DimensionIds.MOUNTAIN, DimensionIds.MOUNTAIN);
+    	DimensionManager.registerDimension(DimensionIds.FOREST, DimensionIds.FOREST);
+    	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
+    	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
 
     	proxy.addChestLoot();
     	proxy.registerEntities();

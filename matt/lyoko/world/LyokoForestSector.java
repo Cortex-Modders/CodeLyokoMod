@@ -9,12 +9,13 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import matt.lyoko.*;
+import matt.lyoko.lib.DimensionIds;
 
 public class LyokoForestSector extends WorldProvider{
 
 	public int getDimensionID() 
 	{
-		return CodeLyoko.Forest_Sector_ID;
+		return DimensionIds.FOREST;
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import matt.lyoko.*;
+import matt.lyoko.lib.BlockIds;
 
 public class LyokoPolarChunkProvider implements IChunkProvider
 {
@@ -93,7 +94,7 @@ public class LyokoPolarChunkProvider implements IChunkProvider
 
 	                                if (var46 > 0.0D)
 	                                {
-	                                    var51 = CodeLyoko.Lyoko_Ice;
+	                                    var51 = BlockIds.LYOKO_ICE;
 	                                }
 
 	                                par3ArrayOfByte[var42] = (byte)var51;
@@ -123,8 +124,8 @@ public class LyokoPolarChunkProvider implements IChunkProvider
 	            {
 	                byte var7 = 1;
 	                int var8 = -1;
-	                byte var9 = (byte)CodeLyoko.Lyoko_Ice;
-	                byte var10 = (byte)CodeLyoko.Lyoko_Ice;
+	                byte var9 = (byte)BlockIds.LYOKO_ICE;
+	                byte var10 = (byte)BlockIds.LYOKO_ICE;
 
 	                for (int var11 = 127; var11 >= 0; --var11)
 	                {
@@ -142,7 +143,7 @@ public class LyokoPolarChunkProvider implements IChunkProvider
 	                            if (var7 <= 0)
 	                            {
 	                                var9 = 0;
-	                                var10 = (byte)CodeLyoko.Lyoko_Ice;
+	                                var10 = (byte)BlockIds.LYOKO_ICE;
 	                            }
 
 	                            var8 = var7;

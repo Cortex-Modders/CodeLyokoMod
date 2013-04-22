@@ -91,8 +91,8 @@ public class CommonProxy
 	
 	public void registerEntities() {
         // Monsters.
-        EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityIds.BLOK, 0xe3b434, 0x000000);
-        EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityIds.MEGATANK, 0xe3b434, 0x000000);
+        EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
+        EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
 
         // Vehicles
         EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityIds.SKID, CodeLyoko.instance, 50, 1, true);

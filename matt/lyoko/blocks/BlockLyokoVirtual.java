@@ -2,6 +2,7 @@ package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.TileEntityVirtualBlock;
+import matt.lyoko.lib.DimensionIds;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -24,10 +25,10 @@ public class BlockLyokoVirtual extends BlockContainer
 	public void onBlockAdded(World world, int x, int y, int z)
 	{
 		super.onBlockAdded(world, x, y, z);
-		if(world.provider.dimensionId != CodeLyoko.Polar_Sector_ID && world.provider.dimensionId != CodeLyoko.Mountain_Sector_ID
-				&& world.provider.dimensionId != CodeLyoko.Forest_Sector_ID
-				&& world.provider.dimensionId != CodeLyoko.Desert_Sector_ID
-				&& world.provider.dimensionId != CodeLyoko.Carthage_Sector_ID)
+		if(world.provider.dimensionId != DimensionIds.ICE && world.provider.dimensionId != DimensionIds.MOUNTAIN
+				&& world.provider.dimensionId != DimensionIds.FOREST
+				&& world.provider.dimensionId != DimensionIds.DESERT
+				&& world.provider.dimensionId != DimensionIds.CARTHAGE)
 		{
 			world.setBlock(x, y, z, 0);
 		}
@@ -51,23 +52,23 @@ public class BlockLyokoVirtual extends BlockContainer
 	@Override
 	public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
     {
-		if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == CodeLyoko.Forest_Sector_ID)
+		if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.FOREST)
 		{
 			return virtualGrass;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == CodeLyoko.Mountain_Sector_ID)
+		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.MOUNTAIN)
 		{
 			return virtualStone;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == CodeLyoko.Desert_Sector_ID)
+		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.DESERT)
 		{
 			return virtualSand;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == CodeLyoko.Polar_Sector_ID)
+		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.ICE)
 		{
 			return virtualIce;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == CodeLyoko.Carthage_Sector_ID)
+		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.CARTHAGE)
 		{
 			return virtualCarthage;
 		}

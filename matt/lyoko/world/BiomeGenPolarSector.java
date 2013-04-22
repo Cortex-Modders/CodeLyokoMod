@@ -6,6 +6,7 @@ import net.minecraft.src.*;
 import net.minecraft.world.biome.SpawnListEntry;
 import matt.lyoko.*;
 import matt.lyoko.entities.mobs.*;
+import matt.lyoko.lib.BlockIds;
 
 public class BiomeGenPolarSector extends BiomeGenBaseLyoko
 {
@@ -16,8 +17,8 @@ public class BiomeGenPolarSector extends BiomeGenBaseLyoko
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableMonsterList.add(new SpawnListEntry(EntityBlok.class, 4, 4, 1));
-        this.topBlock = (byte)CodeLyoko.Lyoko_Ice;
-        this.fillerBlock = (byte)CodeLyoko.Lyoko_Ice;
+        this.topBlock = (byte)BlockIds.LYOKO_ICE;
+        this.fillerBlock = (byte)BlockIds.LYOKO_ICE;
     } 
     
 }

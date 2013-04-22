@@ -9,12 +9,14 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import matt.lyoko.*;
+import matt.lyoko.lib.BlockIds;
+import matt.lyoko.lib.DimensionIds;
 
 public class LyokoCarthageSector extends WorldProvider{
 
 	public int getDimensionID() 
 	{
-		return CodeLyoko.Carthage_Sector_ID;
+		return DimensionIds.CARTHAGE;
 	}
 
 	@Override
