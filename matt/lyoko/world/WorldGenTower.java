@@ -4,6 +4,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
+import matt.lyoko.*;
 import matt.lyoko.lib.DimensionIds;
 
 public class WorldGenTower implements IWorldGenerator {
