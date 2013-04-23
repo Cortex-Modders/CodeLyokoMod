@@ -1,10 +1,9 @@
 package matt.lyoko.slots;
 
-import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerSuperCalc;
+import matt.lyoko.items.ModItems;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class SlotSuperCalc extends Slot
@@ -20,6 +19,6 @@ public class SlotSuperCalc extends Slot
     
     public boolean isItemValid(ItemStack stack)
     {
-    	return stack.getItem() == CodeLyoko.DataFragment;
+    	return stack.getItem() == ModItems.DataFragment;
     }
 }

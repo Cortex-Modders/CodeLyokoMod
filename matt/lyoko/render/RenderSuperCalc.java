@@ -1,10 +1,10 @@
 package matt.lyoko.render;
 
-import matt.lyoko.entities.*;
-import matt.lyoko.model.*;
+import matt.lyoko.entities.TileEntitySuperCalc;
+import matt.lyoko.model.ModelSuperCalc;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import java.util.Random;
+
 import org.lwjgl.opengl.GL11;
 
 public class RenderSuperCalc extends TileEntitySpecialRenderer

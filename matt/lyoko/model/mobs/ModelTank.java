@@ -3,7 +3,6 @@ package matt.lyoko.model.mobs;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.src.*;
 
 public class ModelTank extends ModelBase
 {

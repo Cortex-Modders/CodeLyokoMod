@@ -1,16 +1,17 @@
 package matt.lyoko.items;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemInWorldManager;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.src.*;
 import net.minecraft.world.World;
-import net.minecraftforge.common.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.*;
-import matt.lyoko.*;
 
 public class ArmorLyoko extends ItemArmor
 {
@@ -29,22 +30,22 @@ public class ArmorLyoko extends ItemArmor
         
         @Override
     	public void registerIcons(IconRegister iconRegister)
-    	{
-    		if(this.itemID == CodeLyoko.AelitaHelmet.itemID || this.itemID == CodeLyoko.OddHelmet.itemID
-    				|| this.itemID == CodeLyoko.UlrichHelmet.itemID || this.itemID == CodeLyoko.YumiHelmet.itemID
-    				|| this.itemID == CodeLyoko.WilliamHelmet.itemID)
+        {
+    		if(this.itemID == ModItems.AelitaHelmet.itemID || this.itemID == ModItems.OddHelmet.itemID
+    				|| this.itemID == ModItems.UlrichHelmet.itemID || this.itemID == ModItems.YumiHelmet.itemID
+    				|| this.itemID == ModItems.WilliamHelmet.itemID)
     	         itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "helmet");
-    		if(this.itemID == CodeLyoko.AelitaChest.itemID || this.itemID == CodeLyoko.OddChest.itemID
-    				|| this.itemID == CodeLyoko.UlrichChest.itemID || this.itemID == CodeLyoko.YumiChest.itemID
-    				|| this.itemID == CodeLyoko.WilliamChest.itemID)
+    		if(this.itemID == ModItems.AelitaChest.itemID || this.itemID == ModItems.OddChest.itemID
+    				|| this.itemID == ModItems.UlrichChest.itemID || this.itemID == ModItems.YumiChest.itemID
+    				|| this.itemID == ModItems.WilliamChest.itemID)
     			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "chest");
-    		if(this.itemID == CodeLyoko.AelitaLegs.itemID || this.itemID == CodeLyoko.OddLegs.itemID
-    				|| this.itemID == CodeLyoko.UlrichLegs.itemID || this.itemID == CodeLyoko.YumiLegs.itemID
-    				|| this.itemID == CodeLyoko.WilliamLegs.itemID)
+    		if(this.itemID == ModItems.AelitaLegs.itemID || this.itemID == ModItems.OddLegs.itemID
+    				|| this.itemID == ModItems.UlrichLegs.itemID || this.itemID == ModItems.YumiLegs.itemID
+    				|| this.itemID == ModItems.WilliamLegs.itemID)
     			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "legs");
-    		if(this.itemID == CodeLyoko.AelitaBoots.itemID || this.itemID == CodeLyoko.OddBoots.itemID
-    				|| this.itemID == CodeLyoko.UlrichBoots.itemID || this.itemID == CodeLyoko.YumiBoots.itemID
-    				|| this.itemID == CodeLyoko.WilliamBoots.itemID)
+    		if(this.itemID == ModItems.AelitaBoots.itemID || this.itemID == ModItems.OddBoots.itemID
+    				|| this.itemID == ModItems.UlrichBoots.itemID || this.itemID == ModItems.YumiBoots.itemID
+    				|| this.itemID == ModItems.WilliamBoots.itemID)
     			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "boots");
     	}
         
@@ -60,8 +61,8 @@ public class ArmorLyoko extends ItemArmor
         			ItemStack chest = player.getCurrentItemOrArmor(3);
         			ItemStack legs = player.getCurrentItemOrArmor(2);
         			ItemStack boots = player.getCurrentItemOrArmor(1);
-        			if (helmet.getItem() == CodeLyoko.AelitaHelmet && chest.getItem() == CodeLyoko.AelitaChest
-        					&& legs.getItem() == CodeLyoko.AelitaLegs && boots.getItem() == CodeLyoko.AelitaBoots)
+        			if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest
+        					&& legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
         			{
         				player.capabilities.allowFlying = true;
         				player.fallDistance = 0;
@@ -72,28 +73,28 @@ public class ArmorLyoko extends ItemArmor
         					{
         						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.VirtualBlock, 1));
         					}
-        					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.EnergyField, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.EnergyField.itemID))
+        					if((stack2 == null || stack2 == new ItemStack(ModItems.EnergyField, stack2.stackSize)) && !player.inventory.hasItem(ModItems.EnergyField.itemID))
         					{
-        						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.EnergyField, 1));
+        						player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.EnergyField, 1));
         					}
         				}
         			}
-        			else if (helmet.getItem() == CodeLyoko.OddHelmet && chest.getItem() == CodeLyoko.OddChest
-        					&& legs.getItem() == CodeLyoko.OddLegs && boots.getItem() == CodeLyoko.OddBoots)
+        			else if (helmet.getItem() == ModItems.OddHelmet && chest.getItem() == ModItems.OddChest
+        					&& legs.getItem() == ModItems.OddLegs && boots.getItem() == ModItems.OddBoots)
         			{
         				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
         				player.fallDistance = 0;
         				for(int x = 0; x < 9; x++)
         				{
         					ItemStack stack2 = player.inventory.getStackInSlot(x);
-        					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Glove, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Glove.itemID))
+        					if((stack2 == null || stack2 == new ItemStack(ModItems.Glove, stack2.stackSize)) && !player.inventory.hasItem(ModItems.Glove.itemID))
         					{
-        						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Glove, 1));
+        						player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.Glove, 1));
         					}
         				}
         			}
-        			else if (helmet.getItem() == CodeLyoko.UlrichHelmet && chest.getItem() == CodeLyoko.UlrichChest
-        					&& legs.getItem() == CodeLyoko.UlrichLegs && boots.getItem() == CodeLyoko.UlrichBoots)
+        			else if (helmet.getItem() == ModItems.UlrichHelmet && chest.getItem() == ModItems.UlrichChest
+        					&& legs.getItem() == ModItems.UlrichLegs && boots.getItem() == ModItems.UlrichBoots)
         			{
         				if(player.isSprinting())
         				{
@@ -103,14 +104,14 @@ public class ArmorLyoko extends ItemArmor
         				for(int x = 0; x < 9; x++)
         				{
         					ItemStack stack2 = player.inventory.getStackInSlot(x);
-        					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Katana, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Katana.itemID))
+        					if((stack2 == null || stack2 == new ItemStack(ModItems.Katana, stack2.stackSize)) && !player.inventory.hasItem(ModItems.Katana.itemID))
         					{
-        						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Katana, 1));
+        						player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.Katana, 1));
         					}
         				}
         			}
-        			else if (helmet.getItem() == CodeLyoko.YumiHelmet && chest.getItem() == CodeLyoko.YumiChest
-        					&& legs.getItem() == CodeLyoko.YumiLegs && boots.getItem() == CodeLyoko.YumiBoots)
+        			else if (helmet.getItem() == ModItems.YumiHelmet && chest.getItem() == ModItems.YumiChest
+        					&& legs.getItem() == ModItems.YumiLegs && boots.getItem() == ModItems.YumiBoots)
         			{
         				player.getFoodStats().setFoodSaturationLevel(40.0F);
         				player.getFoodStats().setFoodLevel(20);
@@ -126,14 +127,14 @@ public class ArmorLyoko extends ItemArmor
         				for(int x = 0; x < 9; x++)
         				{
         					ItemStack stack2 = player.inventory.getStackInSlot(x);
-        					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Fan, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Fan.itemID))
+        					if((stack2 == null || stack2 == new ItemStack(ModItems.Fan, stack2.stackSize)) && !player.inventory.hasItem(ModItems.Fan.itemID))
         					{
-        						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Fan, 1));
+        						player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.Fan, 1));
         					}
         				}
         			}
-        			else if (helmet.getItem() == CodeLyoko.WilliamHelmet && chest.getItem() == CodeLyoko.WilliamChest
-        					&& legs.getItem() == CodeLyoko.WilliamLegs && boots.getItem() == CodeLyoko.WilliamBoots)
+        			else if (helmet.getItem() == ModItems.WilliamHelmet && chest.getItem() == ModItems.WilliamChest
+        					&& legs.getItem() == ModItems.WilliamLegs && boots.getItem() == ModItems.WilliamBoots)
         			{
         				if(player.isSprinting())
         				{
@@ -144,9 +145,9 @@ public class ArmorLyoko extends ItemArmor
         				for(int x = 0; x < 9; x++)
         				{
         					ItemStack stack2 = player.inventory.getStackInSlot(x);
-        					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.Zweihander, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.Zweihander.itemID))
+        					if((stack2 == null || stack2 == new ItemStack(ModItems.Zweihander, stack2.stackSize)) && !player.inventory.hasItem(ModItems.Zweihander.itemID))
         					{
-        						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.Zweihander, 1));
+        						player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.Zweihander, 1));
         					}
         				}
         			}
@@ -171,17 +172,17 @@ public class ArmorLyoko extends ItemArmor
         @Override
         public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
         {
-        	if(itemstack.itemID == CodeLyoko.AelitaHelmet.itemID || itemstack.itemID == CodeLyoko.AelitaChest.itemID || itemstack.itemID == CodeLyoko.AelitaBoots.itemID
-        			|| itemstack.itemID == CodeLyoko.OddHelmet.itemID || itemstack.itemID == CodeLyoko.OddChest.itemID || itemstack.itemID == CodeLyoko.OddBoots.itemID
-        			|| itemstack.itemID == CodeLyoko.UlrichHelmet.itemID || itemstack.itemID == CodeLyoko.UlrichChest.itemID || itemstack.itemID == CodeLyoko.UlrichBoots.itemID
-        			|| itemstack.itemID == CodeLyoko.YumiHelmet.itemID || itemstack.itemID == CodeLyoko.YumiChest.itemID || itemstack.itemID == CodeLyoko.YumiBoots.itemID
-        			|| itemstack.itemID == CodeLyoko.WilliamHelmet.itemID || itemstack.itemID == CodeLyoko.WilliamChest.itemID || itemstack.itemID == CodeLyoko.WilliamBoots.itemID)
+        	if(itemstack.itemID == ModItems.AelitaHelmet.itemID || itemstack.itemID == ModItems.AelitaChest.itemID || itemstack.itemID == ModItems.AelitaBoots.itemID
+        			|| itemstack.itemID == ModItems.OddHelmet.itemID || itemstack.itemID == ModItems.OddChest.itemID || itemstack.itemID == ModItems.OddBoots.itemID
+        			|| itemstack.itemID == ModItems.UlrichHelmet.itemID || itemstack.itemID == ModItems.UlrichChest.itemID || itemstack.itemID == ModItems.UlrichBoots.itemID
+        			|| itemstack.itemID == ModItems.YumiHelmet.itemID || itemstack.itemID == ModItems.YumiChest.itemID || itemstack.itemID == ModItems.YumiBoots.itemID
+        			|| itemstack.itemID == ModItems.WilliamHelmet.itemID || itemstack.itemID == ModItems.WilliamChest.itemID || itemstack.itemID == ModItems.WilliamBoots.itemID)
             {
             	return "/mods/lyoko/textures/armor/" + this.armorOwner + "_1.png";
             }
-            if(itemstack.itemID == CodeLyoko.AelitaLegs.itemID || itemstack.itemID == CodeLyoko.OddLegs.itemID
-            		|| itemstack.itemID == CodeLyoko.UlrichLegs.itemID || itemstack.itemID == CodeLyoko.YumiLegs.itemID
-            		|| itemstack.itemID == CodeLyoko.WilliamLegs.itemID)
+            if(itemstack.itemID == ModItems.AelitaLegs.itemID || itemstack.itemID == ModItems.OddLegs.itemID
+            		|| itemstack.itemID == ModItems.UlrichLegs.itemID || itemstack.itemID == ModItems.YumiLegs.itemID
+            		|| itemstack.itemID == ModItems.WilliamLegs.itemID)
             {
             	return "/mods/lyoko/textures/armor/" + this.armorOwner + "_2.png";
             }

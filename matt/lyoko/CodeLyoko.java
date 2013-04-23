@@ -44,43 +44,6 @@ public class CodeLyoko
 	public static final BiomeGenBase lyokodesert = ((BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631)).setLyokoBiomeName("Desert Sector");
 	public static final BiomeGenBase lyokopolar = ((BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631)).setLyokoBiomeName("Polar Sector");
 	public static final BiomeGenBase lyokocarthage = ((BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631)).setLyokoBiomeName("Carthage Sector");
-	public static Item Katana;// = new ItemLyokoSword(Weapon_Lyoko_1, toolLYOKO).setUnlocalizedName("Katana").setIconIndex(0);
-	public static Item Zweihander;// = new ItemLyokoSword(Weapon_Lyoko_2, toolLYOKO).setUnlocalizedName("Zweihander").setIconIndex(1);
-	public static Item Fan;// = new ItemLyokoFan(Weapon_Lyoko_3).setUnlocalizedName("Fan").setIconIndex(2);
-	public static Item EnergyField;// = new ItemLyokoEnergyField(Weapon_Lyoko_4).setUnlocalizedName("EnergyField").setIconIndex(3);
-	public static Item Glove;// = new ItemGlove(Weapon_Lyoko_5).setUnlocalizedName("Glove").setIconIndex(4);
-	public static Item LaserArrow;// = new ItemLyoko(Weapon_Lyoko_6).setUnlocalizedName("LaserArrow").setIconIndex(5);
-	public static Item LyokoIngot;// = new ItemLyoko(Item_Lyoko_11).setUnlocalizedName("LyokoIngot").setIconIndex(16);
-	public static Item LyokoLead;// = new ItemLyoko(Item_Lyoko_12).setUnlocalizedName("Lead210").setIconIndex(17);
-	public static Item LyokoCell;// = new ItemLyoko(Item_Lyoko_13).setUnlocalizedName("Cell").setIconIndex(18);
-	public static Item LyokoLeadCell;// = new ItemLyokoFuel(Item_Lyoko_14, 10000).setUnlocalizedName("Lead210Cell").setIconIndex(19);
-	public static Item LyokoDepletedLeadCell;// = new ItemLyoko(Item_Lyoko_15).setUnlocalizedName("DepletedLead210Cell").setIconIndex(20);
-	public static Item AelitaHelmet;// = new ArmorLyoko(Aelita_Armor_Helmet, armorLYOKO, 5, 0, "Aelita").setIconIndex(21).setUnlocalizedName("AelitaHelmet");
-    public static Item AelitaChest;// = new ArmorLyoko(Aelita_Armor_Chest, armorLYOKO, 5, 1, "Aelita").setIconIndex(22).setUnlocalizedName("AelitaChest");
-    public static Item AelitaLegs;// = new ArmorLyoko(Aelita_Armor_Pants, armorLYOKO, 5, 2, "Aelita").setIconIndex(23).setUnlocalizedName("AelitaPants");
-    public static Item AelitaBoots;// = new ArmorLyoko(Aelita_Armor_Boots, armorLYOKO, 5, 3, "Aelita").setIconIndex(24).setUnlocalizedName("AelitaBoots");
-    public static Item OddHelmet;// = new ArmorLyoko(Odd_Armor_Helmet, armorLYOKO, 6, 0, "Odd").setIconIndex(25).setUnlocalizedName("OddHelmet");
-    public static Item OddChest;// = new ArmorLyoko(Odd_Armor_Chest, armorLYOKO, 6, 1, "Odd").setIconIndex(26).setUnlocalizedName("OddChest");
-    public static Item OddLegs;// = new ArmorLyoko(Odd_Armor_Pants, armorLYOKO, 6, 2, "Odd").setIconIndex(27).setUnlocalizedName("OddPants");
-    public static Item OddBoots;// = new ArmorLyoko(Odd_Armor_Boots, armorLYOKO, 6, 3, "Odd").setIconIndex(28).setUnlocalizedName("OddBoots");
-    public static Item UlrichHelmet;// = new ArmorLyoko(Ulrich_Armor_Helmet, armorLYOKO, 7, 0, "Ulrich").setIconIndex(29).setUnlocalizedName("UlrichHelmet");
-    public static Item UlrichChest;// = new ArmorLyoko(Ulrich_Armor_Chest, armorLYOKO, 7, 1, "Ulrich").setIconIndex(30).setUnlocalizedName("UlrichChest");
-    public static Item UlrichLegs;// = new ArmorLyoko(Ulrich_Armor_Pants, armorLYOKO, 7, 2, "Ulrich").setIconIndex(31).setUnlocalizedName("UlrichPants");
-    public static Item UlrichBoots;// = new ArmorLyoko(Ulrich_Armor_Boots, armorLYOKO, 7, 3, "Ulrich").setIconIndex(32).setUnlocalizedName("UlrichBoots");
-    public static Item YumiHelmet;// = new ArmorLyoko(Yumi_Armor_Helmet, armorLYOKO, 8, 0, "Yumi").setIconIndex(33).setUnlocalizedName("YumiHelmet");
-    public static Item YumiChest;// = new ArmorLyoko(Yumi_Armor_Chest, armorLYOKO, 8, 1, "Yumi").setIconIndex(34).setUnlocalizedName("YumiChest");
-    public static Item YumiLegs;// = new ArmorLyoko(Yumi_Armor_Pants, armorLYOKO, 8, 2, "Yumi").setIconIndex(35).setUnlocalizedName("YumiPants");
-    public static Item YumiBoots;// = new ArmorLyoko(Yumi_Armor_Boots, armorLYOKO, 8, 3, "Yumi").setIconIndex(36).setUnlocalizedName("YumiBoots");
-    public static Item WilliamHelmet;// = new ArmorLyoko(William_Armor_Helmet, armorLYOKO, 9, 0, "William").setIconIndex(37).setUnlocalizedName("WilliamHelmet");
-    public static Item WilliamChest;// = new ArmorLyoko(William_Armor_Chest, armorLYOKO, 9, 1, "William").setIconIndex(38).setUnlocalizedName("WilliamChest");
-    public static Item WilliamLegs;// = new ArmorLyoko(William_Armor_Pants, armorLYOKO, 9, 2, "William").setIconIndex(39).setUnlocalizedName("WilliamPants");
-    public static Item WilliamBoots;// = new ArmorLyoko(William_Armor_Boots, armorLYOKO, 9, 3, "William").setIconIndex(40).setUnlocalizedName("WilliamBoots");
-    public static Item DataFragment;
-    public static Item Uranium;
-    public static Item LyokoUraniumCell;
-    public static Item LyokoDepletedUraniumCell;
-    public static Item Overboard;
-    public static Item Skid;
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
 	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
@@ -202,44 +165,9 @@ public class CodeLyoko
     @Init
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
-    	Katana = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_1, toolLYOKO).setUnlocalizedName("Katana");
-    	Zweihander = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_2, toolLYOKO).setUnlocalizedName("Zweihander");
-    	Fan = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_3, EntityFan.class, Fan, "fan").setUnlocalizedName("Fan");
-    	EnergyField = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_4, EntityEnergyField.class, EnergyField, "energyfield").setUnlocalizedName("EnergyField");
-    	Glove = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_5, EntityLaserArrow.class, Glove, "glove").setUnlocalizedName("Glove");
-    	LaserArrow = new ItemLyoko(ItemIds.WEAPON_LYOKO_6).setUnlocalizedName("LaserArrow");
-    	LyokoIngot = new ItemLyoko(ItemIds.ITEM_LYOKO_11).setUnlocalizedName("LyokoIngot");
-    	LyokoLead = new ItemLyoko(ItemIds.ITEM_LYOKO_12).setUnlocalizedName("Lead210");
-    	LyokoCell = new ItemLyoko(ItemIds.ITEM_LYOKO_13).setUnlocalizedName("Cell");
-    	LyokoLeadCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_14, 1250, LyokoDepletedLeadCell).setUnlocalizedName("Lead210Cell");
-    	LyokoDepletedLeadCell = new ItemLyoko(ItemIds.ITEM_LYOKO_15).setUnlocalizedName("DepletedLead210Cell");
-    	AelitaHelmet = new ArmorLyoko(ItemIds.AELITA_ARMOR_HELMET, armorLYOKO, 5, 0, "aelita").setUnlocalizedName("AelitaHelmet");
-        AelitaChest = new ArmorLyoko(ItemIds.AELITA_ARMOR_CHEST, armorLYOKO, 5, 1, "aelita").setUnlocalizedName("AelitaChest");
-        AelitaLegs = new ArmorLyoko(ItemIds.AELITA_ARMOR_PANTS, armorLYOKO, 5, 2, "aelita").setUnlocalizedName("AelitaPants");
-        AelitaBoots = new ArmorLyoko(ItemIds.AELITA_ARMOR_BOOTS, armorLYOKO, 5, 3, "aelita").setUnlocalizedName("AelitaBoots");
-        OddHelmet = new ArmorLyoko(ItemIds.ODD_ARMOR_HELMET, armorLYOKO, 6, 0, "odd").setUnlocalizedName("OddHelmet");
-        OddChest = new ArmorLyoko(ItemIds.ODD_ARMOR_CHEST, armorLYOKO, 6, 1, "odd").setUnlocalizedName("OddChest");
-        OddLegs = new ArmorLyoko(ItemIds.ODD_ARMOR_PANTS, armorLYOKO, 6, 2, "odd").setUnlocalizedName("OddPants");
-        OddBoots = new ArmorLyoko(ItemIds.ODD_ARMOR_BOOTS, armorLYOKO, 6, 3, "odd").setUnlocalizedName("OddBoots");
-        UlrichHelmet = new ArmorLyoko(ItemIds.ULRICH_ARMOR_HELMET, armorLYOKO, 7, 0, "ulrich").setUnlocalizedName("UlrichHelmet");
-        UlrichChest = new ArmorLyoko(ItemIds.ULRICH_ARMOR_CHEST, armorLYOKO, 7, 1, "ulrich").setUnlocalizedName("UlrichChest");
-        UlrichLegs = new ArmorLyoko(ItemIds.ULRICH_ARMOR_PANTS, armorLYOKO, 7, 2, "ulrich").setUnlocalizedName("UlrichPants");
-        UlrichBoots = new ArmorLyoko(ItemIds.ULRICH_ARMOR_BOOTS, armorLYOKO, 7, 3, "ulrich").setUnlocalizedName("UlrichBoots");
-        YumiHelmet = new ArmorLyoko(ItemIds.YUMI_ARMOR_HELMET, armorLYOKO, 8, 0, "yumi").setUnlocalizedName("YumiHelmet");
-        YumiChest = new ArmorLyoko(ItemIds.YUMI_ARMOR_CHEST, armorLYOKO, 8, 1, "yumi").setUnlocalizedName("YumiChest");
-        YumiLegs = new ArmorLyoko(ItemIds.YUMI_ARMOR_PANTS, armorLYOKO, 8, 2, "yumi").setUnlocalizedName("YumiPants");
-        YumiBoots = new ArmorLyoko(ItemIds.YUMI_ARMOR_BOOTS, armorLYOKO, 8, 3, "yumi").setUnlocalizedName("YumiBoots");
-        WilliamHelmet = new ArmorLyoko(ItemIds.WILLIAM_ARMOR_HELMET, armorLYOKO, 9, 0, "william").setUnlocalizedName("WilliamHelmet");
-        WilliamChest = new ArmorLyoko(ItemIds.WILLIAM_ARMOR_CHEST, armorLYOKO, 9, 1, "william").setUnlocalizedName("WilliamChest");
-        WilliamLegs = new ArmorLyoko(ItemIds.WILLIAM_ARMOR_PANTS, armorLYOKO, 9, 2, "william").setUnlocalizedName("WilliamPants");
-        WilliamBoots = new ArmorLyoko(ItemIds.WILLIAM_ARMOR_BOOTS, armorLYOKO, 9, 3, "william").setUnlocalizedName("WilliamBoots");
-        DataFragment = new ItemDataFragment(ItemIds.DATA_FRAGMENT).setUnlocalizedName("DataFragment");
-        Uranium = new ItemLyoko(ItemIds.ITEM_LYOKO_URANIUM).setUnlocalizedName("Uranium");
-    	LyokoUraniumCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_URANIUM_CELL, 5000, LyokoDepletedUraniumCell).setUnlocalizedName("UraniumCell");
-    	LyokoDepletedUraniumCell = new ItemLyoko(ItemIds.ITEM_LYOKO_DEPLETED_URANIUM).setUnlocalizedName("DepletedUraniumCell");
-    	Overboard = new ItemOverboard(ItemIds.ITEM_OVERBOARD).setUnlocalizedName("Overboard");
-    	Skid = new ItemSkid(ItemIds.ITEM_SKID).setUnlocalizedName("Skidbladnir");
-    	TowerBlock = new BlockLyokoTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
+    	ModItems.init();
+        
+        TowerBlock = new BlockLyokoTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
     	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
     	LyokoGrass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
     	LyokoStone = new BlockLyoko(BlockIds.LYOKO_STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
@@ -290,14 +218,14 @@ public class CodeLyoko
     		"###", "#*#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('*'), Item.netherStar
     	});
     	
-    	LanguageRegistry.addName(Overboard, "Overboard");
+    	LanguageRegistry.addName(ModItems.Overboard, "Overboard");
     	/*GameRegistry.addRecipe(new ItemStack(Overboard, 1), new Object[] {
     		"h*c", "$#$", "bml", Character.valueOf('*'), Item.boat, Character.valueOf('m'), Item.minecartEmpty, Character.valueOf('#'), Item.netherStar,
     		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
     		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
     	});*/
     	
-    	LanguageRegistry.addName(Skid, "Skidbladnir");
+    	LanguageRegistry.addName(ModItems.Skid, "Skidbladnir");
     	/*GameRegistry.addRecipe(new ItemStack(Skid, 1), new Object[] {
     		"h*c", "$#$", "bml", Character.valueOf('*'), Item.boat, Character.valueOf('m'), Item.minecartEmpty, Character.valueOf('#'), Item.netherStar,
     		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
@@ -325,155 +253,155 @@ public class CodeLyoko
     	GameRegistry.registerBlock(LyokoMountainPortal, "Mountain Portal");
     	LanguageRegistry.addName(LyokoMountainPortal, "Mountain Portal");
     	
-    	LanguageRegistry.addName(DataFragment, "Data Fragment");
+    	LanguageRegistry.addName(ModItems.DataFragment, "Data Fragment");
     	
-    	LanguageRegistry.addName(Uranium, "Uranium");
-    	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(Uranium, 1), 5F);
+    	LanguageRegistry.addName(ModItems.Uranium, "Uranium");
+    	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(ModItems.Uranium, 1), 5F);
     	
-    	LanguageRegistry.addName(LyokoUraniumCell, "Uranium Fuel Cell");
-    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(LyokoUraniumCell),"ingotUranium",
-    			LyokoCell));
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoUraniumCell, 2),"*#*",
-    			Character.valueOf('*'), LyokoDepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
+    	LanguageRegistry.addName(ModItems.LyokoUraniumCell, "Uranium Fuel Cell");
+    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.LyokoUraniumCell),"ingotUranium",
+    	        ModItems.LyokoCell));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.LyokoUraniumCell, 2),"*#*",
+    			Character.valueOf('*'), ModItems.LyokoDepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
     	
-    	LanguageRegistry.addName(LyokoDepletedUraniumCell, "Depleted Uranium Fuel Cell");
+    	LanguageRegistry.addName(ModItems.LyokoDepletedUraniumCell, "Depleted Uranium Fuel Cell");
     	
-    	LanguageRegistry.addName(LyokoLead, "Lead Isotope 210");
-    	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(LyokoLead, 1), 5F);
+    	LanguageRegistry.addName(ModItems.LyokoLead, "Lead Isotope 210");
+    	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(ModItems.LyokoLead, 1), 5F);
     	
-    	LanguageRegistry.addName(LyokoCell, "Empty Fuel Cell");
-    	GameRegistry.addRecipe(new ItemStack(LyokoCell, 16), new Object[] {
+    	LanguageRegistry.addName(ModItems.LyokoCell, "Empty Fuel Cell");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.LyokoCell, 16), new Object[] {
     		" # ", "#*#", " # ", Character.valueOf('*'), Block.glass, Character.valueOf('#'), Item.ingotIron
     	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(LyokoCell, 1), new Object[] {
-    		LyokoDepletedLeadCell
+    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.LyokoCell, 1), new Object[] {
+    	    ModItems.LyokoDepletedLeadCell
     	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(LyokoCell, 1), new Object[] {
-    		LyokoDepletedUraniumCell
-    	});
-    	
-    	LanguageRegistry.addName(LyokoLeadCell, "Lead Isotope 210 Fuel Cell");
-    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(LyokoLeadCell),"ingotRadioactiveLead",
-    			LyokoCell));
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(LyokoLeadCell, 2),"*#*",
-    			Character.valueOf('*'), LyokoDepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
-    	
-    	LanguageRegistry.addName(LyokoDepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
-    	
-    	LanguageRegistry.addName(LyokoIngot, "Lyokoan Ingot");
-    	GameRegistry.addSmelting(LyokoOre.blockID, new ItemStack(LyokoIngot, 1), 5F);
-    	
-    	LanguageRegistry.addName(AelitaHelmet, "Aelita's Helmet");
-    	LanguageRegistry.addName(AelitaChest, "Aelita's Chestplate");
-    	LanguageRegistry.addName(AelitaLegs, "Aelita's Leggings");
-    	LanguageRegistry.addName(AelitaBoots, "Aelita's Boots");
-    	GameRegistry.addRecipe(new ItemStack(AelitaHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(AelitaChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(AelitaLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(AelitaBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.LyokoCell, 1), new Object[] {
+    	    ModItems.LyokoDepletedUraniumCell
     	});
     	
-    	LanguageRegistry.addName(OddHelmet, "Odd's Helmet");
-    	LanguageRegistry.addName(OddChest, "Odd's Chestplate");
-    	LanguageRegistry.addName(OddLegs, "Odd's Leggings");
-    	LanguageRegistry.addName(OddBoots, "Odd's Boots");
-    	GameRegistry.addRecipe(new ItemStack(OddHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	LanguageRegistry.addName(ModItems.LyokoLeadCell, "Lead Isotope 210 Fuel Cell");
+    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.LyokoLeadCell),"ingotRadioactiveLead",
+    	        ModItems.LyokoCell));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.LyokoLeadCell, 2),"*#*",
+    			Character.valueOf('*'), ModItems.LyokoDepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
+    	
+    	LanguageRegistry.addName(ModItems.LyokoDepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
+    	
+    	LanguageRegistry.addName(ModItems.LyokoIngot, "Lyokoan Ingot");
+    	GameRegistry.addSmelting(LyokoOre.blockID, new ItemStack(ModItems.LyokoIngot, 1), 5F);
+    	
+    	LanguageRegistry.addName(ModItems.AelitaHelmet, "Aelita's Helmet");
+    	LanguageRegistry.addName(ModItems.AelitaChest, "Aelita's Chestplate");
+    	LanguageRegistry.addName(ModItems.AelitaLegs, "Aelita's Leggings");
+    	LanguageRegistry.addName(ModItems.AelitaBoots, "Aelita's Boots");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
-    	GameRegistry.addRecipe(new ItemStack(OddChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
-    	GameRegistry.addRecipe(new ItemStack(OddLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
-    	GameRegistry.addRecipe(new ItemStack(OddBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
     	
-    	LanguageRegistry.addName(UlrichHelmet, "Ulrich's Helmet");
-    	LanguageRegistry.addName(UlrichChest, "Ulrich's Chestplate");
-    	LanguageRegistry.addName(UlrichLegs, "Ulrich's Leggings");
-    	LanguageRegistry.addName(UlrichBoots, "Ulrich's Boots");
-    	GameRegistry.addRecipe(new ItemStack(UlrichHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	LanguageRegistry.addName(ModItems.OddHelmet, "Odd's Helmet");
+    	LanguageRegistry.addName(ModItems.OddChest, "Odd's Chestplate");
+    	LanguageRegistry.addName(ModItems.OddLegs, "Odd's Leggings");
+    	LanguageRegistry.addName(ModItems.OddBoots, "Odd's Boots");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.OddHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
-    	GameRegistry.addRecipe(new ItemStack(UlrichChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.OddChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
-    	GameRegistry.addRecipe(new ItemStack(UlrichLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.OddLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
-    	GameRegistry.addRecipe(new ItemStack(UlrichBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
-    	});
-    	
-    	LanguageRegistry.addName(YumiHelmet, "Yumi's Helmet");
-    	LanguageRegistry.addName(YumiChest, "Yumi's Chestplate");
-    	LanguageRegistry.addName(YumiLegs, "Yumi's Leggings");
-    	LanguageRegistry.addName(YumiBoots, "Yumi's Boots");
-    	GameRegistry.addRecipe(new ItemStack(YumiHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(YumiChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(YumiLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(YumiBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.OddBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
     	
-    	LanguageRegistry.addName(WilliamHelmet, "William's Helmet");
-    	LanguageRegistry.addName(WilliamChest, "William's Chestplate");
-    	LanguageRegistry.addName(WilliamLegs, "William's Leggings");
-    	LanguageRegistry.addName(WilliamBoots, "William's Boots");
-    	GameRegistry.addRecipe(new ItemStack(WilliamHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	LanguageRegistry.addName(ModItems.UlrichHelmet, "Ulrich's Helmet");
+    	LanguageRegistry.addName(ModItems.UlrichChest, "Ulrich's Chestplate");
+    	LanguageRegistry.addName(ModItems.UlrichLegs, "Ulrich's Leggings");
+    	LanguageRegistry.addName(ModItems.UlrichBoots, "Ulrich's Boots");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
-    	GameRegistry.addRecipe(new ItemStack(WilliamChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
-    	GameRegistry.addRecipe(new ItemStack(WilliamLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
-    	GameRegistry.addRecipe(new ItemStack(WilliamBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
     	
-    	LanguageRegistry.addName(Katana, "Katana");
+    	LanguageRegistry.addName(ModItems.YumiHelmet, "Yumi's Helmet");
+    	LanguageRegistry.addName(ModItems.YumiChest, "Yumi's Chestplate");
+    	LanguageRegistry.addName(ModItems.YumiLegs, "Yumi's Leggings");
+    	LanguageRegistry.addName(ModItems.YumiBoots, "Yumi's Boots");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    	});
+    	
+    	LanguageRegistry.addName(ModItems.WilliamHelmet, "William's Helmet");
+    	LanguageRegistry.addName(ModItems.WilliamChest, "William's Chestplate");
+    	LanguageRegistry.addName(ModItems.WilliamLegs, "William's Leggings");
+    	LanguageRegistry.addName(ModItems.WilliamBoots, "William's Boots");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamHelmet, 1), new Object[] {
+    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamChest, 1), new Object[] {
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamLegs, 1), new Object[] {
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamBoots, 1), new Object[] {
+    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    	});
+    	
+    	LanguageRegistry.addName(ModItems.Katana, "Katana");
     	/*GameRegistry.addRecipe(new ItemStack(Katana, 1), new Object[] {
     		" * ", " * ", " # ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.ingotIron
     	});*/
     	
-    	LanguageRegistry.addName(Zweihander, "Zweihander");
+    	LanguageRegistry.addName(ModItems.Zweihander, "Zweihander");
     	/*GameRegistry.addRecipe(new ItemStack(Zweihander, 1), new Object[] {
     		"***", "***", " # ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.ingotIron
     	});*/
     	
-    	LanguageRegistry.addName(Fan, "Fan");
+    	LanguageRegistry.addName(ModItems.Fan, "Fan");
     	/*GameRegistry.addRecipe(new ItemStack(Fan, 1), new Object[] {
     		"#f ", "#*f", "###", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.stick, Character.valueOf('f'), Item.feather
     	});*/
     	
-    	LanguageRegistry.addName(EnergyField, "Energy Field");
+    	LanguageRegistry.addName(ModItems.EnergyField, "Energy Field");
     	/*GameRegistry.addRecipe(new ItemStack(EnergyField, 1), new Object[] {
     		" * ", "*#*", " * ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar
     	});*/
     	
-    	LanguageRegistry.addName(Glove, "Laser Arrow Glove");
+    	LanguageRegistry.addName(ModItems.Glove, "Laser Arrow Glove");
     	/*GameRegistry.addRecipe(new ItemStack(Glove, 1), new Object[] {
     		"###", "#a#", "#*#", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.leather, Character.valueOf('a'), LaserArrow
     	});*/
     	
-    	LanguageRegistry.addName(LaserArrow, "Laser Arrow");
+    	LanguageRegistry.addName(ModItems.LaserArrow, "Laser Arrow");
     	/*GameRegistry.addRecipe(new ItemStack(LaserArrow, 1), new Object[] {
     		"a*a", "*#*", "a*a", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar, Character.valueOf('a'), Item.arrow
     	});*/

@@ -98,19 +98,19 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         	ItemStack stack = getStackInSlot(slot);
         	ItemStack stack2 = getStackInSlot(slot2);
         	
-        	if(stack != null && stack.getItem() == CodeLyoko.LaserArrow)
+        	if(stack != null && stack.getItem() == ModItems.LaserArrow)
         	{
-        		setInventorySlotContents(slot2, new ItemStack(CodeLyoko.DataFragment, 64));
+        		setInventorySlotContents(slot2, new ItemStack(ModItems.DataFragment, 64));
         	}
         	else if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
         	{
-        		if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == CodeLyoko.LyokoLeadCell)
+        		if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.LyokoLeadCell)
         		{
-        			setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoDepletedLeadCell));
+        			setInventorySlotContents(slot, new ItemStack(ModItems.LyokoDepletedLeadCell));
         		}
-        		else if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == CodeLyoko.LyokoUraniumCell)
+        		else if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.LyokoUraniumCell)
         		{
-        			setInventorySlotContents(slot, new ItemStack(CodeLyoko.LyokoDepletedUraniumCell));
+        			setInventorySlotContents(slot, new ItemStack(ModItems.LyokoDepletedUraniumCell));
         		}
         	}
         	else if(stack != null && stack.getItemDamage() < stack.getMaxDamage() && ((stack2 != null && stack2.stackSize < 64) || stack2 == null))
@@ -122,7 +122,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         	{
         		if(stack2 == null)
         		{
-        			setInventorySlotContents(slot2, new ItemStack(CodeLyoko.DataFragment));
+        			setInventorySlotContents(slot2, new ItemStack(ModItems.DataFragment));
         		}
         		else if(stack2.stackSize < 64)
         		{

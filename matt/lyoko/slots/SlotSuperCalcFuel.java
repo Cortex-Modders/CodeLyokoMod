@@ -1,12 +1,11 @@
 package matt.lyoko.slots;
 
+import matt.lyoko.container.ContainerSuperCalc;
+import matt.lyoko.items.ItemLyokoFuel;
+import matt.lyoko.items.ModItems;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import matt.lyoko.CodeLyoko;
-import matt.lyoko.container.ContainerSuperCalc;
-import matt.lyoko.items.*;
 
 public class SlotSuperCalcFuel extends Slot
 {
@@ -24,7 +23,7 @@ public class SlotSuperCalcFuel extends Slot
      */
     public boolean isItemValid(ItemStack stack)
     {
-    	if(stack.getItem() instanceof ItemLyokoFuel || stack.getItem() == CodeLyoko.LaserArrow)
+    	if(stack.getItem() instanceof ItemLyokoFuel || stack.getItem() == ModItems.LaserArrow)
     	{
     		return true;
     	}

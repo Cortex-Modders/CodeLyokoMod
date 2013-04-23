@@ -16,6 +16,7 @@ import matt.lyoko.entities.*;
 import matt.lyoko.render.*;
 import matt.lyoko.model.*;
 import matt.lyoko.entities.vehicles.*;
+import matt.lyoko.items.ModItems;
 import matt.lyoko.render.vehicles.*;
 import matt.lyoko.model.vehicles.*;
 
@@ -36,8 +37,8 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/william_2");
 		
 		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
-		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(CodeLyoko.Fan));
-		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(CodeLyoko.EnergyField));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(ModItems.Fan));
+		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(ModItems.EnergyField));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow());
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok(new ModelBlok(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank(new ModelTank(), 0.5F));
@@ -53,7 +54,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
 		
-		MinecraftForgeClient.registerItemRenderer(CodeLyoko.Glove.itemID, (IItemRenderer)new ItemRenderGlove());
+		MinecraftForgeClient.registerItemRenderer(ModItems.Glove.itemID, (IItemRenderer)new ItemRenderGlove());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 		

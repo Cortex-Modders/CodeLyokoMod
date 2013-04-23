@@ -1,7 +1,6 @@
 package matt.lyoko.entities.vehicles;
 
-import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.mobs.EntityLyoko;
+import matt.lyoko.items.ModItems;
 import net.minecraft.world.World;
 
 public class EntityOverboard extends EntityVehicle
@@ -11,7 +10,7 @@ public class EntityOverboard extends EntityVehicle
 		super(world);
 		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);
-        this.setDroppedItem(CodeLyoko.Overboard);
+        this.setDroppedItem(ModItems.Overboard);
 	}
 	
 	public EntityOverboard(World world, double x, double y, double z)
@@ -19,7 +18,7 @@ public class EntityOverboard extends EntityVehicle
 		super(world, x, y, z);
 		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);
-        this.setDroppedItem(CodeLyoko.Overboard);
+        this.setDroppedItem(ModItems.Overboard);
 	}
 
 	public String getTexture()

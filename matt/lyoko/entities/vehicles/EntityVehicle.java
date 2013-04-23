@@ -1,29 +1,20 @@
 package matt.lyoko.entities.vehicles;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import matt.lyoko.CodeLyoko;
-import net.minecraft.client.Minecraft;
+import matt.lyoko.items.ModItems;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityVehicle extends Entity {
 
 	protected String texture = "";
-	private double counter = 0;
-	private double increase = 0.05;
-	private double sin;
 	
-	private float x;
-	private float z;
-	
-	private Item droppedItem = CodeLyoko.DataFragment;
+	private Item droppedItem = ModItems.DataFragment;
 	
 	public EntityVehicle(World par1World) {
 		super(par1World);

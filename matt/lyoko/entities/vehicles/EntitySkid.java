@@ -2,6 +2,7 @@ package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.mobs.*;
+import matt.lyoko.items.ModItems;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 
@@ -12,7 +13,7 @@ public class EntitySkid extends EntityVehicle
         super(world);
         texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
-        this.setDroppedItem(CodeLyoko.Skid);
+        this.setDroppedItem(ModItems.Skid);
     }
     
     public EntitySkid(World world, double x, double y, double z)
@@ -20,7 +21,7 @@ public class EntitySkid extends EntityVehicle
         super(world, x, y, z);
         texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
-        this.setDroppedItem(CodeLyoko.Skid);
+        this.setDroppedItem(ModItems.Skid);
     }
     
     public String getTexture()

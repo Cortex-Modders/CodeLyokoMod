@@ -2,12 +2,13 @@ package matt.lyoko.items;
 
 import java.util.List;
 
+import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import matt.lyoko.*;
 
 public class ItemLyokoFuel extends ItemLyoko {
 
@@ -21,9 +22,9 @@ public class ItemLyokoFuel extends ItemLyoko {
 	@Override
 	public void registerIcons(IconRegister iconRegister)
 	{
-		if(this.itemID == CodeLyoko.LyokoLeadCell.itemID)
+		if(this.itemID == ModItems.LyokoLeadCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:leadcell");
-		if(this.itemID == CodeLyoko.LyokoUraniumCell.itemID)
+		if(this.itemID == ModItems.LyokoUraniumCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:uraniumcell");
 	}
 	
