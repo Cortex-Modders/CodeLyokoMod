@@ -66,7 +66,7 @@ public class CodeLyoko
 	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setUnlocalizedName("Carthage Portal");
 	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
 	
-	@SidedProxy(clientSide = "matt.lyoko.ClientProxy", serverSide = "matt.lyoko.CommonProxy")
+	@SidedProxy(clientSide = "matt.lyoko.client.ClientProxy", serverSide = "matt.lyoko.CommonProxy")
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
 	@Instance
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable

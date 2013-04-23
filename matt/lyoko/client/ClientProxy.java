@@ -1,4 +1,4 @@
-package matt.lyoko;
+package matt.lyoko.client;
 
 import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
@@ -9,6 +9,8 @@ import cpw.mods.fml.common.Mod.Instance;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
+import matt.lyoko.CommonProxy;
+import matt.lyoko.KeyBindingHandler;
 import matt.lyoko.entities.mobs.*;
 import matt.lyoko.render.mobs.*;
 import matt.lyoko.model.mobs.*;
