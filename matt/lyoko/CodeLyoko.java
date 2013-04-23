@@ -59,6 +59,7 @@ public class CodeLyoko
 	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
 	public static Block VirtualBlock;
 	public static Block UraniumOre;
+	public static Block Marabounta;
 	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
 	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
 	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
@@ -99,6 +100,7 @@ public class CodeLyoko
 		BlockIds.LYOKO_URANIUM_ORE = config.getBlock("lyokoUraniumOre", BlockIds.LYOKO_URANIUM_ORE_DEFAULT).getInt();
 		BlockIds.LYOKO_SUPER_CALC = config.getBlock("lyokoSuperCalculator", BlockIds.LYOKO_SUPER_CALC_DEFAULT).getInt();
 		BlockIds.LYOKO_LEAD_ORE = config.getBlock("lyokoLeadOre", BlockIds.LYOKO_LEAD_ORE_DEFAULT).getInt();
+		BlockIds.LYOKO_MARABOUNTA = config.getBlock("marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
@@ -180,9 +182,10 @@ public class CodeLyoko
     	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
     	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
     	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer");
+    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(6000000).setUnlocalizedName("Super Computer");
     	VirtualBlock = new BlockLyokoVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
     	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
+    	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(6000000F).setHardness(1000F).setUnlocalizedName("MarabountaBlock");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -232,6 +235,9 @@ public class CodeLyoko
     		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
     		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
     	});*/
+    	
+    	GameRegistry.registerBlock(Marabounta, "Marabounta");
+    	LanguageRegistry.addName(Marabounta, "Marabounta");
     	
     	GameRegistry.registerBlock(VirtualBlock, ItemBlockVirtual.class, "Virtual Block");
     	LanguageRegistry.addName(VirtualBlock, "Virtual Block");

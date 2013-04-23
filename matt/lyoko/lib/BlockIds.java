@@ -24,6 +24,7 @@ public class BlockIds {
     public static int LYOKO_URANIUM_ORE_DEFAULT = 1172;
     public static int LYOKO_SUPER_CALC_DEFAULT = 1173;
     public static int LYOKO_LEAD_ORE_DEFAULT = 1174;
+    public static int LYOKO_MARABOUNTA_DEFAULT = 1175;
     
     /* IDs loaded from config. */
     public static int LYOKO_TOWER;
@@ -47,4 +48,5 @@ public class BlockIds {
     public static int LYOKO_URANIUM_ORE;
     public static int LYOKO_SUPER_CALC;
     public static int LYOKO_LEAD_ORE;
+    public static int LYOKO_MARABOUNTA;
 }
