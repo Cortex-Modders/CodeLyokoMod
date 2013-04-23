@@ -14,14 +14,14 @@ public class EntityVehicle extends Entity {
 
 	protected String texture = "";
 	
-	public float hoverStart;
+	public float hoverSpeed;
 	private Item droppedItem = ModItems.DataFragment;
 	
 	public EntityVehicle(World par1World) {
 		super(par1World);
 		this.preventEntitySpawning = true;
 		this.ignoreFrustumCheck = true;
-		this.hoverStart = (float)(Math.random() * Math.PI * 2.0D);
+		this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
 	}
 	
 	public void setDroppedItem(Item item)
@@ -42,7 +42,7 @@ public class EntityVehicle extends Entity {
 		// TEMPORARY
 		if(this.posY>100.0D) this.kill();
 		
-		hoverStart += 0.0625; // 1/16
+		hoverSpeed += 0.0625; // 1/16 is the speed.
 		
 	}
 
@@ -73,7 +73,7 @@ public class EntityVehicle extends Entity {
 		this.prevPosX = x;
 		this.prevPosY = y;
 		this.prevPosZ = z;
-		this.hoverStart = (float)(Math.random() * Math.PI * 2.0D);
+		this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
 	}
 
 	@SideOnly(Side.CLIENT)
