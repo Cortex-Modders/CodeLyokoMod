@@ -194,6 +194,7 @@ public class CodeLyoko
     	//Matthew = Aelita
     	//Marq = Odd
     	//Andrew = Odd (Jeremy)
+    	//Jake = Jeremy or Ulrich (no one want yumi xD)
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
     	proxy.registerServerTickHandler();
     	proxy.registerKeyBindingHandler();

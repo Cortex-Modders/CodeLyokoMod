@@ -4,44 +4,45 @@ import matt.lyoko.entities.vehicles.EntityVehicle;
 import matt.lyoko.model.vehicles.ModelVehicle;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
 public class RenderVehicle extends Render {
 
-	protected ModelVehicle model;
-	
-	public RenderVehicle(ModelVehicle parModel, float shadow) {
-		this.shadowSize = shadow;
-		model = parModel;
-	}
-	
-	protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2)
-    {
-        if (!parEntityVehicle.getHasActivePotion())
-        {
-            this.loadTexture(parEntityVehicle.getTexture());
-            this.model.render(parEntityVehicle, x, y, z, f, f1, f2);
-        }
-        else
-        {
-            this.model.setRotationAngles(x, y, z, f, f1, f2, parEntityVehicle);
-        }
-        
-        this.model.doAnimation();
+    protected ModelVehicle model;
+
+    public RenderVehicle(ModelVehicle parModel, float shadow) {
+        shadowSize = shadow;
+        model = parModel;
     }
 
-	@Override
-	public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
-		
-		GL11.glPushMatrix();
-		GL11.glDisable(2896);
-		GL11.glTranslated(x, y-1, z);
-		
-		this.renderModel((EntityVehicle)entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
-		
-		GL11.glEnable(2896);
-		GL11.glPopMatrix();
-	}
-	
+    protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
+        if (!parEntityVehicle.getHasActivePotion()) {
+            this.loadTexture(parEntityVehicle.getTexture());
+            model.render(parEntityVehicle, x, y, z, f, f1, f2);
+        } else {
+            model.setRotationAngles(x, y, z, f, f1, f2, parEntityVehicle);
+        }
+
+        model.doAnimation();
+    }
+
+    public void doRenderVehicle(EntityVehicle parEntityVehicle, double x, double y, double z, float f, float f1) {
+        GL11.glPushMatrix();
+        GL11.glDisable(2896);
+
+        float j = MathHelper.sin(f1 / 10.0F + parEntityVehicle.hoverStart) * 0.1F + 0.06F;
+        GL11.glTranslated(x, y - 1 + j, z);
+        this.renderModel(parEntityVehicle, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+        GL11.glEnable(2896);
+        GL11.glPopMatrix();
+    }
+
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
+        doRenderVehicle((EntityVehicle) entity, x, y, z, f, f1);
+    }
+
 }
