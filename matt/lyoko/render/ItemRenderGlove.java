@@ -71,11 +71,11 @@ public class ItemRenderGlove implements IItemRenderer
                     EntityPlayer player = (EntityPlayer) data[1];
                     if(player.isUsingItem() && player.getItemInUse() != null 
                             && player.getItemInUse().itemID == ModItems.Glove.itemID) {
-                        gloveModel.clenchHand();
+ //                       gloveModel.clenchHand();
                         System.out.println("clenching hand");
                     }
                     else {
-                        gloveModel.unclenchHand();
+//                        gloveModel.unclenchHand();
                     }
                 }
 
