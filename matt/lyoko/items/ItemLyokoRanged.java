@@ -2,6 +2,7 @@ package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.EntityLyokoRanged;
+import matt.lyoko.lib.ItemIds;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -35,6 +36,7 @@ public class ItemLyokoRanged extends Item
     
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
+        
         int var6 = this.getMaxItemUseDuration(par1ItemStack) - par4;
         
         ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, var6);
@@ -140,6 +142,7 @@ public class ItemLyokoRanged extends Item
     /**
      * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
      */
+    @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
@@ -153,7 +156,9 @@ public class ItemLyokoRanged extends Item
         {
             par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         }
-
+        
+        par3EntityPlayer.setItemInUse(par1ItemStack, 72000000);
+        
         return par1ItemStack;
     }
 
@@ -180,7 +185,7 @@ public class ItemLyokoRanged extends Item
 			EntityPlayer player = (EntityPlayer)ent;
 			if(life > 0)
 			{
-				life--;
+//				life--;
 			}
 			else
 			{
