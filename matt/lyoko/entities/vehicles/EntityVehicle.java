@@ -24,6 +24,18 @@ public class EntityVehicle extends Entity {
 		this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
 	}
 	
+	public EntityVehicle(World par1World, double x, double y, double z) {
+        this(par1World);
+        this.setPosition(x, y + (double)this.yOffset, z);
+        this.motionX = 0.0D;
+        this.motionY = 0.0D;
+        this.motionZ = 0.0D;
+        this.prevPosX = x;
+        this.prevPosY = y;
+        this.prevPosZ = z;
+        this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
+    }
+	
 	public void setDroppedItem(Item item)
 	{
 		this.droppedItem = item;
@@ -44,6 +56,8 @@ public class EntityVehicle extends Entity {
 		
 		hoverSpeed += 0.0625; // 1/16 is the speed.
 		
+		
+		
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)
@@ -62,18 +76,6 @@ public class EntityVehicle extends Entity {
 
 	public boolean canBePushed() {
 		return true;
-	}
-
-	public EntityVehicle(World par1World, double x, double y, double z) {
-		this(par1World);
-		this.setPosition(x, y + (double)this.yOffset, z);
-		this.motionX = 0.0D;
-		this.motionY = 0.0D;
-		this.motionZ = 0.0D;
-		this.prevPosX = x;
-		this.prevPosY = y;
-		this.prevPosZ = z;
-		this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
 	}
 
 	@SideOnly(Side.CLIENT)
