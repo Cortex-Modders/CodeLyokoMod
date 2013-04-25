@@ -18,6 +18,9 @@ import matt.lyoko.entities.mobs.EntityLyoko;
 import matt.lyoko.entities.vehicles.EntityVehicle;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockMarabounta extends BlockContainer
 {
 	public BlockMarabounta(int par1)
@@ -31,11 +34,27 @@ public class BlockMarabounta extends BlockContainer
 	private Icon evilTexture;
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		normalTexture = this.blockIcon = par1IconRegister.registerIcon("lyoko:marabounta");
+		normalTexture = par1IconRegister.registerIcon("lyoko:marabounta");
 		evilTexture = par1IconRegister.registerIcon("lyoko:evilmarabounta");
 	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int meta)
+	{
+        switch (meta)
+        {
+        case 0:
+        	return normalTexture;
+        case 1:
+        	return evilTexture;
+        default:
+        	return normalTexture;
+        }
+    }
 	
 	//@Override
 	//public int idDropped(int par1, Random par1Random, int par2)
@@ -43,6 +62,7 @@ public class BlockMarabounta extends BlockContainer
 	//	return 0;
 	//}
 	
+	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
     {
 		TileEntityMarabounta tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
@@ -135,34 +155,26 @@ public class BlockMarabounta extends BlockContainer
     	{
     		ent.attackEntityFrom(DamageSource.generic, 100);
     	}
-    	else if(ent instanceof EntityVehicle && tem.shouldAttackPlayers)
+    	else if(ent instanceof EntityVehicle && world.getBlockMetadata(x, y, z) == 1)
     	{
     		((EntityVehicle)ent).setDead();
     	}
-    	else if(ent instanceof EntityPlayer && tem.shouldAttackPlayers)
+    	else if(ent instanceof EntityPlayer && world.getBlockMetadata(x, y, z) == 1)
     	{
     		if(!((EntityPlayer)ent).capabilities.isCreativeMode)
     		{
-    			ent.attackEntityFrom(DamageSource.generic, 100);
+    			ent.attackEntityFrom(DamageSource.generic, 9);
     		}
     	}
     }
 	
 	@Override
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
-	{
-		if(((TileEntityMarabounta)access.getBlockTileEntity(x, y, z)).shouldAttackPlayers)
-		{
-			return evilTexture;
-		}
-		return normalTexture;
-	}
-	
-	@Override
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
 	{
 		super.onBlockClicked(world, x, y, z, player);
-		((TileEntityMarabounta)world.getBlockTileEntity(x, y, z)).shouldAttackPlayers = true;
+		TileEntityMarabounta temp = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+		world.setBlockMetadataWithNotify(x, y, z, 1, 2);
+		world.setBlockTileEntity(x, y, z, temp);
 	}
 	
 	@Override
