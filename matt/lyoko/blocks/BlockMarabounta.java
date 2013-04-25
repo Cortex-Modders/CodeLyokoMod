@@ -1,19 +1,24 @@
 package matt.lyoko.blocks;
 
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.*;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import matt.lyoko.*;
+import matt.lyoko.entities.TileEntityMarabounta;
 import matt.lyoko.entities.mobs.EntityLyoko;
 import matt.lyoko.entities.vehicles.EntityVehicle;
 import java.util.Random;
 
-public class BlockMarabounta extends Block
+public class BlockMarabounta extends BlockContainer
 {
 	public BlockMarabounta(int par1)
 	{
@@ -22,10 +27,14 @@ public class BlockMarabounta extends Block
 		this.setTickRandomly(true);
 	}
 	
+	private Icon normalTexture;
+	private Icon evilTexture;
+	
 	@Override
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		this.blockIcon = par1IconRegister.registerIcon("lyoko:terrain");
+		normalTexture = this.blockIcon = par1IconRegister.registerIcon("lyoko:marabounta");
+		evilTexture = par1IconRegister.registerIcon("lyoko:evilmarabounta");
 	}
 	
 	//@Override
@@ -33,6 +42,18 @@ public class BlockMarabounta extends Block
 	//{
 	//	return 0;
 	//}
+	
+	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
+    {
+		TileEntityMarabounta tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+		
+		if(tem.consumedBlock == 0)
+		{
+			return world.setBlockToAir(x, y, z);
+		}
+		
+        return world.setBlock(x, y, z, tem.consumedBlock);
+    }
 	
 	@Override
 	public void onBlockAdded(World world, int x, int y, int z)
@@ -43,27 +64,59 @@ public class BlockMarabounta extends Block
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand)
 	{
-		if(world.getBlockMetadata(x, y, z) == 0)
-		{
-			convertLyokoBlocks(world, x+1, y, z);
-			convertLyokoBlocks(world, x-1, y, z);
-			convertLyokoBlocks(world, x, y+1, z);
-			convertLyokoBlocks(world, x, y-1, z);
-			convertLyokoBlocks(world, x, y, z+1);
-			convertLyokoBlocks(world, x, y, z-1);
-			world.setBlockMetadataWithNotify(x, y, z, 1, 2);
-		}
+		convertLyokoBlocks(world, x+1, y, z);
+		convertLyokoBlocks(world, x-1, y, z);
+		convertLyokoBlocks(world, x, y+1, z);
+		convertLyokoBlocks(world, x, y-1, z);
+		convertLyokoBlocks(world, x, y, z+1);
+		convertLyokoBlocks(world, x, y, z-1);
 	}
 	
 	public void convertLyokoBlocks(World world, int x, int y, int z)
 	{
-		if(world.getBlockId(x, y, z) == CodeLyoko.LyokoLog.blockID || world.getBlockId(x, y, z) == CodeLyoko.LyokoIce.blockID
-				|| world.getBlockId(x, y, z) == CodeLyoko.LyokoGrass.blockID
-				|| world.getBlockId(x, y, z) == CodeLyoko.LyokoSand.blockID
-				|| world.getBlockId(x, y, z) == CodeLyoko.LyokoStone.blockID
-				|| world.getBlockId(x, y, z) == CodeLyoko.LyokoCarthage.blockID)
+		TileEntityMarabounta tem;
+		
+		if(world.getBlockId(x, y, z) == CodeLyoko.LyokoLog.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.LyokoLog.blockID;
+		}
+		else if(world.getBlockId(x, y, z) == CodeLyoko.LyokoIce.blockID)
+		{
+			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.LyokoIce.blockID;
+		}
+		else if(world.getBlockId(x, y, z) == CodeLyoko.LyokoGrass.blockID)
+		{
+			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.LyokoGrass.blockID;
+		}
+		else if(world.getBlockId(x, y, z) == CodeLyoko.LyokoSand.blockID)
+		{
+			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.LyokoSand.blockID;
+		}
+		else if(world.getBlockId(x, y, z) == CodeLyoko.LyokoStone.blockID)
+		{
+			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.LyokoStone.blockID;
+		}
+		else if(world.getBlockId(x, y, z) == CodeLyoko.LyokoCarthage.blockID)
+		{
+			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.LyokoCarthage.blockID;
+		}
+		else if(world.getBlockId(x, y, z) == CodeLyoko.VirtualBlock.blockID)
+		{
+			world.setBlock(x, y, z, blockID);
+			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
+			tem.consumedBlock = CodeLyoko.VirtualBlock.blockID;
 		}
 	}
 	
@@ -77,9 +130,44 @@ public class BlockMarabounta extends Block
 	@Override
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
     {
-    	if(ent instanceof EntityLyoko || ent instanceof EntityVehicle)
+		TileEntityMarabounta tem = ((TileEntityMarabounta)world.getBlockTileEntity(x, y, z));
+    	if(ent instanceof EntityLyoko)
     	{
     		ent.attackEntityFrom(DamageSource.generic, 100);
     	}
+    	else if(ent instanceof EntityVehicle && tem.shouldAttackPlayers)
+    	{
+    		((EntityVehicle)ent).setDead();
+    	}
+    	else if(ent instanceof EntityPlayer && tem.shouldAttackPlayers)
+    	{
+    		if(!((EntityPlayer)ent).capabilities.isCreativeMode)
+    		{
+    			ent.attackEntityFrom(DamageSource.generic, 100);
+    		}
+    	}
     }
+	
+	@Override
+    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
+	{
+		if(((TileEntityMarabounta)access.getBlockTileEntity(x, y, z)).shouldAttackPlayers)
+		{
+			return evilTexture;
+		}
+		return normalTexture;
+	}
+	
+	@Override
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
+	{
+		super.onBlockClicked(world, x, y, z, player);
+		((TileEntityMarabounta)world.getBlockTileEntity(x, y, z)).shouldAttackPlayers = true;
+	}
+	
+	@Override
+	public TileEntity createNewTileEntity(World world)
+	{
+		return new TileEntityMarabounta();
+	}
 }

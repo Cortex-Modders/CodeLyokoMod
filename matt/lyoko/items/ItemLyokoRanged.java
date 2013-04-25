@@ -178,24 +178,18 @@ public class ItemLyokoRanged extends Item
     
     private int life = 200;
 	
-	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
+	public void onUpdate(ItemStack stack, World world, Entity ent, int slot, boolean par5)
 	{
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)ent;
 			if(life > 0)
 			{
-//				life--;
+				life--;
 			}
 			else
 			{
-				for(int i = 0; i < player.inventory.mainInventory.length; i++)
-				{
-					if(player.inventory.getStackInSlot(i) == stack)
-					{
-						player.inventory.setInventorySlotContents(i, null);
-					}
-				}
+				player.inventory.setInventorySlotContents(slot, null);
 				life = 200;
 			}
 		}

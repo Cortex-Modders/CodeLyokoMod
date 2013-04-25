@@ -185,7 +185,7 @@ public class CodeLyoko
     	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(6000000).setUnlocalizedName("Super Computer");
     	VirtualBlock = new BlockLyokoVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
     	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
-    	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(6000000F).setHardness(1000F).setUnlocalizedName("MarabountaBlock");
+    	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -207,8 +207,9 @@ public class CodeLyoko
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
     	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
-    	GameRegistry.registerTileEntity(TileEntityDigitalSea.class, "teDigitalSea");
     	GameRegistry.registerTileEntity(TileEntityVirtualBlock.class, "teVirtualBlock");
+    	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
+    	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
