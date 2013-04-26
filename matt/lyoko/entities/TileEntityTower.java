@@ -40,7 +40,7 @@ public class TileEntityTower extends TileEntity
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
         NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
 
-        //addInfoToNBT(tag);
+        tag.setString("towerOwner", this.owner);
 
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
     }
@@ -49,7 +49,7 @@ public class TileEntityTower extends TileEntity
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
     {
         NBTTagCompound tag = pkt.customParam1;
-        //loadInfoFromNBT(tag);
+        this.owner = tag.getString("towerOwner");
     }
 
 	@Override
