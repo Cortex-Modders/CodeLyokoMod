@@ -41,6 +41,18 @@ public class BlockLyokoTower extends BlockContainer
 			if(tet.owner.equals("none"))
 			{
 				tet.owner = "xana";
+				for(int i = 0; i < CodeLyoko.getDevelopers().length; i++)
+				{
+					if(player.username.equals(CodeLyoko.getDevelopers()[i]))
+					{
+						tet.owner = "developer";
+						player.sendChatToPlayer("Developer mode activated on Tower at: x=" + x + " y=" + y + " z=" + z);
+					}
+				}
+			}
+			else if(tet.owner.equals("developer"))
+			{
+				tet.owner = "xana";
 			}
 			else if(tet.owner.equals("xana"))
 			{
@@ -55,6 +67,7 @@ public class BlockLyokoTower extends BlockContainer
 				System.err.println("ERROR: Invalid value detected for tower");
 				tet.owner = "none";
 			}
+	        world.markBlockForUpdate(x, y, z);
 			return true;
 		}
 		return false;
@@ -117,6 +130,10 @@ public class BlockLyokoTower extends BlockContainer
         		else if(tet.owner.equals("none"))
         		{
         			LyokoParticleEffects.spawnParticle("deactivated", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+        		}
+        		else if(tet.owner.equals("developer"))
+        		{
+        			LyokoParticleEffects.spawnParticle("dev", var9, var11, var13, 0.0D, 0.0D, 0.0D);
         		}
             }
         }

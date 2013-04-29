@@ -84,12 +84,6 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         }
         
         @Override
-        public boolean canUpdate()
-        {
-            return true;
-        }
-        
-        @Override
         public void updateEntity()
         {
         	int slot = 0;
@@ -135,23 +129,12 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         		timeLeft = timeLeft - 0.05F;
         	}
         }
-        
-        private void addInfoToNBT(NBTTagCompound tag)
-        {
-            tag.setFloat("time", timeLeft);
-        }
-
-        private void loadInfoFromNBT(NBTTagCompound tag)
-        {
-            timeLeft = tag.getFloat("time");
-        }
 
         @Override
         public Packet getDescriptionPacket() {
             Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
             NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
-
-            addInfoToNBT(tag);
+            tag.setFloat("time", timeLeft);
 
             return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
         }
@@ -160,7 +143,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
             super.onDataPacket(net, pkt);
             NBTTagCompound tag = pkt.customParam1;
-            loadInfoFromNBT(tag);
+            timeLeft = tag.getFloat("time");
         }
 
         @Override
@@ -227,7 +210,8 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory {
         }
 
 		@Override
-		public boolean isInvNameLocalized() {
+		public boolean isInvNameLocalized()
+		{
 			return false;
 		}
 

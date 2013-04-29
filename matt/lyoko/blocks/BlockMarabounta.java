@@ -16,6 +16,8 @@ import matt.lyoko.*;
 import matt.lyoko.entities.TileEntityMarabounta;
 import matt.lyoko.entities.mobs.EntityLyoko;
 import matt.lyoko.entities.vehicles.EntityVehicle;
+import matt.lyoko.lib.DimensionIds;
+
 import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;

@@ -31,6 +31,7 @@ import cpw.mods.fml.common.registry.*;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
+	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "Jadar"};
 	
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
@@ -478,6 +479,11 @@ public class CodeLyoko
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
     {
     	
+    }
+    
+    public static String[] getDevelopers()
+    {
+    	return developers;
     }
     
     public static DamageSource causeLyokoRangedDamage(EntityLyokoRanged par0EntityLaserArrow, Entity par1Entity)
