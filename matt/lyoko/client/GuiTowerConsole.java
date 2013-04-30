@@ -20,15 +20,22 @@ public class GuiTowerConsole extends GuiContainer
 	private EntityPlayer player;
 	public TileEntityTowerConsole ttc;
     
-	public GuiTowerConsole (InventoryPlayer inventoryPlayer, TileEntityTowerConsole tileEntity)
+	public GuiTowerConsole (InventoryPlayer inv, TileEntityTowerConsole tileEntity)
 	{
 		//the container is instanciated and passed to the superclass for handling
-		super(new ContainerTowerConsole(inventoryPlayer, tileEntity));
-		this.ySize = 153;
+		super(new ContainerTowerConsole(inv, tileEntity));
+		this.ySize = 105;
 		this.xSize = 176;
 		ttc = tileEntity;
-		player = inventoryPlayer.player;
 		code = "";
+	}
+	
+	@Override
+	public void initGui()
+	{
+		super.initGui();
+		textBoxCode = new GuiTextField(fontRenderer, ((width - xSize) / 2) + 50, ((height - ySize) / 2) + 50, 80, 10);
+		textBoxCode.setText(code);
 	}
 	
 	@Override
@@ -72,11 +79,11 @@ public class GuiTowerConsole extends GuiContainer
 	
 	@Override
 	public void drawScreen(int par1, int par2, float par3)
-    {
+	{
 		this.textBoxCode.drawTextBox();
 		
-        super.drawScreen(par1, par2, par3);
-    }
+		super.drawScreen(par1, par2, par3);
+	}
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int param1, int param2)
