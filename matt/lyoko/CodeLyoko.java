@@ -31,7 +31,7 @@ import cpw.mods.fml.common.registry.*;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
-	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "Jadar"};
+	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
 	
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
@@ -61,6 +61,7 @@ public class CodeLyoko
 	public static Block VirtualBlock;
 	public static Block UraniumOre;
 	public static Block Marabounta;
+	public static Block TowerConsole;
 	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
 	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
 	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
@@ -102,6 +103,7 @@ public class CodeLyoko
 		BlockIds.LYOKO_SUPER_CALC = config.getBlock("lyokoSuperCalculator", BlockIds.LYOKO_SUPER_CALC_DEFAULT).getInt();
 		BlockIds.LYOKO_LEAD_ORE = config.getBlock("lyokoLeadOre", BlockIds.LYOKO_LEAD_ORE_DEFAULT).getInt();
 		BlockIds.LYOKO_MARABOUNTA = config.getBlock("marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
+		BlockIds.TOWER_CONSOLE = config.getBlock("towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
@@ -187,6 +189,7 @@ public class CodeLyoko
     	VirtualBlock = new BlockLyokoVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
     	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
+    	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -210,6 +213,7 @@ public class CodeLyoko
     	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
     	GameRegistry.registerTileEntity(TileEntityVirtualBlock.class, "teVirtualBlock");
     	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
+    	GameRegistry.registerTileEntity(TileEntityTowerConsole.class, "teTowerConsole");
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
@@ -217,6 +221,7 @@ public class CodeLyoko
     	
     	MinecraftForge.setBlockHarvestLevel(LyokoOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(LeadOre, "pickaxe", 2);
+    	MinecraftForge.setBlockHarvestLevel(UraniumOre, "pickaxe", 2);
     	
     	GameRegistry.registerBlock(SuperCalc, "Super Computer");
     	LanguageRegistry.addName(SuperCalc, "Super Computer");
@@ -237,6 +242,9 @@ public class CodeLyoko
     		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
     		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
     	});*/
+    	
+    	GameRegistry.registerBlock(TowerConsole, "Tower Console");
+    	LanguageRegistry.addName(TowerConsole, "Tower Console");
     	
     	GameRegistry.registerBlock(Marabounta, "Marabounta");
     	LanguageRegistry.addName(Marabounta, "Marabounta");

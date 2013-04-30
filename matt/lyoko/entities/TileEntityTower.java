@@ -13,35 +13,21 @@ import matt.lyoko.particles.LyokoParticleEffects;
 
 public class TileEntityTower extends TileEntity
 {
-	public boolean isActivated = false;
 	public String owner = "none";
-	private String[] possibleOwners = {"none", "lyoko", "xana", "developer"};
 
 	public void updateEntity()
 	{
-		if(!(owner.equals("none")))
+		if(owner.equals("reset"))
 		{
-			boolean validOwner = false;
-			
-			for(int i = 0; i < possibleOwners.length; i++)
-			{
-				if(owner == possibleOwners[i])
-				{
-					validOwner = true;
-				}
-			}
-			
-			if(validOwner)
-			{
-				isActivated = true;
-			}
+			owner = "none";
+			syncTower(xCoord+1, yCoord, zCoord, "reset");
+			syncTower(xCoord-1, yCoord, zCoord, "reset");
+			syncTower(xCoord, yCoord+1, zCoord, "reset");
+			syncTower(xCoord, yCoord-1, zCoord, "reset");
+			syncTower(xCoord, yCoord, zCoord+1, "reset");
+			syncTower(xCoord, yCoord, zCoord-1, "reset");
 		}
-		else
-		{
-			isActivated = false;
-		}
-		
-		if(owner.equals("developer"))
+		else if(owner.equals("developer"))
 		{
 			syncTower(xCoord+1, yCoord, zCoord, "developer");
 			syncTower(xCoord-1, yCoord, zCoord, "developer");
@@ -85,13 +71,26 @@ public class TileEntityTower extends TileEntity
 				((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner != newOwner &&
 				ownerValue(newOwner) > ownerValue(((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner))
 		{
+			if(!newOwner.equals("reset") || !((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner.equals("none"))
+			{
+				((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner = newOwner;
+			}
+		}
+		else if(worldObj.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID && worldObj.getBlockTileEntity(x, y, z) != null &&
+				((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner != newOwner &&
+				newOwner.equals("none") && ((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner.equals("reset"))
+		{
 			((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner = newOwner;
 		}
 	}
 	
 	public int ownerValue(String newOwner)
 	{
-		if(newOwner == "developer")
+		if(newOwner == "reset")
+		{
+			return 100;
+		}
+		else if(newOwner == "developer")
 		{
 			return 10;
 		}
@@ -131,7 +130,6 @@ public class TileEntityTower extends TileEntity
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		this.isActivated = tagCompound.getBoolean("isActive");
 		this.owner = tagCompound.getString("towerOwner");
 	}
 
@@ -139,7 +137,6 @@ public class TileEntityTower extends TileEntity
 	public void writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		tagCompound.setBoolean("isActive", this.isActivated);
 		tagCompound.setString("towerOwner", this.owner);
 	}
 }

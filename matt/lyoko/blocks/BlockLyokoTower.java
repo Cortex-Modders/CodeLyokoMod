@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.items.ModItems;
 import matt.lyoko.particles.LyokoParticleEffects;
 
 public class BlockLyokoTower extends BlockContainer
@@ -38,7 +39,11 @@ public class BlockLyokoTower extends BlockContainer
 		
 		if(!world.isRemote)
 		{
-			if(tet.owner.equals("none"))
+			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.LaserArrow)
+			{
+				tet.owner = "reset";
+			}
+			else if(tet.owner.equals("none"))
 			{
 				tet.owner = "xana";
 				for(int i = 0; i < CodeLyoko.getDevelopers().length; i++)
@@ -64,8 +69,8 @@ public class BlockLyokoTower extends BlockContainer
 			}
 			else
 			{
-				System.err.println("ERROR: Invalid value detected for tower");
 				tet.owner = "none";
+				System.err.println("ERROR: Invalid value detected for tower");
 			}
 	        world.markBlockForUpdate(x, y, z);
 			return true;
