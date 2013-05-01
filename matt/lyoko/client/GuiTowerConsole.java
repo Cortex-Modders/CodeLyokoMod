@@ -34,7 +34,7 @@ public class GuiTowerConsole extends GuiContainer
 	public void initGui()
 	{
 		super.initGui();
-		textBoxCode = new GuiTextField(fontRenderer, ((width - xSize) / 2) + 50, ((height - ySize) / 2) + 50, 80, 10);
+		textBoxCode = new GuiTextField(fontRenderer, ((width - xSize) / 2) - 50, ((height - ySize) / 2) + 50, 80, 10);
 		textBoxCode.setText(code);
 	}
 	
@@ -59,13 +59,14 @@ public class GuiTowerConsole extends GuiContainer
             this.code = this.textBoxCode.getText();
         }
 
-        if (par2 == 1)
+        if (par2 == 1 || (par2 == mc.gameSettings.keyBindInventory.keyCode && !this.textBoxCode.isFocused()))
         {
             this.mc.thePlayer.closeScreen();
         }
-        else if (par2 == 41)
+        
+        if (par2 == 41)
         {
-            ttc.owner = this.code;
+            ttc.owner = this.textBoxCode.getText();
         }
     }
 	

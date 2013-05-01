@@ -14,6 +14,7 @@ import matt.lyoko.particles.LyokoParticleEffects;
 public class TileEntityTower extends TileEntity
 {
 	public String owner = "none";
+	private static String[] possibleOwners = {"none", "developer", "xana", "lyoko", "reset"};
 
 	public void updateEntity()
 	{
@@ -63,6 +64,11 @@ public class TileEntityTower extends TileEntity
 			syncTower(xCoord, yCoord, zCoord+1, "none");
 			syncTower(xCoord, yCoord, zCoord-1, "none");
 		}
+	}
+	
+	public static String[] getPossibleOwners()
+	{
+		return possibleOwners;
 	}
 	
 	public void syncTower(int x, int y, int z, String newOwner)
