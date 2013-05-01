@@ -21,7 +21,7 @@ public class BlockTowerConsole extends BlockContainer
         super(par1, Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister par1IconRegister)
@@ -39,12 +39,11 @@ public class BlockTowerConsole extends BlockContainer
     	}
     	else
     	{
-    		//TODO uncomment this after gui is testable
 			player.openGui(CodeLyoko.instance, 1, world, x, y, z);
 			return true;
     	}
     }
-
+    
 	@Override
 	public TileEntity createNewTileEntity(World world)
 	{

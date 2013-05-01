@@ -66,32 +66,38 @@ public class GuiTowerConsole extends GuiContainer
             this.textBoxCode.textboxKeyTyped(par1, par2);
             this.code = this.textBoxCode.getText();
         }
+        
+        if(par2 == 42)
+        {
+        	ByteArrayOutputStream bos = new ByteArrayOutputStream(code.length() + 14);
+        	DataOutputStream outputStream = new DataOutputStream(bos);
+        	try
+        	{
+        		outputStream.writeUTF(code);
+        		outputStream.writeInt(ttc.xCoord);
+        		outputStream.writeInt(ttc.yCoord);
+        		outputStream.writeInt(ttc.zCoord);
+        	}
+        	catch (Exception ex)
+        	{
+        		ex.printStackTrace();
+        	}
+        	
+        	Packet250CustomPayload packet = new Packet250CustomPayload();
+        	packet.channel = "Code_Lyoko";
+        	packet.data = bos.toByteArray();
+        	packet.length = bos.size();
+        	
+        	((EntityClientPlayerMP)player).sendQueue.addToSendQueue(packet);
+        	
+        	this.textBoxCode.setText("");
+        }
 
         if (par2 == 1 || (par2 == mc.gameSettings.keyBindInventory.keyCode && !this.textBoxCode.isFocused()))
         {
             this.mc.thePlayer.closeScreen();
         }
         
-        if (par2 == 41)
-        {
-        	ByteArrayOutputStream bos = new ByteArrayOutputStream(code.length() + 12);
-        	DataOutputStream outputStream = new DataOutputStream(bos);
-        	try {
-        	        outputStream.writeUTF(code);
-        	        outputStream.writeInt(ttc.xCoord);
-        	        outputStream.writeInt(ttc.yCoord);
-        	        outputStream.writeInt(ttc.zCoord);
-        	} catch (Exception ex) {
-        	        ex.printStackTrace();
-        	}
-
-        	Packet250CustomPayload packet = new Packet250CustomPayload();
-        	packet.channel = "Code_Lyoko";
-        	packet.data = bos.toByteArray();
-        	packet.length = bos.size();
-        	
-        	PacketDispatcher.sendPacketToServer(packet);
-        }
     }
 	
 	@Override

@@ -19,13 +19,14 @@ public class PacketHandler implements IPacketHandler
         DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
         EntityPlayer sender = (EntityPlayer) player;
         
-        handlePacket(packet, sender.worldObj);
+        if(packet.channel.equals("Code_Lyoko"))
+        {
+        	handlePacket(data, sender.worldObj);
+        }
     }
     
-    private void handlePacket(Packet250CustomPayload packet, World world)
+    private void handlePacket(DataInputStream data, World world)
     {
-    	DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
-        
         String code;
         int x;
         int y;
@@ -33,10 +34,10 @@ public class PacketHandler implements IPacketHandler
         
         try
         {
-        	code = inputStream.readUTF();
-        	x = inputStream.readInt();
-        	y = inputStream.readInt();
-        	z = inputStream.readInt();
+        	code = data.readUTF();
+        	x = data.readInt();
+        	y = data.readInt();
+        	z = data.readInt();
         }
         catch (IOException e)
         {
@@ -48,8 +49,7 @@ public class PacketHandler implements IPacketHandler
         {
         	TileEntityTowerConsole tetc = (TileEntityTowerConsole) world.getBlockTileEntity(x, y, z);
         	tetc.owner = code;
+        	world.markBlockForUpdate(x, y, z);
         }
-        
-        System.out.println(code + " " + x + " " + y + " " + z);
     }
 }

@@ -12,7 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityTowerConsole extends TileEntity
 {
 	public String owner = "";
-	private TileEntityTower[] tetArray = new TileEntityTower[6];
+	private TileEntityTower[] tetArray = {null, null, null, null, null, null};
 	
 	@Override
 	public void updateEntity()
@@ -47,22 +47,35 @@ public class TileEntityTowerConsole extends TileEntity
 		
 		if(!owner.equals(""))
 		{
+			if(owner.equals("reset"))
+			{
+				owner = "not valid";
+			}
+			else if(owner.equals("lyoko"))
+			{
+				owner = "reset";
+			}
+			else if(owner.equals("player"))
+			{
+				owner = "lyoko";
+			}
 			for(int i = 0; i < TileEntityTower.getPossibleOwners().length; i++)
 			{
 				if(owner.equals(TileEntityTower.getPossibleOwners()[i]))
 				{
 					for(int x = 0; x < tetArray.length; x++)
 					{
-						if(tetArray[x] != null)
+						if(tetArray[x] != null && !tetArray[x].owner.equals(owner))
 						{
 							tetArray[x].owner = owner;
+							tetArray[x].worldObj.markBlockForUpdate(tetArray[x].xCoord, tetArray[x].yCoord, tetArray[x].zCoord);
+							System.out.println(owner + " " + tetArray[x].owner + " " + tetArray[x].worldObj.isRemote);
 						}
 					}
+					owner = "";
 				}
 			}
 		}
-		
-		System.out.println(owner);
 	}
 	
 	@Override
