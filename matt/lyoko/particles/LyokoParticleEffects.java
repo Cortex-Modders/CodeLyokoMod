@@ -50,6 +50,10 @@ public class LyokoParticleEffects
 				{
 					var21 = new EntityNeutralFX(theWorld, par2, par4, par6, (float)par8, (float)par10, (float)par12);
 				}
+				else if (particleName.equals("dev"))
+				{
+					var21 = new EntityDeveloperFX(theWorld, par2, par4, par6, (float)par8, (float)par10, (float)par12);
+				}
 				
 				mc.effectRenderer.addEffect((EntityFX)var21);
 				return (EntityFX)var21;

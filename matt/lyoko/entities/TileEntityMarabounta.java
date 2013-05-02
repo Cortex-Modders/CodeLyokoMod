@@ -7,7 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMarabounta extends TileEntity
 {
-	public boolean shouldAttackPlayers = false;
 	public int consumedBlock = 0;
 	
 	public void updateEntity()
@@ -23,11 +22,13 @@ public class TileEntityMarabounta extends TileEntity
 	public void syncMarabounta(int x, int y, int z)
 	{
 		if(worldObj.getBlockId(x, y, z) == CodeLyoko.Marabounta.blockID && worldObj.getBlockTileEntity(x, y, z) != null
-				&& worldObj.getBlockTileEntity(x, y, z) instanceof TileEntityMarabounta)
+				&& worldObj.getBlockMetadata(x, y, z) == 0)
 		{
-			if(shouldAttackPlayers)
+			if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1)
 			{
-				((TileEntityMarabounta)worldObj.getBlockTileEntity(x, y, z)).shouldAttackPlayers = true;
+				TileEntityMarabounta temp = ((TileEntityMarabounta)worldObj.getBlockTileEntity(x, y, z));
+				worldObj.setBlockMetadataWithNotify(x, y, z, 1, 2);
+				worldObj.setBlockTileEntity(x, y, z, temp);
 			}
 		}
 	}
@@ -36,7 +37,6 @@ public class TileEntityMarabounta extends TileEntity
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		this.shouldAttackPlayers = tagCompound.getBoolean("attackPlayers");
 		this.consumedBlock = tagCompound.getInteger("block");
 	}
 
@@ -44,7 +44,6 @@ public class TileEntityMarabounta extends TileEntity
 	public void writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		tagCompound.setBoolean("attackPlayers", this.shouldAttackPlayers);
 		tagCompound.setInteger("block", this.consumedBlock);
 	}
 }

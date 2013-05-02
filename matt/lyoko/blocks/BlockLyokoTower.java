@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.items.ModItems;
 import matt.lyoko.particles.LyokoParticleEffects;
 
 public class BlockLyokoTower extends BlockContainer
@@ -38,23 +39,40 @@ public class BlockLyokoTower extends BlockContainer
 		
 		if(!world.isRemote)
 		{
-			if(tet.owner == "none")
+			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.LaserArrow)
+			{
+				tet.owner = "reset";
+			}
+			else if(tet.owner.equals("none"))
+			{
+				tet.owner = "xana";
+				for(int i = 0; i < CodeLyoko.getDevelopers().length; i++)
+				{
+					if(player.username.equals(CodeLyoko.getDevelopers()[i]))
+					{
+						tet.owner = "developer";
+						player.sendChatToPlayer("Developer mode activated on Tower at: x=" + x + " y=" + y + " z=" + z);
+					}
+				}
+			}
+			else if(tet.owner.equals("developer"))
 			{
 				tet.owner = "xana";
 			}
-			else if(tet.owner == "xana")
+			else if(tet.owner.equals("xana"))
 			{
 				tet.owner = "lyoko";
 			}
-			else if(tet.owner == "lyoko")
+			else if(tet.owner.equals("lyoko"))
 			{
 				tet.owner = "none";
 			}
 			else
 			{
-				System.err.println("ERROR: Invalid value detected for tower");
 				tet.owner = "none";
+				System.err.println("ERROR: Invalid value detected for tower");
 			}
+	        world.markBlockForUpdate(x, y, z);
 			return true;
 		}
 		return false;
@@ -106,17 +124,21 @@ public class BlockLyokoTower extends BlockContainer
             
             if (var9 < (double)x || var9 > (double)(x + 1) || var11 < 0.0D || var11 > (double)(y + 1) || var13 < (double)z || var13 > (double)(z + 1))
             {
-            	if(tet.owner == "xana")
+            	if(tet.owner.equals("xana"))
         		{
         			LyokoParticleEffects.spawnParticle("xana", var9, var11, var13, 0.0D, 0.0D, 0.0D);
         		}
-        		else if(tet.owner == "lyoko")
+        		else if(tet.owner.equals("lyoko"))
         		{
         			LyokoParticleEffects.spawnParticle("lyoko", var9, var11, var13, 0.0D, 0.0D, 0.0D);
         		}
-        		else if(tet.owner == "none")
+        		else if(tet.owner.equals("none"))
         		{
         			LyokoParticleEffects.spawnParticle("deactivated", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+        		}
+        		else if(tet.owner.equals("developer"))
+        		{
+        			LyokoParticleEffects.spawnParticle("dev", var9, var11, var13, 0.0D, 0.0D, 0.0D);
         		}
             }
         }
