@@ -81,7 +81,7 @@ public class ItemRenderGlove implements IItemRenderer
 
                 GL11.glTranslatef(0.079f, 0.078f, -0.9f);
                 GL11.glScalef(scale, scale, scale);
-                gloveModel.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F, isFirstPerson);
+                gloveModel.render((Entity)data[1], 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.03125F, isFirstPerson);
 
                 GL11.glPopMatrix();
             }
