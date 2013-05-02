@@ -7,7 +7,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerTowerConsole;
+import matt.lyoko.entities.TileEntityTower;
 import matt.lyoko.entities.TileEntityTowerConsole;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiButton;
@@ -31,7 +33,7 @@ public class GuiTowerConsole extends GuiContainer
 	{
 		//the container is instanciated and passed to the superclass for handling
 		super(new ContainerTowerConsole(inv, tileEntity));
-		this.ySize = 105;
+		this.ySize = 119;
 		this.xSize = 176;
 		ttc = tileEntity;
 		player = inv.player;
@@ -42,7 +44,7 @@ public class GuiTowerConsole extends GuiContainer
 	public void initGui()
 	{
 		super.initGui();
-		textBoxCode = new GuiTextField(fontRenderer, ((width - xSize) / 2) - 50, ((height - ySize) / 2) + 50, 80, 10);
+		textBoxCode = new GuiTextField(fontRenderer, ((width - xSize) / 2) + (xSize/2) - 40, ((height - ySize) / 2) + (ySize/2), 80, 10);
 		textBoxCode.setText(code);
 	}
 	
@@ -69,6 +71,22 @@ public class GuiTowerConsole extends GuiContainer
         
         if(par2 == 42)
         {
+        	if(code.equals("developer"))
+        	{
+        		int temporary = 0;
+        		for(int ipod = 0; ipod < CodeLyoko.getDevelopers().length; ipod++)
+        		{
+        			if(player.username.equals(CodeLyoko.getDevelopers()[ipod]))
+        			{
+        				temporary++;
+        			}
+        		}
+        		if(temporary == 0)
+        		{
+        			code = "lol";
+        		}
+        	}
+        	
         	ByteArrayOutputStream bos = new ByteArrayOutputStream(code.length() + 14);
         	DataOutputStream outputStream = new DataOutputStream(bos);
         	try
@@ -111,9 +129,8 @@ public class GuiTowerConsole extends GuiContainer
 	@Override
 	public void drawScreen(int par1, int par2, float par3)
 	{
-		this.textBoxCode.drawTextBox();
-		
 		super.drawScreen(par1, par2, par3);
+		this.textBoxCode.drawTextBox();
 	}
 	
 	@Override
@@ -121,9 +138,7 @@ public class GuiTowerConsole extends GuiContainer
 	{
 		//draw text and stuff here
 		//the parameters for drawString are: string, x, y, color
-		fontRenderer.drawString("Super Calculator", 8, 6, 4210752);
-		//draws "Inventory" or your regional equivalent
-		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+		fontRenderer.drawString("Code", 75, 36, 4210752);
 	}
 	
 	@Override

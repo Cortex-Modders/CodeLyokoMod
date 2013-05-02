@@ -12,35 +12,21 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityTowerConsole extends TileEntity
 {
 	public String owner = "";
-	private TileEntityTower[] tetArray = {null, null, null, null, null, null};
+	private TileEntityTower[][][] tetArray = new TileEntityTower[5][5][5];
 	
 	@Override
 	public void updateEntity()
 	{
-		for(int i = 0; i < tetArray.length; i++)
+		for(int x = -2; x < 3; x++)
 		{
-			if(tetArray[i] == null)
+			for(int y = -2; y < 3; y++)
 			{
-				switch(i)
+				for(int z = -2; z < 3; z++)
 				{
-				case 0:
-					tetArray[i] = (TileEntityTower) worldObj.getBlockTileEntity(xCoord+1, yCoord, zCoord);
-					break;
-				case 1:
-					tetArray[i] = (TileEntityTower) worldObj.getBlockTileEntity(xCoord-1, yCoord, zCoord);
-					break;
-				case 2:
-					tetArray[i] = (TileEntityTower) worldObj.getBlockTileEntity(xCoord, yCoord+1, zCoord);
-					break;
-				case 3:
-					tetArray[i] = (TileEntityTower) worldObj.getBlockTileEntity(xCoord, yCoord-1, zCoord);
-					break;
-				case 4:
-					tetArray[i] = (TileEntityTower) worldObj.getBlockTileEntity(xCoord, yCoord, zCoord+1);
-					break;
-				case 5:
-					tetArray[i] = (TileEntityTower) worldObj.getBlockTileEntity(xCoord, yCoord, zCoord-1);
-					break;
+					if(worldObj.getBlockTileEntity(x+xCoord, y+yCoord, z+zCoord) instanceof TileEntityTower)
+					{
+						tetArray[x+2][y+2][z+2] = (TileEntityTower) worldObj.getBlockTileEntity(x+xCoord, y+yCoord, z+zCoord);
+					}
 				}
 			}
 		}
@@ -63,13 +49,18 @@ public class TileEntityTowerConsole extends TileEntity
 			{
 				if(owner.equals(TileEntityTower.getPossibleOwners()[i]))
 				{
-					for(int x = 0; x < tetArray.length; x++)
+					for(int x = 0; x < 5; x++)
 					{
-						if(tetArray[x] != null && !tetArray[x].owner.equals(owner))
+						for(int y = 0; y < 5; y++)
 						{
-							tetArray[x].owner = owner;
-							tetArray[x].worldObj.markBlockForUpdate(tetArray[x].xCoord, tetArray[x].yCoord, tetArray[x].zCoord);
-							System.out.println(owner + " " + tetArray[x].owner + " " + tetArray[x].worldObj.isRemote);
+							for(int z = 0; z < 5; z++)
+							{
+								if(tetArray[x][y][z] != null && !tetArray[x][y][z].owner.equals(owner))
+								{
+									tetArray[x][y][z].owner = owner;
+									tetArray[x][y][z].worldObj.markBlockForUpdate(tetArray[x][y][z].xCoord, tetArray[x][y][z].yCoord, tetArray[x][y][z].zCoord);
+								}
+							}
 						}
 					}
 					owner = "";
