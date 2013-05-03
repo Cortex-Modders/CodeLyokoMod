@@ -14,6 +14,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
 
+    //TODO: Add mechanic for side facing.
+    //TODO: Render GUI Text on the console.
+    //TODO: Custom font for GUI and terminal, maybe?
+    
     private ModelConsole model = new ModelConsole();
 
     /**

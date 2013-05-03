@@ -21,6 +21,7 @@ public class BlockTowerConsole extends BlockContainer
     {
         super(par1, Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 24.0F, 16.0F, 0.0F);
     }
     
     @Override
@@ -55,14 +56,11 @@ public class BlockTowerConsole extends BlockContainer
 
         return false;
     }
-    
-    @SideOnly(Side.CLIENT)
 
-    /**
-     * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
-     */
-    public int getRenderBlockPass()
+    @Override
+    public int getRenderType()
     {
-        return 1;
+            return -1;
     }
+    
 }
