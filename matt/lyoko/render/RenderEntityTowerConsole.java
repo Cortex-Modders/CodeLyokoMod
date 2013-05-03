@@ -14,7 +14,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
 
-    //TODO: Add mechanic for side facing.
     //TODO: Render GUI Text on the console.
     //TODO: Custom font for GUI and terminal, maybe?
     
@@ -29,7 +28,6 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
         if (!entity.func_70309_m()) {
             i = 0;
         } else {
-            Block block = entity.getBlockType();
             i = entity.getBlockMetadata();
         }
 
@@ -51,14 +49,16 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
         }
 
         if (i == 4) {
-            rotate = 90;
-        }
-
-        if (i == 5) {
             rotate = -90;
         }
 
-        model.render(entity, (float)x, (float)y, (float)z, 0.0F, 0.0F, 0.1F);
+        if (i == 5) {
+            rotate = 90;
+        }
+
+        GL11.glRotatef((float)rotate, 0F, 1F, 0F);
+
+        model.render(entity, (float)x, (float)y, (float)z, 0.0F, 0.0F, 0.0625F);
 
         GL11.glPopMatrix();
     }
