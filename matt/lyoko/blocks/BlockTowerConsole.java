@@ -1,6 +1,7 @@
 package matt.lyoko.blocks;
 
 import cpw.mods.fml.relauncher.*;
+
 import java.util.Random;
 
 import matt.lyoko.CodeLyoko;
@@ -20,13 +21,6 @@ public class BlockTowerConsole extends BlockContainer
     {
         super(par1, Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons(IconRegister par1IconRegister)
-    {
-    	blockIcon = par1IconRegister.registerIcon("lyoko:towerconsole");
     }
     
     @Override
@@ -49,4 +43,26 @@ public class BlockTowerConsole extends BlockContainer
 	{
 		return new TileEntityTowerConsole();
 	}
+	
+	@Override
+    public boolean renderAsNormalBlock() {
+
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+
+        return false;
+    }
+    
+    @SideOnly(Side.CLIENT)
+
+    /**
+     * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
+     */
+    public int getRenderBlockPass()
+    {
+        return 1;
+    }
 }
