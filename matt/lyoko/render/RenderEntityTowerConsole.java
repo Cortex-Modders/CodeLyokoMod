@@ -1,22 +1,15 @@
 package matt.lyoko.render;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Calendar;
-
 import matt.lyoko.entities.TileEntityTowerConsole;
 import matt.lyoko.model.tileentity.ModelConsole;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockChest;
-import net.minecraft.client.model.ModelChest;
-import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
+
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
@@ -38,12 +31,11 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
 
         this.bindTextureByName("/mods/lyoko/textures/models/ModelConsole.png");
         GL11.glPushMatrix();
-//        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-//        GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glTranslatef((float)x, (float)y, (float)z);
-//        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
+        
         short rotate = 0;
 
         if (i == 2) {
@@ -62,7 +54,6 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
             rotate = -90;
         }
 
-//        GL11.glRotatef(rotate, 0.0F, 1.0F, 0.0F);
         model.render(entity, (float)x, (float)y, (float)z, 0.0F, 0.0F, 0.1F);
 
         GL11.glPopMatrix();
