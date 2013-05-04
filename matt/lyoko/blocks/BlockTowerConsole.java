@@ -68,21 +68,25 @@ public class BlockTowerConsole extends BlockContainer
         if (l == 0)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+            this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
         }
 
         if (l == 1)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 5, 2);
+            this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
         }
 
         if (l == 2)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+            this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
         }
 
         if (l == 3)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
+            this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
         }
     }
 }
