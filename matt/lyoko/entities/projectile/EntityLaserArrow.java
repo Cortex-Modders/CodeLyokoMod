@@ -1,5 +1,6 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.projectile;
 
+import matt.lyoko.entities.EntityLyokoRanged;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.world.World;
 

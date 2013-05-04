@@ -1,6 +1,6 @@
 package matt.lyoko.render;
 
-import matt.lyoko.entities.EntityLaserArrow;
+import matt.lyoko.entities.projectile.EntityLaserArrow;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;

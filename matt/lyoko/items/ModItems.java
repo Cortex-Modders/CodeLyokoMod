@@ -1,8 +1,8 @@
 package matt.lyoko.items;
 
-import matt.lyoko.entities.EntityEnergyField;
-import matt.lyoko.entities.EntityFan;
-import matt.lyoko.entities.EntityLaserArrow;
+import matt.lyoko.entities.projectile.EntityEnergyField;
+import matt.lyoko.entities.projectile.EntityFan;
+import matt.lyoko.entities.projectile.EntityLaserArrow;
 import matt.lyoko.lib.ItemIds;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;

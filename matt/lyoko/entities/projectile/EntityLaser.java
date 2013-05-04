@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.projectile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

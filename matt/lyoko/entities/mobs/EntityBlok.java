@@ -13,6 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.projectile.EntityLaser;
 
 public class EntityBlok extends EntityLyoko implements IRangedAttackMob
 {

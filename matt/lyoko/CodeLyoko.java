@@ -3,6 +3,7 @@ package matt.lyoko;
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;

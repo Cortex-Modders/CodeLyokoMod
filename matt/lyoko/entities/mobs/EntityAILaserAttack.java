@@ -4,6 +4,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.world.World;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.projectile.EntityLaser;
 
 public class EntityAILaserAttack extends EntityAIBase
 {
