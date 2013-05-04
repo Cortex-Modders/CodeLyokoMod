@@ -49,7 +49,7 @@ public class ItemLyokoRanged extends Item
         
         boolean var5 = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (var5 || par3EntityPlayer.inventory.hasItem(reqItem.itemID))
+        if (var5 || par3EntityPlayer.inventory.hasItem(this.reqItem.itemID))
         {
             float var7 = (float)var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;

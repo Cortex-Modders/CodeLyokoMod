@@ -65,14 +65,15 @@ public class ItemRenderGlove implements IItemRenderer
                     }
                     else {
                         isFirstPerson = true;
-                        scale = 1.44F;
+                        scale = 2F;
+                        GL11.glRotatef(15F, 1F, 0F, 0F);
+                        GL11.glTranslatef(0.3F, -0.5F, 0F);
                     }
-                    
+
                     EntityPlayer player = (EntityPlayer) data[1];
                     if(player.isUsingItem() && player.getItemInUse() != null 
                             && player.getItemInUse().itemID == ModItems.Glove.itemID) {
                         gloveModel.clenchHand();
-                        System.out.println("clenching hand");
                     }
                     else {
                         gloveModel.unclenchHand();
