@@ -57,7 +57,7 @@ public class ModItems {
         Zweihander = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_2, toolLYOKO).setUnlocalizedName("Zweihander");
         Fan = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_3, EntityFan.class, Fan, "fan").setUnlocalizedName("Fan");
         EnergyField = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_4, EntityEnergyField.class, EnergyField, "energyfield").setUnlocalizedName("EnergyField");
-        Glove = new ItemGlove(ItemIds.WEAPON_LYOKO_5, EntityLaserArrow.class, Glove, "glove").setUnlocalizedName("Glove");
+        Glove = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_5, EntityLaserArrow.class, Glove, "glove").setUnlocalizedName("Glove");
         LaserArrow = new ItemLyoko(ItemIds.WEAPON_LYOKO_6).setUnlocalizedName("LaserArrow");
         LyokoIngot = new ItemLyoko(ItemIds.ITEM_LYOKO_11).setUnlocalizedName("LyokoIngot");
         LyokoLead = new ItemLyoko(ItemIds.ITEM_LYOKO_12).setUnlocalizedName("Lead210");

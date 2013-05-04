@@ -12,21 +12,21 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityTowerConsole extends TileEntity
 {
 	public String owner = "";
-	private TileEntityTower[][][] tetArray = new TileEntityTower[5][5][5];
+	private TileEntityTower[][][] tetArray = new TileEntityTower[9][9][9];
 	
 	@Override
 	public void updateEntity()
 	{
 
-	    for(int x = -2; x < 3; x++)
+	    for(int x = -4; x < 5; x++)
 		{
-			for(int y = -2; y < 3; y++)
+			for(int y = -4; y < 5; y++)
 			{
-				for(int z = -2; z < 3; z++)
+				for(int z = -4; z < 5; z++)
 				{
 					if(worldObj.getBlockTileEntity(x+xCoord, y+yCoord, z+zCoord) instanceof TileEntityTower)
 					{
-						tetArray[x+2][y+2][z+2] = (TileEntityTower) worldObj.getBlockTileEntity(x+xCoord, y+yCoord, z+zCoord);
+						tetArray[x+4][y+4][z+4] = (TileEntityTower) worldObj.getBlockTileEntity(x+xCoord, y+yCoord, z+zCoord);
 					}
 				}
 			}
@@ -50,11 +50,11 @@ public class TileEntityTowerConsole extends TileEntity
 			{
 				if(owner.equals(TileEntityTower.getPossibleOwners()[i]))
 				{
-					for(int x = 0; x < 5; x++)
+					for(int x = 0; x < 9; x++)
 					{
-						for(int y = 0; y < 5; y++)
+						for(int y = 0; y < 9; y++)
 						{
-							for(int z = 0; z < 5; z++)
+							for(int z = 0; z < 9; z++)
 							{
 								if(tetArray[x][y][z] != null && !tetArray[x][y][z].owner.equals(owner))
 								{
