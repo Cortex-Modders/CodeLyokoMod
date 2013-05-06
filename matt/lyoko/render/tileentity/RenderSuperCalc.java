@@ -1,4 +1,4 @@
-package matt.lyoko.render;
+package matt.lyoko.render.tileentity;
 
 import matt.lyoko.entities.TileEntitySuperCalc;
 import matt.lyoko.model.ModelSuperCalc;
