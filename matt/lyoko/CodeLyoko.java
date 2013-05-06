@@ -4,6 +4,7 @@ import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.entities.*;
 import matt.lyoko.entities.projectile.EntityLaser;
+import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.TileEntityMarabounta;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import matt.lyoko.entities.tileentity.TileEntityTower;
@@ -84,6 +85,17 @@ public class CodeLyoko
 	@PreInit
 	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
 	{
+		preevt.getModMetadata().version = "0.4.3-Beta";
+		preevt.getModMetadata().name = "Code Lyoko Mod";
+		preevt.getModMetadata().authorList.add("986523714");
+		preevt.getModMetadata().authorList.add("Jadar");
+		preevt.getModMetadata().authorList.add("catchaser9620");
+		preevt.getModMetadata().authorList.add("wolfSpirit1st");
+		preevt.getModMetadata().logoFile = "/eye-xana.png";
+		preevt.getModMetadata().modId = "CodeLyoko";
+		preevt.getModMetadata().url = "http://www.minecraftforum.net/topic/1403995-151-code-lyoko-mod-042-minecraft-forum/";
+		preevt.getModMetadata().description = "Recreates the TV show Code Lyoko to the best of minecraft's cabilities.";
+		
     	Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
 		config.load();
 		

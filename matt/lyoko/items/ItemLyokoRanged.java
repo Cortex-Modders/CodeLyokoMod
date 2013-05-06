@@ -1,7 +1,7 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.EntityLyokoRanged;
+import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.lib.ItemIds;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;

@@ -1,7 +1,7 @@
 package matt.lyoko.render.tileentity;
 
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
-import matt.lyoko.model.ModelSuperCalc;
+import matt.lyoko.model.tileentity.ModelSuperCalc;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
