@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
@@ -33,7 +34,7 @@ public class BlockLyokoTower extends BlockContainer
 		return new TileEntityTower();
 	}
 	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+	/*public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
 		TileEntityTower tet = (TileEntityTower) world.getBlockTileEntity(x, y, z);
 		
@@ -76,7 +77,7 @@ public class BlockLyokoTower extends BlockContainer
 			return true;
 		}
 		return false;
-    }
+    }*/
 	
 	@SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random)

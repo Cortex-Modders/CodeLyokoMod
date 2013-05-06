@@ -24,11 +24,13 @@ public class BlockTowerBase extends BlockBreakable
 		this.blockIcon = par1IconRegister.registerIcon("lyoko:towerbase");
 	}
 	
+	@Override
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
 	{
     	return null;
     }
 	
+	@Override
 	public int quantityDropped(Random par1Random)
 	{
 		return 1;
