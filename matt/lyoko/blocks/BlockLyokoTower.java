@@ -12,6 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.particles.LyokoParticleEffects;
 

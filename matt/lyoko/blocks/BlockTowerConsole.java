@@ -1,7 +1,7 @@
 package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.TileEntityTowerConsole;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;

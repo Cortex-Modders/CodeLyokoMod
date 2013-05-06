@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 
 public class PacketHandler implements IPacketHandler
 {

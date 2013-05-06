@@ -1,6 +1,6 @@
 package matt.lyoko.render.tileentity;
 
-import matt.lyoko.entities.TileEntityTowerConsole;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.model.tileentity.ModelConsole;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

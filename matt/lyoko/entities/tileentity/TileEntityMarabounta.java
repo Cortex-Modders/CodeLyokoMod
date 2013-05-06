@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.BlockIds;

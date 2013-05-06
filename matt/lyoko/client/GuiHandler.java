@@ -6,6 +6,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import matt.lyoko.container.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 
 public class GuiHandler implements IGuiHandler {
 	//returns an instance of the Container you made earlier

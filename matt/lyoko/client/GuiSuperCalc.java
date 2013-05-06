@@ -2,7 +2,7 @@ package matt.lyoko.client;
 
 import org.lwjgl.opengl.GL11;
 import matt.lyoko.container.ContainerSuperCalc;
-import matt.lyoko.entities.TileEntitySuperCalc;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.*;
 import net.minecraft.util.StatCollector;

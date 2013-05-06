@@ -21,6 +21,7 @@ import matt.lyoko.model.mobs.*;
 import matt.lyoko.entities.*;
 import matt.lyoko.render.*;
 import matt.lyoko.model.*;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.entities.vehicles.*;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.render.tileentity.RenderEntityTowerConsole;

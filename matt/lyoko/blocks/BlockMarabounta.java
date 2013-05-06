@@ -13,8 +13,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import matt.lyoko.*;
-import matt.lyoko.entities.TileEntityMarabounta;
 import matt.lyoko.entities.mobs.EntityLyoko;
+import matt.lyoko.entities.tileentity.TileEntityMarabounta;
 import matt.lyoko.entities.vehicles.EntityVehicle;
 import matt.lyoko.lib.DimensionIds;
 

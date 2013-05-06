@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.tileentity;
 
 import net.minecraft.tileentity.TileEntity;
 

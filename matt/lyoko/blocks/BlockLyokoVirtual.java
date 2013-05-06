@@ -1,7 +1,7 @@
 package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.TileEntityVirtualBlock;
+import matt.lyoko.entities.tileentity.TileEntityVirtualBlock;
 import matt.lyoko.lib.DimensionIds;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

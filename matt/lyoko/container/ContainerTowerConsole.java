@@ -4,6 +4,7 @@ import net.minecraft.entity.player.*;
 import net.minecraft.inventory.*;
 import net.minecraft.item.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.slots.*;
 
 public class ContainerTowerConsole extends Container

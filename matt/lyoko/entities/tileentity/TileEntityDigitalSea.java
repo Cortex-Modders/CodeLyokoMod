@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.tileentity;
 
 import cpw.mods.fml.relauncher.*;
 import java.util.*;

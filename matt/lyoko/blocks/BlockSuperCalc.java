@@ -21,6 +21,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import matt.lyoko.*;
 import matt.lyoko.entities.*;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 
 public class BlockSuperCalc extends BlockContainer {
 	

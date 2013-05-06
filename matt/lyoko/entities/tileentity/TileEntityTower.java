@@ -1,4 +1,4 @@
-package matt.lyoko.entities;
+package matt.lyoko.entities.tileentity;
 
 import java.util.Random;
 import net.minecraft.item.ItemStack;
