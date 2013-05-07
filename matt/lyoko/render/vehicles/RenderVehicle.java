@@ -18,14 +18,8 @@ public class RenderVehicle extends Render {
     }
 
     protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
-        if (!parEntityVehicle.getHasActivePotion()) {
-            this.loadTexture(parEntityVehicle.getTexture());
-            model.render(parEntityVehicle, x, y, z, f, f1, f2);
-        } else {
-            model.setRotationAngles(x, y, z, f, f1, f2, parEntityVehicle);
-        }
-
-        model.doAnimation();
+        this.loadTexture(parEntityVehicle.getTexture());
+        model.render(parEntityVehicle, x, y, z, f, f1, f2);
     }
 
     public void doRenderVehicle(EntityVehicle parEntityVehicle, double x, double y, double z, float f, float f1) {
