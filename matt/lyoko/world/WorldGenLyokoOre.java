@@ -31,7 +31,7 @@ public class WorldGenLyokoOre implements IWorldGenerator {
 				int Zcoord = baseZ + rand.nextInt(16);
 				int Ycoord = rand.nextInt(20);
 															//Max Vein Size
-				(new WorldGenMinable(CodeLyoko.LyokoOre.blockID, 1)).generate(world, rand, Xcoord, Ycoord, Zcoord);
+				(new WorldGenMinable(CodeLyoko.QuantumOre.blockID, 1)).generate(world, rand, Xcoord, Ycoord, Zcoord);
 			}
 		   	
 		   					//rarity -smaller number = rarer

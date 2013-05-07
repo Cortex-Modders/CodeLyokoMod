@@ -27,6 +27,7 @@ public class ItemLyoko extends Item
 		{
 			list.add("This is the mod's equivalent of an infinite battery.");
 			list.add("Use this as a fuel cell in the Super Computer.");
+			list.add("This is also the debug tool for the mod as well.");
 		}
 	}
 	
@@ -35,8 +36,8 @@ public class ItemLyoko extends Item
 	{
 		if(this.itemID == ModItems.LaserArrow.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
-		if(this.itemID == ModItems.LyokoIngot.itemID)
-			itemIcon = iconRegister.registerIcon("lyoko:lyokoingot");
+		if(this.itemID == ModItems.QuantumOrb.itemID)
+			itemIcon = iconRegister.registerIcon("lyoko:quantumorb");
 		if(this.itemID == ModItems.LyokoLead.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:leadingot");
 		if(this.itemID == ModItems.LyokoCell.itemID)
@@ -47,6 +48,10 @@ public class ItemLyoko extends Item
 			itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
 		if(this.itemID == ModItems.LyokoDepletedUraniumCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
+		if(this.itemID == ModItems.QuantumMatrix.itemID)
+			itemIcon = iconRegister.registerIcon("lyoko:quantummatrix");
+		if(this.itemID == ModItems.QuantumContainmentCell.itemID)
+			itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell");
 	}
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
