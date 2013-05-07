@@ -9,7 +9,7 @@ public class ItemIds {
     public static int WEAPON_LYOKO_5_DEFAULT = 6085;
     public static int WEAPON_LYOKO_6_DEFAULT = 6086;
     public static int ITEM_SKID_DEFAULT = 6087;
-    public static int NOT_USED1_DEFAULT = 6088;
+    public static int ITEM_OVERBOARD_DEFAULT = 6088;
     public static int NOT_USED2_DEFAULT = 6089;
     public static int NOT_USED3_DEFAULT = 6090;
     public static int NOT_USED4_DEFAULT = 6091;
@@ -47,7 +47,6 @@ public class ItemIds {
     public static int DATA_FRAGMENT_DEFAULT = 6123;
     public static int ITEM_LYOKO_URANIUM_CELL_DEFAULT = 6124;
     public static int ITEM_LYOKO_DEPLETED_URANIUM_DEFAULT = 6125;
-    public static int ITEM_OVERBOARD_DEFAULT = 6126;
     
     public static int WEAPON_LYOKO_1;
     public static int WEAPON_LYOKO_2;
@@ -56,7 +55,7 @@ public class ItemIds {
     public static int WEAPON_LYOKO_5;
     public static int WEAPON_LYOKO_6;
     public static int ITEM_SKID;
-    public static int NOT_USED1;
+    public static int ITEM_OVERBOARD;
     public static int NOT_USED2;
     public static int NOT_USED3;
     public static int NOT_USED4;
@@ -94,5 +93,4 @@ public class ItemIds {
     public static int DATA_FRAGMENT;
     public static int ITEM_LYOKO_URANIUM_CELL;
     public static int ITEM_LYOKO_DEPLETED_URANIUM;
-    public static int ITEM_OVERBOARD;
 }

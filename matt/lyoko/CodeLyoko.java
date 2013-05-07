@@ -43,9 +43,6 @@ public class CodeLyoko
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
 	
-	static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
-	static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 40, new int[] {5, 10, 8, 5}, 30);
-	
 	public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
 	public static final BiomeGenBase lyokomountain = ((BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631)).setLyokoBiomeName("Mountain Sector");
 	public static final BiomeGenBase lyokoforest = ((BiomeGenBaseLyoko) (new BiomeGenForestSector(10)).setColor(8421631)).setLyokoBiomeName("Forest Sector");
@@ -133,7 +130,7 @@ public class CodeLyoko
 		ItemIds.WEAPON_LYOKO_5 = config.getItem("weaponLyoko5", ItemIds.WEAPON_LYOKO_5_DEFAULT).getInt();
 		ItemIds.WEAPON_LYOKO_6 = config.getItem("weaponLyoko6", ItemIds.WEAPON_LYOKO_6_DEFAULT).getInt();
 		ItemIds.ITEM_SKID = config.getItem("itemLyoko1", ItemIds.ITEM_SKID_DEFAULT).getInt();
-		ItemIds.NOT_USED1 = config.getItem("itemLyoko2", ItemIds.NOT_USED1_DEFAULT).getInt();
+		ItemIds.ITEM_OVERBOARD = config.getItem("itemOverboard", ItemIds.ITEM_OVERBOARD_DEFAULT).getInt();
 		ItemIds.NOT_USED2 = config.getItem("itemLyoko3", ItemIds.NOT_USED2_DEFAULT).getInt();
 		ItemIds.NOT_USED3 = config.getItem("itemLyoko4", ItemIds.NOT_USED3_DEFAULT).getInt();
 		ItemIds.NOT_USED4 = config.getItem("itemLyoko5", ItemIds.NOT_USED4_DEFAULT).getInt();
@@ -171,7 +168,6 @@ public class CodeLyoko
 		ItemIds.DATA_FRAGMENT = config.getItem("dataFragment", ItemIds.DATA_FRAGMENT_DEFAULT).getInt();
 		ItemIds.ITEM_LYOKO_URANIUM_CELL = config.getItem("itemLyokoUraniumCell", ItemIds.ITEM_LYOKO_URANIUM_CELL_DEFAULT).getInt();
 		ItemIds.ITEM_LYOKO_DEPLETED_URANIUM = config.getItem("itemLyokoDepletedUranium", ItemIds.ITEM_LYOKO_DEPLETED_URANIUM_DEFAULT).getInt();
-		ItemIds.ITEM_OVERBOARD = config.getItem("itemOverboard", ItemIds.ITEM_OVERBOARD_DEFAULT).getInt();
 		
 		/**
 		 * taken from my other mod so I can add booleans if needed to the config file
