@@ -43,7 +43,7 @@ public class BlockSuperCalc extends BlockContainer {
         			&& world.getBlockId(x-1, y, z+1) == CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x-1, y, z) == CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.SuperCalc.blockID
-        			&& checkNotConflicting(world, x, y, z))
+        			&& !checkNotConflicting(world, x, y, z))
         	{
         		return true;
         	}
