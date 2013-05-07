@@ -5,6 +5,7 @@ import java.util.List;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -69,8 +70,26 @@ public class ItemLyoko extends Item
 			}
 			else
 			{
-				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
-				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+			}
+		}
+		else if(stack.getItem() == ModItems.QuantumOrb)
+		{
+			if(ent instanceof EntityPlayer)
+			{
+				if(!((EntityPlayer)ent).capabilities.isCreativeMode)
+				{
+					((EntityPlayer)ent).clearActivePotions();
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.regeneration.getId(), 20, 5)));
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 20, 4)));
+				}
+			}
+			else
+			{
+				((EntityLiving)ent).clearActivePotions();
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.regeneration.getId(), 20, 5)));
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 20, 4)));
 			}
 		}
 	}
