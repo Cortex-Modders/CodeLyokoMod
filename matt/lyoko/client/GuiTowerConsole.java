@@ -69,7 +69,7 @@ public class GuiTowerConsole extends GuiContainer
             this.code = this.textBoxCode.getText();
         }
         
-        if(par2 == 42)
+        if(par2 == 28)
         {
         	if(code.equals("developer"))
         	{
@@ -79,6 +79,7 @@ public class GuiTowerConsole extends GuiContainer
         			if(player.username.equals(CodeLyoko.getDevelopers()[ipod]))
         			{
         				temporary++;
+        				player.sendChatToPlayer("A tower has been activated at: " + ttc.xCoord + ", " + ttc.yCoord + ", " + ttc.zCoord + ", in dimension: " + ttc.worldObj.provider.dimensionId);
         			}
         		}
         		if(temporary == 0)
