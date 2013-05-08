@@ -8,6 +8,11 @@ import net.minecraft.world.World;
 
 public class EntitySkid extends EntityVehicle
 {
+	/**
+	 * the nav skids are ordered like this: Front, Back, Left, Right
+	 */
+	private boolean[] navSkid = {true, true, true, true};
+	
     public EntitySkid(World world)
     {
         super(world);
@@ -64,5 +69,45 @@ public class EntitySkid extends EntityVehicle
     public boolean canBePushed()
     {
         return false;
+    }
+    
+    /**
+     * 
+     * @param skidFront
+     * @param skidBack
+     * @param skidLeft
+     * @param skidRight
+     */
+    public void setNavSkid(boolean skidFront, boolean skidBack, boolean skidLeft, boolean skidRight)
+    {
+    	navSkid[0] = skidFront;
+    	navSkid[1] = skidBack;
+    	navSkid[2] = skidLeft;
+    	navSkid[3] = skidRight;
+    }
+    
+    /**
+     * 
+     * @param skid
+     * @param arraySlot
+     */
+    public void setNavSkid(boolean skid, int arraySlot)
+    {
+    	navSkid[arraySlot] = skid;
+    }
+    
+    public boolean[] getNavSkids()
+    {
+    	return navSkid;
+    }
+    
+    /**
+     * 
+     * @param arraySlot
+     * @return
+     */
+    public boolean getNavSkid(int arraySlot)
+    {
+    	return navSkid[arraySlot];
     }
 }
