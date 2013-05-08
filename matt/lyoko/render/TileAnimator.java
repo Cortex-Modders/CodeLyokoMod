@@ -42,29 +42,29 @@ public class TileAnimator {
 
     public float[] getTopLeft() {
         float[] value = new float[2];
-        value[0] = xPos;
-        value[1] = yPos;
+        value[0] = xPos + baseX;
+        value[1] = yPos + baseY;
         return value;
     }
 
     public float[] getTopRight() {
         float[] value = new float[2];
-        value[0] = xPos + baseX;
-        value[1] = yPos;
-        return value;
-    }
-
-    public float[] getBottomLeft() {
-        float[] value = new float[2];
         value[0] = xPos;
         value[1] = yPos + baseY;
         return value;
     }
 
-    public float[] getBottomRight() {
+    public float[] getBottomLeft() {
         float[] value = new float[2];
         value[0] = xPos + baseX;
-        value[1] = yPos + baseY;
+        value[1] = yPos;
+        return value;
+    }
+
+    public float[] getBottomRight() {
+        float[] value = new float[2];
+        value[0] = xPos;
+        value[1] = yPos;
         return value;
     }
 
