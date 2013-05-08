@@ -20,7 +20,7 @@ public class ModItems {
     public static Item EnergyField;
     public static Item Glove;
     public static Item LaserArrow;
-    public static Item LyokoIngot;
+    public static Item QuantumOrb;
     public static Item LyokoLead;
     public static Item LyokoCell;
     public static Item LyokoLeadCell;
@@ -51,6 +51,8 @@ public class ModItems {
     public static Item LyokoDepletedUraniumCell;
     public static Item Overboard;
     public static Item Skid;
+    public static Item QuantumMatrix;
+    public static Item QuantumContainmentCell;
     
     public static void init() {
         Katana = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_1, toolLYOKO).setUnlocalizedName("Katana");
@@ -59,7 +61,7 @@ public class ModItems {
         EnergyField = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_4, EntityEnergyField.class, EnergyField, "energyfield").setUnlocalizedName("EnergyField");
         Glove = new ItemLyokoRanged(ItemIds.WEAPON_LYOKO_5, EntityLaserArrow.class, Glove, "glove").setUnlocalizedName("Glove");
         LaserArrow = new ItemLyoko(ItemIds.WEAPON_LYOKO_6).setUnlocalizedName("LaserArrow");
-        LyokoIngot = new ItemLyoko(ItemIds.ITEM_LYOKO_11).setUnlocalizedName("LyokoIngot");
+        QuantumOrb = new ItemLyoko(ItemIds.ITEM_LYOKO_11).setUnlocalizedName("LyokoIngot");
         LyokoLead = new ItemLyoko(ItemIds.ITEM_LYOKO_12).setUnlocalizedName("Lead210");
         LyokoCell = new ItemLyoko(ItemIds.ITEM_LYOKO_13).setUnlocalizedName("Cell");
         LyokoLeadCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_14, 1250, LyokoDepletedLeadCell).setUnlocalizedName("Lead210Cell");
@@ -90,6 +92,8 @@ public class ModItems {
         LyokoDepletedUraniumCell = new ItemLyoko(ItemIds.ITEM_LYOKO_DEPLETED_URANIUM).setUnlocalizedName("DepletedUraniumCell");
         Overboard = new ItemOverboard(ItemIds.ITEM_OVERBOARD).setUnlocalizedName("Overboard");
         Skid = new ItemSkid(ItemIds.ITEM_SKID).setUnlocalizedName("Skidbladnir");
+        QuantumMatrix = new ItemLyoko(ItemIds.ITEM_QUANTUM_MATRIX).setUnlocalizedName("QuantumMatrix");
+        QuantumContainmentCell = new ItemLyoko(ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL).setUnlocalizedName("QuantumContainmentCell");
         
         registerRecipes();
     }

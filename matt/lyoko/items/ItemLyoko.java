@@ -5,6 +5,7 @@ import java.util.List;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,6 +28,7 @@ public class ItemLyoko extends Item
 		{
 			list.add("This is the mod's equivalent of an infinite battery.");
 			list.add("Use this as a fuel cell in the Super Computer.");
+			list.add("This is also the debug tool for the mod as well.");
 		}
 	}
 	
@@ -35,8 +37,8 @@ public class ItemLyoko extends Item
 	{
 		if(this.itemID == ModItems.LaserArrow.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
-		if(this.itemID == ModItems.LyokoIngot.itemID)
-			itemIcon = iconRegister.registerIcon("lyoko:lyokoingot");
+		if(this.itemID == ModItems.QuantumOrb.itemID)
+			itemIcon = iconRegister.registerIcon("lyoko:quantumorb");
 		if(this.itemID == ModItems.LyokoLead.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:leadingot");
 		if(this.itemID == ModItems.LyokoCell.itemID)
@@ -47,7 +49,13 @@ public class ItemLyoko extends Item
 			itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
 		if(this.itemID == ModItems.LyokoDepletedUraniumCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
+		if(this.itemID == ModItems.QuantumMatrix.itemID)
+			itemIcon = iconRegister.registerIcon("lyoko:quantummatrix");
+		if(this.itemID == ModItems.QuantumContainmentCell.itemID)
+			itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell");
 	}
+	
+	private int tick = 40;
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
@@ -64,8 +72,38 @@ public class ItemLyoko extends Item
 			}
 			else
 			{
-				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
-				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 100, 0)));
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 100, 0)));
+			}
+		}
+		else if(stack.getItem() == ModItems.QuantumOrb)
+		{
+			if(ent instanceof EntityPlayer)
+			{
+				if(!((EntityPlayer)ent).capabilities.isCreativeMode)
+				{
+					if(tick <= 0)
+					{
+						((EntityPlayer)ent).setEntityHealth(((EntityPlayer)ent).getHealth() - 1);
+						tick = 40;
+					}
+					else
+					{
+						tick--;
+					}
+				}
+			}
+			else
+			{
+				if(tick <= 0)
+				{
+					((EntityLiving)ent).setEntityHealth(((EntityLiving)ent).getHealth() - 1);
+					tick = 40;
+				}
+				else
+				{
+					tick--;
+				}
 			}
 		}
 	}

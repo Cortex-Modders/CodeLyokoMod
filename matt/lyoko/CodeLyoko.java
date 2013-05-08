@@ -57,7 +57,7 @@ public class CodeLyoko
 	public static Block LyokoIce;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
 	public static Block LyokoLog;// = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
 	public static Block LyokoCarthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-	public static Block LyokoOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
+	public static Block QuantumOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
 	public static Block DigitalSeaBlock;// = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
 	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
 	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill").setRequiresSelfNotify();
@@ -131,8 +131,8 @@ public class CodeLyoko
 		ItemIds.WEAPON_LYOKO_6 = config.getItem("weaponLyoko6", ItemIds.WEAPON_LYOKO_6_DEFAULT).getInt();
 		ItemIds.ITEM_SKID = config.getItem("itemLyoko1", ItemIds.ITEM_SKID_DEFAULT).getInt();
 		ItemIds.ITEM_OVERBOARD = config.getItem("itemOverboard", ItemIds.ITEM_OVERBOARD_DEFAULT).getInt();
-		ItemIds.NOT_USED2 = config.getItem("itemLyoko3", ItemIds.NOT_USED2_DEFAULT).getInt();
-		ItemIds.NOT_USED3 = config.getItem("itemLyoko4", ItemIds.NOT_USED3_DEFAULT).getInt();
+		ItemIds.ITEM_QUANTUM_MATRIX = config.getItem("itemQuantumMatrix", ItemIds.ITEM_QUANTUM_MATRIX_DEFAULT).getInt();
+		ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL = config.getItem("itemQuantumContainmentCell", ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL_DEFAULT).getInt();
 		ItemIds.NOT_USED4 = config.getItem("itemLyoko5", ItemIds.NOT_USED4_DEFAULT).getInt();
 		ItemIds.NOT_USED5 = config.getItem("itemLyoko6", ItemIds.NOT_USED5_DEFAULT).getInt();
 		ItemIds.NOT_USED6 = config.getItem("itemLyoko7", ItemIds.NOT_USED6_DEFAULT).getInt();
@@ -196,7 +196,7 @@ public class CodeLyoko
     	LyokoIce = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
     	LyokoLog = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
     	LyokoCarthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-    	LyokoOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
+    	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
     	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
     	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
     	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
@@ -236,14 +236,14 @@ public class CodeLyoko
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
     	
-    	MinecraftForge.setBlockHarvestLevel(LyokoOre, "pickaxe", 2);
+    	MinecraftForge.setBlockHarvestLevel(QuantumOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(LeadOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(UraniumOre, "pickaxe", 2);
     	
     	GameRegistry.registerBlock(SuperCalc, "Super Computer");
     	LanguageRegistry.addName(SuperCalc, "Super Computer");
     	GameRegistry.addRecipe(new ItemStack(SuperCalc, 1), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), Block.blockGold, Character.valueOf('*'), Item.netherStar
+    		"#o#", "#*#", "#o#", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix, Character.valueOf('o'), Block.obsidian
     	});
     	
     	LanguageRegistry.addName(ModItems.Overboard, "Overboard");
@@ -259,6 +259,19 @@ public class CodeLyoko
     		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
     		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
     	});*/
+    	
+    	LanguageRegistry.addName(ModItems.QuantumMatrix, "Quantum Matrix");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.QuantumMatrix, 1), new Object[] {
+    		" * ", "*#*", " * ", Character.valueOf('*'), Item.diamond, Character.valueOf('#'), ModItems.QuantumOrb
+    	});
+    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.QuantumMatrix, 1), new Object[] {
+    	    ModItems.QuantumContainmentCell, ModItems.QuantumOrb
+    	});
+    	
+    	LanguageRegistry.addName(ModItems.QuantumContainmentCell, "Quantum Containment Cell");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.QuantumContainmentCell, 1), new Object[] {
+    		" * ", "*#*", " * ", Character.valueOf('*'), Item.diamond, Character.valueOf('#'), Block.glass
+    	});
     	
     	GameRegistry.registerBlock(TowerWall, "Tower Wall");
     	LanguageRegistry.addName(TowerWall, "Tower Wall");
@@ -325,24 +338,24 @@ public class CodeLyoko
     	
     	LanguageRegistry.addName(ModItems.LyokoDepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
     	
-    	LanguageRegistry.addName(ModItems.LyokoIngot, "Lyokoan Ingot");
-    	GameRegistry.addSmelting(LyokoOre.blockID, new ItemStack(ModItems.LyokoIngot, 1), 5F);
+    	LanguageRegistry.addName(ModItems.QuantumOrb, "Quantum Orb");
+    	GameRegistry.addSmelting(QuantumOre.blockID, new ItemStack(ModItems.QuantumOrb, 1), 5F);
     	
     	LanguageRegistry.addName(ModItems.AelitaHelmet, "Aelita's Helmet");
     	LanguageRegistry.addName(ModItems.AelitaChest, "Aelita's Chestplate");
     	LanguageRegistry.addName(ModItems.AelitaLegs, "Aelita's Leggings");
     	LanguageRegistry.addName(ModItems.AelitaBoots, "Aelita's Boots");
     	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
+    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
     	});
     	
     	LanguageRegistry.addName(ModItems.OddHelmet, "Odd's Helmet");
@@ -350,16 +363,16 @@ public class CodeLyoko
     	LanguageRegistry.addName(ModItems.OddLegs, "Odd's Leggings");
     	LanguageRegistry.addName(ModItems.OddBoots, "Odd's Boots");
     	GameRegistry.addRecipe(new ItemStack(ModItems.OddHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.OddChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.OddLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.OddBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
+    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
     	});
     	
     	LanguageRegistry.addName(ModItems.UlrichHelmet, "Ulrich's Helmet");
@@ -367,16 +380,16 @@ public class CodeLyoko
     	LanguageRegistry.addName(ModItems.UlrichLegs, "Ulrich's Leggings");
     	LanguageRegistry.addName(ModItems.UlrichBoots, "Ulrich's Boots");
     	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
+    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
     	});
     	
     	LanguageRegistry.addName(ModItems.YumiHelmet, "Yumi's Helmet");
@@ -384,16 +397,16 @@ public class CodeLyoko
     	LanguageRegistry.addName(ModItems.YumiLegs, "Yumi's Leggings");
     	LanguageRegistry.addName(ModItems.YumiBoots, "Yumi's Boots");
     	GameRegistry.addRecipe(new ItemStack(ModItems.YumiHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.YumiChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.YumiLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.YumiBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
+    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
     	});
     	
     	LanguageRegistry.addName(ModItems.WilliamHelmet, "William's Helmet");
@@ -401,16 +414,16 @@ public class CodeLyoko
     	LanguageRegistry.addName(ModItems.WilliamLegs, "William's Leggings");
     	LanguageRegistry.addName(ModItems.WilliamBoots, "William's Boots");
     	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
     	});
     	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.LyokoIngot, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
+    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
     	});
     	
     	LanguageRegistry.addName(ModItems.Katana, "Katana");
@@ -476,8 +489,8 @@ public class CodeLyoko
     	GameRegistry.registerBlock(LyokoCarthage, "Carthage Block");
     	LanguageRegistry.addName(LyokoCarthage, "Carthage Block");
     	
-    	GameRegistry.registerBlock(LyokoOre, ItemBlockEffect.class, "Lyoko Ore");
-    	LanguageRegistry.addName(LyokoOre, "Lyoko Ore");
+    	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
+    	LanguageRegistry.addName(QuantumOre, "Quantum Ore");
     	
     	GameRegistry.registerBlock(DigitalSeaFlowing, "Digital Sea Flowing");
     	LanguageRegistry.addName(DigitalSeaFlowing, "Digital Sea Flowing");

@@ -176,21 +176,66 @@ public class ItemLyokoRanged extends Item
     	itemIcon = iconRegister.registerIcon("lyoko:" + texture);
 	}
     
-    private int life = 200;
-	
-	public void onUpdate(ItemStack stack, World world, Entity ent, int slot, boolean par5)
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity ent, int slot, boolean par5)
 	{
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)ent;
-			if(life > 0)
+			
+			if (player.getCurrentItemOrArmor(4) != null && player.getCurrentItemOrArmor(3) != null
+					&& player.getCurrentItemOrArmor(2) != null && player.getCurrentItemOrArmor(1) != null)
 			{
-				life--;
+				ItemStack helmet = player.getCurrentItemOrArmor(4);
+				ItemStack chest = player.getCurrentItemOrArmor(3);
+				ItemStack legs = player.getCurrentItemOrArmor(2);
+				ItemStack boots = player.getCurrentItemOrArmor(1);
+				if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest
+						&& legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
+				{
+					if(stack.getItem() != ModItems.EnergyField)
+					{
+						player.inventory.setInventorySlotContents(slot, null);
+					}
+				}
+				else if (helmet.getItem() == ModItems.OddHelmet && chest.getItem() == ModItems.OddChest
+						&& legs.getItem() == ModItems.OddLegs && boots.getItem() == ModItems.OddBoots)
+				{
+					if(stack.getItem() != ModItems.Glove)
+					{
+						player.inventory.setInventorySlotContents(slot, null);
+					}
+				}
+				else if (helmet.getItem() == ModItems.YumiHelmet && chest.getItem() == ModItems.YumiChest
+						&& legs.getItem() == ModItems.YumiLegs && boots.getItem() == ModItems.YumiBoots)
+				{
+					if(stack.getItem() != ModItems.Fan)
+					{
+						player.inventory.setInventorySlotContents(slot, null);
+					}
+				}
+				else if (helmet.getItem() == ModItems.UlrichHelmet && chest.getItem() == ModItems.UlrichChest
+						&& legs.getItem() == ModItems.UlrichLegs && boots.getItem() == ModItems.UlrichBoots)
+				{
+					if(stack.getItem() != ModItems.Katana)
+					{
+						player.inventory.setInventorySlotContents(slot, null);
+					}
+				}
+				else if (helmet.getItem() == ModItems.WilliamHelmet && chest.getItem() == ModItems.WilliamChest
+						&& legs.getItem() == ModItems.WilliamLegs && boots.getItem() == ModItems.WilliamBoots)
+				{
+					if(stack.getItem() != ModItems.Zweihander)
+					{
+						player.inventory.setInventorySlotContents(slot, null);
+					}
+				}
 			}
-			else
+			else if ((player.getCurrentItemOrArmor(4) == null || player.getCurrentItemOrArmor(3) == null
+					|| player.getCurrentItemOrArmor(2) == null || player.getCurrentItemOrArmor(1) == null)
+					&& player.capabilities.isCreativeMode == false)
 			{
 				player.inventory.setInventorySlotContents(slot, null);
-				life = 200;
 			}
 		}
 	}

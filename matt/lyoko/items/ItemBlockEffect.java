@@ -34,7 +34,7 @@ public class ItemBlockEffect extends ItemBlock
 				((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 500, 2)));
 			}
 		}
-		else if(stack.itemID == CodeLyoko.LyokoOre.blockID)
+		else if(stack.itemID == CodeLyoko.QuantumOre.blockID)
 		{
 			((EntityLiving)ent).clearActivePotions();
 			((EntityLiving)ent).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 500, 2));

@@ -10,8 +10,8 @@ public class ItemIds {
     public static int WEAPON_LYOKO_6_DEFAULT = 6086;
     public static int ITEM_SKID_DEFAULT = 6087;
     public static int ITEM_OVERBOARD_DEFAULT = 6088;
-    public static int NOT_USED2_DEFAULT = 6089;
-    public static int NOT_USED3_DEFAULT = 6090;
+    public static int ITEM_QUANTUM_MATRIX_DEFAULT = 6089;
+    public static int ITEM_QUANTUM_CONTAINMENT_CELL_DEFAULT = 6090;
     public static int NOT_USED4_DEFAULT = 6091;
     public static int NOT_USED5_DEFAULT = 6092;
     public static int NOT_USED6_DEFAULT = 6093;
@@ -56,7 +56,8 @@ public class ItemIds {
     public static int WEAPON_LYOKO_6;
     public static int ITEM_SKID;
     public static int ITEM_OVERBOARD;
-    public static int NOT_USED2;
+    public static int ITEM_QUANTUM_MATRIX;
+    public static int ITEM_QUANTUM_CONTAINMENT_CELL;
     public static int NOT_USED3;
     public static int NOT_USED4;
     public static int NOT_USED5;

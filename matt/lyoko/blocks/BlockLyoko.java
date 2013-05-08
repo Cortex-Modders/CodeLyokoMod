@@ -44,9 +44,9 @@ public class BlockLyoko extends Block
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:carthage");
 		}
-		if(this.blockID == CodeLyoko.LyokoOre.blockID)
+		if(this.blockID == CodeLyoko.QuantumOre.blockID)
 		{
-			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokoore");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:quantumore");
 		}
 		if(this.blockID == CodeLyoko.LeadOre.blockID)
 		{
@@ -85,7 +85,7 @@ public class BlockLyoko extends Block
 			}
 		}
 		
-		else if(this.blockID == CodeLyoko.LyokoOre.blockID)
+		else if(this.blockID == CodeLyoko.QuantumOre.blockID)
 		{
 			if(par5Entity instanceof EntityLiving)
 			{
