@@ -21,10 +21,12 @@ import matt.lyoko.model.mobs.*;
 import matt.lyoko.entities.*;
 import matt.lyoko.render.*;
 import matt.lyoko.model.*;
+import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.entities.vehicles.*;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.render.tileentity.RenderEntityTowerConsole;
+import matt.lyoko.render.tileentity.RenderTower;
 import matt.lyoko.render.vehicles.*;
 import matt.lyoko.model.vehicles.*;
 
@@ -68,6 +70,7 @@ public class ClientProxy extends CommonProxy
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderEntityTowerConsole());
+	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
 		
 		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
 		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
