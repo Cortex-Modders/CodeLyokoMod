@@ -44,8 +44,26 @@ public class RenderTower extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
-        GL11.glTranslatef((float)x, (float)y, (float)z-0.20F);
-
+        GL11.glTranslatef((float)x, (float)y, (float)z);
+        
+        float offsetX = 0;
+        float offsetZ = 0;
+        float rotationY = 0;
+        
+        switch(i) {
+            case 2: offsetZ = 0.2F;
+//                    rotationY = 180F;
+            case 3: offsetX = -0.2F;
+//                    rotationY = 0F;
+            case 4: offsetZ = -0.2F;
+//                    rotationY = -90F;
+            case 5: offsetX = 0.2F;
+//                    rotationY = 90F;
+        }
+        
+        GL11.glRotatef(rotationY, 0F, 1F, 0F);
+        GL11.glTranslatef(offsetX, 0F, offsetZ);
+        
         this.renderRect(tessellator, 1.0F, 1.0F);
         
         GL11.glPopMatrix();
