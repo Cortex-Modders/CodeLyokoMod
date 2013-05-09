@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,7 +18,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
     private final TileAnimator animator;
 
     public RenderTower() {
-        animator = new TileAnimator(1.0F, 1.0F, 1, 8, 0.1F);
+        animator = new TileAnimator(1.0F, 1.0F, 1, 8, 0.05F);
     }
 
     int index = 0;
@@ -43,29 +44,41 @@ public class RenderTower extends TileEntitySpecialRenderer {
 
         GL11.glPushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
         GL11.glTranslatef((float)x, (float)y, (float)z);
-        
+
         float offsetX = 0;
         float offsetZ = 0;
         float rotationY = 0;
-        
+
         switch(i) {
-            case 2: offsetZ = 0.2F;
-//                    rotationY = 180F;
-            case 3: offsetX = -0.2F;
-//                    rotationY = 0F;
-            case 4: offsetZ = -0.2F;
-//                    rotationY = -90F;
-            case 5: offsetX = 0.2F;
-//                    rotationY = 90F;
+            case 1: 
+                offsetZ = -0.2F;
+                break;
+            case 2: 
+                offsetX = 1.2F;
+                rotationY = -90F;
+                break;
+            case 3: 
+                offsetZ = 1.2F;
+                offsetX = 1.0F;
+                rotationY = 180F;
+                break;
+            case 4: 
+                offsetX = -0.2F;
+                offsetZ = 1.0F;
+                rotationY = 90F;
+                break;
         }
-        
-        GL11.glRotatef(rotationY, 0F, 1F, 0F);
+
         GL11.glTranslatef(offsetX, 0F, offsetZ);
-        
+        GL11.glRotatef(rotationY, 0F, 1F, 0F);
+
         this.renderRect(tessellator, 1.0F, 1.0F);
-        
+
+        GL11.glDisable(GL11.GL_BLEND);
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
 
         // advances the animator.
@@ -86,11 +99,9 @@ public class RenderTower extends TileEntitySpecialRenderer {
         // TOP LEFT
         float[] topLeft = this.animator.getTopLeft();
         tessellator.addVertexWithUV(0.0, 0.0, 0.0, topLeft[0], topLeft[1]);
-
         // BOTTOM LEFT
         float[] botLeft = this.animator.getBottomLeft();
         tessellator.addVertexWithUV(0.0, h, 0.0, botLeft[0], botLeft[1]);
-
         // BOTTOM RIGHT
         float[] botRight = this.animator.getBottomRight();
         tessellator.addVertexWithUV(w, h, 0.0, botRight[0], botRight[1]);
