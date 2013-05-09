@@ -17,7 +17,6 @@ public class BlockTowerConsole extends BlockContainer
     {
         super(par1, Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
-        this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
     }
 
     @Override
@@ -60,33 +59,52 @@ public class BlockTowerConsole extends BlockContainer
             return true;
         }
     }
-
+    
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
+    {
+    	super.setBlockBoundsBasedOnState(blockAccess, x, y, z);
+    	int meta = blockAccess.getBlockMetadata(x, y, z);
+    	
+    	if(meta == 2 || meta == 3)
+    	{
+    		this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
+    	}
+    	else if(meta == 4 || meta == 5)
+    	{
+    		this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
+    	}
+    	else
+    	{
+    		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+    	}
+    	
+    }
+    
+    @Override
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
     {
+    	super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         if (l == 0)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
-            this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
         }
 
         if (l == 1)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 5, 2);
-            this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
         }
 
         if (l == 2)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
-            this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
         }
 
         if (l == 3)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
-            this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
         }
     }
 }

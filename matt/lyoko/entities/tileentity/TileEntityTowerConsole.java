@@ -15,7 +15,7 @@ public class TileEntityTowerConsole extends TileEntity
 	@Override
 	public void updateEntity()
 	{
-	    for(int x = -4; x < 5; x++)
+		for(int x = -4; x < 5; x++)
 		{
 			for(int y = -4; y < 5; y++)
 			{

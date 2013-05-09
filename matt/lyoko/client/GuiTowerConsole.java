@@ -80,6 +80,7 @@ public class GuiTowerConsole extends GuiContainer
         			{
         				temporary++;
         				player.sendChatToPlayer("A tower has been activated at: " + ttc.xCoord + ", " + ttc.yCoord + ", " + ttc.zCoord + ", in dimension: " + ttc.worldObj.provider.dimensionId);
+        				player.sendChatToPlayer("Automatic deactivation will occur in 10 minutes");
         			}
         		}
         		if(temporary == 0)
@@ -88,7 +89,7 @@ public class GuiTowerConsole extends GuiContainer
         		}
         	}
         	
-        	ByteArrayOutputStream bos = new ByteArrayOutputStream(code.length() + 14);
+        	ByteArrayOutputStream bos = new ByteArrayOutputStream(code.length() + 12);
         	DataOutputStream outputStream = new DataOutputStream(bos);
         	try
         	{
