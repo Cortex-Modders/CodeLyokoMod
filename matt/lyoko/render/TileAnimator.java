@@ -80,7 +80,6 @@ public class TileAnimator {
 
         currentFrame = (float) Math.ceil(index * speed);
         xPos = currentFrame * baseX * frameWidth;
-        System.out.println(index);
         
         index++;
     }
