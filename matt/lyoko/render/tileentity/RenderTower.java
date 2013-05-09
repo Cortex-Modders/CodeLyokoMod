@@ -53,19 +53,19 @@ public class RenderTower extends TileEntitySpecialRenderer {
         float rotationY = 0;
 
         switch(i) {
-            case 1: 
+            case 0: 
                 offsetZ = -0.2F;
                 break;
-            case 2: 
+            case 1: 
                 offsetX = 1.2F;
                 rotationY = -90F;
                 break;
-            case 3: 
+            case 2: 
                 offsetZ = 1.2F;
                 offsetX = 1.0F;
                 rotationY = 180F;
                 break;
-            case 4: 
+            case 3: 
                 offsetX = -0.2F;
                 offsetZ = 1.0F;
                 rotationY = 90F;

@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import matt.lyoko.*;
@@ -26,16 +27,42 @@ public class BlockLyokoTower extends BlockContainer
         super(par1, Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
+    Icon inside;
+    
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("lyoko:tower");
+        inside = par1IconRegister.registerIcon("lyoko:towerbase");
     }
 
     @Override
     public TileEntity createNewTileEntity(World var1) {
         return new TileEntityTower();
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Icon getIcon(int side, int meta)
+    {
+    	if(side == 2 && meta == 0)
+    	{
+    		return inside;
+    	}
+    	else if(side == 3 && meta == 2)
+    	{
+    		return inside;
+    	}
+    	else if(side == 4 && meta == 3)
+    	{
+    		return inside;
+    	}
+    	else if(side == 5 && meta == 1)
+    	{
+    		return inside;
+    	}
+    	return this.blockIcon;
     }
 
     /*public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
@@ -156,22 +183,22 @@ public class BlockLyokoTower extends BlockContainer
         System.out.println(l);
         if (l == 0)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 0, 2);
         }
 
         if (l == 1)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
         }
 
         if (l == 2)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
         }
 
         if (l == 3)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
         }
     }
 }

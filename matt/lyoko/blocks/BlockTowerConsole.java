@@ -66,11 +66,11 @@ public class BlockTowerConsole extends BlockContainer
     	super.setBlockBoundsBasedOnState(blockAccess, x, y, z);
     	int meta = blockAccess.getBlockMetadata(x, y, z);
     	
-    	if(meta == 2 || meta == 3)
+    	if(meta == 0 || meta == 2)
     	{
     		this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
     	}
-    	else if(meta == 4 || meta == 5)
+    	else if(meta == 1 || meta == 3)
     	{
     		this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
     	}
@@ -89,22 +89,22 @@ public class BlockTowerConsole extends BlockContainer
 
         if (l == 0)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 0, 2);
         }
 
         if (l == 1)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 5, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
         }
 
         if (l == 2)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
         }
 
         if (l == 3)
         {
-            par1World.setBlockMetadataWithNotify(x, y, z, 4, 2);
+            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
         }
     }
 }

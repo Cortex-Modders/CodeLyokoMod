@@ -40,19 +40,19 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
         
         short rotate = 0;
 
-        if (i == 2) {
+        if (i == 0) {
             rotate = 180;
         }
 
-        if (i == 3) {
+        if (i == 2) {
             rotate = 0;
         }
 
-        if (i == 4) {
+        if (i == 3) {
             rotate = -90;
         }
 
-        if (i == 5) {
+        if (i == 1) {
             rotate = 90;
         }
 
