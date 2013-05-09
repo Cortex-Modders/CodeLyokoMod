@@ -15,6 +15,7 @@ public class TileEntityTower extends TileEntity
 {
 	public String owner = "none";
 	private static String[] possibleOwners = {"none", "developer", "xana", "lyoko", "reset"};
+	private int resetTicks = 12000;
 
 	public void updateEntity()
 	{
@@ -27,6 +28,7 @@ public class TileEntityTower extends TileEntity
 			syncTower(xCoord, yCoord-1, zCoord, "reset");
 			syncTower(xCoord, yCoord, zCoord+1, "reset");
 			syncTower(xCoord, yCoord, zCoord-1, "reset");
+			resetTicks = 12000;
 		}
 		else if(owner.equals("developer"))
 		{
@@ -36,6 +38,7 @@ public class TileEntityTower extends TileEntity
 			syncTower(xCoord, yCoord-1, zCoord, "developer");
 			syncTower(xCoord, yCoord, zCoord+1, "developer");
 			syncTower(xCoord, yCoord, zCoord-1, "developer");
+			resetTicks--;
 		}
 		else if(owner.equals("xana"))
 		{
@@ -64,6 +67,13 @@ public class TileEntityTower extends TileEntity
 			syncTower(xCoord, yCoord, zCoord+1, "none");
 			syncTower(xCoord, yCoord, zCoord-1, "none");
 		}
+		
+		if(resetTicks <= 0)
+		{
+			owner = "reset";
+			resetTicks = 12000;
+		}
+		
 	}
 	
 	public static String[] getPossibleOwners()
@@ -137,6 +147,7 @@ public class TileEntityTower extends TileEntity
 	{
 		super.readFromNBT(tagCompound);
 		this.owner = tagCompound.getString("towerOwner");
+		this.resetTicks = tagCompound.getInteger("resetTime");
 	}
 
 	@Override
@@ -144,5 +155,6 @@ public class TileEntityTower extends TileEntity
 	{
 		super.writeToNBT(tagCompound);
 		tagCompound.setString("towerOwner", this.owner);
+		tagCompound.setInteger("resetTime", this.resetTicks);
 	}
 }
