@@ -1,11 +1,14 @@
 package matt.lyoko.client;
 
+import org.lwjgl.opengl.GL11;
+
 import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.Mod.Instance;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.*;
@@ -81,6 +84,23 @@ public class ClientProxy extends CommonProxy
 		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());
 	}
 
-	//override any other methods that need to be handled differently client side.
+	/**
+	 * 
+	 * called for things with alpha. thank you MachineMuse. :D
+	 */
+	public static void alphaOn() {
+	    GL11.glPushAttrib(GL11.GL_COLOR_BUFFER_BIT);
+	    GL11.glPushAttrib(GL11.GL_LIGHTING_BIT);
+	    if(Minecraft.isFancyGraphicsEnabled()) {
+	        GL11.glShadeModel(GL11.GL_SMOOTH);
+	        GL11.glEnable(GL11.GL_BLEND);
+	        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+	    }
+	}
+	
+	public static void alphaOff() {
+	    GL11.glPopAttrib();
+	    GL11.glPopAttrib();
+	}
 
 }

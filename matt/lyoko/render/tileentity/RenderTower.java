@@ -1,5 +1,6 @@
 package matt.lyoko.render.tileentity;
 
+import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.render.TileAnimator;
 import net.minecraft.client.renderer.Tessellator;
@@ -15,6 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderTower extends TileEntitySpecialRenderer {
 
+    private ClientProxy proxy;
     private final TileAnimator animator;
 
     public RenderTower() {
@@ -43,8 +45,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
         }
 
         GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        proxy.alphaOn();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
         GL11.glTranslatef((float)x, (float)y, (float)z);
 
@@ -77,8 +78,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
 
         this.renderRect(tessellator, 1.0F, 1.0F);
 
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        proxy.alphaOff();
         GL11.glPopMatrix();
 
         // advances the animator.
