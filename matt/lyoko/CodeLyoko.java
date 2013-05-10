@@ -9,7 +9,7 @@ import matt.lyoko.entities.tileentity.TileEntityMarabounta;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
-import matt.lyoko.entities.tileentity.TileEntityVirtualBlock;
+import matt.lyoko.entities.tileentity.TileEntityBlank;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;
@@ -66,7 +66,7 @@ public class CodeLyoko
 	public static Block UraniumOre;
 	public static Block Marabounta;
 	public static Block TowerConsole;
-	public static Block TowerWall;
+	public static Block TowerFloor;
 	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
 	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
 	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
@@ -120,7 +120,7 @@ public class CodeLyoko
 		BlockIds.LYOKO_LEAD_ORE = config.getBlock("lyokoLeadOre", BlockIds.LYOKO_LEAD_ORE_DEFAULT).getInt();
 		BlockIds.LYOKO_MARABOUNTA = config.getBlock("marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
 		BlockIds.TOWER_CONSOLE = config.getBlock("towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
-		BlockIds.TOWER_WALL = config.getBlock("towerWall", BlockIds.TOWER_WALL_DEFAULT).getInt();
+		BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
@@ -206,7 +206,7 @@ public class CodeLyoko
     	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
-    	TowerWall = new BlockLyoko(BlockIds.TOWER_WALL).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
+    	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -228,7 +228,7 @@ public class CodeLyoko
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
     	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
-    	GameRegistry.registerTileEntity(TileEntityVirtualBlock.class, "teVirtualBlock");
+    	GameRegistry.registerTileEntity(TileEntityBlank.class, "teVirtualBlock");
     	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
     	GameRegistry.registerTileEntity(TileEntityTowerConsole.class, "teTowerConsole");
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
@@ -273,8 +273,8 @@ public class CodeLyoko
     		" * ", "*#*", " * ", Character.valueOf('*'), Item.diamond, Character.valueOf('#'), Block.glass
     	});
     	
-    	GameRegistry.registerBlock(TowerWall, "Tower Wall");
-    	LanguageRegistry.addName(TowerWall, "Tower Wall");
+    	GameRegistry.registerBlock(TowerFloor, ItemBlockTowerFloor.class, "Tower Floor");
+    	LanguageRegistry.addName(TowerFloor, "Tower Floor");
     	
     	GameRegistry.registerBlock(TowerConsole, "Tower Console");
     	LanguageRegistry.addName(TowerConsole, "Tower Console");

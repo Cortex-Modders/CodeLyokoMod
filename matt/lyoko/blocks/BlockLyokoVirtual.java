@@ -1,7 +1,7 @@
 package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.tileentity.TileEntityVirtualBlock;
+import matt.lyoko.entities.tileentity.TileEntityBlank;
 import matt.lyoko.lib.DimensionIds;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -87,6 +87,6 @@ public class BlockLyokoVirtual extends BlockContainer
 
 	@Override
 	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityVirtualBlock();
+		return new TileEntityBlank();
 	}
 }

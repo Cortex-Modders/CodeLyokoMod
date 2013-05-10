@@ -26,7 +26,7 @@ public class BlockIds {
     public static int LYOKO_LEAD_ORE_DEFAULT = 1174;
     public static int LYOKO_MARABOUNTA_DEFAULT = 1175;
     public static int TOWER_CONSOLE_DEFAULT = 1176;
-    public static int TOWER_WALL_DEFAULT = 1177;
+    public static int TOWER_FLOOR_DEFAULT = 1177;
     
     /* IDs loaded from config. */
     public static int LYOKO_TOWER;
@@ -52,5 +52,5 @@ public class BlockIds {
     public static int LYOKO_LEAD_ORE;
     public static int LYOKO_MARABOUNTA;
     public static int TOWER_CONSOLE;
-    public static int TOWER_WALL;
+    public static int TOWER_FLOOR;
 }

@@ -34,7 +34,7 @@ public class BlockLyokoTower extends BlockContainer
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("lyoko:tower");
-        inside = par1IconRegister.registerIcon("lyoko:towerbase");
+        inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
 
     @Override

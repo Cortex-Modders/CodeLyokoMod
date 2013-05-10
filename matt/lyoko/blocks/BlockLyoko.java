@@ -56,10 +56,6 @@ public class BlockLyoko extends Block
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:uranium");
 		}
-		if(this.blockID == CodeLyoko.TowerWall.blockID)
-		{
-			this.blockIcon = par1IconRegister.registerIcon("lyoko:towerwall");
-		}
 	}
 	
 	public int quantityDropped(Random par1Random)
