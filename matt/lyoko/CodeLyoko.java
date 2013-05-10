@@ -226,7 +226,7 @@ public class CodeLyoko
     	//Andrew = Odd (Jeremy)
     	//Jake = Jeremy or Ulrich (no one wants yumi xD)
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
-//    	proxy.registerServerTickHandler();
+    	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOres();
     	proxy.registerFragmentRecipes();
@@ -520,8 +520,6 @@ public class CodeLyoko
     	proxy.addChestLoot();
     	proxy.registerEntities();
     	proxy.registerEntityNames();
-    	
-    	TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
     }
     
     @PostInit

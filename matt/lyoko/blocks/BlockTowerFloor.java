@@ -51,7 +51,7 @@ public class BlockTowerFloor extends BlockContainer
 					break;
 				}
 			}
-			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, ent.rotationYaw, ent.rotationPitch);
+			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
 			ent.setVelocity(0, 0, 0);
 		}
 		else if(world.getBlockMetadata(x, y, z) == 1 && isMultiBlock(world, x, y, z))
@@ -65,7 +65,7 @@ public class BlockTowerFloor extends BlockContainer
 					break;
 				}
 			}
-			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, ent.rotationYaw, ent.rotationPitch);
+			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
 			ent.setVelocity(0, 0, 0);
 		}
 	}

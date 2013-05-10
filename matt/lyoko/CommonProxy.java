@@ -26,9 +26,9 @@ public class CommonProxy
 		//unused server side. -- see ClientProxy for implementation
 	}
 	
-	public void registerServerTickHandler()
+	public void registerTickHandlers()
 	{
-		TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+		TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
 	}
 	
 	public void registerKeyBindingHandler()

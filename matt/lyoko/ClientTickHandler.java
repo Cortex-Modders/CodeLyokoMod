@@ -9,15 +9,16 @@ import cpw.mods.fml.common.TickType;
 
 public class ClientTickHandler implements ITickHandler
 {
-    public int lifePoints = 80;
-
+	public int lifePoints = 80;
+    
     private void onPlayerTick(EntityPlayer player)
     {
-
+    	
     }
-
+    
     private void onRenderTick(EntityPlayer player)
     {
+    	//TODO set this up to render life points
         /* not used anymore
         Minecraft mc = Minecraft.getMinecraft();
         FontRenderer font = mc.fontRenderer;
@@ -27,7 +28,7 @@ public class ClientTickHandler implements ITickHandler
         FMLClientHandler.instance().getClient().ingameGUI.drawString(font, Integer.toString(lifePoints), x, y, color);
         */
     }
-
+    
     /**
      * Used to advance all the animator instances once every tick.
      * 
@@ -38,39 +39,39 @@ public class ClientTickHandler implements ITickHandler
             inst.animate();
         }
     }
-
+    
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData)
     {
-        if (type.equals(EnumSet.of(TickType.PLAYER)))
-        {
-//            onPlayerTick((EntityPlayer)tickData[0]);
-        }
         if (type.equals(EnumSet.of(TickType.RENDER)))
         {
-//            onRenderTick((EntityPlayer)tickData[0]);
+        	for(int i = 0; i < tickData.length; i++)
+        	{
+        		if(tickData[i] instanceof EntityPlayer)
+        		{
+        			onRenderTick((EntityPlayer)tickData[0]);
+        		}
+        	}
+        	
             advanceAnimatorInstances(tickData);
         }
     }
-
+    
     @Override
     public EnumSet<TickType> ticks() 
     {
-        return EnumSet.of(TickType.PLAYER, TickType.SERVER, TickType.RENDER);
+        return EnumSet.of(TickType.PLAYER, TickType.CLIENT, TickType.RENDER);
     }
-
+    
     @Override
     public void tickEnd(EnumSet<TickType> type, Object... tickData)
     {
-        // TODO Auto-generated method stub
-
+    	
     }
-
+    
     @Override
     public String getLabel()
     {
-        // TODO Auto-generated method stub
         return null;
     }
-
 }
