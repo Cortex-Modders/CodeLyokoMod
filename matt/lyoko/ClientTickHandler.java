@@ -10,12 +10,7 @@ import cpw.mods.fml.common.TickType;
 public class ClientTickHandler implements ITickHandler
 {
 	public int lifePoints = 80;
-    
-    private void onPlayerTick(EntityPlayer player)
-    {
-    	
-    }
-    
+	
     private void onRenderTick(EntityPlayer player)
     {
     	//TODO set this up to render life points

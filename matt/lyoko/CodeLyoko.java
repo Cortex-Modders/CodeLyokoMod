@@ -2,7 +2,6 @@ package matt.lyoko;
 
 import java.util.EnumSet;
 import java.util.HashSet;
-
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.entities.projectile.EntityLaser;
@@ -48,6 +47,8 @@ public class CodeLyoko
 	
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
+	
+	public static boolean enableAdminPowers;
 	
 	public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
 	public static final BiomeGenBase lyokomountain = ((BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631)).setLyokoBiomeName("Mountain Sector");
@@ -175,10 +176,7 @@ public class CodeLyoko
 		ItemIds.ITEM_LYOKO_URANIUM_CELL = config.getItem("itemLyokoUraniumCell", ItemIds.ITEM_LYOKO_URANIUM_CELL_DEFAULT).getInt();
 		ItemIds.ITEM_LYOKO_DEPLETED_URANIUM = config.getItem("itemLyokoDepletedUranium", ItemIds.ITEM_LYOKO_DEPLETED_URANIUM_DEFAULT).getInt();
 		
-		/**
-		 * taken from my other mod so I can add booleans if needed to the config file
-		 */
-        //canCraftMoney = config.get(Configuration.CATEGORY_GENERAL, "canCraftMoney", true).getBoolean(true);
+        enableAdminPowers = config.get(Configuration.CATEGORY_GENERAL, "enableAdminPowers", false).getBoolean(false);
 		
 		DimensionIds.ICE = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
 		DimensionIds.MOUNTAIN = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
@@ -220,11 +218,6 @@ public class CodeLyoko
     	LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
     	LyokoCarthagePortal  = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
     	
-    	//TODO Give mod owners special ability?
-    	//Matthew = Aelita
-    	//Marq = Odd
-    	//Andrew = Odd (Jeremy)
-    	//Jake = Jeremy or Ulrich (no one wants yumi xD)
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
     	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
