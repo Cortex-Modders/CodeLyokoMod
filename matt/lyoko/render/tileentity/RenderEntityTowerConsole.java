@@ -31,7 +31,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
         } else {
             i = entity.getBlockMetadata();
         }
-
+        
         this.bindTextureByName("/mods/lyoko/textures/models/ModelConsole.png");
         GL11.glPushMatrix();
         proxy.alphaOn();

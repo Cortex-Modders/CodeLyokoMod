@@ -1,24 +1,21 @@
 package matt.lyoko.blocks;
 
 import java.util.Random;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.particles.LyokoParticleEffects;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import matt.lyoko.*;
-import matt.lyoko.entities.*;
-import matt.lyoko.entities.tileentity.TileEntityTower;
-import matt.lyoko.items.ModItems;
-import matt.lyoko.particles.LyokoParticleEffects;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockLyokoTower extends BlockContainer
 {
@@ -180,7 +177,7 @@ public class BlockLyokoTower extends BlockContainer
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        System.out.println(l);
+
         if (l == 0)
         {
             par1World.setBlockMetadataWithNotify(x, y, z, 0, 2);

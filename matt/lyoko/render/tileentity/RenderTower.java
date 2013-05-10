@@ -1,5 +1,6 @@
 package matt.lyoko.render.tileentity;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.render.TileAnimator;
@@ -8,7 +9,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,14 +20,9 @@ public class RenderTower extends TileEntitySpecialRenderer {
     private final TileAnimator animator;
 
     public RenderTower() {
-        animator = new TileAnimator(1.0F, 1.0F, 1, 8, 0.05F);
+        animator = new TileAnimator(1.0F, 1.0F, 1, 8, 0.25F);
+        CodeLyoko.animatorInstances.add(animator);
     }
-
-    int index = 0;
-    float speed = 0.5F;
-    int frames = 8;
-
-    float yPos = 0;
 
     /**
      * Renders the TileEntity for the Tower at a position.
@@ -80,9 +75,6 @@ public class RenderTower extends TileEntitySpecialRenderer {
 
         proxy.alphaOff();
         GL11.glPopMatrix();
-
-        // advances the animator.
-        animator.animate();
     }
 
     @Override

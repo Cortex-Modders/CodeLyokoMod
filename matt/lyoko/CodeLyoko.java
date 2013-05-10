@@ -1,8 +1,10 @@
 package matt.lyoko;
 
+import java.util.EnumSet;
+import java.util.HashSet;
+
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
-import matt.lyoko.entities.*;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.TileEntityMarabounta;
@@ -13,6 +15,7 @@ import matt.lyoko.entities.tileentity.TileEntityBlank;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;
+import matt.lyoko.render.TileAnimator;
 import matt.lyoko.world.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.*;
@@ -33,12 +36,15 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.4.3-Beta")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
+	
+	public static HashSet<TileAnimator> animatorInstances = new HashSet<TileAnimator>();
 	
 	public static int SuperCalcRenderID;
 	public static int SuperCalcTexture;
@@ -82,7 +88,7 @@ public class CodeLyoko
 	@PreInit
 	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
 	{
-		preevt.getModMetadata().version = "0.4.3-Beta";
+	    preevt.getModMetadata().version = "0.4.3-Beta";
 		preevt.getModMetadata().name = "Code Lyoko Mod";
 		preevt.getModMetadata().authorList.add("986523714");
 		preevt.getModMetadata().authorList.add("Jadar");
@@ -218,9 +224,9 @@ public class CodeLyoko
     	//Matthew = Aelita
     	//Marq = Odd
     	//Andrew = Odd (Jeremy)
-    	//Jake = Jeremy or Ulrich (no one want yumi xD)
+    	//Jake = Jeremy or Ulrich (no one wants yumi xD)
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
-    	proxy.registerServerTickHandler();
+//    	proxy.registerServerTickHandler();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOres();
     	proxy.registerFragmentRecipes();
@@ -514,6 +520,8 @@ public class CodeLyoko
     	proxy.addChestLoot();
     	proxy.registerEntities();
     	proxy.registerEntityNames();
+    	
+    	TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
     }
     
     @PostInit

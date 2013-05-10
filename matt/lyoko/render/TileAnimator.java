@@ -7,7 +7,6 @@ package matt.lyoko.render;
  * @author Jake
  * 
  */
-// @SuppressWarnings("unused")
 public class TileAnimator {
 
     private float frameWidth;
