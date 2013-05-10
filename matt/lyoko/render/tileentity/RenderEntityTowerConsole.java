@@ -1,5 +1,6 @@
 package matt.lyoko.render.tileentity;
 
+import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.model.tileentity.ModelConsole;
 import net.minecraft.block.Block;
@@ -16,7 +17,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
 
     //TODO: Render GUI Text on the console.
     //TODO: Custom font for GUI and terminal, maybe?
-    
+    private ClientProxy proxy;
     private ModelConsole model = new ModelConsole();
 
     /**
@@ -33,7 +34,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
 
         this.bindTextureByName("/mods/lyoko/textures/models/ModelConsole.png");
         GL11.glPushMatrix();
-        GL11.glEnable(GL11.GL_BLEND);
+        proxy.alphaOn();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
         GL11.glTranslatef((float)x, (float)y, (float)z);
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
@@ -59,7 +60,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
         GL11.glRotatef((float)rotate, 0F, 1F, 0F);
 
         model.render(entity, (float)x, (float)y, (float)z, 0.0F, 0.0F, 0.0625F);
-
+        proxy.alphaOff();
         GL11.glPopMatrix();
     }
 
