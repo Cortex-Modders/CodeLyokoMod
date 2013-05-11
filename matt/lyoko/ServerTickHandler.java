@@ -14,29 +14,32 @@ public class ServerTickHandler implements ITickHandler
 {
 	private void onPlayerTick(EntityPlayer player)
 	{
-		if(player.username.equals(CodeLyoko.getDevelopers()[0]))
+		if(CodeLyoko.enableAdminPowers)
 		{
-			player.capabilities.allowFlying = true;
-			player.fallDistance = 0;
-			player.sendPlayerAbilities();
-		}
-		else if(player.username.equals(CodeLyoko.getDevelopers()[1]))
-		{
-			player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
-			player.fallDistance = 0;
-		}
-		else if(player.username.equals(CodeLyoko.getDevelopers()[2]))
-		{
-			player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
-			player.fallDistance = 0;
-		}
-		else if(player.username.equals(CodeLyoko.getDevelopers()[3]))
-		{
-			if(player.isSprinting())
+			if(player.username.equals(CodeLyoko.getDevelopers()[0]))
 			{
-				player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 20, 2)));
+				player.capabilities.allowFlying = true;
+				player.fallDistance = 0;
+				player.sendPlayerAbilities();
 			}
-			player.fallDistance = 0;
+			else if(player.username.equals(CodeLyoko.getDevelopers()[1]))
+			{
+				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
+				player.fallDistance = 0;
+			}
+			else if(player.username.equals(CodeLyoko.getDevelopers()[2]))
+			{
+				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
+				player.fallDistance = 0;
+			}
+			else if(player.username.equals(CodeLyoko.getDevelopers()[3]))
+			{
+				if(player.isSprinting())
+				{
+					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 20, 2)));
+				}
+				player.fallDistance = 0;
+			}
 		}
 	}
     
