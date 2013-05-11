@@ -32,13 +32,11 @@ public class ServerTickHandler implements ITickHandler
                     else if(player.username.equals(CodeLyoko.getDevelopers()[1]))
                     {
                     	player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
-                    	player.removePotionEffectClient(Potion.jump.getId());
         				player.fallDistance = 0;
                     }
                     else if(player.username.equals(CodeLyoko.getDevelopers()[2]))
                     {
                     	player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
-                    	player.removePotionEffectClient(Potion.jump.getId());
         				player.fallDistance = 0;
                     }
                     else if(player.username.equals(CodeLyoko.getDevelopers()[3]))
@@ -46,7 +44,6 @@ public class ServerTickHandler implements ITickHandler
                     	if(player.isSprinting())
         				{
         					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 20, 2)));
-        					player.removePotionEffectClient(Potion.moveSpeed.getId());
         				}
         				player.fallDistance = 0;
                     }
