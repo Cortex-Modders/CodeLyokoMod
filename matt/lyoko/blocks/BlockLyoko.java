@@ -87,11 +87,6 @@ public class BlockLyoko extends Block
 			{
 				((EntityLiving)par5Entity).clearActivePotions();
 				((EntityLiving)par5Entity).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 500, 2));
-				if(par5Entity instanceof EntityPlayer)
-				{
-					((EntityPlayer)par5Entity).getFoodStats().setFoodLevel(20);
-					((EntityPlayer)par5Entity).getFoodStats().setFoodSaturationLevel(5.0F);
-				}
 			}
 		}
 	}

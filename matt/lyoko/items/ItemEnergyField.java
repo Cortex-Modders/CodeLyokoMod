@@ -1,6 +1,7 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.projectile.EntityEnergyField;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.lib.ItemIds;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,23 +17,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.entity.player.ArrowNockEvent;
 
-public class ItemLyokoRanged extends Item
+public class ItemEnergyField extends Item
 {       
-    public ItemLyokoRanged(int id, Class<? extends EntityLyokoRanged> c, Item item, String text)
+    public ItemEnergyField(int id)
     {
         super(id);
         maxStackSize = 1;
         setMaxDamage(200);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.setFull3D();
-        entityLyokoRanged = c;
-        reqItem = item;
-        texture = text;
     }
-    
-    private Class<? extends EntityLyokoRanged> entityLyokoRanged;
-    private Item reqItem;
-    private String texture;
     
     public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
@@ -49,7 +43,7 @@ public class ItemLyokoRanged extends Item
         
         boolean var5 = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (var5 || par3EntityPlayer.inventory.hasItem(this.reqItem.itemID))
+        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.EnergyField.itemID))
         {
             float var7 = (float)var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -64,16 +58,7 @@ public class ItemLyokoRanged extends Item
                 var7 = 1.0F;
             }
 
-            EntityLyokoRanged var8;
-            
-            try
-            {
-            	var8 = entityLyokoRanged.getConstructor(World.class, EntityLiving.class, float.class).newInstance(par2World, par3EntityPlayer, var7 * 20F);
-            }
-            catch(Exception e){
-            	e.printStackTrace();
-            	return;
-            }
+            EntityEnergyField var8 = new EntityEnergyField(par2World, par3EntityPlayer, var7 * 20F);
 
             if (var7 == 1.0F)
             {
@@ -98,19 +83,9 @@ public class ItemLyokoRanged extends Item
             {
                 var8.setFire(100);
             }
-
-            par1ItemStack.damageItem(1, par3EntityPlayer);
+            
             //par2World.playSoundAtEntity(par3EntityPlayer, "random.bow", 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + var7 * 0.5F);
-
-            if (var5)
-            {
-                var8.canBePickedUp = 2;
-            }
-            else
-            {
-                //par3EntityPlayer.inventory.consumeInventoryItem(Item.arrow.shiftedIndex);
-            }
-
+            
             if (!par2World.isRemote)
             {
                 par2World.spawnEntityInWorld(var8);
@@ -152,7 +127,7 @@ public class ItemLyokoRanged extends Item
             return event.result;
         }
         
-        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(ModItems.Fan.itemID))
+        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(ModItems.EnergyField.itemID))
         {
             par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         }
@@ -173,7 +148,7 @@ public class ItemLyokoRanged extends Item
     @Override
 	public void registerIcons(IconRegister iconRegister)
 	{
-    	itemIcon = iconRegister.registerIcon("lyoko:" + texture);
+    	itemIcon = iconRegister.registerIcon("lyoko:energyfield");
 	}
     
     @Override

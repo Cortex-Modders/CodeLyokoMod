@@ -222,7 +222,7 @@ public class EntityLyokoRanged extends Entity implements IProjectile
             {
                 ++this.ticksInGround;
 
-                if (this.ticksInGround == 1200)
+                if (this.ticksInGround == 10)
                 {
                     this.setDead();
                 }
@@ -498,19 +498,7 @@ public class EntityLyokoRanged extends Entity implements IProjectile
     {
         if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
         {
-            boolean var2 = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
-
-            if (this.canBePickedUp == 1 && !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Item.arrow, 1)))
-            {
-                var2 = false;
-            }
-
-            if (var2)
-            {
-                this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                par1EntityPlayer.onItemPickup(this, 1);
-                this.setDead();
-            }
+            this.setDead();
         }
     }
 
