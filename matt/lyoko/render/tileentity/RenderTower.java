@@ -3,6 +3,7 @@ package matt.lyoko.render.tileentity;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.lib.BlockIds;
 import matt.lyoko.render.TileAnimator;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -44,9 +45,19 @@ public class RenderTower extends TileEntitySpecialRenderer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
         GL11.glTranslatef((float)x, (float)y, (float)z);
 
+        float width = 1.0F;
         float offsetX = 0;
         float offsetZ = 0;
         float rotationY = 0;
+        
+        if(entity.worldObj.getBlockId((int)x-1, (int)y, (int)z-1) == CodeLyoko.TowerBlock.blockID
+                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z+1) == CodeLyoko.TowerBlock.blockID
+                || entity.worldObj.getBlockId((int)x-1, (int)y, (int)z+1) == CodeLyoko.TowerBlock.blockID
+                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z-1) == CodeLyoko.TowerBlock.blockID) {
+            width = 0.8F;
+            System.out.println(width);
+            
+        }
 
         switch(i) {
             case 0: 
@@ -71,7 +82,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
         GL11.glTranslatef(offsetX, 0F, offsetZ);
         GL11.glRotatef(rotationY, 0F, 1F, 0F);
 
-        this.renderRect(tessellator, 1.0F, 1.0F);
+        this.renderRect(tessellator, width, 1.0F);
 
         proxy.alphaOff();
         GL11.glPopMatrix();
