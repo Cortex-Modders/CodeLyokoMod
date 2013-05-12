@@ -40,7 +40,7 @@ public class BlockTowerFloor extends BlockContainer
 	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
 	{
-		int distance = 0;
+		int distance = y + 2;
 		if(world.getBlockMetadata(x, y, z) == 0 && isMultiBlock(world, x, y, z))
 		{
 			for(int i = y + 1; i < 256; i++)
@@ -52,21 +52,18 @@ public class BlockTowerFloor extends BlockContainer
 				}
 			}
 			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
-			ent.setVelocity(0, 0, 0);
 		}
 		else if(world.getBlockMetadata(x, y, z) == 1 && isMultiBlock(world, x, y, z))
 		{
-			for(int i = y - 1; i > 0; i--)
+			for(int i = 0; i < y; i++)
 			{
 				if(world.getBlockId(x, i, z) == CodeLyoko.TowerFloor.blockID)
 				{
 					distance = i + 2;
-					
 					break;
 				}
 			}
 			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
-			ent.setVelocity(0, 0, 0);
 		}
 	}
 	
