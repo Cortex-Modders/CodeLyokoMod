@@ -74,6 +74,7 @@ public class CodeLyoko
 	public static Block Marabounta;
 	public static Block TowerConsole;
 	public static Block TowerFloor;
+	public static Block Cable;
 	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
 	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
 	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
@@ -128,6 +129,7 @@ public class CodeLyoko
 		BlockIds.LYOKO_MARABOUNTA = config.getBlock("marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
 		BlockIds.TOWER_CONSOLE = config.getBlock("towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
 		BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
+		BlockIds.CABLE = config.getBlock("cable", BlockIds.CABLE_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
@@ -211,6 +213,7 @@ public class CodeLyoko
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
     	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
+    	Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(3F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -238,6 +241,9 @@ public class CodeLyoko
     	MinecraftForge.setBlockHarvestLevel(QuantumOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(LeadOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(UraniumOre, "pickaxe", 2);
+    	
+    	GameRegistry.registerBlock(Cable, "Cable");
+    	LanguageRegistry.addName(Cable, "Cable");
     	
     	GameRegistry.registerBlock(SuperCalc, "Super Computer");
     	LanguageRegistry.addName(SuperCalc, "Super Computer");

@@ -4,8 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.client.*;
 import cpw.mods.fml.client.registry.*;
 import cpw.mods.fml.common.Mod.Instance;
 import net.minecraft.client.Minecraft;
@@ -15,21 +14,16 @@ import net.minecraft.src.*;
 import matt.lyoko.CommonProxy;
 import matt.lyoko.KeyBindingHandler;
 import matt.lyoko.entities.mobs.*;
-import matt.lyoko.entities.projectile.EntityEnergyField;
-import matt.lyoko.entities.projectile.EntityFan;
-import matt.lyoko.entities.projectile.EntityLaser;
-import matt.lyoko.entities.projectile.EntityLaserArrow;
+import matt.lyoko.entities.projectile.*;
 import matt.lyoko.render.mobs.*;
 import matt.lyoko.model.mobs.*;
 import matt.lyoko.entities.*;
 import matt.lyoko.render.*;
 import matt.lyoko.model.*;
-import matt.lyoko.entities.tileentity.TileEntityTower;
-import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
+import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.entities.vehicles.*;
 import matt.lyoko.items.ModItems;
-import matt.lyoko.render.tileentity.RenderEntityTowerConsole;
-import matt.lyoko.render.tileentity.RenderTower;
+import matt.lyoko.render.tileentity.*;
 import matt.lyoko.render.vehicles.*;
 import matt.lyoko.model.vehicles.*;
 
@@ -74,6 +68,7 @@ public class ClientProxy extends CommonProxy
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderEntityTowerConsole());
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
+	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
 		
 		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
 		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
@@ -83,7 +78,7 @@ public class ClientProxy extends CommonProxy
 	{
 		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());
 	}
-
+	
 	/**
 	 * 
 	 * called for things with alpha. thank you MachineMuse. :D
@@ -102,5 +97,4 @@ public class ClientProxy extends CommonProxy
 	    GL11.glPopAttrib();
 	    GL11.glPopAttrib();
 	}
-
 }

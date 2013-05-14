@@ -24,11 +24,13 @@ public class BlockLyokoIce extends BlockBreakable
 		this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokoice");
 	}
 	
+	@Override
 	public int getRenderBlockPass()
     {
         return 1;
     }
-	
+
+	@Override
 	public int quantityDropped(Random par1Random)
 	{
 		return 1;

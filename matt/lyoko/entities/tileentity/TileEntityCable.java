@@ -9,7 +9,7 @@ import net.minecraft.tileentity.*;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class TileEntityDigitalSea extends TileEntity
+public class TileEntityCable extends TileEntity
 {
     
 }
