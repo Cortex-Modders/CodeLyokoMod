@@ -149,7 +149,7 @@ public class TileEntityTower extends TileEntity
 		this.owner = tagCompound.getString("towerOwner");
 		this.resetTicks = tagCompound.getInteger("resetTime");
 	}
-
+	
 	@Override
 	public void writeToNBT(NBTTagCompound tagCompound)
 	{

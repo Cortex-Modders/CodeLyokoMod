@@ -1,5 +1,7 @@
 package matt.lyoko.items;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -14,6 +16,13 @@ public class ItemBlockTowerFloor extends ItemBlock
 	{
 		super(par1);
 		this.blockID = par1 + 256;
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
+	{
+		list.add("Shift right click with this block to make the platform send");
+		list.add("the player down, otherwise just right click.");
 	}
 	
 	@Override

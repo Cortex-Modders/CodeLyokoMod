@@ -25,13 +25,13 @@ public class ItemBlockEffect extends ItemBlock
 			{
 				if(!((EntityPlayer)ent).capabilities.isCreativeMode)
 				{
-					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 500, 2)));
-					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 500, 2)));
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.hunger.getId(), 500, 0)));
+					((EntityPlayer)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 500, 0)));
 				}
 			}
 			else if(ent instanceof EntityLiving)
 			{
-				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 500, 2)));
+				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 500, 0)));
 			}
 		}
 		else if(stack.itemID == CodeLyoko.QuantumOre.blockID)
@@ -39,7 +39,7 @@ public class ItemBlockEffect extends ItemBlock
 			if(ent instanceof EntityLiving)
 			{
 				((EntityLiving)ent).clearActivePotions();
-				((EntityLiving)ent).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 500, 2));
+				((EntityLiving)ent).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 500, 0));
 			}
 		}
 	}

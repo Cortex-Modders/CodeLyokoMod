@@ -25,7 +25,7 @@ public class ItemFan extends Item
     {
         super(id);
         maxStackSize = 1;
-        setMaxDamage(200);
+        setMaxDamage(0);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.setFull3D();
     }

@@ -18,6 +18,7 @@ public class ItemLyokoSword extends ItemSword
 	public ItemLyokoSword(int par1, EnumToolMaterial par2EnumToolMaterial) {
 		super(par1, par2EnumToolMaterial);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
+		this.setMaxDamage(0);
 	}
 	
 	@Override

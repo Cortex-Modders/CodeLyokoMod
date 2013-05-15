@@ -1,10 +1,12 @@
 package matt.lyoko.blocks;
 
+import scala.util.Random;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityCable;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,6 +17,18 @@ public class BlockCable extends BlockContainer
 	{
 		super(par1, Material.cloth);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
+	}
+	
+	@Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+	{
+		Random rand = new Random();
+		if(!world.isRemote)
+		{
+			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(Integer.toString(rand.nextInt(10)));
+			return true;
+		}
+		return false;
 	}
 	
 	@Override

@@ -18,7 +18,6 @@ public class ItemLyoko extends Item
 	public ItemLyoko(int par1) {
 		super(par1);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
-		this.setNoRepair();
 	}
 	
 	@Override
@@ -55,8 +54,6 @@ public class ItemLyoko extends Item
 			itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell");
 	}
 	
-	private int tick = 40;
-	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
 		
@@ -78,32 +75,10 @@ public class ItemLyoko extends Item
 		}
 		else if(stack.getItem() == ModItems.QuantumOrb)
 		{
-			if(ent instanceof EntityPlayer)
+			if(ent instanceof EntityLiving)
 			{
-				if(!((EntityPlayer)ent).capabilities.isCreativeMode)
-				{
-					if(tick <= 0)
-					{
-						((EntityPlayer)ent).setEntityHealth(((EntityPlayer)ent).getHealth() - 1);
-						tick = 40;
-					}
-					else
-					{
-						tick--;
-					}
-				}
-			}
-			else
-			{
-				if(tick <= 0)
-				{
-					((EntityLiving)ent).setEntityHealth(((EntityLiving)ent).getHealth() - 1);
-					tick = 40;
-				}
-				else
-				{
-					tick--;
-				}
+				((EntityLiving)ent).clearActivePotions();
+				((EntityLiving)ent).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 100, 0));
 			}
 		}
 	}
