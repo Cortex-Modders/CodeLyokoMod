@@ -2,6 +2,8 @@ package matt.lyoko.entities.tileentity;
 
 import cpw.mods.fml.relauncher.*;
 import java.util.*;
+
+import matt.lyoko.CodeLyoko;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.INetworkManager;
@@ -25,24 +27,23 @@ public class TileEntityCable extends TileEntity
 			sendData(this.xCoord, this.yCoord - 1, this.zCoord, sector);
 			sendData(this.xCoord, this.yCoord, this.zCoord + 1, sector);
 			sendData(this.xCoord, this.yCoord, this.zCoord - 1, sector);
-			System.out.println(this.sector);
+			System.out.println(this.sector + " " + this.sourceLocation[0] + " " + this.sourceLocation[1] + " " + this.sourceLocation[2]);
 			this.sector = "";
 		}
 	}
 	
 	private void sendData(int x, int y, int z, String sector)
 	{
-		int[] destination = {x, y, z};
-		if(!destination.equals(sourceLocation))
+		if(x != sourceLocation[0] || y != sourceLocation[1] || z != sourceLocation[2])
 		{
-			TileEntity tile = this.worldObj.getBlockTileEntity(x, y, z);
-			if(tile != null && tile instanceof TileEntityCable)
+			if(worldObj.getBlockId(x, y, z) == CodeLyoko.Cable.blockID && worldObj.getBlockTileEntity(x, y, x) != null)
 			{
-				TileEntityCable tileCable = (TileEntityCable)tile;
+				TileEntityCable tileCable = (TileEntityCable)worldObj.getBlockTileEntity(x, y, z);
 				tileCable.setSourceLocation(xCoord, yCoord, zCoord);
 				tileCable.setSector(sector);
 			}
 		}
+		worldObj.markBlockForUpdate(x, y, z);
 	}
 	
 	public void setSourceLocation(int x, int y, int z)
@@ -72,8 +73,8 @@ public class TileEntityCable extends TileEntity
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
     {
         NBTTagCompound tag = pkt.customParam1;
-        this.sector = tag.getString("sector");
         this.sourceLocation = tag.getIntArray("source");
+        this.sector = tag.getString("sector");
     }
 	
 	@Override

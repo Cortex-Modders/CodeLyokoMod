@@ -26,6 +26,7 @@ public class BlockCable extends BlockContainer
 		if(!world.isRemote)
 		{
 			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(Integer.toString(rand.nextInt(10)));
+			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
 		return false;
