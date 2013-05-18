@@ -1,0 +1,62 @@
+<?xml version="1.0" ?> 
+<project name="Code Lyoko Jenkins" default="build">
+
+	<property name="jenkinsBuildNumber" value="${jenkinsBuildNumber}" />
+	<property name="mcpLocation" value="/home/jacob/JenkinsBuilds/mcp" />
+	<property name="workspace" value="/var/lib/jenkins/workspace/Code\ Lyoko" />
+
+	<target name="clean">
+		<delete dir="builds/" />
+	</target>
+
+	<target name="cleanMCP">
+		<delete file="${mcpLocation}/src/minecraft/mcmod.info" />
+		<delete dir="${mcpLocation}/src/minecraft/matt" />
+		<delete dir="${mcpLocation}/src/minecraft/com/jadarstudios" />
+		<delete dir="${mcpLocation}/reobf/minecraft" />
+	</target>
+
+
+	<target name="prep">
+		<copy todir="${mcpLocation}/src/minecraft">
+			<fileset dir="" excludes="matt/lyoko/world/portals/ mods/ README.md eye-xana.png build.xml .gitignore"/>
+		</copy>
+	</target>
+	
+	<target name="recompile">
+		<exec dir="${mcpLocation}" executable="cmd" osfamily="windows">
+			<arg line="/c recompile.bat" />
+		</exec>
+		<exec dir="${mcpLocation}" executable="bash" osfamily="unix">
+			<arg line="recompile.sh" />
+		</exec>
+	</target>
+
+	<target name="reobfuscate">
+		<exec dir="${mcpLocation}" executable="cmd" osfamily="windows">
+			<arg line="/c reobfuscate.bat" />
+		</exec>
+		<exec dir="${mcpLocation}" executable="bash" osfamily="unix">
+			<arg line="reobfuscate.sh" />
+		</exec>
+	</target>
+	
+	<target name="jenkinsBuild">
+		<antcall target="clean" />
+		<antcall target="cleanMCP" />
+		<antcall target="prep" />
+		<antcall target="recompile" />		
+		<antcall target="reobfuscate" />
+		
+		<!-- Build the jar -->
+		<mkdir dir="builds" />
+		<jar destfile="builds/CodeLyoko-universal-jenkins-${jenkinsBuildNumber}.jar">
+			<fileset dir="${mcpLocation}/src/minecraft/" includes="mcmod.info" />
+			<fileset dir="${mcpLocation}/reobf/minecraft" />
+			<fileset dir="" includes="mods/ eye-xana.png" />
+		</jar>
+
+		<!-- Clean up the MCP source now that we are done -->
+		<antcall target="cleanMCP" />
+	</target>
+</project>
