@@ -1,8 +1,8 @@
 <?xml version="1.0" ?> 
 <project name="Code Lyoko Jenkins" default="build">
 
-	<property name="jenkinsBuildNumber" value="0"/>
-	<property name="mcpLocation" value="/home/jacob/JenkinsBuilds/mcp">
+	<property name="jenkinsBuildNumber" value="0" />
+	<property name="mcpLocation" value="/home/jacob/JenkinsBuilds/mcp" />
 
 	<target name="clean">
 		<delete file="${mcpLocation}/src/minecraft/mcmod.info" />
