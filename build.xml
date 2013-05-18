@@ -48,7 +48,7 @@
 		<jar destfile="builds/CodeLyoko-universal-jenkins-${jenkinsBuildNumber}.jar">
 			<fileset dir="${mcpLocation}/src/minecraft/" includes="mcmod.info" />
 			<fileset dir="${mcpLocation}/reobf/minecraft" />
-			<fileset dir="${workspace}/" includes="mods/ eye-xana.png" />
+			<fileset dir="" includes="mods/ eye-xana.png" />
 		</jar>
 
 		<!-- Clean up the MCP source now that we are done -->
