@@ -3,6 +3,7 @@
 
 	<property name="jenkinsBuildNumber" value="0" />
 	<property name="mcpLocation" value="/home/jacob/JenkinsBuilds/mcp" />
+	<property name="workspace" value="">
 
 	<target name="clean">
 		<delete file="${mcpLocation}/src/minecraft/mcmod.info" />
