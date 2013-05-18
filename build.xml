@@ -6,6 +6,7 @@
 	<property name="workspace" value="/var/lib/jenkins/workspace/Code\ Lyoko" />
 
 	<target name="clean">
+		<delete dir="builds/" />
 		<delete file="${mcpLocation}/src/minecraft/mcmod.info" />
 		<delete dir="${mcpLocation}/src/minecraft/matt" />
 		<delete dir="${mcpLocation}/src/minecraft/com/jadarstudios" />
@@ -14,7 +15,7 @@
 
 	<target name="prep">
 		<copy todir="${mcpLocation}/src/minecraft">
-			<fileset dir="" excludes="mods/ README.md eye-xana.png"/>
+			<fileset dir="" excludes="matt/lyoko/world/portals/ mods/ README.md eye-xana.png"/>
 		</copy>
 	</target>
 	
