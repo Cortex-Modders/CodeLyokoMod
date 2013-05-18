@@ -15,7 +15,7 @@
 
 	<target name="prep">
 		<copy todir="${mcpLocation}/src/minecraft">
-			<fileset dir="" excludes="matt/lyoko/world/portals/ mods/ README.md eye-xana.png"/>
+			<fileset dir="" excludes="matt/lyoko/world/portals/ mods/ README.md eye-xana.png build.xml .gitignore"/>
 		</copy>
 	</target>
 	
@@ -48,7 +48,7 @@
 		<jar destfile="builds/CodeLyoko-universal-jenkins-${jenkinsBuildNumber}.jar">
 			<fileset dir="${build.dir.development}/mcp/src/minecraft/" includes="mcmod.info" />
 			<fileset dir="${mcpLocation}/reobf/minecraft" />
-			<fileset dir="${workspace}/" inclused="mods/ eye-xana.png" />
+			<fileset dir="${workspace}/" includes="mods/ eye-xana.png" />
 		</jar>
 
 		<!-- Clean up the MCP source now that we are done -->
