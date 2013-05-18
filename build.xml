@@ -7,11 +7,15 @@
 
 	<target name="clean">
 		<delete dir="builds/" />
+	</target>
+
+	<target name="cleanMCP">
 		<delete file="${mcpLocation}/src/minecraft/mcmod.info" />
 		<delete dir="${mcpLocation}/src/minecraft/matt" />
 		<delete dir="${mcpLocation}/src/minecraft/com/jadarstudios" />
 		<delete dir="${mcpLocation}/reobf/minecraft" />
 	</target>
+
 
 	<target name="prep">
 		<copy todir="${mcpLocation}/src/minecraft">
@@ -39,6 +43,7 @@
 	
 	<target name="jenkinsBuild">
 		<antcall target="clean" />
+		<antcall target="cleanMCP" />
 		<antcall target="prep" />
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
@@ -52,6 +57,6 @@
 		</jar>
 
 		<!-- Clean up the MCP source now that we are done -->
-		<antcall target="clean" />
+		<antcall target="cleanMCP" />
 	</target>
 </project>
