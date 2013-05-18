@@ -14,7 +14,7 @@
 
 	<target name="prep">
 		<copy todir="${mcpLocation}/src/minecraft">
-			<fileset dir="{$workspace}" excludes="mods/ README.md eye-xana.png"/>
+			<fileset dir="" excludes="mods/ README.md eye-xana.png"/>
 		</copy>
 	</target>
 	
