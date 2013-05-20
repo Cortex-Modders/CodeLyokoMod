@@ -15,3 +15,18 @@ Dimensions/Portals Manager: Andrew Silver
 Main Developer: Matthew Warren
 
 Textures: MarQ Blue, Matthew Warren
+
+Building
+========
+
+Requirements: JDK, Ant, and whatever you need to compile with MCP.
+
+To build, make a clean MCP with Forge installed. Then make a new file in the git clone directory called build.properties
+and put this in it.
+
+[code]
+mcpLocation=*LOCATION TO MCP*
+[/code]
+
+Make sure to replace the *LOCATION TO MCP* with the location to your MCP directory. Then cd to the directory you cloned
+the repository to and run "ant build".
