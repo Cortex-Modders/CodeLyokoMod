@@ -172,6 +172,11 @@ public class ArmorLyoko extends ItemArmor
         @Override
         public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
         {
+        	if(armorOwner.equals("william") && entity.isSprinting())
+        	{
+        		return "/mods/lyoko/textures/armor/blank.png";
+        	}
+        	
         	if(itemstack.itemID == ModItems.AelitaHelmet.itemID || itemstack.itemID == ModItems.AelitaChest.itemID || itemstack.itemID == ModItems.AelitaBoots.itemID
         			|| itemstack.itemID == ModItems.OddHelmet.itemID || itemstack.itemID == ModItems.OddChest.itemID || itemstack.itemID == ModItems.OddBoots.itemID
         			|| itemstack.itemID == ModItems.UlrichHelmet.itemID || itemstack.itemID == ModItems.UlrichChest.itemID || itemstack.itemID == ModItems.UlrichBoots.itemID
