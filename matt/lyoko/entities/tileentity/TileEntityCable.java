@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.*;
 import java.util.*;
 
 import matt.lyoko.CodeLyoko;
+import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.INetworkManager;
@@ -14,43 +15,45 @@ import net.minecraft.world.World;
 
 public class TileEntityCable extends TileEntity
 {
-	private int[] sourceLocation = {this.xCoord, this.yCoord, this.zCoord};
 	private String sector = "";
+	private int coolDown = 0;
 	
 	public void updateEntity()
 	{
+		if(coolDown > 0)
+		{
+			coolDown--;
+		}
+		else if(coolDown < 0)
+		{
+			coolDown = 0;
+		}
+		
 		if(!sector.equals(""))
 		{
-			sendData(this.xCoord + 1, this.yCoord, this.zCoord, sector);
-			sendData(this.xCoord - 1, this.yCoord, this.zCoord, sector);
-			sendData(this.xCoord, this.yCoord + 1, this.zCoord, sector);
-			sendData(this.xCoord, this.yCoord - 1, this.zCoord, sector);
-			sendData(this.xCoord, this.yCoord, this.zCoord + 1, sector);
-			sendData(this.xCoord, this.yCoord, this.zCoord - 1, sector);
-			System.out.println(this.sector + " " + this.sourceLocation[0] + " " + this.sourceLocation[1] + " " + this.sourceLocation[2]);
+			if(coolDown == 0)
+			{
+				sendData(this.xCoord + 1, this.yCoord, this.zCoord, sector);
+				sendData(this.xCoord - 1, this.yCoord, this.zCoord, sector);
+				sendData(this.xCoord, this.yCoord + 1, this.zCoord, sector);
+				sendData(this.xCoord, this.yCoord - 1, this.zCoord, sector);
+				sendData(this.xCoord, this.yCoord, this.zCoord + 1, sector);
+				sendData(this.xCoord, this.yCoord, this.zCoord - 1, sector);
+				coolDown = 100;
+				System.out.println(sector + " " + xCoord + " " + yCoord + " " + zCoord);
+			}
 			this.sector = "";
 		}
 	}
 	
 	private void sendData(int x, int y, int z, String sector)
 	{
-		if(x != sourceLocation[0] || y != sourceLocation[1] || z != sourceLocation[2])
+		if(worldObj.getBlockId(x, y, z) == CodeLyoko.Cable.blockID && worldObj.getBlockTileEntity(x, y, x) != null)
 		{
-			if(worldObj.getBlockId(x, y, z) == CodeLyoko.Cable.blockID && worldObj.getBlockTileEntity(x, y, x) != null)
-			{
-				TileEntityCable tileCable = (TileEntityCable)worldObj.getBlockTileEntity(x, y, z);
-				tileCable.setSourceLocation(xCoord, yCoord, zCoord);
-				tileCable.setSector(sector);
-			}
+			TileEntityCable tileCable = (TileEntityCable)worldObj.getBlockTileEntity(x, y, z);
+			tileCable.setSector(sector);
+			worldObj.markBlockForUpdate(x, y, z);
 		}
-		worldObj.markBlockForUpdate(x, y, z);
-	}
-	
-	public void setSourceLocation(int x, int y, int z)
-	{
-		sourceLocation[0] = x;
-		sourceLocation[1] = y;
-		sourceLocation[2] = z;
 	}
 	
 	public void setSector(String sector)
@@ -63,7 +66,6 @@ public class TileEntityCable extends TileEntity
 	{
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
         NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
-        tag.setIntArray("source", this.sourceLocation);
         tag.setString("sector", this.sector);
         
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
@@ -73,7 +75,6 @@ public class TileEntityCable extends TileEntity
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
     {
         NBTTagCompound tag = pkt.customParam1;
-        this.sourceLocation = tag.getIntArray("source");
         this.sector = tag.getString("sector");
     }
 	
@@ -81,7 +82,7 @@ public class TileEntityCable extends TileEntity
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		this.sourceLocation = tagCompound.getIntArray("source");
+		this.coolDown = tagCompound.getInteger("cool");
 		this.sector = tagCompound.getString("sector");
 	}
 	
@@ -89,7 +90,7 @@ public class TileEntityCable extends TileEntity
 	public void writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		tagCompound.setIntArray("source", this.sourceLocation);
+        tagCompound.setInteger("cool", this.coolDown);
 		tagCompound.setString("sector", this.sector);
 	}
 }
