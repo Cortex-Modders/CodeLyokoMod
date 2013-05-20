@@ -29,7 +29,14 @@ public class TileEntityCable extends TileEntity
 			coolDown = 0;
 		}
 		
-		if(!sector.equals(""))
+		if(coolDown == 1)
+		{
+			setSector("");
+		}
+		
+		//System.out.println(sector + " " + coolDown);
+		
+		/*if(!sector.equals(""))
 		{
 			if(coolDown == 0)
 			{
@@ -39,14 +46,14 @@ public class TileEntityCable extends TileEntity
 				sendData(this.xCoord, this.yCoord - 1, this.zCoord, sector);
 				sendData(this.xCoord, this.yCoord, this.zCoord + 1, sector);
 				sendData(this.xCoord, this.yCoord, this.zCoord - 1, sector);
-				coolDown = 100;
+				resetCoolDown();
 				System.out.println(sector + " " + xCoord + " " + yCoord + " " + zCoord);
 			}
 			this.sector = "";
-		}
+		}*/
 	}
 	
-	private void sendData(int x, int y, int z, String sector)
+	/*private void sendData(int x, int y, int z, String sector)
 	{
 		if(worldObj.getBlockId(x, y, z) == CodeLyoko.Cable.blockID && worldObj.getBlockTileEntity(x, y, x) != null)
 		{
@@ -54,11 +61,31 @@ public class TileEntityCable extends TileEntity
 			tileCable.setSector(sector);
 			worldObj.markBlockForUpdate(x, y, z);
 		}
-	}
+	}*/
 	
 	public void setSector(String sector)
 	{
 		this.sector = sector;
+	}
+	
+	public void setCoolDown(int newCoolDown)
+	{
+		coolDown = newCoolDown;
+	}
+	
+	public String getSector()
+	{
+		return this.sector;
+	}
+	
+	public int getCoolDown()
+	{
+		return this.coolDown;
+	}
+	
+	public void resetCoolDown()
+	{
+		this.coolDown = 100;
 	}
 	
 	@Override
@@ -66,6 +93,7 @@ public class TileEntityCable extends TileEntity
 	{
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
         NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+        tag.setInteger("cool", this.coolDown);
         tag.setString("sector", this.sector);
         
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
@@ -75,6 +103,7 @@ public class TileEntityCable extends TileEntity
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
     {
         NBTTagCompound tag = pkt.customParam1;
+        this.coolDown = tag.getInteger("cool");
         this.sector = tag.getString("sector");
     }
 	

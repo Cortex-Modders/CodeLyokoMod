@@ -20,12 +20,44 @@ public class BlockCable extends BlockContainer
 	}
 	
 	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborID)
+	{
+		TileEntityCable tile = (TileEntityCable)world.getBlockTileEntity(x, y, z);
+		if(neighborID == this.blockID && tile != null)
+		{
+			syncBlock(world, x + 1, y, z, tile);
+			syncBlock(world, x - 1, y, z, tile);
+			syncBlock(world, x, y + 1, z, tile);
+			syncBlock(world, x, y - 1, z, tile);
+			syncBlock(world, x, y, z + 1, tile);
+			syncBlock(world, x, y, z - 1, tile);
+			//System.out.println("check complete");
+		}
+	}
+	
+	public void syncBlock(World world, int x, int y, int z, TileEntityCable localCable)
+	{
+		if(world.getBlockId(x, y, z) == this.blockID)
+		{
+			TileEntityCable tile = (TileEntityCable)world.getBlockTileEntity(x, y, z);
+			if(tile != null && localCable.getCoolDown() == 0 && !(tile.getSector().equals("")) && localCable.getSector().equals(""))
+			{
+				localCable.resetCoolDown();
+				localCable.setSector(tile.getSector());
+				localCable.worldObj.markBlockForUpdate(localCable.xCoord, localCable.yCoord, localCable.zCoord);
+				System.out.println(x + " " + y + " " + z);
+			}
+		}
+	}
+	
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	{
 		if(!world.isRemote)
 		{
 			Random rand = new Random();
 			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(Integer.toString(rand.nextInt(10)));
+			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setCoolDown(100);
 			world.markBlockForUpdate(x, y, z);
 			return true;
 		}
