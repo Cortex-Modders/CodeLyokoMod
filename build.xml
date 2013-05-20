@@ -2,7 +2,13 @@
 <project name="Code Lyoko" default="build">
 	
 	<property environment="env" />
+	<property name="buildNumber" value="${env.BUILD_NUMBER}"/>
+	
 	<property file="build.properties" prefix="build"/>
+	
+	<property file="version.properties" prefix="version" />
+	<property name="modVersion" value="${version.modVersion}" />
+	<property name="minecraftVersion" value="${version.minecraftVersion}" />
 	
 	<property name="dir.mcp" value="${build.mcpLocation}"/>
 	<property name="dir.classes" value="classes/"/>
@@ -10,7 +16,7 @@
 	
 	<target name="prep">
 		<copy todir="${dir.mcp}/src/minecraft">
-			<fileset dir="" excludes="matt/lyoko/world/portals/ mods/ README.md eye-xana.png build.xml .gitignore mcmod.info"/>
+			<fileset dir="" excludes="matt/lyoko/world/portals/ mods/ README.md eye-xana.png build.xml .gitignore mcmod.info mcp/"/>
 		</copy>
 	</target>
 	
@@ -38,24 +44,26 @@
 		<antcall target="recompile" />		
 		<antcall target="reobfuscate" />
 		
+		<antcall target="package" />
 		
-		<if>
-			<equals arg1="${env.BUILD_NUMBER} arg2="null">
-			<then>
-				<antcall target="package" />
-			</then>
-			<else>
-				<antcall target="packageJenkins">
-			</else>
-		</if>
+		<antcall target="clean" />
+	</target>
+	
+	<target name="buildJenkins">
+		<antcall target="clean" />
+		<antcall target="prep" />
+		<antcall target="recompile" />		
+		<antcall target="reobfuscate" />
 		
-		<antcall target="clean">
+		<antcall target="packageJenkins" />
+		
+		<antcall target="clean" />
 	</target>
 	
 	<target name="packageJenkins">
 		<delete dir="${dir.builds}"/>
 		<mkdir dir="${dir.builds}" />
-		<jar destfile="${dir.builds}/CodeLyoko-universal-jenkins-${minecraftVersion}-${env.BUILD_NUMBER}.jar">
+		<jar destfile="${dir.builds}/CodeLyoko-universal-jenkins-${modVersion}-build-${env.BUILD_NUMBER}.jar">
 			<fileset dir="" includes="mcmod.info" />
 			<fileset dir="${dir.mcp}/reobf/minecraft" />
 			<fileset dir="" includes="mods/ eye-xana.png" />
@@ -64,6 +72,12 @@
 	
 	<target name="package">
 		<delete dir="${dir.builds}"/>
+		<mkdir dir="${dir.builds}" />
+		<jar destfile="${dir.builds}/CodeLyoko-universal-${modVersion}-${minecraftVersion}-ant.jar">
+			<fileset dir="" includes="mcmod.info" />
+			<fileset dir="${dir.mcp}/reobf/minecraft" />
+			<fileset dir="" includes="mods/ eye-xana.png" />
+		</jar>
 	</target>
 	
 	<target name="clean">
@@ -71,4 +85,5 @@
 		<delete dir="${dir.mcp}/src/com"/>
 		<delete dir="${dir.mcp}/reobf/minecraft"/>
 	</target>
+	
 </project>
