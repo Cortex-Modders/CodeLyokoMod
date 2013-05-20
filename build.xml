@@ -81,8 +81,8 @@
 	</target>
 	
 	<target name="clean">
-		<delete dir="${dir.mcp}/src/matt"/>
-		<delete dir="${dir.mcp}/src/com"/>
+		<delete dir="${dir.mcp}/src/minecraft/matt"/>
+		<delete dir="${dir.mcp}/src/minecraft/com"/>
 		<delete dir="${dir.mcp}/reobf/minecraft"/>
 	</target>
 	
