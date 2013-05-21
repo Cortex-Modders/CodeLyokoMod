@@ -58,7 +58,6 @@ public class ItemIds {
     public static int ITEM_OVERBOARD;
     public static int ITEM_QUANTUM_MATRIX;
     public static int ITEM_QUANTUM_CONTAINMENT_CELL;
-    public static int NOT_USED3;
     public static int NOT_USED4;
     public static int NOT_USED5;
     public static int NOT_USED6;

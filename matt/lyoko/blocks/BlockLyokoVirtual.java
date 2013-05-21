@@ -1,9 +1,8 @@
 package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.tileentity.TileEntityBlank;
 import matt.lyoko.lib.DimensionIds;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
@@ -13,7 +12,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLyokoVirtual extends BlockContainer
+public class BlockLyokoVirtual extends Block
 {
 	public BlockLyokoVirtual(int par1)
 	{
@@ -52,23 +51,23 @@ public class BlockLyokoVirtual extends BlockContainer
 	@Override
 	public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
     {
-		if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.FOREST)
+		if(access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokoforest))
 		{
 			return virtualGrass;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.MOUNTAIN)
+		else if(access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokomountain))
 		{
 			return virtualStone;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.DESERT)
+		else if(access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokodesert))
 		{
 			return virtualSand;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.ICE)
+		else if(access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokopolar))
 		{
 			return virtualIce;
 		}
-		else if(access.getBlockTileEntity(x, y, z).worldObj.provider.dimensionId == DimensionIds.CARTHAGE)
+		else if(access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokocarthage))
 		{
 			return virtualCarthage;
 		}
@@ -83,10 +82,5 @@ public class BlockLyokoVirtual extends BlockContainer
 		virtualSand  = par1IconRegister.registerIcon("lyoko:lyokosand");
 		virtualIce = par1IconRegister.registerIcon("lyoko:lyokoice");
 		virtualCarthage = par1IconRegister.registerIcon("lyoko:carthage");
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(World var1) {
-		return new TileEntityBlank();
 	}
 }

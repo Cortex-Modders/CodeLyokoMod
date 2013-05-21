@@ -3,6 +3,8 @@ package matt.lyoko.blocks;
 import scala.util.Random;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityCable;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.entities.tileentity.TileEntityTower;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -25,13 +27,24 @@ public class BlockCable extends BlockContainer
 		TileEntityCable tile = (TileEntityCable)world.getBlockTileEntity(x, y, z);
 		if(neighborID == this.blockID && tile != null)
 		{
+			String test1 = tile.getSector();
 			syncBlock(world, x + 1, y, z, tile);
 			syncBlock(world, x - 1, y, z, tile);
 			syncBlock(world, x, y + 1, z, tile);
 			syncBlock(world, x, y - 1, z, tile);
 			syncBlock(world, x, y, z + 1, tile);
 			syncBlock(world, x, y, z - 1, tile);
-			//System.out.println("check complete");
+			String test2 = tile.getSector();
+			if(!(test1.equals(test2)))
+			{
+				world.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
+			}
+			syncBlock2(world, x + 1, y, z, tile);
+			syncBlock2(world, x - 1, y, z, tile);
+			syncBlock2(world, x, y + 1, z, tile);
+			syncBlock2(world, x, y - 1, z, tile);
+			syncBlock2(world, x, y, z + 1, tile);
+			syncBlock2(world, x, y, z - 1, tile);
 		}
 	}
 	
@@ -44,25 +57,62 @@ public class BlockCable extends BlockContainer
 			{
 				localCable.resetCoolDown();
 				localCable.setSector(tile.getSector());
-				localCable.worldObj.markBlockForUpdate(localCable.xCoord, localCable.yCoord, localCable.zCoord);
-				System.out.println(x + " " + y + " " + z);
 			}
 		}
 	}
 	
-	@Override
+	public void syncBlock2(World world, int x, int y, int z, TileEntityCable localCable)
+	{
+		if(world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID)
+		{
+			TileEntityScanner tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);
+			if(tile != null && !(localCable.getSector().equals("")) && tile.sector == -1)
+			{
+				tile.sector = convertSectorToInt(localCable.getSector());
+				world.markBlockForUpdate(x, y, z);
+			}
+		}
+	}
+	
+	public int convertSectorToInt(String sector)
+	{
+		if(sector.equals("polar"))
+		{
+			return 0;
+		}
+		else if(sector.equals("desert"))
+		{
+			return 1;
+		}
+		else if(sector.equals("forest"))
+		{
+			return 2;
+		}
+		else if(sector.equals("mountain"))
+		{
+			return 3;
+		}
+		else if(sector.equals("carthage"))
+		{
+			return 4;
+		}
+		return -1;
+	}
+	
+	/*@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	{
 		if(!world.isRemote)
 		{
 			Random rand = new Random();
-			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(Integer.toString(rand.nextInt(10)));
-			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setCoolDown(100);
+			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(Integer.toString(rand.nextInt(5)));
+			((TileEntityCable)world.getBlockTileEntity(x, y, z)).resetCoolDown();
 			world.markBlockForUpdate(x, y, z);
+			world.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
 			return true;
 		}
 		return true;
-	}
+	}*/
 	
 	@Override
 	public int getRenderBlockPass()
@@ -91,7 +141,7 @@ public class BlockCable extends BlockContainer
 	
 	private boolean validBlock(int block)
 	{
-		if(block == this.blockID || block == CodeLyoko.SuperCalc.blockID/* || world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID*/)
+		if(block == this.blockID || block == CodeLyoko.SuperCalc.blockID || block == CodeLyoko.Scanner.blockID)
 		{
 			return true;
 		}

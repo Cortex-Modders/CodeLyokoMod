@@ -10,7 +10,7 @@ import matt.lyoko.entities.tileentity.TileEntityMarabounta;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
-import matt.lyoko.entities.tileentity.TileEntityBlank;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;
@@ -75,6 +75,7 @@ public class CodeLyoko
 	public static Block TowerConsole;
 	public static Block TowerFloor;
 	public static Block Cable;
+	public static Block Scanner;
 	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
 	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
 	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
@@ -130,6 +131,7 @@ public class CodeLyoko
 		BlockIds.TOWER_CONSOLE = config.getBlock("towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
 		BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
 		BlockIds.CABLE = config.getBlock("cable", BlockIds.CABLE_DEFAULT).getInt();
+		BlockIds.SCANNER = config.getBlock("scanner", BlockIds.SCANNER_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
@@ -142,12 +144,15 @@ public class CodeLyoko
 		ItemIds.ITEM_OVERBOARD = config.getItem("itemOverboard", ItemIds.ITEM_OVERBOARD_DEFAULT).getInt();
 		ItemIds.ITEM_QUANTUM_MATRIX = config.getItem("itemQuantumMatrix", ItemIds.ITEM_QUANTUM_MATRIX_DEFAULT).getInt();
 		ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL = config.getItem("itemQuantumContainmentCell", ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL_DEFAULT).getInt();
-		ItemIds.NOT_USED4 = config.getItem("itemLyoko5", ItemIds.NOT_USED4_DEFAULT).getInt();
-		ItemIds.NOT_USED5 = config.getItem("itemLyoko6", ItemIds.NOT_USED5_DEFAULT).getInt();
-		ItemIds.NOT_USED6 = config.getItem("itemLyoko7", ItemIds.NOT_USED6_DEFAULT).getInt();
-		ItemIds.NOT_USED7 = config.getItem("itemLyoko8", ItemIds.NOT_USED7_DEFAULT).getInt();
-		ItemIds.NOT_USED8 = config.getItem("itemLyoko9", ItemIds.NOT_USED8_DEFAULT).getInt();
-		ItemIds.NOT_USED9 = config.getItem("itemLyoko10", ItemIds.NOT_USED9_DEFAULT).getInt();
+		/*
+		 * commented out until needed so that the config file isn't cluttered with unused stuff
+		 */
+		//ItemIds.NOT_USED4 = config.getItem("itemLyoko4", ItemIds.NOT_USED4_DEFAULT).getInt();
+		//ItemIds.NOT_USED5 = config.getItem("itemLyoko5", ItemIds.NOT_USED5_DEFAULT).getInt();
+		//ItemIds.NOT_USED6 = config.getItem("itemLyoko6", ItemIds.NOT_USED6_DEFAULT).getInt();
+		//ItemIds.NOT_USED7 = config.getItem("itemLyoko7", ItemIds.NOT_USED7_DEFAULT).getInt();
+		//ItemIds.NOT_USED8 = config.getItem("itemLyoko8", ItemIds.NOT_USED8_DEFAULT).getInt();
+		//ItemIds.NOT_USED9 = config.getItem("itemLyoko9", ItemIds.NOT_USED9_DEFAULT).getInt();
 		ItemIds.ITEM_LYOKO_URANIUM = config.getItem("itemLyokoUranium", ItemIds.ITEM_LYOKO_URANIUM_DEFAULT).getInt();
 		ItemIds.ITEM_LYOKO_11 = config.getItem("itemLyoko11", ItemIds.ITEM_LYOKO_11_DEFAULT).getInt();
 		ItemIds.ITEM_LYOKO_12 = config.getItem("itemLyoko12", ItemIds.ITEM_LYOKO_12_DEFAULT).getInt();
@@ -207,13 +212,14 @@ public class CodeLyoko
     	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
     	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
     	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(6000000).setUnlocalizedName("Super Computer");
+    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
     	VirtualBlock = new BlockLyokoVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
     	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
     	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
     	Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(1F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
+    	Scanner = new BlockScanner(BlockIds.SCANNER).setHardness(20F).setResistance(100F).setUnlocalizedName("Scanner");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -230,7 +236,7 @@ public class CodeLyoko
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
     	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
-    	GameRegistry.registerTileEntity(TileEntityBlank.class, "teVirtualBlock");
+    	GameRegistry.registerTileEntity(TileEntityScanner.class, "teScanner");
     	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
     	GameRegistry.registerTileEntity(TileEntityTowerConsole.class, "teTowerConsole");
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
@@ -241,6 +247,9 @@ public class CodeLyoko
     	MinecraftForge.setBlockHarvestLevel(QuantumOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(LeadOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(UraniumOre, "pickaxe", 2);
+    	
+    	GameRegistry.registerBlock(Scanner, "Scanner");
+    	LanguageRegistry.addName(Scanner, "Scanner");
     	
     	GameRegistry.registerBlock(Cable, "Cable");
     	LanguageRegistry.addName(Cable, "Cable");

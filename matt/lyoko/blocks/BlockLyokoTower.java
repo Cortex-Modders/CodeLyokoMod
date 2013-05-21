@@ -4,11 +4,13 @@ import java.util.Random;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.items.ModItems;
 import matt.lyoko.particles.LyokoParticleEffects;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
@@ -62,7 +64,7 @@ public class BlockLyokoTower extends BlockContainer
     	return this.blockIcon;
     }
 
-    /*public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
 		TileEntityTower tet = (TileEntityTower) world.getBlockTileEntity(x, y, z);
 
@@ -72,40 +74,11 @@ public class BlockLyokoTower extends BlockContainer
 			{
 				tet.owner = "reset";
 			}
-			else if(tet.owner.equals("none"))
-			{
-				tet.owner = "xana";
-				for(int i = 0; i < CodeLyoko.getDevelopers().length; i++)
-				{
-					if(player.username.equals(CodeLyoko.getDevelopers()[i]))
-					{
-						tet.owner = "developer";
-						player.sendChatToPlayer("Developer mode activated on Tower at: x=" + x + " y=" + y + " z=" + z);
-					}
-				}
-			}
-			else if(tet.owner.equals("developer"))
-			{
-				tet.owner = "xana";
-			}
-			else if(tet.owner.equals("xana"))
-			{
-				tet.owner = "lyoko";
-			}
-			else if(tet.owner.equals("lyoko"))
-			{
-				tet.owner = "none";
-			}
-			else
-			{
-				tet.owner = "none";
-				System.err.println("ERROR: Invalid value detected for tower");
-			}
 	        world.markBlockForUpdate(x, y, z);
 			return true;
 		}
 		return false;
-    }*/
+    }
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random random)

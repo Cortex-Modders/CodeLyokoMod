@@ -33,35 +33,7 @@ public class TileEntityCable extends TileEntity
 		{
 			setSector("");
 		}
-		
-		//System.out.println(sector + " " + coolDown);
-		
-		/*if(!sector.equals(""))
-		{
-			if(coolDown == 0)
-			{
-				sendData(this.xCoord + 1, this.yCoord, this.zCoord, sector);
-				sendData(this.xCoord - 1, this.yCoord, this.zCoord, sector);
-				sendData(this.xCoord, this.yCoord + 1, this.zCoord, sector);
-				sendData(this.xCoord, this.yCoord - 1, this.zCoord, sector);
-				sendData(this.xCoord, this.yCoord, this.zCoord + 1, sector);
-				sendData(this.xCoord, this.yCoord, this.zCoord - 1, sector);
-				resetCoolDown();
-				System.out.println(sector + " " + xCoord + " " + yCoord + " " + zCoord);
-			}
-			this.sector = "";
-		}*/
 	}
-	
-	/*private void sendData(int x, int y, int z, String sector)
-	{
-		if(worldObj.getBlockId(x, y, z) == CodeLyoko.Cable.blockID && worldObj.getBlockTileEntity(x, y, x) != null)
-		{
-			TileEntityCable tileCable = (TileEntityCable)worldObj.getBlockTileEntity(x, y, z);
-			tileCable.setSector(sector);
-			worldObj.markBlockForUpdate(x, y, z);
-		}
-	}*/
 	
 	public void setSector(String sector)
 	{
@@ -85,7 +57,7 @@ public class TileEntityCable extends TileEntity
 	
 	public void resetCoolDown()
 	{
-		this.coolDown = 100;
+		this.coolDown = 5;
 	}
 	
 	@Override

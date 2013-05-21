@@ -1,8 +1,7 @@
 package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.tileentity.TileEntityBlank;
-import net.minecraft.block.BlockContainer;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
@@ -12,7 +11,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockTowerFloor extends BlockContainer
+public class BlockTowerFloor extends Block
 {
 	public BlockTowerFloor(int par1)
 	{
@@ -20,17 +19,17 @@ public class BlockTowerFloor extends BlockContainer
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
-	public boolean isMultiBlock(World world, int x, int y, int z)
+	public boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
     {
-    	if(world.getBlockId(x+1, y, z+1) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x+1, y, z) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x+1, y, z-1) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x, y, z+1) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x, y, z) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x, y, z-1) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x-1, y, z+1) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x-1, y, z) == CodeLyoko.TowerFloor.blockID
-    			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.TowerFloor.blockID)
+    	if(access.getBlockId(x+1, y, z+1) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x+1, y, z) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x+1, y, z-1) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z+1) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z-1) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z+1) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z) == CodeLyoko.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z-1) == CodeLyoko.TowerFloor.blockID)
     	{
     		return true;
     	}
@@ -115,14 +114,13 @@ public class BlockTowerFloor extends BlockContainer
     @Override
     public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
     {
-    	World world = access.getBlockTileEntity(x, y, z).worldObj;
     	if(side == 1)
     	{
     		for(int i = 0; i < 3; i++)
     		{
     			for(int j = 0; j < 3; j++)
     			{
-    				if(isMultiBlock(world, x - i + 1, y, z - j + 1))
+    				if(isMultiBlock(access, x - i + 1, y, z - j + 1))
     				{
     					return topIcons[j][i];
     				}
@@ -131,10 +129,4 @@ public class BlockTowerFloor extends BlockContainer
     	}
     	return bottomSide;
     }
-    
-	@Override
-	public TileEntity createNewTileEntity(World world)
-	{
-		return new TileEntityBlank();
-	}
 }

@@ -28,6 +28,7 @@ public class BlockIds {
     public static int TOWER_CONSOLE_DEFAULT = 1176;
     public static int TOWER_FLOOR_DEFAULT = 1177;
     public static int CABLE_DEFAULT = 1178;
+    public static int SCANNER_DEFAULT = 1179;
     
     /* IDs loaded from config. */
     public static int LYOKO_TOWER;
@@ -55,4 +56,5 @@ public class BlockIds {
     public static int TOWER_CONSOLE;
     public static int TOWER_FLOOR;
     public static int CABLE;
+    public static int SCANNER;
 }
