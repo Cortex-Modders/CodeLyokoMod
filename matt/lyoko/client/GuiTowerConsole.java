@@ -73,17 +73,17 @@ public class GuiTowerConsole extends GuiContainer
         {
         	if(code.equals("developer"))
         	{
-        		int temporary = 0;
-        		for(int ipod = 0; ipod < CodeLyoko.getDevelopers().length; ipod++)
+        		boolean valid = false;
+        		for(int dev = 0; dev < CodeLyoko.getDevelopers().length; dev++)
         		{
-        			if(player.username.equals(CodeLyoko.getDevelopers()[ipod]))
+        			if(player.username.equals(CodeLyoko.getDevelopers()[dev]))
         			{
-        				temporary++;
-        				player.sendChatToPlayer("A tower has been activated at: " + ttc.xCoord + ", " + ttc.yCoord + ", " + ttc.zCoord + ", in dimension: " + ttc.worldObj.provider.dimensionId);
-        				player.sendChatToPlayer("Automatic deactivation will occur in 10 minutes");
+        				valid = true;
+        				//player.sendChatToPlayer("A tower has been activated at: " + ttc.xCoord + ", " + ttc.yCoord + ", " + ttc.zCoord + ", in dimension: " + ttc.worldObj.provider.dimensionId);
+        				//player.sendChatToPlayer("Automatic deactivation will occur in 10 minutes");
         			}
         		}
-        		if(temporary == 0)
+        		if(!valid)
         		{
         			code = "lol";
         		}

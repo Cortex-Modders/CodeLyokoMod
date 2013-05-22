@@ -231,7 +231,6 @@ public class CodeLyoko
     	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOres();
-    	proxy.registerFragmentRecipes();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	

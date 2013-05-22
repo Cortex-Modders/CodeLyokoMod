@@ -45,25 +45,6 @@ public class CommonProxy
 		OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
 	}
 	
-	public void registerFragmentRecipes()
-	{
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoPolarPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), ModItems.DataFragment, Character.valueOf('*'), Block.ice
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoMountainPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), ModItems.DataFragment, Character.valueOf('*'), Block.stone
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoForestPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), ModItems.DataFragment, Character.valueOf('*'), Block.grass
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoDesertPortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), ModItems.DataFragment, Character.valueOf('*'), new ItemStack(Block.sandStone, 1, 1)
-    	});
-		GameRegistry.addRecipe(new ItemStack(CodeLyoko.LyokoCarthagePortal), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), ModItems.DataFragment, Character.valueOf('*'), Block.beacon
-    	});
-	}
-	
 	public void addChestLoot()
     {
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.QuantumOrb), 1, 1, 005));

@@ -99,19 +99,39 @@ public class BlockCable extends BlockContainer
 		return -1;
 	}
 	
-	/*@Override
+	/*public String convertIntToSector(int sector)
+	{
+		switch(sector)
+		{
+		case 0:
+			return "polar";
+		case 1:
+			return "desert";
+		case 2:
+			return "forest";
+		case 3:
+			return "mountain";
+		case 4:
+			return "carthage";
+		default:
+			return "";
+		}
+	}
+	
+	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	{
 		if(!world.isRemote)
 		{
 			Random rand = new Random();
-			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(Integer.toString(rand.nextInt(5)));
+			String temp = convertIntToSector(rand.nextInt(5));
+			((TileEntityCable)world.getBlockTileEntity(x, y, z)).setSector(temp);
 			((TileEntityCable)world.getBlockTileEntity(x, y, z)).resetCoolDown();
 			world.markBlockForUpdate(x, y, z);
 			world.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
 			return true;
 		}
-		return true;
+		return false;
 	}*/
 	
 	@Override

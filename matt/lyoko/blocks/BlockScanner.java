@@ -32,139 +32,139 @@ public class BlockScanner extends BlockContainer
 	
 	public boolean isMultiBlock(World world, int x, int y, int z)
     {
-    	if(world.getBlockId(x+1, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z-1) == CodeLyoko.TowerBlock.blockID
+    	if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+1, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+1, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+1, z-1) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+1, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+1, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+1, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+2, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+2, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+2, z-1) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+2, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+2, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+2, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+2, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+2, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+3, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+3, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+3, z-1) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+3, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+3, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+3, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+3, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+3, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+4, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+4, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+4, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+4, z-1) == CodeLyoko.TowerBlock.blockID)
+    			&& world.getBlockId(x+1, y+4, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+4, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+4, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+4, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+4, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+4, z-1) == CodeLyoko.Scanner.blockID)
     	{
     		return true;
     	}
-    	else if(world.getBlockId(x-1, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z-1) == CodeLyoko.TowerBlock.blockID
+    	else if(world.getBlockId(x-1, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x-1, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+1, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+1, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+1, z-1) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x-1, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+1, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+1, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+1, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x-1, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+2, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+2, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+2, z-1) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x-1, y+2, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+2, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+2, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+2, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+2, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x-1, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+3, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+3, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+3, z-1) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x-1, y+3, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+3, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+3, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+3, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+3, z-1) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x-1, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+4, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+4, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+4, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+4, z-1) == CodeLyoko.TowerBlock.blockID)
+    			&& world.getBlockId(x-1, y+4, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+4, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+4, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+4, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+4, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+4, z-1) == CodeLyoko.Scanner.blockID)
     	{
     		return true;
     	}
-    	else if(world.getBlockId(x+1, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y, z) == CodeLyoko.TowerBlock.blockID
+    	else if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y, z) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+1, z+1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+1, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+1, z) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+1, z+1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+1, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+1, z) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+2, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x+1, y+2, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+2, z) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+2, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+2, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+2, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x+1, y+2, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+2, z) == CodeLyoko.Scanner.blockID
     			
-    	    	&& world.getBlockId(x+1, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+3, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x+1, y+3, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+3, z) == CodeLyoko.TowerBlock.blockID
+    	    	&& world.getBlockId(x+1, y+3, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+3, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+3, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x+1, y+3, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+3, z) == CodeLyoko.Scanner.blockID
     			
-    	    	&& world.getBlockId(x+1, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+4, z+1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x+1, y+4, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+4, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+4, z) == CodeLyoko.TowerBlock.blockID)
+    	    	&& world.getBlockId(x+1, y+4, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+4, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+4, z+1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x+1, y+4, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+4, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+4, z) == CodeLyoko.Scanner.blockID)
     	{
     		return true;
     	}
-    	else if(world.getBlockId(x+1, y, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y, z) == CodeLyoko.TowerBlock.blockID
+    	else if(world.getBlockId(x+1, y, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y, z) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+1, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x, y+1, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+1, z-1) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x+1, y+1, z) == CodeLyoko.TowerBlock.blockID
-    			&& world.getBlockId(x-1, y+1, z) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+1, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y+1, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+1, z-1) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x+1, y+1, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x-1, y+1, z) == CodeLyoko.Scanner.blockID
     			
-    			&& world.getBlockId(x+1, y+2, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+2, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+2, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x+1, y+2, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+2, z) == CodeLyoko.TowerBlock.blockID
+    			&& world.getBlockId(x+1, y+2, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+2, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+2, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x+1, y+2, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+2, z) == CodeLyoko.Scanner.blockID
     			
-    	    	&& world.getBlockId(x+1, y+3, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+3, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+3, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x+1, y+3, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+3, z) == CodeLyoko.TowerBlock.blockID
+    	    	&& world.getBlockId(x+1, y+3, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+3, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+3, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x+1, y+3, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+3, z) == CodeLyoko.Scanner.blockID
     			
-    	    	&& world.getBlockId(x+1, y+4, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+4, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+4, z-1) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x+1, y+4, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x, y+4, z) == CodeLyoko.TowerBlock.blockID
-    	    	&& world.getBlockId(x-1, y+4, z) == CodeLyoko.TowerBlock.blockID)
+    	    	&& world.getBlockId(x+1, y+4, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+4, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+4, z-1) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x+1, y+4, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x, y+4, z) == CodeLyoko.Scanner.blockID
+    	    	&& world.getBlockId(x-1, y+4, z) == CodeLyoko.Scanner.blockID)
     	{
     		return true;
     	}
@@ -199,6 +199,8 @@ public class BlockScanner extends BlockContainer
 			}
 			world.setBlock(x, y + 1, z, portal);
 			world.setBlock(x, y + 2, z, portal);
+			world.setBlock(x, y + 3, z, portal);
+			tile.sector = -1;
 		}
 	}
 	
@@ -216,7 +218,7 @@ public class BlockScanner extends BlockContainer
     		{
     			for(int j = -1; j < 2; j++)
     			{
-    				for(int k = -5; k < 0; k++)
+    				for(int k = -4; k < 1; k++)
     				{
     					if(this.isMultiBlock(world, x+i, y+k, z+j))
     					{

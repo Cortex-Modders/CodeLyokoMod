@@ -2,10 +2,13 @@ package matt.lyoko.entities.tileentity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import matt.lyoko.CodeLyoko;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.*;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class TileEntityTowerConsole extends TileEntity
 {
@@ -42,6 +45,15 @@ public class TileEntityTowerConsole extends TileEntity
 			else if(owner.equals("player"))
 			{
 				owner = "lyoko";
+			}
+			else if(owner.equals("developer") && worldObj.isRemote)
+			{
+				for(int i = 0; i < worldObj.playerEntities.size(); i++)
+				{
+					EntityPlayer player = (EntityPlayer) worldObj.playerEntities.get(i);
+					player.sendChatToPlayer("A tower has been activated at: " + xCoord + ", " + yCoord + ", " + zCoord + ", in dimension: " + worldObj.provider.dimensionId);
+    				player.sendChatToPlayer("Automatic deactivation will occur in 10 minutes");
+				}
 			}
 			for(int i = 0; i < TileEntityTower.getPossibleOwners().length; i++)
 			{
