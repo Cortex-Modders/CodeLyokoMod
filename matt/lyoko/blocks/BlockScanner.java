@@ -30,7 +30,7 @@ public class BlockScanner extends BlockContainer
 		this.blockIcon = par1IconRegister.registerIcon("lyoko:scanner");
 	}
 	
-	public boolean isMultiBlock(World world, int x, int y, int z)
+	public static boolean isMultiBlock(World world, int x, int y, int z)
     {
     	if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
     			&& world.getBlockId(x+1, y, z) == CodeLyoko.Scanner.blockID
