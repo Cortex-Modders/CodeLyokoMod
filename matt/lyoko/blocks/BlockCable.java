@@ -2,9 +2,7 @@ package matt.lyoko.blocks;
 
 import scala.util.Random;
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.tileentity.TileEntityCable;
-import matt.lyoko.entities.tileentity.TileEntityScanner;
-import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.entities.tileentity.*;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -45,6 +43,12 @@ public class BlockCable extends BlockContainer
 			syncBlock2(world, x, y - 1, z, tile);
 			syncBlock2(world, x, y, z + 1, tile);
 			syncBlock2(world, x, y, z - 1, tile);
+			syncBlock3(world, x + 1, y, z, tile);
+			syncBlock3(world, x - 1, y, z, tile);
+			syncBlock3(world, x, y + 1, z, tile);
+			syncBlock3(world, x, y - 1, z, tile);
+			syncBlock3(world, x, y, z + 1, tile);
+			syncBlock3(world, x, y, z - 1, tile);
 		}
 	}
 	
@@ -69,6 +73,19 @@ public class BlockCable extends BlockContainer
 			if(tile != null && !(localCable.getSector().equals("")) && tile.sector == -1)
 			{
 				tile.sector = convertSectorToInt(localCable.getSector());
+				world.markBlockForUpdate(x, y, z);
+			}
+		}
+	}
+	
+	public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
+	{
+		if(world.getBlockId(x, y, z) == CodeLyoko.SuperCalc.blockID)
+		{
+			TileEntitySuperCalc tile = (TileEntitySuperCalc)world.getBlockTileEntity(x, y, z);
+			if(tile != null && !(localCable.getSector().equals("")) && tile.sector.equals(""))
+			{
+				tile.sector = localCable.getSector();
 				world.markBlockForUpdate(x, y, z);
 			}
 		}
@@ -161,7 +178,8 @@ public class BlockCable extends BlockContainer
 	
 	private boolean validBlock(int block)
 	{
-		if(block == this.blockID || block == CodeLyoko.SuperCalc.blockID || block == CodeLyoko.Scanner.blockID)
+		if(block == this.blockID || block == CodeLyoko.SuperCalc.blockID || block == CodeLyoko.Scanner.blockID
+				|| block == CodeLyoko.SuperCalcConsole.blockID)
 		{
 			return true;
 		}

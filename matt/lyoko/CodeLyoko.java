@@ -6,11 +6,7 @@ import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
-import matt.lyoko.entities.tileentity.TileEntityMarabounta;
-import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
-import matt.lyoko.entities.tileentity.TileEntityTower;
-import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
-import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;
@@ -37,8 +33,8 @@ import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.4.3-Beta")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko"}, packetHandler = PacketHandler.class)
+@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.5.0-Beta", useMetadata = true)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko", "SuperCalcConsole"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
@@ -76,6 +72,7 @@ public class CodeLyoko
 	public static Block TowerFloor;
 	public static Block Cable;
 	public static Block Scanner;
+	public static Block SuperCalcConsole;
 	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
 	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
 	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
@@ -91,17 +88,6 @@ public class CodeLyoko
 	@PreInit
 	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
 	{
-	    preevt.getModMetadata().version = "0.4.3-Beta";
-		preevt.getModMetadata().name = "Code Lyoko Mod";
-		preevt.getModMetadata().authorList.add("986523714");
-		preevt.getModMetadata().authorList.add("Jadar");
-		preevt.getModMetadata().authorList.add("catchaser9620");
-		preevt.getModMetadata().authorList.add("wolfSpirit1st");
-		preevt.getModMetadata().logoFile = "/eye-xana.png";
-		preevt.getModMetadata().modId = "CodeLyoko";
-		preevt.getModMetadata().url = "http://www.minecraftforum.net/topic/1403995-151-code-lyoko-mod-042-minecraft-forum/";
-		preevt.getModMetadata().description = "Recreates the TV show Code Lyoko to the best of minecraft's cabilities.";
-		
     	Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
 		config.load();
 		
@@ -132,6 +118,7 @@ public class CodeLyoko
 		BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
 		BlockIds.CABLE = config.getBlock("cable", BlockIds.CABLE_DEFAULT).getInt();
 		BlockIds.SCANNER = config.getBlock("scanner", BlockIds.SCANNER_DEFAULT).getInt();
+		BlockIds.SUPER_CALC_CONSOLE = config.getBlock("superCalcConsole", BlockIds.SUPER_CALC_CONSOLE_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
@@ -220,6 +207,7 @@ public class CodeLyoko
     	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
     	Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(1F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
     	Scanner = new BlockScanner(BlockIds.SCANNER).setHardness(20F).setResistance(100F).setUnlocalizedName("Scanner");
+    	SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).setResistance(6000000F).setHardness(20.0F).setLightValue(7.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("SuperCalcConsole");
     	
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
@@ -230,7 +218,7 @@ public class CodeLyoko
     	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
     	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
-    	proxy.registerOres();
+    	proxy.registerOreDictionaryOres();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
@@ -239,6 +227,8 @@ public class CodeLyoko
     	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
     	GameRegistry.registerTileEntity(TileEntityTowerConsole.class, "teTowerConsole");
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
+    	GameRegistry.registerTileEntity(TileEntitySuperCalcConsole.class, "teSuperCalcConsole");
+    	GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
@@ -249,9 +239,18 @@ public class CodeLyoko
     	
     	GameRegistry.registerBlock(Scanner, "Scanner");
     	LanguageRegistry.addName(Scanner, "Scanner");
+    	GameRegistry.addRecipe(new ItemStack(Scanner, 1), new Object[] {
+    		"###", "#*#", "###", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix, Character.valueOf('o'), Block.obsidian
+    	});
     	
     	GameRegistry.registerBlock(Cable, "Cable");
     	LanguageRegistry.addName(Cable, "Cable");
+    	GameRegistry.addRecipe(new ItemStack(Cable, 12), new Object[] {
+    		"###", "$*$", "###", Character.valueOf('#'), Block.cloth, Character.valueOf('*'), ModItems.DataFragment/*Copper*/, Character.valueOf('$'), Item.redstone
+    	});
+    	
+    	GameRegistry.registerBlock(SuperCalcConsole, "Super Computer Console");
+    	LanguageRegistry.addName(SuperCalcConsole, "Super Computer Console");
     	
     	GameRegistry.registerBlock(SuperCalc, "Super Computer");
     	LanguageRegistry.addName(SuperCalc, "Super Computer");

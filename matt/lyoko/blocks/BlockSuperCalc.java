@@ -30,7 +30,7 @@ public class BlockSuperCalc extends BlockContainer {
         		this.setCreativeTab(CodeLyoko.LyokoTabs);
         }
         
-        public boolean isMultiBlock(World world, int x, int y, int z)
+        public static boolean isMultiBlock(World world, int x, int y, int z)
         {
         	if(world.getBlockId(x, y+1, z) == CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x, y+2, z) == CodeLyoko.SuperCalc.blockID
@@ -50,7 +50,7 @@ public class BlockSuperCalc extends BlockContainer {
         	return false;
         }
         
-        public boolean checkNotConflicting(World world, int x, int y, int z)
+        public static boolean checkNotConflicting(World world, int x, int y, int z)
         {
         	if(world.getBlockId(x+1, y-1, z+1) != CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x+1, y-1, z) != CodeLyoko.SuperCalc.blockID
@@ -71,7 +71,7 @@ public class BlockSuperCalc extends BlockContainer {
         	return false;
         }
         
-        public boolean aroundBase(World world, int x, int y, int z)
+        public static boolean aroundBase(World world, int x, int y, int z)
         {
         	if(world.getBlockId(x-2, y, z+1) != CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x-2, y, z) != CodeLyoko.SuperCalc.blockID
@@ -91,7 +91,7 @@ public class BlockSuperCalc extends BlockContainer {
         	return false;
         }
         
-        public boolean aroundPillarLower(World world, int x, int y, int z)
+        public static boolean aroundPillarLower(World world, int x, int y, int z)
         {
         	if(world.getBlockId(x+1, y+1, z+1) != CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x+1, y+1, z) != CodeLyoko.SuperCalc.blockID
@@ -107,7 +107,7 @@ public class BlockSuperCalc extends BlockContainer {
         	return false;
         }
         
-        public boolean aroundPillarUpper(World world, int x, int y, int z)
+        public static boolean aroundPillarUpper(World world, int x, int y, int z)
         {
         	if(world.getBlockId(x+1, y+2, z) != CodeLyoko.SuperCalc.blockID
         			&& world.getBlockId(x, y+2, z+1) != CodeLyoko.SuperCalc.blockID

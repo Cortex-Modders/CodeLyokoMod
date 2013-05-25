@@ -63,7 +63,9 @@ public class RenderCable extends TileEntitySpecialRenderer
 	
 	private boolean configSide(World world, int x, int y, int z)
 	{
-		if(world.getBlockId(x, y, z) == CodeLyoko.Cable.blockID || world.getBlockId(x, y, z) == CodeLyoko.SuperCalc.blockID || world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID)
+		if(world.getBlockId(x, y, z) == CodeLyoko.Cable.blockID || world.getBlockId(x, y, z) == CodeLyoko.SuperCalc.blockID
+				|| world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
+				|| world.getBlockId(x, y, z) == CodeLyoko.SuperCalcConsole.blockID)
 		{
 			return true;
 		}

@@ -25,13 +25,13 @@ public class WorldGenLyokoOre implements IWorldGenerator {
 	private void generateSurface(World world, Random rand, int baseX, int baseZ)
 	{		
 							//rarity -smaller number = rarer
-		   	for(int x = 0; x < 1; x++)
+		   	for(int x = 0; x < 4; x++)
 			{
 				int Xcoord = baseX + rand.nextInt(16);				
 				int Zcoord = baseZ + rand.nextInt(16);
-				int Ycoord = rand.nextInt(20);
+				int Ycoord = rand.nextInt(30);
 															//Max Vein Size
-				(new WorldGenMinable(CodeLyoko.QuantumOre.blockID, 1)).generate(world, rand, Xcoord, Ycoord, Zcoord);
+				(new WorldGenMinable(CodeLyoko.QuantumOre.blockID, 4)).generate(world, rand, Xcoord, Ycoord, Zcoord);
 			}
 		   	
 		   					//rarity -smaller number = rarer

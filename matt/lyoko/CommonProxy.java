@@ -37,7 +37,7 @@ public class CommonProxy
 		//unused server side
 	}
 	
-	public void registerOres()
+	public void registerOreDictionaryOres()
 	{
 		OreDictionary.registerOre("ingotRadioactiveLead", ModItems.LyokoLead);
 		OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);

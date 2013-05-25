@@ -6,8 +6,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import matt.lyoko.container.*;
 import matt.lyoko.entities.*;
-import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
-import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
+import matt.lyoko.entities.tileentity.*;
 
 public class GuiHandler implements IGuiHandler {
 	//returns an instance of the Container you made earlier
@@ -23,6 +22,10 @@ public class GuiHandler implements IGuiHandler {
 		else if(tileEntity instanceof TileEntityTowerConsole)
 		{
 			return new ContainerTowerConsole(player.inventory, (TileEntityTowerConsole) tileEntity);
+		}
+		else if(tileEntity instanceof TileEntitySuperCalcConsole)
+		{
+			return new ContainerSuperCalcConsole(player.inventory, (TileEntitySuperCalcConsole) tileEntity);
 		}
 		
 		return null;
@@ -41,6 +44,10 @@ public class GuiHandler implements IGuiHandler {
 		else if(tileEntity instanceof TileEntityTowerConsole)
 		{
 			return new GuiTowerConsole(player.inventory, (TileEntityTowerConsole) tileEntity);
+		}
+		else if(tileEntity instanceof TileEntitySuperCalcConsole)
+		{
+			return new GuiSuperCalcConsole(player.inventory, (TileEntitySuperCalcConsole) tileEntity);
 		}
 		
 		return null;

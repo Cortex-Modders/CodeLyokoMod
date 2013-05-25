@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import matt.lyoko.entities.*;
-import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
+import matt.lyoko.entities.tileentity.*;
 
 public class PacketHandler implements IPacketHandler
 {
@@ -22,11 +22,15 @@ public class PacketHandler implements IPacketHandler
         
         if(packet.channel.equals("Code_Lyoko"))
         {
-        	handlePacket(data, sender.worldObj);
+        	handlePacketCL(data, sender.worldObj);
+        }
+        if(packet.channel.equals("SuperCalcConsole"))
+        {
+        	handlePacketSCC(data, sender.worldObj);
         }
     }
     
-    private void handlePacket(DataInputStream data, World world)
+    private void handlePacketCL(DataInputStream data, World world)
     {
         String code;
         int x;
@@ -50,6 +54,34 @@ public class PacketHandler implements IPacketHandler
         {
         	TileEntityTowerConsole tetc = (TileEntityTowerConsole) world.getBlockTileEntity(x, y, z);
         	tetc.owner = code;
+        	world.markBlockForUpdate(x, y, z);
+        }
+    }
+    
+    private void handlePacketSCC(DataInputStream data, World world)
+    {
+        String code;
+        int x;
+        int y;
+        int z;
+        
+        try
+        {
+        	code = data.readUTF();
+        	x = data.readInt();
+        	y = data.readInt();
+        	z = data.readInt();
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        	return;
+        }
+        
+        if(world.getBlockTileEntity(x, y, z) != null && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalcConsole)
+        {
+        	TileEntitySuperCalcConsole tescc = (TileEntitySuperCalcConsole) world.getBlockTileEntity(x, y, z);
+        	tescc.sector = code;
         	world.markBlockForUpdate(x, y, z);
         }
     }
