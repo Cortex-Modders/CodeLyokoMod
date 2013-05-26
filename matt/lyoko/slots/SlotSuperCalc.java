@@ -19,6 +19,6 @@ public class SlotSuperCalc extends Slot
     
     public boolean isItemValid(ItemStack stack)
     {
-    	return stack.getItem() == ModItems.DataFragment;
+    	return false;
     }
 }
