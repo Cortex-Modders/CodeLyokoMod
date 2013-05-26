@@ -28,7 +28,7 @@ import net.minecraftforge.common.*;
 import net.minecraftforge.common.ForgeChunkManager.Ticket;
 import net.minecraftforge.common.ForgeChunkManager.Type;
 
-public class TileEntitySuperCalc extends TileEntity implements IInventory, ISidedInventory
+public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISidedInventory
 {
 	private ItemStack[] inv;
 	public float timeLeft;
@@ -311,39 +311,34 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory, ISide
 	@Override
 	public boolean isStackValidForSlot(int slot, ItemStack stack)
 	{
-		boolean validMultiBlock = false;
 		for(int i = -1; i < 2; i++)
 		{
 			for(int k = -1; k < 2; k++)
 			{
-				for(int j = 0; j < 3; j++)
+				for(int j = -2; j < 1; j++)
 				{
 					if(BlockSuperCalc.isMultiBlock(worldObj, xCoord + i, yCoord + j, zCoord + k))
 					{
-						validMultiBlock = true;
+						if(slot == 0 && stack != null && stack.getItem() instanceof ItemLyokoFuel)
+						{
+							return true;
+						}
+						//else if(slot == 1 && stack != null && stack.getItem() instanceof ItemDataFragment)
+						//{
+						//	return true;
+						//}
 					}
 				}
 			}
 		}
-		if(validMultiBlock)
-		{
-			if(slot == 0 && stack != null && stack.getItem() instanceof ItemLyokoFuel)
-			{
-				return true;
-			}
-			//else if(slot == 1 && stack != null && stack.getItem() instanceof ItemDataFragment)
-			//{
-			//	return true;
-			//}
-		}
 		return false;
 	}
 	
-	@Override
+	/*@Override
 	public int[] getAccessibleSlotsFromSide(int side)
 	{
 		int[] slot = {1};
-		if(side == 1 || side == 2)
+		if(side == 0 || side == 1)
 		{
 			slot[0] = 0;
 			return slot;
@@ -361,5 +356,5 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory, ISide
 	public boolean canExtractItem(int slot, ItemStack stack, int side)
 	{
 		return slot == 1 && (side != 0 && side != 1);
-	}
+	}*/
 }
