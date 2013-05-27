@@ -20,6 +20,7 @@ Download
 ========
 
 The official download is on the [Minecraft Forum post](http://www.minecraftforum.net/topic/1403995-152-code-lyoko-mod-043-minecraft-forum/).
+
 We also have a Jenkins system doing nightly builds for us.
 
 [![Build Status](http://ci.jadarstudios.com/job/Code-Lyoko/badge/icon)](http://ci.jadarstudios.com/job/Code-Lyoko/)
