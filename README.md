@@ -4,7 +4,7 @@ CodeLyokoMod
 Code Lyoko Minecraft Mod
 
 Current Release: Minecraft 1.5.2
-Version: 0.4.3
+Version: 0.5.0
 
 Author: Matthew Warren
 
@@ -22,6 +22,8 @@ Download
 The official download is on the [Minecraft Forum post](http://www.minecraftforum.net/topic/1403995-152-code-lyoko-mod-043-minecraft-forum/).
 
 We also have a Jenkins system doing nightly builds for us. Please do note that these are experimental and most likely will contain bugs.
+
+http://ci.jadarstudios.com/job/Code-Lyoko/
 
 [![Build Status](http://ci.jadarstudios.com/job/Code-Lyoko/badge/icon)](http://ci.jadarstudios.com/job/Code-Lyoko/)
 
