@@ -33,7 +33,7 @@ import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "CodeLyoko", name="Code Lyoko", version="0.5.0-Beta", useMetadata = true)
+@Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko", "SuperCalcConsole"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
@@ -80,7 +80,7 @@ public class CodeLyoko
 	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setUnlocalizedName("Carthage Portal");
 	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
 	
-	@SidedProxy(clientSide = "matt.lyoko.client.ClientProxy", serverSide = "matt.lyoko.CommonProxy")
+	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
 	@Instance
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable

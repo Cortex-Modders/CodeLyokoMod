@@ -68,8 +68,10 @@ public class ClientProxy extends CommonProxy
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderEntityTowerConsole());
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
+	    
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
-		
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, new RenderScanner());
+	    
 		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
 		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
 	}

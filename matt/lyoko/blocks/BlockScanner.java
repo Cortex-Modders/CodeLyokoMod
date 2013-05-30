@@ -30,6 +30,12 @@ public class BlockScanner extends BlockContainer
 		this.blockIcon = par1IconRegister.registerIcon("lyoko:scanner");
 	}
 	
+	@Override
+    public int getRenderType()
+    {
+        return -1;
+    }
+	
 	public static boolean isMultiBlock(World world, int x, int y, int z)
     {
     	if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
