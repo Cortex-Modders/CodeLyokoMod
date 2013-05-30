@@ -1,13 +1,17 @@
 package matt.lyoko.blocks;
 
+import java.util.List;
+
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class BlockScanner extends BlockContainer
@@ -177,6 +181,35 @@ public class BlockScanner extends BlockContainer
     	return false;
     }
 	
+	/**
+     * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
+     * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
+     */
+    @Override
+	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB mask, List list, Entity entity)
+    {
+        //Bottom
+        this.setBlockBounds(-0.25F, 0.0F, -0.25F, 1.25F, 0.5F, 1.25F);
+        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        
+        float f = 0.125F;
+        //Left
+//        this.setBlockBounds(0.0F, 0.0F, 0.0F, f, 5.0F, 1.5F);
+//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //Back
+//        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.5F, 5.0F, f);
+//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //Right
+//        this.setBlockBounds(1.5F - f, 0.0F, 0.0F, 1.5F, 5.0F, 1.5F);
+//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //Top
+        this.setBlockBounds(-0.25F, 4.5F, -0.25F - f, 1.25F, 5F, 1.25F);
+        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        
+        this.setBlockBoundsForItemRender();
+        
+    }
+    
 	public void activatePortal(World world, int x, int y, int z)
 	{
 		TileEntityScanner tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);

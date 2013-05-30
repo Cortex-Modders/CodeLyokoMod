@@ -15,11 +15,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderScanner extends TileEntitySpecialRenderer {
 
-    //TODO: Render GUI Text on the console.
-    //TODO: Custom font for GUI and terminal, maybe?
-    private ClientProxy proxy;
     private ModelScanner model = new ModelScanner();
-    
+
     /**
      * Renders the TileEntity for the chest at a position.
      */
@@ -31,14 +28,14 @@ public class RenderScanner extends TileEntitySpecialRenderer {
         } else {
             i = entity.getBlockMetadata();
         }
-        
+
         // /mods/lyoko/textures/models/scanner.png
-        this.bindTextureByName(ModProperties.MODEL_TEXTURE_PREFIX + "null");
+        this.bindTextureByName("/mods/lyoko/textures/models/scanner.png");
         GL11.glPushMatrix();
-//        proxy.alphaOn();
-        GL11.glTranslatef((float)x, (float)y, (float)z);
-        GL11.glTranslatef(0.5F, 6F, 0.5F);
-        
+        // proxy.alphaOn();
+        GL11.glTranslatef((float) x, (float) y, (float) z);
+        GL11.glTranslatef(0.5F, 5F, 0.5F);
+
         short rotate = 0;
 
         if (i == 0) {
@@ -57,15 +54,15 @@ public class RenderScanner extends TileEntitySpecialRenderer {
             rotate = 90;
         }
 
-        GL11.glRotatef((float)rotate, 0F, 1F, 0F);
+        GL11.glRotatef(rotate, 0F, 1F, 0F);
 
-        model.render(entity, (float)x, (float)y, (float)z, 0.0F, 0.0F, 0.0625F);
-//        proxy.alphaOff();
+        model.render(entity, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
+        // proxy.alphaOff();
         GL11.glPopMatrix();
     }
 
     @Override
     public void renderTileEntityAt(TileEntity entity, double par2, double par4, double par6, float par8) {
-        this.render((TileEntityScanner)entity, par2, par4, par6, par8);
+        this.render((TileEntityScanner) entity, par2, par4, par6, par8);
     }
 }
