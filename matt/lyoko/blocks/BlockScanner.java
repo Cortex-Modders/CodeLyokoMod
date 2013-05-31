@@ -50,37 +50,15 @@ public class BlockScanner extends BlockContainer
 	
 	public static boolean isMultiBlock(World world, int x, int y, int z)
     {
-    	// Check from bottom block.
-	    if(world.getBlockId(x, y, z) == BlockIds.SCANNER
-    	        && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
-    	        && world.getBlockId(x, y+2, z) == BlockIds.SCANNER
-    	        && world.getBlockId(x, y+3, z) == BlockIds.SCANNER
-    	        && world.getBlockId(x, y+4, z) == BlockIds.SCANNER) return true;
-    	// Check from top block.
-	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-2, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-3, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-4, z) == BlockIds.SCANNER) return true;
-    	// Check from 4th block.
-	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-2, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-3, z) == BlockIds.SCANNER) return true;
-    	// Check from 3rd block.
-	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y+2, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-2, z) == BlockIds.SCANNER) return true;
-    	// Check from 2nd block.
-	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y+2, z) == BlockIds.SCANNER
-                && world.getBlockId(x, y+3, z) == BlockIds.SCANNER) return true;
-    	else return false;
+    	if(world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y + 1, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y + 2, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y + 3, z) == CodeLyoko.Scanner.blockID
+    			&& world.getBlockId(x, y + 4, z) == CodeLyoko.Scanner.blockID)
+    	{
+    		return true;
+    	}
+    	return false;
 	    
 	    /*
 	    if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
@@ -246,8 +224,8 @@ public class BlockScanner extends BlockContainer
         this.setBlockBounds(1.25F - f, 0.0F, -0.25F, 1.25F, 5.0F, 1.25F);
         super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
         //Top
-//        this.setBlockBounds(-0.25F, 5F, -0.25F - f, 1.25F, 4.5F, 1.25F);
-//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //this.setBlockBounds(-0.25F, 5F, -0.25F - f, 1.25F, 4.5F, 1.25F);
+        //super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
         
         this.setBlockBoundsForItemRender();
         
@@ -289,39 +267,33 @@ public class BlockScanner extends BlockContainer
 	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
-    	TileEntity getTile = world.getBlockTileEntity(x, y, z);
-    	if(!(getTile instanceof TileEntityScanner)) return false;
-    	TileEntityScanner tileEntity = (TileEntityScanner) getTile;
-    	if (tileEntity == null || player.isSneaking())
-    	{
-    		return false;
-    	}
-    	else
-    	{   
-    		if(!tileEntity.doorsOpen) {
-    		    tileEntity.doorsOpen = true;
-    		} else {
-    		    tileEntity.doorsOpen = false;
-    		    world.playSoundEffect(x+0.5F, y+0.5F, z+0.5F, "mods.lyoko.sounds.scannerClose", 0.9F, world.rand.nextFloat() * 0.1F + 0.9F);
-    		}
-    		
-    	    for(int i = -1; i < 2; i++)
-    		{
-    			for(int j = -1; j < 2; j++)
-    			{
-    				for(int k = -4; k < 1; k++)
-    				{
-    					if(BlockScanner.isMultiBlock(world, x+i, y+k, z+j))
-    					{
-    						activatePortal(world, x+i, y+k, z+j);
-    						return true;
-    					}
-    				}
-    			}
-    		}
-    		return false;
-    	}
+		TileEntity getTile = world.getBlockTileEntity(x, y, z);
+		if(!(getTile instanceof TileEntityScanner)) return false;
+		TileEntityScanner tileEntity = (TileEntityScanner) getTile;
+		if (tileEntity == null || player.isSneaking())
+		{
+			return false;
+		}
+		else
+		{   
+			if(!tileEntity.doorsOpen)
+			{
+				tileEntity.doorsOpen = true;
+			}
+			else
+			{
+				tileEntity.doorsOpen = false;
+				world.playSoundEffect(x+0.5F, y+0.5F, z+0.5F, "mods.lyoko.sounds.scannerClose", 0.9F, world.rand.nextFloat() * 0.1F + 0.9F);
+			}
+			for(int i = -4; i < 1; i++)
+			{
+				if(BlockScanner.isMultiBlock(world, x, y+i, z))
+				{
+					activatePortal(world, x, y+i, z);
+					return true;
+				}
+			}
+		}
+		return false;
     }
-	
-	
 }

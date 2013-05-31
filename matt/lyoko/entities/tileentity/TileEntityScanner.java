@@ -18,25 +18,16 @@ public class TileEntityScanner extends TileEntity
 	{
 		if(this.sector != -1)
 		{
-			for(int i = -1; i < 2; i++)
+			for(int i = -4; i < 0; i++)
 			{
-				for(int k = -1; k < 2; k++)
+				if(BlockScanner.isMultiBlock(worldObj, xCoord, yCoord + i, zCoord))
 				{
-					for(int j = -4; j < 1; j++)
+					TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord, yCoord + i, zCoord);
+					if(this.sector != core.sector && core.sector == -1)
 					{
-						if(i != 0 || j != 0 || k != 0)
-						{
-						    if(BlockScanner.isMultiBlock(worldObj, xCoord + i, yCoord + j, zCoord + k))
-							{
-								TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
-								if(this.sector != core.sector && core.sector == -1)
-								{
-									core.sector = this.sector;
-								}
-								this.sector = -1;
-							}
-						}
+						core.sector = this.sector;
 					}
+					this.sector = -1;
 				}
 			}
 		}
