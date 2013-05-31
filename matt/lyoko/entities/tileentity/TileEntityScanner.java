@@ -27,7 +27,7 @@ public class TileEntityScanner extends TileEntity
 					{
 						if(i != 0 || j != 0 || k != 0)
 						{
-							if(BlockScanner.isMultiBlock(worldObj, xCoord + i, yCoord + j, zCoord + k))
+						    if(BlockScanner.isMultiBlock(worldObj, xCoord + i, yCoord + j, zCoord + k))
 							{
 								TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
 								if(this.sector != core.sector && core.sector == -1)

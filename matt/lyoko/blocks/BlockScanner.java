@@ -4,6 +4,7 @@ import java.util.List;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.lib.BlockIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -16,12 +17,12 @@ import net.minecraft.world.World;
 
 public class BlockScanner extends BlockContainer
 {
-	public BlockScanner(int par1)
+    
+    public BlockScanner(int par1)
 	{
 		super(par1, Material.iron);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
 		this.setBlockBounds(-0.25F, 0.0F, -0.25F, 1.25F, 5F, 1.25F);
-		
 	}
 	
 	@Override
@@ -50,7 +51,40 @@ public class BlockScanner extends BlockContainer
 	
 	public static boolean isMultiBlock(World world, int x, int y, int z)
     {
-    	if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
+    	// Check from bottom block.
+	    if(world.getBlockId(x, y, z) == BlockIds.SCANNER
+    	        && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
+    	        && world.getBlockId(x, y+2, z) == BlockIds.SCANNER
+    	        && world.getBlockId(x, y+3, z) == BlockIds.SCANNER
+    	        && world.getBlockId(x, y+4, z) == BlockIds.SCANNER) return true;
+    	// Check from top block.
+	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-2, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-3, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-4, z) == BlockIds.SCANNER) return true;
+    	// Check from 4th block.
+	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-2, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-3, z) == BlockIds.SCANNER) return true;
+    	// Check from 3rd block.
+	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y+2, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-2, z) == BlockIds.SCANNER) return true;
+    	// Check from 2nd block.
+	    else if(world.getBlockId(x, y, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y-1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y+1, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y+2, z) == BlockIds.SCANNER
+                && world.getBlockId(x, y+3, z) == BlockIds.SCANNER) return true;
+    	else return false;
+	    
+	    /*
+	    if(world.getBlockId(x+1, y, z+1) == CodeLyoko.Scanner.blockID
     			&& world.getBlockId(x+1, y, z) == CodeLyoko.Scanner.blockID
     			&& world.getBlockId(x+1, y, z-1) == CodeLyoko.Scanner.blockID
     			&& world.getBlockId(x, y, z+1) == CodeLyoko.Scanner.blockID
@@ -187,6 +221,7 @@ public class BlockScanner extends BlockContainer
     		return true;
     	}
     	return false;
+        */
     }
 	
 	/**
