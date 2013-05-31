@@ -31,8 +31,10 @@ public class RenderScanner extends TileEntitySpecialRenderer {
         this.bindTextureByName("/mods/lyoko/textures/models/scanner.png");
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x, (float) y, (float) z);
-        GL11.glTranslatef(0.5F, 5F, 0.5F);
-
+        GL11.glTranslatef(0.5F, 0F, 0.5F);
+        // Use this or else model renders upside-down. o.O
+        GL11.glRotatef(180, 0F, 0F, 1F);
+        
         short rotate = 0;
 
         if (i == 0) {
