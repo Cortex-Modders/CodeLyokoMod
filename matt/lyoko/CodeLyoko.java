@@ -4,6 +4,7 @@ import java.util.EnumSet;
 import java.util.HashSet;
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
+import matt.lyoko.client.SoundHandler;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
@@ -179,6 +180,9 @@ public class CodeLyoko
 		DimensionIds.CARTHAGE = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
 		
 		config.save();
+		
+		
+		MinecraftForge.EVENT_BUS.register(new SoundHandler());
 	}
 	
     @Init

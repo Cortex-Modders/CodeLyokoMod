@@ -12,6 +12,8 @@ public class TileEntityScanner extends TileEntity
 {
 	public int sector = -1;
 	
+	public boolean doorsOpen = true;
+	
 	@Override
 	public void updateEntity()
 	{
@@ -57,7 +59,15 @@ public class TileEntityScanner extends TileEntity
         NBTTagCompound tag = pkt.customParam1;
         this.sector = tag.getInteger("sector");
     }
+    
+    public void toggleDoors() {
+        
+    }
 	
+    public void toggleDoors(boolean p) {
+        //this.
+    }
+    
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{

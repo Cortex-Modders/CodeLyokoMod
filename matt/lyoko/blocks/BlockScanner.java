@@ -20,6 +20,8 @@ public class BlockScanner extends BlockContainer
 	{
 		super(par1, Material.iron);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
+		this.setBlockBounds(-0.25F, 0.0F, -0.25F, 1.25F, 5F, 1.25F);
+		
 	}
 	
 	@Override
@@ -38,6 +40,12 @@ public class BlockScanner extends BlockContainer
     public int getRenderType()
     {
         return -1;
+    }
+	
+	@Override
+    public boolean isOpaqueCube()
+    {
+        return false;
     }
 	
 	public static boolean isMultiBlock(World world, int x, int y, int z)
@@ -194,17 +202,17 @@ public class BlockScanner extends BlockContainer
         
         float f = 0.125F;
         //Left
-//        this.setBlockBounds(0.0F, 0.0F, 0.0F, f, 5.0F, 1.5F);
-//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
-        //Back
-//        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.5F, 5.0F, f);
-//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
-        //Right
-//        this.setBlockBounds(1.5F - f, 0.0F, 0.0F, 1.5F, 5.0F, 1.5F);
-//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
-        //Top
-        this.setBlockBounds(-0.25F, 4.5F, -0.25F - f, 1.25F, 5F, 1.25F);
+        this.setBlockBounds(-0.25F, 0.0F, -0.25F, -f, 5.0F, 1.25F);
         super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //Back
+        this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 5.0F, -f);
+        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //Right
+        this.setBlockBounds(1.25F - f, 0.0F, -0.25F, 1.25F, 5.0F, 1.25F);
+        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
+        //Top
+//        this.setBlockBounds(-0.25F, 5F, -0.25F - f, 1.25F, 4.5F, 1.25F);
+//        super.addCollisionBoxesToList(world, x, y, z, mask, list, entity);
         
         this.setBlockBoundsForItemRender();
         
@@ -246,14 +254,23 @@ public class BlockScanner extends BlockContainer
 	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
-    	TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+    	TileEntity getTile = world.getBlockTileEntity(x, y, z);
+    	if(!(getTile instanceof TileEntityScanner)) return false;
+    	TileEntityScanner tileEntity = (TileEntityScanner) getTile;
     	if (tileEntity == null || player.isSneaking())
     	{
     		return false;
     	}
     	else
-    	{
-    		for(int i = -1; i < 2; i++)
+    	{   
+    		if(!tileEntity.doorsOpen) {
+    		    tileEntity.doorsOpen = true;
+    		} else {
+    		    tileEntity.doorsOpen = false;
+    		    world.playSoundEffect(x+0.5F, y+0.5F, z+0.5F, "mods.lyoko.sounds.scannerClose", 0.9F, world.rand.nextFloat() * 0.1F + 0.9F);
+    		}
+    		
+    	    for(int i = -1; i < 2; i++)
     		{
     			for(int j = -1; j < 2; j++)
     			{
@@ -270,4 +287,6 @@ public class BlockScanner extends BlockContainer
     		return false;
     	}
     }
+	
+	
 }

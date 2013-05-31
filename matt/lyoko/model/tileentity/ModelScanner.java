@@ -26,6 +26,16 @@ public class ModelScanner extends ModelBase {
     ModelRenderer topF;
     ModelRenderer topB;
     ModelRenderer topR;
+    
+    private float rightDoorX = 9;
+    private float rightDoorY = -40;
+    private float rightDoorZ = 0;
+    
+    private float leftDoorX = -9;
+    private float leftDoorY = -40;
+    private float leftDoorZ = 0;
+    
+    private double doorYawClosed = Math.toRadians(-90);
 
     public ModelScanner() {
         textureWidth = 128;
@@ -178,6 +188,31 @@ public class ModelScanner extends ModelBase {
 
 
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, TileEntity entity) {
+        doorR.setRotationPoint(rightDoorX, rightDoorY, rightDoorZ);
+        doorL.setRotationPoint(leftDoorX, leftDoorY, leftDoorZ);
+    }
+    
+    public void openDoors() {
+        
+        rightDoorX = 9;
+        rightDoorZ = 0;
+        
+        leftDoorX = -9;
+        leftDoorZ = 0;
+        
+        doorR.rotateAngleY = 0;
+        doorL.rotateAngleY = 0;
+    }
+    
+    public void closeDoors() {
+        rightDoorX = 8;
+        rightDoorZ = -10;
+        
+        leftDoorX = -8;
+        leftDoorZ = -10;
+        
+        doorR.rotateAngleY = (float) -doorYawClosed;
+        doorL.rotateAngleY = (float) doorYawClosed;
     }
 
 }

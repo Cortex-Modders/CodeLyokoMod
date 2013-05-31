@@ -17,6 +17,8 @@ public class RenderScanner extends TileEntitySpecialRenderer {
 
     private ModelScanner model = new ModelScanner();
 
+    private ClientProxy proxy;
+    
     /**
      * Renders the TileEntity for the chest at a position.
      */
@@ -32,7 +34,6 @@ public class RenderScanner extends TileEntitySpecialRenderer {
         // /mods/lyoko/textures/models/scanner.png
         this.bindTextureByName("/mods/lyoko/textures/models/scanner.png");
         GL11.glPushMatrix();
-        // proxy.alphaOn();
         GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glTranslatef(0.5F, 5F, 0.5F);
 
@@ -56,8 +57,13 @@ public class RenderScanner extends TileEntitySpecialRenderer {
 
         GL11.glRotatef(rotate, 0F, 1F, 0F);
 
+        if(entity.doorsOpen) {
+            model.openDoors();
+        } else {
+            model.closeDoors();
+        }
+        
         model.render(entity, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
-        // proxy.alphaOff();
         GL11.glPopMatrix();
     }
 
