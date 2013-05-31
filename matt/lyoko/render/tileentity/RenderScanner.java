@@ -1,8 +1,6 @@
 package matt.lyoko.render.tileentity;
 
-import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
-import matt.lyoko.lib.ModProperties;
 import matt.lyoko.model.tileentity.ModelScanner;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -16,8 +14,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderScanner extends TileEntitySpecialRenderer {
 
     private ModelScanner model = new ModelScanner();
-
-    private ClientProxy proxy;
     
     /**
      * Renders the TileEntity for the chest at a position.

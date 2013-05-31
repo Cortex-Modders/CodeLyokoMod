@@ -1,6 +1,5 @@
 package matt.lyoko;
 
-import java.util.EnumSet;
 import java.util.HashSet;
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
@@ -32,7 +31,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko", "SuperCalcConsole"}, packetHandler = PacketHandler.class)

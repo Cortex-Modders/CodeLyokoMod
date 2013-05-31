@@ -5,7 +5,6 @@ import java.util.List;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.BlockIds;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -228,6 +227,7 @@ public class BlockScanner extends BlockContainer
      * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
      * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
      */
+    @SuppressWarnings("rawtypes")
     @Override
 	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB mask, List list, Entity entity)
     {
@@ -311,7 +311,7 @@ public class BlockScanner extends BlockContainer
     			{
     				for(int k = -4; k < 1; k++)
     				{
-    					if(this.isMultiBlock(world, x+i, y+k, z+j))
+    					if(BlockScanner.isMultiBlock(world, x+i, y+k, z+j))
     					{
     						activatePortal(world, x+i, y+k, z+j);
     						return true;

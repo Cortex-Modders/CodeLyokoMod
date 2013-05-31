@@ -6,18 +6,13 @@ import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
 import net.minecraftforge.client.*;
 import cpw.mods.fml.client.registry.*;
-import cpw.mods.fml.common.Mod.Instance;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.item.ItemStack;
-import net.minecraft.src.*;
 import matt.lyoko.CommonProxy;
 import matt.lyoko.KeyBindingHandler;
 import matt.lyoko.entities.mobs.*;
 import matt.lyoko.entities.projectile.*;
 import matt.lyoko.render.mobs.*;
 import matt.lyoko.model.mobs.*;
-import matt.lyoko.entities.*;
 import matt.lyoko.render.*;
 import matt.lyoko.model.*;
 import matt.lyoko.entities.tileentity.*;
@@ -25,7 +20,6 @@ import matt.lyoko.entities.vehicles.*;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.render.tileentity.*;
 import matt.lyoko.render.vehicles.*;
-import matt.lyoko.model.vehicles.*;
 
 public class ClientProxy extends CommonProxy
 {
