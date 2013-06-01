@@ -81,25 +81,25 @@ public class ModelScanner extends ModelBase {
         sideRcornerB.setRotationPoint(9F, -40F, 9F);
         sideRcornerB.setTextureSize(128, 128);
         sideRcornerB.mirror = true;
-        setRotation(sideRcornerB, 0F, 0F, 0F);
+        setRotation(sideRcornerB, 0F, (float)Math.toRadians(90), 0F);
         sideLcornerF = new ModelRenderer(this, 0, 56);
         sideLcornerF.addBox(-1F, -32F, -1F, 2, 64, 2);
         sideLcornerF.setRotationPoint(-9F, -40F, -9F);
         sideLcornerF.setTextureSize(128, 128);
         sideLcornerF.mirror = true;
-        setRotation(sideLcornerF, 0F, 0F, 0F);
+        setRotation(sideLcornerF, 0F, (float)Math.toRadians(-90), 0F);
         sideRcornerF = new ModelRenderer(this, 0, 56);
         sideRcornerF.addBox(-1F, -32F, -1F, 2, 64, 2);
         sideRcornerF.setRotationPoint(9F, -40F, -9F);
         sideRcornerF.setTextureSize(128, 128);
         sideRcornerF.mirror = true;
-        setRotation(sideRcornerF, 0F, 0F, 0F);
+        setRotation(sideRcornerF, 0F, (float)Math.toRadians(90), 0F);
         sideB = new ModelRenderer(this, 80, 0);
         sideB.addBox(-8F, -32F, -1F, 16, 64, 2);
         sideB.setRotationPoint(0F, -40F, 11F);
         sideB.setTextureSize(128, 128);
         sideB.mirror = true;
-        setRotation(sideB, 0F, 0F, 0F);
+        setRotation(sideB, 0F, (float)Math.toRadians(180), 0F);
         sideL = new ModelRenderer(this, 80, 0);
         sideL.addBox(-8F, -32F, 0F, 16, 64, 2);
         sideL.setRotationPoint(-12F, -40F, 0F);
@@ -108,10 +108,10 @@ public class ModelScanner extends ModelBase {
         setRotation(sideL, 0F, 1.570796F, 0F);
         sideR = new ModelRenderer(this, 80, 0);
         sideR.addBox(-8F, -32F, 0F, 16, 64, 2);
-        sideR.setRotationPoint(10F, -40F, 0F);
+        sideR.setRotationPoint(12F, -40F, 0F);
         sideR.setTextureSize(128, 128);
         sideR.mirror = true;
-        setRotation(sideR, 0F, 1.570796F, 0F);
+        setRotation(sideR, 0F, -1.570796F, 0F);
         doorL = new ModelRenderer(this, 8, 56);
         doorL.addBox(-1F, -32F, -8F, 2, 64, 8);
         doorL.setRotationPoint(-9F, -40F, 0F);
@@ -119,11 +119,11 @@ public class ModelScanner extends ModelBase {
         doorL.mirror = true;
         setRotation(doorL, 0F, 0F, 0F);
         doorR = new ModelRenderer(this, 8, 56);
-        doorR.addBox(-1F, -32F, -8F, 2, 64, 8);
+        doorR.addBox(-1F, -32F, 0F, 2, 64, 8);
         doorR.setRotationPoint(9F, -40F, 0F);
         doorR.setTextureSize(128, 128);
         doorR.mirror = true;
-        setRotation(doorR, 0F, 0F, 0F);
+        setRotation(doorR, 0F, (float)Math.toRadians(-180), 0F);
         top = new ModelRenderer(this, 0, 0);
         top.addBox(-10F, -8F, -10F, 20, 8, 20);
         top.setRotationPoint(0F, -72F, 0F);
@@ -199,7 +199,7 @@ public class ModelScanner extends ModelBase {
         leftDoorX = -9;
         leftDoorZ = 0;
         
-        doorR.rotateAngleY = 0;
+        doorR.rotateAngleY = (float) Math.toRadians(-180);
         doorL.rotateAngleY = 0;
     }
     
@@ -210,7 +210,7 @@ public class ModelScanner extends ModelBase {
         leftDoorX = -8;
         leftDoorZ = -10;
         
-        doorR.rotateAngleY = (float) -doorYawClosed;
+        doorR.rotateAngleY = (float) doorYawClosed;
         doorL.rotateAngleY = (float) doorYawClosed;
     }
 
