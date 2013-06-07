@@ -220,21 +220,18 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 	}
 	
 	@Override
-	public Packet getDescriptionPacket() {
-		Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-		NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
-		tag.setFloat("time", timeLeft);
-		tag.setString("sector", sector);
-
-		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, tag);
 	}
 	
 	@Override
-	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
-		super.onDataPacket(net, pkt);
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+	{
 		NBTTagCompound tag = pkt.customParam1;
-		timeLeft = tag.getFloat("time");
-		sector = tag.getString("sector");
+		this.readFromNBT(tag);
 	}
 	
 	@Override

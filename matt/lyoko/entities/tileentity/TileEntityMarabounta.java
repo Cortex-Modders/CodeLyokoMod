@@ -3,6 +3,9 @@ package matt.lyoko.entities.tileentity;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.BlockIds;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMarabounta extends TileEntity
@@ -31,6 +34,21 @@ public class TileEntityMarabounta extends TileEntity
 				worldObj.setBlockTileEntity(x, y, z, temp);
 			}
 		}
+	}
+	
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, tag);
+	}
+	
+	@Override
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+	{
+		NBTTagCompound tag = pkt.customParam1;
+		this.readFromNBT(tag);
 	}
 	
 	@Override
