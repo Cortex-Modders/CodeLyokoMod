@@ -4,6 +4,8 @@ import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
+import matt.lyoko.handlers.ClientTickHandler;
+import matt.lyoko.handlers.ServerTickHandler;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.lib.EntityIds;
 import net.minecraft.block.Block;

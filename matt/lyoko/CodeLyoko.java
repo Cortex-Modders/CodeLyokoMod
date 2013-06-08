@@ -7,6 +7,8 @@ import matt.lyoko.client.SoundHandler;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
+import matt.lyoko.handlers.CommandHandler;
+import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;

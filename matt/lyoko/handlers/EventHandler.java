@@ -1,4 +1,4 @@
-package matt.lyoko;
+package matt.lyoko.handlers;
 
 import java.util.Collection;
 import java.util.Iterator;
