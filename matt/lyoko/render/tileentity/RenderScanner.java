@@ -55,13 +55,13 @@ public class RenderScanner extends TileEntitySpecialRenderer {
 
         GL11.glRotatef(rotate, 0F, 1F, 0F);
 
-        model.doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw * tick);
-//        model.doorL.rotationPointX = entity.doorPosX;
-//        model.doorL.rotationPointZ = entity.doorPosZ * tick;
+        model.doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw);
+        model.doorL.rotationPointX = entity.doorPosX;
+        model.doorL.rotationPointZ = entity.doorPosZ;
         
-//        model.doorR.rotateAngleY = (float)Math.toRadians((entity.doorRotationYaw + 180) * tick);
-//        model.doorR.rotationPointX = entity.doorPosX * tick;
-//        model.doorR.rotationPointZ = entity.doorPosZ * tick;
+        model.doorR.rotateAngleY = -(float)Math.toRadians((entity.doorRotationYaw + 180));
+        model.doorR.rotationPointX = -entity.doorPosX;
+        model.doorR.rotationPointZ = entity.doorPosZ;
         
         model.render(entity, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();

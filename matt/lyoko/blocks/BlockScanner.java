@@ -9,9 +9,12 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockScanner extends BlockContainer
@@ -295,5 +298,32 @@ public class BlockScanner extends BlockContainer
 			}
 		}
 		return false;
+    }
+	
+	@Override
+    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving, ItemStack par6ItemStack)
+    {
+        super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
+        int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l == 0)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 0, 2);
+        }
+
+        if (l == 1)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
+        }
+
+        if (l == 2)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        }
+
+        if (l == 3)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+        }
     }
 }

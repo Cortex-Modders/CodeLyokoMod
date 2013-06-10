@@ -33,27 +33,27 @@ public class TileEntityScanner extends TileEntity
 		// Open doors!
         // If doors are set to open, but have not rendered as fully open.
         if(this.doorsOpen & this.doorRotationYaw <= openScannerYaw) {
-            this.doorRotationYaw += 1.75;
+            this.doorRotationYaw += 5.75;
             if(this.doorRotationYaw > openScannerYaw) this.doorRotationYaw = openScannerYaw;
 
             if(this.doorPosZ < openScannerZ) {
-                this.doorPosZ += 0.4;
+                this.doorPosZ += 0.75;
                 if(this.doorPosZ >= openScannerZ) {
                     this.doorPosZ = openScannerZ;
-//                    this.doorPosX = openScannerX;
+                    this.doorPosX = openScannerX;
                 }
             }
         }
         // Close doors!
         else if(!this.doorsOpen & this.doorRotationYaw >= closedScannerYaw) {
-            this.doorRotationYaw -= 1.75;
+            this.doorRotationYaw -= 5.75;
             if(this.doorRotationYaw < closedScannerYaw) this.doorRotationYaw = closedScannerYaw;
 
             if(this.doorPosZ > closedScannerZ) {
-                this.doorPosZ -= 0.4;
+                this.doorPosZ -= 0.75;
                 if(this.doorPosZ <= closedScannerZ) {
                     this.doorPosZ = closedScannerZ;
-//                    this.doorPosX = closedScannerX;
+                    this.doorPosX = closedScannerX;
                 }
             }
         }
