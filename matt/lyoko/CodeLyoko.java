@@ -7,6 +7,8 @@ import matt.lyoko.client.SoundHandler;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
+import matt.lyoko.handlers.CommandHandler;
+import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;
@@ -14,6 +16,7 @@ import matt.lyoko.render.TileAnimator;
 import matt.lyoko.world.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.*;
@@ -27,6 +30,7 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.ServerStarting;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.*;
@@ -533,8 +537,14 @@ public class CodeLyoko
     @PostInit
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
     {
-    	
+    	MinecraftForge.EVENT_BUS.register(new EventHandler(Minecraft.getMinecraft()));
     }
+    
+    @ServerStarting
+	public void serverLoad(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandHandler());
+	}
     
     public static String[] getDevelopers()
     {

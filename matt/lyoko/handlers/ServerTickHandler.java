@@ -1,7 +1,9 @@
-package matt.lyoko;
+package matt.lyoko.handlers;
 
 import java.util.EnumSet;
 import java.util.List;
+
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.render.TileAnimator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

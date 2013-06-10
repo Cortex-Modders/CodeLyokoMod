@@ -34,21 +34,19 @@ public class TileEntityScanner extends TileEntity
 	}
 	
 	@Override
-    public Packet getDescriptionPacket()
+	public Packet getDescriptionPacket()
 	{
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
-        tag.setInteger("sector", this.sector);
-        
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
-    }
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, tag);
+	}
 	
-    @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-    {
-        NBTTagCompound tag = pkt.customParam1;
-        this.sector = tag.getInteger("sector");
-    }
+	@Override
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+	{
+		NBTTagCompound tag = pkt.customParam1;
+		this.readFromNBT(tag);
+	}
     
     public void toggleDoors() {
         
