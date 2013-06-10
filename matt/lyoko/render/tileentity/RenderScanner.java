@@ -14,13 +14,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderScanner extends TileEntitySpecialRenderer {
 
     private ModelScanner model = new ModelScanner();
-    
+
     /**
      * Renders the TileEntity for the chest at a position.
      */
-    public void render(TileEntityScanner entity, double x, double y, double z, float scale) {
+    public void render(TileEntityScanner entity, double x, double y, double z, float tick) {
         int i;
-
+        System.out.println(tick);
         if (!entity.func_70309_m()) {
             i = 0;
         } else {
@@ -34,7 +34,7 @@ public class RenderScanner extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0.5F, 0F, 0.5F);
         // Use this or else model renders upside-down. o.O
         GL11.glRotatef(180, 0F, 0F, 1F);
-        
+
         short rotate = 0;
 
         if (i == 0) {
@@ -55,14 +55,39 @@ public class RenderScanner extends TileEntitySpecialRenderer {
 
         GL11.glRotatef(rotate, 0F, 1F, 0F);
 
-        if(entity.doorsOpen) {
-            model.openDoors();
-        } else {
-            model.closeDoors();
-        }
+        model.doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw * tick);
+//        model.doorL.rotationPointX = entity.doorPosX;
+//        model.doorL.rotationPointZ = entity.doorPosZ * tick;
+        
+//        model.doorR.rotateAngleY = (float)Math.toRadians((entity.doorRotationYaw + 180) * tick);
+//        model.doorR.rotationPointX = entity.doorPosX * tick;
+//        model.doorR.rotationPointZ = entity.doorPosZ * tick;
         
         model.render(entity, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
+    }
+
+    /**
+     * Returns a rotation angle that is inbetween two other rotation angles. par1 and par2 are the angles between which
+     * to interpolate, par3 is probably a float between 0.0 and 1.0 that tells us where "between" the two angles we are.
+     * Example: par1 = 30, par2 = 50, par3 = 0.5, then return = 40
+     */
+    private float interpolateRotation(float startAngle, float endAngle, float currentAngle)
+    {
+        // Note: stolen from RenderLiving.
+        float f3;
+
+        for (f3 = endAngle - startAngle; f3 < -180.0F; f3 += 360.0F)
+        {
+            ;
+        }
+
+        while (f3 >= 180.0F)
+        {
+            f3 -= 360.0F;
+        }
+
+        return startAngle + currentAngle * f3;
     }
 
     @Override

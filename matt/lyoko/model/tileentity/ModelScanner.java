@@ -1,8 +1,11 @@
 package matt.lyoko.model.tileentity;
 
+import java.util.logging.Level;
+
+import matt.lyoko.ModLogger;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class ModelScanner extends ModelBase {
     // fields
@@ -18,23 +21,13 @@ public class ModelScanner extends ModelBase {
     ModelRenderer sideB;
     ModelRenderer sideL;
     ModelRenderer sideR;
-    ModelRenderer doorL;
-    ModelRenderer doorR;
+    public ModelRenderer doorL;
+    public ModelRenderer doorR;
     ModelRenderer top;
     ModelRenderer topL;
     ModelRenderer topF;
     ModelRenderer topB;
     ModelRenderer topR;
-    
-    private float rightDoorX = 9;
-    private float rightDoorY = -40;
-    private float rightDoorZ = 0;
-    
-    private float leftDoorX = -9;
-    private float leftDoorY = -40;
-    private float leftDoorZ = 0;
-    
-    private double doorYawClosed = Math.toRadians(-90);
 
     public ModelScanner() {
         textureWidth = 128;
@@ -119,11 +112,11 @@ public class ModelScanner extends ModelBase {
         doorL.mirror = true;
         setRotation(doorL, 0F, 0F, 0F);
         doorR = new ModelRenderer(this, 8, 56);
-        doorR.addBox(-1F, -32F, 0F, 2, 64, 8);
+        doorR.addBox(-1F, -32F, -8F, 2, 64, 8);
         doorR.setRotationPoint(9F, -40F, 0F);
         doorR.setTextureSize(128, 128);
         doorR.mirror = true;
-        setRotation(doorR, 0F, (float)Math.toRadians(-180), 0F);
+        setRotation(doorR, (float)Math.toRadians(180), (float)Math.toRadians(-180), 0F);
         top = new ModelRenderer(this, 0, 0);
         top.addBox(-10F, -8F, -10F, 20, 8, 20);
         top.setRotationPoint(0F, -72F, 0F);
@@ -156,7 +149,7 @@ public class ModelScanner extends ModelBase {
         setRotation(topR, 0F, 1.570796F, 0F);
     }
 
-    public void render(TileEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+    public void render(TileEntityScanner entity, float f, float f1, float f2, float f3, float f4, float f5) {
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         base.render(f5);
         baseL.render(f5);
@@ -186,11 +179,17 @@ public class ModelScanner extends ModelBase {
     }
 
 
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, TileEntity entity) {
-        doorR.setRotationPoint(rightDoorX, rightDoorY, rightDoorZ);
-        doorL.setRotationPoint(leftDoorX, leftDoorY, leftDoorZ);
+    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, TileEntityScanner entity) {
+        /*
+        doorL.setRotationPoint(entity.doorPosX, -40, entity.doorPosZ);
+        doorR.setRotationPoint(-entity.doorPosX, -40, entity.doorPosZ);
+        
+        doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw);
+        // Right door default rotation is 180, so whatever left yaw is add the default rotation. 
+        doorR.rotateAngleY = -(float)Math.toRadians(entity.doorRotationYaw + 180);
+        */
     }
-    
+    /*
     public void openDoors() {
         
         rightDoorX = 9;
@@ -213,5 +212,5 @@ public class ModelScanner extends ModelBase {
         doorR.rotateAngleY = (float) doorYawClosed;
         doorL.rotateAngleY = (float) doorYawClosed;
     }
-
+    */
 }
