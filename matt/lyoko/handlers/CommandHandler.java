@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class CommandHandler implements ICommand
 {
@@ -35,8 +36,12 @@ public class CommandHandler implements ICommand
 	@Override
 	public void processCommand(ICommandSender icommandsender, String[] astring)
 	{
+		if(icommandsender instanceof EntityPlayer)
+		{
+			EntityPlayer player = ((EntityPlayer)icommandsender);
+			//player.setPositionAndRotation(SCANNER_X, SCANNER_Y, SCANNER_Z, player.rotationYaw, player.rotationPitch);
+		}
 		icommandsender.sendChatToPlayer("this command is not ready for use at this time");
-		//icommandsender.getPlayerCoordinates().set(SCANNER_X, SCANNER_Y, SCANNER_Z);
 	}
 	
 	@Override
