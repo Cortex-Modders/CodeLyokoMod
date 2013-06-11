@@ -1,14 +1,13 @@
 package matt.lyoko.blocks;
 
-import net.minecraft.block.*;
+import java.util.Random;
+
+import matt.lyoko.CodeLyoko;
+import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.src.*;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import java.util.Random;
-import matt.lyoko.*;
 
 public class BlockTowerBase extends BlockBreakable
 {

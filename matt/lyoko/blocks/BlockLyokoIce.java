@@ -1,12 +1,11 @@
 package matt.lyoko.blocks;
 
+import java.util.Random;
+
+import matt.lyoko.CodeLyoko;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.src.*;
-import java.util.Random;
-import matt.lyoko.*;
 
 public class BlockLyokoIce extends BlockBreakable
 {

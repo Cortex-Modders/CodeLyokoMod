@@ -1,12 +1,12 @@
 package matt.lyoko.blocks;
 
-import scala.util.Random;
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.tileentity.*;
+import matt.lyoko.entities.tileentity.TileEntityCable;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;

@@ -1,8 +1,5 @@
 package matt.lyoko.model.tileentity;
 
-import java.util.logging.Level;
-
-import matt.lyoko.ModLogger;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

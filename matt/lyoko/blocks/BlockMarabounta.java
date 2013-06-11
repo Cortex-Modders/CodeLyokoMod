@@ -1,25 +1,21 @@
 package matt.lyoko.blocks;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.src.*;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import matt.lyoko.*;
+import java.util.Random;
+
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.mobs.EntityLyoko;
 import matt.lyoko.entities.tileentity.TileEntityMarabounta;
 import matt.lyoko.entities.vehicles.EntityVehicle;
-import matt.lyoko.lib.DimensionIds;
-
-import java.util.Random;
-
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
