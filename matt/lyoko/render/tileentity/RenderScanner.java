@@ -38,19 +38,19 @@ public class RenderScanner extends TileEntitySpecialRenderer {
         short rotate = 0;
 
         if (i == 0) {
-            rotate = 180;
-        }
-
-        if (i == 2) {
             rotate = 0;
-        }
-
-        if (i == 3) {
-            rotate = -90;
         }
 
         if (i == 1) {
             rotate = 90;
+        }
+        
+        if (i == 2) {
+            rotate = 180;
+        }
+
+        if (i == 3) {
+            rotate = -90;
         }
 
         GL11.glRotatef(rotate, 0F, 1F, 0F);
@@ -65,29 +65,6 @@ public class RenderScanner extends TileEntitySpecialRenderer {
         
         model.render(entity, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
-    }
-
-    /**
-     * Returns a rotation angle that is inbetween two other rotation angles. par1 and par2 are the angles between which
-     * to interpolate, par3 is probably a float between 0.0 and 1.0 that tells us where "between" the two angles we are.
-     * Example: par1 = 30, par2 = 50, par3 = 0.5, then return = 40
-     */
-    private float interpolateRotation(float startAngle, float endAngle, float currentAngle)
-    {
-        // Note: stolen from RenderLiving.
-        float f3;
-
-        for (f3 = endAngle - startAngle; f3 < -180.0F; f3 += 360.0F)
-        {
-            ;
-        }
-
-        while (f3 >= 180.0F)
-        {
-            f3 -= 360.0F;
-        }
-
-        return startAngle + currentAngle * f3;
     }
 
     @Override
