@@ -80,7 +80,6 @@ public class TileEntityScanner extends TileEntity
 	{
 		NBTTagCompound tag = new NBTTagCompound();
 		this.writeToNBT(tag);
-		// we might need to add doorsOpen, doorPosX, doorPosZ, and doorRotationYaw to a packet.
 		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, tag);
 	}
 	
