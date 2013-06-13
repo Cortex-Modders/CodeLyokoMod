@@ -57,12 +57,12 @@ public class CodeLyoko
 	public static final BiomeGenBase lyokocarthage = ((BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631)).setLyokoBiomeName("Carthage Sector");
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-	public static Block LyokoGrass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-	public static Block LyokoStone;// = new BlockLyoko(Lyoko_Stone, 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-	public static Block LyokoSand;// = new BlockLyoko(Lyoko_Sand, 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-	public static Block LyokoIce;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-	public static Block LyokoLog;// = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-	public static Block LyokoCarthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
+	public static Block Grass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
+	public static Block Stone;// = new BlockLyoko(Lyoko_Stone, 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
+	public static Block Sand;// = new BlockLyoko(Lyoko_Sand, 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
+	public static Block Ice;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
+	public static Block Log;// = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
+	public static Block Carthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
 	public static Block QuantumOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
 	public static Block DigitalSeaBlock;// = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
 	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
@@ -192,21 +192,21 @@ public class CodeLyoko
     {
     	ModItems.init();
         
-        TowerBlock = new BlockLyokoTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
+        TowerBlock = new BlockTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
     	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-    	LyokoGrass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-    	LyokoStone = new BlockLyoko(BlockIds.LYOKO_STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-    	LyokoSand = new BlockLyoko(BlockIds.LYOKO_SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-    	LyokoIce = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-    	LyokoLog = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-    	LyokoCarthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
+    	Grass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
+    	Stone = new BlockLyoko(BlockIds.LYOKO_STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
+    	Sand = new BlockLyoko(BlockIds.LYOKO_SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
+    	Ice = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
+    	Log = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
+    	Carthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
     	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
     	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
     	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
     	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
     	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
     	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
-    	VirtualBlock = new BlockLyokoVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
+    	VirtualBlock = new BlockVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
     	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
@@ -246,13 +246,13 @@ public class CodeLyoko
     	GameRegistry.registerBlock(Scanner, "Scanner");
     	LanguageRegistry.addName(Scanner, "Scanner");
     	GameRegistry.addRecipe(new ItemStack(Scanner, 1), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix, Character.valueOf('o'), Block.obsidian
+    		"###", "#*#", "###", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix
     	});
     	
     	GameRegistry.registerBlock(Cable, "Cable");
     	LanguageRegistry.addName(Cable, "Cable");
     	GameRegistry.addRecipe(new ItemStack(Cable, 12), new Object[] {
-    		"###", "$*$", "###", Character.valueOf('#'), Block.cloth, Character.valueOf('*'), ModItems.DataFragment/*Copper*/, Character.valueOf('$'), Item.redstone
+    		"###", "$*$", "###", Character.valueOf('#'), Block.cloth, Character.valueOf('*'), Item.ingotGold, Character.valueOf('$'), Item.redstone
     	});
     	
     	GameRegistry.registerBlock(SuperCalcConsole, "Super Computer Console");
@@ -326,35 +326,35 @@ public class CodeLyoko
     	LanguageRegistry.addName(ModItems.Uranium, "Uranium");
     	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(ModItems.Uranium, 1), 5F);
     	
-    	LanguageRegistry.addName(ModItems.LyokoUraniumCell, "Uranium Fuel Cell");
-    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.LyokoUraniumCell),"ingotUranium",
-    	        ModItems.LyokoCell));
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.LyokoUraniumCell, 2),"*#*",
-    			Character.valueOf('*'), ModItems.LyokoDepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
+    	LanguageRegistry.addName(ModItems.UraniumCell, "Uranium Fuel Cell");
+    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.UraniumCell),"ingotUranium",
+    	        ModItems.EmptyCell));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.UraniumCell, 2),"*#*",
+    			Character.valueOf('*'), ModItems.DepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
     	
-    	LanguageRegistry.addName(ModItems.LyokoDepletedUraniumCell, "Depleted Uranium Fuel Cell");
+    	LanguageRegistry.addName(ModItems.DepletedUraniumCell, "Depleted Uranium Fuel Cell");
     	
-    	LanguageRegistry.addName(ModItems.LyokoLead, "Lead Isotope 210");
-    	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(ModItems.LyokoLead, 1), 5F);
+    	LanguageRegistry.addName(ModItems.Lead, "Lead Isotope 210");
+    	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(ModItems.Lead, 1), 5F);
     	
-    	LanguageRegistry.addName(ModItems.LyokoCell, "Empty Fuel Cell");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.LyokoCell, 16), new Object[] {
+    	LanguageRegistry.addName(ModItems.EmptyCell, "Empty Fuel Cell");
+    	GameRegistry.addRecipe(new ItemStack(ModItems.EmptyCell, 16), new Object[] {
     		" # ", "#*#", " # ", Character.valueOf('*'), Block.glass, Character.valueOf('#'), Item.ingotIron
     	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.LyokoCell, 1), new Object[] {
-    	    ModItems.LyokoDepletedLeadCell
+    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.EmptyCell, 1), new Object[] {
+    	    ModItems.DepletedLeadCell
     	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.LyokoCell, 1), new Object[] {
-    	    ModItems.LyokoDepletedUraniumCell
+    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.EmptyCell, 1), new Object[] {
+    	    ModItems.DepletedUraniumCell
     	});
     	
-    	LanguageRegistry.addName(ModItems.LyokoLeadCell, "Lead Isotope 210 Fuel Cell");
-    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.LyokoLeadCell),"ingotRadioactiveLead",
-    	        ModItems.LyokoCell));
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.LyokoLeadCell, 2),"*#*",
-    			Character.valueOf('*'), ModItems.LyokoDepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
+    	LanguageRegistry.addName(ModItems.LeadCell, "Lead Isotope 210 Fuel Cell");
+    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.LeadCell),"ingotRadioactiveLead",
+    	        ModItems.EmptyCell));
+    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.LeadCell, 2),"*#*",
+    			Character.valueOf('*'), ModItems.DepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
     	
-    	LanguageRegistry.addName(ModItems.LyokoDepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
+    	LanguageRegistry.addName(ModItems.DepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
     	
     	LanguageRegistry.addName(ModItems.QuantumOrb, "Quantum Orb");
     	GameRegistry.addSmelting(QuantumOre.blockID, new ItemStack(ModItems.QuantumOrb, 1), 5F);
@@ -486,26 +486,26 @@ public class CodeLyoko
     	GameRegistry.registerBlock(TowerBase, "Tower Base");
     	LanguageRegistry.addName(TowerBase, "Tower Base");
     	
-    	GameRegistry.registerBlock(LyokoGrass, "Lyoko Grass");
-    	LanguageRegistry.addName(LyokoGrass, "Lyoko Grass");
+    	GameRegistry.registerBlock(Grass, "Lyoko Grass");
+    	LanguageRegistry.addName(Grass, "Lyoko Grass");
     	
-    	GameRegistry.registerBlock(LyokoStone, "Lyoko Stone");
-    	LanguageRegistry.addName(LyokoStone, "Lyoko Stone");
+    	GameRegistry.registerBlock(Stone, "Lyoko Stone");
+    	LanguageRegistry.addName(Stone, "Lyoko Stone");
     	
-    	GameRegistry.registerBlock(LyokoSand, "Lyoko Sand");
-    	LanguageRegistry.addName(LyokoSand, "Lyoko Sand");
+    	GameRegistry.registerBlock(Sand, "Lyoko Sand");
+    	LanguageRegistry.addName(Sand, "Lyoko Sand");
     	
-    	GameRegistry.registerBlock(LyokoIce, "Lyoko Ice");
-    	LanguageRegistry.addName(LyokoIce, "Lyoko Ice");
+    	GameRegistry.registerBlock(Ice, "Lyoko Ice");
+    	LanguageRegistry.addName(Ice, "Lyoko Ice");
     	
-    	GameRegistry.registerBlock(LyokoLog, "Lyoko Log");
-    	LanguageRegistry.addName(LyokoLog, "Lyoko Log");
+    	GameRegistry.registerBlock(Log, "Lyoko Log");
+    	LanguageRegistry.addName(Log, "Lyoko Log");
     	
     	GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
     	LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
     	
-    	GameRegistry.registerBlock(LyokoCarthage, "Carthage Block");
-    	LanguageRegistry.addName(LyokoCarthage, "Carthage Block");
+    	GameRegistry.registerBlock(Carthage, "Carthage Block");
+    	LanguageRegistry.addName(Carthage, "Carthage Block");
     	
     	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
     	LanguageRegistry.addName(QuantumOre, "Quantum Ore");

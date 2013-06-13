@@ -11,9 +11,9 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLyokoVirtual extends Block
+public class BlockVirtual extends Block
 {
-	public BlockLyokoVirtual(int par1)
+	public BlockVirtual(int par1)
 	{
 		super(par1, Material.iron);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);

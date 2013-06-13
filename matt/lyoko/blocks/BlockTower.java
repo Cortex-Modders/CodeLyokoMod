@@ -19,9 +19,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockLyokoTower extends BlockContainer
+public class BlockTower extends BlockContainer
 {
-    public BlockLyokoTower(int par1)
+    public BlockTower(int par1)
     {
         super(par1, Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);

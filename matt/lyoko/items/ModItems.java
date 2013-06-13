@@ -9,8 +9,8 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.EnumHelper;
 
-public class ModItems {
-    
+public class ModItems
+{
     private static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
     private static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 40, new int[] {5, 10, 8, 5}, 30);
     
@@ -21,10 +21,10 @@ public class ModItems {
     public static Item Glove;
     public static Item LaserArrow;
     public static Item QuantumOrb;
-    public static Item LyokoLead;
-    public static Item LyokoCell;
-    public static Item LyokoLeadCell;
-    public static Item LyokoDepletedLeadCell;
+    public static Item Lead;
+    public static Item EmptyCell;
+    public static Item LeadCell;
+    public static Item DepletedLeadCell;
     public static Item AelitaHelmet;
     public static Item AelitaChest;
     public static Item AelitaLegs;
@@ -47,14 +47,15 @@ public class ModItems {
     public static Item WilliamBoots;
     public static Item DataFragment;
     public static Item Uranium;
-    public static Item LyokoUraniumCell;
-    public static Item LyokoDepletedUraniumCell;
+    public static Item UraniumCell;
+    public static Item DepletedUraniumCell;
     public static Item Overboard;
     public static Item Skid;
     public static Item QuantumMatrix;
     public static Item QuantumContainmentCell;
     
-    public static void init() {
+    public static void init()
+    {
         Katana = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_1, toolLYOKO).setUnlocalizedName("Katana");
         Zweihander = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_2, toolLYOKO).setUnlocalizedName("Zweihander");
         Fan = new ItemFan(ItemIds.WEAPON_LYOKO_3).setUnlocalizedName("Fan");
@@ -62,10 +63,10 @@ public class ModItems {
         Glove = new ItemGlove(ItemIds.WEAPON_LYOKO_5).setUnlocalizedName("Glove");
         LaserArrow = new ItemLyoko(ItemIds.WEAPON_LYOKO_6).setUnlocalizedName("LaserArrow");
         QuantumOrb = new ItemLyoko(ItemIds.ITEM_LYOKO_11).setUnlocalizedName("LyokoIngot");
-        LyokoLead = new ItemLyoko(ItemIds.ITEM_LYOKO_12).setUnlocalizedName("Lead210");
-        LyokoCell = new ItemLyoko(ItemIds.ITEM_LYOKO_13).setUnlocalizedName("Cell");
-        LyokoLeadCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_14, 1250, LyokoDepletedLeadCell).setUnlocalizedName("Lead210Cell");
-        LyokoDepletedLeadCell = new ItemLyoko(ItemIds.ITEM_LYOKO_15).setUnlocalizedName("DepletedLead210Cell");
+        Lead = new ItemLyoko(ItemIds.ITEM_LYOKO_12).setUnlocalizedName("Lead210");
+        EmptyCell = new ItemLyoko(ItemIds.ITEM_LYOKO_13).setUnlocalizedName("Cell");
+        LeadCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_14, 1250, DepletedLeadCell).setUnlocalizedName("Lead210Cell");
+        DepletedLeadCell = new ItemLyoko(ItemIds.ITEM_LYOKO_15).setUnlocalizedName("DepletedLead210Cell");
         AelitaHelmet = new ArmorLyoko(ItemIds.AELITA_ARMOR_HELMET, armorLYOKO, 5, 0, "aelita").setUnlocalizedName("AelitaHelmet");
         AelitaChest = new ArmorLyoko(ItemIds.AELITA_ARMOR_CHEST, armorLYOKO, 5, 1, "aelita").setUnlocalizedName("AelitaChest");
         AelitaLegs = new ArmorLyoko(ItemIds.AELITA_ARMOR_PANTS, armorLYOKO, 5, 2, "aelita").setUnlocalizedName("AelitaPants");
@@ -88,8 +89,8 @@ public class ModItems {
         WilliamBoots = new ArmorLyoko(ItemIds.WILLIAM_ARMOR_BOOTS, armorLYOKO, 9, 3, "william").setUnlocalizedName("WilliamBoots");
         DataFragment = new ItemDataFragment(ItemIds.DATA_FRAGMENT).setUnlocalizedName("DataFragment");
         Uranium = new ItemLyoko(ItemIds.ITEM_LYOKO_URANIUM).setUnlocalizedName("Uranium");
-        LyokoUraniumCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_URANIUM_CELL, 5000, LyokoDepletedUraniumCell).setUnlocalizedName("UraniumCell");
-        LyokoDepletedUraniumCell = new ItemLyoko(ItemIds.ITEM_LYOKO_DEPLETED_URANIUM).setUnlocalizedName("DepletedUraniumCell");
+        UraniumCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_URANIUM_CELL, 5000, DepletedUraniumCell).setUnlocalizedName("UraniumCell");
+        DepletedUraniumCell = new ItemLyoko(ItemIds.ITEM_LYOKO_DEPLETED_URANIUM).setUnlocalizedName("DepletedUraniumCell");
         Overboard = new ItemOverboard(ItemIds.ITEM_OVERBOARD).setUnlocalizedName("Overboard");
         Skid = new ItemSkid(ItemIds.ITEM_SKID).setUnlocalizedName("Skidbladnir");
         QuantumMatrix = new ItemLyoko(ItemIds.ITEM_QUANTUM_MATRIX).setUnlocalizedName("QuantumMatrix");

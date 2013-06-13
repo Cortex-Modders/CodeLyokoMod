@@ -187,13 +187,13 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		}
 		else if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
 		{
-			if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.LyokoLeadCell)
+			if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.LeadCell)
 			{
-				setInventorySlotContents(slot, new ItemStack(ModItems.LyokoDepletedLeadCell));
+				setInventorySlotContents(slot, new ItemStack(ModItems.DepletedLeadCell));
 			}
-			else if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.LyokoUraniumCell)
+			else if(stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.UraniumCell)
 			{
-				setInventorySlotContents(slot, new ItemStack(ModItems.LyokoDepletedUraniumCell));
+				setInventorySlotContents(slot, new ItemStack(ModItems.DepletedUraniumCell));
 			}
 		}
 		else if(stack != null && stack.getItemDamage() < stack.getMaxDamage() && ((stack2 != null && stack2.stackSize < 64) || stack2 == null))
