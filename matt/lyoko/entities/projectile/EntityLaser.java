@@ -2,6 +2,12 @@ package matt.lyoko.entities.projectile;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
@@ -42,7 +48,7 @@ public class EntityLaser extends Entity implements IProjectile
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir = 0;
-    private double damage = 2.0D;
+    private double damage = 0.0D;
 
     /** The amount of knockback an arrow applies when it hits a mob. */
     private int knockbackStrength;
@@ -494,24 +500,13 @@ public class EntityLaser extends Entity implements IProjectile
     /**
      * Called by a player entity when they collide with an entity
      */
-    public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
+    public void onCollideWithPlayer(EntityPlayer player)
     {
-        if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
+        if (!this.worldObj.isRemote && !player.capabilities.isCreativeMode)
         {
-            boolean var2 = this.canBePickedUp == 1 || this.canBePickedUp == 2 && par1EntityPlayer.capabilities.isCreativeMode;
-
-            if (this.canBePickedUp == 1 && !par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Item.arrow, 1)))
-            {
-                var2 = false;
-            }
-
-            if (var2)
-            {
-                this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                par1EntityPlayer.onItemPickup(null, 0);
-                par1EntityPlayer.setEntityHealth(par1EntityPlayer.getHealth() - 7);
-                this.setDead();
-            }
+        	this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+        	this.setDead();
+        	player.getEntityData().setByte("lifePoints", (byte)(player.getEntityData().getByte("lifePoints") - 10));
         }
     }
 

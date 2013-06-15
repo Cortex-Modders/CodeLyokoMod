@@ -1,5 +1,6 @@
 package matt.lyoko;
 
+import java.io.File;
 import java.util.HashSet;
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
@@ -12,6 +13,7 @@ import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.network.PacketHandler;
+import matt.lyoko.network.PlayerTracker;
 import matt.lyoko.render.TileAnimator;
 import matt.lyoko.world.*;
 import net.minecraft.block.Block;
@@ -19,6 +21,7 @@ import net.minecraft.block.material.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.*;
@@ -183,7 +186,6 @@ public class CodeLyoko
 		
 		config.save();
 		
-		
 		MinecraftForge.EVENT_BUS.register(new SoundHandler());
 	}
 	
@@ -235,6 +237,8 @@ public class CodeLyoko
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
     	GameRegistry.registerTileEntity(TileEntitySuperCalcConsole.class, "teSuperCalcConsole");
     	GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
+    	
+    	GameRegistry.registerPlayerTracker(new PlayerTracker());
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
@@ -545,6 +549,21 @@ public class CodeLyoko
 	{
 		event.registerServerCommand(new CommandHandler());
 	}
+    
+    public static boolean playerInLyoko(EntityPlayer player)
+    {
+    	if(player != null)
+    	{
+    		if(player.dimension == DimensionIds.CARTHAGE || player.dimension == DimensionIds.ICE
+    				|| player.dimension == DimensionIds.MOUNTAIN || player.dimension == DimensionIds.FOREST
+    				|| player.dimension == DimensionIds.DESERT || player.dimension == DimensionIds.CORTEX
+    				|| player.dimension == DimensionIds.DIGITALSEA)
+    		{
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     
     public static String[] getDevelopers()
     {

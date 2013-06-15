@@ -1,7 +1,12 @@
 package matt.lyoko.handlers;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.Collection;
 import java.util.Iterator;
+
+import matt.lyoko.CodeLyoko;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.potion.Potion;
@@ -22,12 +27,6 @@ public class EventHandler extends Gui
 		this.mc = mc;
 	}
 	
-	private static final int BUFF_ICON_SIZE = 18;
-	private static final int BUFF_ICON_SPACING = BUFF_ICON_SIZE + 2; // 2 pixels between buff icons
-	private static final int BUFF_ICON_BASE_U_OFFSET = 0;
-	private static final int BUFF_ICON_BASE_V_OFFSET = 198;
-	private static final int BUFF_ICONS_PER_ROW = 8;
-	
 	@ForgeSubscribe(priority = EventPriority.NORMAL)
 	public void renderGameOverlayEvent(RenderGameOverlayEvent event)
 	{
@@ -36,7 +35,7 @@ public class EventHandler extends Gui
 		// that case, the portion of rendering which this event represents will be canceled.
 		// We want to draw *after* the experience bar is drawn, so we make sure isCancelable() returns
 		// false and that the eventType represents the ExperienceBar event.
-		if(event.isCancelable() || event.type != ElementType.EXPERIENCE)
+		if(event.isCancelable() || event.type != ElementType.EXPERIENCE || !CodeLyoko.playerInLyoko(this.mc.thePlayer))
 		{      
 			return;
 		}
@@ -44,24 +43,10 @@ public class EventHandler extends Gui
 		// Starting position for the buff bar - 2 pixels from the top left corner.
 		int xPos = 2;
 		int yPos = 2;
-		Collection collection = this.mc.thePlayer.getActivePotionEffects();
-		if(!collection.isEmpty())
-		{
-			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			GL11.glDisable(GL11.GL_LIGHTING);      
-			this.mc.renderEngine.bindTexture("/gui/inventory.png");      
-			
-			for(Iterator iterator = this.mc.thePlayer.getActivePotionEffects().iterator(); iterator.hasNext(); xPos += BUFF_ICON_SPACING)
-			{
-				PotionEffect potioneffect = (PotionEffect) iterator.next();
-				Potion potion = Potion.potionTypes[potioneffect.getPotionID()];
-				
-				if(potion.hasStatusIcon())
-				{
-					int iconIndex = potion.getStatusIconIndex();
-					this.drawTexturedModalRect(xPos, yPos, BUFF_ICON_BASE_U_OFFSET + iconIndex % BUFF_ICONS_PER_ROW * BUFF_ICON_SIZE, BUFF_ICON_BASE_V_OFFSET + iconIndex / BUFF_ICONS_PER_ROW * BUFF_ICON_SIZE, BUFF_ICON_SIZE, BUFF_ICON_SIZE);
-				}       
-			}
-		}
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		this.mc.renderEngine.bindTexture("/gui/inventory.png");
+		
+		this.drawString(mc.fontRenderer, "Life Points: " + this.mc.thePlayer.getEntityData().getByte("lifePoints"), xPos, yPos, 16777215);
 	}
 }
