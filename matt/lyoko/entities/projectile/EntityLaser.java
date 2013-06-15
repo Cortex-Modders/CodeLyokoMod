@@ -506,7 +506,10 @@ public class EntityLaser extends Entity implements IProjectile
         {
         	this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         	this.setDead();
-        	player.getEntityData().setByte("lifePoints", (byte)(player.getEntityData().getByte("lifePoints") - 10));
+        	if(player.getEntityData().hasKey("lifePoints"))
+        	{
+        		player.getEntityData().setByte("lifePoints", (byte)(player.getEntityData().getByte("lifePoints") - 10));
+        	}
         }
     }
 

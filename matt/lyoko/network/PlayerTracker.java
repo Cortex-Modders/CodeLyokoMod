@@ -15,7 +15,11 @@ public class PlayerTracker implements IPlayerTracker
 	@Override
 	public void onPlayerLogin(EntityPlayer player)
 	{
-		player.getEntityData().setByte("lifePoints", (byte)100);
+		if(!player.getEntityData().hasKey("lifePoints"))
+		{
+			player.getEntityData().newTag((byte)1, "lifePoints");
+			player.getEntityData().setByte("lifePoints", (byte)100);
+		}
 	}
 	
 	@Override
@@ -27,7 +31,7 @@ public class PlayerTracker implements IPlayerTracker
 	@Override
 	public void onPlayerChangedDimension(EntityPlayer player)
 	{
-		if(!CodeLyoko.playerInLyoko(player));
+		if(!CodeLyoko.playerInLyoko(player) && player.getEntityData().hasKey("lifePoints"));
 		{
 			player.getEntityData().setByte("lifePoints", (byte)100);
 		}

@@ -35,7 +35,7 @@ public class EventHandler extends Gui
 		// that case, the portion of rendering which this event represents will be canceled.
 		// We want to draw *after* the experience bar is drawn, so we make sure isCancelable() returns
 		// false and that the eventType represents the ExperienceBar event.
-		if(event.isCancelable() || event.type != ElementType.EXPERIENCE || !CodeLyoko.playerInLyoko(this.mc.thePlayer))
+		if(event.isCancelable() || event.type != ElementType.EXPERIENCE)// || !CodeLyoko.playerInLyoko(this.mc.thePlayer))
 		{      
 			return;
 		}
@@ -47,6 +47,9 @@ public class EventHandler extends Gui
 		GL11.glDisable(GL11.GL_LIGHTING);
 		this.mc.renderEngine.bindTexture("/gui/inventory.png");
 		
-		this.drawString(mc.fontRenderer, "Life Points: " + this.mc.thePlayer.getEntityData().getByte("lifePoints"), xPos, yPos, 16777215);
+		if(this.mc.thePlayer.getEntityData().hasKey("lifePoints"))
+		{
+			this.drawString(mc.fontRenderer, "Life Points: " + this.mc.thePlayer.getEntityData().getByte("lifePoints"), xPos, yPos, 16777215);
+		}
 	}
 }
