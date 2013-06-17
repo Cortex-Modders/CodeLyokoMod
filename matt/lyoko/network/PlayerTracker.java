@@ -8,6 +8,7 @@ import java.io.IOException;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.DimensionIds;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.IPlayerTracker;
 
 public class PlayerTracker implements IPlayerTracker
@@ -17,8 +18,10 @@ public class PlayerTracker implements IPlayerTracker
 	{
 		if(!player.getEntityData().hasKey("lifePoints"))
 		{
-			player.getEntityData().newTag((byte)1, "lifePoints");
-			player.getEntityData().setByte("lifePoints", (byte)100);
+			NBTTagCompound tag = player.getEntityData();
+			tag.newTag((byte)1, "lifePoints");
+			tag.setByte("lifePoints", (byte)100);
+			player.writeToNBT(tag);
 		}
 	}
 	
