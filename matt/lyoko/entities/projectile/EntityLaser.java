@@ -28,6 +28,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import matt.lyoko.*;
+import matt.lyoko.lib.PlayerInformation;
 
 public class EntityLaser extends Entity implements IProjectile
 {
@@ -502,14 +503,12 @@ public class EntityLaser extends Entity implements IProjectile
      */
     public void onCollideWithPlayer(EntityPlayer player)
     {
-        if (!this.worldObj.isRemote && !player.capabilities.isCreativeMode)
+        if (!player.capabilities.isCreativeMode)
         {
         	this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         	this.setDead();
-        	if(player.getEntityData().hasKey("lifePoints"))
-        	{
-        		player.getEntityData().setByte("lifePoints", (byte)(player.getEntityData().getByte("lifePoints") - 10));
-        	}
+        	PlayerInformation pi = PlayerInformation.forPlayer(player);
+        	pi.decreaseLifePoints(10);
         }
     }
 

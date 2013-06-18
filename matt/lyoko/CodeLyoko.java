@@ -10,10 +10,9 @@ import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.handlers.CommandHandler;
 import matt.lyoko.handlers.EventHandler;
+import matt.lyoko.handlers.PacketHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
-import matt.lyoko.network.PacketHandler;
-import matt.lyoko.network.PlayerTracker;
 import matt.lyoko.render.TileAnimator;
 import matt.lyoko.world.*;
 import net.minecraft.block.Block;
@@ -237,8 +236,6 @@ public class CodeLyoko
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
     	GameRegistry.registerTileEntity(TileEntitySuperCalcConsole.class, "teSuperCalcConsole");
     	GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
-    	
-    	GameRegistry.registerPlayerTracker(new PlayerTracker());
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
@@ -541,7 +538,9 @@ public class CodeLyoko
     @PostInit
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
     {
-    	MinecraftForge.EVENT_BUS.register(new EventHandler(Minecraft.getMinecraft()));
+    	EventHandler handler = new EventHandler();
+    	MinecraftForge.EVENT_BUS.register(handler);
+    	GameRegistry.registerPlayerTracker(handler);
     }
     
     @ServerStarting

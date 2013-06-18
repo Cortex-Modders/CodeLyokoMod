@@ -7,24 +7,31 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+
 import org.lwjgl.opengl.GL11;
 
-public class EventHandler extends Gui
+import cpw.mods.fml.common.IPlayerTracker;
+
+public class EventHandler extends Gui implements IPlayerTracker
 {
 	private Minecraft mc;
 	
-	public EventHandler(Minecraft mc)
+	public EventHandler()
 	{
 		super();
-		this.mc = mc;
+		this.mc = Minecraft.getMinecraft();
 	}
 	
 	@ForgeSubscribe(priority = EventPriority.NORMAL)
@@ -47,9 +54,43 @@ public class EventHandler extends Gui
 		GL11.glDisable(GL11.GL_LIGHTING);
 		this.mc.renderEngine.bindTexture("/gui/inventory.png");
 		
-		if(this.mc.thePlayer.getEntityData().hasKey("lifePoints"))
-		{
-			this.drawString(mc.fontRenderer, "Life Points: " + this.mc.thePlayer.getEntityData().getByte("lifePoints"), xPos, yPos, 16777215);
-		}
+		PlayerInformation pi = PlayerInformation.forPlayer(this.mc.thePlayer);
+		
+		int lifePoints = pi.getLifePoints();
+		
+		this.drawString(mc.fontRenderer, "Life Points: " + lifePoints, xPos, yPos, 16777215);
 	}
+	
+	@ForgeSubscribe
+    public void onEntityConstruct(EntityEvent.EntityConstructing event)
+	{
+        if(event.entity instanceof EntityPlayer)
+        {
+            event.entity.registerExtendedProperties(PlayerInformation.IDENTIFIER, new PlayerInformation((EntityPlayer)event.entity));
+        }
+    }
+	
+	@Override
+    public void onPlayerChangedDimension(EntityPlayer player)
+	{
+        PlayerInformation.forPlayer(player).setDirty();
+    }
+	
+    @Override
+    public void onPlayerLogin(EntityPlayer player)
+    {
+    	
+    }
+    
+    @Override
+    public void onPlayerLogout(EntityPlayer player)
+    {
+    	
+    }
+    
+    @Override
+    public void onPlayerRespawn(EntityPlayer player)
+    {
+        PlayerInformation.forPlayer(player).setDirty();
+    }
 }
