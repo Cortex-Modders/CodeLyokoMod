@@ -186,4 +186,25 @@ public class BlockScanner extends BlockContainer
             par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
         }
     }
+	
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z) {
+	    TileEntityScanner tile;
+	    boolean m = isMultiBlock(world, x, y, z);
+	    if(m) {
+	        tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);
+	        tile.isCoreBlock = true;
+	        System.out.println(m);
+	        for(int i = 0; i < 4; i++) {
+	            tile = (TileEntityScanner)world.getBlockTileEntity(x, y+i, z);
+	            tile.isMultiblock = true;
+	        }
+	    }
+	}
+	
+	@Override
+	public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta) {
+	    // No use duplicating code.
+	    this.onBlockAdded(world, x, y, z);
+	}
 }

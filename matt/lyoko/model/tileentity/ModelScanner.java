@@ -147,7 +147,6 @@ public class ModelScanner extends ModelBase {
     }
 
     public void render(TileEntityScanner entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         base.render(f5);
         baseL.render(f5);
         baseB.render(f5);
@@ -174,40 +173,4 @@ public class ModelScanner extends ModelBase {
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
-
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, TileEntityScanner entity) {
-        /*
-        doorL.setRotationPoint(entity.doorPosX, -40, entity.doorPosZ);
-        doorR.setRotationPoint(-entity.doorPosX, -40, entity.doorPosZ);
-        
-        doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw);
-        // Right door default rotation is 180, so whatever left yaw is add the default rotation. 
-        doorR.rotateAngleY = -(float)Math.toRadians(entity.doorRotationYaw + 180);
-        */
-    }
-    /*
-    public void openDoors() {
-        
-        rightDoorX = 9;
-        rightDoorZ = 0;
-        
-        leftDoorX = -9;
-        leftDoorZ = 0;
-        
-        doorR.rotateAngleY = (float) Math.toRadians(-180);
-        doorL.rotateAngleY = 0;
-    }
-    
-    public void closeDoors() {
-        rightDoorX = 8;
-        rightDoorZ = -10;
-        
-        leftDoorX = -8;
-        leftDoorZ = -10;
-        
-        doorR.rotateAngleY = (float) doorYawClosed;
-        doorL.rotateAngleY = (float) doorYawClosed;
-    }
-    */
 }
