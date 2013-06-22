@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 
 public class BlockScanner extends BlockContainer
 {
-    
     public BlockScanner(int par1)
 	{
 		super(par1, Material.iron);

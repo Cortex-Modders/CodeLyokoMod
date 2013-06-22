@@ -24,23 +24,23 @@ public class BlockLyoko extends Block
 	@Override
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		if(this.blockID == CodeLyoko.LyokoGrass.blockID)
+		if(this.blockID == CodeLyoko.Grass.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
 		}
-		if(this.blockID == CodeLyoko.LyokoStone.blockID)
+		if(this.blockID == CodeLyoko.Stone.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokostone");
 		}
-		if(this.blockID == CodeLyoko.LyokoSand.blockID)
+		if(this.blockID == CodeLyoko.Sand.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokosand");
 		}
-		if(this.blockID == CodeLyoko.LyokoLog.blockID)
+		if(this.blockID == CodeLyoko.Log.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokolog");
 		}
-		if(this.blockID == CodeLyoko.LyokoCarthage.blockID)
+		if(this.blockID == CodeLyoko.Carthage.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:carthage");
 		}

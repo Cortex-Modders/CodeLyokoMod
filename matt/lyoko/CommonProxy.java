@@ -41,7 +41,7 @@ public class CommonProxy
 	
 	public void registerOreDictionaryOres()
 	{
-		OreDictionary.registerOre("ingotRadioactiveLead", ModItems.LyokoLead);
+		OreDictionary.registerOre("ingotRadioactiveLead", ModItems.Lead);
 		OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);
 		OreDictionary.registerOre("ingotUranium", ModItems.Uranium);
 		OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
@@ -50,7 +50,7 @@ public class CommonProxy
 	public void addChestLoot()
     {
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.QuantumOrb), 1, 1, 005));
-        ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.LyokoLead), 1, 1, 005));
+        ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Lead), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.Uranium), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.AelitaHelmet), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.AelitaChest), 1, 1, 005));

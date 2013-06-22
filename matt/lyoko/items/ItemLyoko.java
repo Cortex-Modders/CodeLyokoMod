@@ -38,15 +38,15 @@ public class ItemLyoko extends Item
 			itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
 		if(this.itemID == ModItems.QuantumOrb.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:quantumorb");
-		if(this.itemID == ModItems.LyokoLead.itemID)
+		if(this.itemID == ModItems.Lead.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:leadingot");
-		if(this.itemID == ModItems.LyokoCell.itemID)
+		if(this.itemID == ModItems.EmptyCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:emptycell");
-		if(this.itemID == ModItems.LyokoDepletedLeadCell.itemID)
+		if(this.itemID == ModItems.DepletedLeadCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:depletedleadcell");
 		if(this.itemID == ModItems.Uranium.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
-		if(this.itemID == ModItems.LyokoDepletedUraniumCell.itemID)
+		if(this.itemID == ModItems.DepletedUraniumCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
 		if(this.itemID == ModItems.QuantumMatrix.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:quantummatrix");
@@ -57,7 +57,7 @@ public class ItemLyoko extends Item
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
 		
-		if(stack.getItem() == ModItems.LyokoLead || stack.getItem() == ModItems.Uranium)
+		if(stack.getItem() == ModItems.Lead || stack.getItem() == ModItems.Uranium)
 		{
 			if(ent instanceof EntityPlayer)
 			{

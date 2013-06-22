@@ -13,7 +13,7 @@ public class StructureTower extends WorldGenerator
 	
 	 protected int[] GetValidSpawnBlocks()
 	 {
-	  return new int[] { CodeLyoko.LyokoGrass.blockID, CodeLyoko.LyokoStone.blockID, CodeLyoko.LyokoSand.blockID, CodeLyoko.LyokoIce.blockID, CodeLyoko.LyokoCarthage.blockID };
+	  return new int[] { CodeLyoko.Grass.blockID, CodeLyoko.Stone.blockID, CodeLyoko.Sand.blockID, CodeLyoko.Ice.blockID, CodeLyoko.Carthage.blockID };
 	 }
 	 
 	 public boolean LocationIsValidSpawn(World world, int i, int j, int k)

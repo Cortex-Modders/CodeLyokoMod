@@ -32,22 +32,6 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     {
     	super.readEntityFromNBT(par1NBTTagCompound);
     }
-    
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
-    public void onLivingUpdate()
-    {
-        float var1 = this.getBrightness(1.0F);
-
-        if (var1 > 0.5F)
-        {
-            this.entityAge += 2;
-        }
-
-        super.onLivingUpdate();
-    }
 
     /**
      * Called to update the entity's position/logic.
@@ -64,7 +48,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         if(this.health <= 0)
         {
         	this.setDead();
-        	if(worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing") == true)
+        	if(worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
         	{
         		this.worldObj.createExplosion((Entity)null, this.posX, this.posY, this.posZ, 2.0F, true);
         	}
@@ -108,24 +92,23 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         {
             return false;
         }
-        
-        
     }
-
+    
+    @Override
     public boolean attackEntityAsMob(Entity par1Entity)
     {
         int var2 = this.attackStrength;
-
+        
         if (this.isPotionActive(Potion.damageBoost))
         {
             var2 += 3 << this.getActivePotionEffect(Potion.damageBoost).getAmplifier();
         }
-
+        
         if (this.isPotionActive(Potion.weakness))
         {
             var2 -= 2 << this.getActivePotionEffect(Potion.weakness).getAmplifier();
         }
-
+        
         return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), var2);
     }
 
