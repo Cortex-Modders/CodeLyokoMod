@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.PlayerInformation;
+import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.player.EntityPlayer;
@@ -79,7 +80,7 @@ public class EventHandler extends Gui implements IPlayerTracker
     @Override
     public void onPlayerLogin(EntityPlayer player)
     {
-    	
+    	System.out.println(UniqueArmorGenerator.getUniquePlayerIdentifier(player));
     }
     
     @Override
