@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -32,12 +33,12 @@ public class BlockVirtual extends Block
 		}
 	}
 	
-	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLiving ent)
+	public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase ent)
 	{
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer entp = ((EntityPlayer)ent);
-			entp.setEntityHealth(entp.getHealth() - 1);
+			entp.setEntityHealth(entp.func_110143_aJ() - 1);
 		}
 	}
 	

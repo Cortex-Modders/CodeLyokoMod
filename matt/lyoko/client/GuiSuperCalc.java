@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 import matt.lyoko.container.ContainerSuperCalc;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.*;
 import net.minecraft.util.StatCollector;
 
@@ -39,7 +40,7 @@ public class GuiSuperCalc extends GuiContainer {
                         int par3) {
                 //draw your Gui here, only thing you need to change is the path
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-                this.mc.renderEngine.bindTexture("/mods/lyoko/textures/gui/supercalculator.png");
+                this.mc.renderEngine.func_110577_a(new ResourceLocation("/mods/lyoko/textures/gui/supercalculator.png"));
                 int x = (width - xSize) / 2;
                 int y = (height - ySize) / 2;
                 this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

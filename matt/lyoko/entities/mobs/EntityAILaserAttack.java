@@ -47,7 +47,7 @@ public class EntityAILaserAttack extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        EntityLiving var1 = this.entityHost.getAttackTarget();
+        EntityLiving var1 = (EntityLiving) this.entityHost.getAttackTarget();
 
         if (var1 == null)
         {
