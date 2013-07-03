@@ -26,7 +26,6 @@ public class EntityOverboard extends EntityVehicle
 		return this.texture;
 	}
 	
-	
 	/**
 	 * Returns the maximum health of the entity.
 	 */

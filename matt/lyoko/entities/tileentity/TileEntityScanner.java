@@ -1,5 +1,6 @@
 package matt.lyoko.entities.tileentity;
 
+import matt.lyoko.blocks.BlockScanner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -8,10 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityScanner extends TileEntity
 {
-	public boolean isMultiblock = false;
-    public boolean isCoreBlock = false;
-	
-    public int sector = -1;
+	public int sector = -1;
 	
 	// Doors are open by default.
 	public boolean doorsOpen = true;
@@ -64,8 +62,7 @@ public class TileEntityScanner extends TileEntity
 		{
 			for(int i = -4; i < 0; i++)
 			{
-//				if(BlockScanner.isMultiBlock(worldObj, xCoord, yCoord + i, zCoord))
-			    if(isMultiblock)
+				if(BlockScanner.isMultiBlock(worldObj, xCoord, yCoord + i, zCoord))
 				{
 					TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord, yCoord + i, zCoord);
 					if(this.sector != core.sector && core.sector == -1)
