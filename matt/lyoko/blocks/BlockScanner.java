@@ -190,6 +190,7 @@ public class BlockScanner extends BlockContainer
 	public void onBlockAdded(World world, int x, int y, int z) {
 	    TileEntityScanner tile;
 	    boolean m = isMultiBlock(world, x, y, z);
+	    System.out.println(m);
 	    if(m) {
 	        tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);
 	        tile.isCoreBlock = true;
