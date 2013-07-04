@@ -1,6 +1,5 @@
 package matt.lyoko.client;
 
-import java.net.URL;
 import java.util.logging.Level;
 
 import matt.lyoko.ModLogger;

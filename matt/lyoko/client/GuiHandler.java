@@ -1,12 +1,15 @@
 package matt.lyoko.client;
 
+import matt.lyoko.container.ContainerSuperCalc;
+import matt.lyoko.container.ContainerSuperCalcConsole;
+import matt.lyoko.container.ContainerTowerConsole;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
-import matt.lyoko.container.*;
-import matt.lyoko.entities.*;
-import matt.lyoko.entities.tileentity.*;
 
 public class GuiHandler implements IGuiHandler {
 	//returns an instance of the Container you made earlier

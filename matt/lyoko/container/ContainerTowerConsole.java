@@ -1,11 +1,9 @@
 package matt.lyoko.container;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import matt.lyoko.entities.*;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
-import matt.lyoko.slots.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 
 public class ContainerTowerConsole extends Container
 {

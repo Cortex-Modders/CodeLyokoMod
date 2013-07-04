@@ -1,17 +1,10 @@
 package matt.lyoko.entities.tileentity;
 
-import cpw.mods.fml.relauncher.*;
-import java.util.*;
-
-import matt.lyoko.CodeLyoko;
-import net.minecraft.block.Block;
-import net.minecraft.entity.*;
-import net.minecraft.nbt.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.world.World;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityCable extends TileEntity
 {

@@ -3,23 +3,19 @@ package matt.lyoko.client;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.common.network.PacketDispatcher;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.container.ContainerTowerConsole;
-import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.ResourceLocation;
-import net.minecraft.entity.player.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
-import net.minecraft.util.StatCollector;
-import net.minecraft.util.StringTranslate;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 public class GuiTowerConsole extends GuiContainer
 {

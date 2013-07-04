@@ -1,25 +1,47 @@
 package matt.lyoko.client;
 
+import matt.lyoko.CommonProxy;
+import matt.lyoko.entities.mobs.EntityBlok;
+import matt.lyoko.entities.mobs.EntityMegaTank;
+import matt.lyoko.entities.projectile.EntityEnergyField;
+import matt.lyoko.entities.projectile.EntityFan;
+import matt.lyoko.entities.projectile.EntityLaser;
+import matt.lyoko.entities.projectile.EntityLaserArrow;
+import matt.lyoko.entities.tileentity.TileEntityCable;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
+import matt.lyoko.entities.vehicles.EntityOverboard;
+import matt.lyoko.entities.vehicles.EntitySkid;
+import matt.lyoko.handlers.KeyBindingHandler;
+import matt.lyoko.items.ModItems;
+import matt.lyoko.model.ModelLaser;
+import matt.lyoko.model.mobs.ModelBlok;
+import matt.lyoko.model.mobs.ModelTank;
+import matt.lyoko.render.ItemRenderGlove;
+import matt.lyoko.render.RenderEnergyField;
+import matt.lyoko.render.RenderFan;
+import matt.lyoko.render.RenderLaser;
+import matt.lyoko.render.RenderLaserArrow;
+import matt.lyoko.render.mobs.RenderBlok;
+import matt.lyoko.render.mobs.RenderTank;
+import matt.lyoko.render.tileentity.RenderCable;
+import matt.lyoko.render.tileentity.RenderEntityTowerConsole;
+import matt.lyoko.render.tileentity.RenderScanner;
+import matt.lyoko.render.tileentity.RenderTower;
+import matt.lyoko.render.vehicles.RenderOverboard;
+import matt.lyoko.render.vehicles.RenderSkid;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.MinecraftForgeClient;
+
 import org.lwjgl.opengl.GL11;
 
 import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
 
-import net.minecraftforge.client.*;
-import cpw.mods.fml.client.registry.*;
-import net.minecraft.client.Minecraft;
-import matt.lyoko.CommonProxy;
-import matt.lyoko.entities.mobs.*;
-import matt.lyoko.entities.projectile.*;
-import matt.lyoko.render.mobs.*;
-import matt.lyoko.model.mobs.*;
-import matt.lyoko.render.*;
-import matt.lyoko.model.*;
-import matt.lyoko.entities.tileentity.*;
-import matt.lyoko.entities.vehicles.*;
-import matt.lyoko.handlers.KeyBindingHandler;
-import matt.lyoko.items.ModItems;
-import matt.lyoko.render.tileentity.*;
-import matt.lyoko.render.vehicles.*;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {

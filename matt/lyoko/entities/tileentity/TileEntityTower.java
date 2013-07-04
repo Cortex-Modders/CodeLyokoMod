@@ -1,15 +1,11 @@
 package matt.lyoko.entities.tileentity;
 
-import java.util.Random;
-import net.minecraft.item.ItemStack;
+import matt.lyoko.CodeLyoko;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
-import matt.lyoko.*;
-import matt.lyoko.particles.LyokoParticleEffects;
 
 public class TileEntityTower extends TileEntity
 {

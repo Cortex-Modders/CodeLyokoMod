@@ -1,7 +1,6 @@
 package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.lib.BlockIds;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
