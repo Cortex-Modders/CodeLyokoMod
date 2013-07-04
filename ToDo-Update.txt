@@ -1,0 +1,7 @@
+ToDo in update. (These are the stuff that we undid so we could start testing quickly.)
+
+-Add textures to entity render classes. They should all go in there now.
+-Make sure textures locations work with ResourceLocation
+-Test DevCapesAPI(Library)
+-Make sure sounds played thru SoundManager work correctly
+-Uncomment monster entity registration in CommonProxy.
