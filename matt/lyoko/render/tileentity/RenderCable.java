@@ -4,6 +4,7 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityCable;
 import matt.lyoko.model.tileentity.ModelCable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -13,6 +14,7 @@ public class RenderCable extends TileEntitySpecialRenderer
 {
 	//Model file
 	private ModelCable model;
+	private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/models/cable.png");
 	
 	private boolean top = false;
 	private boolean bottom = false;
@@ -36,8 +38,8 @@ public class RenderCable extends TileEntitySpecialRenderer
 			i = (tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord)); 
 		}
 		
-						//directory of the model's texture file
-		bindTextureByName("/mods/lyoko/textures/models/cable.png");
+		//directory of the model's texture file
+		this.func_110628_a(texture);
 		
 		GL11.glPushMatrix(); 
 		GL11.glTranslatef((float)d + 0.5F, (float)d1 + 1.5F, (float)d2 + 0.5F);

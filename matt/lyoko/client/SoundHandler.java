@@ -1,5 +1,6 @@
 package matt.lyoko.client;
 
+import java.net.URL;
 import java.util.logging.Level;
 
 import matt.lyoko.ModLogger;
@@ -24,7 +25,8 @@ public class SoundHandler {
      */
     public void loadSound(SoundManager manager, String file) {
         try {
-            manager.soundPoolSounds.addSound(ModProperties.SOUND_LOAD_PREFIX + file, this.getClass().getResource("/" + ModProperties.SOUND_LOAD_PREFIX + file));
+//            manager.addSound(ModProperties.SOUND_LOAD_PREFIX + file, this.getClass().getResource("/" + ModProperties.SOUND_LOAD_PREFIX + file));
+            manager.addSound(ModProperties.SOUND_LOAD_PREFIX + file);
         } 
         catch(Exception e) {
             ModLogger.log(Level.WARNING, "Error not load sound " + file);

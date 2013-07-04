@@ -7,9 +7,12 @@
 package com.jadarstudios.api.developercapesapi;
 
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
@@ -22,6 +25,8 @@ public class DeveloperCapesTickHandler implements ITickHandler {
     private static final Minecraft mc = Minecraft.getMinecraft();
     private static final DeveloperCapesAPI instance = DeveloperCapesAPI.getInstance();
 
+    private HashSet<String> playersChanged = new HashSet<String>();
+    
     @Override
     public void tickStart(EnumSet<TickType> type, Object... tickData) {
         /*
@@ -42,8 +47,8 @@ public class DeveloperCapesTickHandler implements ITickHandler {
 
                     // Gets the player from the players list.
                     EntityPlayer player = players.get(counter);
-
-                    if (player.cloakUrl.startsWith("http://skins.minecraft.net/MinecraftCloaks/")){
+                    
+                    if (playersChanged.contains(player.username)){
                         /*
                          * Lowers the case of the Username, so that there are no
                          * problems with the Username's case.
@@ -56,11 +61,19 @@ public class DeveloperCapesTickHandler implements ITickHandler {
                              * Gets the user from the hash map and gets the cape
                              * URL.
                              */
+                            
+                            AbstractClientPlayer test = (AbstractClientPlayer)player;
+                            
                             String userGroup = instance.getUserGroup(lowerUsername);
                             String groupUrl = instance.getGroupUrl(userGroup);
-
+                            ResourceLocation capeLocation = instance.getCapeLocation(userGroup);
+                            
                             // Sets the cape URL.
-                            player.cloakUrl = groupUrl;
+  //                          player.cloakUrl = groupUrl;
+//                            test.func_110307_b(AbstractClientPlayer.func_110299_g(player.username), capeLocation);
+//                            test.field_110313_e = test.func_110299_g(test.username);
+//                            test.field_110315_c = func_110307_b(test.field_110313_e, test.username);
+                            playersChanged.add(player.username);
                         }
                     }
                 }

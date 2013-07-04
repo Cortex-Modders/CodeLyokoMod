@@ -3,6 +3,7 @@ package matt.lyoko.render.tileentity;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.model.tileentity.ModelScanner;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
@@ -14,7 +15,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderScanner extends TileEntitySpecialRenderer {
 
     private ModelScanner model = new ModelScanner();
-
+    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/models/scanner.png");
+    
     /**
      * Renders the TileEntity for the chest at a position.
      */
@@ -27,8 +29,7 @@ public class RenderScanner extends TileEntitySpecialRenderer {
             i = entity.getBlockMetadata();
         }
 
-        // /mods/lyoko/textures/models/scanner.png
-        this.bindTextureByName("/mods/lyoko/textures/models/scanner.png");
+        this.func_110628_a(texture);
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glTranslatef(0.5F, 0F, 0.5F);

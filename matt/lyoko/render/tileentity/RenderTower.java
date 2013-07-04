@@ -3,10 +3,10 @@ package matt.lyoko.render.tileentity;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTower;
-import matt.lyoko.lib.BlockIds;
 import matt.lyoko.render.TileAnimator;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
@@ -20,6 +20,8 @@ public class RenderTower extends TileEntitySpecialRenderer {
     private ClientProxy proxy;
     private final TileAnimator animator;
 
+    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/blocks/towerwall.png");
+    
     public RenderTower() {
         animator = new TileAnimator(1.0F, 1.0F, 1, 8, 0.25F);
         CodeLyoko.animatorInstances.add(animator);
@@ -31,7 +33,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
     public void render(TileEntityTower entity, double x, double y, double z, float scale) {
         Tessellator tessellator = Tessellator.instance;
 
-        this.bindTextureByName("/mods/lyoko/textures/blocks/towerwall.png");
+        this.func_110628_a(texture);
 
         int i;
         if (!entity.func_70309_m()) {
