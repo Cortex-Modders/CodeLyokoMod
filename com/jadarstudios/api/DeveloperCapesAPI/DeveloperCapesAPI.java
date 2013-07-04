@@ -81,8 +81,26 @@ public final class DeveloperCapesAPI {
                     for (int i = 0; i < line.length(); i++){
                         // when char : is found do stuff.
                         if (line.charAt(i) == '='){
-                            group = line.substring(0, i);
-                            String subLine = line.substring(i + 1);
+                        	int iOffNeg = 0;
+                        	for(int j = 0; j < i; j++)
+                        	{
+                        		if(line.charAt(j) == ' ')
+                        		{
+                        			iOffNeg = j;
+                        			break;
+                        		}
+                        	}
+                        	int iOffPos = 0;
+                        	for(int j = i + 1; i < line.length(); i++)
+                        	{
+                        		if(line.charAt(j) != ' ')
+                        		{
+                        			iOffPos = j - i - 1;
+                        			break;
+                        		}
+                        	}
+                            group = line.substring(0, i - iOffNeg);
+                            String subLine = line.substring(i + 1 + iOffPos);
 
                             if (subLine.startsWith("http")){
                                 capeUrl = subLine;
