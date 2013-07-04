@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -48,7 +49,7 @@ public class ItemRenderGlove implements IItemRenderer
             {
                 GL11.glPushMatrix();
 
-                Minecraft.getMinecraft().renderEngine.bindTexture("/mods/lyoko/textures/models/ModelGlove.png");
+                Minecraft.getMinecraft().renderEngine.func_110577_a(new ResourceLocation("/mods/lyoko/textures/models/ModelGlove.png"));
 
                 boolean isFirstPerson = false;
 

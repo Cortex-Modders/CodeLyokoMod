@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
@@ -63,7 +64,7 @@ public class EntityLyokoRanged extends Entity implements IProjectile
         this.yOffset = 0.0F;
     }
 
-    public EntityLyokoRanged(World par1World, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5)
+    public EntityLyokoRanged(World par1World, EntityLivingBase par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -93,7 +94,7 @@ public class EntityLyokoRanged extends Entity implements IProjectile
         }
     }
 
-    public EntityLyokoRanged(World par1World, EntityLiving par2EntityLiving, float par3)
+    public EntityLyokoRanged(World par1World, EntityLivingBase par2EntityLiving, float par3)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
