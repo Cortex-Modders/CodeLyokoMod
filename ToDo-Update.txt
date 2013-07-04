@@ -4,3 +4,4 @@ ToDo in update. (These are the stuff that we undid so we could start testing qui
 -Make sure sounds played thru SoundManager work correctly
 -Uncomment monster entity registration in CommonProxy.
 -Fix right click with overboard
+-Fix the armor textures?
