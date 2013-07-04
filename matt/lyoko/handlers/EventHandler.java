@@ -11,6 +11,7 @@ import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -28,6 +29,7 @@ import cpw.mods.fml.common.IPlayerTracker;
 public class EventHandler extends Gui implements IPlayerTracker
 {
 	private Minecraft mc;
+	private static final ResourceLocation inventoryTexture = new ResourceLocation("/gui/inventory.png");
 	
 	public EventHandler()
 	{
@@ -53,7 +55,7 @@ public class EventHandler extends Gui implements IPlayerTracker
 		int yPos = 2;
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		GL11.glDisable(GL11.GL_LIGHTING);
-		this.mc.renderEngine.bindTexture("/gui/inventory.png");
+		this.mc.renderEngine.func_110577_a(inventoryTexture);
 		
 		PlayerInformation pi = PlayerInformation.forPlayer(this.mc.thePlayer);
 		

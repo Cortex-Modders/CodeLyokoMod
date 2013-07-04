@@ -2,6 +2,7 @@ package matt.lyoko.render;
 
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
@@ -18,6 +19,8 @@ public class RenderEnergyField extends Render
     private Item field_94151_a;
     private int field_94150_f;
 
+    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/items/energyfield.png");
+    
     public RenderEnergyField(Item par1, int par2)
     {
         this.field_94151_a = par1;
@@ -45,7 +48,7 @@ public class RenderEnergyField extends Render
             GL11.glTranslatef((float)par2, (float)par4, (float)par6);
             GL11.glEnable(GL12.GL_RESCALE_NORMAL);
             GL11.glScalef(0.5F, 0.5F, 0.5F);
-            this.loadTexture("/mods/lyoko/textures/items/energyfield.png");
+            this.func_110776_a(texture);
             Tessellator tessellator = Tessellator.instance;
             this.func_77026_a(tessellator, icon);
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -72,4 +75,10 @@ public class RenderEnergyField extends Render
         par1Tessellator.addVertexWithUV((double)(0.0F - f5), (double)(f4 - f6), 0.0D, (double)f, (double)f2);
         par1Tessellator.draw();
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		// TODO Auto-generated method stub
+		return texture;
+	}
 }

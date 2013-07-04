@@ -3,22 +3,25 @@ package matt.lyoko.render.vehicles;
 import matt.lyoko.entities.vehicles.EntityVehicle;
 import matt.lyoko.model.vehicles.ModelVehicle;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-public class RenderVehicle extends Render {
+public abstract class RenderVehicle extends Render {
 
     protected ModelVehicle model;
-
+    public static ResourceLocation texture;
+    
     public RenderVehicle(ModelVehicle parModel, float shadow) {
         shadowSize = shadow;
         model = parModel;
+        texture = new ResourceLocation("lyoko", "textures/models/skid.png");
     }
 
     protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
-        this.loadTexture(parEntityVehicle.getTexture());
+        this.func_110776_a(texture);
         model.render(parEntityVehicle, x, y, z, f, f1, f2);
     }
 
@@ -40,4 +43,15 @@ public class RenderVehicle extends Render {
         doRenderVehicle((EntityVehicle) entity, x, y, z, f, f1);
     }
 
+    public ResourceLocation getTexture() {
+        if(texture == null) {
+            texture = new ResourceLocation("");
+        }
+        return texture;
+    }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		return texture;
+	}
 }

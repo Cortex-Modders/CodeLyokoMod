@@ -202,9 +202,9 @@ public class CodeLyoko
     	Log = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
     	Carthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
     	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
-    	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-    	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
-    	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
+ //   	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
+ //   	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
+ //   	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
     	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
     	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
     	VirtualBlock = new BlockVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
@@ -502,8 +502,8 @@ public class CodeLyoko
     	GameRegistry.registerBlock(Log, "Lyoko Log");
     	LanguageRegistry.addName(Log, "Lyoko Log");
     	
-    	GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
-    	LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
+ //   	GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
+ //   	LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
     	
     	GameRegistry.registerBlock(Carthage, "Carthage Block");
     	LanguageRegistry.addName(Carthage, "Carthage Block");
@@ -511,11 +511,11 @@ public class CodeLyoko
     	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
     	LanguageRegistry.addName(QuantumOre, "Quantum Ore");
     	
-    	GameRegistry.registerBlock(DigitalSeaFlowing, "Digital Sea Flowing");
-    	LanguageRegistry.addName(DigitalSeaFlowing, "Digital Sea Flowing");
+//    	GameRegistry.registerBlock(DigitalSeaFlowing, "Digital Sea Flowing");
+//    	LanguageRegistry.addName(DigitalSeaFlowing, "Digital Sea Flowing");
     	
-    	GameRegistry.registerBlock(DigitalSeaStill, "Digital Sea Still");
-    	LanguageRegistry.addName(DigitalSeaStill, "Digital Sea Still");
+//    	GameRegistry.registerBlock(DigitalSeaStill, "Digital Sea Still");
+//    	LanguageRegistry.addName(DigitalSeaStill, "Digital Sea Still");
     	
     	
     	//Lyoko Sectors Dimension Register

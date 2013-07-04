@@ -2,14 +2,13 @@ package matt.lyoko.particles;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.RenderEngine;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.world.World;
 
 public class LyokoParticleEffects
 {
 	private static Minecraft mc = Minecraft.getMinecraft();
 	private static World theWorld = mc.theWorld;
-	private static RenderEngine renderEngine = mc.renderEngine;
 	
 	public static EntityFX spawnParticle(String particleName, double par2, double par4, double par6, double par8, double par10, double par12)
 	{

@@ -16,7 +16,6 @@ public class EntitySkid extends EntityVehicle
     public EntitySkid(World world)
     {
         super(world);
-        texture = "/mods/lyoko/textures/models/skid.png";
         this.setSize(2.0F, 6.9375F);
         this.setDroppedItem(ModItems.Skid);
     }
@@ -88,6 +87,9 @@ public class EntitySkid extends EntityVehicle
     
     /**
      * 
+     * Sets the nav skid at the given slot to true or not. Maybe should be an array of
+     * nav skid entity instances instead, though.
+     * 
      * @param skid
      * @param arraySlot
      */
@@ -96,12 +98,20 @@ public class EntitySkid extends EntityVehicle
     	navSkid[arraySlot] = skid;
     }
     
+    /**
+     * 
+     * Gets the whole array of nav skids.
+     * 
+     * @return
+     */
     public boolean[] getNavSkids()
     {
     	return navSkid;
     }
     
     /**
+     * 
+     * Gets the specified nav skid from the array.
      * 
      * @param arraySlot
      * @return

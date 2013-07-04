@@ -5,6 +5,7 @@ import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.model.tileentity.ModelConsole;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
@@ -19,7 +20,9 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
     //TODO: Custom font for GUI and terminal, maybe?
     private ClientProxy proxy;
     private ModelConsole model = new ModelConsole();
-
+    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/models/ModelConsole.png");
+    
+    
     /**
      * Renders the TileEntity for the chest at a position.
      */
@@ -32,7 +35,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
             i = entity.getBlockMetadata();
         }
         
-        this.bindTextureByName("/mods/lyoko/textures/models/ModelConsole.png");
+        this.func_110628_a(texture);
         GL11.glPushMatrix();
         proxy.alphaOn();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);

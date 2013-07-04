@@ -1,24 +1,17 @@
 package matt.lyoko.entities.projectile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.List;
+
+import matt.lyoko.CodeLyoko;
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.util.AxisAlignedBB;
@@ -27,8 +20,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import matt.lyoko.*;
-import matt.lyoko.lib.PlayerInformation;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityLaser extends Entity implements IProjectile
 {
@@ -70,7 +63,7 @@ public class EntityLaser extends Entity implements IProjectile
         this.yOffset = 0.0F;
     }
 
-    public EntityLaser(World par1World, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5)
+    public EntityLaser(World par1World, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving, float par4, float par5)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -100,7 +93,7 @@ public class EntityLaser extends Entity implements IProjectile
         }
     }
 
-    public EntityLaser(World par1World, EntityLiving par2EntityLiving, float par3)
+    public EntityLaser(World par1World, EntityLivingBase par2EntityLiving, float par3)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -325,9 +318,9 @@ public class EntityLaser extends Entity implements IProjectile
 
                     if (var4.entityHit.attackEntityFrom(var21, var23))
                     {
-                        if (var4.entityHit instanceof EntityLiving)
+                        if (var4.entityHit instanceof EntityLivingBase)
                         {
-                            EntityLiving var24 = (EntityLiving)var4.entityHit;
+                            EntityLivingBase var24 = (EntityLivingBase)var4.entityHit;
 
                             if (!this.worldObj.isRemote)
                             {

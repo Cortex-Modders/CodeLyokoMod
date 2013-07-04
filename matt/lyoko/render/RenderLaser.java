@@ -2,12 +2,24 @@ package matt.lyoko.render;
 
 import matt.lyoko.model.ModelLaser;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.entity.Entity;
 
 public class RenderLaser extends RenderLiving {
+	
+	// this whole class needs to be coded without RenderLiving. :P -jadar
+	
 	public RenderLaser(ModelLaser modellaser, float f) {
 		super(new ModelLaser(), 0.5F);
 	}
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
+// remove this comment below?? -jadar
 
 /*
  * package net.minecraft.src.lyoko;

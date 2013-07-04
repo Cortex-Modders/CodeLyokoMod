@@ -13,7 +13,10 @@ import java.net.URL;
 import java.util.HashMap;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.renderer.IImageBuffer;
 import net.minecraft.client.renderer.ImageBufferDownload;
+import net.minecraft.client.resources.ResourceLocation;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,6 +31,8 @@ public final class DeveloperCapesAPI {
     private HashMap<String, String> users;
     private HashMap<String, String> groupUrls;
 
+    private HashMap<String, ResourceLocation> capeLocations;
+    
     private boolean tickSetUp = false;
 
     /**
@@ -36,6 +41,7 @@ public final class DeveloperCapesAPI {
     private DeveloperCapesAPI() {
         users = new HashMap<String, String>();
         groupUrls = new HashMap<String, String>();
+        capeLocations = new HashMap<String, ResourceLocation>();
     }
 
     /**
@@ -81,7 +87,8 @@ public final class DeveloperCapesAPI {
                             if (subLine.startsWith("http")){
                                 capeUrl = subLine;
                                 getInstance().addGroupUrl(group, capeUrl);
-                                mc.renderEngine.obtainImageData(capeUrl, new ImageBufferDownload());
+                                getInstance().addCapeLocation(group, AbstractClientPlayer.func_110299_g(username));
+//                                AbstractClientPlayer.func_110307_b(AbstractClientPlayer.func_110299_g(username), capeUrl);
                                 // System.out.println(capeUrl);
                                 continue;
                             }else{
@@ -153,5 +160,15 @@ public final class DeveloperCapesAPI {
      */
     public String getGroupUrl(String group) {
         return groupUrls.get(group);
+    }
+    
+    public void addCapeLocation(String key, ResourceLocation location) {
+        if (getCapeLocation(key) == null){
+            capeLocations.put(key, location);
+        }
+    }
+
+    public ResourceLocation getCapeLocation(String key) {
+        return capeLocations.get(key);
     }
 }

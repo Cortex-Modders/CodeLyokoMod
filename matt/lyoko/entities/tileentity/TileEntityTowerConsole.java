@@ -51,8 +51,9 @@ public class TileEntityTowerConsole extends TileEntity
 				for(int i = 0; i < worldObj.playerEntities.size(); i++)
 				{
 					EntityPlayer player = (EntityPlayer) worldObj.playerEntities.get(i);
-					player.sendChatToPlayer("A tower has been activated at: " + xCoord + ", " + yCoord + ", " + zCoord + ", in dimension: " + worldObj.provider.dimensionId);
-    				player.sendChatToPlayer("Automatic deactivation will occur in 10 minutes");
+					// not sure how to send chat yet. spreadsheet is not accurate here.
+//					player.sendChatToPlayer("A tower has been activated at: " + xCoord + ", " + yCoord + ", " + zCoord + ", in dimension: " + worldObj.provider.dimensionId);
+//    				player.sendChatToPlayer("Automatic deactivation will occur in 10 minutes");
 				}
 			}
 			for(int i = 0; i < TileEntityTower.getPossibleOwners().length; i++)

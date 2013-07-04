@@ -3,6 +3,7 @@ package matt.lyoko.render;
 import matt.lyoko.entities.projectile.EntityLaserArrow;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 
@@ -15,9 +16,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderLaserArrow extends Render
 {
-    public void renderArrow(EntityLaserArrow par1EntityArrow, double par2, double par4, double par6, float par8, float par9)
+    
+	private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/items/laserarrow.png");
+	
+	public void renderArrow(EntityLaserArrow par1EntityArrow, double par2, double par4, double par6, float par8, float par9)
     {
-        this.loadTexture("/mods/lyoko/textures/items/laserarrow.png");
+        this.func_110776_a(texture);
         GL11.glPushMatrix();
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par1EntityArrow.prevRotationYaw + (par1EntityArrow.rotationYaw - par1EntityArrow.prevRotationYaw) * par9 - 90.0F, 0.0F, 1.0F, 0.0F);
@@ -86,4 +90,9 @@ public class RenderLaserArrow extends Render
     {
         this.renderArrow((EntityLaserArrow)par1Entity, par2, par4, par6, par8, par9);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity) {
+		return texture;
+	}
 }

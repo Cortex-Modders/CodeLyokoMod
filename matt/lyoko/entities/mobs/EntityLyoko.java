@@ -20,7 +20,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     {
         super(par1World);
         this.experienceValue = 10;
-        this.health = 50;
+        this.setEntityHealth(50);
     }
     
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
@@ -45,7 +45,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
             this.setDead();
         }
         
-        if(this.health <= 0)
+        if(this.func_110143_aJ() <= 0)
         {
         	this.setDead();
         	if(worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
