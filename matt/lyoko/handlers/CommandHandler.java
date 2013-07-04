@@ -40,6 +40,7 @@ public class CommandHandler implements ICommand
 		if(icommandsender instanceof EntityPlayer)
 		{
 			EntityPlayer player = ((EntityPlayer)icommandsender);
+			player.addChatMessage("this command is not ready for use at this time");
 			//player.setPositionAndRotation(SCANNER_X, SCANNER_Y, SCANNER_Z, player.rotationYaw, player.rotationPitch);
 		}
 		// wait for ChatMessageComponent to get names put in.
