@@ -15,16 +15,10 @@ public class EntityOverboard extends EntityVehicle
 	public EntityOverboard(World world, double x, double y, double z)
 	{
 		super(world, x, y, z);
-		texture = "/mods/lyoko/textures/models/overboard.png";
         this.setSize(1.125F, 0.375F);
         this.setDroppedItem(ModItems.Overboard);
 	}
 
-	public String getTexture()
-	{
-		return this.texture;
-	}
-	
 	/**
 	 * Returns the maximum health of the entity.
 	 */

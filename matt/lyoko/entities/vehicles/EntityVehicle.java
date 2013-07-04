@@ -7,12 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityVehicle extends Entity {
-
-	protected String texture = "";
 	
 	public float hoverSpeed;
 	private Item droppedItem = ModItems.DataFragment;
@@ -76,16 +72,6 @@ public class EntityVehicle extends Entity {
 
 	public boolean canBePushed() {
 		return true;
-	}
-
-	@SideOnly(Side.CLIENT)
-
-	/**
-	 * Returns the texture's file path as a String.
-	 */
-	public String getTexture()
-	{
-		return this.texture;
 	}
 
 	@Override

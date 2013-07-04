@@ -12,12 +12,12 @@ import org.lwjgl.opengl.GL11;
 public abstract class RenderVehicle extends Render {
 
     protected ModelVehicle model;
-    public static ResourceLocation texture;
+    public ResourceLocation texture;
     
     public RenderVehicle(ModelVehicle parModel, float shadow) {
         shadowSize = shadow;
         model = parModel;
-        texture = new ResourceLocation("lyoko", "textures/models/skid.png");
+        texture = new ResourceLocation("null");
     }
 
     protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
@@ -41,13 +41,6 @@ public abstract class RenderVehicle extends Render {
     @Override
     public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
         doRenderVehicle((EntityVehicle) entity, x, y, z, f, f1);
-    }
-
-    public ResourceLocation getTexture() {
-        if(texture == null) {
-            texture = new ResourceLocation("");
-        }
-        return texture;
     }
 
 	@Override
