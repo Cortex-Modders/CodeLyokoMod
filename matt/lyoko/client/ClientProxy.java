@@ -26,16 +26,16 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderInformation() 
 	{
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/aelita_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/aelita_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/odd_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/odd_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/ulrich_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/ulrich_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/yumi_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/yumi_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/william_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/mods/lyoko/textures/armor/william_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/aelita_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/aelita_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/odd_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/odd_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/ulrich_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/ulrich_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/yumi_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/yumi_2");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/william_1");
+		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/william_2");
 		
 		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(ModItems.Fan));

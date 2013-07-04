@@ -20,7 +20,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
     //TODO: Custom font for GUI and terminal, maybe?
     private ClientProxy proxy;
     private ModelConsole model = new ModelConsole();
-    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/models/ModelConsole.png");
+    private static final ResourceLocation texture = new ResourceLocation("/assets/lyoko/textures/models/ModelConsole.png");
     
     
     /**

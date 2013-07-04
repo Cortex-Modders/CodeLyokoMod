@@ -174,7 +174,7 @@ public class ArmorLyoko extends ItemArmor
         {
         	if(armorOwner.equals("william") && entity.isSprinting())
         	{
-        		return "/mods/lyoko/textures/armor/blank.png";
+        		return "/assets/lyoko/textures/armor/blank.png";
         	}
         	
         	if(itemstack.itemID == ModItems.AelitaHelmet.itemID || itemstack.itemID == ModItems.AelitaChest.itemID || itemstack.itemID == ModItems.AelitaBoots.itemID
@@ -183,14 +183,14 @@ public class ArmorLyoko extends ItemArmor
         			|| itemstack.itemID == ModItems.YumiHelmet.itemID || itemstack.itemID == ModItems.YumiChest.itemID || itemstack.itemID == ModItems.YumiBoots.itemID
         			|| itemstack.itemID == ModItems.WilliamHelmet.itemID || itemstack.itemID == ModItems.WilliamChest.itemID || itemstack.itemID == ModItems.WilliamBoots.itemID)
             {
-            	return "/mods/lyoko/textures/armor/" + this.armorOwner + "_1.png";
+            	return "/assets/lyoko/textures/armor/" + this.armorOwner + "_1.png";
             }
             if(itemstack.itemID == ModItems.AelitaLegs.itemID || itemstack.itemID == ModItems.OddLegs.itemID
             		|| itemstack.itemID == ModItems.UlrichLegs.itemID || itemstack.itemID == ModItems.YumiLegs.itemID
             		|| itemstack.itemID == ModItems.WilliamLegs.itemID)
             {
-            	return "/mods/lyoko/textures/armor/" + this.armorOwner + "_2.png";
+            	return "/assets/lyoko/textures/armor/" + this.armorOwner + "_2.png";
             }
-            return "/mods/lyoko/textures/armor/" + this.armorOwner + "_1.png";
+            return "/assets/lyoko/textures/armor/" + this.armorOwner + "_1.png";
         }
 }

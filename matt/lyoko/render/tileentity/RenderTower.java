@@ -20,7 +20,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
     private ClientProxy proxy;
     private final TileAnimator animator;
 
-    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/blocks/towerwall.png");
+    private static final ResourceLocation texture = new ResourceLocation("/assets/lyoko/textures/blocks/towerwall.png");
     
     public RenderTower() {
         animator = new TileAnimator(1.0F, 1.0F, 1, 8, 0.25F);

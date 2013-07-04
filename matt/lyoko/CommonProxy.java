@@ -5,6 +5,7 @@ import matt.lyoko.entities.mobs.EntityMegaTank;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.handlers.ClientTickHandler;
+import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.handlers.ServerTickHandler;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.lib.EntityIds;
@@ -13,6 +14,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.*;
 import cpw.mods.fml.relauncher.Side;
@@ -45,6 +47,13 @@ public class CommonProxy
 		OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);
 		OreDictionary.registerOre("ingotUranium", ModItems.Uranium);
 		OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
+	}
+	
+	public void registerEventHandlers()
+	{
+    	EventHandler handler = new EventHandler();
+    	MinecraftForge.EVENT_BUS.register(handler);
+    	GameRegistry.registerPlayerTracker(handler);
 	}
 	
 	public void addChestLoot()

@@ -9,7 +9,6 @@ import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.handlers.CommandHandler;
-import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.handlers.PacketHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
@@ -28,11 +27,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.*;
 import net.minecraftforge.oredict.*;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.Mod.ServerStarting;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.*;
@@ -90,7 +86,7 @@ public class CodeLyoko
 	@Instance
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable
 	
-	@PreInit
+	@EventHandler
 	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
 	{
     	Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
@@ -186,12 +182,8 @@ public class CodeLyoko
 		config.save();
 		
 		MinecraftForge.EVENT_BUS.register(new SoundHandler());
-	}
-	
-    @Init
-    public void CodeLyokoLoad(FMLInitializationEvent evt)
-    {
-    	ModItems.init();
+		
+		ModItems.init();
         
         TowerBlock = new BlockTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
     	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
@@ -222,7 +214,7 @@ public class CodeLyoko
     	LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
     	LyokoCarthagePortal  = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
     	
-    	proxy.registerRenderInformation(); //You have to call the methods in your proxy class
+    	proxy.registerRenderInformation();
     	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
@@ -446,34 +438,11 @@ public class CodeLyoko
     	});
     	
     	LanguageRegistry.addName(ModItems.Katana, "Katana");
-    	/*GameRegistry.addRecipe(new ItemStack(Katana, 1), new Object[] {
-    		" * ", " * ", " # ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.ingotIron
-    	});*/
-    	
     	LanguageRegistry.addName(ModItems.Zweihander, "Zweihander");
-    	/*GameRegistry.addRecipe(new ItemStack(Zweihander, 1), new Object[] {
-    		"***", "***", " # ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.ingotIron
-    	});*/
-    	
     	LanguageRegistry.addName(ModItems.Fan, "Fan");
-    	/*GameRegistry.addRecipe(new ItemStack(Fan, 1), new Object[] {
-    		"#f ", "#*f", "###", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.stick, Character.valueOf('f'), Item.feather
-    	});*/
-    	
     	LanguageRegistry.addName(ModItems.EnergyField, "Energy Field");
-    	/*GameRegistry.addRecipe(new ItemStack(EnergyField, 1), new Object[] {
-    		" * ", "*#*", " * ", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar
-    	});*/
-    	
     	LanguageRegistry.addName(ModItems.Glove, "Laser Arrow Glove");
-    	/*GameRegistry.addRecipe(new ItemStack(Glove, 1), new Object[] {
-    		"###", "#a#", "#*#", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.leather, Character.valueOf('a'), LaserArrow
-    	});*/
-    	
     	LanguageRegistry.addName(ModItems.LaserArrow, "Laser Arrow");
-    	/*GameRegistry.addRecipe(new ItemStack(LaserArrow, 1), new Object[] {
-    		"a*a", "*#*", "a*a", Character.valueOf('*'), LyokoIngot, Character.valueOf('#'), Item.netherStar, Character.valueOf('a'), Item.arrow
-    	});*/
     	
     	GameRegistry.registerBlock(LeadOre, ItemBlockEffect.class,"Lead Isotope 210 Ore");
     	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
@@ -533,17 +502,21 @@ public class CodeLyoko
     	proxy.addChestLoot();
     	proxy.registerEntities();
     	proxy.registerEntityNames();
+	}
+	
+	@EventHandler
+    public void CodeLyokoLoad(FMLInitializationEvent evt)
+    {
+    	
     }
     
-    @PostInit
+	@EventHandler
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
     {
-    	EventHandler handler = new EventHandler();
-    	MinecraftForge.EVENT_BUS.register(handler);
-    	GameRegistry.registerPlayerTracker(handler);
+    	proxy.registerEventHandlers();
     }
     
-    @ServerStarting
+    @EventHandler
 	public void serverLoad(FMLServerStartingEvent event)
 	{
 		event.registerServerCommand(new CommandHandler());
