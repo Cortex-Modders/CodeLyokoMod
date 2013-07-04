@@ -14,7 +14,7 @@ public class RenderCable extends TileEntitySpecialRenderer
 {
 	//Model file
 	private ModelCable model;
-	private static final ResourceLocation texture = new ResourceLocation("/assets/lyoko/textures/models/cable.png");
+	private static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/cable.png");
 	
 	private boolean top = false;
 	private boolean bottom = false;

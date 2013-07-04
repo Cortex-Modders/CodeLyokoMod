@@ -20,7 +20,7 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
     //TODO: Custom font for GUI and terminal, maybe?
     private ClientProxy proxy;
     private ModelConsole model = new ModelConsole();
-    private static final ResourceLocation texture = new ResourceLocation("/assets/lyoko/textures/models/ModelConsole.png");
+    private static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/ModelConsole.png");
     
     
     /**
@@ -35,7 +35,6 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
             i = entity.getBlockMetadata();
         }
         
-        this.func_110628_a(texture);
         GL11.glPushMatrix();
         proxy.alphaOn();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
@@ -61,6 +60,8 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
         }
 
         GL11.glRotatef((float)rotate, 0F, 1F, 0F);
+
+        this.func_110628_a(texture);
 
         model.render(entity, (float)x, (float)y, (float)z, 0.0F, 0.0F, 0.0625F);
         proxy.alphaOff();

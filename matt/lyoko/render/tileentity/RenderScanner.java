@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderScanner extends TileEntitySpecialRenderer {
 
     private ModelScanner model = new ModelScanner();
-    private static final ResourceLocation texture = new ResourceLocation("/assets/lyoko/textures/models/scanner.png");
+    private static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/scanner.png");
     
     /**
      * Renders the TileEntity for the chest at a position.
