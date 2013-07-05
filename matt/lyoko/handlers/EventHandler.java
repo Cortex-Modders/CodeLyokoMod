@@ -1,26 +1,16 @@
 package matt.lyoko.handlers;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.Collection;
-import java.util.Iterator;
-
-import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 
 import org.lwjgl.opengl.GL11;
 

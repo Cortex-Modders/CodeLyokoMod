@@ -3,7 +3,6 @@ package matt.lyoko.items;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;

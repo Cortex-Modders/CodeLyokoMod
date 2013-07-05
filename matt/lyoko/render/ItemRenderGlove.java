@@ -1,7 +1,6 @@
 package matt.lyoko.render;
 
 import matt.lyoko.items.ModItems;
-import matt.lyoko.lib.ItemIds;
 import matt.lyoko.model.ModelGlove;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;

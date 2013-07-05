@@ -1,12 +1,8 @@
 package matt.lyoko.world;
 
-import java.util.Random;
-
-import net.minecraft.src.*;
-import net.minecraft.world.biome.SpawnListEntry;
-import matt.lyoko.*;
-import matt.lyoko.entities.mobs.*;
+import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.lib.BlockIds;
+import net.minecraft.world.biome.SpawnListEntry;
 
 public class BiomeGenPolarSector extends BiomeGenBaseLyoko
 {

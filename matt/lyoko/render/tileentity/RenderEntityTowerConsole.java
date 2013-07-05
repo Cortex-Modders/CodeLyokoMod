@@ -3,7 +3,6 @@ package matt.lyoko.render.tileentity;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.model.tileentity.ModelConsole;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;

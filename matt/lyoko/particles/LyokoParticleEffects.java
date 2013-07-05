@@ -2,7 +2,6 @@ package matt.lyoko.particles;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.world.World;
 
 public class LyokoParticleEffects

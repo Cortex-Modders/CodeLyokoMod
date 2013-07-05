@@ -3,9 +3,8 @@ package matt.lyoko;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import cpw.mods.fml.common.FMLLog;
-
 import matt.lyoko.lib.ModProperties;
+import cpw.mods.fml.common.FMLLog;
 
 public class ModLogger {
 

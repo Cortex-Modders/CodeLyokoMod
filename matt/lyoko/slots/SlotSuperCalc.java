@@ -1,7 +1,6 @@
 package matt.lyoko.slots;
 
 import matt.lyoko.container.ContainerSuperCalc;
-import matt.lyoko.items.ModItems;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

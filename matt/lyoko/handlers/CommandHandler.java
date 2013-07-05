@@ -2,10 +2,10 @@ package matt.lyoko.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatMessageComponent;
 
 public class CommandHandler implements ICommand
 {

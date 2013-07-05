@@ -1,16 +1,11 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.entities.projectile.EntityEnergyField;
 import matt.lyoko.entities.projectile.EntityFan;
-import matt.lyoko.entities.projectile.EntityLaserArrow;
-import matt.lyoko.entities.projectile.EntityLyokoRanged;
-import matt.lyoko.lib.ItemIds;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

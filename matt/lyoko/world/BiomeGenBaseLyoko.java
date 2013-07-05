@@ -1,13 +1,26 @@
 package matt.lyoko.world;
 
 import java.util.ArrayList;
+
 import net.minecraft.block.Block;
-import net.minecraft.entity.passive.*;
-import net.minecraft.src.*;
+import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.entity.monster.*;
+import net.minecraft.world.gen.feature.WorldGenBigTree;
+import net.minecraft.world.gen.feature.WorldGenForest;
+import net.minecraft.world.gen.feature.WorldGenSwamp;
+import net.minecraft.world.gen.feature.WorldGenTrees;
 
 public class BiomeGenBaseLyoko extends BiomeGenBase
 {

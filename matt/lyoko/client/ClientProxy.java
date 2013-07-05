@@ -32,7 +32,6 @@ import matt.lyoko.render.tileentity.RenderTower;
 import matt.lyoko.render.vehicles.RenderOverboard;
 import matt.lyoko.render.vehicles.RenderSkid;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import org.lwjgl.opengl.GL11;
