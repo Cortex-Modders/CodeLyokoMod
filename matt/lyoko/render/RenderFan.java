@@ -19,7 +19,7 @@ public class RenderFan extends Render
     private Item field_94151_a;
     private int field_94150_f;
 
-    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/items/fan.png");
+    private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/items/fan.png");
     
     public RenderFan(Item par1, int par2)
     {

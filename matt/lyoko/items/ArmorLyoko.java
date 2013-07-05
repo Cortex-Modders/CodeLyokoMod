@@ -3,6 +3,7 @@ package matt.lyoko.items;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumArmorMaterial;
@@ -174,7 +175,20 @@ public class ArmorLyoko extends ItemArmor
         {
         	if(armorOwner.equals("william") && entity.isSprinting())
         	{
-        		return "lyoko/textures/armor/blank.png";
+        		if(entity instanceof EntityPlayer)
+        		{
+        			EntityPlayer player = (EntityPlayer)entity;
+        			boolean shouldDisappear = true;
+        			for(int i = 0; i <= player.inventory.armorInventory.length; i++)
+        			{
+        				if(player.inventory.armorInventory[i] == null || !(player.inventory.armorInventory[i].getItem() instanceof ArmorLyoko))
+        				{
+        					shouldDisappear = false;
+        				}
+        			}
+        			if(shouldDisappear)
+        				return "lyoko:textures/armor/blank.png";
+        		}
         	}
         	
         	if(itemstack.itemID == ModItems.AelitaHelmet.itemID || itemstack.itemID == ModItems.AelitaChest.itemID || itemstack.itemID == ModItems.AelitaBoots.itemID
@@ -183,14 +197,14 @@ public class ArmorLyoko extends ItemArmor
         			|| itemstack.itemID == ModItems.YumiHelmet.itemID || itemstack.itemID == ModItems.YumiChest.itemID || itemstack.itemID == ModItems.YumiBoots.itemID
         			|| itemstack.itemID == ModItems.WilliamHelmet.itemID || itemstack.itemID == ModItems.WilliamChest.itemID || itemstack.itemID == ModItems.WilliamBoots.itemID)
             {
-            	return "lyoko/textures/armor/" + this.armorOwner + "_1.png";
+            	return "lyoko:textures/armor/" + this.armorOwner + "_1.png";
             }
             if(itemstack.itemID == ModItems.AelitaLegs.itemID || itemstack.itemID == ModItems.OddLegs.itemID
             		|| itemstack.itemID == ModItems.UlrichLegs.itemID || itemstack.itemID == ModItems.YumiLegs.itemID
             		|| itemstack.itemID == ModItems.WilliamLegs.itemID)
             {
-            	return "lyoko/textures/armor/" + this.armorOwner + "_2.png";
+            	return "lyoko:textures/armor/" + this.armorOwner + "_2.png";
             }
-            return "lyoko/textures/armor/" + this.armorOwner + "_1.png";
+            return "lyoko:textures/armor/" + this.armorOwner + "_1.png";
         }
 }

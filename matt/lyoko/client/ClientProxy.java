@@ -48,18 +48,6 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderInformation() 
 	{
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/aelita_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/aelita_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/odd_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/odd_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/ulrich_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/ulrich_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/yumi_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/yumi_2");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/william_1");
-		RenderingRegistry.addNewArmourRendererPrefix("/assets/lyoko/textures/armor/william_2");
-		
-		//RenderingRegistry.instance().registerEntityRenderingHandler(EntityTest.class, new RenderCatTest());
 		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(ModItems.Fan));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(ModItems.EnergyField));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow());
@@ -79,7 +67,7 @@ public class ClientProxy extends CommonProxy
 		
 		
 		
-		MinecraftForgeClient.registerItemRenderer(ModItems.Glove.itemID, (IItemRenderer)new ItemRenderGlove());
+		MinecraftForgeClient.registerItemRenderer(ModItems.Glove.itemID, new ItemRenderGlove());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderEntityTowerConsole());

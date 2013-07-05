@@ -146,7 +146,7 @@ public class BlockScanner extends BlockContainer
 			else
 			{
 				tileEntity.doorsOpen = false;
-				world.playSoundEffect(x+0.5F, y+0.5F, z+0.5F, "mods.lyoko.sounds.scannerClose", 0.9F, world.rand.nextFloat() * 0.1F + 0.9F);
+				world.playSoundEffect(x+0.5F, y+0.5F, z+0.5F, "assets.lyoko.sounds.scannerClose", 0.9F, world.rand.nextFloat() * 0.1F + 0.9F);
 			}
 			for(int i = -4; i < 1; i++)
 			{

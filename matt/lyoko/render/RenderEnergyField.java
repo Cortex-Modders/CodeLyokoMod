@@ -19,7 +19,7 @@ public class RenderEnergyField extends Render
     private Item field_94151_a;
     private int field_94150_f;
 
-    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/items/energyfield.png");
+    private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/items/energyfield.png");
     
     public RenderEnergyField(Item par1, int par2)
     {

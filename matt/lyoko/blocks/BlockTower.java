@@ -74,9 +74,9 @@ public class BlockTower extends BlockContainer
 			if(player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.LaserArrow)
 			{
 				tet.owner = "reset";
+				world.markBlockForUpdate(x, y, z);
+				return true;
 			}
-	        world.markBlockForUpdate(x, y, z);
-			return true;
 		}
 		return false;
     }

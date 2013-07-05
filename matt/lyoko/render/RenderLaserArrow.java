@@ -17,7 +17,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderLaserArrow extends Render
 {
     
-	private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/items/laserarrow.png");
+	private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/items/laserarrow.png");
 	
 	public void renderArrow(EntityLaserArrow par1EntityArrow, double par2, double par4, double par6, float par8, float par9)
     {

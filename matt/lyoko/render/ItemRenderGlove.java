@@ -19,7 +19,7 @@ public class ItemRenderGlove implements IItemRenderer
 {
     protected ModelGlove gloveModel;
 
-    private static final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/models/ModelGlove.png");
+    private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/models/ModelGlove.png");
     
     public ItemRenderGlove()
     {
