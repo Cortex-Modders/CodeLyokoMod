@@ -64,8 +64,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
 		
-		
-		
 		MinecraftForgeClient.registerItemRenderer(ModItems.Glove.itemID, new ItemRenderGlove());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
@@ -78,6 +76,7 @@ public class ClientProxy extends CommonProxy
 		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
 	}
 	
+	@Override
 	public void registerKeyBindingHandler()
 	{
 		KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());

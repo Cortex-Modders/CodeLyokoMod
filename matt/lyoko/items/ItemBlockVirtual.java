@@ -1,6 +1,7 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -31,7 +32,7 @@ public class ItemBlockVirtual extends ItemBlock
 				if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest
 						&& legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
 				{
-					if(stack.getItem().itemID != CodeLyoko.VirtualBlock.blockID)
+					if(stack.getItem().itemID != ModBlocks.VirtualBlock.blockID)
 					{
 						player.inventory.setInventorySlotContents(slot, null);
 					}

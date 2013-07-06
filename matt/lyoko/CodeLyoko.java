@@ -53,33 +53,6 @@ public class CodeLyoko
 	public static final BiomeGenBase lyokodesert = ((BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631)).setLyokoBiomeName("Desert Sector");
 	public static final BiomeGenBase lyokopolar = ((BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631)).setLyokoBiomeName("Polar Sector");
 	public static final BiomeGenBase lyokocarthage = ((BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631)).setLyokoBiomeName("Carthage Sector");
-	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
-	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-	public static Block Grass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-	public static Block Stone;// = new BlockLyoko(Lyoko_Stone, 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-	public static Block Sand;// = new BlockLyoko(Lyoko_Sand, 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-	public static Block Ice;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-	public static Block Log;// = new BlockLyoko(Lyoko_Log, 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-	public static Block Carthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-	public static Block QuantumOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
-	public static Block DigitalSeaBlock;// = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
-	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill").setRequiresSelfNotify();
-	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-	public static Block VirtualBlock;
-	public static Block UraniumOre;
-	public static Block Marabounta;
-	public static Block TowerConsole;
-	public static Block TowerFloor;
-	public static Block Cable;
-	public static Block Scanner;
-	public static Block SuperCalcConsole;
-	public static Block LyokoPolarPortal;//  = new BlockLyoko(Lyoko_Polar_Portal, 12).setUnlocalizedName("Polar Portal");
-	public static Block LyokoDesertPortal;// = new BlockLyoko(Lyoko_Desert_Portal, 13).setUnlocalizedName("Desert Portal");
-	public static Block LyokoForestPortal;// = new BlockLyoko(Lyoko_Forest_Portal, 14).setUnlocalizedName("Forest Portal");
-	public static Block LyokoMountainPortal;// = new BlockLyoko(Lyoko_Mountain_Portal, 15).setUnlocalizedName("Mountain Portal");
-	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setUnlocalizedName("Carthage Portal");
-	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
 	
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
@@ -181,38 +154,12 @@ public class CodeLyoko
 		
 		config.save();
 		
-		MinecraftForge.EVENT_BUS.register(new SoundHandler());
-		
 		ModItems.init();
-        
-        TowerBlock = new BlockTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
-    	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-    	Grass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-    	Stone = new BlockLyoko(BlockIds.LYOKO_STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-    	Sand = new BlockLyoko(BlockIds.LYOKO_SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-    	Ice = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-    	Log = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-    	Carthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-    	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
- //   	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
- //   	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
- //   	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
-    	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
-    	VirtualBlock = new BlockVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
-    	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
-    	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
-    	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
-    	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
-    	Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(1F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
-    	Scanner = new BlockScanner(BlockIds.SCANNER).setHardness(20F).setResistance(0F).setUnlocalizedName("Scanner");
-    	SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).setResistance(6000000F).setHardness(20.0F).setLightValue(7.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("SuperCalcConsole");
-    	
-    	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
-    	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
-    	LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setUnlocalizedName("ForestPortal").setCreativeTab(null);
-    	LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
-    	LyokoCarthagePortal  = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
+		ModBlocks.init();
+		
+		Recipes.registerBlockRecipes();
+		Recipes.registerSmelting();
+		Recipes.registerItemRecipes();
     	
     	proxy.registerRenderInformation();
     	proxy.registerTickHandlers();
@@ -232,260 +179,9 @@ public class CodeLyoko
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
     	
-    	MinecraftForge.setBlockHarvestLevel(QuantumOre, "pickaxe", 2);
-    	MinecraftForge.setBlockHarvestLevel(LeadOre, "pickaxe", 2);
-    	MinecraftForge.setBlockHarvestLevel(UraniumOre, "pickaxe", 2);
-    	
-    	GameRegistry.registerBlock(Scanner, "Scanner");
-    	LanguageRegistry.addName(Scanner, "Scanner");
-    	GameRegistry.addRecipe(new ItemStack(Scanner, 1), new Object[] {
-    		"###", "#*#", "###", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix
-    	});
-    	
-    	GameRegistry.registerBlock(Cable, "Cable");
-    	LanguageRegistry.addName(Cable, "Cable");
-    	GameRegistry.addRecipe(new ItemStack(Cable, 12), new Object[] {
-    		"###", "$*$", "###", Character.valueOf('#'), Block.cloth, Character.valueOf('*'), Item.ingotGold, Character.valueOf('$'), Item.redstone
-    	});
-    	
-    	GameRegistry.registerBlock(SuperCalcConsole, "Super Computer Console");
-    	LanguageRegistry.addName(SuperCalcConsole, "Super Computer Console");
-    	
-    	GameRegistry.registerBlock(SuperCalc, "Super Computer");
-    	LanguageRegistry.addName(SuperCalc, "Super Computer");
-    	GameRegistry.addRecipe(new ItemStack(SuperCalc, 1), new Object[] {
-    		"#o#", "#*#", "#o#", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix, Character.valueOf('o'), Block.obsidian
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.Overboard, "Overboard");
-    	/*GameRegistry.addRecipe(new ItemStack(Overboard, 1), new Object[] {
-    		"h*c", "$#$", "bml", Character.valueOf('*'), Item.boat, Character.valueOf('m'), Item.minecartEmpty, Character.valueOf('#'), Item.netherStar,
-    		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
-    		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
-    	});*/
-    	
-    	LanguageRegistry.addName(ModItems.Skid, "Skidbladnir");
-    	/*GameRegistry.addRecipe(new ItemStack(Skid, 1), new Object[] {
-    		"h*c", "$#$", "bml", Character.valueOf('*'), Item.boat, Character.valueOf('m'), Item.minecartEmpty, Character.valueOf('#'), Item.netherStar,
-    		Character.valueOf('$'), DataFragment, Character.valueOf('h'), OddHelmet, Character.valueOf('c'), OddChest,
-    		Character.valueOf('l'), OddLegs, Character.valueOf('b'), OddBoots
-    	});*/
-    	
-    	LanguageRegistry.addName(ModItems.QuantumMatrix, "Quantum Matrix");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.QuantumMatrix, 1), new Object[] {
-    		" * ", "*#*", " * ", Character.valueOf('*'), Item.diamond, Character.valueOf('#'), ModItems.QuantumOrb
-    	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.QuantumMatrix, 1), new Object[] {
-    	    ModItems.QuantumContainmentCell, ModItems.QuantumOrb
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.QuantumContainmentCell, "Quantum Containment Cell");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.QuantumContainmentCell, 1), new Object[] {
-    		" * ", "*#*", " * ", Character.valueOf('*'), Item.diamond, Character.valueOf('#'), Block.glass
-    	});
-    	
-    	GameRegistry.registerBlock(TowerFloor, ItemBlockTowerFloor.class, "Tower Floor");
-    	LanguageRegistry.addName(TowerFloor, "Tower Floor");
-    	
-    	GameRegistry.registerBlock(TowerConsole, "Tower Console");
-    	LanguageRegistry.addName(TowerConsole, "Tower Console");
-    	
-    	GameRegistry.registerBlock(Marabounta, "Marabounta");
-    	LanguageRegistry.addName(Marabounta, "Marabounta");
-    	
-    	GameRegistry.registerBlock(VirtualBlock, ItemBlockVirtual.class, "Virtual Block");
-    	LanguageRegistry.addName(VirtualBlock, "Virtual Block");
-    	
-    	//Biomes
-    	//GameRegistry.addBiome(lyokocarthage);
-    	//GameRegistry.addBiome(lyokodesert);
-    	GameRegistry.registerBlock(LyokoCarthagePortal, "Carthage Portal");
-    	LanguageRegistry.addName(LyokoCarthagePortal, "Carthage Portal");
-    	
-    	GameRegistry.registerBlock(LyokoPolarPortal, "LyokoPolarPortal");
-    	LanguageRegistry.addName(LyokoPolarPortal, "Ice Portal");
-    	
-    	GameRegistry.registerBlock(LyokoDesertPortal, "Desert Portal");
-    	LanguageRegistry.addName(LyokoDesertPortal, "Desert Portal");
-    	
-    	GameRegistry.registerBlock(LyokoForestPortal, "Forest Portal");
-    	LanguageRegistry.addName(LyokoForestPortal, "Forest Portal");
-    	
-    	GameRegistry.registerBlock(LyokoMountainPortal, "Mountain Portal");
-    	LanguageRegistry.addName(LyokoMountainPortal, "Mountain Portal");
-    	
-    	LanguageRegistry.addName(ModItems.DataFragment, "Data Fragment");
-    	
-    	LanguageRegistry.addName(ModItems.Uranium, "Uranium");
-    	GameRegistry.addSmelting(UraniumOre.blockID, new ItemStack(ModItems.Uranium, 1), 5F);
-    	
-    	LanguageRegistry.addName(ModItems.UraniumCell, "Uranium Fuel Cell");
-    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.UraniumCell),"ingotUranium",
-    	        ModItems.EmptyCell));
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.UraniumCell, 2),"*#*",
-    			Character.valueOf('*'), ModItems.DepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
-    	
-    	LanguageRegistry.addName(ModItems.DepletedUraniumCell, "Depleted Uranium Fuel Cell");
-    	
-    	LanguageRegistry.addName(ModItems.Lead, "Lead Isotope 210");
-    	GameRegistry.addSmelting(LeadOre.blockID, new ItemStack(ModItems.Lead, 1), 5F);
-    	
-    	LanguageRegistry.addName(ModItems.EmptyCell, "Empty Fuel Cell");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.EmptyCell, 16), new Object[] {
-    		" # ", "#*#", " # ", Character.valueOf('*'), Block.glass, Character.valueOf('#'), Item.ingotIron
-    	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.EmptyCell, 1), new Object[] {
-    	    ModItems.DepletedLeadCell
-    	});
-    	GameRegistry.addShapelessRecipe(new ItemStack(ModItems.EmptyCell, 1), new Object[] {
-    	    ModItems.DepletedUraniumCell
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.LeadCell, "Lead Isotope 210 Fuel Cell");
-    	CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.LeadCell),"ingotRadioactiveLead",
-    	        ModItems.EmptyCell));
-    	CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.LeadCell, 2),"*#*",
-    			Character.valueOf('*'), ModItems.DepletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
-    	
-    	LanguageRegistry.addName(ModItems.DepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
-    	
-    	LanguageRegistry.addName(ModItems.QuantumOrb, "Quantum Orb");
-    	GameRegistry.addSmelting(QuantumOre.blockID, new ItemStack(ModItems.QuantumOrb, 1), 5F);
-    	
-    	LanguageRegistry.addName(ModItems.AelitaHelmet, "Aelita's Helmet");
-    	LanguageRegistry.addName(ModItems.AelitaChest, "Aelita's Chestplate");
-    	LanguageRegistry.addName(ModItems.AelitaLegs, "Aelita's Leggings");
-    	LanguageRegistry.addName(ModItems.AelitaBoots, "Aelita's Boots");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.AelitaBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 9)
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.OddHelmet, "Odd's Helmet");
-    	LanguageRegistry.addName(ModItems.OddChest, "Odd's Chestplate");
-    	LanguageRegistry.addName(ModItems.OddLegs, "Odd's Leggings");
-    	LanguageRegistry.addName(ModItems.OddBoots, "Odd's Boots");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.OddHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.OddChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.OddLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.OddBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 13)
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.UlrichHelmet, "Ulrich's Helmet");
-    	LanguageRegistry.addName(ModItems.UlrichChest, "Ulrich's Chestplate");
-    	LanguageRegistry.addName(ModItems.UlrichLegs, "Ulrich's Leggings");
-    	LanguageRegistry.addName(ModItems.UlrichBoots, "Ulrich's Boots");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.UlrichBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 11)
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.YumiHelmet, "Yumi's Helmet");
-    	LanguageRegistry.addName(ModItems.YumiChest, "Yumi's Chestplate");
-    	LanguageRegistry.addName(ModItems.YumiLegs, "Yumi's Leggings");
-    	LanguageRegistry.addName(ModItems.YumiBoots, "Yumi's Boots");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.YumiBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 5)
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.WilliamHelmet, "William's Helmet");
-    	LanguageRegistry.addName(ModItems.WilliamChest, "William's Chestplate");
-    	LanguageRegistry.addName(ModItems.WilliamLegs, "William's Leggings");
-    	LanguageRegistry.addName(ModItems.WilliamBoots, "William's Boots");
-    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamHelmet, 1), new Object[] {
-    		"***", "*#*", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamChest, 1), new Object[] {
-    		"*#*", "***", "***", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamLegs, 1), new Object[] {
-    		"***", "*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
-    	});
-    	GameRegistry.addRecipe(new ItemStack(ModItems.WilliamBoots, 1), new Object[] {
-    		"*#*", "* *", Character.valueOf('*'), ModItems.DataFragment, Character.valueOf('#'), new ItemStack(Item.dyePowder, 1, 12)
-    	});
-    	
-    	LanguageRegistry.addName(ModItems.Katana, "Katana");
-    	LanguageRegistry.addName(ModItems.Zweihander, "Zweihander");
-    	LanguageRegistry.addName(ModItems.Fan, "Fan");
-    	LanguageRegistry.addName(ModItems.EnergyField, "Energy Field");
-    	LanguageRegistry.addName(ModItems.Glove, "Laser Arrow Glove");
-    	LanguageRegistry.addName(ModItems.LaserArrow, "Laser Arrow");
-    	
-    	GameRegistry.registerBlock(LeadOre, ItemBlockEffect.class,"Lead Isotope 210 Ore");
-    	LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
-    	
-    	GameRegistry.registerBlock(UraniumOre, ItemBlockEffect.class,"Uranium Ore");
-    	LanguageRegistry.addName(UraniumOre, "Uranium Ore");
-    			
-    	GameRegistry.registerBlock(TowerBlock,"Tower");
-    	LanguageRegistry.addName(TowerBlock, "Tower");
-    	
-    	GameRegistry.registerBlock(TowerBase, "Tower Base");
-    	LanguageRegistry.addName(TowerBase, "Tower Base");
-    	
-    	GameRegistry.registerBlock(Grass, "Lyoko Grass");
-    	LanguageRegistry.addName(Grass, "Lyoko Grass");
-    	
-    	GameRegistry.registerBlock(Stone, "Lyoko Stone");
-    	LanguageRegistry.addName(Stone, "Lyoko Stone");
-    	
-    	GameRegistry.registerBlock(Sand, "Lyoko Sand");
-    	LanguageRegistry.addName(Sand, "Lyoko Sand");
-    	
-    	GameRegistry.registerBlock(Ice, "Lyoko Ice");
-    	LanguageRegistry.addName(Ice, "Lyoko Ice");
-    	
-    	GameRegistry.registerBlock(Log, "Lyoko Log");
-    	LanguageRegistry.addName(Log, "Lyoko Log");
-    	
- //   	GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
- //   	LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
-    	
-    	GameRegistry.registerBlock(Carthage, "Carthage Block");
-    	LanguageRegistry.addName(Carthage, "Carthage Block");
-    	
-    	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
-    	LanguageRegistry.addName(QuantumOre, "Quantum Ore");
-    	
-//    	GameRegistry.registerBlock(DigitalSeaFlowing, "Digital Sea Flowing");
-//    	LanguageRegistry.addName(DigitalSeaFlowing, "Digital Sea Flowing");
-    	
-//    	GameRegistry.registerBlock(DigitalSeaStill, "Digital Sea Still");
-//    	LanguageRegistry.addName(DigitalSeaStill, "Digital Sea Still");
-    	
+    	MinecraftForge.setBlockHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
+    	MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
+    	MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
     	
     	//Lyoko Sectors Dimension Register
     	DimensionManager.registerProviderType(DimensionIds.ICE, LyokoPolarSector.class, true);
@@ -498,7 +194,7 @@ public class CodeLyoko
     	DimensionManager.registerDimension(DimensionIds.FOREST, DimensionIds.FOREST);
     	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
     	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
-
+    	
     	proxy.addChestLoot();
     	proxy.registerEntities();
     	proxy.registerEntityNames();

@@ -1,6 +1,7 @@
 package matt.lyoko.render.tileentity;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.render.TileAnimator;
@@ -52,10 +53,10 @@ public class RenderTower extends TileEntitySpecialRenderer {
         float offsetZ = 0;
         float rotationY = 0;
         
-        if(entity.worldObj.getBlockId((int)x-1, (int)y, (int)z-1) == CodeLyoko.TowerBlock.blockID
-                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z+1) == CodeLyoko.TowerBlock.blockID
-                || entity.worldObj.getBlockId((int)x-1, (int)y, (int)z+1) == CodeLyoko.TowerBlock.blockID
-                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z-1) == CodeLyoko.TowerBlock.blockID) {
+        if(entity.worldObj.getBlockId((int)x-1, (int)y, (int)z-1) == ModBlocks.TowerBlock.blockID
+                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z+1) == ModBlocks.TowerBlock.blockID
+                || entity.worldObj.getBlockId((int)x-1, (int)y, (int)z+1) == ModBlocks.TowerBlock.blockID
+                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z-1) == ModBlocks.TowerBlock.blockID) {
             width = 0.8F;
             System.out.println(width);
             

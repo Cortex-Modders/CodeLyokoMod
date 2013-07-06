@@ -67,7 +67,7 @@ public class BlockCable extends BlockContainer
 	
 	public void syncBlock2(World world, int x, int y, int z, TileEntityCable localCable)
 	{
-		if(world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID)
 		{
 			TileEntityScanner tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);
 			if(tile != null && !(localCable.getSector().equals("")) && tile.sector == -1)
@@ -80,7 +80,7 @@ public class BlockCable extends BlockContainer
 	
 	public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
 	{
-		if(world.getBlockId(x, y, z) == CodeLyoko.SuperCalc.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID)
 		{
 			TileEntitySuperCalc tile = (TileEntitySuperCalc)world.getBlockTileEntity(x, y, z);
 			if(tile != null && !(localCable.getSector().equals("")) && tile.sector.equals(""))
@@ -178,8 +178,8 @@ public class BlockCable extends BlockContainer
 	
 	private boolean validBlock(int block)
 	{
-		if(block == this.blockID || block == CodeLyoko.SuperCalc.blockID || block == CodeLyoko.Scanner.blockID
-				|| block == CodeLyoko.SuperCalcConsole.blockID)
+		if(block == this.blockID || block == ModBlocks.SuperCalc.blockID || block == ModBlocks.Scanner.blockID
+				|| block == ModBlocks.SuperCalcConsole.blockID)
 		{
 			return true;
 		}

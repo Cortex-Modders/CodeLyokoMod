@@ -1,5 +1,7 @@
 package matt.lyoko;
 
+import matt.lyoko.blocks.ModBlocks;
+import matt.lyoko.client.SoundHandler;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.handlers.ClientTickHandler;
@@ -21,7 +23,6 @@ import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy
 {
-
 	/**
 	 * client side only register stuff...
 	 */
@@ -44,9 +45,9 @@ public class CommonProxy
 	public void registerOreDictionaryOres()
 	{
 		OreDictionary.registerOre("ingotRadioactiveLead", ModItems.Lead);
-		OreDictionary.registerOre("oreRadioactiveLead", CodeLyoko.LeadOre);
+		OreDictionary.registerOre("oreRadioactiveLead", ModBlocks.LeadOre);
 		OreDictionary.registerOre("ingotUranium", ModItems.Uranium);
-		OreDictionary.registerOre("oreUranium", CodeLyoko.UraniumOre);
+		OreDictionary.registerOre("oreUranium", ModBlocks.UraniumOre);
 	}
 	
 	public void registerEventHandlers()
@@ -54,6 +55,7 @@ public class CommonProxy
     	EventHandler handler = new EventHandler();
     	MinecraftForge.EVENT_BUS.register(handler);
     	GameRegistry.registerPlayerTracker(handler);
+		MinecraftForge.EVENT_BUS.register(new SoundHandler());
 	}
 	
 	public void addChestLoot()
@@ -84,11 +86,12 @@ public class CommonProxy
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.QuantumContainmentCell), 1, 1, 005));
     }
 	
-	public void registerEntities() {
+	public void registerEntities()
+	{
         // Monsters.
-//        EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-//        EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-
+        //EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
+        //EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
+		
         // Vehicles
         EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityIds.SKID, CodeLyoko.instance, 50, 1, true);
         EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityIds.OVERBOARD, CodeLyoko.instance, 50, 1, true);
@@ -98,7 +101,8 @@ public class CommonProxy
         EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
     }
     
-    public void registerEntityNames() {
+    public void registerEntityNames()
+    {
         // Monsters.
         LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
         LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");

@@ -1,6 +1,7 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +16,6 @@ import net.minecraft.world.World;
 
 public class ArmorLyoko extends ItemArmor
 {
-
         public ArmorLyoko(int i, EnumArmorMaterial enumarmormaterial, int j, int k, String str)
         {
                 super(i, enumarmormaterial, j, k);
@@ -69,9 +69,9 @@ public class ArmorLyoko extends ItemArmor
         				for(int x = 0; x < 9; x++)
         				{
         					ItemStack stack2 = player.inventory.getStackInSlot(x);
-        					if((stack2 == null || stack2 == new ItemStack(CodeLyoko.VirtualBlock, stack2.stackSize)) && !player.inventory.hasItem(CodeLyoko.VirtualBlock.blockID))
+        					if((stack2 == null || stack2 == new ItemStack(ModBlocks.VirtualBlock, stack2.stackSize)) && !player.inventory.hasItem(ModBlocks.VirtualBlock.blockID))
         					{
-        						player.inventory.setInventorySlotContents(x, new ItemStack(CodeLyoko.VirtualBlock, 1));
+        						player.inventory.setInventorySlotContents(x, new ItemStack(ModBlocks.VirtualBlock, 1));
         					}
         					if((stack2 == null || stack2 == new ItemStack(ModItems.EnergyField, stack2.stackSize)) && !player.inventory.hasItem(ModItems.EnergyField.itemID))
         					{
@@ -82,7 +82,7 @@ public class ArmorLyoko extends ItemArmor
         			else if (helmet.getItem() == ModItems.OddHelmet && chest.getItem() == ModItems.OddChest
         					&& legs.getItem() == ModItems.OddLegs && boots.getItem() == ModItems.OddBoots)
         			{
-        				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 20, 3)));
+        				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 1, 3)));
         				player.fallDistance = 0;
         				for(int x = 0; x < 9; x++)
         				{
@@ -98,7 +98,7 @@ public class ArmorLyoko extends ItemArmor
         			{
         				if(player.isSprinting())
         				{
-        					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 20, 2)));
+        					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 1, 2)));
         				}
         				player.fallDistance = 0;
         				for(int x = 0; x < 9; x++)
@@ -115,15 +115,12 @@ public class ArmorLyoko extends ItemArmor
         			{
         				player.getFoodStats().setFoodSaturationLevel(40.0F);
         				player.getFoodStats().setFoodLevel(20);
-        				player.fallDistance = 0;
-        				if(player instanceof EntityPlayerMP)
+        				player.addPotionEffect((new PotionEffect(Potion.jump.getId(), 1, 1)));
+        				if(player.isSprinting())
         				{
-        					ItemInWorldManager iiwm = ((EntityPlayerMP)player).theItemInWorldManager;
-        					if(newReachDistance != iiwm.getBlockReachDistance())
-        					{
-        						iiwm.setBlockReachDistance(newReachDistance);
-        					}
+        					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 1, 0)));
         				}
+        				player.fallDistance = 0;
         				for(int x = 0; x < 9; x++)
         				{
         					ItemStack stack2 = player.inventory.getStackInSlot(x);
@@ -138,8 +135,8 @@ public class ArmorLyoko extends ItemArmor
         			{
         				if(player.isSprinting())
         				{
-        					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 20, 2)));
-        					player.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 20, 2)));
+        					player.addPotionEffect((new PotionEffect(Potion.moveSpeed.getId(), 1, 2)));
+        					player.addPotionEffect((new PotionEffect(Potion.invisibility.getId(), 1, 2)));
         				}
         				player.fallDistance = 0;
         				for(int x = 0; x < 9; x++)
@@ -158,15 +155,19 @@ public class ArmorLyoko extends ItemArmor
     				&& player.capabilities.isCreativeMode == false)
 			{
 				player.capabilities.allowFlying = false;
-				if(player instanceof EntityPlayerMP)
+				if(player.capabilities.isFlying)
 				{
-					ItemInWorldManager iiwm = ((EntityPlayerMP)player).theItemInWorldManager;
-					if(iiwm.getBlockReachDistance() != defaultReachDistance)
-					{
-						iiwm.setBlockReachDistance(defaultReachDistance);
-					}
+					player.capabilities.isFlying = false;
 				}
 			}
+        }
+        
+        @Override
+        public boolean isValidArmor(ItemStack stack, int armorType, Entity ent)
+        {
+        	if(ent instanceof EntityPlayer)
+        		return true;
+        	return false;
         }
         
         @Override

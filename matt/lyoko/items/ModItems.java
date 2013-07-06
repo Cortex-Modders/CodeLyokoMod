@@ -1,5 +1,6 @@
 package matt.lyoko.items;
 
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import matt.lyoko.lib.ItemIds;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
@@ -8,8 +9,8 @@ import net.minecraftforge.common.EnumHelper;
 
 public class ModItems
 {
-    private static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
-    private static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 40, new int[] {5, 10, 8, 5}, 30);
+    public static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
+    public static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 40, new int[] {5, 10, 8, 5}, 30);
     
     public static Item Katana;
     public static Item Zweihander;
@@ -93,11 +94,49 @@ public class ModItems
         QuantumMatrix = new ItemLyoko(ItemIds.ITEM_QUANTUM_MATRIX).setUnlocalizedName("QuantumMatrix");
         QuantumContainmentCell = new ItemLyoko(ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL).setUnlocalizedName("QuantumContainmentCell");
         
-        registerRecipes();
+        registerLanguage();
     }
     
-    private static void registerRecipes() {
-        
+    private static void registerLanguage()
+    {
+    	LanguageRegistry.addName(Overboard, "Overboard");
+    	LanguageRegistry.addName(Skid, "Skidbladnir");
+    	LanguageRegistry.addName(QuantumMatrix, "Quantum Matrix");
+    	LanguageRegistry.addName(QuantumContainmentCell, "Quantum Containment Cell");
+    	LanguageRegistry.addName(DataFragment, "Data Fragment");
+    	LanguageRegistry.addName(Uranium, "Uranium");
+    	LanguageRegistry.addName(UraniumCell, "Uranium Fuel Cell");
+    	LanguageRegistry.addName(DepletedUraniumCell, "Depleted Uranium Fuel Cell");
+    	LanguageRegistry.addName(Lead, "Lead Isotope 210");
+    	LanguageRegistry.addName(EmptyCell, "Empty Fuel Cell");
+    	LanguageRegistry.addName(LeadCell, "Lead Isotope 210 Fuel Cell");
+    	LanguageRegistry.addName(DepletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
+    	LanguageRegistry.addName(QuantumOrb, "Quantum Orb");
+    	LanguageRegistry.addName(AelitaHelmet, "Aelita's Helmet");
+    	LanguageRegistry.addName(AelitaChest, "Aelita's Chestplate");
+    	LanguageRegistry.addName(AelitaLegs, "Aelita's Leggings");
+    	LanguageRegistry.addName(AelitaBoots, "Aelita's Boots");
+    	LanguageRegistry.addName(OddHelmet, "Odd's Helmet");
+    	LanguageRegistry.addName(OddChest, "Odd's Chestplate");
+    	LanguageRegistry.addName(OddLegs, "Odd's Leggings");
+    	LanguageRegistry.addName(OddBoots, "Odd's Boots");
+    	LanguageRegistry.addName(UlrichHelmet, "Ulrich's Helmet");
+    	LanguageRegistry.addName(UlrichChest, "Ulrich's Chestplate");
+    	LanguageRegistry.addName(UlrichLegs, "Ulrich's Leggings");
+    	LanguageRegistry.addName(UlrichBoots, "Ulrich's Boots");
+    	LanguageRegistry.addName(YumiHelmet, "Yumi's Helmet");
+    	LanguageRegistry.addName(YumiChest, "Yumi's Chestplate");
+    	LanguageRegistry.addName(YumiLegs, "Yumi's Leggings");
+    	LanguageRegistry.addName(YumiBoots, "Yumi's Boots");
+    	LanguageRegistry.addName(WilliamHelmet, "William's Helmet");
+    	LanguageRegistry.addName(WilliamChest, "William's Chestplate");
+    	LanguageRegistry.addName(WilliamLegs, "William's Leggings");
+    	LanguageRegistry.addName(WilliamBoots, "William's Boots");
+    	LanguageRegistry.addName(Katana, "Katana");
+    	LanguageRegistry.addName(Zweihander, "Zweihander");
+    	LanguageRegistry.addName(Fan, "Fan");
+    	LanguageRegistry.addName(EnergyField, "Energy Field");
+    	LanguageRegistry.addName(Glove, "Laser Arrow Glove");
+    	LanguageRegistry.addName(LaserArrow, "Laser Arrow");
     }
-    
 }

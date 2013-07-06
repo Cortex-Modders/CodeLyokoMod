@@ -312,7 +312,7 @@ public class BlockFlowingDigitalSea extends BlockFlowing implements ILiquid {
 
 	@Override
 	public int stillLiquidId() {
-		return CodeLyoko.DigitalSeaStill.blockID;
+		return ModBlocks.DigitalSeaStill.blockID;
 	}
 
 	@Override

@@ -20,15 +20,15 @@ public class BlockTowerFloor extends Block
 	
 	public boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
     {
-    	if(access.getBlockId(x+1, y, z+1) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x+1, y, z) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x+1, y, z-1) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x, y, z+1) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x, y, z) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x, y, z-1) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x-1, y, z+1) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x-1, y, z) == CodeLyoko.TowerFloor.blockID
-    			&& access.getBlockId(x-1, y, z-1) == CodeLyoko.TowerFloor.blockID)
+    	if(access.getBlockId(x+1, y, z+1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x+1, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x+1, y, z-1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z+1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z-1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z+1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z-1) == ModBlocks.TowerFloor.blockID)
     	{
     		return true;
     	}
@@ -43,7 +43,7 @@ public class BlockTowerFloor extends Block
 		{
 			for(int i = y + 1; i < 256; i++)
 			{
-				if(world.getBlockId(x, i, z) == CodeLyoko.TowerFloor.blockID)
+				if(world.getBlockId(x, i, z) == ModBlocks.TowerFloor.blockID)
 				{
 					distance = i + 2;
 					break;
@@ -55,7 +55,7 @@ public class BlockTowerFloor extends Block
 		{
 			for(int i = 0; i < y; i++)
 			{
-				if(world.getBlockId(x, i, z) == CodeLyoko.TowerFloor.blockID)
+				if(world.getBlockId(x, i, z) == ModBlocks.TowerFloor.blockID)
 				{
 					distance = i + 2;
 					break;

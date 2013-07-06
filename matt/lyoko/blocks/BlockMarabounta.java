@@ -94,47 +94,47 @@ public class BlockMarabounta extends BlockContainer
 	{
 		TileEntityMarabounta tem;
 		
-		if(world.getBlockId(x, y, z) == CodeLyoko.Log.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.Log.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.Log.blockID;
+			tem.consumedBlock = ModBlocks.Log.blockID;
 		}
-		else if(world.getBlockId(x, y, z) == CodeLyoko.Ice.blockID)
+		else if(world.getBlockId(x, y, z) == ModBlocks.Ice.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.Ice.blockID;
+			tem.consumedBlock = ModBlocks.Ice.blockID;
 		}
-		else if(world.getBlockId(x, y, z) == CodeLyoko.Grass.blockID)
+		else if(world.getBlockId(x, y, z) == ModBlocks.Grass.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.Grass.blockID;
+			tem.consumedBlock = ModBlocks.Grass.blockID;
 		}
-		else if(world.getBlockId(x, y, z) == CodeLyoko.Sand.blockID)
+		else if(world.getBlockId(x, y, z) == ModBlocks.Sand.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.Sand.blockID;
+			tem.consumedBlock = ModBlocks.Sand.blockID;
 		}
-		else if(world.getBlockId(x, y, z) == CodeLyoko.Stone.blockID)
+		else if(world.getBlockId(x, y, z) == ModBlocks.Stone.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.Stone.blockID;
+			tem.consumedBlock = ModBlocks.Stone.blockID;
 		}
-		else if(world.getBlockId(x, y, z) == CodeLyoko.Carthage.blockID)
+		else if(world.getBlockId(x, y, z) == ModBlocks.Carthage.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.Carthage.blockID;
+			tem.consumedBlock = ModBlocks.Carthage.blockID;
 		}
-		else if(world.getBlockId(x, y, z) == CodeLyoko.VirtualBlock.blockID)
+		else if(world.getBlockId(x, y, z) == ModBlocks.VirtualBlock.blockID)
 		{
 			world.setBlock(x, y, z, blockID);
 			tem = (TileEntityMarabounta) world.getBlockTileEntity(x, y, z);
-			tem.consumedBlock = CodeLyoko.VirtualBlock.blockID;
+			tem.consumedBlock = ModBlocks.VirtualBlock.blockID;
 		}
 	}
 	

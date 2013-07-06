@@ -1,6 +1,7 @@
 package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -29,14 +30,14 @@ public class TileEntitySuperCalcConsole extends TileEntity
 	
 	public void syncCable(World world, int x, int y, int z)
 	{
-		if(world.getBlockId(x, y, z) == CodeLyoko.Cable.blockID && world.getBlockTileEntity(x, y, z) != null)
+		if(world.getBlockId(x, y, z) == ModBlocks.Cable.blockID && world.getBlockTileEntity(x, y, z) != null)
 		{
 			TileEntityCable cable = (TileEntityCable)world.getBlockTileEntity(x, y, z);
 			if(cable != null && cable.getCoolDown() == 0 && cable.getSector().equals(""))
 			{
 				cable.resetCoolDown();
 				cable.setSector(sector + "scc");
-				world.notifyBlocksOfNeighborChange(x, y, z, CodeLyoko.Cable.blockID);
+				world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.Cable.blockID);
 			}
 		}
 	}

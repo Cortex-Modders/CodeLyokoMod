@@ -1,6 +1,7 @@
 package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -23,7 +24,7 @@ public class TileEntityMarabounta extends TileEntity
 	
 	public void syncMarabounta(int x, int y, int z)
 	{
-		if(worldObj.getBlockId(x, y, z) == CodeLyoko.Marabounta.blockID && worldObj.getBlockTileEntity(x, y, z) != null
+		if(worldObj.getBlockId(x, y, z) == ModBlocks.Marabounta.blockID && worldObj.getBlockTileEntity(x, y, z) != null
 				&& worldObj.getBlockMetadata(x, y, z) == 0)
 		{
 			if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1)

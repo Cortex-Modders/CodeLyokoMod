@@ -1,5 +1,6 @@
 package matt.lyoko;
 
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class LyokoTab extends CreativeTabs {
@@ -11,7 +12,7 @@ public class LyokoTab extends CreativeTabs {
 	
     public int getTabIconItemIndex()
     {
-    	return CodeLyoko.Log.blockID;
+    	return ModBlocks.Log.blockID;
                            
     }
 

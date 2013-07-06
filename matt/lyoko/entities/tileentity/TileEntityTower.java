@@ -1,6 +1,7 @@
 package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -79,7 +80,7 @@ public class TileEntityTower extends TileEntity
 	
 	public void syncTower(int x, int y, int z, String newOwner)
 	{
-		if(worldObj.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID && worldObj.getBlockTileEntity(x, y, z) != null &&
+		if(worldObj.getBlockId(x, y, z) == ModBlocks.TowerBlock.blockID && worldObj.getBlockTileEntity(x, y, z) != null &&
 				((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner != newOwner &&
 				ownerValue(newOwner) > ownerValue(((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner))
 		{
@@ -88,7 +89,7 @@ public class TileEntityTower extends TileEntity
 				((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner = newOwner;
 			}
 		}
-		else if(worldObj.getBlockId(x, y, z) == CodeLyoko.TowerBlock.blockID && worldObj.getBlockTileEntity(x, y, z) != null &&
+		else if(worldObj.getBlockId(x, y, z) == ModBlocks.TowerBlock.blockID && worldObj.getBlockTileEntity(x, y, z) != null &&
 				((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner != newOwner &&
 				newOwner.equals("none") && ((TileEntityTower)worldObj.getBlockTileEntity(x, y, z)).owner.equals("reset"))
 		{

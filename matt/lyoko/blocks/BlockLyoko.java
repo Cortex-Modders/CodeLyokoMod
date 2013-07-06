@@ -24,35 +24,35 @@ public class BlockLyoko extends Block
 	@Override
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		if(this.blockID == CodeLyoko.Grass.blockID)
+		if(this.blockID == ModBlocks.Grass.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
 		}
-		if(this.blockID == CodeLyoko.Stone.blockID)
+		if(this.blockID == ModBlocks.Stone.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokostone");
 		}
-		if(this.blockID == CodeLyoko.Sand.blockID)
+		if(this.blockID == ModBlocks.Sand.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokosand");
 		}
-		if(this.blockID == CodeLyoko.Log.blockID)
+		if(this.blockID == ModBlocks.Log.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokolog");
 		}
-		if(this.blockID == CodeLyoko.Carthage.blockID)
+		if(this.blockID == ModBlocks.Carthage.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:carthage");
 		}
-		if(this.blockID == CodeLyoko.QuantumOre.blockID)
+		if(this.blockID == ModBlocks.QuantumOre.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:quantumore");
 		}
-		if(this.blockID == CodeLyoko.LeadOre.blockID)
+		if(this.blockID == ModBlocks.LeadOre.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:lead");
 		}
-		if(this.blockID == CodeLyoko.UraniumOre.blockID)
+		if(this.blockID == ModBlocks.UraniumOre.blockID)
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:uranium");
 		}
@@ -65,7 +65,7 @@ public class BlockLyoko extends Block
 	
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
 	{
-		if(this.blockID == CodeLyoko.LeadOre.blockID || this.blockID == CodeLyoko.UraniumOre.blockID)
+		if(this.blockID == ModBlocks.LeadOre.blockID || this.blockID == ModBlocks.UraniumOre.blockID)
 		{
 			if(par5Entity instanceof EntityLiving)
 			{
@@ -81,7 +81,7 @@ public class BlockLyoko extends Block
 			}
 		}
 		
-		else if(this.blockID == CodeLyoko.QuantumOre.blockID)
+		else if(this.blockID == ModBlocks.QuantumOre.blockID)
 		{
 			if(par5Entity instanceof EntityLiving)
 			{

@@ -1,6 +1,7 @@
 package matt.lyoko.items;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,7 @@ public class ItemBlockEffect extends ItemBlock
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
 	{
-		if(stack.itemID == CodeLyoko.LeadOre.blockID || stack.itemID == CodeLyoko.UraniumOre.blockID)
+		if(stack.itemID == ModBlocks.LeadOre.blockID || stack.itemID == ModBlocks.UraniumOre.blockID)
 		{
 			if(ent instanceof EntityPlayer)
 			{
@@ -34,7 +35,7 @@ public class ItemBlockEffect extends ItemBlock
 				((EntityLiving)ent).addPotionEffect((new PotionEffect(Potion.poison.getId(), 500, 0)));
 			}
 		}
-		else if(stack.itemID == CodeLyoko.QuantumOre.blockID)
+		else if(stack.itemID == ModBlocks.QuantumOre.blockID)
 		{
 			if(ent instanceof EntityLiving)
 			{

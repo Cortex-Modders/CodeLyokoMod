@@ -26,17 +26,17 @@ public class BlockSuperCalc extends BlockContainer {
         
         public static boolean isMultiBlock(World world, int x, int y, int z)
         {
-        	if(world.getBlockId(x, y+1, z) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y+2, z) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y, z+1) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y, z) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y, z-1) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y, z+1) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y, z) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y, z-1) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y, z+1) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y, z) == CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y, z-1) == CodeLyoko.SuperCalc.blockID
+        	if(world.getBlockId(x, y+1, z) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y+2, z) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z+1) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z-1) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z+1) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z-1) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z+1) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z) == ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z-1) == ModBlocks.SuperCalc.blockID
         			&& checkNotConflicting(world, x, y, z))
         	{
         		return true;
@@ -46,19 +46,19 @@ public class BlockSuperCalc extends BlockContainer {
         
         public static boolean checkNotConflicting(World world, int x, int y, int z)
         {
-        	if(world.getBlockId(x+1, y-1, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y-1, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y-1, z-1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y-1, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y-1, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y-1, z-1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y-1, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y-1, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y-1, z-1) != CodeLyoko.SuperCalc.blockID
+        	if(world.getBlockId(x+1, y-1, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y-1, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y-1, z-1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y-1, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y-1, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y-1, z-1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y-1, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y-1, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y-1, z-1) != ModBlocks.SuperCalc.blockID
         			&& aroundBase(world, x, y, z)
         			&& aroundPillarLower(world, x, y, z)
         			&& aroundPillarUpper(world, x, y, z)
-        			&& world.getBlockId(x, y+3, z) != CodeLyoko.SuperCalc.blockID)
+        			&& world.getBlockId(x, y+3, z) != ModBlocks.SuperCalc.blockID)
         	{
         		return true;
         	}
@@ -67,18 +67,18 @@ public class BlockSuperCalc extends BlockContainer {
         
         public static boolean aroundBase(World world, int x, int y, int z)
         {
-        	if(world.getBlockId(x-2, y, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-2, y, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-2, y, z-1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+2, y, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+2, y, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+2, y, z-1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y, z+2) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y, z-2) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y, z+2) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y, z-2) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y, z+2) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y, z-2) != CodeLyoko.SuperCalc.blockID)
+        	if(world.getBlockId(x-2, y, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-2, y, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-2, y, z-1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+2, y, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+2, y, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+2, y, z-1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z+2) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y, z-2) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z+2) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y, z-2) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z+2) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y, z-2) != ModBlocks.SuperCalc.blockID)
         	{
         		return true;
         	}
@@ -87,14 +87,14 @@ public class BlockSuperCalc extends BlockContainer {
         
         public static boolean aroundPillarLower(World world, int x, int y, int z)
         {
-        	if(world.getBlockId(x+1, y+1, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y+1, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x+1, y+1, z-1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y+1, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y+1, z-1) != CodeLyoko.SuperCalc.blockID
-                	&& world.getBlockId(x-1, y+1, z+1) != CodeLyoko.SuperCalc.blockID
-                	&& world.getBlockId(x-1, y+1, z) != CodeLyoko.SuperCalc.blockID
-                	&& world.getBlockId(x-1, y+1, z-1) != CodeLyoko.SuperCalc.blockID)
+        	if(world.getBlockId(x+1, y+1, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y+1, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x+1, y+1, z-1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y+1, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y+1, z-1) != ModBlocks.SuperCalc.blockID
+                	&& world.getBlockId(x-1, y+1, z+1) != ModBlocks.SuperCalc.blockID
+                	&& world.getBlockId(x-1, y+1, z) != ModBlocks.SuperCalc.blockID
+                	&& world.getBlockId(x-1, y+1, z-1) != ModBlocks.SuperCalc.blockID)
         	{
         		return true;
         	}
@@ -103,10 +103,10 @@ public class BlockSuperCalc extends BlockContainer {
         
         public static boolean aroundPillarUpper(World world, int x, int y, int z)
         {
-        	if(world.getBlockId(x+1, y+2, z) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y+2, z+1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x, y+2, z-1) != CodeLyoko.SuperCalc.blockID
-        			&& world.getBlockId(x-1, y+2, z) != CodeLyoko.SuperCalc.blockID)
+        	if(world.getBlockId(x+1, y+2, z) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y+2, z+1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x, y+2, z-1) != ModBlocks.SuperCalc.blockID
+        			&& world.getBlockId(x-1, y+2, z) != ModBlocks.SuperCalc.blockID)
         	{
         		return true;
         	}

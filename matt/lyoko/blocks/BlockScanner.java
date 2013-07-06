@@ -51,11 +51,11 @@ public class BlockScanner extends BlockContainer
 	
 	public static boolean isMultiBlock(World world, int x, int y, int z)
     {
-    	if(world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
-    			&& world.getBlockId(x, y + 1, z) == CodeLyoko.Scanner.blockID
-    			&& world.getBlockId(x, y + 2, z) == CodeLyoko.Scanner.blockID
-    			&& world.getBlockId(x, y + 3, z) == CodeLyoko.Scanner.blockID
-    			&& world.getBlockId(x, y + 4, z) == CodeLyoko.Scanner.blockID)
+    	if(world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID
+    			&& world.getBlockId(x, y + 1, z) == ModBlocks.Scanner.blockID
+    			&& world.getBlockId(x, y + 2, z) == ModBlocks.Scanner.blockID
+    			&& world.getBlockId(x, y + 3, z) == ModBlocks.Scanner.blockID
+    			&& world.getBlockId(x, y + 4, z) == ModBlocks.Scanner.blockID)
     	{
     		return true;
     	}
@@ -102,19 +102,19 @@ public class BlockScanner extends BlockContainer
 			switch(tile.sector)
 			{
 			case 0:
-				portal = CodeLyoko.LyokoPolarPortal.blockID;
+				portal = ModBlocks.LyokoPolarPortal.blockID;
 				break;
 			case 1:
-				portal = CodeLyoko.LyokoDesertPortal.blockID;
+				portal = ModBlocks.LyokoDesertPortal.blockID;
 				break;
 			case 2:
-				portal = CodeLyoko.LyokoForestPortal.blockID;
+				portal = ModBlocks.LyokoForestPortal.blockID;
 				break;
 			case 3:
-				portal = CodeLyoko.LyokoMountainPortal.blockID;
+				portal = ModBlocks.LyokoMountainPortal.blockID;
 				break;
 			case 4:
-				portal = CodeLyoko.LyokoCarthagePortal.blockID;
+				portal = ModBlocks.LyokoCarthagePortal.blockID;
 				break;
 			default:
 				portal = 0;

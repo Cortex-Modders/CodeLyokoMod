@@ -1,6 +1,7 @@
 package matt.lyoko.render.tileentity;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.tileentity.TileEntityCable;
 import matt.lyoko.model.tileentity.ModelCable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -65,9 +66,9 @@ public class RenderCable extends TileEntitySpecialRenderer
 	
 	private boolean configSide(World world, int x, int y, int z)
 	{
-		if(world.getBlockId(x, y, z) == CodeLyoko.Cable.blockID || world.getBlockId(x, y, z) == CodeLyoko.SuperCalc.blockID
-				|| world.getBlockId(x, y, z) == CodeLyoko.Scanner.blockID
-				|| world.getBlockId(x, y, z) == CodeLyoko.SuperCalcConsole.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.Cable.blockID || world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID
+				|| world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID
+				|| world.getBlockId(x, y, z) == ModBlocks.SuperCalcConsole.blockID)
 		{
 			return true;
 		}

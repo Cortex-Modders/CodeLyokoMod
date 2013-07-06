@@ -35,7 +35,7 @@ public class BlockStationaryDigitalSea extends BlockStationary implements ILiqui
 	
 	@Override
 	public int stillLiquidId() {
-		return CodeLyoko.DigitalSeaStill.blockID;
+		return ModBlocks.DigitalSeaStill.blockID;
 	}
 
 	@Override
