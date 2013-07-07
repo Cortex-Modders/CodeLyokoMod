@@ -27,7 +27,7 @@ public class BlockDigitalSea extends Block
 	
 	public int quantityDropped(Random par1Random)
 	{
-		return 1;
+		return 0;
 	}
 	
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)

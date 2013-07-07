@@ -8,6 +8,7 @@ import matt.lyoko.client.SoundHandler;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
+import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.handlers.CommandHandler;
 import matt.lyoko.handlers.PacketHandler;
 import matt.lyoko.items.*;
@@ -25,6 +26,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.*;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.*;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -73,9 +75,9 @@ public class CodeLyoko
 		BlockIds.LYOKO_SAND = config.getBlock("lyokoSand", BlockIds.LYOKO_SAND_DEFAULT).getInt();
 		BlockIds.LYOKO_ICE = config.getBlock("lyokoIce", BlockIds.LYOKO_ICE_DEFAULT).getInt();
 		BlockIds.LYOKO_LOG = config.getBlock("lyokoLog", BlockIds.LYOKO_LOG_DEFAULT).getInt();
-		BlockIds.LYOKO_SEA_BLOCK = config.getBlock("lyokoSeaBlock", BlockIds.LYOKO_SEA_BLOCK_DEFAULT).getInt();
-		BlockIds.LYOKO_SEA_FLOWING = config.getBlock("lyokoSeaFlowing", BlockIds.LYOKO_SEA_FLOWING_DEFAULT).getInt();
-		BlockIds.LYOKO_SEA_STILL = config.getBlock("lyokoSeaStill", BlockIds.LYOKO_SEA_STILL_DEFAULT).getInt();
+		BlockIds.LYOKO_DIGITAL_SEA_BLOCK = config.getBlock("lyokoSeaBlock", BlockIds.LYOKO_DIGITAL_SEA_BLOCK_DEFAULT).getInt();
+		BlockIds.LYOKO_DIGITAL_SEA_LIQUID = config.getBlock("lyokoSeaFlowing", BlockIds.LYOKO_DIGITAL_SEA_LIQUID_DEFAULT).getInt();
+		BlockIds.CABLE = config.getBlock("cable", BlockIds.CABLE_DEFAULT).getInt();
 		BlockIds.LYOKO_VIRTUAL_BLOCK = config.getBlock("lyokovirtualblock", BlockIds.LYOKO_VIRTUAL_BLOCK_DEFAULT).getInt();
 		BlockIds.LYOKO_CARTHAGE = config.getBlock("lyokoCarthage", BlockIds.LYOKO_CARTHAGE_DEFAULT).getInt();
 		BlockIds.LYOKO_ORE = config.getBlock("lyokoOre", BlockIds.LYOKO_ORE_DEFAULT).getInt();
@@ -90,7 +92,6 @@ public class CodeLyoko
 		BlockIds.LYOKO_MARABOUNTA = config.getBlock("marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
 		BlockIds.TOWER_CONSOLE = config.getBlock("towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
 		BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
-		BlockIds.CABLE = config.getBlock("cable", BlockIds.CABLE_DEFAULT).getInt();
 		BlockIds.SCANNER = config.getBlock("scanner", BlockIds.SCANNER_DEFAULT).getInt();
 		BlockIds.SUPER_CALC_CONSOLE = config.getBlock("superCalcConsole", BlockIds.SUPER_CALC_CONSOLE_DEFAULT).getInt();
 		
@@ -154,6 +155,7 @@ public class CodeLyoko
 		
 		config.save();
 		
+		ModFluids.init();
 		ModItems.init();
 		ModBlocks.init();
 		

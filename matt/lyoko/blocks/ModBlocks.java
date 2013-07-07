@@ -2,6 +2,7 @@ package matt.lyoko.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import matt.lyoko.fluids.BlockDigitalSeaLiquid;
 import matt.lyoko.items.ItemBlockEffect;
 import matt.lyoko.items.ItemBlockTowerFloor;
 import matt.lyoko.items.ItemBlockVirtual;
@@ -21,8 +22,7 @@ public class ModBlocks
 	public static Block Carthage;// = new BlockLyoko(Lyoko_Carthage, 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
 	public static Block QuantumOre;// = new BlockLyoko(Lyoko_Ore, 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
 	public static Block DigitalSeaBlock;// = new BlockDigitalSea(Lyoko_Sea_Block, 9).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-	public static Block DigitalSeaFlowing;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
-	public static Block DigitalSeaStill;// = new BlockStationaryDigitalSea(Lyoko_Sea_Still, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill").setRequiresSelfNotify();
+	public static Block DigitalSeaLiquid;// = new BlockFlowingDigitalSea(Lyoko_Sea_Flowing, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
 	public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore, 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
 	public static Block VirtualBlock;
 	public static Block UraniumOre;
@@ -50,9 +50,8 @@ public class ModBlocks
     	Log = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
     	Carthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
     	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
- //   	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
- //   	DigitalSeaFlowing = new BlockFlowingDigitalSea(BlockIds.LYOKO_SEA_FLOWING, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
- //   	DigitalSeaStill = new BlockStationaryDigitalSea(BlockIds.LYOKO_SEA_STILL, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaStill");
+    	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_DIGITAL_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
+    	DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
     	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
     	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
     	VirtualBlock = new BlockVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
@@ -98,11 +97,10 @@ public class ModBlocks
     	GameRegistry.registerBlock(Sand, "Lyoko Sand");
     	GameRegistry.registerBlock(Ice, "Lyoko Ice");
     	GameRegistry.registerBlock(Log, "Lyoko Log");
-    	//GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
+    	GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
     	GameRegistry.registerBlock(Carthage, "Carthage Block");
     	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
-    	//GameRegistry.registerBlock(DigitalSeaFlowing, "Digital Sea Flowing");
-    	//GameRegistry.registerBlock(DigitalSeaStill, "Digital Sea Still");
+    	GameRegistry.registerBlock(DigitalSeaLiquid, "Digital Sea Liquid");
 	}
 	
 	public static void registerLanguage()
@@ -129,10 +127,9 @@ public class ModBlocks
     	LanguageRegistry.addName(Sand, "Lyoko Sand");
     	LanguageRegistry.addName(Ice, "Lyoko Ice");
     	LanguageRegistry.addName(Log, "Lyoko Log");
-    	//LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
+    	LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
     	LanguageRegistry.addName(Carthage, "Carthage Block");
     	LanguageRegistry.addName(QuantumOre, "Quantum Ore");
-    	//LanguageRegistry.addName(DigitalSeaFlowing, "Digital Sea Flowing");
-    	//LanguageRegistry.addName(DigitalSeaStill, "Digital Sea Still");
+    	LanguageRegistry.addName(DigitalSeaLiquid, "Digital Sea");
 	}
 }

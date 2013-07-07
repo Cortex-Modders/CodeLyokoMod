@@ -10,9 +10,9 @@ public class BlockIds {
     public static int LYOKO_SAND_DEFAULT = 1158;
     public static int LYOKO_ICE_DEFAULT = 1159;
     public static int LYOKO_LOG_DEFAULT = 1160;
-    public static int LYOKO_SEA_BLOCK_DEFAULT = 1161;
-    public static int LYOKO_SEA_FLOWING_DEFAULT = 1162;
-    public static int LYOKO_SEA_STILL_DEFAULT = 1163;
+    public static int LYOKO_DIGITAL_SEA_BLOCK_DEFAULT = 1161;
+    public static int LYOKO_DIGITAL_SEA_LIQUID_DEFAULT = 1162;
+    public static int CABLE_DEFAULT = 1163;
     public static int LYOKO_VIRTUAL_BLOCK_DEFAULT = 1164;
     public static int LYOKO_CARTHAGE_DEFAULT = 1165;
     public static int LYOKO_ORE_DEFAULT = 1166;
@@ -27,9 +27,8 @@ public class BlockIds {
     public static int LYOKO_MARABOUNTA_DEFAULT = 1175;
     public static int TOWER_CONSOLE_DEFAULT = 1176;
     public static int TOWER_FLOOR_DEFAULT = 1177;
-    public static int CABLE_DEFAULT = 1178;
-    public static int SCANNER_DEFAULT = 1179;
-    public static int SUPER_CALC_CONSOLE_DEFAULT = 1180;
+    public static int SCANNER_DEFAULT = 1178;
+    public static int SUPER_CALC_CONSOLE_DEFAULT = 1179;
     
     /* IDs loaded from config. */
     public static int LYOKO_TOWER;
@@ -39,9 +38,9 @@ public class BlockIds {
     public static int LYOKO_SAND;
     public static int LYOKO_ICE;
     public static int LYOKO_LOG;
-    public static int LYOKO_SEA_BLOCK;
-    public static int LYOKO_SEA_FLOWING;
-    public static int LYOKO_SEA_STILL;
+    public static int LYOKO_DIGITAL_SEA_BLOCK;
+    public static int LYOKO_DIGITAL_SEA_LIQUID;
+    public static int CABLE;
     public static int LYOKO_VIRTUAL_BLOCK;
     public static int LYOKO_CARTHAGE;
     public static int LYOKO_ORE;
@@ -56,7 +55,6 @@ public class BlockIds {
     public static int LYOKO_MARABOUNTA;
     public static int TOWER_CONSOLE;
     public static int TOWER_FLOOR;
-    public static int CABLE;
     public static int SCANNER;
     public static int SUPER_CALC_CONSOLE;
 }
