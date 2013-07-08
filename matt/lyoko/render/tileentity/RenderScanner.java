@@ -21,13 +21,7 @@ public class RenderScanner extends TileEntitySpecialRenderer {
      * Renders the TileEntity for the chest at a position.
      */
     public void render(TileEntityScanner entity, double x, double y, double z, float tick) {
-        int i;
-        System.out.println(tick);
-        if (!entity.func_70309_m()) {
-            i = 0;
-        } else {
-            i = entity.getBlockMetadata();
-        }
+        int i = entity.getBlockMetadata();
 
         this.func_110628_a(texture);
         GL11.glPushMatrix();

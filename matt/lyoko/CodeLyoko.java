@@ -154,7 +154,11 @@ public class CodeLyoko
 		DimensionIds.CARTHAGE = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
 		
 		config.save();
-		
+	}
+	
+	@EventHandler
+    public void CodeLyokoLoad(FMLInitializationEvent evt)
+    {
 		ModFluids.init();
 		ModItems.init();
 		ModBlocks.init();
@@ -200,12 +204,6 @@ public class CodeLyoko
     	proxy.addChestLoot();
     	proxy.registerEntities();
     	proxy.registerEntityNames();
-	}
-	
-	@EventHandler
-    public void CodeLyokoLoad(FMLInitializationEvent evt)
-    {
-    	
     }
     
 	@EventHandler

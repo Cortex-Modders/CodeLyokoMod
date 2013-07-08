@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 
 public class RenderTank extends RenderLiving {
 	
-    private static final ResourceLocation texture = new ResourceLocation("");
+    private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/models/tank.png");
     
     public RenderTank(ModelTank modeltank, float f) {
 		super(new ModelTank(), 0.5F);

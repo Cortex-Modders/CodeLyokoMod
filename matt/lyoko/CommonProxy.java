@@ -2,6 +2,8 @@ package matt.lyoko;
 
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.SoundHandler;
+import matt.lyoko.entities.mobs.EntityBlok;
+import matt.lyoko.entities.mobs.EntityMegaTank;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.handlers.ClientTickHandler;
@@ -89,8 +91,8 @@ public class CommonProxy
 	public void registerEntities()
 	{
         // Monsters.
-        //EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-        //EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
+        EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
+        EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
 		
         // Vehicles
         EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityIds.SKID, CodeLyoko.instance, 50, 1, true);

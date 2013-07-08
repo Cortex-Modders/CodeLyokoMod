@@ -294,7 +294,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 	}
 	
 	@Override
-	public boolean isStackValidForSlot(int slot, ItemStack stack)
+	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
 		for(int i = -1; i < 2; i++)
 		{

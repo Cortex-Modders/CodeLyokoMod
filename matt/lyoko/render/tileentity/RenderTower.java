@@ -36,12 +36,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
 
         this.func_110628_a(texture);
 
-        int i;
-        if (!entity.func_70309_m()) {
-            i = 0;
-        } else {
-            i = entity.getBlockMetadata();
-        }
+        int i = entity.getBlockMetadata();
 
         GL11.glPushMatrix();
         proxy.alphaOn();

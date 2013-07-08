@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 
 public class RenderBlok extends RenderLiving {
 	
-    private final ResourceLocation texture = new ResourceLocation("/mods/lyoko/textures/models/blok.png");
+    private final ResourceLocation texture = new ResourceLocation("lyoko:textures/models/blok.png");
     
     public RenderBlok(ModelBlok modelblok, float f) {
 		super(new ModelBlok(), 0.5F);

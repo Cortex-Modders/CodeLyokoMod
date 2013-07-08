@@ -12,7 +12,7 @@ public class EntityAILaserAttack extends EntityAIBase
 
     /** The entity the AI instance has been applied to */
     EntityLiving entityHost;
-    EntityLiving attackTarget;
+    EntityLivingBase attackTarget;
 
     /**
      * A decrementing tick that spawns a ranged attack once this value reaches 0. It is then set back to the
@@ -47,7 +47,12 @@ public class EntityAILaserAttack extends EntityAIBase
      */
     public boolean shouldExecute()
     {
-        EntityLiving var1 = (EntityLiving) this.entityHost.getAttackTarget();
+    	EntityLivingBase var1 = null;
+    	
+    	if(this.entityHost.getAttackTarget() instanceof EntityLivingBase)
+    	{
+    		var1 = this.entityHost.getAttackTarget();
+    	}
 
         if (var1 == null)
         {

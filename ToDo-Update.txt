@@ -2,6 +2,5 @@ ToDo in update. (These are the stuff that we undid so we could start testing qui
 
 -Fix DevCapesAPI. might require a seperate coremod that is packaged with the mod it serves. 
 -Make sure sounds played thru SoundManager work correctly
--Uncomment monster entity registration in CommonProxy.
--Fix right click with overboard
+-Fix Vehicles (not spawning with item)
 -Fix tower screen speed being weird depending on angle looked at.

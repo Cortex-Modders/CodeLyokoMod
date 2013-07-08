@@ -2,6 +2,7 @@ package matt.lyoko.entities.mobs;
 
 import matt.lyoko.CodeLyoko;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,12 +16,28 @@ public abstract class EntityLyoko extends EntityMob implements IMob
 {
     /** How much damage this mob's attacks deal */
     protected int attackStrength = 2;
+    private float MOB_SPEED = 0.5F;
 
     public EntityLyoko(World par1World)
     {
         super(par1World);
         this.experienceValue = 10;
-        this.setEntityHealth(50);
+    }
+    
+    @Override
+    protected void func_110147_ax()
+    {
+        super.func_110147_ax();
+        // Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
+        this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(50.0D);
+        // Follow Range - default 32.0D - min 0.0D - max 2048.0D
+        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(32.0D);
+        // Knockback Resistance - default 0.0D - min 0.0D - max 1.0D
+        this.func_110148_a(SharedMonsterAttributes.field_111266_c).func_111128_a(0.0D);
+        // Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
+        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(MOB_SPEED);
+        // Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
+        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(attackStrength);
     }
     
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
