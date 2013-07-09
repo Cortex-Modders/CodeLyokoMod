@@ -37,7 +37,7 @@ import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko", "SuperCalcConsole"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Code_Lyoko", "SuperCalcConsole", "LifePoints"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
@@ -153,7 +153,10 @@ public class CodeLyoko
 		DimensionIds.DESERT = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
 		DimensionIds.CARTHAGE = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
 		
-		config.save();
+		if(config.hasChanged())
+		{
+			config.save();
+		}
 	}
 	
 	@EventHandler
@@ -218,14 +221,14 @@ public class CodeLyoko
 		event.registerServerCommand(new CommandHandler());
 	}
     
-    public static boolean playerInLyoko(EntityPlayer player)
+    public static boolean entityInLyoko(Entity ent)
     {
-    	if(player != null)
+    	if(ent != null)
     	{
-    		if(player.dimension == DimensionIds.CARTHAGE || player.dimension == DimensionIds.ICE
-    				|| player.dimension == DimensionIds.MOUNTAIN || player.dimension == DimensionIds.FOREST
-    				|| player.dimension == DimensionIds.DESERT || player.dimension == DimensionIds.CORTEX
-    				|| player.dimension == DimensionIds.DIGITALSEA)
+    		if(ent.dimension == DimensionIds.CARTHAGE || ent.dimension == DimensionIds.ICE
+    				|| ent.dimension == DimensionIds.MOUNTAIN || ent.dimension == DimensionIds.FOREST
+    				|| ent.dimension == DimensionIds.DESERT || ent.dimension == DimensionIds.CORTEX
+    				|| ent.dimension == DimensionIds.DIGITALSEA)
     		{
     			return true;
     		}

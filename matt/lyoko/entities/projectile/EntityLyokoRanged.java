@@ -215,27 +215,7 @@ public class EntityLyokoRanged extends Entity implements IProjectile
 
         if (this.inGround)
         {
-            int var18 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
-            int var19 = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
-
-            if (var18 == this.inTile && var19 == this.inData)
-            {
-                ++this.ticksInGround;
-
-                if (this.ticksInGround == 10)
-                {
-                    this.setDead();
-                }
-            }
-            else
-            {
-                this.inGround = false;
-                this.motionX *= (double)(this.rand.nextFloat() * 0.2F);
-                this.motionY *= (double)(this.rand.nextFloat() * 0.2F);
-                this.motionZ *= (double)(this.rand.nextFloat() * 0.2F);
-                this.ticksInGround = 0;
-                this.ticksInAir = 0;
-            }
+            this.setDead();
         }
         else
         {
@@ -318,15 +298,10 @@ public class EntityLyokoRanged extends Entity implements IProjectile
 
                     if (var4.entityHit.attackEntityFrom(var21, var23))
                     {
-                        if (var4.entityHit instanceof EntityLiving)
+                        if (var4.entityHit instanceof EntityLivingBase)
                         {
-                            EntityLiving var24 = (EntityLiving)var4.entityHit;
-
-                            if (!this.worldObj.isRemote)
-                            {
-                                var24.setArrowCountInEntity(var24.getArrowCountInEntity() + 1);
-                            }
-
+                            EntityLivingBase var24 = (EntityLivingBase)var4.entityHit;
+                            
                             if (this.knockbackStrength > 0)
                             {
                                 var26 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
@@ -496,7 +471,7 @@ public class EntityLyokoRanged extends Entity implements IProjectile
      */
     public void onCollideWithPlayer(EntityPlayer par1EntityPlayer)
     {
-        if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
+        if(!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
         {
             this.setDead();
         }

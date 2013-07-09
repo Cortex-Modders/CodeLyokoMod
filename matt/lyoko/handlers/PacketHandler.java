@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -28,6 +29,10 @@ public class PacketHandler implements IPacketHandler
         if(packet.channel.equals("SuperCalcConsole"))
         {
         	handlePacketSCC(data, sender.worldObj);
+        }
+        if(packet.channel.equals("LifePoints"))
+        {
+        	handlePacketLP(data, sender.worldObj, sender);
         }
     }
     
@@ -84,6 +89,27 @@ public class PacketHandler implements IPacketHandler
         	TileEntitySuperCalcConsole tescc = (TileEntitySuperCalcConsole) world.getBlockTileEntity(x, y, z);
         	tescc.sector = code;
         	world.markBlockForUpdate(x, y, z);
+        }
+    }
+    
+    private void handlePacketLP(DataInputStream data, World world, EntityPlayer player)
+    {
+        int lifepoints;
+        
+        try
+        {
+        	lifepoints = data.readInt();
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        	return;
+        }
+        
+        if(player != null)
+        {
+        	PlayerInformation pi = PlayerInformation.forPlayer(player);
+        	pi.setLifePoints(lifepoints);
         }
     }
 }

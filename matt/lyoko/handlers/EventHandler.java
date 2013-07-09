@@ -1,11 +1,16 @@
 package matt.lyoko.handlers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.EventPriority;
@@ -15,6 +20,8 @@ import net.minecraftforge.event.entity.EntityEvent;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.IPlayerTracker;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 
 public class EventHandler extends Gui implements IPlayerTracker
 {
@@ -35,7 +42,7 @@ public class EventHandler extends Gui implements IPlayerTracker
 		// that case, the portion of rendering which this event represents will be canceled.
 		// We want to draw *after* the experience bar is drawn, so we make sure isCancelable() returns
 		// false and that the eventType represents the ExperienceBar event.
-		if(event.isCancelable() || event.type != ElementType.EXPERIENCE)// || !CodeLyoko.playerInLyoko(this.mc.thePlayer))
+		if(event.isCancelable() || event.type != ElementType.EXPERIENCE || !CodeLyoko.entityInLyoko(this.mc.thePlayer))
 		{      
 			return;
 		}
@@ -49,9 +56,7 @@ public class EventHandler extends Gui implements IPlayerTracker
 		
 		PlayerInformation pi = PlayerInformation.forPlayer(this.mc.thePlayer);
 		
-		int lifePoints = pi.getLifePoints();
-		
-		this.drawString(mc.fontRenderer, "Life Points: " + lifePoints, xPos, yPos, 16777215);
+		this.drawString(mc.fontRenderer, "Life Points: " + pi.getLifePoints(), xPos, yPos, 16777215);
 	}
 	
 	@ForgeSubscribe
@@ -73,6 +78,31 @@ public class EventHandler extends Gui implements IPlayerTracker
     public void onPlayerLogin(EntityPlayer player)
     {
     	System.out.println(UniqueArmorGenerator.getUniquePlayerIdentifier(player));
+    	if(!player.worldObj.isRemote)
+        {
+			PlayerInformation pi = PlayerInformation.forPlayer(player);
+			
+			if(pi.dirty)
+        	{
+        		ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
+            	DataOutputStream outputStream = new DataOutputStream(bos);
+            	try
+            	{
+            		outputStream.writeInt(pi.getLifePoints());
+            	}
+            	catch (Exception ex)
+            	{
+            		ex.printStackTrace();
+            	}
+            	
+            	Packet250CustomPayload packet = new Packet250CustomPayload();
+            	packet.channel = "LifePoints";
+            	packet.data = bos.toByteArray();
+            	packet.length = bos.size();
+            	
+            	PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
+        	}
+        }
     }
     
     @Override
