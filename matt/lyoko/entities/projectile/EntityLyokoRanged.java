@@ -29,7 +29,7 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityLyokoRanged extends Entity implements IProjectile
+public abstract class EntityLyokoRanged extends Entity implements IProjectile
 {
     private int xTile = -1;
     private int yTile = -1;
