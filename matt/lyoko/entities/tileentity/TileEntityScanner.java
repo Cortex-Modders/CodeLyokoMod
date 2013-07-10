@@ -11,91 +11,57 @@ public class TileEntityScanner extends TileEntity
 {
 	public int sector = -1;
 	
-	// Doors are open by default.
-	public boolean doorsOpen = true;
-	public float doorRotationYaw = 0;
-	// Position for left door. Right door just inverts left door. Y sould never change, so it is not used.
-	public float doorPosX = -9;
-	public float doorPosZ = 0;
-	
-	private final float closedScannerYaw = -90F;
-    private final float openScannerYaw = 0F;
-
-    private final float closedScannerX = -8F;
-    private final float openScannerX = -9F;
-
-    private final float closedScannerZ = -11F;
-    private final float openScannerZ = 0F;
-	
 	@Override
 	public void updateEntity()
 	{
-		// Open doors!
-        // If doors are set to open, but have not rendered as fully open.
-        if(this.doorsOpen & this.doorRotationYaw <= openScannerYaw) {
-            this.doorRotationYaw += 5.75;
-            if(this.doorRotationYaw > openScannerYaw) this.doorRotationYaw = openScannerYaw;
-
-            if(this.doorPosZ < openScannerZ) {
-                this.doorPosZ += 0.75;
-                if(this.doorPosZ >= openScannerZ) {
-                    this.doorPosZ = openScannerZ;
-                    this.doorPosX = openScannerX;
-                }
-            }
-        }
-        // Close doors!
-        else if(!this.doorsOpen & this.doorRotationYaw >= closedScannerYaw) {
-            this.doorRotationYaw -= 5.75;
-            if(this.doorRotationYaw < closedScannerYaw) this.doorRotationYaw = closedScannerYaw;
-
-            if(this.doorPosZ > closedScannerZ) {
-                this.doorPosZ -= 0.75;
-                if(this.doorPosZ <= closedScannerZ) {
-                    this.doorPosZ = closedScannerZ;
-                    this.doorPosX = closedScannerX;
-                }
-            }
-        }
-		
 		if(this.sector != -1)
 		{
-			for(int i = -4; i < 0; i++)
+			for(int i = -1; i < 2; i++)
 			{
-				if(BlockScanner.isMultiBlock(worldObj, xCoord, yCoord + i, zCoord))
+				for(int k = -1; k < 2; k++)
 				{
-					TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord, yCoord + i, zCoord);
-					if(this.sector != core.sector && core.sector == -1)
+					for(int j = -4; j < 1; j++)
 					{
-						core.sector = this.sector;
+						if(i != 0 || j != 0 || k != 0)
+						{
+							if(BlockScanner.isMultiBlock(worldObj, xCoord + i, yCoord + j, zCoord + k))
+							{
+								TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
+								if(this.sector != core.sector && core.sector == -1)
+								{
+									core.sector = this.sector;
+								}
+								this.sector = -1;
+							}
+						}
 					}
-					this.sector = -1;
 				}
 			}
 		}
 	}
 	
 	@Override
-	public Packet getDescriptionPacket()
+    public Packet getDescriptionPacket()
 	{
-		NBTTagCompound tag = new NBTTagCompound();
-		this.writeToNBT(tag);
-		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, tag);
-	}
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+        tag.setInteger("sector", this.sector);
+        
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
 	
-	@Override
-	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-	{
-		NBTTagCompound tag = pkt.customParam1;
-		this.readFromNBT(tag);
-	}
-    
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+    {
+        NBTTagCompound tag = pkt.customParam1;
+        this.sector = tag.getInteger("sector");
+    }
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
 		this.sector = tagCompound.getInteger("sector");
-		this.doorsOpen = tagCompound.getBoolean("doorsOpen");
 	}
 	
 	@Override
@@ -103,6 +69,5 @@ public class TileEntityScanner extends TileEntity
 	{
 		super.writeToNBT(tagCompound);
         tagCompound.setInteger("sector", this.sector);
-		tagCompound.setBoolean("doorsOpen", this.doorsOpen);
 	}
 }
