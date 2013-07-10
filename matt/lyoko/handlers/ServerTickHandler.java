@@ -3,6 +3,7 @@ package matt.lyoko.handlers;
 import java.util.EnumSet;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -39,6 +40,13 @@ public class ServerTickHandler implements ITickHandler
 				}
 				player.fallDistance = 0;
 			}
+		}
+		
+		PlayerInformation pi = PlayerInformation.forPlayer(player);
+		
+		if(pi.getCoolDown() > 0)
+		{
+			pi.decreaseCoolDown(1);
 		}
 	}
     

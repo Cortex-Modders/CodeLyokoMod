@@ -152,6 +152,8 @@ public class CodeLyoko
 		DimensionIds.FOREST = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
 		DimensionIds.DESERT = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
 		DimensionIds.CARTHAGE = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
+		DimensionIds.DIGITALSEA = config.get(Configuration.CATEGORY_GENERAL, "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
+		DimensionIds.CORTEX = config.get(Configuration.CATEGORY_GENERAL, "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
 		
 		if(config.hasChanged())
 		{

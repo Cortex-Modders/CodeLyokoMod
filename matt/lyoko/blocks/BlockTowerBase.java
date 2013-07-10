@@ -46,7 +46,11 @@ public class BlockTowerBase extends BlockBreakable
 			EntityPlayer player = (EntityPlayer) ent;
 			PlayerInformation pi = PlayerInformation.forPlayer(player);
 			
-			pi.setLifePoints(pi.getMaxLifePoints());
+			if(pi.getCoolDown() <= 0)
+			{
+				pi.increaseLifePoints(25);
+				pi.resetCoolDown();
+			}
 			
 			if(pi.dirty)
         	{

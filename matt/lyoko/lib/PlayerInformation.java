@@ -19,6 +19,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     
     /** The current amount of mana the player has in their mana bar */
     private int lifePoints;
+    public int coolDown;
     
     private final EntityPlayer player;
     
@@ -31,6 +32,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     public void init(Entity entity, World world)
     {
     	lifePoints = 100;
+    	coolDown = 0;
     }
     
     @Override
@@ -38,6 +40,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("lifePoints", lifePoints);
+        nbt.setInteger("coolDown", coolDown);
         compound.setCompoundTag(IDENTIFIER, nbt);
     }
     
@@ -46,6 +49,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
         lifePoints = nbt.getInteger("lifePoints");
+        coolDown = nbt.getInteger("coolDown");
     }
     
     public int getLifePoints()
@@ -90,6 +94,35 @@ public final class PlayerInformation implements IExtendedEntityProperties
             setDirty();
         }
         return lifePoints;
+    }
+    
+    public int getCoolDown()
+    {
+    	return coolDown;
+    }
+    
+    public void resetCoolDown()
+    {
+    	coolDown = 10;
+    }
+    
+    public void decreaseCoolDown(int amt)
+    {
+    	coolDown -= amt;
+    	if(coolDown > 10)
+    	{
+    		coolDown = 10;
+    	}
+    	if(coolDown < 0)
+    	{
+    		coolDown = 0;
+    	}
+    	setDirty();
+    }
+    
+    public int getMaxCoolDown()
+    {
+    	return 10;
     }
     
     /*
