@@ -20,6 +20,10 @@ public final class PlayerInformation implements IExtendedEntityProperties
     /** The current amount of mana the player has in their mana bar */
     private int lifePoints;
     public int coolDown;
+    private int scannerPosX;
+    private int scannerPosY;
+    private int scannerPosZ;
+    public int scannerDim;
     
     private final EntityPlayer player;
     
@@ -33,6 +37,10 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
     	lifePoints = 100;
     	coolDown = 0;
+    	scannerPosX = 0;
+    	scannerPosY = 80;
+    	scannerPosZ = 0;
+    	scannerDim = 0;
     }
     
     @Override
@@ -41,6 +49,10 @@ public final class PlayerInformation implements IExtendedEntityProperties
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger("lifePoints", lifePoints);
         nbt.setInteger("coolDown", coolDown);
+        nbt.setInteger("spx", scannerPosX);
+        nbt.setInteger("spy", scannerPosY);
+        nbt.setInteger("spz", scannerPosZ);
+        nbt.setInteger("sd", scannerDim);
         compound.setCompoundTag(IDENTIFIER, nbt);
     }
     
@@ -50,6 +62,10 @@ public final class PlayerInformation implements IExtendedEntityProperties
         NBTTagCompound nbt = playerNbt.getCompoundTag(IDENTIFIER);
         lifePoints = nbt.getInteger("lifePoints");
         coolDown = nbt.getInteger("coolDown");
+        scannerPosX = nbt.getInteger("spx");
+        scannerPosY = nbt.getInteger("spy");
+        scannerPosZ = nbt.getInteger("spz");
+        scannerDim = nbt.getInteger("sd");
     }
     
     public int getLifePoints()
@@ -123,6 +139,28 @@ public final class PlayerInformation implements IExtendedEntityProperties
     public int getMaxCoolDown()
     {
     	return 10;
+    }
+    
+    public void setScannerPosition(int x, int y, int z)
+    {
+    	scannerPosX = x;
+    	scannerPosY = y;
+    	scannerPosZ = z;
+    }
+    
+    public int getScannerPosX()
+    {
+    	return scannerPosX;
+    }
+    
+    public int getScannerPosY()
+    {
+    	return scannerPosY;
+    }
+    
+    public int getScannerPosZ()
+    {
+    	return scannerPosZ;
     }
     
     /*

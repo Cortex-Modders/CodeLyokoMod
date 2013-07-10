@@ -48,6 +48,14 @@ public class ServerTickHandler implements ITickHandler
 		{
 			pi.decreaseCoolDown(1);
 		}
+		
+		if(pi.getLifePoints() <= 0 && CodeLyoko.entityInLyoko(player))
+		{
+			//player.travelToDimension(pi.scannerDim);
+			player.dimension = pi.scannerDim;
+			player.setLocationAndAngles(pi.getScannerPosX(), pi.getScannerPosY(), pi.getScannerPosZ(), player.rotationYaw, player.rotationPitch);
+			pi.setLifePoints(100);
+		}
 	}
     
     @Override

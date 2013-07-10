@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.util.List;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.mobs.EntityLyoko;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
@@ -293,6 +294,12 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
             {
                 if (var4.entityHit != null)
                 {
+                	//TODO should I make it damage vehicles too?
+                	if(var4.entityHit instanceof EntityLyoko)
+                	{
+                		setDamage(2.0D);
+                	}
+                	
                     var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     int var23 = MathHelper.ceiling_double_int((double)var20 * this.damage);
 
@@ -492,7 +499,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
      */
     public void onCollideWithPlayer(EntityPlayer player)
     {
-        if(!this.worldObj.isRemote)
+        if(!this.worldObj.isRemote && this.ticksExisted > 5)
         {
             this.setDead();
         }

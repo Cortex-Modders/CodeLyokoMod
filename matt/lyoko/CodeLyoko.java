@@ -247,9 +247,4 @@ public class CodeLyoko
     {
         return (new EntityDamageSourceIndirect("lyokoRanged", par0EntityLaserArrow, par1Entity)).setProjectile();
     }
-    
-    public static DamageSource causeLaserDamage(EntityLaser par0EntityLaser, Entity par1Entity)
-    {
-        return (new EntityDamageSourceIndirect("laser", par0EntityLaser, par1Entity)).setProjectile();
-    }
 }

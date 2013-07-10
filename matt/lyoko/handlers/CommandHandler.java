@@ -3,6 +3,7 @@ package matt.lyoko.handlers;
 import java.util.ArrayList;
 import java.util.List;
 
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +42,11 @@ public class CommandHandler implements ICommand
 		{
 			EntityPlayer player = ((EntityPlayer)icommandsender);
 			player.addChatMessage("this command is not ready for use at this time");
-			//player.setPositionAndRotation(SCANNER_X, SCANNER_Y, SCANNER_Z, player.rotationYaw, player.rotationPitch);
+			
+			PlayerInformation pi = PlayerInformation.forPlayer(player);
+			
+			player.dimension = pi.scannerDim;
+			player.setPositionAndRotation(pi.getScannerPosX(), pi.getScannerPosY(), pi.getScannerPosZ(), player.rotationYaw, player.rotationPitch);
 		}
 		// wait for ChatMessageComponent to get names put in.
 		//		icommandsender.func_110122_a(ChatMessageComponent.func_11066d("this command is not ready for use at this time"));

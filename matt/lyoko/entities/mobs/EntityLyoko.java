@@ -40,11 +40,13 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(attackStrength);
     }
     
+    @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
     	super.writeEntityToNBT(par1NBTTagCompound);
     }
-
+    
+    @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
     	super.readEntityFromNBT(par1NBTTagCompound);
@@ -53,6 +55,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     /**
      * Called to update the entity's position/logic.
      */
+    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -76,6 +79,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
      * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in attacking
      * (Animals, Spiders at day, peaceful PigZombies).
      */
+    @Override
     protected Entity findPlayerToAttack()
     {
         EntityPlayer var1 = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
@@ -132,6 +136,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     /**
      * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
      */
+    @Override
     protected void attackEntity(Entity par1Entity, float par2)
     {
         if (this.attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY)
@@ -145,6 +150,7 @@ public abstract class EntityLyoko extends EntityMob implements IMob
      * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block.
      * Args: x, y, z
      */
+    @Override
     public float getBlockPathWeight(int par1, int par2, int par3)
     {
         return 0.5F - this.worldObj.getLightBrightness(par1, par2, par3);
@@ -153,40 +159,22 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     /**
      * Checks to make sure the light is not too bright where the mob is spawning
      */
+    @Override
     protected boolean isValidLightLevel()
     {
-        int var1 = MathHelper.floor_double(this.posX);
-        int var2 = MathHelper.floor_double(this.boundingBox.minY);
-        int var3 = MathHelper.floor_double(this.posZ);
-
-        if (this.worldObj.getSavedLightValue(EnumSkyBlock.Sky, var1, var2, var3) > this.rand.nextInt(32))
-        {
-            return false;
-        }
-        else
-        {
-            int var4 = this.worldObj.getBlockLightValue(var1, var2, var3);
-
-            if (this.worldObj.isThundering())
-            {
-                int var5 = this.worldObj.skylightSubtracted;
-                this.worldObj.skylightSubtracted = 10;
-                var4 = this.worldObj.getBlockLightValue(var1, var2, var3);
-                this.worldObj.skylightSubtracted = var5;
-            }
-
-            return var4 <= this.rand.nextInt(15);
-        }
+        return true;
     }
 
     /**
      * Checks if the entity's current position is a valid location to spawn this entity.
      */
+    @Override
     public boolean getCanSpawnHere()
     {
         return this.isValidLightLevel() && super.getCanSpawnHere();
     }
     
+    @Override
     protected int getDropItemId()
     {
         return 0;

@@ -2,6 +2,7 @@ package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -216,13 +217,19 @@ public class BlockScanner extends BlockContainer
     	{
     		for(int i = -1; i < 2; i++)
     		{
-    			for(int j = -1; j < 2; j++)
+    			for(int k = -1; k < 2; k++)
     			{
-    				for(int k = -4; k < 1; k++)
+    				for(int j = -4; j < 1; j++)
     				{
-    					if(this.isMultiBlock(world, x+i, y+k, z+j))
+    					if(this.isMultiBlock(world, x+i, y+j, z+k))
     					{
-    						activatePortal(world, x+i, y+k, z+j);
+    						PlayerInformation pi = PlayerInformation.forPlayer(player);
+    						
+    						pi.scannerDim = world.provider.dimensionId;
+    						pi.setScannerPosition(x+i, y+j+1, z+k);
+    						
+    						activatePortal(world, x+i, y+j, z+k);
+    						
     						return true;
     					}
     				}
