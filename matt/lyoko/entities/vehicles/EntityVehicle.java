@@ -2,10 +2,13 @@ package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.items.ModItems;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 public class EntityVehicle extends Entity {
@@ -36,6 +39,11 @@ public class EntityVehicle extends Entity {
 	{
 		this.droppedItem = item;
 	}
+	
+	public Item getDropeedItem()
+	{
+		return droppedItem;
+	}
 
 	@Override
 	protected void entityInit()
@@ -46,14 +54,11 @@ public class EntityVehicle extends Entity {
 	}
 
 	public void onUpdate() {
-	
+		
 		// TEMPORARY
 		if(this.posY>100.0D) this.kill();
 		
 		hoverSpeed += 0.0625; // 1/16 is the speed.
-		
-		
-		
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)
@@ -79,8 +84,9 @@ public class EntityVehicle extends Entity {
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound par1) {}
-
-	public boolean interact(EntityPlayer player)
+	
+	@Override
+	public boolean func_130002_c(EntityPlayer player)
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != player && !player.isSneaking())
 		{
@@ -102,4 +108,10 @@ public class EntityVehicle extends Entity {
 			return true;
 		}
 	}
+	
+	@Override
+	public ItemStack getPickedResult(MovingObjectPosition target)
+    {
+        return new ItemStack(this.droppedItem);
+    }
 }
