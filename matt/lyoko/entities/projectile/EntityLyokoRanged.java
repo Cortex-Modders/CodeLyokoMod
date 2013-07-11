@@ -516,27 +516,6 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
         	this.playSound("random.pop", 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
         	PlayerInformation pi = PlayerInformation.forPlayer(player);
         	pi.decreaseLifePoints(10);
-        	
-        	if(pi.dirty)
-        	{
-        		ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
-            	DataOutputStream outputStream = new DataOutputStream(bos);
-            	try
-            	{
-            		outputStream.writeInt(pi.getLifePoints());
-            	}
-            	catch (Exception ex)
-            	{
-            		ex.printStackTrace();
-            	}
-            	
-            	Packet250CustomPayload packet = new Packet250CustomPayload();
-            	packet.channel = "LifePoints";
-            	packet.data = bos.toByteArray();
-            	packet.length = bos.size();
-            	
-            	PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
-        	}
         }
     }
 

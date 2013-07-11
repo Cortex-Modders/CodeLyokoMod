@@ -117,27 +117,6 @@ public class ItemLyokoSword extends ItemSword
 			EntityPlayer attackedPlayer = (EntityPlayer)ent;
 			PlayerInformation pi = PlayerInformation.forPlayer(attackedPlayer);
 			pi.decreaseLifePoints(10);
-			
-			if(pi.dirty)
-        	{
-        		ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
-            	DataOutputStream outputStream = new DataOutputStream(bos);
-            	try
-            	{
-            		outputStream.writeInt(pi.getLifePoints());
-            	}
-            	catch (Exception ex)
-            	{
-            		ex.printStackTrace();
-            	}
-            	
-            	Packet250CustomPayload packet = new Packet250CustomPayload();
-            	packet.channel = "LifePoints";
-            	packet.data = bos.toByteArray();
-            	packet.length = bos.size();
-            	
-            	PacketDispatcher.sendPacketToPlayer(packet,(Player) attackedPlayer);
-        	}
 		}
 		return true;
     }

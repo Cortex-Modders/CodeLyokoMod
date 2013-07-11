@@ -1,8 +1,14 @@
 package matt.lyoko.lib;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
@@ -169,5 +175,23 @@ public final class PlayerInformation implements IExtendedEntityProperties
     public void setDirty()
     {
         dirty = true;
+        
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
+    	DataOutputStream outputStream = new DataOutputStream(bos);
+    	try
+    	{
+    		outputStream.writeInt(this.getLifePoints());
+    	}
+    	catch (Exception ex)
+    	{
+    		ex.printStackTrace();
+    	}
+    	
+    	Packet250CustomPayload packet = new Packet250CustomPayload();
+    	packet.channel = "LifePoints";
+    	packet.data = bos.toByteArray();
+    	packet.length = bos.size();
+    	
+    	PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
     }
 }
