@@ -1,16 +1,31 @@
 package matt.lyoko.items;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
+import com.google.common.collect.Multimap;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
+
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 
 public class ItemLyokoSword extends ItemSword
 {
+	private int weaponDamage;
+	
 	public ItemLyokoSword(int par1, EnumToolMaterial par2EnumToolMaterial) {
 		super(par1, par2EnumToolMaterial);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
@@ -20,6 +35,15 @@ public class ItemLyokoSword extends ItemSword
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity ent, int slot, boolean par5)
 	{
+		if(CodeLyoko.entityInLyoko(ent))
+		{
+			weaponDamage = 0;
+		}
+		else
+		{
+			weaponDamage = 34;
+		}
+		
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer)ent;
@@ -82,6 +106,43 @@ public class ItemLyokoSword extends ItemSword
 	}
 	
 	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase ent, EntityLivingBase ent2)
+    {
+		if(!(ent instanceof EntityPlayer))
+		{
+			weaponDamage = 34;
+		}
+		else
+		{
+			EntityPlayer attackedPlayer = (EntityPlayer)ent;
+			PlayerInformation pi = PlayerInformation.forPlayer(attackedPlayer);
+			pi.decreaseLifePoints(10);
+			
+			if(pi.dirty)
+        	{
+        		ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
+            	DataOutputStream outputStream = new DataOutputStream(bos);
+            	try
+            	{
+            		outputStream.writeInt(pi.getLifePoints());
+            	}
+            	catch (Exception ex)
+            	{
+            		ex.printStackTrace();
+            	}
+            	
+            	Packet250CustomPayload packet = new Packet250CustomPayload();
+            	packet.channel = "LifePoints";
+            	packet.data = bos.toByteArray();
+            	packet.length = bos.size();
+            	
+            	PacketDispatcher.sendPacketToPlayer(packet,(Player) attackedPlayer);
+        	}
+		}
+		return true;
+    }
+	
+	@Override
 	public void registerIcons(IconRegister iconRegister)
 	{
 		if(this.itemID == ModItems.Katana.itemID)
@@ -89,4 +150,12 @@ public class ItemLyokoSword extends ItemSword
 		if(this.itemID == ModItems.Zweihander.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:zweihander");
 	}
+	
+	@Override
+	public Multimap func_111205_h()
+    {
+        Multimap multimap = super.func_111205_h();
+        multimap.put(SharedMonsterAttributes.field_111264_e.func_111108_a(), new AttributeModifier(field_111210_e, "Weapon modifier", (double)this.weaponDamage, 0));
+        return multimap;
+    }
 }

@@ -46,6 +46,12 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenderInformation() 
 	{
+		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/a");
+		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/o");
+		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/u");
+		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/y");
+		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/w");
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(ModItems.Fan));
 		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(ModItems.EnergyField));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow());

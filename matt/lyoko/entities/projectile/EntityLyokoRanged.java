@@ -295,9 +295,16 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
                 if (var4.entityHit != null)
                 {
                 	//TODO should I make it damage vehicles too?
-                	if(var4.entityHit instanceof EntityLyoko)
+                	if(!(var4.entityHit instanceof EntityPlayer))
                 	{
                 		setDamage(2.0D);
+                	}
+                	else
+                	{
+                		if(CodeLyoko.entityInLyoko(var4.entityHit))
+                		{
+                			this.onCollideWithPlayer((EntityPlayer)var4.entityHit);
+                		}
                 	}
                 	
                     var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
@@ -499,7 +506,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
      */
     public void onCollideWithPlayer(EntityPlayer player)
     {
-        if(!this.worldObj.isRemote && this.ticksExisted > 5)
+        if(!this.worldObj.isRemote && this.ticksExisted > 1)
         {
             this.setDead();
         }
