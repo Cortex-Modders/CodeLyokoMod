@@ -1,14 +1,19 @@
 package matt.lyoko.handlers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.EnumSet;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 
 public class ServerTickHandler implements ITickHandler
 {
@@ -51,9 +56,31 @@ public class ServerTickHandler implements ITickHandler
 		
 		if(pi.getLifePoints() <= 0 && CodeLyoko.entityInLyoko(player))
 		{
-			//player.travelToDimension(pi.scannerDim);
 			player.dimension = pi.scannerDim;
-			player.setLocationAndAngles(pi.getScannerPosX(), pi.getScannerPosY(), pi.getScannerPosZ(), player.rotationYaw, player.rotationPitch);
+			player.setLocationAndAngles(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
+			
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+		    DataOutputStream outputStream = new DataOutputStream(bos);
+		    try
+		    {
+		    	outputStream.writeInt(player.dimension);
+		    	outputStream.writeDouble(player.posX);
+		    	outputStream.writeDouble(player.posY);
+		    	outputStream.writeDouble(player.posZ);
+		    	outputStream.writeFloat(player.rotationYaw);
+		    }
+		    catch (Exception ex)
+		    {
+		    	ex.printStackTrace();
+		    }
+		    
+		    Packet250CustomPayload packet = new Packet250CustomPayload();
+		    packet.channel = "Devirt";
+		    packet.data = bos.toByteArray();
+		    packet.length = bos.size();
+		    
+		    PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
+			
 			pi.setLifePoints(100);
 		}
 	}

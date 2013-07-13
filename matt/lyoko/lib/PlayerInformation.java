@@ -30,6 +30,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     private int scannerPosY;
     private int scannerPosZ;
     public int scannerDim;
+    public int scannerYaw;
     
     private final EntityPlayer player;
     
@@ -47,6 +48,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     	scannerPosY = 80;
     	scannerPosZ = 0;
     	scannerDim = 0;
+    	scannerYaw = 0;
     }
     
     @Override
@@ -59,6 +61,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         nbt.setInteger("spy", scannerPosY);
         nbt.setInteger("spz", scannerPosZ);
         nbt.setInteger("sd", scannerDim);
+        nbt.setInteger("sy", scannerYaw);
         compound.setCompoundTag(IDENTIFIER, nbt);
     }
     
@@ -72,6 +75,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         scannerPosY = nbt.getInteger("spy");
         scannerPosZ = nbt.getInteger("spz");
         scannerDim = nbt.getInteger("sd");
+        scannerYaw = nbt.getInteger("sy");
     }
     
     public int getLifePoints()

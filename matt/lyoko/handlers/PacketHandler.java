@@ -34,6 +34,10 @@ public class PacketHandler implements IPacketHandler
         {
         	handlePacketLP(data, sender.worldObj, sender);
         }
+        if(packet.channel.equals("Devirt"))
+        {
+        	handlePacketD(data, sender.worldObj, sender);
+        }
     }
     
     private void handlePacketCL(DataInputStream data, World world)
@@ -110,6 +114,35 @@ public class PacketHandler implements IPacketHandler
         {
         	PlayerInformation pi = PlayerInformation.forPlayer(player);
         	pi.setLifePoints(lifepoints);
+        }
+    }
+    
+    private void handlePacketD(DataInputStream data, World world, EntityPlayer player)
+    {
+    	int dim;
+        double posX;
+        double posY;
+        double posZ;
+        float yaw;
+        
+        try
+        {
+        	dim = data.readInt();
+        	posX = data.readDouble();
+        	posY = data.readDouble();
+        	posZ = data.readDouble();
+        	yaw = data.readFloat();
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        	return;
+        }
+        
+        if(player != null)
+        {
+        	player.dimension = dim;
+        	player.setLocationAndAngles(posX, posY, posZ, yaw, 0);
         }
     }
 }

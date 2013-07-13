@@ -1,6 +1,9 @@
 package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.blocks.BlockScanner;
+import matt.lyoko.blocks.ModBlocks;
+import matt.lyoko.lib.PlayerInformation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -40,22 +43,40 @@ public class TileEntityScanner extends TileEntity
 		}
 	}
 	
-	@Override
-    public Packet getDescriptionPacket()
+	public void setPlayerDevirtYaw(PlayerInformation pi)
 	{
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
-        tag.setInteger("sector", this.sector);
-        
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
-    }
+		if(worldObj.getBlockId(xCoord + 1, yCoord + 1, zCoord) != ModBlocks.Scanner.blockID)
+		{
+			pi.scannerYaw = 270;
+		}
+		if(worldObj.getBlockId(xCoord - 1, yCoord + 1, zCoord) != ModBlocks.Scanner.blockID)
+		{
+			pi.scannerYaw = 90;
+		}
+		if(worldObj.getBlockId(xCoord, yCoord + 1, zCoord + 1) != ModBlocks.Scanner.blockID)
+		{
+			pi.scannerYaw = 0;
+		}
+		if(worldObj.getBlockId(xCoord, yCoord + 1, zCoord - 1) != ModBlocks.Scanner.blockID)
+		{
+			pi.scannerYaw = 180;
+		}
+	}
 	
-    @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-    {
-        NBTTagCompound tag = pkt.customParam1;
-        this.sector = tag.getInteger("sector");
-    }
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tag = new NBTTagCompound();
+		this.writeToNBT(tag);
+		return new Packet132TileEntityData(xCoord, yCoord, zCoord, 0, tag);
+	}
+	
+	@Override
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+	{
+		NBTTagCompound tag = pkt.customParam1;
+		this.readFromNBT(tag);
+	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)

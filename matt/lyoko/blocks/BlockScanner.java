@@ -221,12 +221,13 @@ public class BlockScanner extends BlockContainer
     			{
     				for(int j = -4; j < 1; j++)
     				{
-    					if(this.isMultiBlock(world, x+i, y+j, z+k))
+    					if(isMultiBlock(world, x+i, y+j, z+k))
     					{
     						PlayerInformation pi = PlayerInformation.forPlayer(player);
     						
     						pi.scannerDim = world.provider.dimensionId;
     						pi.setScannerPosition(x+i, y+j+1, z+k);
+    						((TileEntityScanner)world.getBlockTileEntity(x+i, y+j, z+k)).setPlayerDevirtYaw(pi);
     						
     						activatePortal(world, x+i, y+j, z+k);
     						

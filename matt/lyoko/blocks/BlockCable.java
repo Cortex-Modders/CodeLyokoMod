@@ -22,39 +22,42 @@ public class BlockCable extends BlockContainer
 	@Override
 	public void onNeighborBlockChange(World world, int x, int y, int z, int neighborID)
 	{
-		TileEntityCable tile = (TileEntityCable)world.getBlockTileEntity(x, y, z);
-		if(neighborID == this.blockID && tile != null)
+		if(world.getBlockTileEntity(x, y, z) instanceof TileEntityCable)
 		{
-			String test1 = tile.getSector();
-			syncBlock(world, x + 1, y, z, tile);
-			syncBlock(world, x - 1, y, z, tile);
-			syncBlock(world, x, y + 1, z, tile);
-			syncBlock(world, x, y - 1, z, tile);
-			syncBlock(world, x, y, z + 1, tile);
-			syncBlock(world, x, y, z - 1, tile);
-			String test2 = tile.getSector();
-			if(!(test1.equals(test2)))
+			TileEntityCable tile = (TileEntityCable)world.getBlockTileEntity(x, y, z);
+			if(neighborID == this.blockID && tile != null)
 			{
-				world.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
+				String test1 = tile.getSector();
+				syncBlock(world, x + 1, y, z, tile);
+				syncBlock(world, x - 1, y, z, tile);
+				syncBlock(world, x, y + 1, z, tile);
+				syncBlock(world, x, y - 1, z, tile);
+				syncBlock(world, x, y, z + 1, tile);
+				syncBlock(world, x, y, z - 1, tile);
+				String test2 = tile.getSector();
+				if(!(test1.equals(test2)))
+				{
+					world.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
+				}
+				syncBlock2(world, x + 1, y, z, tile);
+				syncBlock2(world, x - 1, y, z, tile);
+				syncBlock2(world, x, y + 1, z, tile);
+				syncBlock2(world, x, y - 1, z, tile);
+				syncBlock2(world, x, y, z + 1, tile);
+				syncBlock2(world, x, y, z - 1, tile);
+				syncBlock3(world, x + 1, y, z, tile);
+				syncBlock3(world, x - 1, y, z, tile);
+				syncBlock3(world, x, y + 1, z, tile);
+				syncBlock3(world, x, y - 1, z, tile);
+				syncBlock3(world, x, y, z + 1, tile);
+				syncBlock3(world, x, y, z - 1, tile);
 			}
-			syncBlock2(world, x + 1, y, z, tile);
-			syncBlock2(world, x - 1, y, z, tile);
-			syncBlock2(world, x, y + 1, z, tile);
-			syncBlock2(world, x, y - 1, z, tile);
-			syncBlock2(world, x, y, z + 1, tile);
-			syncBlock2(world, x, y, z - 1, tile);
-			syncBlock3(world, x + 1, y, z, tile);
-			syncBlock3(world, x - 1, y, z, tile);
-			syncBlock3(world, x, y + 1, z, tile);
-			syncBlock3(world, x, y - 1, z, tile);
-			syncBlock3(world, x, y, z + 1, tile);
-			syncBlock3(world, x, y, z - 1, tile);
 		}
 	}
 	
 	public void syncBlock(World world, int x, int y, int z, TileEntityCable localCable)
 	{
-		if(world.getBlockId(x, y, z) == this.blockID)
+		if(world.getBlockId(x, y, z) == this.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityCable)
 		{
 			TileEntityCable tile = (TileEntityCable)world.getBlockTileEntity(x, y, z);
 			if(tile != null && localCable.getCoolDown() == 0 && !(tile.getSector().equals("")) && localCable.getSector().equals(""))
@@ -67,7 +70,7 @@ public class BlockCable extends BlockContainer
 	
 	public void syncBlock2(World world, int x, int y, int z, TileEntityCable localCable)
 	{
-		if(world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityScanner)
 		{
 			TileEntityScanner tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);
 			if(tile != null && !(localCable.getSector().equals("")) && tile.sector == -1)
@@ -80,7 +83,7 @@ public class BlockCable extends BlockContainer
 	
 	public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
 	{
-		if(world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalc)
 		{
 			TileEntitySuperCalc tile = (TileEntitySuperCalc)world.getBlockTileEntity(x, y, z);
 			if(tile != null && !(localCable.getSector().equals("")) && tile.sector.equals(""))
