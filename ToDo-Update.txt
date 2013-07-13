@@ -3,3 +3,4 @@ ToDo in update. (These are the stuff that we undid so we could start testing qui
 -Fix DevCapesAPI. might require a seperate coremod that is packaged with the mod it serves. 
 -Make sure sounds played thru SoundManager work correctly
 -Fix tower screen speed being weird depending on angle looked at.
+-Try and sync supercomputer multiblock
