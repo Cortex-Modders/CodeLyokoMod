@@ -59,7 +59,7 @@ public class ServerTickHandler implements ITickHandler
 			player.dimension = pi.scannerDim;
 			player.setLocationAndAngles(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
 		    DataOutputStream outputStream = new DataOutputStream(bos);
 		    try
 		    {

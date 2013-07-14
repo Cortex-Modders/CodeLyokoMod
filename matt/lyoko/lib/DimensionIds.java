@@ -1,5 +1,15 @@
 package matt.lyoko.lib;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldServer;
+
 public class DimensionIds {
 
     /* Default IDs. */
@@ -22,4 +32,35 @@ public class DimensionIds {
     public static int DIGITALSEA;
     public static int CORTEX;
     
+    public static void teleportToDimension(EntityPlayer player, int newDim)
+    {
+        if (!player.worldObj.isRemote && !player.isDead)
+        {
+        	player.worldObj.theProfiler.startSection("changeDimension");
+            MinecraftServer minecraftServer = MinecraftServer.getServer();
+            int currentDim = player.dimension;
+            WorldServer currentWorldServer = minecraftServer.worldServerForDimension(currentDim);
+            WorldServer newWorldServer = minecraftServer.worldServerForDimension(newDim);
+            player.dimension = newDim;
+            
+            player.worldObj.removeEntity(player);
+            player.isDead = false;
+            player.worldObj.theProfiler.startSection("reposition");
+            //minecraftServer.getConfigurationManager().transferEntityToWorld(player, currentDim, currentWorldServer, newWorldServer);
+            player.worldObj.theProfiler.endStartSection("reloading");
+            Entity entity = EntityList.createEntityByName(EntityList.getEntityString(player), newWorldServer);
+            
+            if (entity != null)
+            {
+                entity.copyDataFrom(player, true);
+                newWorldServer.spawnEntityInWorld(entity);
+            }
+            
+            player.isDead = true;
+            player.worldObj.theProfiler.endSection();
+            currentWorldServer.resetUpdateEntityTick();
+            newWorldServer.resetUpdateEntityTick();
+            player.worldObj.theProfiler.endSection();
+        }
+    }
 }

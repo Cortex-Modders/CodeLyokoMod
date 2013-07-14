@@ -67,7 +67,7 @@ public class GuiSuperCalcConsole extends GuiContainer
         
         if(par2 == 28)
         {
-        	ByteArrayOutputStream bos = new ByteArrayOutputStream(code.length() + 12);
+        	ByteArrayOutputStream bos = new ByteArrayOutputStream((code.length() * 2) + 12);
         	DataOutputStream outputStream = new DataOutputStream(bos);
         	try
         	{

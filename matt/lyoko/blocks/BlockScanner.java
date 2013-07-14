@@ -2,6 +2,7 @@ package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -172,12 +173,12 @@ public class BlockScanner extends BlockContainer
     	return false;
     }
 	
-	public void activatePortal(World world, int x, int y, int z)
+	public void activatePortal(World world, int x, int y, int z, EntityPlayer player)
 	{
 		TileEntityScanner tile = (TileEntityScanner)world.getBlockTileEntity(x, y, z);
 		if(tile != null)
 		{
-			int portal;
+			/*int portal;
 			switch(tile.sector)
 			{
 			case 0:
@@ -198,9 +199,36 @@ public class BlockScanner extends BlockContainer
 			default:
 				portal = 0;
 			}
+			
 			world.setBlock(x, y + 1, z, portal);
 			world.setBlock(x, y + 2, z, portal);
-			world.setBlock(x, y + 3, z, portal);
+			world.setBlock(x, y + 3, z, portal);*/
+			
+			int dim;
+			switch(tile.sector)
+			{
+			case 0:
+				dim = DimensionIds.ICE;
+				break;
+			case 1:
+				dim = DimensionIds.DESERT;
+				break;
+			case 2:
+				dim = DimensionIds.FOREST;
+				break;
+			case 3:
+				dim = DimensionIds.MOUNTAIN;
+				break;
+			case 4:
+				dim = DimensionIds.CARTHAGE;
+				break;
+			default:
+				return;
+			}
+			
+			//player.travelToDimension(dim);
+			DimensionIds.teleportToDimension(player, dim);
+			player.timeUntilPortal = 100;
 			tile.sector = -1;
 		}
 	}
@@ -229,7 +257,7 @@ public class BlockScanner extends BlockContainer
     						pi.setScannerPosition(x+i, y+j+1, z+k);
     						((TileEntityScanner)world.getBlockTileEntity(x+i, y+j, z+k)).setPlayerDevirtYaw(pi);
     						
-    						activatePortal(world, x+i, y+j, z+k);
+    						activatePortal(world, x+i, y+j, z+k, player);
     						
     						return true;
     					}

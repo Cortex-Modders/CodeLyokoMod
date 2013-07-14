@@ -8,6 +8,7 @@ import java.util.List;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
+import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.command.ICommand;
@@ -52,15 +53,16 @@ public class CommandHandler implements ICommand
 			
 			PlayerInformation pi = PlayerInformation.forPlayer(player);
 			
-			player.dimension = pi.scannerDim;
-			
+			//player.dimension = pi.scannerDim;
+			//player.travelToDimension(pi.scannerDim);
+			DimensionIds.teleportToDimension(player, pi.scannerDim);
 			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(16);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
 		    DataOutputStream outputStream = new DataOutputStream(bos);
 		    try
 		    {
-		    	outputStream.writeInt(player.dimension);
+		    	//outputStream.writeInt(player.dimension);
 		    	outputStream.writeDouble(player.posX);
 		    	outputStream.writeDouble(player.posY);
 		    	outputStream.writeDouble(player.posZ);

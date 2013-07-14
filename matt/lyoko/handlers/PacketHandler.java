@@ -119,7 +119,7 @@ public class PacketHandler implements IPacketHandler
     
     private void handlePacketD(DataInputStream data, World world, EntityPlayer player)
     {
-    	int dim;
+    	//int dim;
         double posX;
         double posY;
         double posZ;
@@ -127,7 +127,7 @@ public class PacketHandler implements IPacketHandler
         
         try
         {
-        	dim = data.readInt();
+        	//dim = data.readInt();
         	posX = data.readDouble();
         	posY = data.readDouble();
         	posZ = data.readDouble();
@@ -141,7 +141,7 @@ public class PacketHandler implements IPacketHandler
         
         if(player != null)
         {
-        	player.dimension = dim;
+        	//player.dimension = dim;
         	player.setLocationAndAngles(posX, posY, posZ, yaw, 0);
         }
     }
