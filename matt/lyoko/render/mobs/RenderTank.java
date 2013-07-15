@@ -2,7 +2,7 @@ package matt.lyoko.render.mobs;
 
 import matt.lyoko.model.mobs.ModelTank;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 
 public class RenderTank extends RenderLiving {

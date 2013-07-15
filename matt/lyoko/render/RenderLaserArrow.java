@@ -3,7 +3,7 @@ package matt.lyoko.render;
 import matt.lyoko.entities.projectile.EntityLaserArrow;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 

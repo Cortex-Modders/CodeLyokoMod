@@ -9,7 +9,7 @@ import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

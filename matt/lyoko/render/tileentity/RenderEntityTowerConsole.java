@@ -4,7 +4,7 @@ import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.model.tileentity.ModelConsole;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;

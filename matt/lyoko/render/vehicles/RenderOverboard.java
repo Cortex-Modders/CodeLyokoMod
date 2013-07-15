@@ -1,6 +1,6 @@
 package matt.lyoko.render.vehicles;
 
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import matt.lyoko.model.vehicles.ModelOverboard;
 
 public class RenderOverboard extends RenderVehicle {

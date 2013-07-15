@@ -2,7 +2,7 @@ package matt.lyoko.render.vehicles;
 
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.model.vehicles.ModelSkid;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderSkid extends RenderVehicle
 {

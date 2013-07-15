@@ -2,7 +2,7 @@ package matt.lyoko.render;
 
 import matt.lyoko.model.ModelLaser;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 
 public class RenderLaser extends RenderLiving {

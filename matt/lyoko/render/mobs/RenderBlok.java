@@ -2,7 +2,7 @@ package matt.lyoko.render.mobs;
 
 import matt.lyoko.model.mobs.ModelBlok;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 
 public class RenderBlok extends RenderLiving {

@@ -5,7 +5,7 @@ import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.tileentity.TileEntityCable;
 import matt.lyoko.model.tileentity.ModelCable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
