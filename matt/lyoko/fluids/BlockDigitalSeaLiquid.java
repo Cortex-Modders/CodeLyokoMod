@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -17,12 +18,14 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 	{
 		super(i, ModFluids.digitalSea, material);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
+		ModFluids.digitalSea.setBlockID(this);
 	}
 	
 	@Override
-	public void registerIcons(IconRegister par1IconRegister)
+	public Icon getIcon(int side, int meta)
 	{
-		this.blockIcon = Block.waterMoving.getIcon(0, 0);
+		return Block.waterMoving.getIcon(side, meta);
+		
 	}
 	
 	@Override

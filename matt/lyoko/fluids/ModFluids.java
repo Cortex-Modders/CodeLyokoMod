@@ -11,7 +11,7 @@ public class ModFluids
 	
 	public static void init()
 	{
-		digitalSea  = new Fluid("Digital Sea").setBlockID(BlockIds.LYOKO_DIGITAL_SEA_LIQUID).setUnlocalizedName("DigitalSea");
+		digitalSea  = new Fluid("Digital Sea").setLuminosity(15).setUnlocalizedName("DigitalSea");
 		
 		registerFluids();
 	}
