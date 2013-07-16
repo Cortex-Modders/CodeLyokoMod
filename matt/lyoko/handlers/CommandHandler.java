@@ -8,6 +8,7 @@ import java.util.List;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -49,7 +50,11 @@ public class CommandHandler implements ICommand
 		if(icommandsender instanceof EntityPlayer)
 		{
 			EntityPlayer player = ((EntityPlayer)icommandsender);
-			player.addChatMessage("this command is not ready for use at this time");
+			if(!CodeLyoko.entityInLyoko(player))
+			{
+				player.addChatMessage("You cannot be devirtualized because you are not in lyoko");
+				return;
+			}
 			
 			PlayerInformation pi = PlayerInformation.forPlayer(player);
 			
@@ -79,6 +84,7 @@ public class CommandHandler implements ICommand
 		    packet.length = bos.size();
 		    
 		    PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
+			player.addChatMessage("You have been devirtualized. Please re-log to refresh the client");
 		}
 		// wait for ChatMessageComponent to get names put in.
 		//		icommandsender.func_110122_a(ChatMessageComponent.func_11066d("this command is not ready for use at this time"));

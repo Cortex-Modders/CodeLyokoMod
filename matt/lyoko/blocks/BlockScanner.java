@@ -204,6 +204,13 @@ public class BlockScanner extends BlockContainer
 			world.setBlock(x, y + 2, z, portal);
 			world.setBlock(x, y + 3, z, portal);*/
 			
+			if(CodeLyoko.entityInLyoko(player))
+			{
+				player.addChatMessage("You can't be virtualized while currently virtualized.");
+				player.addChatMessage("Yes, that's right, I thought you, " + player.username + ", would try to do this.");
+				return;
+			}
+			
 			int dim;
 			switch(tile.sector)
 			{
@@ -228,6 +235,7 @@ public class BlockScanner extends BlockContainer
 			
 			//player.travelToDimension(dim);
 			DimensionIds.teleportToDimension(player, dim);
+			player.addChatMessage("You have been virtualized. Please re-log to refresh the client");
 			player.timeUntilPortal = 100;
 			tile.sector = -1;
 		}
