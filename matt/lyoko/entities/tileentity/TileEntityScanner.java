@@ -13,10 +13,24 @@ import net.minecraft.tileentity.TileEntity;
 public class TileEntityScanner extends TileEntity
 {
 	public int sector = -1;
+	private int timer = -1;
 	
 	@Override
 	public void updateEntity()
 	{
+		if(timer > 0)
+		{
+			timer--;
+		}
+		
+		if(timer == 0)
+		{
+			worldObj.setBlock(xCoord, yCoord + 1, zCoord, 0);
+			worldObj.setBlock(xCoord, yCoord + 2, zCoord, 0);
+			worldObj.setBlock(xCoord, yCoord + 3, zCoord, 0);
+			timer--;
+		}
+		
 		if(this.sector != -1)
 		{
 			for(int i = -1; i < 2; i++)
@@ -41,6 +55,11 @@ public class TileEntityScanner extends TileEntity
 				}
 			}
 		}
+	}
+	
+	public void setAutomaticTimer()
+	{
+		timer = 200;
 	}
 	
 	public void setPlayerDevirtYaw(PlayerInformation pi)
@@ -83,6 +102,7 @@ public class TileEntityScanner extends TileEntity
 	{
 		super.readFromNBT(tagCompound);
 		this.sector = tagCompound.getInteger("sector");
+		this.timer = tagCompound.getInteger("timer");
 	}
 	
 	@Override
@@ -90,5 +110,6 @@ public class TileEntityScanner extends TileEntity
 	{
 		super.writeToNBT(tagCompound);
         tagCompound.setInteger("sector", this.sector);
+        tagCompound.setInteger("timer", this.timer);
 	}
 }

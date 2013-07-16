@@ -202,7 +202,12 @@ public class BlockScanner extends BlockContainer
 			
 			world.setBlock(x, y + 1, z, portal);
 			world.setBlock(x, y + 2, z, portal);
-			world.setBlock(x, y + 3, z, portal);*/
+			world.setBlock(x, y + 3, z, portal);
+			
+			if(portal != 0)
+			{
+				tile.setAutomaticTimer();
+			}*/
 			
 			if(CodeLyoko.entityInLyoko(player))
 			{
