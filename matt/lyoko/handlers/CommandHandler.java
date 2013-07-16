@@ -15,6 +15,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
 public class CommandHandler implements ICommand
@@ -52,7 +53,10 @@ public class CommandHandler implements ICommand
 			EntityPlayer player = ((EntityPlayer)icommandsender);
 			if(!CodeLyoko.entityInLyoko(player))
 			{
-				player.addChatMessage("You cannot be devirtualized because you are not in lyoko");
+				if(player.worldObj.isRemote)
+				{
+					player.addChatMessage("You cannot be devirtualized because you are not in lyoko");
+				}
 				return;
 			}
 			
@@ -60,7 +64,10 @@ public class CommandHandler implements ICommand
 			
 			//player.dimension = pi.scannerDim;
 			//player.travelToDimension(pi.scannerDim);
-			DimensionIds.teleportToDimension(player, pi.scannerDim);
+			if(player instanceof EntityPlayerMP)
+			{
+				DimensionIds.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
+			}
 			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
 			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
@@ -84,7 +91,6 @@ public class CommandHandler implements ICommand
 		    packet.length = bos.size();
 		    
 		    PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
-			player.addChatMessage("You have been devirtualized. Please re-log to refresh the client");
 		}
 		// wait for ChatMessageComponent to get names put in.
 		//		icommandsender.func_110122_a(ChatMessageComponent.func_11066d("this command is not ready for use at this time"));

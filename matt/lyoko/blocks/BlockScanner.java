@@ -1,5 +1,10 @@
 package matt.lyoko.blocks;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.DimensionIds;
@@ -9,6 +14,8 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -211,8 +218,11 @@ public class BlockScanner extends BlockContainer
 			
 			if(CodeLyoko.entityInLyoko(player))
 			{
-				player.addChatMessage("You can't be virtualized while currently virtualized.");
-				player.addChatMessage("Yes, that's right, I thought you, " + player.username + ", would try to do this.");
+				if(player.worldObj.isRemote)
+				{
+					player.addChatMessage("You can't be virtualized while currently virtualized.");
+					player.addChatMessage("Yes, that's right, I thought you, " + player.username + ", would try to do this.");
+				}
 				return;
 			}
 			
@@ -239,9 +249,41 @@ public class BlockScanner extends BlockContainer
 			}
 			
 			//player.travelToDimension(dim);
-			DimensionIds.teleportToDimension(player, dim);
-			player.addChatMessage("You have been virtualized. Please re-log to refresh the client");
-			player.timeUntilPortal = 100;
+			if(player instanceof EntityPlayerMP)
+			{
+				DimensionIds.transferPlayerToDimension((EntityPlayerMP)player, dim);
+			}
+			int xPos = (int) player.posX;
+			int yPos = (int) player.posY;
+			int zPos = (int) player.posZ;
+			while(player.worldObj.getBlockId(xPos, yPos, zPos) != 0 && yPos < 256)
+			{
+				yPos++;
+			}
+			
+			player.setPositionAndRotation(player.posX, yPos, player.posZ, player.rotationYaw, player.rotationPitch);
+			
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
+		    DataOutputStream outputStream = new DataOutputStream(bos);
+		    try
+		    {
+		    	outputStream.writeDouble(player.posX);
+		    	outputStream.writeDouble(player.posY);
+		    	outputStream.writeDouble(player.posZ);
+		    	outputStream.writeFloat(player.rotationYaw);
+		    }
+		    catch (Exception ex)
+		    {
+		    	ex.printStackTrace();
+		    }
+		    
+		    Packet250CustomPayload packet = new Packet250CustomPayload();
+		    packet.channel = "Devirt";
+		    packet.data = bos.toByteArray();
+		    packet.length = bos.size();
+		    
+		    PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
+			
 			tile.sector = -1;
 		}
 	}
