@@ -24,8 +24,6 @@ public class ArmorLyoko extends ItemArmor
                 this.setContainerItem(this);
         }
         
-        private static double defaultReachDistance = 5;
-        private static double newReachDistance = 10;
         private String armorOwner;
         
         @Override
@@ -61,6 +59,7 @@ public class ArmorLyoko extends ItemArmor
         			ItemStack chest = player.getCurrentItemOrArmor(3);
         			ItemStack legs = player.getCurrentItemOrArmor(2);
         			ItemStack boots = player.getCurrentItemOrArmor(1);
+        			
         			if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest
         					&& legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
         			{

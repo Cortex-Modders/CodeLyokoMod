@@ -96,23 +96,23 @@ public class BlockCable extends BlockContainer
 	
 	public int convertSectorToInt(String sector)
 	{
-		if(sector.equals("polar"))
+		if(sector.toLowerCase().equals("polar") || sector.toLowerCase().equals("ice"))
 		{
 			return 0;
 		}
-		else if(sector.equals("desert"))
+		else if(sector.toLowerCase().equals("desert"))
 		{
 			return 1;
 		}
-		else if(sector.equals("forest"))
+		else if(sector.toLowerCase().equals("forest"))
 		{
 			return 2;
 		}
-		else if(sector.equals("mountain"))
+		else if(sector.toLowerCase().equals("mountain"))
 		{
 			return 3;
 		}
-		else if(sector.equals("carthage"))
+		else if(sector.toLowerCase().equals("carthage"))
 		{
 			return 4;
 		}

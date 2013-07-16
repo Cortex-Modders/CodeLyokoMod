@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.util.EnumSet;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -56,14 +57,14 @@ public class ServerTickHandler implements ITickHandler
 		
 		if(pi.getLifePoints() <= 0 && CodeLyoko.entityInLyoko(player))
 		{
-			player.dimension = pi.scannerDim;
-			player.setLocationAndAngles(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
+			DimensionIds.teleportToDimension(player, pi.scannerDim);
+			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
 			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
 		    DataOutputStream outputStream = new DataOutputStream(bos);
 		    try
 		    {
-		    	outputStream.writeInt(player.dimension);
+		    	//outputStream.writeInt(player.dimension);
 		    	outputStream.writeDouble(player.posX);
 		    	outputStream.writeDouble(player.posY);
 		    	outputStream.writeDouble(player.posZ);
@@ -80,8 +81,9 @@ public class ServerTickHandler implements ITickHandler
 		    packet.length = bos.size();
 		    
 		    PacketDispatcher.sendPacketToPlayer(packet,(Player) player);
-			
-			pi.setLifePoints(100);
+		    
+		    pi.setLifePoints(100);
+			player.addChatMessage("You have been devirtualized. Please re-log to refresh the client");
 		}
 	}
     
