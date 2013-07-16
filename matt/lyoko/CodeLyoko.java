@@ -1,7 +1,10 @@
 package matt.lyoko;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.client.SoundHandler;
@@ -41,6 +44,7 @@ import cpw.mods.fml.common.registry.*;
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
+	public static List<Item> debugTools = new ArrayList();
 	
 	public static HashSet<TileAnimator> animatorInstances = new HashSet<TileAnimator>();
 	
@@ -109,7 +113,7 @@ public class CodeLyoko
 		/*
 		 * commented out until needed so that the config file isn't cluttered with unused stuff
 		 */
-		//ItemIds.NOT_USED4 = config.getItem("itemLyoko4", ItemIds.NOT_USED4_DEFAULT).getInt();
+		ItemIds.LASER_SHOOTER = config.getItem("laserShooter", ItemIds.LASER_SHOOTER_DEFAULT).getInt();
 		//ItemIds.NOT_USED5 = config.getItem("itemLyoko5", ItemIds.NOT_USED5_DEFAULT).getInt();
 		//ItemIds.NOT_USED6 = config.getItem("itemLyoko6", ItemIds.NOT_USED6_DEFAULT).getInt();
 		//ItemIds.NOT_USED7 = config.getItem("itemLyoko7", ItemIds.NOT_USED7_DEFAULT).getInt();
@@ -172,10 +176,13 @@ public class CodeLyoko
 		Recipes.registerSmelting();
 		Recipes.registerItemRecipes();
     	
+    	proxy.registerEntities();
+    	proxy.registerEntityNames();
     	proxy.registerRenderInformation();
     	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
+    	proxy.addChestLoot();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     	
@@ -205,10 +212,6 @@ public class CodeLyoko
     	DimensionManager.registerDimension(DimensionIds.FOREST, DimensionIds.FOREST);
     	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
     	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
-    	
-    	proxy.addChestLoot();
-    	proxy.registerEntities();
-    	proxy.registerEntityNames();
     }
     
 	@EventHandler

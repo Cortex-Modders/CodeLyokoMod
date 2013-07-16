@@ -1,84 +1,53 @@
 package matt.lyoko.render;
 
+import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.model.ModelLaser;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
-public class RenderLaser extends RenderLiving {
-	
-	// this whole class needs to be coded without RenderLiving. :P -jadar
-	
-	public RenderLaser(ModelLaser modellaser, float f) {
-		super(new ModelLaser(), 0.5F);
-	}
+import org.lwjgl.opengl.GL11;
+
+public class RenderLaser extends Render
+{
+
+    protected ModelBase model;
+    public ResourceLocation texture;
+    
+    public RenderLaser()
+    {
+        shadowSize = 0.0F;
+        model = new ModelLaser();
+        texture = new ResourceLocation("lyoko:textures/models/laser.png");
+    }
+
+    protected void renderModel(EntityLyokoRanged parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
+        this.func_110776_a(texture);
+        model.render(parEntityVehicle, x, y, z, f, f1, f2);
+    }
+
+    public void doRenderVehicle(EntityLyokoRanged parEntityVehicle, double x, double y, double z, float f, float f1) {
+        //GL11.glPushMatrix();
+        //GL11.glDisable(2896);
+
+        // no idea what f1 is. the last value is like the length i think.
+        //float hover = MathHelper.sin(f1 / 10.0F + parEntityVehicle.hoverSpeed) * 0.1F + 0.06F;
+        //GL11.glTranslated(x, y - 1 + hover, z);
+        this.renderModel(parEntityVehicle, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+
+        //GL11.glEnable(2896);
+        //GL11.glPopMatrix();
+    }
+
+    @Override
+    public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
+        doRenderVehicle((EntityLyokoRanged) entity, x, y, z, f, f1);
+    }
 
 	@Override
 	protected ResourceLocation func_110775_a(Entity entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return texture;
 	}
 }
-// remove this comment below?? -jadar
-
-/*
- * package net.minecraft.src.lyoko;
- * 
- * import cpw.mods.fml.common.Side; import cpw.mods.fml.common.asm.SideOnly;
- * import org.lwjgl.opengl.GL11; import org.lwjgl.opengl.GL12; import
- * net.minecraft.src.*;
- * 
- * @SideOnly(Side.CLIENT) public class RenderLaser extends Render { public void
- * renderLaser(EntityLaser par1EntityLaser, double par2, double par4, double
- * par6, float par8, float par9) { this.loadTexture("/item/arrows.png");
- * GL11.glPushMatrix(); GL11.glTranslatef((float)par2, (float)par4,
- * (float)par6); GL11.glRotatef(par1EntityLaser.prevRotationYaw +
- * (par1EntityLaser.rotationYaw - par1EntityLaser.prevRotationYaw) * par9 -
- * 90.0F, 0.0F, 1.0F, 0.0F); GL11.glRotatef(par1EntityLaser.prevRotationPitch +
- * (par1EntityLaser.rotationPitch - par1EntityLaser.prevRotationPitch) * par9,
- * 0.0F, 0.0F, 1.0F); Tessellator var10 = Tessellator.instance; byte var11 = 0;
- * float var12 = 0.0F; float var13 = 0.5F; float var14 = (float)(0 + var11 * 10)
- * / 32.0F; float var15 = (float)(5 + var11 * 10) / 32.0F; float var16 = 0.0F;
- * float var17 = 0.15625F; float var18 = (float)(5 + var11 * 10) / 32.0F; float
- * var19 = (float)(10 + var11 * 10) / 32.0F; float var20 = 0.05625F;
- * GL11.glEnable(GL12.GL_RESCALE_NORMAL); float var21 =
- * (float)par1EntityLaser.arrowShake - par9;
- * 
- * if (var21 > 0.0F) { float var22 = -MathHelper.sin(var21 * 3.0F) * var21;
- * GL11.glRotatef(var22, 0.0F, 0.0F, 1.0F); }
- * 
- * GL11.glRotatef(45.0F, 1.0F, 0.0F, 0.0F); GL11.glScalef(var20, var20, var20);
- * GL11.glTranslatef(-4.0F, 0.0F, 0.0F); GL11.glNormal3f(var20, 0.0F, 0.0F);
- * var10.startDrawingQuads(); var10.addVertexWithUV(-7.0D, -2.0D, -2.0D,
- * (double)var16, (double)var18); var10.addVertexWithUV(-7.0D, -2.0D, 2.0D,
- * (double)var17, (double)var18); var10.addVertexWithUV(-7.0D, 2.0D, 2.0D,
- * (double)var17, (double)var19); var10.addVertexWithUV(-7.0D, 2.0D, -2.0D,
- * (double)var16, (double)var19); var10.draw(); GL11.glNormal3f(-var20, 0.0F,
- * 0.0F); var10.startDrawingQuads(); var10.addVertexWithUV(-7.0D, 2.0D, -2.0D,
- * (double)var16, (double)var18); var10.addVertexWithUV(-7.0D, 2.0D, 2.0D,
- * (double)var17, (double)var18); var10.addVertexWithUV(-7.0D, -2.0D, 2.0D,
- * (double)var17, (double)var19); var10.addVertexWithUV(-7.0D, -2.0D, -2.0D,
- * (double)var16, (double)var19); var10.draw();
- * 
- * for (int var23 = 0; var23 < 4; ++var23) { GL11.glRotatef(90.0F, 1.0F, 0.0F,
- * 0.0F); GL11.glNormal3f(0.0F, 0.0F, var20); var10.startDrawingQuads();
- * var10.addVertexWithUV(-8.0D, -2.0D, 0.0D, (double)var12, (double)var14);
- * var10.addVertexWithUV(8.0D, -2.0D, 0.0D, (double)var13, (double)var14);
- * var10.addVertexWithUV(8.0D, 2.0D, 0.0D, (double)var13, (double)var15);
- * var10.addVertexWithUV(-8.0D, 2.0D, 0.0D, (double)var12, (double)var15);
- * var10.draw(); }
- * 
- * GL11.glDisable(GL12.GL_RESCALE_NORMAL); GL11.glPopMatrix(); }
- * 
- * /** Actually renders the given argument. This is a synthetic bridge method,
- * always casting down its argument and then handing it off to a worker function
- * which does the actual work. In all probabilty, the class Render is generic
- * (Render<T extends Entity) and this method has signature public void
- * doRender(T entity, double d, double d1, double d2, float f, float f1). But
- * JAD is pre 1.5 so doesn't do that.
- */
-/*
- * public void doRender(Entity par1Entity, double par2, double par4, double
- * par6, float par8, float par9) { this.renderLaser((EntityLaser)par1Entity,
- * par2, par4, par6, par8, par9); } }
- */

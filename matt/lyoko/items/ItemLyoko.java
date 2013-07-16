@@ -23,13 +23,33 @@ public class ItemLyoko extends Item
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
 	{
-		if(stack.getItem() == ModItems.LaserArrow)
+		if(stack.getItem().equals(ModItems.LaserArrow))
 		{
 			list.add("This is the mod's equivalent of an infinite battery.");
 			list.add("Use this as a fuel cell in the Super Computer.");
 			list.add("This is also the debug tool for the mod as well.");
 		}
 	}
+	
+	@Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+    	if(player.isSneaking() && stack.getItem().equals(ModItems.LaserArrow))
+    	{
+    		Item item;
+    		int index = CodeLyoko.debugTools.indexOf(this);
+    		if(CodeLyoko.debugTools.size() == index + 1)
+    		{
+    			item = CodeLyoko.debugTools.get(0);
+    		}
+    		else
+    		{
+    			item = CodeLyoko.debugTools.get(index + 1);
+    		}
+    		stack = new ItemStack(item, stack.stackSize);
+    	}
+    	return stack;
+    }
 	
 	@Override
 	public void registerIcons(IconRegister iconRegister)

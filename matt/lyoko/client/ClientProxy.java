@@ -19,10 +19,7 @@ import matt.lyoko.model.ModelLaser;
 import matt.lyoko.model.mobs.ModelBlok;
 import matt.lyoko.model.mobs.ModelTank;
 import matt.lyoko.render.ItemRenderGlove;
-import matt.lyoko.render.RenderEnergyField;
-import matt.lyoko.render.RenderFan;
 import matt.lyoko.render.RenderLaser;
-import matt.lyoko.render.RenderLaserArrow;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
 import matt.lyoko.render.tileentity.RenderCable;
@@ -31,6 +28,7 @@ import matt.lyoko.render.tileentity.RenderTower;
 import matt.lyoko.render.vehicles.RenderOverboard;
 import matt.lyoko.render.vehicles.RenderSkid;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 import org.lwjgl.opengl.GL11;
@@ -52,9 +50,11 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/y");
 		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/w");
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderFan(ModItems.Fan));
-		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderEnergyField(ModItems.EnergyField));
-		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderLaserArrow());
+		RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderSnowball(ModItems.Fan));
+		RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderSnowball(ModItems.EnergyField));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderSnowball(ModItems.LaserArrow));
+		RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderSnowball(ModItems.LaserShooter));
+		
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok(new ModelBlok(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank(new ModelTank(), 0.5F));
 		/*
@@ -65,7 +65,6 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityManta.class, new RenderManta(new ModelManta(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntityTarantula.class, new RenderTarantula(new ModelTarantula(), 0.5F));
 		*/
-		RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderLaser(new ModelLaser(), 0.5F));
 		RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
 		RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
 		

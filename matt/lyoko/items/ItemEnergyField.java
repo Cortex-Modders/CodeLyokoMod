@@ -55,7 +55,7 @@ public class ItemEnergyField extends Item
                 var7 = 1.0F;
             }
 
-            EntityEnergyField var8 = new EntityEnergyField(par2World, par3EntityPlayer, var7 * 20F);
+            EntityEnergyField var8 = new EntityEnergyField(par2World, par3EntityPlayer, var7 * 5F);
 
             if (var7 == 1.0F)
             {

@@ -46,7 +46,7 @@ public class DimensionIds {
             player.worldObj.removeEntity(player);
             player.isDead = false;
             player.worldObj.theProfiler.startSection("reposition");
-            //minecraftServer.getConfigurationManager().transferEntityToWorld(player, currentDim, currentWorldServer, newWorldServer);
+            transferEntityToWorld(player, currentDim, currentWorldServer, newWorldServer);
             player.worldObj.theProfiler.endStartSection("reloading");
             Entity entity = EntityList.createEntityByName(EntityList.getEntityString(player), newWorldServer);
             
@@ -62,5 +62,36 @@ public class DimensionIds {
             newWorldServer.resetUpdateEntityTick();
             player.worldObj.theProfiler.endSection();
         }
+    }
+    
+    public static void transferEntityToWorld(EntityPlayer player, int currentDim, WorldServer currentWorldServer, WorldServer newWorldServer)//, Teleporter teleporter)
+    {
+        WorldProvider pOld = currentWorldServer.provider;
+        WorldProvider pNew = newWorldServer.provider;
+        double moveFactor = pOld.getMovementFactor() / pNew.getMovementFactor();
+        double d0 = player.posX * moveFactor;
+        double d1 = player.posZ * moveFactor;
+        double d3 = player.posX;
+        double d4 = player.posY;
+        double d5 = player.posZ;
+        float f = player.rotationYaw;
+        currentWorldServer.theProfiler.startSection("moving");
+        
+        currentWorldServer.theProfiler.endSection();
+        
+        currentWorldServer.theProfiler.startSection("placing");
+        d0 = (double)MathHelper.clamp_int((int)d0, -29999872, 29999872);
+        d1 = (double)MathHelper.clamp_int((int)d1, -29999872, 29999872);
+        
+        if (player.isEntityAlive())
+        {
+        	newWorldServer.spawnEntityInWorld(player);
+        	player.setLocationAndAngles(d0, player.posY, d1, player.rotationYaw, player.rotationPitch);
+        	newWorldServer.updateEntityWithOptionalForce(player, false);
+        }
+        
+        currentWorldServer.theProfiler.endSection();
+        
+        player.setWorld(newWorldServer);
     }
 }

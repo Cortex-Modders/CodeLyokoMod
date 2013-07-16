@@ -1,7 +1,7 @@
 package matt.lyoko.lib;
 
-public class EntityIds {
-
+public class EntityIds
+{
     // Not all will be used, but these are all the monsters.
     public static int KANKRELAT = 0;
     public static int HORNET= 1;
@@ -27,8 +27,9 @@ public class EntityIds {
     public static int NAVSKID = 19;
     public static int MEGAPOD = 20;
     
-    
-    // Other. Donno if I need this..
+    // Projectiles
     public static int LASER = 21;
-    
+    public static int LASERARROW = 22;
+    public static int FAN = 23;
+    public static int ENERGYFIELD = 24;
 }

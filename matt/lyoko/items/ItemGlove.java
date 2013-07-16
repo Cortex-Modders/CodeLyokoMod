@@ -55,7 +55,7 @@ public class ItemGlove extends Item
                 var7 = 1.0F;
             }
 
-            EntityLaserArrow var8 = new EntityLaserArrow(par2World, par3EntityPlayer, var7 * 20F);
+            EntityLaserArrow var8 = new EntityLaserArrow(par2World, par3EntityPlayer, var7 * 5F);
 
             if (var7 == 1.0F)
             {

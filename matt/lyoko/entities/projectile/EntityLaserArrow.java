@@ -5,7 +5,13 @@ import net.minecraft.world.World;
 
 public class EntityLaserArrow extends EntityLyokoRanged
 {
-	public EntityLaserArrow(World world, EntityLivingBase entLiving, float f) {
+	public EntityLaserArrow(World world, EntityLivingBase entLiving, float f)
+	{
 		super(world, entLiving, f);
+	}
+	
+	public EntityLaserArrow(World world)
+	{
+		super(world);
 	}
 }

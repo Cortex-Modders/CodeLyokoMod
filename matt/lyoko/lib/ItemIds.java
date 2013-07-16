@@ -12,7 +12,7 @@ public class ItemIds {
     public static int ITEM_OVERBOARD_DEFAULT = 6088;
     public static int ITEM_QUANTUM_MATRIX_DEFAULT = 6089;
     public static int ITEM_QUANTUM_CONTAINMENT_CELL_DEFAULT = 6090;
-    public static int NOT_USED4_DEFAULT = 6091;
+    public static int LASER_SHOOTER_DEFAULT = 6091;
     public static int NOT_USED5_DEFAULT = 6092;
     public static int NOT_USED6_DEFAULT = 6093;
     public static int NOT_USED7_DEFAULT = 6094;
@@ -58,7 +58,7 @@ public class ItemIds {
     public static int ITEM_OVERBOARD;
     public static int ITEM_QUANTUM_MATRIX;
     public static int ITEM_QUANTUM_CONTAINMENT_CELL;
-    public static int NOT_USED4;
+    public static int LASER_SHOOTER;
     public static int NOT_USED5;
     public static int NOT_USED6;
     public static int NOT_USED7;

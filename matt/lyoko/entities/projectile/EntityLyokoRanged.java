@@ -49,7 +49,8 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir = 0;
-    private double damage = 2.0D;
+    private double MAX_DAMAGE = 40.0D;
+    private double damage = MAX_DAMAGE;
 
     /** The amount of knockback an arrow applies when it hits a mob. */
     private int knockbackStrength;
@@ -201,7 +202,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
         }
         else
         {
-        	this.setDamage(2.0D);
+        	this.setDamage(MAX_DAMAGE);
         }
         
         if(this.ticksExisted >= 200)
@@ -294,10 +295,9 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
             {
                 if (var4.entityHit != null)
                 {
-                	//TODO should I make it damage vehicles too?
                 	if(!(var4.entityHit instanceof EntityPlayer))
                 	{
-                		setDamage(2.0D);
+                		setDamage(MAX_DAMAGE);
                 	}
                 	else
                 	{

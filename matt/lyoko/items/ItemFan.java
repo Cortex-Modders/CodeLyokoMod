@@ -55,7 +55,7 @@ public class ItemFan extends Item
                 var7 = 1.0F;
             }
 
-            EntityFan var8 = new EntityFan(par2World, par3EntityPlayer, var7 * 20F);
+            EntityFan var8 = new EntityFan(par2World, par3EntityPlayer, var7 * 5F);
 
             if (var7 == 1.0F)
             {

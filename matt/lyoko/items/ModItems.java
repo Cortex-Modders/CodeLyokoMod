@@ -1,6 +1,7 @@
 package matt.lyoko.items;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.ItemIds;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
@@ -51,6 +52,7 @@ public class ModItems
     public static Item Skid;
     public static Item QuantumMatrix;
     public static Item QuantumContainmentCell;
+    public static Item LaserShooter;
     
     public static void init()
     {
@@ -93,8 +95,10 @@ public class ModItems
         Skid = new ItemSkid(ItemIds.ITEM_SKID).setUnlocalizedName("Skidbladnir");
         QuantumMatrix = new ItemLyoko(ItemIds.ITEM_QUANTUM_MATRIX).setUnlocalizedName("QuantumMatrix");
         QuantumContainmentCell = new ItemLyoko(ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL).setUnlocalizedName("QuantumContainmentCell");
+        LaserShooter = new ItemLaserShooter(ItemIds.LASER_SHOOTER).setUnlocalizedName("LaserShooter");
         
         registerLanguage();
+        registerDebugTools();
     }
     
     private static void registerLanguage()
@@ -138,5 +142,12 @@ public class ModItems
     	LanguageRegistry.addName(EnergyField, "Energy Field");
     	LanguageRegistry.addName(Glove, "Laser Arrow Glove");
     	LanguageRegistry.addName(LaserArrow, "Laser Arrow");
+    	LanguageRegistry.addName(LaserShooter, "Laser Shooter");
+    }
+    
+    public static void registerDebugTools()
+    {
+    	CodeLyoko.debugTools.add(LaserArrow);
+    	CodeLyoko.debugTools.add(LaserShooter);
     }
 }
