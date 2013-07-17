@@ -3,6 +3,7 @@ package matt.lyoko.blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import matt.lyoko.fluids.BlockDigitalSeaLiquid;
+import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.items.ItemBlockEffect;
 import matt.lyoko.items.ItemBlockTowerFloor;
 import matt.lyoko.items.ItemBlockVirtual;
@@ -41,6 +42,7 @@ public class ModBlocks
 	
 	public static void init()
 	{
+		// Lyoko
 		TowerBlock = new BlockTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
     	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE, "towerBase", false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
     	Grass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
@@ -49,20 +51,27 @@ public class ModBlocks
     	Ice = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
     	Log = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
     	Carthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-    	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
-    	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_DIGITAL_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-    	DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing");
-    	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
     	VirtualBlock = new BlockVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
-    	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
-    	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerWall");
+    	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerFloor");
+    	
+    	// Ore
+    	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
+    	LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
+    	UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
+    	
+    	// Other
+    	SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(600F).setUnlocalizedName("Super Computer");
     	Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(1F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
     	Scanner = new BlockScanner(BlockIds.SCANNER).setHardness(20F).setResistance(0F).setUnlocalizedName("Scanner");
     	SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).setResistance(6000000F).setHardness(20.0F).setLightValue(7.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("SuperCalcConsole");
     	
+    	// Digital Sea
+    	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_DIGITAL_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
+    	DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, ModFluids.digitalSea, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaLiquid");
+    	
+    	// Portal (Unused)
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
     	LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
     	LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setUnlocalizedName("ForestPortal").setCreativeTab(null);

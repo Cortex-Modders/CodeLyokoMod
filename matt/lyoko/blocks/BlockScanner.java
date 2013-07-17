@@ -9,6 +9,7 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
+import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -248,10 +249,9 @@ public class BlockScanner extends BlockContainer
 				return;
 			}
 			
-			//player.travelToDimension(dim);
 			if(player instanceof EntityPlayerMP)
 			{
-				DimensionIds.transferPlayerToDimension((EntityPlayerMP)player, dim);
+				LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP)player, dim);
 			}
 			int xPos = (int) player.posX;
 			int yPos = (int) player.posY;

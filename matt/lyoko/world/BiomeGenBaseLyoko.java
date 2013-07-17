@@ -24,7 +24,6 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 
 public class BiomeGenBaseLyoko extends BiomeGenBase
 {
-
 	protected BiomeGenBaseLyoko(int par1)
 	{
 		super(par1);
@@ -46,18 +45,6 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.worldGeneratorSwamp = new WorldGenSwamp();
         biomeList[par1] = this;
         this.theBiomeDecorator = this.createBiomeDecorator();
-        this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 12, 4, 4));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 8, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntitySpider.class, 10, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityZombie.class, 10, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntitySkeleton.class, 10, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityCreeper.class, 10, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntitySlime.class, 10, 4, 4));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 1, 1, 4));
-        this.spawnableWaterCreatureList.add(new SpawnListEntry(EntitySquid.class, 10, 4, 4));
-        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityBat.class, 10, 8, 8));
 	}
 	
 	public BiomeGenBase setLyokoBiomeName(String par1Str)
@@ -65,11 +52,10 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.biomeName = par1Str;
         return this;
     }
-
+	
     public BiomeGenBase setColor(int par1)
     {
         this.color = par1;
         return this;
     }
-    
 }

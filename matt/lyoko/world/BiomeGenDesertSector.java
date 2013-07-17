@@ -12,7 +12,6 @@ public class BiomeGenDesertSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityEnderman.class, 10, 4, 4));
         this.topBlock = (byte)BlockIds.LYOKO_SAND;
         this.fillerBlock = (byte)BlockIds.LYOKO_SAND;
     }

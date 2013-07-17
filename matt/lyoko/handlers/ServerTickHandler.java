@@ -5,8 +5,8 @@ import java.io.DataOutputStream;
 import java.util.EnumSet;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
+import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -60,7 +60,7 @@ public class ServerTickHandler implements ITickHandler
 		{
 			if(player instanceof EntityPlayerMP)
 			{
-				DimensionIds.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
+				LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
 			}
 			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			

@@ -11,14 +11,15 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
 
 public class BlockDigitalSeaLiquid extends BlockFluidClassic
 {
-	public BlockDigitalSeaLiquid(int i, Material material)
+	public BlockDigitalSeaLiquid(int i, Fluid fluid, Material material)
 	{
-		super(i, ModFluids.digitalSea, material);
+		super(i, fluid, material);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
-		ModFluids.digitalSea.setBlockID(this);
+		fluid.setBlockID(this);
 	}
 	
 	@Override

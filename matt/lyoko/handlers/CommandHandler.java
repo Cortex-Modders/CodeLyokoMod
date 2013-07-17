@@ -9,8 +9,8 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.PlayerInformation;
+import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
@@ -62,11 +62,9 @@ public class CommandHandler implements ICommand
 			
 			PlayerInformation pi = PlayerInformation.forPlayer(player);
 			
-			//player.dimension = pi.scannerDim;
-			//player.travelToDimension(pi.scannerDim);
 			if(player instanceof EntityPlayerMP)
 			{
-				DimensionIds.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
+				LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
 			}
 			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
@@ -74,7 +72,6 @@ public class CommandHandler implements ICommand
 		    DataOutputStream outputStream = new DataOutputStream(bos);
 		    try
 		    {
-		    	//outputStream.writeInt(player.dimension);
 		    	outputStream.writeDouble(player.posX);
 		    	outputStream.writeDouble(player.posY);
 		    	outputStream.writeDouble(player.posZ);

@@ -12,7 +12,6 @@ public class BiomeGenPolarSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBlok.class, 4, 4, 1));
         this.topBlock = (byte)BlockIds.LYOKO_ICE;
         this.fillerBlock = (byte)BlockIds.LYOKO_ICE;
     } 
