@@ -4,6 +4,7 @@ import java.util.Random;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.fluids.ModFluids;
+import matt.lyoko.lib.LyokoDamageSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -46,6 +47,6 @@ public class BlockDigitalSea extends Block
 
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
-        par5Entity.attackEntityFrom(DamageSource.generic, 100);
+        par5Entity.attackEntityFrom(LyokoDamageSource.digitalSea, 100);
     }
 }
