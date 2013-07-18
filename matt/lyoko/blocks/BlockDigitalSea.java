@@ -3,12 +3,14 @@ package matt.lyoko.blocks;
 import java.util.Random;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.fluids.ModFluids;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockDigitalSea extends Block
@@ -24,6 +26,12 @@ public class BlockDigitalSea extends Block
 	{
 		this.blockIcon = par1IconRegister.registerIcon("lyoko:digitalseablock");
 	}
+	
+	@Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z)
+	{
+		return ModFluids.digitalSea.getLuminosity();
+    }
 	
 	public int quantityDropped(Random par1Random)
 	{
