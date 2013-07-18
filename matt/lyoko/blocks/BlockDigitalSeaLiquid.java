@@ -1,4 +1,4 @@
-package matt.lyoko.fluids;
+package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
 import net.minecraft.block.Block;
@@ -28,6 +28,12 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 		return Block.waterMoving.getIcon(side, meta);
 		
 	}
+	
+	@Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z)
+	{
+		return maxScaledLight;
+    }
 	
 	@Override
 	public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)

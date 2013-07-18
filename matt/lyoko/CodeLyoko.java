@@ -180,7 +180,7 @@ public class CodeLyoko
     	proxy.registerEntityNames();
     	proxy.registerRenderInformation();
     	proxy.registerTickHandlers();
-    	proxy.registerKeyBindingHandler();
+    	//proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
     	proxy.addChestLoot();
     	
