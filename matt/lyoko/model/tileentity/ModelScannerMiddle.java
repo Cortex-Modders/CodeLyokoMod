@@ -44,7 +44,7 @@ public class ModelScannerMiddle extends ModelBase
         sideRcornerF.setRotationPoint(9F, -8F, -9F);
         sideRcornerF.setTextureSize(128, 128);
         sideRcornerF.mirror = true;
-        setRotation(sideRcornerF, 0F, 1.570796F, 0F);
+        setRotation(sideRcornerF, 0F, 3.141593F, 0F);
         sideB = new ModelRenderer(this, 80, 0);
         sideB.addBox(-8F, -8F, -1F, 16, 16, 2);
         sideB.setRotationPoint(0F, -8F, 11F);

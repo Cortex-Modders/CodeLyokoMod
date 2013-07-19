@@ -7,6 +7,7 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.DimensionIds;
+import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -60,7 +61,7 @@ public class BlockScanner extends BlockContainer {
 
     /**
      * 
-     * Finds if it is part of a multiblock. Returns boolean. 
+     * Finds if it is part of a multi block. Returns boolean. 
      * Use getPositionInMultiBlock to find exact position.
      * 
      * @param world
@@ -256,6 +257,18 @@ public class BlockScanner extends BlockContainer {
         return -1;
     }
 
+    /**
+     * 
+     * Returns an array of Vector3s that correspond to scanner blocks in
+     * a multi block. world, x, y, and z are for a scanner block that is in
+     * the multi block. Returns null if not in a multi block. 
+     * 
+     * @param world
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
     public static Vec3[] getBlockCoordsInMultiBlock(World world, int x, int y, int z) {
         int pos = getPositionInMultiBlock(world, x, y, z);
         if(pos == -1)
@@ -279,7 +292,7 @@ public class BlockScanner extends BlockContainer {
             return null;
     }
 
-    public void activatePortal(World world, int x, int y, int z, EntityPlayer player) {
+    public void virtualize(World world, int x, int y, int z, EntityPlayer player) {
         TileEntityScanner tile = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
         if (tile != null) {
             /*
@@ -297,6 +310,14 @@ public class BlockScanner extends BlockContainer {
              * if(portal != 0) { tile.setAutomaticTimer(); }
              */
 
+            
+            /**
+             * 
+             * IDEA: Here set the timer. In the tile entity if the timer is not at -1, keep the doors open.
+             * 
+             */
+            
+            
             if (CodeLyoko.entityInLyoko(player)) {
                 if (player.worldObj.isRemote) {
                     player.addChatMessage("You can't be virtualized while currently virtualized.");
@@ -362,31 +383,27 @@ public class BlockScanner extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are) {
-        /*
+
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking())
             return false;
         else {
-            for (int i = -1; i < 2; i++) {
-                for (int k = -1; k < 2; k++) {
-                    for (int j = -4; j < 1; j++) {
-                        if (isMultiBlock(world, x + i, y + j, z + k)) {
-                            PlayerInformation pi = PlayerInformation.forPlayer(player);
+            if (isMultiBlock(world, x, y, z)) {
+                PlayerInformation pi = PlayerInformation.forPlayer(player);
 
-                            pi.scannerDim = world.provider.dimensionId;
-                            pi.setScannerPosition(x + i, y + j + 1, z + k);
-                            ((TileEntityScanner) world.getBlockTileEntity(x + i, y + j, z + k)).setPlayerDevirtYaw(pi);
+                pi.scannerDim = world.provider.dimensionId;
+                pi.setScannerPosition(x, y, z);
+                ((TileEntityScanner) world.getBlockTileEntity(x, y, z)).setPlayerDevirtYaw(pi);
+                
+                
+                virtualize(world, x, y, z, player);
 
-                            activatePortal(world, x + i, y + j, z + k, player);
-
-                            return true;
-                        }
-                    }
-                }
+                return true;
             }
             return false;
         }
-         */
+
+        /*
         if(isMultiBlock(world, x, y, z)) {
             TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
             if (tileEntity == null || player.isSneaking() || !(tileEntity instanceof TileEntityScanner))
@@ -394,22 +411,11 @@ public class BlockScanner extends BlockContainer {
 
             TileEntityScanner reference = (TileEntityScanner)tileEntity;
             reference.toggleDoors();
-            /*
-            
-            Vec3[] array = getBlockCoordsInMultiBlock(world, x, y, z);
 
-
-            reference.doorsOpen = !reference.doorsOpen;
-
-            for( Vec3 coords : array) {
-                TileEntityScanner scanner = (TileEntityScanner) world.getBlockTileEntity((int)coords.xCoord, (int)coords.yCoord, (int)coords.zCoord);
-                scanner.doorsOpen = reference.doorsOpen;
-            }
-
-            */
             return true;
         }
         else
             return false;
+         */
     }
 }
