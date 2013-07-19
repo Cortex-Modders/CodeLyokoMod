@@ -276,6 +276,9 @@ public class BlockScanner extends BlockContainer {
             j++;
         }
         
+        if(j != 5)
+        	return null;
+        
         return array;
     }
     
