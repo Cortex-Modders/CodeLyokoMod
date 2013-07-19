@@ -220,42 +220,43 @@ public class BlockScanner extends BlockContainer {
      */
     public static int getPositionInMultiBlock(World world, int x, int y, int z) {
         // From bottom block.
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 0; i <= 4; i++) {
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
                 break;
             if(i == 4)
-                return 1;
+                return 0;
         }
         // From 1st to bottom block. i.e. block above bottom.
         for (int i = -1; i <= 3; i++) {
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
                 break;
             if(i == 3)
-                return 2;
+                return 1;
         }
         // From 2nd to bottom block. i.e. very middle block.
         for (int i = -2; i <= 2; i++) {
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
                 break;
             if(i == 2)
-                return 3;
+                return 2;
         }
         // From 1nd to top block. i.e. block under top block.
         for (int i = -3; i <= 1; i++) {
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
                 break;
             if(i == 1)
-                return 4;
+                return 3;
         }
         // From top block.
         for (int i = -4; i <= 0; i++) {
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
                 break;
             if(i == 0)
-                return 5;
+                return 4;
         }
         return -1;
     }
+
 
     /**
      * 
@@ -269,32 +270,38 @@ public class BlockScanner extends BlockContainer {
      * @param z
      * @return
      */
-    public static Vec3[] getBlockCoordsInMultiBlock(World world, int x, int y, int z) {
+    public static Vec3[] getBlockCoordsInMultiBlock(World world, int x, int y, int z)
+    {
         int pos = getPositionInMultiBlock(world, x, y, z);
         if(pos == -1)
             return null;
-
+        
         Vec3[] array = new Vec3[5];
-
-
+        
         int j = 0;
-        for(int i = ( 1 - pos ); i <= ( 5 - pos ); i++) {
-
+        for(int i = 0 - pos; i < 5 - pos; i++)
+        {
             if(world.getBlockId(x, y + i, z) == ModBlocks.Scanner.blockID)
                 array[j] = Vec3.createVectorHelper(x, y + i, z);
-
+            else
+            	System.out.println("for loop not complete successfully");
+            
             j++;
         }
 
-        if(array.length == 5)
-            return array;
-        else
-            return null;
+        if(j != 5)
+        	return null;
+        
+        return array;
     }
 
-    public void virtualize(World world, int x, int y, int z, EntityPlayer player) {
+
+    public void virtualize(World world, int x, int y, int z, EntityPlayer player)
+    {
+
         TileEntityScanner tile = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
-        if (tile != null) {
+        if (tile != null)
+        {
             /*
              * int portal; switch(tile.sector) { case 0: portal =
              * ModBlocks.LyokoPolarPortal.blockID; break; case 1: portal =
@@ -318,90 +325,79 @@ public class BlockScanner extends BlockContainer {
              */
             
             
-            if (CodeLyoko.entityInLyoko(player)) {
-                if (player.worldObj.isRemote) {
+            if(CodeLyoko.entityInLyoko(player))
+            {
+                if(player.worldObj.isRemote)
+                {
                     player.addChatMessage("You can't be virtualized while currently virtualized.");
                     player.addChatMessage("Yes, that's right, I thought you, " + player.username + ", would try to do this.");
                 }
                 return;
             }
-
+            
             int dim;
-            switch (tile.sector) {
-                case 0:
-                    dim = DimensionIds.ICE;
-                    break;
-                case 1:
-                    dim = DimensionIds.DESERT;
-                    break;
-                case 2:
-                    dim = DimensionIds.FOREST;
-                    break;
-                case 3:
-                    dim = DimensionIds.MOUNTAIN;
-                    break;
-                case 4:
-                    dim = DimensionIds.CARTHAGE;
-                    break;
-                default:
-                    return;
+            switch(tile.sector)
+            {
+            case 0:
+            	dim = DimensionIds.ICE;
+                break;
+            case 1:
+                dim = DimensionIds.DESERT;
+                break;
+            case 2:
+                dim = DimensionIds.FOREST;
+                break;
+            case 3:
+                dim = DimensionIds.MOUNTAIN;
+                break;
+            case 4:
+            	dim = DimensionIds.CARTHAGE;
+                break;
+            default:
+                return;
             }
-
-            if (player instanceof EntityPlayerMP) {
+            
+            if(player instanceof EntityPlayerMP)
+            {
                 LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, dim);
             }
             int xPos = (int) player.posX;
             int yPos = (int) player.posY;
             int zPos = (int) player.posZ;
-            while (player.worldObj.getBlockId(xPos, yPos, zPos) != 0 && yPos < 256) {
+            while(player.worldObj.getBlockId(xPos, yPos, zPos) != 0 && yPos < 256)
+            {
                 yPos++;
             }
-
+            
             player.setPositionAndRotation(player.posX, yPos, player.posZ, player.rotationYaw, player.rotationPitch);
-
+            
             ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
             DataOutputStream outputStream = new DataOutputStream(bos);
-            try {
+            try
+            {
                 outputStream.writeDouble(player.posX);
                 outputStream.writeDouble(player.posY);
                 outputStream.writeDouble(player.posZ);
                 outputStream.writeFloat(player.rotationYaw);
-            } catch (Exception ex) {
+            }
+            catch(Exception ex)
+            {
                 ex.printStackTrace();
             }
-
+            
             Packet250CustomPayload packet = new Packet250CustomPayload();
             packet.channel = "Devirt";
             packet.data = bos.toByteArray();
             packet.length = bos.size();
-
+            
             PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
-
+            
             tile.sector = -1;
         }
     }
-
+    
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are) {
-
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if (tileEntity == null || player.isSneaking())
-            return false;
-        else {
-            if (isMultiBlock(world, x, y, z)) {
-                PlayerInformation pi = PlayerInformation.forPlayer(player);
-
-                pi.scannerDim = world.provider.dimensionId;
-                pi.setScannerPosition(x, y, z);
-                ((TileEntityScanner) world.getBlockTileEntity(x, y, z)).setPlayerDevirtYaw(pi);
-                
-                
-                virtualize(world, x, y, z, player);
-
-                return true;
-            }
-            return false;
-        }
 
         /*
         if(isMultiBlock(world, x, y, z)) {
@@ -417,5 +413,41 @@ public class BlockScanner extends BlockContainer {
         else
             return false;
          */
+
+        if(isMultiBlock(world, x, y, z))
+        {
+            TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+            if (tileEntity == null || player.isSneaking() || !(tileEntity instanceof TileEntityScanner))
+                return false;
+            
+            TileEntityScanner tile = (TileEntityScanner)tileEntity;
+            
+            Vec3[] array = getBlockCoordsInMultiBlock(world, x, y, z);
+            
+            tile.toggleDoors();
+            
+            for(Vec3 coords : array)
+            {
+                TileEntityScanner scanner = (TileEntityScanner) world.getBlockTileEntity((int)coords.xCoord, (int)coords.yCoord, (int)coords.zCoord);
+                scanner.doorsOpen = tile.doorsOpen;
+            }
+            
+            TileEntityScanner core = (TileEntityScanner)world.getBlockTileEntity((int)array[0].xCoord, (int)array[0].yCoord, (int)array[0].zCoord);
+            if(!core.doorsOpen && core.yCoord == (int)player.posY - 1)
+            {
+            	if(core.xCoord == Math.floor(player.posX) && core.zCoord == Math.floor(player.posZ))
+            	{
+                    PlayerInformation pi = PlayerInformation.forPlayer(player);
+                    
+                    pi.scannerDim = world.provider.dimensionId;
+                    pi.setScannerPosition(core.xCoord, core.yCoord + 1, core.zCoord);
+                    core.setPlayerDevirtYaw(pi);
+                    
+                    virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
+            	}
+            }
+            return true;
+        }
+        return false;
     }
 }

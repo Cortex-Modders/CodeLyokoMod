@@ -69,13 +69,13 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
         int p = BlockScanner.getPositionInMultiBlock(entity.worldObj, entity.xCoord, entity.yCoord, entity.zCoord);
 
         // if top
-        if(p == 5) {
+        if(p == 4) {
             GL11.glRotatef(180F, 1F, 0F, 0F);
             GL11.glRotatef(180F, 0F, 1F, 0F);
             GL11.glTranslatef(0F, 1F, 0F);
         }
         // if in middle or not at all
-        if((p >= 2 & p <= 4) || p == -1) {
+        if((p >= 1 & p <= 3) || p == -1) {
             
             modelMid.doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw);
             modelMid.doorL.rotationPointX = entity.doorPosX;
@@ -88,7 +88,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
             modelMid.render(null, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
         }
         // if bottom or top
-        if(p == 1 || p == 5) {
+        if(p == 0 || p == 4) {
 
             modelBot.doorL.rotateAngleY = (float)Math.toRadians(entity.doorRotationYaw);
             modelBot.doorL.rotationPointX = entity.doorPosX;
