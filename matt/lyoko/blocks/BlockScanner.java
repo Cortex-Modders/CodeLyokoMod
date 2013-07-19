@@ -12,10 +12,14 @@ import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -298,26 +302,9 @@ public class BlockScanner extends BlockContainer {
 
     public void virtualize(World world, int x, int y, int z, EntityPlayer player)
     {
-
         TileEntityScanner tile = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
         if (tile != null)
         {
-            /*
-             * int portal; switch(tile.sector) { case 0: portal =
-             * ModBlocks.LyokoPolarPortal.blockID; break; case 1: portal =
-             * ModBlocks.LyokoDesertPortal.blockID; break; case 2: portal =
-             * ModBlocks.LyokoForestPortal.blockID; break; case 3: portal =
-             * ModBlocks.LyokoMountainPortal.blockID; break; case 4: portal =
-             * ModBlocks.LyokoCarthagePortal.blockID; break; default: portal =
-             * 0; }
-             * 
-             * world.setBlock(x, y + 1, z, portal); world.setBlock(x, y + 2, z,
-             * portal); world.setBlock(x, y + 3, z, portal);
-             * 
-             * if(portal != 0) { tile.setAutomaticTimer(); }
-             */
-
-            
             /**
              * 
              * IDEA: Here set the timer. In the tile entity if the timer is not at -1, keep the doors open.
@@ -371,7 +358,7 @@ public class BlockScanner extends BlockContainer {
             
             player.setPositionAndRotation(player.posX, yPos, player.posZ, player.rotationYaw, player.rotationPitch);
             
-            ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream(28);
             DataOutputStream outputStream = new DataOutputStream(bos);
             try
             {
@@ -433,10 +420,10 @@ public class BlockScanner extends BlockContainer {
             }
             
             TileEntityScanner core = (TileEntityScanner)world.getBlockTileEntity((int)array[0].xCoord, (int)array[0].yCoord, (int)array[0].zCoord);
-            if(!core.doorsOpen && core.yCoord == (int)player.posY - 1)
+            if(!core.doorsOpen)// && core.yCoord == (int)player.posY - 1)
             {
-            	if(core.xCoord == Math.floor(player.posX) && core.zCoord == Math.floor(player.posZ))
-            	{
+            	//if(core.xCoord == Math.floor(player.posX) && core.zCoord == Math.floor(player.posZ))
+            	//{
                     PlayerInformation pi = PlayerInformation.forPlayer(player);
                     
                     pi.scannerDim = world.provider.dimensionId;
@@ -444,10 +431,43 @@ public class BlockScanner extends BlockContainer {
                     core.setPlayerDevirtYaw(pi);
                     
                     virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
-            	}
+            	//}
             }
             return true;
         }
         return false;
+    }
+    
+    @Override
+    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    {
+    	super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
+        int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+
+        if (l == 0)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 0, 2);
+        }
+
+        if (l == 1)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
+        }
+
+        if (l == 2)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
+        }
+
+        if (l == 3)
+        {
+            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
+        }
+    }
+    
+    @Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+	{
+    	return null;
     }
 }

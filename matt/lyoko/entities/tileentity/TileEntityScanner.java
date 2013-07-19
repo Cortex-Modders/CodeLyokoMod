@@ -40,12 +40,15 @@ public class TileEntityScanner extends TileEntity
     	{
     		if(BlockScanner.isMultiBlock(worldObj, xCoord, yCoord, zCoord))
     		{
-    			Vec3[] scanner = BlockScanner.getBlockCoordsInMultiBlock(worldObj, xCoord, yCoord, zCoord);
-    			TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity((int)scanner[0].xCoord, (int)scanner[0].yCoord, (int)scanner[0].zCoord);
-    			if(this.sector != core.sector && core.sector == -1 && BlockScanner.getPositionInMultiBlock(worldObj, xCoord, yCoord, zCoord) != 0)
-    				core.sector = this.sector;
-    			this.sector = -1;
-
+    			int yOffset = BlockScanner.getPositionInMultiBlock(worldObj, xCoord, yCoord, zCoord);
+    			if(yOffset > 0)
+    			{
+    				TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord, yCoord - yOffset, zCoord);
+    				if(this.sector != core.sector && core.sector == -1)
+    					core.sector = this.sector;
+    				this.sector = -1;
+    				System.out.println("dimension recieved at: " + BlockScanner.getPositionInMultiBlock(worldObj, xCoord, yCoord, zCoord));
+    			}
     		}
     	}
 
