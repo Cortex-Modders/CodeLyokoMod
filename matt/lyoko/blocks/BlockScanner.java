@@ -256,7 +256,7 @@ public class BlockScanner extends BlockContainer {
         return -1;
     }
 
-    public Vec3[] getBlockCoordsInMultiBlock(World world, int x, int y, int z) {
+    public static Vec3[] getBlockCoordsInMultiBlock(World world, int x, int y, int z) {
         int pos = getPositionInMultiBlock(world, x, y, z);
         if(pos == -1)
             return null;
@@ -393,6 +393,9 @@ public class BlockScanner extends BlockContainer {
                 return false;
 
             TileEntityScanner reference = (TileEntityScanner)tileEntity;
+            reference.toggleDoors();
+            /*
+            
             Vec3[] array = getBlockCoordsInMultiBlock(world, x, y, z);
 
 
@@ -403,6 +406,7 @@ public class BlockScanner extends BlockContainer {
                 scanner.doorsOpen = reference.doorsOpen;
             }
 
+            */
             return true;
         }
         else
