@@ -1,0 +1,7 @@
+
+language.name=Finnish
+language.region=FI
+language.code=fi_FI
+
+death.attack.CodeLyoko.digitalSea=%1$s vaipui digitaalisen mereen
+death.attack.CodeLyoko.digitalSea.player=%1$s vaipui digitaalisen meriä taistelevat %2$s

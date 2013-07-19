@@ -20,7 +20,6 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 	{
 		super(i, fluid, material);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
-		fluid.setBlockID(this);
 	}
 	
 	@Override

@@ -6,6 +6,7 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.mobs.EntityLyoko;
 import matt.lyoko.entities.tileentity.TileEntityMarabounta;
 import matt.lyoko.entities.vehicles.EntityVehicle;
+import matt.lyoko.lib.LyokoDamageSource;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -151,7 +152,7 @@ public class BlockMarabounta extends BlockContainer
 		TileEntityMarabounta tem = ((TileEntityMarabounta)world.getBlockTileEntity(x, y, z));
     	if(ent instanceof EntityLyoko)
     	{
-    		ent.attackEntityFrom(DamageSource.generic, 100);
+    		ent.attackEntityFrom(LyokoDamageSource.marabounta, 100);
     	}
     	else if(ent instanceof EntityVehicle && world.getBlockMetadata(x, y, z) == 1)
     	{
@@ -161,7 +162,7 @@ public class BlockMarabounta extends BlockContainer
     	{
     		if(!((EntityPlayer)ent).capabilities.isCreativeMode)
     		{
-    			ent.attackEntityFrom(DamageSource.generic, 9);
+    			ent.attackEntityFrom(LyokoDamageSource.marabounta, 9);
     		}
     	}
     }
