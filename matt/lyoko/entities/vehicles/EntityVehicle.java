@@ -2,7 +2,6 @@ package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.items.ModItems;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityPainting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
