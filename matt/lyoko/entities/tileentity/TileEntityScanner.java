@@ -101,40 +101,17 @@ public class TileEntityScanner extends TileEntity
             }
         }
     }
-
-    /**
-     * 
-     * Toggles the scanner doors. Returns the current door state after being toggled.
-     * parBool refers to if you want to update the other door variables in the multi block or not.
-     * parBool default is true;
-     * 
-     * @param parBool
-     * @return
-     */
-    public boolean toggleDoors(boolean parBool) {
-
-        this.doorsOpen = !this.doorsOpen;
-
-        if(BlockScanner.isMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord) || parBool) {
-            Vec3[] array = BlockScanner.getBlockCoordsInMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-
-            for( Vec3 coords : array) {
-                TileEntityScanner scanner = (TileEntityScanner) this.worldObj.getBlockTileEntity((int)coords.xCoord, (int)coords.yCoord, (int)coords.zCoord);
-                scanner.doorsOpen = this.doorsOpen;
-            }
-        }
-        
-        return this.doorsOpen;
-    }
     
     /**
      * 
-     * Toggels self doors and all other multi block doors IF APPLICABLE.
+     * Toggels self doors
      * 
      * @return
      */
-    public boolean toggleDoors() {
-        return this.toggleDoors(true);
+    public boolean toggleDoors()
+    {
+    	this.doorsOpen = !this.doorsOpen;
+        return true;
     }
 
     public void setAutomaticTimer()
