@@ -58,7 +58,7 @@ public class ItemLyoko extends Item
 				}
 				stack = new ItemStack(item, stack.stackSize);
 			}
-			else
+			else if(CodeLyoko.entityInLyoko(player))
 			{
 				float f = 1.0F;
 		        float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
