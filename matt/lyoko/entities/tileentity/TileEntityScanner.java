@@ -36,42 +36,18 @@ public class TileEntityScanner extends TileEntity
     @Override
     public void updateEntity()
     {
-        if(timer > 0)
-        {
-            timer--;
-        }
+    	if(this.sector != -1)
+    	{
+    		if(BlockScanner.isMultiBlock(worldObj, xCoord, yCoord, zCoord))
+    		{
+    			Vec3[] scanner = BlockScanner.getBlockCoordsInMultiBlock(worldObj, xCoord, yCoord, zCoord);
+    			TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity((int)scanner[0].xCoord, (int)scanner[0].yCoord, (int)scanner[0].zCoord);
+    			if(this.sector != core.sector && core.sector == -1 && BlockScanner.getPositionInMultiBlock(worldObj, xCoord, yCoord, zCoord) != 0)
+    				core.sector = this.sector;
+    			this.sector = -1;
 
-        if(timer == 0)
-        {
-            worldObj.setBlock(xCoord, yCoord + 1, zCoord, 0);
-            worldObj.setBlock(xCoord, yCoord + 2, zCoord, 0);
-            worldObj.setBlock(xCoord, yCoord + 3, zCoord, 0);
-            timer--;
-        }
-
-        if(this.sector != -1)
-        {
-            for(int i = -1; i < 2; i++)
-            {
-                for(int k = -1; k < 2; k++)
-                {
-                    for(int j = -4; j < 1; j++)
-                    {
-                        if(i != 0 || j != 0 || k != 0)
-                        {
-                            if(BlockScanner.isMultiBlock(worldObj, xCoord + i, yCoord + j, zCoord + k))
-                            {
-                                TileEntityScanner core = (TileEntityScanner)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
-                                if(this.sector != core.sector && core.sector == -1)
-                                    core.sector = this.sector;
-                                this.sector = -1;
-
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    		}
+    	}
 
         // Open doors!
         // If doors are set to open, but have not rendered as fully open.
@@ -104,19 +80,13 @@ public class TileEntityScanner extends TileEntity
     
     /**
      * 
-     * Toggels self doors
+     * Toggles doors of this scanner
      * 
      * @return
      */
-    public boolean toggleDoors()
+    public void toggleDoors()
     {
     	this.doorsOpen = !this.doorsOpen;
-        return true;
-    }
-
-    public void setAutomaticTimer()
-    {
-        timer = 200;
     }
 
     public void setPlayerDevirtYaw(PlayerInformation pi)
@@ -159,7 +129,6 @@ public class TileEntityScanner extends TileEntity
     {
         super.readFromNBT(tagCompound);
         this.sector = tagCompound.getInteger("sector");
-        this.timer = tagCompound.getInteger("timer");
         this.doorsOpen = tagCompound.getBoolean("doorsOpen");
     }
 
@@ -168,7 +137,6 @@ public class TileEntityScanner extends TileEntity
     {
         super.writeToNBT(tagCompound);
         tagCompound.setInteger("sector", this.sector);
-        tagCompound.setInteger("timer", this.timer);
         tagCompound.setBoolean("doorsOpen", this.doorsOpen);
     }
 }
