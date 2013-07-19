@@ -10,6 +10,7 @@ public class LyokoDamageSource extends DamageSource
 	}
 	
 	public static LyokoDamageSource digitalSea = new LyokoDamageSource("CodeLyoko.digitalSea").setDamageBypassesArmor();
+	public static LyokoDamageSource marabounta = new LyokoDamageSource("CodeLyoko.marabounta").setDamageBypassesArmor();
 	
 	public LyokoDamageSource setDamageBypassesArmor()
     {
