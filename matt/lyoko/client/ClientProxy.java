@@ -15,15 +15,14 @@ import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.handlers.KeyBindingHandler;
 import matt.lyoko.items.ModItems;
-import matt.lyoko.model.ModelLaser;
 import matt.lyoko.model.mobs.ModelBlok;
 import matt.lyoko.model.mobs.ModelTank;
 import matt.lyoko.render.ItemRenderGlove;
-import matt.lyoko.render.RenderLaser;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
 import matt.lyoko.render.tileentity.RenderCable;
 import matt.lyoko.render.tileentity.RenderEntityTowerConsole;
+import matt.lyoko.render.tileentity.RenderScanner;
 import matt.lyoko.render.tileentity.RenderTower;
 import matt.lyoko.render.vehicles.RenderOverboard;
 import matt.lyoko.render.vehicles.RenderSkid;
@@ -41,7 +40,11 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
-	@Override
+	
+    // TODO: Move to better place. And not use static?
+    public static final int scannerRenderId = RenderingRegistry.getNextAvailableRenderId();
+    
+    @Override
 	public void registerRenderInformation() 
 	{
 		RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/a");
@@ -74,6 +77,12 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderEntityTowerConsole());
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
+	    
+	    RenderScanner scannerRenderer = new RenderScanner(scannerRenderId);
+	    
+	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, scannerRenderer);
+	    RenderingRegistry.registerBlockHandler(scannerRenderer);
+	    
 	    
 		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
 		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
