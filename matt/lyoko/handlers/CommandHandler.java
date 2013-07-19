@@ -9,6 +9,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -68,7 +69,13 @@ public class CommandHandler implements ICommand
 			}
 			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
+			TileEntityScanner tile = (TileEntityScanner)player.worldObj.getBlockTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
+			if(tile != null)
+			{
+				tile.toggleAllDoors();
+			}
+			
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(28);
 		    DataOutputStream outputStream = new DataOutputStream(bos);
 		    try
 		    {

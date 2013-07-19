@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.util.EnumSet;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.entity.player.EntityPlayer;
@@ -63,6 +64,12 @@ public class ServerTickHandler implements ITickHandler
 				LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
 			}
 			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
+			
+			TileEntityScanner tile = (TileEntityScanner)player.worldObj.getBlockTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
+			if(tile != null)
+			{
+				tile.toggleAllDoors();
+			}
 			
 			ByteArrayOutputStream bos = new ByteArrayOutputStream(32);
 		    DataOutputStream outputStream = new DataOutputStream(bos);

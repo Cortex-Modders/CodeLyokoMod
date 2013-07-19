@@ -13,7 +13,7 @@ import net.minecraft.util.Vec3;
 public class TileEntityScanner extends TileEntity
 {
     public int sector = -1;
-    private int timer = -1;
+    public int timer = -1;
 
     // Doors are open by default.
     public boolean doorsOpen = true;
@@ -47,7 +47,6 @@ public class TileEntityScanner extends TileEntity
     				if(this.sector != core.sector && core.sector == -1)
     					core.sector = this.sector;
     				this.sector = -1;
-    				System.out.println("dimension recieved at: " + BlockScanner.getPositionInMultiBlock(worldObj, xCoord, yCoord, zCoord));
     			}
     		}
     	}
@@ -91,25 +90,37 @@ public class TileEntityScanner extends TileEntity
     {
     	this.doorsOpen = !this.doorsOpen;
     }
+    
+    public void toggleAllDoors()
+    {
+    	Vec3[] array = BlockScanner.getBlockCoordsInMultiBlock(worldObj, xCoord, yCoord, zCoord);
+        
+        toggleDoors();
+        
+        for(Vec3 coords : array)
+        {
+            TileEntityScanner scanner = (TileEntityScanner) worldObj.getBlockTileEntity((int)coords.xCoord, (int)coords.yCoord, (int)coords.zCoord);
+            scanner.doorsOpen = this.doorsOpen;
+        }
+    }
 
     public void setPlayerDevirtYaw(PlayerInformation pi)
     {
-        if(worldObj.getBlockId(xCoord + 1, yCoord + 1, zCoord) != ModBlocks.Scanner.blockID)
-        {
-            pi.scannerYaw = 270;
-        }
-        if(worldObj.getBlockId(xCoord - 1, yCoord + 1, zCoord) != ModBlocks.Scanner.blockID)
-        {
-            pi.scannerYaw = 90;
-        }
-        if(worldObj.getBlockId(xCoord, yCoord + 1, zCoord + 1) != ModBlocks.Scanner.blockID)
-        {
-            pi.scannerYaw = 0;
-        }
-        if(worldObj.getBlockId(xCoord, yCoord + 1, zCoord - 1) != ModBlocks.Scanner.blockID)
-        {
-            pi.scannerYaw = 180;
-        }
+    	switch(worldObj.getBlockMetadata(xCoord, yCoord, zCoord))
+    	{
+    	case 0:
+    		pi.scannerYaw = 180;
+    		break;
+    	case 1:
+    		pi.scannerYaw = 270;
+    		break;
+    	case 2:
+    		pi.scannerYaw = 0;
+    		break;
+    	case 3:
+    		pi.scannerYaw = 90;
+    		break;
+    	}
     }
 
     @Override

@@ -16,6 +16,16 @@ public class StructureTower extends WorldGenerator
 	
 	public boolean LocationIsValidSpawn(World world, int x, int y, int z)
 	{
+		int distanceToAir = y + 1;
+		while(distanceToAir < 256)
+		{
+			if(world.getBlockId(x, distanceToAir, z) != 0)
+			{
+				return false;
+			}
+			distanceToAir++;
+		}
+		
 		for(int i = 0; i < 7; i++)
 		{
 			for(int j = 0; j < 7; j++)
@@ -91,13 +101,13 @@ public class StructureTower extends WorldGenerator
 	
 	public void clearArea(World world, int x, int y, int z)
 	{
-		for(int i = 0; i < 7; i++)
+		for(int i = 0; i < 11; i++)
 		{
 			for(int j = 1; j < 25; j++)
 			{
-				for(int k = 0; k < 7; k++)
+				for(int k = 0; k < 11; k++)
 				{
-					world.setBlock(x + i, y + j, z + k, 0);
+					world.setBlock(x + i - 2, y + j, z + k - 2, 0);
 				}
 			}
 		}

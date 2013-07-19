@@ -411,13 +411,7 @@ public class BlockScanner extends BlockContainer {
             
             Vec3[] array = getBlockCoordsInMultiBlock(world, x, y, z);
             
-            tile.toggleDoors();
-            
-            for(Vec3 coords : array)
-            {
-                TileEntityScanner scanner = (TileEntityScanner) world.getBlockTileEntity((int)coords.xCoord, (int)coords.yCoord, (int)coords.zCoord);
-                scanner.doorsOpen = tile.doorsOpen;
-            }
+            tile.toggleAllDoors();
             
             TileEntityScanner core = (TileEntityScanner)world.getBlockTileEntity((int)array[0].xCoord, (int)array[0].yCoord, (int)array[0].zCoord);
             if(!core.doorsOpen)// && core.yCoord == (int)player.posY - 1)
