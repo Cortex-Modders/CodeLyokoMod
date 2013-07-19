@@ -1,0 +1,7 @@
+
+language.name=Dutch
+language.region=NL
+language.code=nl_NL
+
+death.attack.CodeLyoko.digitalSea=%1$s viel in de digitale zee
+death.attack.CodeLyoko.digitalSea.player=%1$s viel in de digitale zee terwijl het vechten %2$s

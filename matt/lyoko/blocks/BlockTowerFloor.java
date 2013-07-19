@@ -28,7 +28,23 @@ public class BlockTowerFloor extends Block
     			&& access.getBlockId(x, y, z-1) == ModBlocks.TowerFloor.blockID
     			&& access.getBlockId(x-1, y, z+1) == ModBlocks.TowerFloor.blockID
     			&& access.getBlockId(x-1, y, z) == ModBlocks.TowerFloor.blockID
-    			&& access.getBlockId(x-1, y, z-1) == ModBlocks.TowerFloor.blockID)
+    			&& access.getBlockId(x-1, y, z-1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x + 2, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x + 3, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockMetadata(x, y, z) == 0)
+    	{
+    		return true;
+    	}
+    	else if(access.getBlockId(x+1, y, z+1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x+1, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x+1, y, z-1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z+1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x, y, z-1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z+1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockId(x-1, y, z-1) == ModBlocks.TowerFloor.blockID
+    			&& access.getBlockMetadata(x, y, z) == 1)
     	{
     		return true;
     	}
@@ -45,11 +61,15 @@ public class BlockTowerFloor extends Block
 			{
 				if(world.getBlockId(x, i, z) == ModBlocks.TowerFloor.blockID)
 				{
-					distance = i + 2;
+					distance = i + 1;
 					break;
 				}
 			}
 			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
+			if(!ent.worldObj.isRemote)
+			{
+				ent.setVelocity(0.0D, 0.0D, 0.0D);
+			}
 		}
 		else if(world.getBlockMetadata(x, y, z) == 1 && isMultiBlock(world, x, y, z))
 		{
@@ -57,11 +77,15 @@ public class BlockTowerFloor extends Block
 			{
 				if(world.getBlockId(x, i, z) == ModBlocks.TowerFloor.blockID)
 				{
-					distance = i + 2;
+					distance = i + 1;
 					break;
 				}
 			}
 			ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
+			if(!ent.worldObj.isRemote)
+			{
+				ent.setVelocity(0.0D, 0.0D, 0.0D);
+			}
 		}
 	}
 	
@@ -78,10 +102,12 @@ public class BlockTowerFloor extends Block
     private Icon cr;
     private Icon cc;
     private Icon cl;
+    private Icon cl2;
     private Icon br;
     private Icon bc;
     private Icon bl;
     private Icon bottomSide;
+    private Icon extension;
     
     private Icon[][] topIcons = new Icon[3][3];
     
@@ -94,10 +120,12 @@ public class BlockTowerFloor extends Block
 		cr = par1IconRegister.registerIcon("lyoko:cr");
 		cc = this.blockIcon = par1IconRegister.registerIcon("lyoko:cc");
 		cl = par1IconRegister.registerIcon("lyoko:cl");
+		cl2 = par1IconRegister.registerIcon("lyoko:cl2");
 		br = par1IconRegister.registerIcon("lyoko:br");
 		bc = par1IconRegister.registerIcon("lyoko:bc");
 		bl = par1IconRegister.registerIcon("lyoko:bl");
 		bottomSide = par1IconRegister.registerIcon("lyoko:computer_0");
+		extension = par1IconRegister.registerIcon("lyoko:extension");
 		
 		topIcons[0][0] = tr;
 		topIcons[0][1] = tc;
@@ -121,9 +149,22 @@ public class BlockTowerFloor extends Block
     			{
     				if(isMultiBlock(access, x - i + 1, y, z - j + 1))
     				{
+    					if(j == 1 && i == 2)
+    					{
+    						if(access.getBlockId(x + 1, y, z) == ModBlocks.TowerFloor.blockID
+    								&& access.getBlockId(x + 2, y, z) == ModBlocks.TowerFloor.blockID
+    								&& access.getBlockMetadata(x - 1, y, z) == 0)
+    						{
+    							return cl2;
+    						}
+    					}
     					return topIcons[j][i];
     				}
     			}
+    		}
+    		if(isMultiBlock(access, x - 2, y, z) || isMultiBlock(access, x - 3, y, z))
+    		{
+    			return extension;
     		}
     	}
     	return bottomSide;

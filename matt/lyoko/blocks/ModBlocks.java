@@ -2,7 +2,6 @@ package matt.lyoko.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import matt.lyoko.fluids.BlockDigitalSeaLiquid;
 import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.items.ItemBlockEffect;
 import matt.lyoko.items.ItemBlockTowerFloor;
@@ -69,7 +68,7 @@ public class ModBlocks
     	
     	// Digital Sea
     	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_DIGITAL_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-    	DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, ModFluids.digitalSea, Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaLiquid");
+    	DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, ModFluids.digitalSea, Material.water).setUnlocalizedName("DigitalSeaLiquid");
     	
     	// Portal (Unused)
     	LyokoPolarPortal  = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);

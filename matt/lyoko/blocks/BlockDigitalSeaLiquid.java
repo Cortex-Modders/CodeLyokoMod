@@ -1,6 +1,7 @@
-package matt.lyoko.fluids;
+package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.lib.LyokoDamageSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStationary;
 import net.minecraft.block.material.Material;
@@ -19,7 +20,6 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 	{
 		super(i, fluid, material);
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
-		fluid.setBlockID(this);
 	}
 	
 	@Override
@@ -30,6 +30,12 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 	}
 	
 	@Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z)
+	{
+		return maxScaledLight;
+    }
+	
+	@Override
 	public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)
     {
     	return 0x0000FF;
@@ -38,6 +44,6 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 	@Override
 	public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
-        par5Entity.attackEntityFrom(DamageSource.generic, 100);
+        par5Entity.attackEntityFrom(LyokoDamageSource.digitalSea, 100);
     }
 }

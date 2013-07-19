@@ -60,6 +60,7 @@ public class CodeLyoko
 	public static final BiomeGenBase lyokopolar = ((BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631)).setLyokoBiomeName("Polar Sector");
 	public static final BiomeGenBase lyokocarthage = ((BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631)).setLyokoBiomeName("Carthage Sector");
 	
+	
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
 	@Instance
@@ -180,7 +181,7 @@ public class CodeLyoko
     	proxy.registerEntityNames();
     	proxy.registerRenderInformation();
     	proxy.registerTickHandlers();
-    	proxy.registerKeyBindingHandler();
+    	//proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
     	proxy.addChestLoot();
     	
@@ -248,6 +249,6 @@ public class CodeLyoko
     
     public static DamageSource causeLyokoRangedDamage(EntityLyokoRanged par0EntityLaserArrow, Entity par1Entity)
     {
-        return (new EntityDamageSourceIndirect("lyokoRanged", par0EntityLaserArrow, par1Entity)).setProjectile();
+        return (new EntityDamageSourceIndirect("arrow", par0EntityLaserArrow, par1Entity)).setProjectile();
     }
 }

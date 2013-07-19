@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class WorldGenTower implements IWorldGenerator {
-	
+public class WorldGenTower implements IWorldGenerator
+{
 	 public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	 {
 	  /*switch (world.provider.dimensionId)
@@ -27,7 +27,7 @@ public class WorldGenTower implements IWorldGenerator {
 		 }
 	 }
 	 
-	  private void generateTower(World world, Random random, int blockX, int blockZ) 
+	 private void generateTower(World world, Random random, int blockX, int blockZ) 
 	 {
 		  int Xcoord1 = blockX + random.nextInt(16);
 		  int Ycoord1 = random.nextInt(128);
@@ -35,5 +35,4 @@ public class WorldGenTower implements IWorldGenerator {
 		  
 		  (new StructureTower()).generate(world, random, Xcoord1, Ycoord1, Zcoord1); 
 	 }
-
 }

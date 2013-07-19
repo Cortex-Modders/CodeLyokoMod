@@ -1,0 +1,7 @@
+
+language.name=Polish
+language.region=PL
+language.code=pl_PL
+
+death.attack.CodeLyoko.digitalSea=%1$s spadła do cyfrowego morza
+death.attack.CodeLyoko.digitalSea.player=%1$s spadła do cyfrowego morza podczas walki %2$s

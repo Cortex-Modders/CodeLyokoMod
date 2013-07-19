@@ -9,607 +9,176 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class StructureTower extends WorldGenerator
 {
-	public StructureTower() { }
+	protected int[] GetValidSpawnBlocks()
+	{
+		return new int[] {Block.stone.blockID, ModBlocks.Grass.blockID, ModBlocks.Stone.blockID, ModBlocks.Sand.blockID, ModBlocks.Ice.blockID, ModBlocks.Carthage.blockID};
+	}
 	
-	 protected int[] GetValidSpawnBlocks()
-	 {
-	  return new int[] { ModBlocks.Grass.blockID, ModBlocks.Stone.blockID, ModBlocks.Sand.blockID, ModBlocks.Ice.blockID, ModBlocks.Carthage.blockID };
-	 }
-	 
-	 public boolean LocationIsValidSpawn(World world, int i, int j, int k)
-	 {
-	  int distanceToAir = 0;
-	  int checkID = world.getBlockId(i, j, k);
-	  
-	  while (checkID != 0)
-	  {
-	   distanceToAir++;
-	   checkID = world.getBlockId(i, j + distanceToAir, k);
-	  }
-	  
-	  if (distanceToAir > 0)
-	  {
-	   return false;
-	  }
-	  j += distanceToAir - 1;
-	  
-	  int blockID = world.getBlockId(i, j, k);
-	  int blockIDAbove = world.getBlockId(i, j + 1, k);
-	  int blockIDBelow = world.getBlockId(i, j - 1, k);
-	  for (int x : GetValidSpawnBlocks())
-	  {
-	   if (blockIDAbove != 0)
-	   {
-	    return false;
-	   }
-	   if (blockID == x)
-	   {
-	    return true;
-	   } else if (blockID == Block.snow.blockID && blockIDBelow == x)
-	   {
-	    return true;
-	   }
-	  }
-	  return false;
-	 }
-	 
-
-	public boolean generate(World world, Random rand, int i, int j, int k)
+	public boolean LocationIsValidSpawn(World world, int x, int y, int z)
+	{
+		for(int i = 0; i < 7; i++)
+		{
+			for(int j = 0; j < 7; j++)
+			{
+				if(!((i > 0 && i < 6) || (j > 0 && j < 6)))
+				{
+					if(world.getBlockId(x + i, y, z + j) == 0)
+					{
+						return false;
+					}
+				}
+			}
+		}
+		
+		int blockID = world.getBlockId(x, y, z);
+		int blockIDAbove = world.getBlockId(x, y + 1, z);
+		int blockIDBelow = world.getBlockId(x, y - 1, z);
+		for (int i : GetValidSpawnBlocks())
+		{
+			if(blockIDAbove != 0)
+			{
+				return false;
+			}
+			if(blockID == i)
+			{
+				return true;
+			}
+			else if(blockID == Block.snow.blockID && blockIDBelow == i)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
 		// check that each corner is one of the valid spawn blocks
-		if (!LocationIsValidSpawn(world, i, j, k) || !LocationIsValidSpawn(world, i + 4, j, k) || !LocationIsValidSpawn(world, i + 4, j, k + 4) || !LocationIsValidSpawn(world, i, j, k + 4))
+		if (!LocationIsValidSpawn(world, x, y, z))
 		{
 			return false;
 		}
 		
-		world.setBlock(i + 0, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 1, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 1, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 1, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 1, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 1, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 2, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 2, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 2, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 2, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 2, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 3, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 3, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 3, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 3, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 3, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 4, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 4, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 4, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 4, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 4, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 5, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 5, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 5, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 5, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 5, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 6, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 6, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 6, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 6, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 6, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 7, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 7, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 7, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 7, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 7, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 0, j + 8, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 8, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 8, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 8, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 8, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 9, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 9, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 9, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 9, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 9, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 10, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 10, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 10, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 10, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 10, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 11, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 11, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 11, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 11, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 11, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 12, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 12, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 12, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 12, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 12, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 13, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 13, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 13, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 13, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 13, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 14, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 14, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 14, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 14, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 14, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 15, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 15, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 15, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 15, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 15, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 16, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 16, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 16, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 16, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 0, j + 16, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 0, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 0, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 1, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 1, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 2, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 2, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 3, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 3, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 4, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 4, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 5, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 5, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 6, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 6, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 7, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 7, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 8, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 8, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 8, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 8, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 8, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 8, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 8, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 9, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 9, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 9, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 9, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 9, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 10, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 10, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 10, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 10, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 10, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 10, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 10, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 11, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 11, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 11, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 11, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 11, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 12, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 12, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 12, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 12, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 12, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 12, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 12, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 13, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 13, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 13, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 13, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 13, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 14, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 14, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 14, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 14, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 14, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 14, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 14, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 15, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 15, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 15, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 15, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 15, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 1, j + 15, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 15, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 16, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 16, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 16, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 16, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 16, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 16, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 1, j + 16, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 17, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 17, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 17, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 17, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 1, j + 17, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 0, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 0, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 1, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 1, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 2, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 2, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 3, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 3, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 4, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 4, k + 2, Block.blockLapis.blockID);
-		world.setBlock(i + 2, j + 4, k + 3, Block.blockLapis.blockID);
-		world.setBlock(i + 2, j + 4, k + 4, Block.blockLapis.blockID);
-		world.setBlock(i + 2, j + 4, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 5, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 5, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 6, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 6, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 7, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 7, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 8, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 8, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 8, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 8, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 9, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 9, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 9, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 9, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 10, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 10, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 10, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 10, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 11, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 11, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 11, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 11, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 12, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 12, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 12, k + 2, Block.blockLapis.blockID);
-		world.setBlock(i + 2, j + 12, k + 3, Block.blockLapis.blockID);
-		world.setBlock(i + 2, j + 12, k + 4, Block.blockLapis.blockID);
-		world.setBlock(i + 2, j + 12, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 12, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 13, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 13, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 13, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 13, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 14, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 14, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 14, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 14, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 15, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 15, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 15, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 2, j + 15, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 16, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 16, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 16, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 16, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 16, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 16, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 2, j + 16, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 17, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 17, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 17, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 17, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 2, j + 17, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 0, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 0, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 1, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 1, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 2, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 2, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 3, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 3, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 4, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 4, k + 2, Block.blockLapis.blockID);
-		world.setBlock(i + 3, j + 4, k + 3, Block.cloth.blockID);
-		world.setBlock(i + 3, j + 4, k + 4, Block.blockLapis.blockID);
-		world.setBlock(i + 3, j + 4, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 5, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 5, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 6, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 6, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 7, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 7, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 8, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 8, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 8, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 8, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 9, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 9, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 9, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 9, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 10, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 10, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 10, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 10, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 11, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 11, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 11, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 11, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 12, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 12, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 12, k + 2, Block.blockLapis.blockID);
-		world.setBlock(i + 3, j + 12, k + 4, Block.blockLapis.blockID);
-		world.setBlock(i + 3, j + 12, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 12, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 13, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 13, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 13, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 13, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 14, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 14, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 14, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 3, j + 14, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 15, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 15, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 15, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 15, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 16, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 16, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 16, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 16, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 16, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 16, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 3, j + 16, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 17, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 17, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 17, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 17, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 3, j + 17, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 0, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 0, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 1, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 1, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 2, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 2, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 3, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 3, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 4, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 4, k + 2, Block.blockLapis.blockID);
-		world.setBlock(i + 4, j + 4, k + 3, Block.blockLapis.blockID);
-		world.setBlock(i + 4, j + 4, k + 4, Block.blockLapis.blockID);
-		world.setBlock(i + 4, j + 4, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 5, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 5, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 6, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 6, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 7, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 7, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 8, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 8, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 8, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 8, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 9, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 9, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 9, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 9, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 10, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 10, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 10, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 10, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 11, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 11, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 11, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 11, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 12, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 12, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 12, k + 2, Block.blockLapis.blockID);
-		world.setBlock(i + 4, j + 12, k + 3, Block.blockLapis.blockID);
-		world.setBlock(i + 4, j + 12, k + 4, Block.blockLapis.blockID);
-		world.setBlock(i + 4, j + 12, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 12, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 13, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 13, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 13, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 13, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 14, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 14, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 14, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 14, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 15, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 15, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 15, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 4, j + 15, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 16, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 16, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 16, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 16, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 16, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 16, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 4, j + 16, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 17, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 17, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 17, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 17, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 4, j + 17, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 0, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 0, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 1, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 1, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 2, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 2, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 3, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 3, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 4, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 4, k + 3, Block.blockLapis.blockID);
-		world.setBlock(i + 5, j + 4, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 5, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 5, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 6, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 6, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 7, k + 0, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 7, k + 6, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 8, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 8, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 8, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 8, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 8, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 8, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 8, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 9, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 9, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 9, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 9, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 9, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 10, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 10, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 10, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 10, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 10, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 10, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 10, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 11, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 11, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 11, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 11, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 11, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 12, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 12, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 12, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 12, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 12, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 12, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 12, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 13, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 13, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 13, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 13, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 13, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 14, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 14, k + 1, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 14, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 14, k + 3, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 14, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 14, k + 5, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 14, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 15, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 15, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 15, k + 2, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 15, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 15, k + 4, ModBlocks.DigitalSeaBlock.blockID);
-		world.setBlock(i + 5, j + 15, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 15, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 16, k + 0, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 16, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 16, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 16, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 16, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 16, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 5, j + 16, k + 6, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 17, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 17, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 17, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 17, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 5, j + 17, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 0, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 0, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 0, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 0, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 0, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 1, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 1, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 1, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 1, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 1, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 2, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 2, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 2, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 2, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 2, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 3, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 3, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 3, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 3, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 3, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 4, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 4, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 4, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 4, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 4, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 5, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 5, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 5, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 5, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 6, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 6, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 6, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 6, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 7, k + 1, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 7, k + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 7, k + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 7, k + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 7, k + 5, ModBlocks.TowerBase.blockID);
-		world.setBlock(i + 6, j + 8, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 8, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 8, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 8, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 8, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 9, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 9, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 9, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 9, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 9, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 10, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 10, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 10, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 10, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 10, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 11, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 11, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 11, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 11, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 11, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 12, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 12, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 12, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 12, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 12, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 13, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 13, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 13, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 13, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 13, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 14, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 14, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 14, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 14, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 14, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 15, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 15, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 15, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 15, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 15, k + 5, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 16, k + 1, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 16, k + 2, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 16, k + 3, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 16, k + 4, ModBlocks.TowerBlock.blockID);
-		world.setBlock(i + 6, j + 16, k + 5, ModBlocks.TowerBlock.blockID);
+		clearArea(world, x, y, z);
+		for(int i = 1; i < 4; i++)
+		{
+			for(int j = 2; j < 5; j++)
+			{
+				world.setBlock(x + i, y, z + j, ModBlocks.TowerFloor.blockID);
+			}
+		}
+		world.setBlock(x + 4, y, z + 3, ModBlocks.TowerFloor.blockID);
+		world.setBlock(x + 5, y, z + 3, ModBlocks.TowerFloor.blockID);
+		makeBaseLayer(world, x, y + 1, z);
+		makeBaseLayer(world, x, y + 2, z);
+		makeBaseLayer(world, x, y + 3, z);
+		for(int i = 4; i < 23; i++)
+		{
+			makeLayer(world, x, y + i, z);
+		}
+		for(int i = 1; i < 4; i++)
+		{
+			for(int j = 2; j < 5; j++)
+			{
+				world.setBlock(x + i, y + 19, z + j, ModBlocks.TowerFloor.blockID, 1, 3);
+			}
+		}
+		world.setBlock(x + 1, y + 21, z + 3, ModBlocks.TowerConsole.blockID, 1, 3);
+		makeRoofLayer(world, x, y + 23, z);
 		
 		return true;
+	}
+	
+	public void clearArea(World world, int x, int y, int z)
+	{
+		for(int i = 0; i < 7; i++)
+		{
+			for(int j = 1; j < 25; j++)
+			{
+				for(int k = 0; k < 7; k++)
+				{
+					world.setBlock(x + i, y + j, z + k, 0);
+				}
+			}
+		}
+		for(int i = 1; i < 6; i++)
+		{
+			for(int j = 0; j > -6; j--)
+			{
+				for(int k = 1; k < 6; k++)
+				{
+					world.setBlock(x + i, y + j, z + k, 0);
+				}
+			}
+		}
+	}
+	
+	public void makeBaseLayer(World world, int x, int y, int z)
+	{
+		world.setBlock(x + 1, y, z, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 2, y, z, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 3, y, z, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 4, y, z, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 5, y, z, ModBlocks.TowerBase.blockID);
+		world.setBlock(x, y, z + 1, ModBlocks.TowerBase.blockID);
+		world.setBlock(x, y, z + 2, ModBlocks.TowerBase.blockID);
+		world.setBlock(x, y, z + 3, ModBlocks.TowerBase.blockID);
+		world.setBlock(x, y, z + 4, ModBlocks.TowerBase.blockID);
+		world.setBlock(x, y, z + 5, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 6, y, z + 1, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 6, y, z + 2, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 6, y, z + 3, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 6, y, z + 4, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 6, y, z + 5, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 1, y, z + 6, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 2, y, z + 6, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 3, y, z + 6, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 4, y, z + 6, ModBlocks.TowerBase.blockID);
+		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBase.blockID);
+	}
+	
+	public void makeLayer(World world, int x, int y, int z)
+	{
+		world.setBlock(x + 1, y, z, ModBlocks.TowerBlock.blockID, 2, 3);
+		world.setBlock(x + 2, y, z, ModBlocks.TowerBlock.blockID, 2, 3);
+		world.setBlock(x + 3, y, z, ModBlocks.TowerBlock.blockID, 2, 3);
+		world.setBlock(x + 4, y, z, ModBlocks.TowerBlock.blockID, 2, 3);
+		world.setBlock(x + 5, y, z, ModBlocks.TowerBlock.blockID, 2, 3);
+		world.setBlock(x, y, z + 1, ModBlocks.TowerBlock.blockID, 1, 3);
+		world.setBlock(x, y, z + 2, ModBlocks.TowerBlock.blockID, 1, 3);
+		world.setBlock(x, y, z + 3, ModBlocks.TowerBlock.blockID, 1, 3);
+		world.setBlock(x, y, z + 4, ModBlocks.TowerBlock.blockID, 1, 3);
+		world.setBlock(x, y, z + 5, ModBlocks.TowerBlock.blockID, 1, 3);
+		world.setBlock(x + 6, y, z + 1, ModBlocks.TowerBlock.blockID, 3, 3);
+		world.setBlock(x + 6, y, z + 2, ModBlocks.TowerBlock.blockID, 3, 3);
+		world.setBlock(x + 6, y, z + 3, ModBlocks.TowerBlock.blockID, 3, 3);
+		world.setBlock(x + 6, y, z + 4, ModBlocks.TowerBlock.blockID, 3, 3);
+		world.setBlock(x + 6, y, z + 5, ModBlocks.TowerBlock.blockID, 3, 3);
+		world.setBlock(x + 1, y, z + 6, ModBlocks.TowerBlock.blockID, 0, 3);
+		world.setBlock(x + 2, y, z + 6, ModBlocks.TowerBlock.blockID, 0, 3);
+		world.setBlock(x + 3, y, z + 6, ModBlocks.TowerBlock.blockID, 0, 3);
+		world.setBlock(x + 4, y, z + 6, ModBlocks.TowerBlock.blockID, 0, 3);
+		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBlock.blockID, 0, 3);
+	}
+	
+	public void makeRoofLayer(World world, int x, int y, int z)
+	{
+		for(int i = 0; i < 7; i++)
+		{
+			for(int j = 0; j < 7; j++)
+			{
+				if(!((i == 0 || i == 6) && (j == 0 || j == 6)))
+				{
+					world.setBlock(x + i, y, z + j, ModBlocks.TowerBlock.blockID, 4, 3);
+				}
+			}
+		}
+		for(int i = 1; i < 6; i++)
+		{
+			for(int j = 1; j < 6; j++)
+			{
+				world.setBlock(x + i, y + 1, z + j, ModBlocks.TowerBlock.blockID, 4, 3);
+			}
+		}
 	}
 }

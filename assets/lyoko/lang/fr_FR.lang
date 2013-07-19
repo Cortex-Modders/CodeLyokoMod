@@ -1,0 +1,7 @@
+
+language.name=French
+language.region=FR
+language.code=fr_FR
+
+death.attack.CodeLyoko.digitalSea=%1$s est tombé dans la mer numérique
+death.attack.CodeLyoko.digitalSea.player=%1$s est tombé dans la mer numérique, en luttant %2$s
