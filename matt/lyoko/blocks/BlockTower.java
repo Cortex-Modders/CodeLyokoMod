@@ -87,62 +87,63 @@ public class BlockTower extends BlockContainer
         
         int meta = world.getBlockMetadata(x, y, z);
         
-        Random var5 = world.rand;
-        double var6 = 0.0625D;
+        Random worldRand = world.rand;
+        // 1/16th of a block
+        double pixelWidth = 0.0625D;
 
-        for (int var8 = 0; var8 < 6; ++var8)
+        for (int side = 0; side < 6; ++side)
         {
-            double var9 = (double)((float)x + var5.nextFloat());
-            double var11 = (double)((float)y + var5.nextFloat());
-            double var13 = (double)((float)z + var5.nextFloat());
+            double x2 = (double)((float)x + worldRand.nextFloat());
+            double y2 = (double)((float)y + worldRand.nextFloat());
+            double z2 = (double)((float)z + worldRand.nextFloat());
 
-            if (var8 == 0 && !world.isBlockOpaqueCube(x, y + 1, z))
+            if (side == 0 && !world.isBlockOpaqueCube(x, y + 1, z))
             {
-                var11 = (double)(y + 1) + var6;
+                y2 = (double)(y + 1) + pixelWidth;
             }
 
-            if (var8 == 1 && !world.isBlockOpaqueCube(x, y - 1, z))
+            if (side == 1 && !world.isBlockOpaqueCube(x, y - 1, z))
             {
-                var11 = (double)(y + 0) - var6;
+                y2 = (double)(y + 0) - pixelWidth;
             }
 
-            if (var8 == 2 && !world.isBlockOpaqueCube(x, y, z + 1) && meta != 2)
+            if (side == 2 && !world.isBlockOpaqueCube(x, y, z + 1) && meta != 2)
             {
-                var13 = (double)(z + 1) + var6;
+                z2 = (double)(z + 1) + pixelWidth;
             }
 
-            if (var8 == 3 && !world.isBlockOpaqueCube(x, y, z - 1) && meta != 0)
+            if (side == 3 && !world.isBlockOpaqueCube(x, y, z - 1) && meta != 0)
             {
-                var13 = (double)(z + 0) - var6;
+                z2 = (double)(z + 0) - pixelWidth;
             }
 
-            if (var8 == 4 && !world.isBlockOpaqueCube(x + 1, y, z) && meta != 1)
+            if (side == 4 && !world.isBlockOpaqueCube(x + 1, y, z) && meta != 1)
             {
-                var9 = (double)(x + 1) + var6;
+                x2 = (double)(x + 1) + pixelWidth;
             }
 
-            if (var8 == 5 && !world.isBlockOpaqueCube(x - 1, y, z) && meta != 3)
+            if (side == 5 && !world.isBlockOpaqueCube(x - 1, y, z) && meta != 3)
             {
-                var9 = (double)(x + 0) - var6;
+                x2 = (double)(x + 0) - pixelWidth;
             }
 
-            if (var9 < (double)x || var9 > (double)(x + 1) || var11 < 0.0D || var11 > (double)(y + 1) || var13 < (double)z || var13 > (double)(z + 1))
+            if (x2 < (double)x || x2 > (double)(x + 1) || y2 < 0.0D || y2 > (double)(y + 1) || z2 < (double)z || z2 > (double)(z + 1))
             {
                 if(tet.owner.equals("xana"))
                 {
-                    LyokoParticleEffects.spawnParticle("xana", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+                    LyokoParticleEffects.spawnParticle("xana", x2, y2, z2, 0.0D, 0.0D, 0.0D);
                 }
                 else if(tet.owner.equals("lyoko"))
                 {
-                    LyokoParticleEffects.spawnParticle("lyoko", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+                    LyokoParticleEffects.spawnParticle("lyoko", x2, y2, z2, 0.0D, 0.0D, 0.0D);
                 }
                 else if(tet.owner.equals("none"))
                 {
-                    LyokoParticleEffects.spawnParticle("deactivated", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+                    LyokoParticleEffects.spawnParticle("deactivated", x2, y2, z2, 0.0D, 0.0D, 0.0D);
                 }
                 else if(tet.owner.equals("developer"))
                 {
-                    LyokoParticleEffects.spawnParticle("dev", var9, var11, var13, 0.0D, 0.0D, 0.0D);
+                    LyokoParticleEffects.spawnParticle("dev", x2, y2, z2, 0.0D, 0.0D, 0.0D);
                 }
             }
         }
