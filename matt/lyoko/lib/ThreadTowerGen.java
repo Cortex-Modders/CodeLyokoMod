@@ -8,23 +8,23 @@ import matt.lyoko.world.StructureTower;
 public class ThreadTowerGen implements Runnable
 {
 	private World world;
-	private Random rand;
 	private int x;
 	private int y;
 	private int z;
+	private StructureTower st;
 	
-	public ThreadTowerGen(World world, Random rand, int x, int y, int z)
+	public ThreadTowerGen(World world, int x, int y, int z, StructureTower st)
 	{
 		this.world = world;
-		this.rand = rand;
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		this.st = st;
 	}
 	
 	@Override
 	public void run()
 	{
-		(new StructureTower()).generate(world, rand, x, y, z);
+		st.makeTower(world, x, y, z);
 	}
 }

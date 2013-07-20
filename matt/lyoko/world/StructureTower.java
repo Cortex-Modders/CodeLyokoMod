@@ -1,8 +1,11 @@
 package matt.lyoko.world;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import matt.lyoko.blocks.ModBlocks;
+import matt.lyoko.lib.ThreadTowerGen;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -63,13 +66,35 @@ public class StructureTower extends WorldGenerator
 	
 	public boolean generate(World world, Random rand, int x, int y, int z)
 	{
-		// check that each corner is one of the valid spawn blocks
 		if (!LocationIsValidSpawn(world, x, y, z))
 		{
 			return false;
 		}
 		
+		ExecutorService exe = Executors.newCachedThreadPool();
+		exe.execute(new ThreadTowerGen(world, x, y, z, this));
+		
+		return true;
+	}
+	
+	public void makeTower(World world, int x, int y, int z)
+	{
 		clearArea(world, x, y, z);
+		makeWalls(world, x, y, z);
+		makeBaseAndRoof(world, x, y, z);
+	}
+	
+	private void makeWalls(World world, int x, int y, int z)
+	{
+		for(int i = 4; i < 23; i++)
+		{
+			makeLayer(world, x, y + i, z);
+		}
+	}
+	
+	private void makeBaseAndRoof(World world, int x, int y, int z)
+	{
+		// base
 		for(int i = 1; i < 6; i++)
 		{
 			for(int j = 1; j < 6; j++)
@@ -93,10 +118,8 @@ public class StructureTower extends WorldGenerator
 		makeBaseLayer(world, x, y + 1, z);
 		makeBaseLayer(world, x, y + 2, z);
 		makeBaseLayer(world, x, y + 3, z);
-		for(int i = 4; i < 23; i++)
-		{
-			makeLayer(world, x, y + i, z);
-		}
+		
+		// roof
 		for(int i = 1; i < 4; i++)
 		{
 			for(int j = 2; j < 5; j++)
@@ -106,11 +129,9 @@ public class StructureTower extends WorldGenerator
 		}
 		world.setBlock(x + 1, y + 21, z + 3, ModBlocks.TowerConsole.blockID, 1, 3);
 		makeRoofLayer(world, x, y + 23, z);
-		
-		return true;
 	}
 	
-	public void clearArea(World world, int x, int y, int z)
+	private void clearArea(World world, int x, int y, int z)
 	{
 		for(int i = 0; i < 11; i++)
 		{
@@ -134,7 +155,7 @@ public class StructureTower extends WorldGenerator
 		}
 	}
 	
-	public void makeBaseLayer(World world, int x, int y, int z)
+	private void makeBaseLayer(World world, int x, int y, int z)
 	{
 		world.setBlock(x + 1, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
 		world.setBlock(x + 2, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
@@ -158,7 +179,7 @@ public class StructureTower extends WorldGenerator
 		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBaseFake.blockID, 0, 2);
 	}
 	
-	public void makeLayer(World world, int x, int y, int z)
+	private void makeLayer(World world, int x, int y, int z)
 	{
 		world.setBlock(x + 1, y, z, ModBlocks.TowerBlock.blockID, 2, 2);
 		world.setBlock(x + 2, y, z, ModBlocks.TowerBlock.blockID, 2, 2);
@@ -182,7 +203,7 @@ public class StructureTower extends WorldGenerator
 		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBlock.blockID, 0, 2);
 	}
 	
-	public void makeRoofLayer(World world, int x, int y, int z)
+	private void makeRoofLayer(World world, int x, int y, int z)
 	{
 		for(int i = 0; i < 7; i++)
 		{

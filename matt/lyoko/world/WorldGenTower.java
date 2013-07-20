@@ -30,11 +30,10 @@ public class WorldGenTower implements IWorldGenerator
 	 
 	 private void generateTower(World world, Random random, int blockX, int blockZ) 
 	 {
-		  int Xcoord1 = blockX + random.nextInt(16);
-		  int Ycoord1 = random.nextInt(128);
-		  int Zcoord1 = blockZ + random.nextInt(16);
+		  int x = blockX + random.nextInt(16);
+		  int y = random.nextInt(128);
+		  int z = blockZ + random.nextInt(16);
 		  
-		  if(!world.isRemote)
-			  (new Thread(new ThreadTowerGen(world, random, Xcoord1, Ycoord1, Zcoord1))).start();
+		  (new StructureTower()).generate(world, random, x, y, z);
 	 }
 }

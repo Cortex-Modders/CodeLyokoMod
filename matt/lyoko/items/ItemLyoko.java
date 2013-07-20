@@ -123,8 +123,7 @@ public class ItemLyoko extends Item
 								--j;
 							}
 							
-							if(!world.isRemote)
-								(new Thread(new ThreadTowerGen(world, itemRand, i - 3, j, k - 3))).start();
+							(new StructureTower()).generate(world, itemRand, i, j, k);
 							
 							if (!player.capabilities.isCreativeMode)
 							{

@@ -32,8 +32,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 
 import org.lwjgl.opengl.GL11;
 
-import com.jadarstudios.api.developercapesapi.DeveloperCapesAPI;
-
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -82,10 +80,6 @@ public class ClientProxy extends CommonProxy
 	    
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, scannerRenderer);
 	    RenderingRegistry.registerBlockHandler(scannerRenderer);
-	    
-	    
-		// Init capes. make new file called lyokocapes.txt in dropbox, with the template of this: https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt
-		DeveloperCapesAPI.getInstance().init("https://dl.dropbox.com/u/87762025/lyokocapes.txt");
 	}
 	
 	@Override
