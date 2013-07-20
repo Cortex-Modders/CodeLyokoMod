@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import matt.lyoko.world.StructureTower;
 
-public class TowerGenThread implements Runnable
+public class ThreadTowerGen implements Runnable
 {
 	private World world;
 	private Random rand;
@@ -13,7 +13,7 @@ public class TowerGenThread implements Runnable
 	private int y;
 	private int z;
 	
-	public TowerGenThread(World world, Random rand, int x, int y, int z)
+	public ThreadTowerGen(World world, Random rand, int x, int y, int z)
 	{
 		this.world = world;
 		this.rand = rand;

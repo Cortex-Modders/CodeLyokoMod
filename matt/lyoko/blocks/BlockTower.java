@@ -33,7 +33,7 @@ public class BlockTower extends BlockContainer
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("lyoko:tower");
-        inside = par1IconRegister.registerIcon("lyoko:computer_0");
+        inside = par1IconRegister.registerIcon("lyoko:blank");
     }
 
     @Override
@@ -84,7 +84,9 @@ public class BlockTower extends BlockContainer
     public void randomDisplayTick(World world, int x, int y, int z, Random random)
     {
         TileEntityTower tet = (TileEntityTower) world.getBlockTileEntity(x, y, z);
-
+        
+        int meta = world.getBlockMetadata(x, y, z);
+        
         Random var5 = world.rand;
         double var6 = 0.0625D;
 
@@ -104,22 +106,22 @@ public class BlockTower extends BlockContainer
                 var11 = (double)(y + 0) - var6;
             }
 
-            if (var8 == 2 && !world.isBlockOpaqueCube(x, y, z + 1))
+            if (var8 == 2 && !world.isBlockOpaqueCube(x, y, z + 1) && meta != 2)
             {
                 var13 = (double)(z + 1) + var6;
             }
 
-            if (var8 == 3 && !world.isBlockOpaqueCube(x, y, z - 1))
+            if (var8 == 3 && !world.isBlockOpaqueCube(x, y, z - 1) && meta != 0)
             {
                 var13 = (double)(z + 0) - var6;
             }
 
-            if (var8 == 4 && !world.isBlockOpaqueCube(x + 1, y, z))
+            if (var8 == 4 && !world.isBlockOpaqueCube(x + 1, y, z) && meta != 1)
             {
                 var9 = (double)(x + 1) + var6;
             }
 
-            if (var8 == 5 && !world.isBlockOpaqueCube(x - 1, y, z))
+            if (var8 == 5 && !world.isBlockOpaqueCube(x - 1, y, z) && meta != 3)
             {
                 var9 = (double)(x + 0) - var6;
             }

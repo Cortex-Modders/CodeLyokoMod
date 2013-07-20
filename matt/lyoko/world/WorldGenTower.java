@@ -3,7 +3,7 @@ package matt.lyoko.world;
 import java.util.Random;
 
 import matt.lyoko.lib.DimensionIds;
-import matt.lyoko.lib.TowerGenThread;
+import matt.lyoko.lib.ThreadTowerGen;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -34,7 +34,7 @@ public class WorldGenTower implements IWorldGenerator
 		  int Ycoord1 = random.nextInt(128);
 		  int Zcoord1 = blockZ + random.nextInt(16);
 		  
-		  //(new StructureTower()).generate(world, random, Xcoord1, Ycoord1, Zcoord1);
-		  (new Thread(new TowerGenThread(world, random, Xcoord1, Ycoord1, Zcoord1))).start();
+		  if(!world.isRemote)
+			  (new Thread(new ThreadTowerGen(world, random, Xcoord1, Ycoord1, Zcoord1))).start();
 	 }
 }

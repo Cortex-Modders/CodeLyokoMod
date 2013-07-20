@@ -38,6 +38,7 @@ public class ModBlocks
 	public static Block LyokoMountainPortal;// = new BlockLyoko(Lyoko_Mountain_Portal, 15).setUnlocalizedName("Mountain Portal");
 	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setUnlocalizedName("Carthage Portal");
 	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
+	public static Block TowerBaseFake;
 	
 	public static void init()
 	{
@@ -54,6 +55,7 @@ public class ModBlocks
     	Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
     	TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
     	TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerFloor");
+		TowerBaseFake = new BlockTowerBaseFake(BlockIds.LYOKO_TOWER_BASE_FAKE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBaseFake");
     	
     	// Ore
     	QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
@@ -109,6 +111,7 @@ public class ModBlocks
     	GameRegistry.registerBlock(Carthage, "Carthage Block");
     	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
     	GameRegistry.registerBlock(DigitalSeaLiquid, "Digital Sea Liquid");
+    	GameRegistry.registerBlock(TowerBaseFake, "Fake Tower Base");
 	}
 	
 	public static void registerLanguage()
@@ -139,5 +142,6 @@ public class ModBlocks
     	LanguageRegistry.addName(Carthage, "Carthage Block");
     	LanguageRegistry.addName(QuantumOre, "Quantum Ore");
     	LanguageRegistry.addName(DigitalSeaLiquid, "Digital Sea");
+    	LanguageRegistry.addName(TowerBaseFake, "Fake Tower Base");
 	}
 }
