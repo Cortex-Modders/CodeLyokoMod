@@ -16,8 +16,7 @@ Main Developer: Matthew Warren
 
 Textures: MarQ Blue, Matthew Warren
 
-Download
-========
+###Download
 
 The official download is on the [Minecraft Forum post](http://www.minecraftforum.net/topic/1403995-152-code-lyoko-mod-043-minecraft-forum/).
 
@@ -27,8 +26,7 @@ http://ci.jadarstudios.com/job/Code-Lyoko/
 
 [![Build Status](http://ci.jadarstudios.com/job/Code-Lyoko/badge/icon)](http://ci.jadarstudios.com/job/Code-Lyoko/)
 
-Building
-========
+###Building
 
 Requirements: JDK, Ant, and whatever you need to compile with MCP.
 
