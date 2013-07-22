@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import com.jadarstudios.developercapes.DevCapesUtil;
+
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.client.SoundHandler;
@@ -169,6 +171,8 @@ public class CodeLyoko
 	@EventHandler
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
+		DevCapesUtil.getInstance().addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
+		
 		ModFluids.init();
 		ModItems.init();
 		ModBlocks.init();
