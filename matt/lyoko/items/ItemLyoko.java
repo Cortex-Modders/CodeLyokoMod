@@ -34,9 +34,11 @@ public class ItemLyoko extends Item
 	{
 		if(stack.getItem().equals(ModItems.LaserArrow))
 		{
-			list.add("This is the mod's equivalent of an infinite battery.");
-			list.add("Use this as a fuel cell in the Super Computer.");
-			list.add("This is also the debug tool for the mod as well.");
+			list.add("This is the mod's equivalent of an");
+			list.add("infinite battery. Use this as a fuel");
+			list.add("cell in the Super Computer. This is");
+			list.add("also the debug tool for the mod as");
+			list.add("well.");
 		}
 	}
 	

@@ -99,7 +99,7 @@ public class ModBlocks
     	GameRegistry.registerBlock(LeadOre, ItemBlockEffect.class,"Lead Isotope 210 Ore");
     	GameRegistry.registerBlock(UraniumOre, ItemBlockEffect.class,"Uranium Ore");
     	GameRegistry.registerBlock(TowerBlock,"Tower");
-    	GameRegistry.registerBlock(TowerBase, "Tower Base");
+    	GameRegistry.registerBlock(TowerBase, ItemBlockEffect.class, "Tower Base");
     	GameRegistry.registerBlock(Grass, "Lyoko Grass");
     	GameRegistry.registerBlock(Stone, "Lyoko Stone");
     	GameRegistry.registerBlock(Sand, "Lyoko Sand");
