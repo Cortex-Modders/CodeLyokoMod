@@ -41,6 +41,10 @@ public class RenderTower extends TileEntitySpecialRenderer {
         {
         	return;
         }
+        else if(i > 4)
+        {
+        	i -= 5;
+        }
 
         GL11.glPushMatrix();
         proxy.alphaOn();
@@ -62,19 +66,19 @@ public class RenderTower extends TileEntitySpecialRenderer {
         }
 
         switch(i) {
-            case 0: 
+            case 0:
                 offsetZ = -0.0F;
                 break;
-            case 1: 
+            case 1:
                 offsetX = 1.0F;
                 rotationY = -90F;
                 break;
-            case 2: 
+            case 2:
                 offsetZ = 1.0F;
                 offsetX = 1.0F;
                 rotationY = 180F;
                 break;
-            case 3: 
+            case 3:
                 offsetX = -0.0F;
                 offsetZ = 1.0F;
                 rotationY = 90F;

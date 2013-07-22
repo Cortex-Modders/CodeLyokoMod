@@ -99,7 +99,6 @@ public class CodeLyoko
 		BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
 		BlockIds.SCANNER = config.getBlock("scanner", BlockIds.SCANNER_DEFAULT).getInt();
 		BlockIds.SUPER_CALC_CONSOLE = config.getBlock("superCalcConsole", BlockIds.SUPER_CALC_CONSOLE_DEFAULT).getInt();
-		BlockIds.LYOKO_TOWER_BASE_FAKE = config.getBlock("lyokoTowerBaseFake", BlockIds.LYOKO_TOWER_BASE_FAKE_DEFAULT).getInt();
 		
 		// Items
 		ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();

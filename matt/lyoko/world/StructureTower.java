@@ -71,8 +71,15 @@ public class StructureTower extends WorldGenerator
 			return false;
 		}
 		
-		ExecutorService exe = Executors.newCachedThreadPool();
-		exe.execute(new ThreadTowerGen(world, x, y, z, this));
+		if(!world.isRemote)
+		{
+			ExecutorService exe = Executors.newCachedThreadPool();
+			exe.execute(new ThreadTowerGen(world, x, y, z, this));
+			/*exe = Executors.newCachedThreadPool();
+			exe.execute(new ThreadTowerGen(world, x, y, z, this, 1));
+			exe = Executors.newCachedThreadPool();
+			exe.execute(new ThreadTowerGen(world, x, y, z, this, 2));*/
+		}
 		
 		return true;
 	}
@@ -104,7 +111,7 @@ public class StructureTower extends WorldGenerator
 		}
 		for(int i = -5; i < 1; i++)
 		{
-			makeLayer(world, x, y + i, z);
+			makeUndergroundLayer(world, x, y + i, z);
 		}
 		for(int i = 1; i < 4; i++)
 		{
@@ -157,26 +164,50 @@ public class StructureTower extends WorldGenerator
 	
 	private void makeBaseLayer(World world, int x, int y, int z)
 	{
-		world.setBlock(x + 1, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
-		world.setBlock(x + 2, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
-		world.setBlock(x + 3, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
-		world.setBlock(x + 4, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
-		world.setBlock(x + 5, y, z, ModBlocks.TowerBaseFake.blockID, 2, 2);
-		world.setBlock(x, y, z + 1, ModBlocks.TowerBaseFake.blockID, 1, 2);
-		world.setBlock(x, y, z + 2, ModBlocks.TowerBaseFake.blockID, 1, 2);
-		world.setBlock(x, y, z + 3, ModBlocks.TowerBaseFake.blockID, 1, 2);
-		world.setBlock(x, y, z + 4, ModBlocks.TowerBaseFake.blockID, 1, 2);
-		world.setBlock(x, y, z + 5, ModBlocks.TowerBaseFake.blockID, 1, 2);
-		world.setBlock(x + 6, y, z + 1, ModBlocks.TowerBaseFake.blockID, 3, 2);
-		world.setBlock(x + 6, y, z + 2, ModBlocks.TowerBase.blockID);
-		world.setBlock(x + 6, y, z + 3, ModBlocks.TowerBase.blockID);
-		world.setBlock(x + 6, y, z + 4, ModBlocks.TowerBase.blockID);
-		world.setBlock(x + 6, y, z + 5, ModBlocks.TowerBaseFake.blockID, 3, 2);
-		world.setBlock(x + 1, y, z + 6, ModBlocks.TowerBaseFake.blockID, 0, 2);
-		world.setBlock(x + 2, y, z + 6, ModBlocks.TowerBaseFake.blockID, 0, 2);
-		world.setBlock(x + 3, y, z + 6, ModBlocks.TowerBaseFake.blockID, 0, 2);
-		world.setBlock(x + 4, y, z + 6, ModBlocks.TowerBaseFake.blockID, 0, 2);
-		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBaseFake.blockID, 0, 2);
+		world.setBlock(x + 1, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 2, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 3, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 4, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 5, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x, y, z + 1, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 2, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 3, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 4, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 5, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x + 6, y, z + 1, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 6, y, z + 2, ModBlocks.TowerBase.blockID, 8, 2);
+		world.setBlock(x + 6, y, z + 3, ModBlocks.TowerBase.blockID, 8, 2);
+		world.setBlock(x + 6, y, z + 4, ModBlocks.TowerBase.blockID, 8, 2);
+		world.setBlock(x + 6, y, z + 5, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 1, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 2, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 3, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 4, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+	}
+	
+	private void makeUndergroundLayer(World world, int x, int y, int z)
+	{
+		world.setBlock(x + 1, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 2, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 3, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 4, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x + 5, y, z, ModBlocks.TowerBase.blockID, 2, 2);
+		world.setBlock(x, y, z + 1, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 2, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 3, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 4, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x, y, z + 5, ModBlocks.TowerBase.blockID, 1, 2);
+		world.setBlock(x + 6, y, z + 1, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 6, y, z + 2, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 6, y, z + 3, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 6, y, z + 4, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 6, y, z + 5, ModBlocks.TowerBase.blockID, 3, 2);
+		world.setBlock(x + 1, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 2, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 3, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 4, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
+		world.setBlock(x + 5, y, z + 6, ModBlocks.TowerBase.blockID, 0, 2);
 	}
 	
 	private void makeLayer(World world, int x, int y, int z)
