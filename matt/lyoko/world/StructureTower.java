@@ -5,7 +5,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import matt.lyoko.blocks.ModBlocks;
-import matt.lyoko.lib.ThreadTowerGen;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -71,11 +70,7 @@ public class StructureTower extends WorldGenerator
 			return false;
 		}
 		
-		if(!world.isRemote)
-		{
-			ExecutorService exe = Executors.newCachedThreadPool();
-			exe.execute(new ThreadTowerGen(world, x, y, z, this));
-		}
+		makeTower(world, x, y, z);
 		
 		return true;
 	}

@@ -32,7 +32,7 @@ public class BlockTowerBase extends BlockContainer
     public void registerIcons(IconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("lyoko:towerbase");
-        inside = par1IconRegister.registerIcon("lyoko:blank");
+        inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
     
     @SideOnly(Side.CLIENT)

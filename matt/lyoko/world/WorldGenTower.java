@@ -3,7 +3,6 @@ package matt.lyoko.world;
 import java.util.Random;
 
 import matt.lyoko.lib.DimensionIds;
-import matt.lyoko.lib.ThreadTowerGen;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import cpw.mods.fml.common.IWorldGenerator;
@@ -12,14 +11,6 @@ public class WorldGenTower implements IWorldGenerator
 {
 	 public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	 {
-	  /*switch (world.provider.dimensionId)
-	  {
-	   case 3: generateTower(world, random, chunkX*16, chunkZ*16);
-	   case 4: generateTower(world, random, chunkX*16, chunkZ*16);
-	   case 5: generateTower(world, random, chunkX*16, chunkZ*16);
-	   case 6: generateTower(world, random, chunkX*16, chunkZ*16);
-	   case 8: generateTower(world, random, chunkX*16, chunkZ*16);
-	  }*/
 		 if(world.provider.dimensionId == DimensionIds.ICE || world.provider.dimensionId == DimensionIds.MOUNTAIN
 				|| world.provider.dimensionId == DimensionIds.FOREST || world.provider.dimensionId == DimensionIds.DESERT
 				|| world.provider.dimensionId == DimensionIds.CARTHAGE)

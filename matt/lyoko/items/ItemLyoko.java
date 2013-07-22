@@ -4,7 +4,6 @@ import java.util.List;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.vehicles.EntityOverboard;
-import matt.lyoko.lib.ThreadTowerGen;
 import matt.lyoko.world.StructureTower;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -125,7 +124,7 @@ public class ItemLyoko extends Item
 								--j;
 							}
 							
-							(new StructureTower()).generate(world, itemRand, i, j, k);
+							(new StructureTower()).generate(world, itemRand, i - 3, j, k - 3);
 							
 							if (!player.capabilities.isCreativeMode)
 							{
