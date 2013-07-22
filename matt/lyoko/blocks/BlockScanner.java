@@ -287,8 +287,6 @@ public class BlockScanner extends BlockContainer {
         {
             if(world.getBlockId(x, y + i, z) == ModBlocks.Scanner.blockID)
                 array[j] = Vec3.createVectorHelper(x, y + i, z);
-            else
-            	System.out.println("for loop not complete successfully");
             
             j++;
         }
