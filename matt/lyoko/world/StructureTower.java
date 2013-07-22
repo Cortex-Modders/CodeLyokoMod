@@ -75,10 +75,6 @@ public class StructureTower extends WorldGenerator
 		{
 			ExecutorService exe = Executors.newCachedThreadPool();
 			exe.execute(new ThreadTowerGen(world, x, y, z, this));
-			/*exe = Executors.newCachedThreadPool();
-			exe.execute(new ThreadTowerGen(world, x, y, z, this, 1));
-			exe = Executors.newCachedThreadPool();
-			exe.execute(new ThreadTowerGen(world, x, y, z, this, 2));*/
 		}
 		
 		return true;
