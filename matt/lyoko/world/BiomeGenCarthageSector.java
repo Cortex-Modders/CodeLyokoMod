@@ -2,6 +2,7 @@ package matt.lyoko.world;
 
 import matt.lyoko.lib.BlockIds;
 import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 
 public class BiomeGenCarthageSector extends BiomeGenBaseLyoko
@@ -12,8 +13,10 @@ public class BiomeGenCarthageSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.topBlock = (byte)BlockIds.LYOKO_CARTHAGE;
-        this.fillerBlock = (byte)BlockIds.LYOKO_CARTHAGE;
+        this.topBlock = ((byte)BlockIds.LYOKO_CARTHAGE);
+        this.fillerBlock = ((byte)BlockIds.LYOKO_CARTHAGE);
+        this.setBiomeName("Carthage");
         
+        this.waterColorMultiplier = 0xE42D14;
     }
 }

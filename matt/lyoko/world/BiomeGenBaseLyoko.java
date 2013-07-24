@@ -24,6 +24,8 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 
 public class BiomeGenBaseLyoko extends BiomeGenBase
 {
+	public byte blockID;
+
 	protected BiomeGenBaseLyoko(int par1)
 	{
 		super(par1);
@@ -36,13 +38,13 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.rainfall = 0.5F;
         this.waterColorMultiplier = 16777215;
         this.spawnableMonsterList = new ArrayList();
-        this.spawnableCreatureList = new ArrayList();
-        this.spawnableWaterCreatureList = new ArrayList();
-        this.spawnableCaveCreatureList = new ArrayList();
-        this.worldGeneratorTrees = new WorldGenTrees(false);
-        this.worldGeneratorBigTree = new WorldGenBigTree(false);
-        this.worldGeneratorForest = new WorldGenForest(false);
-        this.worldGeneratorSwamp = new WorldGenSwamp();
+        //this.spawnableCreatureList = new ArrayList();
+        //this.spawnableWaterCreatureList = n ew ArrayList();
+        //this.spawnableCaveCreatureList = new ArrayList();
+        //this.worldGeneratorTrees = new WorldGenTrees(false);
+        //this.worldGeneratorBigTree = new WorldGenBigTree(false);
+       // this.worldGeneratorForest = new WorldGenForest(false);
+        //this.worldGeneratorSwamp = new WorldGenSwamp();
         biomeList[par1] = this;
         this.theBiomeDecorator = this.createBiomeDecorator();
 	}

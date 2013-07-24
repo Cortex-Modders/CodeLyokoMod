@@ -26,7 +26,7 @@ public class LyokoCarthageSector extends WorldProvider{
 
 	public IChunkProvider getChunkProvider()
 	{
-		return new LyokoCarthageChunkProvider(worldObj, worldObj.getSeed());
+		return new LyokoCarthageChunkProvider(worldObj, worldObj.getSeed(), hasNoSky );
 	}
 
 	@Override
@@ -39,17 +39,17 @@ public class LyokoCarthageSector extends WorldProvider{
 	//Ender sky if set true
 	public boolean renderEndSky()
 	{
-		return false;
+		return true;
 	}
 
 	public float setSunSize()
 	{
-		return 2.0F;
+		return 1.0F;
 	}
 
 	public float setMoonSize()
 	{
-		return 0.5F;
+		return 1.0F;
 	}
 
 	//Darken the sky if it rains is true
@@ -111,7 +111,7 @@ public class LyokoCarthageSector extends WorldProvider{
 	@Override
 	public boolean isSurfaceWorld()
 	{
-		return false;
+		return true;
 	}
 
 
