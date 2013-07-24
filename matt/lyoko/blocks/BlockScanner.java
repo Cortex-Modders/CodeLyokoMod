@@ -75,138 +75,7 @@ public class BlockScanner extends BlockContainer {
      * @return
      */
     public static boolean isMultiBlock(World world, int x, int y, int z) {
-        /*
-         * if(world.getBlockId(x+1, y, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+1, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+1, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+1, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+2, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+2, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+2, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+3, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+3, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+3, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+4, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z-1) == ModBlocks.Scanner.blockID) { return
-         * true; } else if(world.getBlockId(x-1, y, z+1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x-1, y, z) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x-1, y, z-1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z+1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z-1) ==
-         * ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x-1, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+1, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+1, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+1, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x-1, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+2, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+2, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+2, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x-1, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+3, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+3, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+3, z-1) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x-1, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+4, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z-1) == ModBlocks.Scanner.blockID) { return
-         * true; } else if(world.getBlockId(x+1, y, z+1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z+1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x-1, y, z+1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x+1, y, z) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x-1, y, z) ==
-         * ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+1, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+1, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+1, z) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+2, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+2, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+2, z) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+3, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+3, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+3, z) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+4, z+1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+4, z) == ModBlocks.Scanner.blockID) { return
-         * true; } else if(world.getBlockId(x+1, y, z-1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z-1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x-1, y, z-1) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x+1, y, z) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x, y, z) ==
-         * ModBlocks.Scanner.blockID && world.getBlockId(x-1, y, z) ==
-         * ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+1, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+1, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+1, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+1, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+1, z) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+2, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+2, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+2, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+2, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+2, z) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+3, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+3, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+3, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+3, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+3, z) == ModBlocks.Scanner.blockID
-         * 
-         * && world.getBlockId(x+1, y+4, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+4, z-1) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x+1, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x, y+4, z) == ModBlocks.Scanner.blockID &&
-         * world.getBlockId(x-1, y+4, z) == ModBlocks.Scanner.blockID) { return
-         * true; }
-         */
-
-
+        
         return getPositionInMultiBlock(world, x, y, z) != -1;
     }
 
@@ -223,40 +92,71 @@ public class BlockScanner extends BlockContainer {
      * @return
      */
     public static int getPositionInMultiBlock(World world, int x, int y, int z) {
+        int prevMeta;
+        
         // From bottom block.
+        prevMeta = -1;
         for (int i = 0; i <= 4; i++) {
+            int meta = world.getBlockMetadata(x, y + i, z);
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
+                break;
+            if (prevMeta != -1 & meta != prevMeta)
                 break;
             if(i == 4)
                 return 0;
+            prevMeta = meta;
         }
+        
         // From 1st to bottom block. i.e. block above bottom.
+        prevMeta = -1;
         for (int i = -1; i <= 3; i++) {
+            int meta = world.getBlockMetadata(x, y + i, z);
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
+                break;
+            if (prevMeta != -1 & meta != prevMeta)
                 break;
             if(i == 3)
                 return 1;
+            prevMeta = meta;
         }
+        
         // From 2nd to bottom block. i.e. very middle block.
+        prevMeta = -1;
         for (int i = -2; i <= 2; i++) {
+            int meta = world.getBlockMetadata(x, y + i, z);
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
+                break;
+            if (prevMeta != -1 & meta != prevMeta)
                 break;
             if(i == 2)
                 return 2;
+            prevMeta = meta;
         }
+        
         // From 1nd to top block. i.e. block under top block.
+        prevMeta = -1;
         for (int i = -3; i <= 1; i++) {
+            int meta = world.getBlockMetadata(x, y + i, z);
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
+                break;
+            if (prevMeta != -1 & meta != prevMeta)
                 break;
             if(i == 1)
                 return 3;
+            prevMeta = meta;
         }
+        
         // From top block.
+        prevMeta = -1;
         for (int i = -4; i <= 0; i++) {
+            int meta = world.getBlockMetadata(x, y + i, z);
             if (world.getBlockId(x, y + i, z) != ModBlocks.Scanner.blockID)
+                break;
+            if (prevMeta != -1 & meta != prevMeta)
                 break;
             if(i == 0)
                 return 4;
+            prevMeta = meta;
         }
         return -1;
     }
