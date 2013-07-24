@@ -14,6 +14,7 @@ public class EntityMegaTank extends EntityLyoko
     public EntityMegaTank(World par1World)
     {
         super(par1World);
+        this.setSize(1.25F, 1.25F);
     }
     
     @Override
