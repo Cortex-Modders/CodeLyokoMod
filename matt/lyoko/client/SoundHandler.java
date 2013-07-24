@@ -10,6 +10,11 @@ import net.minecraftforge.event.ForgeSubscribe;
 
 public class SoundHandler {
 
+    /**
+     * When Minecraft loads sounds, load our sounds too.
+     * 
+     * @param event
+     */
     @ForgeSubscribe
     public void onSoundLoad(SoundLoadEvent event) {
         loadSound(event.manager, "scannerClose.ogg");

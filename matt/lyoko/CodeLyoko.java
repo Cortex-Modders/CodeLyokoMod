@@ -1,6 +1,5 @@
 package matt.lyoko;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -9,8 +8,6 @@ import com.jadarstudios.developercapes.DevCapesUtil;
 
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
-import matt.lyoko.client.SoundHandler;
-import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.fluids.ModFluids;
@@ -20,18 +17,12 @@ import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
 import matt.lyoko.render.TileAnimator;
 import matt.lyoko.world.*;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.*;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.*;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -46,7 +37,7 @@ import cpw.mods.fml.common.registry.*;
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
-	public static List<Item> debugTools = new ArrayList();
+	public static List<Item> debugTools = new ArrayList<Item>();
 	
 	public static HashSet<TileAnimator> animatorInstances = new HashSet<TileAnimator>();
 	

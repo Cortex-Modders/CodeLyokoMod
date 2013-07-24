@@ -15,8 +15,6 @@ import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.handlers.KeyBindingHandler;
 import matt.lyoko.items.ModItems;
-import matt.lyoko.model.mobs.ModelBlok;
-import matt.lyoko.model.mobs.ModelTank;
 import matt.lyoko.render.ItemRenderGlove;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
