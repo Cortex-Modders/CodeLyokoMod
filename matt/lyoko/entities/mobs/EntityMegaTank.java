@@ -1,5 +1,6 @@
 package matt.lyoko.entities.mobs;
 
+import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.block.Block;
 import net.minecraft.src.*;
 import net.minecraft.world.World;
@@ -8,7 +9,7 @@ import net.minecraft.entity.player.*;
 
 public class EntityMegaTank extends EntityLyoko
 {
-	private float MOB_SPEED = 2.0F;
+	private float MOB_SPEED = 1.5F;
 	
     public EntityMegaTank(World par1World)
     {
@@ -35,7 +36,8 @@ public class EntityMegaTank extends EntityLyoko
     {
     	if(!entp.capabilities.isCreativeMode)
     	{
-    		entp.setDead();
+    		PlayerInformation pi = PlayerInformation.forPlayer(entp);
+    		pi.setLifePoints(0);
     	}
     }
     
