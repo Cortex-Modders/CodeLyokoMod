@@ -113,7 +113,7 @@ public class CommonProxy
         EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
     }
     
-    public void registerEntityNames()
+    public void registerNames()
     {
         // Monsters.
         LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
@@ -122,6 +122,11 @@ public class CommonProxy
         // Vehicles.
         LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
         LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
-
+        
+        // Damage sources
+        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.digitalSea", "%1$s fell into the digital sea");
+        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.digitalSea.player", "%1$s fell into the digital sea while fighting %2$s");
+        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta", "%1$s was absorbed by the marabounta");
+        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta.player", "%1$s was absorbed by the marabounta while fighting %2$s");
     }
 }

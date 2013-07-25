@@ -1,9 +1,0 @@
-
-language.name=English
-language.region=US
-language.code=en_US
-
-death.attack.CodeLyoko.digitalSea=%1$s fell into the digital sea
-death.attack.CodeLyoko.digitalSea.player=%1$s fell into the digital sea while fighting %2$s
-death.attack.CodeLyoko.marabounta=%1$s was absorbed by the marabounta
-death.attack.CodeLyoko.marabounta.player=%1$s was absorbed by the marabounta while fighting %2$s

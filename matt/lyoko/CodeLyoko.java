@@ -173,7 +173,7 @@ public class CodeLyoko
 		Recipes.registerItemRecipes();
     	
     	proxy.registerEntities();
-    	proxy.registerEntityNames();
+    	proxy.registerNames();
     	proxy.registerRenderInformation();
     	proxy.registerTickHandlers();
     	//proxy.registerKeyBindingHandler();

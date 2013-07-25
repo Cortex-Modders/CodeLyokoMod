@@ -1,7 +1,0 @@
-
-language.name=Japanese
-language.region=JP
-language.code=ja_JP
-
-death.attack.CodeLyoko.digitalSea=%1$s デジタルの海に落ちた
-death.attack.CodeLyoko.digitalSea.player=%1$s 戦闘ながらデジタル海に落ちた %2$s
