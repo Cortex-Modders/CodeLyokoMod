@@ -90,6 +90,8 @@ public class DevCapesUtil {
 						if (line.charAt(i) == '='){
 							group = line.substring(0, i);
 							String subLine = line.substring(i + 1);
+							group = group.replaceAll(" ", "");
+							subLine = subLine.replaceAll(" ", "");
 
 							if (subLine.startsWith("http")){
 								capeUrl = subLine;
