@@ -101,7 +101,7 @@ public class GuiTowerConsole extends GuiContainer
         	}
         	
         	Packet250CustomPayload packet = new Packet250CustomPayload();
-        	packet.channel = "Code_Lyoko";
+        	packet.channel = "Console";
         	packet.data = bos.toByteArray();
         	packet.length = bos.size();
         	

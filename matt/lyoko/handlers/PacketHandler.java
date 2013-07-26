@@ -22,13 +22,9 @@ public class PacketHandler implements IPacketHandler
         DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
         EntityPlayer sender = (EntityPlayer) player;
         
-        if(packet.channel.equals("Code_Lyoko"))
+        if(packet.channel.equals("Console"))
         {
-        	handlePacketCL(data, sender.worldObj);
-        }
-        if(packet.channel.equals("SuperCalcConsole"))
-        {
-        	handlePacketSCC(data, sender.worldObj);
+        	handlePacketConsole(data, sender.worldObj);
         }
         if(packet.channel.equals("LifePoints"))
         {
@@ -40,7 +36,7 @@ public class PacketHandler implements IPacketHandler
         }
     }
     
-    private void handlePacketCL(DataInputStream data, World world)
+    private void handlePacketConsole(DataInputStream data, World world)
     {
         String code;
         int x;
@@ -66,28 +62,6 @@ public class PacketHandler implements IPacketHandler
         	tetc.owner = code;
         	world.markBlockForUpdate(x, y, z);
         }
-    }
-    
-    private void handlePacketSCC(DataInputStream data, World world)
-    {
-        String code;
-        int x;
-        int y;
-        int z;
-        
-        try
-        {
-        	code = data.readUTF();
-        	x = data.readInt();
-        	y = data.readInt();
-        	z = data.readInt();
-        }
-        catch (IOException e)
-        {
-        	e.printStackTrace();
-        	return;
-        }
-        
         if(world.getBlockTileEntity(x, y, z) != null && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalcConsole)
         {
         	TileEntitySuperCalcConsole tescc = (TileEntitySuperCalcConsole) world.getBlockTileEntity(x, y, z);

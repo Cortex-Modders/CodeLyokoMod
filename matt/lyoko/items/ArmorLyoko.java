@@ -128,6 +128,10 @@ public class ArmorLyoko extends ItemArmor
         						player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.Fan, 1));
         					}
         				}
+        				if(player instanceof EntityPlayerMP)
+        				{
+        					((EntityPlayerMP)player).theItemInWorldManager.setBlockReachDistance(10.0D);
+        				}
         			}
         			else if (helmet.getItem() == ModItems.WilliamHelmet && chest.getItem() == ModItems.WilliamChest
         					&& legs.getItem() == ModItems.WilliamLegs && boots.getItem() == ModItems.WilliamBoots)
@@ -157,6 +161,10 @@ public class ArmorLyoko extends ItemArmor
 				if(player.capabilities.isFlying)
 				{
 					player.capabilities.isFlying = false;
+				}
+				if(player instanceof EntityPlayerMP)
+				{
+					((EntityPlayerMP)player).theItemInWorldManager.setBlockReachDistance(5.0D);
 				}
 			}
         }

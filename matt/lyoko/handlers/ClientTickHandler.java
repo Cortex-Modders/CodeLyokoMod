@@ -10,22 +10,7 @@ import cpw.mods.fml.common.TickType;
 
 public class ClientTickHandler implements ITickHandler
 {
-	public int lifePoints = 80;
-	
-    private void onRenderTick(EntityPlayer player)
-    {
-    	//TODO set this up to render life points
-        /* not used anymore
-        Minecraft mc = Minecraft.getMinecraft();
-        FontRenderer font = mc.fontRenderer;
-        int x = 30;
-        int y = 30;
-        int color = 10000;
-        FMLClientHandler.instance().getClient().ingameGUI.drawString(font, Integer.toString(lifePoints), x, y, color);
-        */
-    }
-    
-    /**
+	/**
      * Used to advance all the animator instances once every tick.
      * 
      * @param tickData
@@ -41,14 +26,6 @@ public class ClientTickHandler implements ITickHandler
     {
         if (type.equals(EnumSet.of(TickType.RENDER)))
         {
-        	for(int i = 0; i < tickData.length; i++)
-        	{
-        		if(tickData[i] instanceof EntityPlayer)
-        		{
-        			onRenderTick((EntityPlayer)tickData[0]);
-        		}
-        	}
-        	
             advanceAnimatorInstances(tickData);
         }
     }
