@@ -21,11 +21,14 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 	public float timeLeft;
 	public String sector = "";
 	public int flush = 20;
+	private boolean isPowered;
 	//private Ticket ticket;
 	
-	public TileEntitySuperCalc(){
+	public TileEntitySuperCalc()
+	{
 		inv = new ItemStack[2];
 		timeLeft = 100.0F;
+		setPowered(false);
 		
 		//ticket = ForgeChunkManager.requestTicket(CodeLyoko.instance, worldObj, Type.NORMAL);
 		//ticket.getModData().setInteger("SuperCalcX", xCoord);
@@ -74,6 +77,16 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		return stack;
 	}
 	
+	public void setPowered(boolean powered)
+	{
+		isPowered = powered;
+	}
+	
+	public boolean isPowered()
+	{
+		return isPowered;
+	}
+	
 	public void resetSector(World world, int x, int y, int z)
 	{
 		((TileEntitySuperCalc)world.getBlockTileEntity(x + 1, y, z + 1)).sector = "";
@@ -106,7 +119,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 	@Override
 	public void updateEntity()
 	{
-		if(!sector.equals(""))
+		if(!sector.equals("") && isPowered())
 		{
 			syncCable(worldObj, xCoord + 1, yCoord, zCoord);
 			syncCable(worldObj, xCoord - 1, yCoord, zCoord);
@@ -142,13 +155,20 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 						{
 							TileEntitySuperCalc slave = (TileEntitySuperCalc)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
 							{
-								if(slave != null && !(slave.sector.equals("")))
+								if(slave != null)
 								{
-									if(this.sector.equals(""))
+									if(!(slave.sector.equals("")))
 									{
-										this.sector = slave.sector;
+										if(this.sector.equals(""))
+										{
+											this.sector = slave.sector;
+										}
+										slave.sector = "";
 									}
-									slave.sector = "";
+									if(slave.isPowered() != this.isPowered())
+									{
+										slave.setPowered(this.isPowered());
+									}
 								}
 								
 								if(slave != null && !(this.sector.equals("")))
@@ -171,6 +191,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		if(stack != null && stack.getItem() == ModItems.LaserArrow)
 		{
 			setInventorySlotContents(slot2, new ItemStack(ModItems.DataFragment, 64));
+			setPowered(true);
 		}
 		else if(stack != null && stack.getItemDamage() == stack.getMaxDamage())
 		{
@@ -182,10 +203,17 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 			{
 				setInventorySlotContents(slot, new ItemStack(ModItems.DepletedUraniumCell));
 			}
+			setPowered(false);
 		}
 		else if(stack != null && stack.getItemDamage() < stack.getMaxDamage() && ((stack2 != null && stack2.stackSize < 64) || stack2 == null))
 		{
 			setInventorySlotContents(slot, new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1));
+			if(!isPowered())
+				setPowered(true);
+		}
+		else if(stack == null)
+		{
+			setPowered(false);
 		}
 		
 		if(timeLeft <= 0.0F)
@@ -260,6 +288,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		}
 		this.timeLeft = tagCompound.getFloat("remainingTime");
 		this.sector = tagCompound.getString("sector");
+		setPowered(tagCompound.getBoolean("isPowered"));
 	}
 	
 	@Override
@@ -267,6 +296,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		super.writeToNBT(tagCompound);
 		tagCompound.setFloat("remainingTime", this.timeLeft);
 		tagCompound.setString("sector", this.sector);
+		tagCompound.setBoolean("isPowered", isPowered());
 		NBTTagList itemList = new NBTTagList();
 		for (int i = 0; i < inv.length; i++) {
 			ItemStack stack = inv[i];

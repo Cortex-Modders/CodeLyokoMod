@@ -65,7 +65,7 @@ public class ModItems
         QuantumOrb = new ItemLyoko(ItemIds.ITEM_LYOKO_11).setUnlocalizedName("LyokoIngot");
         Lead = new ItemLyoko(ItemIds.ITEM_LYOKO_12).setUnlocalizedName("Lead210");
         EmptyCell = new ItemLyoko(ItemIds.ITEM_LYOKO_13).setUnlocalizedName("Cell");
-        LeadCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_14, 1250, DepletedLeadCell).setUnlocalizedName("Lead210Cell");
+        LeadCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_14, 5000, DepletedLeadCell).setUnlocalizedName("Lead210Cell");
         DepletedLeadCell = new ItemLyoko(ItemIds.ITEM_LYOKO_15).setUnlocalizedName("DepletedLead210Cell");
         AelitaHelmet = new ArmorLyoko(ItemIds.AELITA_ARMOR_HELMET, armorLYOKO, 5, 0, "aelita").setUnlocalizedName("AelitaHelmet");
         AelitaChest = new ArmorLyoko(ItemIds.AELITA_ARMOR_CHEST, armorLYOKO, 5, 1, "aelita").setUnlocalizedName("AelitaChest");
@@ -89,7 +89,7 @@ public class ModItems
         WilliamBoots = new ArmorLyoko(ItemIds.WILLIAM_ARMOR_BOOTS, armorLYOKO, 9, 3, "william").setUnlocalizedName("WilliamBoots");
         DataFragment = new ItemDataFragment(ItemIds.DATA_FRAGMENT).setUnlocalizedName("DataFragment");
         Uranium = new ItemLyoko(ItemIds.ITEM_LYOKO_URANIUM).setUnlocalizedName("Uranium");
-        UraniumCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_URANIUM_CELL, 5000, DepletedUraniumCell).setUnlocalizedName("UraniumCell");
+        UraniumCell = new ItemLyokoFuel(ItemIds.ITEM_LYOKO_URANIUM_CELL, 20000, DepletedUraniumCell).setUnlocalizedName("UraniumCell");
         DepletedUraniumCell = new ItemLyoko(ItemIds.ITEM_LYOKO_DEPLETED_URANIUM).setUnlocalizedName("DepletedUraniumCell");
         Overboard = new ItemOverboard(ItemIds.ITEM_OVERBOARD).setUnlocalizedName("Overboard");
         Skid = new ItemSkid(ItemIds.ITEM_SKID).setUnlocalizedName("Skidbladnir");
