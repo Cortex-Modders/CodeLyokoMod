@@ -91,7 +91,7 @@ public class BlockScanner extends BlockContainer {
      * @param z
      * @return
      */
-    public static int getPositionInMultiBlock(World world, int x, int y, int z) {
+    public static int getPositionInMultiBlock(IBlockAccess world, int x, int y, int z) {
         int prevMeta;
         
         // From bottom block.
@@ -335,31 +335,50 @@ public class BlockScanner extends BlockContainer {
     {
     	super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0)
-        {
-            par1World.setBlockMetadataWithNotify(x, y, z, 0, 2);
-        }
-
-        if (l == 1)
-        {
-            par1World.setBlockMetadataWithNotify(x, y, z, 1, 2);
-        }
-
-        if (l == 2)
-        {
-            par1World.setBlockMetadataWithNotify(x, y, z, 2, 2);
-        }
-
-        if (l == 3)
-        {
-            par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
-        }
+        
+        par1World.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
     
     @Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
 	{
+    	/*int meta = world.getBlockMetadata(x, y, z);
+    	int pos = getPositionInMultiBlock(world, x, y, z);
+    	double pixel = 0.0625;
+    	
+    	if(meta == 0 && ((pos > 0 && pos < 4) || pos == -1))
+    	{
+    		return AxisAlignedBB.getBoundingBox(x + 0, y + 0, z + 0, x + 1, y + 1, z + 1);
+    	}*/
     	return null;
+    }
+    
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
+    {
+    	int meta = blockAccess.getBlockMetadata(x, y, z);
+    	int pos = getPositionInMultiBlock(blockAccess, x, y, z);
+    	float pixel = 0.125F;
+    	float twoPixel = 0.25F;
+    	
+    	if(meta == 0 && ((pos > 0 && pos < 4) || pos == -1))
+    	{
+    		this.setBlockBounds(0 - twoPixel, 0, 0 - pixel, 1 + twoPixel, 1, 1 + twoPixel);
+    	}
+    	else if(meta == 1 && ((pos > 0 && pos < 4) || pos == -1))
+    	{
+    		this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + pixel, 1, 1 + twoPixel);
+    	}
+    	else if(meta == 2 && ((pos > 0 && pos < 4) || pos == -1))
+    	{
+    		this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + pixel);
+    	}
+    	else if(meta == 3 && ((pos > 0 && pos < 4) || pos == -1))
+    	{
+    		this.setBlockBounds(0 - pixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
+    	}
+    	else
+    	{
+    		this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
+    	}
     }
 }
