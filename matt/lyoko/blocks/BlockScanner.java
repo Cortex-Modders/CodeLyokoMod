@@ -254,14 +254,15 @@ public class BlockScanner extends BlockContainer {
                 yPos++;
             }
             
-            player.setPositionAndRotation(player.posX, yPos, player.posZ, player.rotationYaw, player.rotationPitch);
+            if(player instanceof EntityPlayerMP)
+            	((EntityPlayerMP)player).setPositionAndRotation(player.posX, yPos, player.posZ, player.rotationYaw, player.rotationPitch);
             
             ByteArrayOutputStream bos = new ByteArrayOutputStream(28);
             DataOutputStream outputStream = new DataOutputStream(bos);
             try
             {
                 outputStream.writeDouble(player.posX);
-                outputStream.writeDouble(player.posY);
+                outputStream.writeDouble(yPos);
                 outputStream.writeDouble(player.posZ);
                 outputStream.writeFloat(player.rotationYaw);
             }
