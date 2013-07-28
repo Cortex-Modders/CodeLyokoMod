@@ -283,23 +283,8 @@ public class BlockScanner extends BlockContainer {
     }
     
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are) {
-
-        /*
-        if(isMultiBlock(world, x, y, z)) {
-            TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-            if (tileEntity == null || player.isSneaking() || !(tileEntity instanceof TileEntityScanner))
-                return false;
-
-            TileEntityScanner reference = (TileEntityScanner)tileEntity;
-            reference.toggleDoors();
-
-            return true;
-        }
-        else
-            return false;
-         */
-
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
+    {
         if(isMultiBlock(world, x, y, z))
         {
             TileEntity tileEntity = world.getBlockTileEntity(x, y, z);

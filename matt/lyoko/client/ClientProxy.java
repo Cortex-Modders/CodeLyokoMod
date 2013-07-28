@@ -9,6 +9,7 @@ import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLaserArrow;
 import matt.lyoko.entities.tileentity.TileEntityCable;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.entities.vehicles.EntityOverboard;
@@ -21,6 +22,7 @@ import matt.lyoko.render.mobs.RenderTank;
 import matt.lyoko.render.tileentity.RenderCable;
 import matt.lyoko.render.tileentity.RenderEntityTowerConsole;
 import matt.lyoko.render.tileentity.RenderScanner;
+import matt.lyoko.render.tileentity.RenderSuperCalcConsole;
 import matt.lyoko.render.tileentity.RenderTower;
 import matt.lyoko.render.vehicles.RenderOverboard;
 import matt.lyoko.render.vehicles.RenderSkid;
@@ -39,6 +41,7 @@ public class ClientProxy extends CommonProxy
 	
     // TODO: Move to better place. And not use static?
     public static final int scannerRenderId = RenderingRegistry.getNextAvailableRenderId();
+    public static final int superCalcConsoleRenderId = RenderingRegistry.getNextAvailableRenderId();
     
     @Override
 	public void registerRenderInformation() 
@@ -75,9 +78,13 @@ public class ClientProxy extends CommonProxy
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
 	    
 	    RenderScanner scannerRenderer = new RenderScanner(scannerRenderId);
+	    RenderSuperCalcConsole superCalcConsoleRenderer = new RenderSuperCalcConsole(superCalcConsoleRenderId);
 	    
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, scannerRenderer);
+	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalcConsole.class, superCalcConsoleRenderer);
+	    
 	    RenderingRegistry.registerBlockHandler(scannerRenderer);
+	    RenderingRegistry.registerBlockHandler(superCalcConsoleRenderer);
 	}
 	
 	@Override
