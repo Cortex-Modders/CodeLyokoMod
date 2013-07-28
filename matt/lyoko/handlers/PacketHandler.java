@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 
+import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.lib.PlayerInformation;
@@ -33,6 +34,10 @@ public class PacketHandler implements IPacketHandler
         if(packet.channel.equals("Devirt"))
         {
         	handlePacketD(data, sender.worldObj, sender);
+        }
+        if(packet.channel.equals("ScannerDoors"))
+        {
+        	handlePacketSD(data, sender.worldObj);
         }
     }
     
@@ -117,6 +122,34 @@ public class PacketHandler implements IPacketHandler
         {
         	//player.dimension = dim;
         	player.setLocationAndAngles(posX, posY, posZ, yaw, 0);
+        }
+    }
+    
+    private void handlePacketSD(DataInputStream data, World world)
+    {
+        boolean open;
+        int x;
+        int y;
+        int z;
+        
+        try
+        {
+        	open = data.readBoolean();
+        	x = data.readInt();
+        	y = data.readInt();
+        	z = data.readInt();
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        	return;
+        }
+        
+        if(world.getBlockTileEntity(x, y, z) != null && world.getBlockTileEntity(x, y, z) instanceof TileEntityScanner)
+        {
+        	TileEntityScanner tes = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
+        	tes.doorsOpen = open;
+        	world.markBlockForUpdate(x, y, z);
         }
     }
 }

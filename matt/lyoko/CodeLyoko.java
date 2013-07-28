@@ -33,7 +33,7 @@ import cpw.mods.fml.common.network.*;
 import cpw.mods.fml.common.registry.*;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};

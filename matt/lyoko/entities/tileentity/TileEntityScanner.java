@@ -1,12 +1,19 @@
 package matt.lyoko.entities.tileentity;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
+
 import matt.lyoko.blocks.BlockScanner;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.lib.PlayerInformation;
+import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 
@@ -101,6 +108,27 @@ public class TileEntityScanner extends TileEntity
         {
             TileEntityScanner scanner = (TileEntityScanner) worldObj.getBlockTileEntity((int)coords.xCoord, (int)coords.yCoord, (int)coords.zCoord);
             scanner.doorsOpen = this.doorsOpen;
+            
+            ByteArrayOutputStream bos = new ByteArrayOutputStream(13);
+        	DataOutputStream outputStream = new DataOutputStream(bos);
+        	try
+        	{
+        		outputStream.writeBoolean(doorsOpen);
+        		outputStream.writeInt((int) coords.xCoord);
+        		outputStream.writeInt((int) coords.yCoord);
+        		outputStream.writeInt((int) coords.zCoord);
+        	}
+        	catch (Exception ex)
+        	{
+        		ex.printStackTrace();
+        	}
+        	
+        	Packet250CustomPayload packet = new Packet250CustomPayload();
+        	packet.channel = "ScannerDoors";
+        	packet.data = bos.toByteArray();
+        	packet.length = bos.size();
+        	
+        	PacketDispatcher.sendPacketToAllPlayers(packet);
         }
     }
 
