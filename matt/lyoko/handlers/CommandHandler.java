@@ -66,8 +66,8 @@ public class CommandHandler implements ICommand
 			if(player instanceof EntityPlayerMP)
 			{
 				LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP)player, pi.scannerDim);
+				((EntityPlayerMP)player).setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			}
-			player.setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
 			
 			TileEntityScanner tile = (TileEntityScanner)player.worldObj.getBlockTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
 			if(tile != null)
@@ -79,10 +79,10 @@ public class CommandHandler implements ICommand
 		    DataOutputStream outputStream = new DataOutputStream(bos);
 		    try
 		    {
-		    	outputStream.writeDouble(player.posX);
-		    	outputStream.writeDouble(player.posY);
-		    	outputStream.writeDouble(player.posZ);
-		    	outputStream.writeFloat(player.rotationYaw);
+		    	outputStream.writeDouble(pi.getScannerPosX() + 0.5D);
+		    	outputStream.writeDouble(pi.getScannerPosY());
+		    	outputStream.writeDouble(pi.getScannerPosZ() + 0.5D);
+		    	outputStream.writeFloat(pi.scannerYaw);
 		    }
 		    catch (Exception ex)
 		    {

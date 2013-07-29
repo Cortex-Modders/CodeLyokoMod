@@ -40,16 +40,16 @@ public class RenderEntityTowerConsole extends TileEntitySpecialRenderer {
             rotate = 180;
         }
 
+        if (i == 1) {
+            rotate = 90;
+        }
+
         if (i == 2) {
             rotate = 0;
         }
 
         if (i == 3) {
             rotate = -90;
-        }
-
-        if (i == 1) {
-            rotate = 90;
         }
 
         GL11.glRotatef((float)rotate, 0F, 1F, 0F);
