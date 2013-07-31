@@ -1,7 +1,6 @@
 package matt.lyoko;
 
 import matt.lyoko.blocks.ModBlocks;
-import matt.lyoko.client.SoundHandler;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
 import matt.lyoko.entities.projectile.EntityEnergyField;
@@ -13,6 +12,7 @@ import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.handlers.ClientTickHandler;
 import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.handlers.ServerTickHandler;
+import matt.lyoko.handlers.SoundHandler;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.lib.EntityIds;
 import net.minecraft.entity.EnumCreatureType;

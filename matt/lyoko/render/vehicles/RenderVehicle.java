@@ -14,10 +14,10 @@ public abstract class RenderVehicle extends Render {
     protected ModelVehicle model;
     public ResourceLocation texture;
     
-    public RenderVehicle(ModelVehicle parModel, float shadow) {
+    public RenderVehicle(ModelVehicle parModel, float shadow, String textureLocation) {
         shadowSize = shadow;
         model = parModel;
-        texture = new ResourceLocation("null");
+        texture = new ResourceLocation(textureLocation);
     }
 
     protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {

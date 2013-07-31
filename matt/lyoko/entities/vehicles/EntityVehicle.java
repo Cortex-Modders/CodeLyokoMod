@@ -10,7 +10,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
-public class EntityVehicle extends Entity {
+public abstract class EntityVehicle extends Entity {
 	
 	public float hoverSpeed;
 	private Item droppedItem = ModItems.DataFragment;
