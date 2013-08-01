@@ -11,7 +11,7 @@ import net.minecraftforge.common.EnumHelper;
 public class ModItems
 {
     public static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
-    public static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 40, new int[] {5, 10, 8, 5}, 30);
+    public static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 200, new int[] {5, 10, 8, 5}, 30);
     
     public static Item Katana;
     public static Item Zweihander;

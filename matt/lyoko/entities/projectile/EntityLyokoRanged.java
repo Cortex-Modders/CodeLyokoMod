@@ -49,7 +49,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
     public Entity shootingEntity;
     private int ticksInGround;
     private int ticksInAir = 0;
-    private double MAX_DAMAGE = 40.0D;
+    private final double MAX_DAMAGE = 40.0D;
     private double damage = MAX_DAMAGE;
 
     /** The amount of knockback an arrow applies when it hits a mob. */
@@ -307,13 +307,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
                 		}
                 	}
                 	
-                    var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                    int var23 = MathHelper.ceiling_double_int((double)var20 * this.damage);
-
-                    if (this.getIsCritical())
-                    {
-                        var23 += this.rand.nextInt(var23 / 2 + 2);
-                    }
+                    int var23 = MathHelper.ceiling_double_int(this.damage);
 
                     DamageSource var21 = null;
 
@@ -356,11 +350,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
                         }
 
                         this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-
-                        if (!(var4.entityHit instanceof EntityEnderman))
-                        {
-                            this.setDead();
-                        }
+                        this.setDead();
                     }
                     else
                     {
@@ -411,11 +401,6 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
             this.posZ += this.motionZ;
             var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-
-            for (this.rotationPitch = (float)(Math.atan2(this.motionY, (double)var20) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
-            {
-                ;
-            }
 
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
             {

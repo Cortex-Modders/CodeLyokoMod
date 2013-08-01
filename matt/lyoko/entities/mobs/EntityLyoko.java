@@ -1,10 +1,25 @@
 package matt.lyoko.entities.mobs;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.projectile.EntityLaser;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIArrowAttack;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
@@ -12,16 +27,38 @@ import net.minecraft.src.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public abstract class EntityLyoko extends EntityMob implements IMob
+public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
 {
+	protected final int MAX_ATTACK_STRENGTH;// = 2;
     /** How much damage this mob's attacks deal */
-    protected int attackStrength = 2;
-    private float MOB_SPEED = 0.5F;
+    protected int attackStrength;// = MAX_ATTACK_STRENGTH;
+    protected double mobSpeed = 0.5F;
 
-    public EntityLyoko(World par1World)
+    private EntityLyoko(World par1World, int attackStrength, boolean specialAttack, double speed)
     {
         super(par1World);
         this.experienceValue = 10;
+        MAX_ATTACK_STRENGTH = attackStrength;
+        mobSpeed = speed;
+        this.attackStrength = attackStrength;
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        if(!specialAttack)
+        	this.tasks.addTask(2, new EntityAIArrowAttack(this, (float) mobSpeed, 40, 20));
+        this.tasks.addTask(3, new EntityAIWander(this, mobSpeed));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
+    }
+    
+    public EntityLyoko(World world, int attackStrength, double speed)
+    {
+    	this(world, attackStrength, true, speed);
+    }
+    
+    public EntityLyoko(World world, double speed)
+    {
+    	this(world, 2, false, speed);
     }
     
     @Override
@@ -35,9 +72,17 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         // Knockback Resistance - default 0.0D - min 0.0D - max 1.0D
         this.func_110148_a(SharedMonsterAttributes.field_111266_c).func_111128_a(0.0D);
         // Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(MOB_SPEED);
+        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(mobSpeed);
         // Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
         this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(attackStrength);
+    }
+    
+    /**
+     * Returns true if the newer Entity AI code should be run
+     */
+    public boolean isAIEnabled()
+    {
+        return true;
     }
     
     @Override
@@ -59,7 +104,16 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     public void onUpdate()
     {
         super.onUpdate();
-
+        
+        if(CodeLyoko.entityInLyoko(this))
+    	{
+    		attackStrength = 0;
+    	}
+    	else
+    	{
+    		attackStrength = MAX_ATTACK_STRENGTH;
+    	}
+        
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == 0)
         {
             this.setDead();
@@ -76,87 +130,6 @@ public abstract class EntityLyoko extends EntityMob implements IMob
     }
 
     /**
-     * Finds the closest player within 16 blocks to attack, or null if this Entity isn't interested in attacking
-     * (Animals, Spiders at day, peaceful PigZombies).
-     */
-    @Override
-    protected Entity findPlayerToAttack()
-    {
-        EntityPlayer var1 = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
-        return var1 != null && this.canEntityBeSeen(var1) ? var1 : null;
-    }
-
-    /**
-     * Called when the entity is attacked.
-     */
-    public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
-    {    	
-        if (super.attackEntityFrom(par1DamageSource, par2))
-        {
-            Entity var3 = par1DamageSource.getEntity();
-
-            if (this.riddenByEntity != var3 && this.ridingEntity != var3)
-            {
-                if (var3 != this)
-                {
-                    this.entityToAttack = var3;
-                }
-
-                return true;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        else
-        {
-            return false;
-        }
-    }
-    
-    @Override
-    public boolean attackEntityAsMob(Entity par1Entity)
-    {
-        int var2 = this.attackStrength;
-        
-        if (this.isPotionActive(Potion.damageBoost))
-        {
-            var2 += 3 << this.getActivePotionEffect(Potion.damageBoost).getAmplifier();
-        }
-        
-        if (this.isPotionActive(Potion.weakness))
-        {
-            var2 -= 2 << this.getActivePotionEffect(Potion.weakness).getAmplifier();
-        }
-        
-        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), var2);
-    }
-
-    /**
-     * Basic mob attack. Default to touch of death in EntityCreature. Overridden by each mob to define their attack.
-     */
-    @Override
-    protected void attackEntity(Entity par1Entity, float par2)
-    {
-        if (this.attackTime <= 0 && par2 < 2.0F && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY)
-        {
-            this.attackTime = 20;
-            this.attackEntityAsMob(par1Entity);
-        }
-    }
-
-    /**
-     * Takes a coordinate in and returns a weight to determine how likely this creature will try to path to the block.
-     * Args: x, y, z
-     */
-    @Override
-    public float getBlockPathWeight(int par1, int par2, int par3)
-    {
-        return 0.5F - this.worldObj.getLightBrightness(par1, par2, par3);
-    }
-
-    /**
      * Checks to make sure the light is not too bright where the mob is spawning
      */
     @Override
@@ -165,18 +138,12 @@ public abstract class EntityLyoko extends EntityMob implements IMob
         return true;
     }
 
-    /**
-     * Checks if the entity's current position is a valid location to spawn this entity.
-     */
-    @Override
-    public boolean getCanSpawnHere()
-    {
-        return this.isValidLightLevel() && super.getCanSpawnHere();
-    }
-    
-    @Override
-    protected int getDropItemId()
-    {
-        return 0;
-    }
+	@Override
+	public void attackEntityWithRangedAttack(EntityLivingBase entitylivingbase, float f)
+	{
+		EntityLaser laser = new EntityLaser(this.worldObj, this, entitylivingbase, 1.6F, 2.0F);
+		laser.motionY += 0.00000000000001D;
+        //this.playSound("random.bow", 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.worldObj.spawnEntityInWorld(laser);
+	}
 }
