@@ -155,6 +155,12 @@ public class CodeLyoko
 		}
 	}
 	
+	public static BiomeGenBaseLyoko lyokomountain;
+	public static BiomeGenBaseLyoko lyokoforest;
+	public static BiomeGenBaseLyoko lyokodesert;
+	public static BiomeGenBaseLyoko lyokopolar;
+	public static BiomeGenBaseLyoko lyokocarthage;
+	
 	@EventHandler
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
@@ -163,6 +169,12 @@ public class CodeLyoko
 		ModFluids.init();
 		ModItems.init();
 		ModBlocks.init();
+		
+		lyokomountain = (BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631).setBiomeName("Mountain Sector");
+		lyokoforest = (BiomeGenBaseLyoko) (new BiomeGenForestSector(10).setColor(8421631)).setBiomeName("Forest Sector");
+		lyokodesert = (BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631).setBiomeName("Desert Sector");
+		lyokopolar = (BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631).setBiomeName("Polar Sector");
+		lyokocarthage = (BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631).setBiomeName("Carthage Sector");
 		
 		Recipes.registerBlockRecipes();
 		Recipes.registerSmelting();
@@ -205,12 +217,6 @@ public class CodeLyoko
     	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
     	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
-	
-	public static final BiomeGenBaseLyoko lyokomountain = (BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631).setBiomeName("Mountain Sector");
-	public static final BiomeGenBaseLyoko lyokoforest = (BiomeGenBaseLyoko) (new BiomeGenForestSector(10).setColor(8421631)).setBiomeName("Forest Sector");
-	public static final BiomeGenBaseLyoko lyokodesert = (BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631).setBiomeName("Desert Sector");
-	public static final BiomeGenBaseLyoko lyokopolar = (BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631).setBiomeName("Polar Sector");
-	public static final BiomeGenBaseLyoko lyokocarthage = (BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631).setBiomeName("Carthage Sector");
     
 	@EventHandler
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
