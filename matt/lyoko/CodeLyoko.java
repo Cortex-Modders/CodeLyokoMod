@@ -47,11 +47,7 @@ public class CodeLyoko
 	public static boolean enableAdminPowers;
 	
 	public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
-	public static final BiomeGenBaseLyoko lyokomountain = (BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631).setBiomeName("Mountain Sector");
-	public static final BiomeGenBaseLyoko lyokoforest = (BiomeGenBaseLyoko) (new BiomeGenForestSector(10).setColor(8421631)).setBiomeName("Forest Sector");
-	public static final BiomeGenBaseLyoko lyokodesert = (BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631).setBiomeName("Desert Sector");
-	public static final BiomeGenBaseLyoko lyokopolar = (BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631).setBiomeName("Polar Sector");
-	public static final BiomeGenBaseLyoko lyokocarthage = (BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631).setBiomeName("Carthage Sector");
+	
 	
 	
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
@@ -209,6 +205,12 @@ public class CodeLyoko
     	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
     	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
+	
+	public static final BiomeGenBaseLyoko lyokomountain = (BiomeGenBaseLyoko) (new BiomeGenMountainSector(9)).setColor(8421631).setBiomeName("Mountain Sector");
+	public static final BiomeGenBaseLyoko lyokoforest = (BiomeGenBaseLyoko) (new BiomeGenForestSector(10).setColor(8421631)).setBiomeName("Forest Sector");
+	public static final BiomeGenBaseLyoko lyokodesert = (BiomeGenBaseLyoko) (new BiomeGenDesertSector(11)).setColor(8421631).setBiomeName("Desert Sector");
+	public static final BiomeGenBaseLyoko lyokopolar = (BiomeGenBaseLyoko) (new BiomeGenPolarSector(12)).setColor(8421631).setBiomeName("Polar Sector");
+	public static final BiomeGenBaseLyoko lyokocarthage = (BiomeGenBaseLyoko) (new BiomeGenCarthageSector(13)).setColor(8421631).setBiomeName("Carthage Sector");
     
 	@EventHandler
     public void CodeLyokoPostLoad(FMLPostInitializationEvent postevt)
