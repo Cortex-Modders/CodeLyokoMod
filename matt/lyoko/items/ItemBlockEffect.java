@@ -35,8 +35,8 @@ public class ItemBlockEffect extends ItemBlock
 	{
 		if(stack.itemID == ModBlocks.TowerBase.blockID)
 		{
-			list.add("shift-place the block to be");
-			list.add("able to walk through it.");
+			list.add("hold shift when placing the block");
+			list.add("to be able to walk through it.");
 			list.add("otherwise, place it normally");
 		}
 	}

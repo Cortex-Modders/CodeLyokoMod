@@ -31,8 +31,10 @@ public class ItemBlockTowerFloor extends ItemBlock
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
 	{
-		list.add("Shift right click with this block to make the platform send");
-		list.add("the player down, otherwise just right click.");
+		list.add("Shift right click when placing");
+		list.add("the block to make the platform");
+		list.add("send the player down, otherwise");
+		list.add("just place it normally.");
 	}
 	
 	@Override
