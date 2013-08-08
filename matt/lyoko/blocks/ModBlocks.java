@@ -48,6 +48,7 @@ public class ModBlocks
 	public static Block LyokoMountainPortal;// = new BlockLyoko(Lyoko_Mountain_Portal, 15).setUnlocalizedName("Mountain Portal");
 	public static Block LyokoCarthagePortal;//  = new BlockLyoko(Lyoko_Carthage_Portal, 16).setUnlocalizedName("Carthage Portal");
 	public static Block SuperCalc;// = new BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
+	public static Block Holomap;
 	
 	public static void init()
 	{
@@ -75,6 +76,7 @@ public class ModBlocks
     	Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(1F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
     	Scanner = new BlockScanner(BlockIds.SCANNER).setHardness(20F).setResistance(0F).setUnlocalizedName("Scanner");
     	SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).setResistance(6000000F).setHardness(20.0F).setLightValue(7.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("SuperCalcConsole");
+    	Holomap = new BlockHolomap(BlockIds.HOLOMAP).setResistance(6000000F).setHardness(10.0F).setLightValue(15.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("Holomap");
     	
     	// Digital Sea
     	DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_DIGITAL_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
@@ -119,6 +121,7 @@ public class ModBlocks
     	GameRegistry.registerBlock(Carthage, "Carthage Block");
     	GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
     	GameRegistry.registerBlock(DigitalSeaLiquid, "Digital Sea Liquid");
+    	GameRegistry.registerBlock(Holomap, "Holomap");
 	}
 	
 	public static void registerLanguage()
@@ -149,5 +152,6 @@ public class ModBlocks
     	LanguageRegistry.addName(Carthage, "Carthage Block");
     	LanguageRegistry.addName(QuantumOre, "Quantum Ore");
     	LanguageRegistry.addName(DigitalSeaLiquid, "Digital Sea");
+    	LanguageRegistry.addName(Holomap, "Holomap");
 	}
 }

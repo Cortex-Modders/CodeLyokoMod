@@ -39,6 +39,7 @@ public class BlockIds {
     public static int TOWER_FLOOR_DEFAULT = 1177;
     public static int SCANNER_DEFAULT = 1178;
     public static int SUPER_CALC_CONSOLE_DEFAULT = 1179;
+    public static int HOLOMAP_DEFAULT = 1180;
     
     /* IDs loaded from config. */
     public static int LYOKO_TOWER;
@@ -67,4 +68,5 @@ public class BlockIds {
     public static int TOWER_FLOOR;
     public static int SCANNER;
     public static int SUPER_CALC_CONSOLE;
+    public static int HOLOMAP;
 }

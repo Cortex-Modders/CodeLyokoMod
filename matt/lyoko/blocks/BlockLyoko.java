@@ -68,11 +68,6 @@ public class BlockLyoko extends Block
 		}
 	}
 	
-	public int quantityDropped(Random par1Random)
-	{
-		return 1;
-	}
-	
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
 	{
 		if(this.blockID == ModBlocks.LeadOre.blockID || this.blockID == ModBlocks.UraniumOre.blockID)
