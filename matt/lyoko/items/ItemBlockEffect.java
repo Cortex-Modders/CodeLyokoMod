@@ -1,3 +1,13 @@
+/*
+ * Code Lyoko Mod for Minecraft v@VERSION
+ *
+ * Copyright 2013 Cortex Modders, Matthew Warren, Jacob Rhoda, and
+ * other contributors.
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ * 
+ */
+
 package matt.lyoko.items;
 
 import java.util.List;
@@ -25,8 +35,8 @@ public class ItemBlockEffect extends ItemBlock
 	{
 		if(stack.itemID == ModBlocks.TowerBase.blockID)
 		{
-			list.add("shift-place the block to be");
-			list.add("able to walk through it.");
+			list.add("hold shift when placing the block");
+			list.add("to be able to walk through it.");
 			list.add("otherwise, place it normally");
 		}
 	}

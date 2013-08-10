@@ -1,3 +1,13 @@
+/*
+ * Code Lyoko Mod for Minecraft v@VERSION
+ *
+ * Copyright 2013 Cortex Modders, Matthew Warren, Jacob Rhoda, and
+ * other contributors.
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ * 
+ */
+
 package matt.lyoko.blocks;
 
 import java.util.Random;
@@ -56,11 +66,6 @@ public class BlockLyoko extends Block
 		{
 			this.blockIcon = par1IconRegister.registerIcon("lyoko:uranium");
 		}
-	}
-	
-	public int quantityDropped(Random par1Random)
-	{
-		return 1;
 	}
 	
 	public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
