@@ -12,6 +12,7 @@ package matt.lyoko.fluids;
 
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.lib.BlockIds;
+import net.minecraft.block.Block;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -21,7 +22,7 @@ public class ModFluids
 	
 	public static void init()
 	{
-		digitalSea  = new Fluid("Digital Sea").setLuminosity(15).setUnlocalizedName("DigitalSea");
+		digitalSea  = new Fluid("Digital Sea").setLuminosity(15).setIcons(Block.waterMoving.getIcon(0, 0)).setUnlocalizedName("DigitalSea");
 		
 		registerFluids();
 	}
