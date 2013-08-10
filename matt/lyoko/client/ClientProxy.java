@@ -20,7 +20,7 @@ import matt.lyoko.render.ItemRenderGlove;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
 import matt.lyoko.render.tileentity.RenderCable;
-import matt.lyoko.render.tileentity.RenderEntityTowerConsole;
+import matt.lyoko.render.tileentity.RenderTowerConsole;
 import matt.lyoko.render.tileentity.RenderScanner;
 import matt.lyoko.render.tileentity.RenderSuperCalcConsole;
 import matt.lyoko.render.tileentity.RenderTower;
@@ -73,7 +73,7 @@ public class ClientProxy extends CommonProxy
 		MinecraftForgeClient.registerItemRenderer(ModItems.Glove.itemID, new ItemRenderGlove());
 		
 		//ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class, new RenderSuperCalc());
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderEntityTowerConsole());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderTowerConsole());
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
 	    
