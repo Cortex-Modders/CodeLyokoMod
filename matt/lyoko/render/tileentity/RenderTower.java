@@ -67,9 +67,9 @@ public class RenderTower extends TileEntitySpecialRenderer {
         float rotationY = 0;
         
         if(entity.worldObj.getBlockId((int)x-1, (int)y, (int)z-1) == ModBlocks.TowerBlock.blockID
-                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z+1) == ModBlocks.TowerBlock.blockID
-                || entity.worldObj.getBlockId((int)x-1, (int)y, (int)z+1) == ModBlocks.TowerBlock.blockID
-                || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z-1) == ModBlocks.TowerBlock.blockID) {
+        || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z+1) == ModBlocks.TowerBlock.blockID
+        || entity.worldObj.getBlockId((int)x-1, (int)y, (int)z+1) == ModBlocks.TowerBlock.blockID
+        || entity.worldObj.getBlockId((int)x+1, (int)y, (int)z-1) == ModBlocks.TowerBlock.blockID) {
             width = 0.8F;
             System.out.println(width);
             

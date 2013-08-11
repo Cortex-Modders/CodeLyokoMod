@@ -83,4 +83,8 @@ public class RenderUtil {
     public static float toGLCoordinate(float textureSize, float coord) {
         return textureSize * coord;
     }
+    
+    public static float toGLCoordinate1(float textureSize, float coord) {
+        return 1 / textureSize * coord;
+    }
 }
