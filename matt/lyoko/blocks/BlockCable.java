@@ -12,6 +12,7 @@ package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityCable;
+import matt.lyoko.entities.tileentity.TileEntityHolomap;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import net.minecraft.block.BlockContainer;
@@ -61,6 +62,12 @@ public class BlockCable extends BlockContainer
 				syncBlock3(world, x, y - 1, z, tile);
 				syncBlock3(world, x, y, z + 1, tile);
 				syncBlock3(world, x, y, z - 1, tile);
+				syncBlock4(world, x + 1, y, z, tile);
+				syncBlock4(world, x - 1, y, z, tile);
+				syncBlock4(world, x, y + 1, z, tile);
+				syncBlock4(world, x, y - 1, z, tile);
+				syncBlock4(world, x, y, z + 1, tile);
+				syncBlock4(world, x, y, z - 1, tile);
 			}
 		}
 	}
@@ -99,6 +106,19 @@ public class BlockCable extends BlockContainer
 			if(tile != null && !(localCable.getSector().equals("")) && tile.sector.equals(""))
 			{
 				tile.sector = localCable.getSector();
+				world.markBlockForUpdate(x, y, z);
+			}
+		}
+	}
+	
+	public void syncBlock4(World world, int x, int y, int z, TileEntityCable localCable)
+	{
+		if(world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityHolomap)
+		{
+			TileEntityHolomap tile = (TileEntityHolomap)world.getBlockTileEntity(x, y, z);
+			if(tile != null && !(localCable.getSector().equals("")) && tile.sector == 0)
+			{
+				tile.sector = (byte) (convertSectorToInt(localCable.getSector()) + 1);
 				world.markBlockForUpdate(x, y, z);
 			}
 		}
@@ -192,7 +212,7 @@ public class BlockCable extends BlockContainer
 	private boolean validBlock(int block)
 	{
 		if(block == this.blockID || block == ModBlocks.SuperCalc.blockID || block == ModBlocks.Scanner.blockID
-				|| block == ModBlocks.SuperCalcConsole.blockID)
+				|| block == ModBlocks.SuperCalcConsole.blockID || block == ModBlocks.Holomap.blockID)
 		{
 			return true;
 		}

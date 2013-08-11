@@ -125,6 +125,7 @@ public class CodeLyoko
     	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
     	GameRegistry.registerTileEntity(TileEntitySuperCalcConsole.class, "teSuperCalcConsole");
     	GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
+    	GameRegistry.registerTileEntity(TileEntityHolomap.class, "teHolomap");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());

@@ -22,7 +22,7 @@ public class ModFluids
 	
 	public static void init()
 	{
-		digitalSea  = new Fluid("Digital Sea").setLuminosity(15).setIcons(Block.waterMoving.getIcon(0, 0)).setUnlocalizedName("DigitalSea");
+		digitalSea  = new FluidDigitalSea("Digital Sea").setIcons(Block.waterMoving.getIcon(0, 0)).setUnlocalizedName("DigitalSea");
 		
 		registerFluids();
 	}

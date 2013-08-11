@@ -30,7 +30,6 @@ import net.minecraft.util.Vec3;
 public class TileEntityScanner extends TileEntity
 {
     public int sector = -1;
-    public int timer = -1;
 
     // Doors are open by default.
     public boolean doorsOpen = true;

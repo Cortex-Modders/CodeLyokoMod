@@ -48,7 +48,7 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 	@Override
 	public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)
     {
-    	return 0x0000FF;
+    	return getFluid().getColor();
     }
 	
 	@Override
