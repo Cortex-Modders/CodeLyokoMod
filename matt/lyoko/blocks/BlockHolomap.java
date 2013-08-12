@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockHolomap extends BlockContainer
@@ -64,12 +65,32 @@ public class BlockHolomap extends BlockContainer
         	
         }
     }
-
+	
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z)
+	{
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
+		float minx = (float)this.minX;
+		float maxx = (float)this.maxX;
+		float miny = (float)this.minY;
+		float maxy = (float)this.maxY;
+		float minz = (float)this.minZ;
+		float maxz = (float)this.maxZ;
+		
+		if(access.getBlockMetadata(x, y, z) < 8)
+		{
+			maxy = 0.5F;
+		}
+		
+		this.setBlockBounds(minx, miny, minz, maxx, maxy, maxz);
+	}
+	
 	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
     {
 		if(!world.isRemote)
 		{
+	        System.out.println(world.getBlockMetadata(x, y, z));
 			for(int i = -1; i < 2; i++)
 			{
 				for(int j = -1; j < 2; j++)
@@ -80,14 +101,14 @@ public class BlockHolomap extends BlockContainer
 						{
 							for(int l = -1; l < 2; l++)
 							{
-								world.setBlockMetadataWithNotify(x + k, y, z + l, 8, 3);
+								world.setBlockMetadataWithNotify(x + k + i, y, z + l + j, 8, 3);
 							}
 						}
 					}
 				}
 			}
 		}
-        return world.setBlockToAir(x, y, z);
+        return super.removeBlockByPlayer(world, player, x, y, z);
     }
 
 	@Override
@@ -105,7 +126,7 @@ public class BlockHolomap extends BlockContainer
 						{
 							for(int l = -1; l < 2; l++)
 							{
-								world.setBlockMetadataWithNotify(x + k, y, z + l, 8, 3);
+								world.setBlockMetadataWithNotify(x + k + i, y, z + l + j, 8, 3);
 							}
 						}
 					}
@@ -170,4 +191,23 @@ public class BlockHolomap extends BlockContainer
     {
         par3List.add(new ItemStack(ModBlocks.Holomap, 1, 0b1000));
     }
+	
+	@Override
+	public int getRenderBlockPass()
+    {
+        return 1;
+    }
+	
+	@Override
+	public int getRenderType()
+	{
+		return -1;
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+		
+	}
 }

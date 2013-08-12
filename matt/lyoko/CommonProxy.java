@@ -19,6 +19,7 @@ import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLaserArrow;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
+import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.handlers.ClientTickHandler;
 import matt.lyoko.handlers.EventHandler;
 import matt.lyoko.handlers.ServerTickHandler;
@@ -73,6 +74,7 @@ public class CommonProxy
     	MinecraftForge.EVENT_BUS.register(handler);
     	GameRegistry.registerPlayerTracker(handler);
 		MinecraftForge.EVENT_BUS.register(new SoundHandler());
+		MinecraftForge.EVENT_BUS.register(new ModFluids());
 	}
 	
 	public void addChestLoot()

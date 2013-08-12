@@ -18,6 +18,7 @@ import matt.lyoko.entities.projectile.EntityFan;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLaserArrow;
 import matt.lyoko.entities.tileentity.TileEntityCable;
+import matt.lyoko.entities.tileentity.TileEntityHolomap;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
 import matt.lyoko.entities.tileentity.TileEntityTower;
@@ -30,6 +31,7 @@ import matt.lyoko.render.ItemRenderGlove;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
 import matt.lyoko.render.tileentity.RenderCable;
+import matt.lyoko.render.tileentity.RenderHolomap;
 import matt.lyoko.render.tileentity.RenderTowerConsole;
 import matt.lyoko.render.tileentity.RenderScanner;
 import matt.lyoko.render.tileentity.RenderSuperCalcConsole;
@@ -52,6 +54,7 @@ public class ClientProxy extends CommonProxy
     // TODO: Move to better place. And not use static?
     public static final int scannerRenderId = RenderingRegistry.getNextAvailableRenderId();
     public static final int superCalcConsoleRenderId = RenderingRegistry.getNextAvailableRenderId();
+    public static final int holomapRenderId = RenderingRegistry.getNextAvailableRenderId();
     
     @Override
 	public void registerRenderInformation() 
@@ -89,12 +92,15 @@ public class ClientProxy extends CommonProxy
 	    
 	    RenderScanner scannerRenderer = new RenderScanner(scannerRenderId);
 	    RenderSuperCalcConsole superCalcConsoleRenderer = new RenderSuperCalcConsole(superCalcConsoleRenderId);
+	    RenderHolomap holomapRenderer = new RenderHolomap(holomapRenderId);
 	    
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, scannerRenderer);
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalcConsole.class, superCalcConsoleRenderer);
+	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHolomap.class, holomapRenderer);
 	    
 	    RenderingRegistry.registerBlockHandler(scannerRenderer);
 	    RenderingRegistry.registerBlockHandler(superCalcConsoleRenderer);
+	    RenderingRegistry.registerBlockHandler(holomapRenderer);
 	}
 	
 	@Override

@@ -10,9 +10,13 @@
 
 package matt.lyoko.fluids;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.lib.BlockIds;
 import net.minecraft.block.Block;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -22,7 +26,7 @@ public class ModFluids
 	
 	public static void init()
 	{
-		digitalSea  = new FluidDigitalSea("Digital Sea").setIcons(Block.waterMoving.getIcon(0, 0)).setUnlocalizedName("DigitalSea");
+		digitalSea  = new FluidDigitalSea("Digital Sea").setUnlocalizedName("DigitalSea");
 		
 		registerFluids();
 	}
@@ -30,5 +34,15 @@ public class ModFluids
 	public static void registerFluids()
 	{
 		FluidRegistry.registerFluid(digitalSea);
+	}
+	
+	@ForgeSubscribe
+	@SideOnly(Side.CLIENT)
+	public void textureHook(TextureStitchEvent.Post event)
+	{
+		if(event.map.textureType == 0)
+		{
+			ModFluids.digitalSea.setIcons(ModBlocks.DigitalSeaLiquid.getBlockTextureFromSide(1));
+		}
 	}
 }
