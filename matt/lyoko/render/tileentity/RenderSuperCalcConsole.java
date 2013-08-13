@@ -45,7 +45,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
 
 		//Binds the texture
 		this.func_110628_a(texture);
-
+		
 		GL11.glPushMatrix();
 		{
 			GL11.glTranslatef((float) x, (float) y, (float) z);
@@ -64,13 +64,16 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
 			}
 
 			GL11.glRotatef(rotate, 0F, 1F, 0F);
+			
+			model.render(entity, 0F, 0F, 0F, 0.0F, 0.0F, 0.0625F);
 		}
 		GL11.glPopMatrix();
 	}
 
 	@Override
 	public void renderTileEntityAt(TileEntity entity, double par2, double par4, double par6, float par8) {
-		this.doRender((TileEntitySuperCalcConsole) entity, par2, par4, par6, par8);
+		if(entity instanceof TileEntitySuperCalcConsole)
+			this.doRender((TileEntitySuperCalcConsole) entity, par2, par4, par6, par8);
 	}
 
 	@Override

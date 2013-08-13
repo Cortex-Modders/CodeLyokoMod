@@ -63,6 +63,27 @@ public class BlockSuperCalcConsole extends BlockContainer
     }
     
     @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
+    {
+    	super.setBlockBoundsBasedOnState(blockAccess, x, y, z);
+    	int meta = blockAccess.getBlockMetadata(x, y, z);
+    	
+    	if(meta == 0 || meta == 2)
+    	{
+    		this.setBlockBounds(-0.35F, -0.12F, 0.0F, 1.35F, 1.12F, 1.0F);
+    	}
+    	else if(meta == 1 || meta == 3)
+    	{
+    		this.setBlockBounds(0.0F, -0.12F, -0.35F, 1.0F, 1.12F, 1.35F);
+    	}
+    	else
+    	{
+    		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+    	}
+    	
+    }
+    
+    @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
         blockIcon = par1IconRegister.registerIcon("lyoko:supercalcconsole");
