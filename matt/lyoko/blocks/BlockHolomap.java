@@ -20,6 +20,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -42,11 +43,28 @@ public class BlockHolomap extends BlockContainer
 				&& world.getBlockId(x, y, z + 1) == ModBlocks.Holomap.blockID
 				&& world.getBlockId(x + 1, y, z - 1) == ModBlocks.Holomap.blockID
 				&& world.getBlockId(x + 1, y, z) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x + 1, y, z + 1) == ModBlocks.Holomap.blockID)
+				&& world.getBlockId(x + 1, y, z + 1) == ModBlocks.Holomap.blockID
+				&& clearOnSides(world, x, y, z))
 		{
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean clearOnSides(World world, int x, int y, int z)
+	{
+		for(int i = -2; i < 3; i++)
+		{
+			for(int j = -2; j < 3; j++)
+			{
+				if(i == -2 || i == 2 || j == -2 || j == 2)
+				{
+					if(world.getBlockId(x + i, y, z + j) == ModBlocks.Holomap.blockID)
+						return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	@Override
@@ -69,21 +87,14 @@ public class BlockHolomap extends BlockContainer
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z)
 	{
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
-		float minx = (float)this.minX;
-		float maxx = (float)this.maxX;
-		float miny = (float)this.minY;
-		float maxy = (float)this.maxY;
-		float minz = (float)this.minZ;
-		float maxz = (float)this.maxZ;
-		
-		if(access.getBlockMetadata(x, y, z) < 8)
-		{
-			maxy = 0.5F;
-		}
-		
-		this.setBlockBounds(minx, miny, minz, maxx, maxy, maxz);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, access.getBlockMetadata(x, y, z) < 8 ? 0.5F : 0.0625F, 1.0F);
 	}
+	
+	@Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+    {
+        return AxisAlignedBB.getAABBPool().getAABB((double)x, (double)y, (double)z, (double)x + 1.0D, (double)y + world.getBlockMetadata(x, y, z) < 8 ? 0.5D : 0.0625D, (double)z + 1.0D);
+    }
 	
 	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)
@@ -195,7 +206,7 @@ public class BlockHolomap extends BlockContainer
 	@Override
 	public int getRenderBlockPass()
     {
-        return 1;
+        return 0;
     }
 	
 	@Override
@@ -208,6 +219,5 @@ public class BlockHolomap extends BlockContainer
 	public boolean isOpaqueCube()
 	{
 		return false;
-		
 	}
 }
