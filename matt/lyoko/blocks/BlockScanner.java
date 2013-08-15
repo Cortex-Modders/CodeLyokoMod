@@ -224,8 +224,8 @@ public class BlockScanner extends BlockContainer {
             {
                 if(player.worldObj.isRemote)
                 {
-                    player.addChatMessage("You can't be virtualized while currently virtualized.");
-                    player.addChatMessage("Yes, that's right, I thought you, " + player.username + ", would try to do this.");
+                    player.addChatMessage("You can't be virtualized while already virtualized.");
+                    player.addChatMessage("Yes, that's right, I thought you, " + player.username + ", would try to do that.");
                 }
                 return;
             }

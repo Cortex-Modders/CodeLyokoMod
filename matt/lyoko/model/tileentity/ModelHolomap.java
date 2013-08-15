@@ -64,15 +64,18 @@ public class ModelHolomap extends ModelBase
 	public void render(TileEntityHolomap entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-		if(entity.getBlockMetadata() < 4)
+		if(entity != null)
 		{
-			edge1.render(f5);
-			edgeInside1.render(f5);
-		}
-		if(entity.getBlockMetadata() < 8)
-		{
-			edge2.render(f5);
-			edgeInside2.render(f5);
+			if(entity.getBlockMetadata() < 4)
+			{
+				edge1.render(f5);
+				edgeInside1.render(f5);
+			}
+			if(entity.getBlockMetadata() < 8)
+			{
+				edge2.render(f5);
+				edgeInside2.render(f5);
+			}
 		}
 		floor.render(f5);
 	}

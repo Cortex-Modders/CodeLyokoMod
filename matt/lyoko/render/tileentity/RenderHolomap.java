@@ -96,7 +96,9 @@ public class RenderHolomap extends TileEntitySpecialRenderer implements ISimpleB
         this.func_110628_a(texture);
         
         GL11.glRotatef(180, 0F, 1F, 0F);
-        GL11.glTranslatef(0F, 0.5F, 0F);
+        // Use this or else model renders upside-down.
+        GL11.glRotatef(180, 0F, 0F, 1F);
+        GL11.glTranslatef(0F, -1.2F, 0F);
         GL11.glScalef(scale, scale, scale);
         model.render((TileEntityHolomap) null, 0F, 0F, 0F, 0.0F, 0.0F, 0.0625F);
 
