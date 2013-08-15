@@ -116,7 +116,7 @@ public class BlockCable extends BlockContainer
 		if(world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityHolomap)
 		{
 			TileEntityHolomap tile = (TileEntityHolomap)world.getBlockTileEntity(x, y, z);
-			if(tile != null && !(localCable.getSector().equals("")) && tile.sector == 0)
+			if(tile != null && !(localCable.getSector().equals("")))
 			{
 				tile.sector = (byte) (convertSectorToInt(localCable.getSector()) + 1);
 				world.markBlockForUpdate(x, y, z);

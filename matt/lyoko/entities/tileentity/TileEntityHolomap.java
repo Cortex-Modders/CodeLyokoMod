@@ -20,12 +20,12 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityHolomap extends TileEntity
 {
-	public byte sector = 0;
+	public byte sector = -1;
 	
 	@Override
 	public void updateEntity()
 	{
-		if(this.sector != 0)
+		if(this.sector != -1)
 		{
 			for(int i = -1; i < 2; i++)
 			{
@@ -33,24 +33,25 @@ public class TileEntityHolomap extends TileEntity
 				{
 					if(i != 0 || j != 0)
 					{
-						if(BlockHolomap.isMultiBlock(worldObj, xCoord + i, yCoord, zCoord + j))
+						if(BlockHolomap.isMultiBlock(worldObj, xCoord + i, yCoord, zCoord + j) && !worldObj.isRemote)
 						{
 							TileEntityHolomap core = (TileEntityHolomap)worldObj.getBlockTileEntity(xCoord + i, yCoord, zCoord + j);
-							if(this.sector != core.sector && core.sector == 0)
+							if(this.sector != core.sector)
 							{
 								core.sector = this.sector;
 							}
-							this.sector = 0;
+							this.sector = -1;
 						}
 					}
 				}
 			}
 		}
 		
-		if(BlockHolomap.isMultiBlock(worldObj, xCoord, yCoord, zCoord))
+		if(BlockHolomap.isMultiBlock(worldObj, xCoord, yCoord, zCoord) && !worldObj.isRemote)
 		{
+			System.out.println(getBlockMetadata());
 			byte meta = (byte) worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-			if(meta == 0b1000)
+			if((meta & 0b1000) == 0b1000)
 			{
 				byte metaSector = (byte) (meta & 0b111);
 				if(metaSector != sector)
