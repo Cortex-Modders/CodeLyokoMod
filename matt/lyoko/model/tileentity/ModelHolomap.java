@@ -1,4 +1,4 @@
-/*
+/**
  * Code Lyoko Mod for Minecraft v@VERSION
  *
  * Copyright 2013 Cortex Modders, Matthew Warren, Jacob Rhoda, and
@@ -17,7 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ModelHolomap extends ModelBase
 {
-	//fields
+	
 	ModelRenderer edge1;
 	ModelRenderer edge2;
 	ModelRenderer floor;

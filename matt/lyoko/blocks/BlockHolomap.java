@@ -102,7 +102,7 @@ public class BlockHolomap extends BlockContainer
     {
 		if(!world.isRemote)
 		{
-	        System.out.println(world.getBlockMetadata(x, y, z));
+//	        System.out.println(world.getBlockMetadata(x, y, z));
 			for(int i = -1; i < 2; i++)
 			{
 				for(int j = -1; j < 2; j++)

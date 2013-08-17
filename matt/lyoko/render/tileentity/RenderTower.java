@@ -14,11 +14,12 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.render.RenderUtil;
 import matt.lyoko.render.TileAnimator;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -57,7 +58,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
         }
 
         GL11.glPushMatrix();
-        proxy.alphaOn();
+        RenderUtil.alphaOn();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 0.5F);
         GL11.glTranslatef((float)x, (float)y, (float)z);
 
@@ -100,7 +101,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
 
         this.renderRect(tessellator, width, 1.0F);
 
-        proxy.alphaOff();
+        RenderUtil.alphaOff();
         GL11.glPopMatrix();
     }
 

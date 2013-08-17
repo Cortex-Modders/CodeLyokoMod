@@ -31,11 +31,11 @@ import matt.lyoko.render.ItemRenderGlove;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
 import matt.lyoko.render.tileentity.RenderCable;
-import matt.lyoko.render.tileentity.RenderHolomap;
-import matt.lyoko.render.tileentity.RenderTowerConsole;
+import matt.lyoko.render.tileentity.RenderHolomapBlock;
 import matt.lyoko.render.tileentity.RenderScanner;
 import matt.lyoko.render.tileentity.RenderSuperCalcConsole;
 import matt.lyoko.render.tileentity.RenderTower;
+import matt.lyoko.render.tileentity.RenderTowerConsole;
 import matt.lyoko.render.vehicles.RenderOverboard;
 import matt.lyoko.render.vehicles.RenderSkid;
 import net.minecraft.client.Minecraft;
@@ -92,7 +92,7 @@ public class ClientProxy extends CommonProxy
 	    
 	    RenderScanner scannerRenderer = new RenderScanner(scannerRenderId);
 	    RenderSuperCalcConsole superCalcConsoleRenderer = new RenderSuperCalcConsole(superCalcConsoleRenderId);
-	    RenderHolomap holomapRenderer = new RenderHolomap(holomapRenderId);
+	    RenderHolomapBlock holomapRenderer = new RenderHolomapBlock(holomapRenderId);
 	    
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, scannerRenderer);
 	    ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalcConsole.class, superCalcConsoleRenderer);

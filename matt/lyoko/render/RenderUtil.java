@@ -53,6 +53,34 @@ public class RenderUtil {
         GL11.glPopMatrix();
     }
     
+    public static void renderBox(AxisAlignedBB box) {
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawing(7);
+        tessellator.addVertex(box.minX, box.minY, box.minZ);
+        tessellator.addVertex(box.maxX, box.minY, box.minZ);
+        tessellator.addVertex(box.maxX, box.minY, box.maxZ);
+        tessellator.addVertex(box.minX, box.minY, box.maxZ);
+        tessellator.addVertex(box.minX, box.minY, box.minZ);
+        tessellator.draw();
+        tessellator.startDrawing(7);
+        tessellator.addVertex(box.minX, box.maxY, box.minZ);
+        tessellator.addVertex(box.maxX, box.maxY, box.minZ);
+        tessellator.addVertex(box.maxX, box.maxY, box.maxZ);
+        tessellator.addVertex(box.minX, box.maxY, box.maxZ);
+        tessellator.addVertex(box.minX, box.maxY, box.minZ);
+        tessellator.draw();
+        tessellator.startDrawing(7);
+        tessellator.addVertex(box.minX, box.minY, box.minZ);
+        tessellator.addVertex(box.minX, box.maxY, box.minZ);
+        tessellator.addVertex(box.maxX, box.minY, box.minZ);
+        tessellator.addVertex(box.maxX, box.maxY, box.minZ);
+        tessellator.addVertex(box.maxX, box.minY, box.maxZ);
+        tessellator.addVertex(box.maxX, box.maxY, box.maxZ);
+        tessellator.addVertex(box.minX, box.minY, box.maxZ);
+        tessellator.addVertex(box.minX, box.maxY, box.maxZ);
+        tessellator.draw();
+    }
+    
     /**
      * 
      * called for things with alpha. thank you MachineMuse. :D
