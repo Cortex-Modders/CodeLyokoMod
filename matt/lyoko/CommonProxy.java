@@ -13,6 +13,7 @@ package matt.lyoko;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
+import matt.lyoko.entities.mobs.EntityXanafiedMob;
 import matt.lyoko.entities.projectile.EntityEnergyField;
 import matt.lyoko.entities.projectile.EntityFan;
 import matt.lyoko.entities.projectile.EntityLaser;
@@ -107,6 +108,9 @@ public class CommonProxy
 	
 	public void registerEntities()
 	{
+		// Specters
+		EntityRegistry.registerGlobalEntityID(EntityXanafiedMob.class, "XanafiedMob", EntityRegistry.findGlobalUniqueEntityId());
+		
         // Monsters.
         EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
         EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
@@ -128,6 +132,9 @@ public class CommonProxy
     
     public void registerNames()
     {
+    	// Specters
+        LanguageRegistry.instance().addStringLocalization("entity.XanafiedMob.name", "en_US", "Xanafied Mob");
+    	
         // Monsters.
         LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
         LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");

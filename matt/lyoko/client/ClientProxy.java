@@ -13,6 +13,7 @@ package matt.lyoko.client;
 import matt.lyoko.CommonProxy;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
+import matt.lyoko.entities.mobs.EntityXanafiedMob;
 import matt.lyoko.entities.projectile.EntityEnergyField;
 import matt.lyoko.entities.projectile.EntityFan;
 import matt.lyoko.entities.projectile.EntityLaser;
@@ -30,6 +31,7 @@ import matt.lyoko.items.ModItems;
 import matt.lyoko.render.ItemRenderGlove;
 import matt.lyoko.render.mobs.RenderBlok;
 import matt.lyoko.render.mobs.RenderTank;
+import matt.lyoko.render.mobs.RenderXanafiedMob;
 import matt.lyoko.render.tileentity.RenderCable;
 import matt.lyoko.render.tileentity.RenderHolomapBlock;
 import matt.lyoko.render.tileentity.RenderScanner;
@@ -70,6 +72,7 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderSnowball(ModItems.LaserArrow));
 		RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderSnowball(ModItems.LaserShooter));
 		
+		RenderingRegistry.registerEntityRenderingHandler(EntityXanafiedMob.class, new RenderXanafiedMob());
 		RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok());
 		RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank());
 		/*
