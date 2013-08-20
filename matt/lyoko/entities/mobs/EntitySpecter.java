@@ -14,14 +14,14 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public abstract class Specter extends EntityMob
+public abstract class EntitySpecter extends EntityMob
 {
-	public Specter(World world)
+	public EntitySpecter(World world)
 	{
 		super(world);
 	}
 	
-	public Specter(World world, double x, double y, double z)
+	public EntitySpecter(World world, double x, double y, double z)
 	{
 		this(world);
 		this.setPosition(x, y, z);

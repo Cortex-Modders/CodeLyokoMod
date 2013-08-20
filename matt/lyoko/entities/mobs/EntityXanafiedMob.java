@@ -15,14 +15,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityXanafiedMob extends Specter
+public class EntityXanafiedMob extends EntitySpecter
 {
 	public EntityLivingBase infectedMob;
 	
 	/**
 	 * DO NOT USE THIS CONSTRUCTOR
 	 */
-	@Deprecated
 	public EntityXanafiedMob(World world)
 	{
 		super(world);
@@ -45,20 +44,54 @@ public class EntityXanafiedMob extends Specter
 	}
 	
 	@Override
+	public void onUpdate()
+	{
+		if(infectedMob != null && infectedMob.isDead)
+			infectedMob.isDead = false;
+		
+		if(!worldObj.isRemote && worldObj.difficultySetting == 0)
+		{
+	    	if(infectedMob != null)
+	    	{
+	    		worldObj.spawnEntityInWorld(infectedMob);
+	    	}
+		}
+		
+		super.onUpdate();
+	}
+	
+	@Override
     public void writeEntityToNBT(NBTTagCompound tag)
     {
     	super.writeEntityToNBT(tag);
+    	NBTTagCompound infected = new NBTTagCompound();
     	if(infectedMob != null)
     	{
-    		tag.setInteger("mobId", infectedMob.entityId);
+    		tag.setString("className", infectedMob.getClass().getName());
+    		infectedMob.writeToNBT(infected);
+    		infectedMob.writeEntityToNBT(infected);
     	}
+    	tag.setCompoundTag("infectedMob", infected);
     }
     
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)
     {
     	super.readEntityFromNBT(tag);
-    	infectedMob = (EntityLivingBase) worldObj.getEntityByID(tag.getInteger("mobId"));
+    	try
+    	{
+    		infectedMob = (EntityLivingBase) Class.forName(tag.getString("className")).getConstructor(World.class).newInstance(worldObj);
+    		NBTTagCompound infected = tag.getCompoundTag("infectedMob");
+    		if(infected == null)
+    			infected = new NBTTagCompound();
+    		infectedMob.readFromNBT(infected);
+    		infectedMob.readEntityFromNBT(infected);
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    	
     }
     
     @Override

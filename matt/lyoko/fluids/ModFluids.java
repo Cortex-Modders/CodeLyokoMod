@@ -42,7 +42,7 @@ public class ModFluids
 	{
 		if(event.map.textureType == 0)
 		{
-			ModFluids.digitalSea.setIcons(ModBlocks.DigitalSeaLiquid.getBlockTextureFromSide(1));
+			digitalSea.setIcons(ModBlocks.DigitalSeaLiquid.getBlockTextureFromSide(1));
 		}
 	}
 }

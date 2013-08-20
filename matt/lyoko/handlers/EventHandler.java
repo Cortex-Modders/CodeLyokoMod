@@ -15,18 +15,22 @@ import java.io.DataOutputStream;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.mobs.EntityLyoko;
+import matt.lyoko.entities.mobs.EntityXanafiedMob;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 
 import org.lwjgl.opengl.GL11;
 
@@ -71,7 +75,20 @@ public class EventHandler extends Gui implements IPlayerTracker
 	}
 	
 	@ForgeSubscribe
-    public void onEntityConstruct(EntityEvent.EntityConstructing event)
+	public void onLivingRender(RenderLivingEvent.Pre event)
+	{
+		if(event.entity instanceof EntityXanafiedMob)
+		{
+			EntityXanafiedMob xana = (EntityXanafiedMob) event.entity;
+			if(xana.infectedMob != null)
+			{
+				//event.setCanceled(true);
+			}
+		}
+	}
+	
+	@ForgeSubscribe
+    public void onEntityConstruct(EntityConstructing event)
 	{
         if(event.entity instanceof EntityPlayer)
         {
