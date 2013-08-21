@@ -51,14 +51,15 @@ public class CodeLyoko
 	
 	public static HashSet<TileAnimator> animatorInstances = new HashSet<TileAnimator>();
 	
-	public static int SuperCalcRenderID;
-	public static int SuperCalcTexture;
-	
 	public static boolean enableAdminPowers;
 	
 	public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
 	
-	
+	public static BiomeGenBaseLyoko lyokomountain;
+	public static BiomeGenBaseLyoko lyokoforest;
+	public static BiomeGenBaseLyoko lyokodesert;
+	public static BiomeGenBaseLyoko lyokopolar;
+	public static BiomeGenBaseLyoko lyokocarthage;
 	
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
@@ -82,12 +83,6 @@ public class CodeLyoko
 			config.save();
 		}
 	}
-	
-	public static BiomeGenBaseLyoko lyokomountain;
-	public static BiomeGenBaseLyoko lyokoforest;
-	public static BiomeGenBaseLyoko lyokodesert;
-	public static BiomeGenBaseLyoko lyokopolar;
-	public static BiomeGenBaseLyoko lyokocarthage;
 	
 	@EventHandler
     public void CodeLyokoLoad(FMLInitializationEvent evt)
@@ -115,17 +110,10 @@ public class CodeLyoko
     	//proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
     	proxy.addChestLoot();
+    	proxy.registerTileEntities();
+    	proxy.registerDimensions();
     	
     	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
-    	
-    	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
-    	GameRegistry.registerTileEntity(TileEntityScanner.class, "teScanner");
-    	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
-    	GameRegistry.registerTileEntity(TileEntityTowerConsole.class, "teTowerConsole");
-    	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
-    	GameRegistry.registerTileEntity(TileEntitySuperCalcConsole.class, "teSuperCalcConsole");
-    	GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
-    	GameRegistry.registerTileEntity(TileEntityHolomap.class, "teHolomap");
     	
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
     	GameRegistry.registerWorldGenerator(new WorldGenTower());
@@ -133,18 +121,6 @@ public class CodeLyoko
     	MinecraftForge.setBlockHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
-    	
-    	//Lyoko Sectors Dimension Register
-    	DimensionManager.registerProviderType(DimensionIds.ICE, LyokoPolarSector.class, true);
-    	DimensionManager.registerProviderType(DimensionIds.MOUNTAIN, LyokoMountainSector.class, true);
-    	DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
-    	DimensionManager.registerProviderType(DimensionIds.DESERT, LyokoDesertSector.class, true);
-    	DimensionManager.registerProviderType(DimensionIds.CARTHAGE, LyokoCarthageSector.class, true);
-    	DimensionManager.registerDimension(DimensionIds.ICE, DimensionIds.ICE);
-    	DimensionManager.registerDimension(DimensionIds.MOUNTAIN, DimensionIds.MOUNTAIN);
-    	DimensionManager.registerDimension(DimensionIds.FOREST, DimensionIds.FOREST);
-    	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
-    	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
     
 	@EventHandler

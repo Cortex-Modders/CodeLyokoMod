@@ -13,10 +13,19 @@ package matt.lyoko;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
+import matt.lyoko.entities.mobs.EntityXanafiedMob;
 import matt.lyoko.entities.projectile.EntityEnergyField;
 import matt.lyoko.entities.projectile.EntityFan;
 import matt.lyoko.entities.projectile.EntityLaser;
 import matt.lyoko.entities.projectile.EntityLaserArrow;
+import matt.lyoko.entities.tileentity.TileEntityCable;
+import matt.lyoko.entities.tileentity.TileEntityHolomap;
+import matt.lyoko.entities.tileentity.TileEntityMarabounta;
+import matt.lyoko.entities.tileentity.TileEntityScanner;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
+import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
+import matt.lyoko.entities.tileentity.TileEntityTower;
+import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.fluids.ModFluids;
@@ -29,11 +38,17 @@ import matt.lyoko.lib.BlockIds;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.EntityIds;
 import matt.lyoko.lib.ItemIds;
+import matt.lyoko.world.LyokoCarthageSector;
+import matt.lyoko.world.LyokoDesertSector;
+import matt.lyoko.world.LyokoForestSector;
+import matt.lyoko.world.LyokoMountainSector;
+import matt.lyoko.world.LyokoPolarSector;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -107,6 +122,9 @@ public class CommonProxy
 	
 	public void registerEntities()
 	{
+		// Specters
+		EntityRegistry.registerGlobalEntityID(EntityXanafiedMob.class, "XanafiedMob", EntityRegistry.findGlobalUniqueEntityId());
+		
         // Monsters.
         EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
         EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
@@ -125,9 +143,41 @@ public class CommonProxy
         EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
         EntityRegistry.addSpawn(matt.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
     }
+	
+	public void registerTileEntities()
+	{
+    	GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
+    	GameRegistry.registerTileEntity(TileEntityScanner.class, "teScanner");
+    	GameRegistry.registerTileEntity(TileEntityTower.class, "teTower");
+    	GameRegistry.registerTileEntity(TileEntityTowerConsole.class, "teTowerConsole");
+    	GameRegistry.registerTileEntity(TileEntityMarabounta.class, "teMarabounta");
+    	GameRegistry.registerTileEntity(TileEntitySuperCalcConsole.class, "teSuperCalcConsole");
+    	GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
+    	GameRegistry.registerTileEntity(TileEntityHolomap.class, "teHolomap");
+	}
+	
+	public void registerDimensions()
+	{
+		// Dimension providers
+    	DimensionManager.registerProviderType(DimensionIds.ICE, LyokoPolarSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.MOUNTAIN, LyokoMountainSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.DESERT, LyokoDesertSector.class, true);
+    	DimensionManager.registerProviderType(DimensionIds.CARTHAGE, LyokoCarthageSector.class, true);
+    	
+    	// Dimensions
+    	DimensionManager.registerDimension(DimensionIds.ICE, DimensionIds.ICE);
+    	DimensionManager.registerDimension(DimensionIds.MOUNTAIN, DimensionIds.MOUNTAIN);
+    	DimensionManager.registerDimension(DimensionIds.FOREST, DimensionIds.FOREST);
+    	DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
+    	DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
+	}
     
     public void registerNames()
     {
+    	// Specters
+        LanguageRegistry.instance().addStringLocalization("entity.XanafiedMob.name", "en_US", "Xanafied Mob");
+    	
         // Monsters.
         LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
         LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");

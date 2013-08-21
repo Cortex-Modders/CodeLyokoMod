@@ -13,12 +13,16 @@ package matt.lyoko.items;
 import java.util.List;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.mobs.EntityLyoko;
+import matt.lyoko.entities.mobs.EntitySpecter;
+import matt.lyoko.entities.mobs.EntityXanafiedMob;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.world.StructureTower;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -147,6 +151,21 @@ public class ItemLyoko extends Item
 			}
 		}
 		return stack;
+	}
+	
+	@Override
+	public boolean hitEntity(ItemStack stack, EntityLivingBase ent, EntityLivingBase player)
+	{
+		if(stack.getItem().equals(ModItems.LaserArrow) && !(ent instanceof EntityLyoko) && !(ent instanceof EntitySpecter))
+		{
+			EntityXanafiedMob xana = new EntityXanafiedMob(ent.worldObj, ent.posX, ent.posY, ent.posZ, ent);
+			if(!player.worldObj.isRemote)
+			{
+				ent.worldObj.spawnEntityInWorld(xana);
+				ent.setDead();
+			}
+		}
+		return false;
 	}
 	
 	@Override
