@@ -13,7 +13,7 @@ package matt.lyoko.handlers;
 import java.util.EnumSet;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.render.TileAnimator;
+import matt.lyoko.client.render.TileAnimator;
 import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;

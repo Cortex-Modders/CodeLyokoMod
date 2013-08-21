@@ -18,6 +18,7 @@ import com.jadarstudios.developercapes.DevCapesUtil;
 
 import matt.lyoko.blocks.*;
 import matt.lyoko.client.GuiHandler;
+import matt.lyoko.client.render.TileAnimator;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.fluids.ModFluids;
@@ -25,7 +26,6 @@ import matt.lyoko.handlers.CommandHandler;
 import matt.lyoko.handlers.PacketHandler;
 import matt.lyoko.items.*;
 import matt.lyoko.lib.*;
-import matt.lyoko.render.TileAnimator;
 import matt.lyoko.world.*;
 import net.minecraft.block.material.*;
 import net.minecraft.creativetab.CreativeTabs;
