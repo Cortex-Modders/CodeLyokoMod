@@ -200,7 +200,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 				if(isPowered())
 					temperature += 1.0F;
 				temperature -= getCoolant(worldObj, xCoord, yCoord - 1, zCoord);
-				temperature = ((float) ((int) (temperature * 10)) / 10);
+				temperature = ((int) ((temperature + 0.1F) * 5)) / 5.0F;
 				// 5933.15 is the boiling point of tungsten (aka highest known boiling point)
 				// ^^^ this is only used as a reference ^^^
 				//if(temperature >= 5933.15F)
@@ -208,9 +208,6 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 				{
 					worldObj.newExplosion(null, xCoord, yCoord, zCoord, 20, true, true);
 				}
-				if(temperature % 1 == 0.1F || temperature % 1 == 0.3F || temperature % 1 == 0.5F || temperature % 1 == 0.7F
-						|| temperature % 1 == 0.9F)
-					temperature -= 0.1F;
 				if(temperature < 0.0F)
 					temperature = 0.0F;
 			}
