@@ -49,7 +49,7 @@ public class TileEntityHolomap extends TileEntity
 		
 		if(BlockHolomap.isMultiBlock(worldObj, xCoord, yCoord, zCoord) && !worldObj.isRemote)
 		{
-			System.out.println(getBlockMetadata());
+			//System.out.println(getBlockMetadata());
 			byte meta = (byte) worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 			if((meta & 0b1000) == 0b1000)
 			{
