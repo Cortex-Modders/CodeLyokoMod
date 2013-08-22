@@ -199,7 +199,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 				if(isPowered())
 					temperature += 1.0F;
 				temperature -= getCoolant(worldObj, xCoord, yCoord - 1, zCoord);
-				//temperature = (float) Math.floor(temperature);
+				temperature = ((float) Math.ceil(temperature * 5) / 5.0F);
 				if(temperature < 0.0F)
 					temperature = 0.0F;
 			}
