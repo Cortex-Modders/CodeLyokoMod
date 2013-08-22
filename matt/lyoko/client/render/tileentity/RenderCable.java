@@ -66,20 +66,26 @@ public class RenderCable extends TileEntitySpecialRenderer
 		int x = tile.xCoord;
 		int y = tile.yCoord;
 		int z = tile.zCoord;
-		top = configSide(tile.worldObj, x, y + 1, z);
-		bottom = configSide(tile.worldObj, x, y - 1, z);
-		left = configSide(tile.worldObj, x + 1, y, z);
-		right = configSide(tile.worldObj, x - 1, y, z);
-		front = configSide(tile.worldObj, x, y, z + 1);
-		back = configSide(tile.worldObj, x, y, z - 1);
+		top = configSide(tile.worldObj, x, y + 1, z, 1);
+		bottom = configSide(tile.worldObj, x, y - 1, z, 0);
+		left = configSide(tile.worldObj, x + 1, y, z, 3);
+		right = configSide(tile.worldObj, x - 1, y, z, 2);
+		front = configSide(tile.worldObj, x, y, z + 1, 5);
+		back = configSide(tile.worldObj, x, y, z - 1, 4);
 	}
 	
-	private boolean configSide(World world, int x, int y, int z)
+	private boolean configSide(World world, int x, int y, int z, int side)
 	{
-		if(world.getBlockId(x, y, z) == ModBlocks.Cable.blockID || world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID
-				|| world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID
-				|| world.getBlockId(x, y, z) == ModBlocks.SuperCalcConsole.blockID
-				|| world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID)
+		if(world.getBlockId(x, y, z) == ModBlocks.Cable.blockID || world.getBlockId(x, y, z) == ModBlocks.SuperCalcConsole.blockID)
+		{
+			return true;
+		}
+		else if((world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID
+				|| world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID) && side == 1)
+		{
+			return true;
+		}
+		else if(world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID && (side == 0 || side == 1))
 		{
 			return true;
 		}

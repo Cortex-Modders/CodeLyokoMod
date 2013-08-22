@@ -163,27 +163,30 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 					{
 						if(i != 0 || j != 0 || k != 0)
 						{
-							TileEntitySuperCalc slave = (TileEntitySuperCalc)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
+							if(worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k) instanceof TileEntitySuperCalc)
 							{
-								if(slave != null)
+								TileEntitySuperCalc slave = (TileEntitySuperCalc)worldObj.getBlockTileEntity(xCoord + i, yCoord + j, zCoord + k);
 								{
-									if(!(slave.sector.equals("")))
+									if(slave != null)
 									{
-										if(this.sector.equals(""))
+										if(!(slave.sector.equals("")))
 										{
-											this.sector = slave.sector;
+											if(this.sector.equals(""))
+											{
+												this.sector = slave.sector;
+											}
+											slave.sector = "";
 										}
-										slave.sector = "";
+										if(slave.isPowered() != this.isPowered())
+										{
+											slave.setPowered(this.isPowered());
+										}
 									}
-									if(slave.isPowered() != this.isPowered())
+									
+									if(slave != null && !(this.sector.equals("")))
 									{
-										slave.setPowered(this.isPowered());
+										slave.sector = this.sector;
 									}
-								}
-								
-								if(slave != null && !(this.sector.equals("")))
-								{
-									slave.sector = this.sector;
 								}
 							}
 						}

@@ -209,10 +209,17 @@ public class BlockCable extends BlockContainer
 		
 	}
 	
-	private boolean validBlock(int block)
+	private boolean validBlock(int block, int side)
 	{
-		if(block == this.blockID || block == ModBlocks.SuperCalc.blockID || block == ModBlocks.Scanner.blockID
-				|| block == ModBlocks.SuperCalcConsole.blockID || block == ModBlocks.Holomap.blockID)
+		if(block == this.blockID || block == ModBlocks.SuperCalcConsole.blockID)
+		{
+			return true;
+		}
+		else if((block == ModBlocks.SuperCalc.blockID || block == ModBlocks.Holomap.blockID) && side == 1)
+		{
+			return true;
+		}
+		else if(block == ModBlocks.Scanner.blockID && (side == 0 || side == 1))
 		{
 			return true;
 		}
@@ -230,22 +237,22 @@ public class BlockCable extends BlockContainer
 		float minz = (float)this.minZ;
 		float maxz = (float)this.maxZ;
 		
-		if (validBlock(par1IBlockAccess.getBlockId(x-1, y, z)))
+		if (validBlock(par1IBlockAccess.getBlockId(x-1, y, z), 2))
 			minx = 0;
 		
-		if (validBlock(par1IBlockAccess.getBlockId(x+1, y, z)))
+		if (validBlock(par1IBlockAccess.getBlockId(x+1, y, z), 3))
 			maxx = 1;
 		
-		if (validBlock(par1IBlockAccess.getBlockId(x, y-1, z)))
+		if (validBlock(par1IBlockAccess.getBlockId(x, y-1, z), 0))
 			miny = 0;
 		
-		if (validBlock(par1IBlockAccess.getBlockId(x, y+1, z)))
+		if (validBlock(par1IBlockAccess.getBlockId(x, y+1, z), 1))
 			maxy = 1;
 		
-		if (validBlock(par1IBlockAccess.getBlockId(x, y, z-1)))
+		if (validBlock(par1IBlockAccess.getBlockId(x, y, z-1), 4))
 			minz = 0;
 		
-		if (validBlock(par1IBlockAccess.getBlockId(x, y, z+1)))
+		if (validBlock(par1IBlockAccess.getBlockId(x, y, z+1), 5))
 			maxz = 1;
 		
 		this.setBlockBounds(minx, miny, minz, maxx, maxy, maxz);
