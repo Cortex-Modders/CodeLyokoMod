@@ -14,6 +14,7 @@ import matt.lyoko.blocks.BlockSuperCalc;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.items.ItemLyokoFuel;
 import matt.lyoko.items.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -24,6 +25,8 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
 
 public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISidedInventory
 {
@@ -32,6 +35,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 	public String sector = "";
 	public int flush = 20;
 	private boolean isPowered;
+	private float temperature;
 	//private Ticket ticket;
 	
 	public TileEntitySuperCalc()
@@ -39,6 +43,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		inv = new ItemStack[2];
 		timeLeft = 100.0F;
 		setPowered(false);
+		temperature = 295.0F;
 		
 		//ticket = ForgeChunkManager.requestTicket(CodeLyoko.instance, worldObj, Type.NORMAL);
 		//ticket.getModData().setInteger("SuperCalcX", xCoord);
@@ -97,6 +102,11 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		return isPowered;
 	}
 	
+	public float getTemperature()
+	{
+		return temperature;
+	}
+	
 	public void resetSector(World world, int x, int y, int z)
 	{
 		((TileEntitySuperCalc)world.getBlockTileEntity(x + 1, y, z + 1)).sector = "";
@@ -126,6 +136,39 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		}
 	}
 	
+	public float getCoolant(World world, int x, int y, int z)
+	{
+		float coolant = 0.0F;
+		for(int i = -1; i < 2; i++)
+		{
+			for(int j = -1; j < 2; j++)
+			{
+				int block = world.getBlockId(x + i, y, z + j);
+				if(block == Block.waterMoving.blockID || block == Block.waterStill.blockID)
+				{
+					coolant += 0.2F;
+				}
+				else if(block == Block.lavaMoving.blockID || block == Block.lavaStill.blockID)
+				{
+					coolant -= 0.2F;
+				}
+				else if(Block.blocksList[block] != null && Block.blocksList[block] instanceof BlockFluidBase)
+				{
+					BlockFluidBase liquid = (BlockFluidBase) Block.blocksList[block];
+					Fluid fluid = liquid.getFluid();
+					if(fluid != null)
+					{
+						if((float) fluid.getTemperature(world, x + i, y, z + j) < getTemperature())
+							coolant += 0.2F;
+						else
+							coolant -= 0.2F;
+					}
+				}
+			}
+		}
+		return coolant;
+	}
+	
 	@Override
 	public void updateEntity()
 	{
@@ -153,6 +196,12 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 			{
 				resetSector(worldObj, xCoord, yCoord, zCoord);
 				flush = 20;
+				if(isPowered())
+					temperature += 1.0F;
+				temperature -= getCoolant(worldObj, xCoord, yCoord - 1, zCoord);
+				//temperature = (float) Math.floor(temperature);
+				if(temperature < 0.0F)
+					temperature = 0.0F;
 			}
 			
 			for(int i = -1; i < 2; i++)
@@ -302,6 +351,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		this.timeLeft = tagCompound.getFloat("remainingTime");
 		this.sector = tagCompound.getString("sector");
 		setPowered(tagCompound.getBoolean("isPowered"));
+		this.temperature = tagCompound.getFloat("temperature");
 	}
 	
 	@Override
@@ -310,6 +360,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 		tagCompound.setFloat("remainingTime", this.timeLeft);
 		tagCompound.setString("sector", this.sector);
 		tagCompound.setBoolean("isPowered", isPowered());
+		tagCompound.setFloat("temperature", this.temperature);
 		NBTTagList itemList = new NBTTagList();
 		for (int i = 0; i < inv.length; i++) {
 			ItemStack stack = inv[i];

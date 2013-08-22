@@ -44,6 +44,7 @@ public class GuiSuperCalc extends GuiContainer
 		fontRenderer.drawString("Super Calculator", 8, 6, 4210752);
 		fontRenderer.drawString("Fuel Cell: ", 8, 25, 4210752);
 		fontRenderer.drawString("Time Remaining: " + tsc.timeLeft, 8, 42, 4210752);
+		fontRenderer.drawString("Temperature: " + tsc.getTemperature(), 8, 52, 4210752);
 		//draws "Inventory" or your regional equivalent
 		fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 	}
