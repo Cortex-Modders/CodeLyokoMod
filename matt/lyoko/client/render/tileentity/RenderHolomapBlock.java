@@ -82,7 +82,7 @@ public class RenderHolomapBlock extends TileEntitySpecialRenderer implements ISi
             
             // is center block.
             if(i > 8) {
-             
+//                this.func_110628_a(holomapRenderer.texture);
                 holomapRenderer.render(entity, x, y, z, partialTick);
                 
             }

@@ -12,7 +12,9 @@ package matt.lyoko.client.render;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector2f;
@@ -155,6 +157,21 @@ public class RenderUtil {
         
         tessellator.draw();
     }
+    
+    /**
+     * Binds a texture. Used because I hate obfuscated method names.
+     * 
+     * @param texture
+     */
+    public static void bindTexture(ResourceLocation texture) {
+        TextureManager texturemanager = Minecraft.getMinecraft().renderEngine;
+
+        if (texturemanager != null)
+        {
+            texturemanager.func_110577_a(texture);
+        }
+    }
+    
     /**
      * 
      * called for things with alpha. thank you MachineMuse. :D
