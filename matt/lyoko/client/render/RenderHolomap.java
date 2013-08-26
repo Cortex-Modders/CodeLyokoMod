@@ -27,7 +27,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderHolomap {
 
     private float centerRotation = 0;
-    public static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/blocks/towerwall.png");
+    public static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/lyokocore.png");
     
     public RenderHolomap() {
         
@@ -40,7 +40,7 @@ public class RenderHolomap {
             AxisAlignedBB box = AxisAlignedBB.getBoundingBox(0, 0, 0, 3, 3, 3);
             RenderUtil.renderWireframe(box);
             
-//            RenderUtil.bindTexture(texture);
+            RenderUtil.bindTexture(texture);
             GL11.glTranslatef(1.25F, 1.25F, 1.25F);
             box = AxisAlignedBB.getBoundingBox(0, 0, 0, 0.5, 0.5, 0.5);
             RenderUtil.renderBoxWithUV(box, 0, 0, 0.5, 0.5);

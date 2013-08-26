@@ -33,7 +33,6 @@ public class RenderUtil {
     public static void renderWireframe(AxisAlignedBB box) {
         //render wireframe
         GL11.glPushMatrix();
-        GL11.glPolygonMode( GL11.GL_FRONT, GL11.GL_LINE );
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GL11.glColor4f(0.0F, 0.0F, 0.0F, 0.4F);
@@ -69,8 +68,8 @@ public class RenderUtil {
         
         GL11.glDepthMask(true);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPolygonMode( GL11.GL_FRONT, GL11.GL_FILL );
         GL11.glPopMatrix();
     }
     
@@ -135,24 +134,24 @@ public class RenderUtil {
         tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
         tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, minU, minV);
         //front
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, maxU, minV);
-        tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, minU, minV);
-        //back
-        tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, minU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, minV);
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, minV);
-        //left
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, maxU, maxV);
         tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, minU, maxV);
+        //back
+        tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, minU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, maxV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, maxV);
+        //left
+        tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, maxU, minV);
         tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, maxU, minV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, maxV);
         tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, minV);
         //right
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, minU, maxV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, minV);
         tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, minU, maxV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, minU, minV);
         
         tessellator.draw();
