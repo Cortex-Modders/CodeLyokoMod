@@ -42,6 +42,7 @@ public class RenderHolomap {
             
             RenderUtil.bindTexture(texture);
             GL11.glTranslatef(1.25F, 1.25F, 1.25F);
+            GL11.glRotatef(centerRotation, 1, 1, 1);
             box = AxisAlignedBB.getBoundingBox(0, 0, 0, 0.5, 0.5, 0.5);
             RenderUtil.renderBoxWithUV(box, 0, 0, 0.5, 0.5);
             RenderUtil.renderWireframe(box);
@@ -52,9 +53,17 @@ public class RenderHolomap {
         centerRotation += 0.8 * partialTick;
     }
     
+    private void renderSectors(TileEntityHolomap entity, double x, double y, double z, float partialTick) {
+        
+    }
     
+    private void renderCarthage(TileEntityHolomap entity, double x, double y, double z, float partialTick) {
+        
+    }
     
-    
+    private void renderNetwork(TileEntityHolomap entity, double x, double y, double z, float partialTick) {
+        
+    }
     
 }
 

@@ -124,34 +124,34 @@ public class RenderUtil {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         //bottom
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, minV);
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, minV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, maxV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, maxV);
         //top
         tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, minU, maxV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, maxU, maxV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
         tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, minU, minV);
         //front
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, minV);
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, minV);
-        tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, minU, maxV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, maxV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, maxV);
+        tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, maxU, minV);
+        tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, minU, minV);
         //back
         tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, minU, minV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
         tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, maxV);
         tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, maxV);
         //left
-        tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, maxU, minV);
-        tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, minU, maxV);
-        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, minV);
+        tessellator.addVertexWithUV(box.minX, box.minY, box.minZ, minU, minV);
+        tessellator.addVertexWithUV(box.minX, box.minY, box.maxZ, maxU, minV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.maxZ, maxU, maxV);
+        tessellator.addVertexWithUV(box.minX, box.maxY, box.minZ, minU, maxV);
         //right
-        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, maxU, minV);
+        tessellator.addVertexWithUV(box.maxX, box.maxY, box.minZ, minU, maxV);
         tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, maxV);
-        tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, minU, maxV);
+        tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, minU, minV);
         
         tessellator.draw();
