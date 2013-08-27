@@ -11,12 +11,12 @@
 package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.blocks.BlockHolomap;
-import matt.lyoko.blocks.BlockScanner;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityHolomap extends TileEntity
 {
@@ -92,5 +92,10 @@ public class TileEntityHolomap extends TileEntity
     {
         super.writeToNBT(tagCompound);
         tagCompound.setByte("sector", this.sector);
+    }
+    
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return TileEntity.INFINITE_EXTENT_AABB;
     }
 }
