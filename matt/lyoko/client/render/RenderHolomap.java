@@ -120,6 +120,7 @@ public class RenderHolomap {
             GL11.glPopMatrix();
             //end sectors
             
+            //map marker guide thingy.
             GL11.glPushMatrix();
             {
 //                GL11.glRotatef(45, 1, 1, 1);
