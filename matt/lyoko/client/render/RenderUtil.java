@@ -158,6 +158,25 @@ public class RenderUtil {
     }
     
     /**
+     * Draws a rectangle that can be seen on both sides.
+     */
+    public static void drawRect(float minX, float minY, float maxX, float maxY, float minZ, float maxZ) {
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        //bottom
+        tessellator.addVertex(maxX, maxY, minZ);
+        tessellator.addVertex(minX, maxY, minZ);
+        tessellator.addVertex(minX, minY, maxZ);
+        tessellator.addVertex(maxX, minY, maxZ);
+        //top
+        tessellator.addVertex(maxX, maxY, minZ);
+        tessellator.addVertex(maxX, minY, maxZ);
+        tessellator.addVertex(minX, minY, maxZ);
+        tessellator.addVertex(minX, maxY, minZ);
+        
+        tessellator.draw();
+    }
+    /**
      * Binds a texture. Used because I hate obfuscated method names.
      * 
      * @param texture

@@ -11,6 +11,7 @@
 package matt.lyoko.client.render;
 
 import matt.lyoko.entities.tileentity.TileEntityHolomap;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 
@@ -39,9 +40,10 @@ public class RenderHolomap {
     }
 
     private void renderSectors(TileEntityHolomap entity, double x, double y, double z, float partialTick) {
+        Tessellator tess = Tessellator.instance;
         GL11.glPushMatrix();
         {
-//            GL11.glTranslatef(-1.5F, -2.2F, -1.5F);
+            //GL11.glTranslatef(-1.5F, -2.2F, -1.5F);
             GL11.glTranslatef(-1.5F, -2.0F, -1.5F); //temporary
             AxisAlignedBB box = AxisAlignedBB.getBoundingBox(0, 0, 0, 3, 3, 3);
             RenderUtil.renderWireframe(box);
@@ -53,7 +55,7 @@ public class RenderHolomap {
                 GL11.glRotatef(centerRotation, 1, 1, 1);
                 box = AxisAlignedBB.getBoundingBox(0, 0, 0, 0.5, 0.5, 0.5);
                 RenderUtil.renderBoxWithUV(box, 0, 0, 0.5, 0.5);
-//                RenderUtil.renderWireframe(box);
+                //RenderUtil.renderWireframe(box);
             }
             GL11.glPopMatrix();
 
@@ -119,57 +121,46 @@ public class RenderHolomap {
             }
             GL11.glPopMatrix();
             //end sectors
-            
+
             //map marker guide thingy.
             GL11.glPushMatrix();
             {
-//                GL11.glRotatef(45, 1, 1, 1);
+                //                GL11.glRotatef(45, 1, 1, 1);
                 RenderUtil.alphaOn();
                 GL11.glDisable(GL11.GL_TEXTURE_2D);
-                GL11.glLineWidth(50);
                 GL11.glColor4f(0.9F, 0.9F, 1F, 0.6F);
-                GL11.glBegin(GL11.GL_LINES);
                 float f = 1.40F;
                 float f1 = 1.60F;
-                for(float i = 0; i<=3; i+=0.15F) {
-                    GL11.glVertex3f(f, i, 0);
-                    GL11.glVertex3f(f1, i, 0);
-                }
-                for(float i = 0; i<=3; i+=0.15F) {
-                    GL11.glVertex3f(f, i, 3);
-                    GL11.glVertex3f(f1, i, 3);
-                }
-                for(float i = 0; i<=3; i+=0.15F) {
-                    GL11.glVertex3f(f, 0, i);
-                    GL11.glVertex3f(f1, 0, i);
-                }
-                //added .15 to 3 because it wasnt completing it.
-                for(float i = 0; i<=3.15; i+=0.15F) {
-                    GL11.glVertex3f(f, 3, i);
-                    GL11.glVertex3f(f1, 3, i);
-                }
-                GL11.glEnd();
-                GL11.glRotatef(90F, 0F, 0F, 1F);
-                GL11.glBegin(GL11.GL_LINES);
-                for(float i = 0; i<=3; i+=0.15F) {
-                    GL11.glVertex3f(f, -i, 0);
-                    GL11.glVertex3f(f1, -i, 0);
-                }
-                for(float i = 0; i<=3; i+=0.15F) {
-                    GL11.glVertex3f(f, -i, 3);
-                    GL11.glVertex3f(f1, -i, 3);
-                }
-                for(float i = 0; i<=3; i+=0.15F) {
-                    GL11.glVertex3f(f, 0, i);
-                    GL11.glVertex3f(f1, 0, i);
-                }
-                //added .15 to 3 because it wasnt completing it.
-                for(float i = 0; i<=3.15; i+=0.15F) {
-                    GL11.glVertex3f(f, -3, i);
-                    GL11.glVertex3f(f1, -3, i);
-                }
-                GL11.glEnd();
+                float f2 = 0.027F;
                 
+                for(float i = 0; i<=3; i+=0.15F) {
+                    RenderUtil.drawRect(f, i, f1, i+f2, 0, 0);
+                }
+                for(float i = 0; i<=3; i+=0.15F) {
+                    RenderUtil.drawRect(f, i, f1, i+f2, 3, 3);
+                }
+                for(float i = 0; i<=3; i+=0.15F) {
+                    RenderUtil.drawRect(f, 0, f1, 0, i, i+f2);
+                }
+                //added .15 to 3 because it wasnt completing it.
+                for(float i = 0; i<=3.15; i+=0.15F) {
+                    RenderUtil.drawRect(f, 3, f1, 3, i, i+f2);
+                }
+                GL11.glTranslatef(3, 0, 0);
+                GL11.glRotatef(90F, 0F, 0F, 1F);
+                for(float i = 0; i<=3; i+=0.15F) {
+                    RenderUtil.drawRect(f, i, f1, i+f2, 0, 0);
+                }
+                for(float i = 0; i<=3; i+=0.15F) {
+                    RenderUtil.drawRect(f, i, f1, i+f2, 3, 3);
+                }
+                for(float i = 0; i<=3; i+=0.15F) {
+                    RenderUtil.drawRect(f, 0, f1, 0, i, i+f2);
+                }
+                //added .15 to 3 because it wasnt completing it.
+                for(float i = 0; i<=3.15; i+=0.15F) {
+                    RenderUtil.drawRect(f, 3, f1, 3, i, i+f2);
+                }
                 GL11.glEnable(GL11.GL_TEXTURE_2D);
                 RenderUtil.alphaOff();
             }
