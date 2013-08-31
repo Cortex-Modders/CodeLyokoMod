@@ -12,7 +12,11 @@ package matt.lyoko.handlers;
 
 import java.util.EnumSet;
 
+import matt.lyoko.entities.vehicles.EntityVehicle;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.input.Keyboard;
 
@@ -21,12 +25,12 @@ import cpw.mods.fml.common.TickType;
 
 public class KeyBindingHandler extends KeyHandler
 {
-	static KeyBinding myBinding = new KeyBinding("COMING SOON", Keyboard.KEY_L);
+	//static KeyBinding myBinding = new KeyBinding("COMING SOON", Keyboard.KEY_L);
 
     public KeyBindingHandler() {
             //the first value is an array of KeyBindings, the second is whether or not the call 
             //keyDown should repeat as long as the key is down
-            super(new KeyBinding[]{myBinding}, new boolean[]{false});
+            super(null);//new KeyBinding[]{myBinding}, new boolean[]{false});
     }
 	
 	@Override
@@ -38,7 +42,24 @@ public class KeyBindingHandler extends KeyHandler
 	@Override
 	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat)
 	{
-		
+		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+		GameSettings settings = Minecraft.getMinecraft().gameSettings;
+		if(player != null && player.isRiding() && player.ridingEntity instanceof EntityVehicle)
+		{
+			EntityVehicle vehicle = (EntityVehicle) player.ridingEntity;
+			if(kb.keyCode == settings.keyBindJump.keyCode)
+			{
+				vehicle.motionY = 1.0D;
+			}
+			else if(kb.keyCode == settings.keyBindSneak.keyCode)
+			{
+				vehicle.motionY = -1.0D;
+			}
+			else
+			{
+				vehicle.motionY = 0.0D;
+			}
+		}
 	}
 	
 	@Override

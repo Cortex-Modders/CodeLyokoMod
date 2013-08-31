@@ -22,14 +22,14 @@ import net.minecraft.world.World;
 
 public abstract class EntityVehicle extends Entity {
 	
-	public float hoverSpeed;
+	public float hoverSpeed = 0.0F;//0.0625F; // 1/16 is the speed
 	private Item droppedItem = ModItems.DataFragment;
 	
 	public EntityVehicle(World par1World) {
 		super(par1World);
 		this.preventEntitySpawning = true;
 		this.ignoreFrustumCheck = true;
-		this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
+		//this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
 	}
 	
 	public EntityVehicle(World par1World, double x, double y, double z) {
@@ -41,7 +41,6 @@ public abstract class EntityVehicle extends Entity {
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
-        this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
     }
 	
 	public void setDroppedItem(Item item)
@@ -66,8 +65,6 @@ public abstract class EntityVehicle extends Entity {
 		
 		// TEMPORARY
 		if(this.posY>100.0D) this.kill();
-		
-		hoverSpeed += 0.0625; // 1/16 is the speed.
 	}
 
 	public AxisAlignedBB getCollisionBox(Entity par1Entity)
