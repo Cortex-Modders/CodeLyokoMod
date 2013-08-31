@@ -80,8 +80,11 @@ public class RenderCable extends TileEntitySpecialRenderer
 		{
 			return true;
 		}
-		else if((world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID
-				|| world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID) && side == 1)
+		else if(world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && (side == 1 || side == 0))
+		{
+			return true;
+		}
+		else if(world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && side != 0)
 		{
 			return true;
 		}

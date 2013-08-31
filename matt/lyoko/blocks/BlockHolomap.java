@@ -34,25 +34,25 @@ public class BlockHolomap extends BlockContainer
 		this.setCreativeTab(CodeLyoko.LyokoTabs);
 	}
 	
-	public static boolean isMultiBlock(World world, int x, int y, int z)
+	public static boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
 	{
-		if(world.getBlockId(x - 1, y, z - 1) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x - 1, y, z) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x - 1, y, z + 1) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x, y, z - 1) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x, y, z + 1) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x + 1, y, z - 1) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x + 1, y, z) == ModBlocks.Holomap.blockID
-				&& world.getBlockId(x + 1, y, z + 1) == ModBlocks.Holomap.blockID
-				&& clearOnSides(world, x, y, z))
+		if(access.getBlockId(x - 1, y, z - 1) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x - 1, y, z) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x - 1, y, z + 1) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x, y, z - 1) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x, y, z) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x, y, z + 1) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x + 1, y, z - 1) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x + 1, y, z) == ModBlocks.Holomap.blockID
+				&& access.getBlockId(x + 1, y, z + 1) == ModBlocks.Holomap.blockID
+				&& clearOnSides(access, x, y, z))
 		{
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean clearOnSides(World world, int x, int y, int z)
+	public static boolean clearOnSides(IBlockAccess access, int x, int y, int z)
 	{
 		for(int i = -2; i < 3; i++)
 		{
@@ -60,7 +60,7 @@ public class BlockHolomap extends BlockContainer
 			{
 				if(i == -2 || i == 2 || j == -2 || j == 2)
 				{
-					if(world.getBlockId(x + i, y, z + j) == ModBlocks.Holomap.blockID)
+					if(access.getBlockId(x + i, y, z + j) == ModBlocks.Holomap.blockID)
 						return false;
 				}
 			}
@@ -88,14 +88,8 @@ public class BlockHolomap extends BlockContainer
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z)
 	{
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, access.getBlockMetadata(x, y, z) < 8 ? 0.5F : 0.0625F, 1.0F);
+		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, access.getBlockMetadata(x, y, z) < 8 ? 1.0F : isMultiBlock(access, x, y, z) ? 1.0F : 0.5F, 1.0F);
 	}
-	
-	@Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
-    {
-        return AxisAlignedBB.getAABBPool().getAABB((double)x, (double)y, (double)z, (double)x + 1.0D, (double)y + world.getBlockMetadata(x, y, z) < 8 ? 0.5D : 0.0625D, (double)z + 1.0D);
-    }
 	
 	@Override
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x, int y, int z)

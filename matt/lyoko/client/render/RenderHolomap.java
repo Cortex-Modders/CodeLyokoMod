@@ -44,7 +44,7 @@ public class RenderHolomap {
         GL11.glPushMatrix();
         {
             //GL11.glTranslatef(-1.5F, -2.2F, -1.5F);
-            GL11.glTranslatef(-1.5F, -2.0F, -1.5F); //temporary
+            GL11.glTranslatef(-1.5F, -2.5F, -1.5F); //temporary
             AxisAlignedBB box = AxisAlignedBB.getBoundingBox(0, 0, 0, 3, 3, 3);
             RenderUtil.renderWireframe(box);
 

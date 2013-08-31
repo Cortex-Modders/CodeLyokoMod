@@ -215,7 +215,11 @@ public class BlockCable extends BlockContainer
 		{
 			return true;
 		}
-		else if((block == ModBlocks.SuperCalc.blockID || block == ModBlocks.Holomap.blockID) && side == 1)
+		else if(block == ModBlocks.SuperCalc.blockID && (side == 1 || side == 0))
+		{
+			return true;
+		}
+		else if(block == ModBlocks.Holomap.blockID && side != 0)
 		{
 			return true;
 		}

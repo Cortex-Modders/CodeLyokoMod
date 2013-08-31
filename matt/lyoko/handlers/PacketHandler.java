@@ -17,6 +17,7 @@ import java.io.IOException;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
+import matt.lyoko.entities.vehicles.EntityVehicle;
 import matt.lyoko.lib.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.INetworkManager;
@@ -48,6 +49,10 @@ public class PacketHandler implements IPacketHandler
         if(packet.channel.equals("ScannerDoors"))
         {
         	handlePacketSD(data, sender.worldObj);
+        }
+        if(packet.channel.equals("Vehicle"))
+        {
+        	handlePacketV(data, sender.worldObj);
         }
     }
     
@@ -160,6 +165,28 @@ public class PacketHandler implements IPacketHandler
         	TileEntityScanner tes = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
         	tes.doorsOpen = open;
         	world.markBlockForUpdate(x, y, z);
+        }
+    }
+    
+    private void handlePacketV(DataInputStream data, World world)
+    {
+    	int entityId;
+    	double motionY;
+        try
+        {
+        	entityId = data.readInt();
+        	motionY = data.readDouble();
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        	return;
+        }
+        
+        EntityVehicle vehicle = (EntityVehicle) world.getEntityByID(entityId);
+        if(vehicle != null)
+        {
+        	vehicle.motionY = motionY;
         }
     }
 }

@@ -40,8 +40,8 @@ public abstract class RenderVehicle extends Render {
         GL11.glDisable(2896);
 
         // no idea what f1 is. the last value is like the length i think.
-        float hover = MathHelper.sin(f1 / 10.0F + parEntityVehicle.hoverSpeed) * 0.1F + 0.06F;
-        GL11.glTranslated(x, y - 1 + hover, z);
+        //float hover = MathHelper.sin(f1 / 10.0F + parEntityVehicle.hoverSpeed) * 0.1F + 0.06F;
+        GL11.glTranslated(x, y - 1/* + hover*/, z);
         this.renderModel(parEntityVehicle, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
 
         GL11.glEnable(2896);

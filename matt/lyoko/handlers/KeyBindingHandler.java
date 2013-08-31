@@ -10,6 +10,8 @@
 
 package matt.lyoko.handlers;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.EnumSet;
 
 import matt.lyoko.entities.vehicles.EntityVehicle;
@@ -17,11 +19,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.packet.Packet;
 
 import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 
 public class KeyBindingHandler extends KeyHandler
 {
@@ -30,7 +35,7 @@ public class KeyBindingHandler extends KeyHandler
     public KeyBindingHandler() {
             //the first value is an array of KeyBindings, the second is whether or not the call 
             //keyDown should repeat as long as the key is down
-            super(null);//new KeyBinding[]{myBinding}, new boolean[]{false});
+            super(new KeyBinding[]{});//new KeyBinding[]{myBinding}, new boolean[]{false});
     }
 	
 	@Override
@@ -59,6 +64,21 @@ public class KeyBindingHandler extends KeyHandler
 			{
 				vehicle.motionY = 0.0D;
 			}
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			DataOutputStream data = new DataOutputStream(bos);
+			
+			try
+			{
+				data.writeInt(vehicle.entityId);
+				data.writeDouble(vehicle.motionY);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+			Packet packet = PacketDispatcher.getPacket("Vehicle", bos.toByteArray());
+			PacketDispatcher.sendPacketToServer(packet);
 		}
 	}
 	
