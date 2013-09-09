@@ -92,7 +92,7 @@ public abstract class EntityVehicle extends Entity {
 	public void writeEntityToNBT(NBTTagCompound par1) {}
 	
 	@Override
-	public boolean func_130002_c(EntityPlayer player)
+	public boolean interactFirst(EntityPlayer player)
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != player && !player.isSneaking())
 		{

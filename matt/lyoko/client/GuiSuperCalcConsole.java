@@ -136,7 +136,7 @@ public class GuiSuperCalcConsole extends GuiContainer
 	{
 		//draw your Gui here, only thing you need to change is the path
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.func_110577_a(new ResourceLocation("lyoko:textures/gui/towerconsole.png"));
+		this.mc.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/towerconsole.png"));
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

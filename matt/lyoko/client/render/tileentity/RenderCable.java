@@ -50,7 +50,7 @@ public class RenderCable extends TileEntitySpecialRenderer
 		}
 		
 		//directory of the model's texture file
-		this.func_110628_a(texture);
+		this.bindTexture(texture);
 		
 		GL11.glPushMatrix(); 
 		GL11.glTranslatef((float)d + 0.5F, (float)d1 + 1.5F, (float)d2 + 0.5F);

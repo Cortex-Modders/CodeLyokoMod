@@ -48,7 +48,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
         int i = entity.getBlockMetadata();
 
         //Binds the texture
-        this.func_110628_a(texture);
+        this.bindTexture(texture);
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glTranslatef(0.5F, 0F, 0.5F);
@@ -126,7 +126,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
         
         GL11.glPushMatrix();
         //Binds the texture
-        this.func_110628_a(texture);
+        this.bindTexture(texture);
         
         GL11.glRotatef(180, 0F, 1F, 0F);
         GL11.glTranslatef(0F, 0.5F, 0F);

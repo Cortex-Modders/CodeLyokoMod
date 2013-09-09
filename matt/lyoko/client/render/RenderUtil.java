@@ -186,7 +186,7 @@ public class RenderUtil {
 
         if (texturemanager != null)
         {
-            texturemanager.func_110577_a(texture);
+            texturemanager.bindTexture(texture);
         }
     }
     

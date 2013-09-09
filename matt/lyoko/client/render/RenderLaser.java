@@ -33,8 +33,9 @@ public class RenderLaser extends Render
         texture = new ResourceLocation("lyoko:textures/models/laser.png");
     }
 
-    protected void renderModel(EntityLyokoRanged parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
-        this.func_110776_a(texture);
+    protected void renderModel(EntityLyokoRanged parEntityVehicle, float x, float y, float z, float f, float f1, float f2)
+    {
+    	this.bindTexture(texture);
         model.render(parEntityVehicle, x, y, z, f, f1, f2);
     }
 
@@ -55,9 +56,10 @@ public class RenderLaser extends Render
     public void doRender(Entity entity, double x, double y, double z, float f, float f1) {
         doRenderVehicle((EntityLyokoRanged) entity, x, y, z, f, f1);
     }
-
+    
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
+	protected ResourceLocation getEntityTexture(Entity entity)
+	{
 		return texture;
 	}
 }

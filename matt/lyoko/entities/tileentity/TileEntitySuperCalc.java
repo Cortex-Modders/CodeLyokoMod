@@ -315,7 +315,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory//, ISi
 	@Override
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
 	{
-		NBTTagCompound tag = pkt.customParam1;
+		NBTTagCompound tag = pkt.data;
 		this.readFromNBT(tag);
 	}
 	

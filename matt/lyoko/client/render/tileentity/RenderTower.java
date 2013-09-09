@@ -45,7 +45,7 @@ public class RenderTower extends TileEntitySpecialRenderer {
     public void render(TileEntityTower entity, double x, double y, double z, float scale) {
         Tessellator tessellator = Tessellator.instance;
 
-        this.func_110628_a(texture);
+        this.bindTexture(texture);
 
         int i = entity.getBlockMetadata();
         if(i == 4)

@@ -47,7 +47,7 @@ public class BlockVirtual extends Block
 		if(ent instanceof EntityPlayer)
 		{
 			EntityPlayer entp = ((EntityPlayer)ent);
-			entp.setEntityHealth(entp.func_110143_aJ() - 1);
+			entp.setHealth(entp.getHealth() - 1);
 		}
 	}
 	

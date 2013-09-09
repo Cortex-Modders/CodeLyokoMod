@@ -44,7 +44,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
 	{
 
 		//Binds the texture
-		this.func_110628_a(texture);
+		this.bindTexture(texture);
 		
 		GL11.glPushMatrix();
 		{
@@ -82,7 +82,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
 
 		GL11.glPushMatrix();
 		//Binds the texture
-		this.func_110628_a(texture);
+		this.bindTexture(texture);
 
 		GL11.glRotatef(180, 0F, 1F, 0F);
 		GL11.glTranslatef(0F, 0.5F, 0F);

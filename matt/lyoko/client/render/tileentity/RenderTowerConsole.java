@@ -36,7 +36,7 @@ public class RenderTowerConsole extends TileEntitySpecialRenderer {
 	 */
 	public void render(TileEntityTowerConsole entity, double x, double y, double z, float scale) {
 
-		this.func_110628_a(texture);
+		this.bindTexture(texture);
 
 		GL11.glPushMatrix();
 		{

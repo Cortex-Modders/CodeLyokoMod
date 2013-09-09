@@ -72,7 +72,7 @@ public class ItemRenderGlove implements IItemRenderer
     {
     	GL11.glPushMatrix();
     	
-        Minecraft.getMinecraft().renderEngine.func_110577_a(texture);
+        Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         
         GL11.glRotatef(-55f, 0f, 0f, 1f);
         GL11.glRotatef(90f, 0f, 1f, 0f);

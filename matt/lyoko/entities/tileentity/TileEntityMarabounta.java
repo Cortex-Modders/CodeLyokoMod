@@ -56,7 +56,7 @@ public class TileEntityMarabounta extends TileEntity
 	@Override
 	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
 	{
-		NBTTagCompound tag = pkt.customParam1;
+		NBTTagCompound tag = pkt.data;
 		this.readFromNBT(tag);
 	}
 	

@@ -31,7 +31,7 @@ public abstract class RenderVehicle extends Render {
     }
 
     protected void renderModel(EntityVehicle parEntityVehicle, float x, float y, float z, float f, float f1, float f2) {
-        this.func_110776_a(texture);
+        this.bindTexture(texture);
         model.render(parEntityVehicle, x, y, z, f, f1, f2);
     }
 
@@ -54,7 +54,7 @@ public abstract class RenderVehicle extends Render {
     }
 
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		return texture;
 	}
 }
