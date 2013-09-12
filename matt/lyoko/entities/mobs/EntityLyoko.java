@@ -74,7 +74,6 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
     @Override
     protected void applyEntityAttributes()
     {
-        super.applyEntityAttributes();
         // Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
         this.getAttributeMap().func_111150_b(SharedMonsterAttributes.maxHealth).setAttribute(50.0D);
         // Follow Range - default 32.0D - min 0.0D - max 2048.0D
