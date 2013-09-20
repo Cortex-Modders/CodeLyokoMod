@@ -46,8 +46,8 @@ public class BlockMarabounta extends BlockContainer
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister par1IconRegister)
 	{
-		normalTexture = par1IconRegister.registerIcon("lyoko:marabounta");
-		evilTexture = par1IconRegister.registerIcon("lyoko:evilmarabounta");
+		normalTexture = par1IconRegister.registerIcon("lyoko:marabounta" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
+		evilTexture = par1IconRegister.registerIcon("lyoko:evilmarabounta" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
 	}
 	
 	@Override

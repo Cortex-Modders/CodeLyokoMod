@@ -56,7 +56,7 @@ public class BlockLyoko extends Block
 		}
 		if(this.blockID == ModBlocks.QuantumOre.blockID)
 		{
-			this.blockIcon = par1IconRegister.registerIcon("lyoko:quantumore");
+			this.blockIcon = par1IconRegister.registerIcon("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
 		}
 		if(this.blockID == ModBlocks.LeadOre.blockID)
 		{

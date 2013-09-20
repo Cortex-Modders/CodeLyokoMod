@@ -52,6 +52,7 @@ public class CodeLyoko
 	public static HashSet<TileAnimator> animatorInstances = new HashSet<TileAnimator>();
 	
 	public static boolean enableAdminPowers;
+	public static boolean useHDTextures;
 	
 	public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
 	
@@ -77,6 +78,7 @@ public class CodeLyoko
 		proxy.registerDimensionIds(config);
 		
         enableAdminPowers = config.get(Configuration.CATEGORY_GENERAL, "enableAdminPowers", false).getBoolean(false);
+        useHDTextures = config.get(Configuration.CATEGORY_GENERAL, "useHDTextures", false).getBoolean(false);
         
 		if(config.hasChanged())
 		{

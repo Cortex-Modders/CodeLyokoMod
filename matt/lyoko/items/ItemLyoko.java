@@ -174,7 +174,7 @@ public class ItemLyoko extends Item
 		if(this.itemID == ModItems.LaserArrow.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
 		if(this.itemID == ModItems.QuantumOrb.itemID)
-			itemIcon = iconRegister.registerIcon("lyoko:quantumorb");
+			itemIcon = iconRegister.registerIcon("lyoko:quantumorb" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
 		if(this.itemID == ModItems.Lead.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:leadingot");
 		if(this.itemID == ModItems.EmptyCell.itemID)
@@ -186,9 +186,9 @@ public class ItemLyoko extends Item
 		if(this.itemID == ModItems.DepletedUraniumCell.itemID)
 			itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
 		if(this.itemID == ModItems.QuantumMatrix.itemID)
-			itemIcon = iconRegister.registerIcon("lyoko:quantummatrix");
+			itemIcon = iconRegister.registerIcon("lyoko:quantummatrix" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
 		if(this.itemID == ModItems.QuantumContainmentCell.itemID)
-			itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell");
+			itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
 	}
 	
 	public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)

@@ -11,6 +11,8 @@
 package matt.lyoko.entities.vehicles;
 
 import matt.lyoko.items.ModItems;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class EntitySkid extends EntityVehicle
@@ -38,6 +40,12 @@ public class EntitySkid extends EntityVehicle
     {
         return 1000;
     }
+	
+	@Override
+	public boolean shouldDismountInWater(Entity rider)
+	{
+		return !(rider instanceof EntityPlayer);
+	}
     
     /**
      * Returns the sound this mob makes while it's alive.
@@ -54,6 +62,7 @@ public class EntitySkid extends EntityVehicle
     {
         return null;
     }
+
     
     /**
      * Returns the sound this mob makes on death.
