@@ -13,6 +13,7 @@ package matt.lyoko.lib;
 public class BlockIds {
 
     /* Default IDs. */
+    public static int SECTOR_BLOCK_DEFAULT = 255;
     public static int LYOKO_TOWER_DEFAULT = 1154;
     public static int LYOKO_TOWER_BASE_DEFAULT = 1155;
     public static int LYOKO_GRASS_DEFAULT = 1156;
@@ -42,6 +43,7 @@ public class BlockIds {
     public static int HOLOMAP_DEFAULT = 1180;
     
     /* IDs loaded from config. */
+    public static int SECTOR_BLOCK;
     public static int LYOKO_TOWER;
     public static int LYOKO_TOWER_BASE;
     public static int LYOKO_GRASS;

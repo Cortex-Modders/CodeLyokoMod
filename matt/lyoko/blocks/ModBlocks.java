@@ -22,6 +22,8 @@ import net.minecraft.block.material.Material;
 
 public class ModBlocks
 {
+	public static Block SectorBlock;
+	
 	public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower, 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
 	public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1, false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
 	public static Block Grass;// = new BlockLyoko(Lyoko_Grass, 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
@@ -53,6 +55,8 @@ public class ModBlocks
 	public static void init()
 	{
 		// Lyoko
+		SectorBlock = new BlockSector(BlockIds.SECTOR_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoSectorBlock");
+		
 		TowerBlock = new BlockTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
     	TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
     	Grass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
@@ -95,6 +99,8 @@ public class ModBlocks
 	
 	public static void registerBlocks()
 	{
+		GameRegistry.registerBlock(SectorBlock, "SectorBlock");
+		
 		GameRegistry.registerBlock(Scanner, "Scanner");
     	GameRegistry.registerBlock(Cable, "Cable");
     	GameRegistry.registerBlock(SuperCalcConsole, "Super Computer Console");
@@ -126,6 +132,7 @@ public class ModBlocks
 	
 	public static void registerLanguage()
 	{
+    	LanguageRegistry.addName(SectorBlock, "Sector Block");
     	LanguageRegistry.addName(Scanner, "Scanner");
     	LanguageRegistry.addName(Cable, "Cable");
     	LanguageRegistry.addName(SuperCalcConsole, "Super Computer Console");

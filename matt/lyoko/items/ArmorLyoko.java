@@ -46,11 +46,11 @@ public class ArmorLyoko extends ItemArmor
     		if(this.itemID == ModItems.AelitaChest.itemID || this.itemID == ModItems.OddChest.itemID
     				|| this.itemID == ModItems.UlrichChest.itemID || this.itemID == ModItems.YumiChest.itemID
     				|| this.itemID == ModItems.WilliamChest.itemID)
-    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "chest");
+    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "chestplate");
     		if(this.itemID == ModItems.AelitaLegs.itemID || this.itemID == ModItems.OddLegs.itemID
     				|| this.itemID == ModItems.UlrichLegs.itemID || this.itemID == ModItems.YumiLegs.itemID
     				|| this.itemID == ModItems.WilliamLegs.itemID)
-    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "legs");
+    			itemIcon = iconRegister.registerIcon("lyoko:" + armorOwner + "leggings");
     		if(this.itemID == ModItems.AelitaBoots.itemID || this.itemID == ModItems.OddBoots.itemID
     				|| this.itemID == ModItems.UlrichBoots.itemID || this.itemID == ModItems.YumiBoots.itemID
     				|| this.itemID == ModItems.WilliamBoots.itemID)

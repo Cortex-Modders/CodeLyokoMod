@@ -10,6 +10,7 @@
 
 package matt.lyoko.world;
 
+import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.lib.BlockIds;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.world.biome.SpawnListEntry;
@@ -22,7 +23,7 @@ public class BiomeGenMountainSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.topBlock = (byte)BlockIds.LYOKO_STONE;
-        this.fillerBlock = (byte)BlockIds.LYOKO_STONE;
+        this.topBlock = (byte)ModBlocks.SectorBlock.blockID;
+        this.fillerBlock = (byte)ModBlocks.SectorBlock.blockID;
     }
 }

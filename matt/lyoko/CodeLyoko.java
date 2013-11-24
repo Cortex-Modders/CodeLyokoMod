@@ -141,13 +141,10 @@ public class CodeLyoko
     {
     	if(ent != null)
     	{
-    		if(ent.dimension == DimensionIds.CARTHAGE || ent.dimension == DimensionIds.ICE
+    		return ent.dimension == DimensionIds.CARTHAGE || ent.dimension == DimensionIds.ICE
     				|| ent.dimension == DimensionIds.MOUNTAIN || ent.dimension == DimensionIds.FOREST
     				|| ent.dimension == DimensionIds.DESERT || ent.dimension == DimensionIds.CORTEX
-    				|| ent.dimension == DimensionIds.DIGITALSEA)
-    		{
-    			return true;
-    		}
+    				|| ent.dimension == DimensionIds.DIGITALSEA;
     	}
     	return false;
     }

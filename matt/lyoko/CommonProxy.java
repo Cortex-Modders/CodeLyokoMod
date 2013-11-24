@@ -195,6 +195,9 @@ public class CommonProxy
     
     public void registerBlockIds(Configuration config)
     {
+    	config.addCustomCategoryComment(config.CATEGORY_BLOCK, "This id MUST be under 255 or the game will have problems.");
+    	BlockIds.SECTOR_BLOCK = config.getBlock("sectorBlock", BlockIds.SECTOR_BLOCK_DEFAULT).getInt();
+    	
     	BlockIds.LYOKO_TOWER = config.getBlock("lyokoTower", BlockIds.LYOKO_TOWER_DEFAULT).getInt();
 		BlockIds.LYOKO_TOWER_BASE = config.getBlock("lyokoTowerBase", BlockIds.LYOKO_TOWER_BASE_DEFAULT).getInt();
 		BlockIds.LYOKO_GRASS = config.getBlock("lyokoGrass", BlockIds.LYOKO_GRASS_DEFAULT).getInt();
