@@ -18,6 +18,7 @@ import matt.lyoko.lib.DimensionIds;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -30,6 +31,19 @@ public class BlockSector extends BlockContainer
 	public BlockSector(int par1)
 	{
 		super(par1, Material.iron);
+	}
+	
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand)
+	{
+		super.updateTick(world, x, y, z, rand);
+		world.getBlockTileEntity(x, y, z).updateEntity();
+	}
+	
+	@Override
+	public void onEntityWalking(World world, int x, int y, int z, Entity ent)
+	{
+		this.updateTick(world, x, y, z, null);
 	}
 	
 	@Override
