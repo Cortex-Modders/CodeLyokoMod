@@ -33,4 +33,4 @@ Setting up Eclipse for Code Lyoko is pretty easy. Code Lyoko is a [Gradle](http:
 
 Requirements: JDK
 
-Open a command line, and change the directory to the base directory of the project. Run `gradlew setupDevWorkspace build`. The builds are in projectRoot\build\libs\CodeLyoko-*.jar
+Open a command line, and change the directory to the base directory of the project. Run `gradlew setupDevWorkspace build`. The builds are in `projectRoot/build/libs/CodeLyoko-*.jar`
