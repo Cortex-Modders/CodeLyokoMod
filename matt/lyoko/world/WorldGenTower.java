@@ -31,10 +31,13 @@ public class WorldGenTower implements IWorldGenerator
 	 
 	 private void generateTower(World world, Random random, int blockX, int blockZ) 
 	 {
-		  int x = blockX + random.nextInt(16);
-		  int y = random.nextInt(128);
-		  int z = blockZ + random.nextInt(16);
-		  
-		  (new StructureTower()).generate(world, random, x, y, z);
+		 if(random.nextInt(10) == 0)
+		 {
+			 int x = blockX + random.nextInt(16);
+			 int z = blockZ + random.nextInt(16);
+			 int y =  world.getHeightValue(x, z);
+			 
+			 (new StructureTower()).generate(world, random, x, y, z);
+		 }
 	 }
 }

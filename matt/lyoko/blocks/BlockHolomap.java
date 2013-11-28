@@ -71,7 +71,7 @@ public class BlockHolomap extends BlockContainer
 	@Override
 	public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta)
     {
-		meta = 0b1000;
+		meta = 8;
         return meta;
     }
 	
@@ -144,7 +144,7 @@ public class BlockHolomap extends BlockContainer
 	@Override
 	public int damageDropped(int par1)
     {
-        return 0b1000;
+        return 8;
     }
 	
 	@Override
@@ -194,7 +194,7 @@ public class BlockHolomap extends BlockContainer
 	@Override
 	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        par3List.add(new ItemStack(ModBlocks.Holomap, 1, 0b1000));
+        par3List.add(new ItemStack(ModBlocks.Holomap, 1, 8));
     }
 	
 	@Override

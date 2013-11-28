@@ -23,7 +23,7 @@ public class StructureTower extends WorldGenerator
 {
 	protected int[] GetValidSpawnBlocks()
 	{
-		return new int[] {Block.stone.blockID, ModBlocks.Grass.blockID, ModBlocks.Stone.blockID, ModBlocks.Sand.blockID, ModBlocks.Ice.blockID, ModBlocks.Carthage.blockID};
+		return new int[] {ModBlocks.Grass.blockID, ModBlocks.Stone.blockID, ModBlocks.Sand.blockID, ModBlocks.Ice.blockID, ModBlocks.Carthage.blockID, ModBlocks.SectorBlock.blockID};
 	}
 	
 	public boolean LocationIsValidSpawn(World world, int x, int y, int z)

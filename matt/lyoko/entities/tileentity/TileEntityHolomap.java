@@ -51,13 +51,13 @@ public class TileEntityHolomap extends TileEntity
 		{
 			//System.out.println(getBlockMetadata());
 			byte meta = (byte) worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-			if((meta & 0b1000) == 0b1000)
+			if((meta & 8) == 8)
 			{
-				byte metaSector = (byte) (meta & 0b111);
+				byte metaSector = (byte) (meta & 7);
 				if(metaSector != sector)
 				{
 					metaSector = sector;
-					meta &= ~0b111;
+					meta &= ~7;
 					meta |= metaSector;
 					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, meta, 3);
 				}
