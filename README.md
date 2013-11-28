@@ -26,16 +26,11 @@ http://ci.jadarstudios.com/job/Code-Lyoko/
 
 [![Build Status](http://ci.jadarstudios.com/job/Code-Lyoko/badge/icon)](http://ci.jadarstudios.com/job/Code-Lyoko/)
 
+###Setting up Eclipse
+Setting up Eclipse for Code Lyoko is pretty easy. Code Lyoko is a [Gradle](http://www.gradle.org/) project, and uses the [ForgeGradle](https://github.com/MinecraftForge/ForgeGradle) Gradle plugin. Install the Eclipse Gradle plugin into your Eclipse, and choose Import->Gradle->Gradle Project. Set the root folder to the place you cloned the Code Lyoko repository to. Click "Build Model." Choose the project that comes up. Next click the "Run before" check box, and add "clean setupDevWorkspace" to the text box next to it. Thats it, click finish and Eclipse is set up!
+
 ###Building
 
-Requirements: JDK, Ant, and whatever you need to compile with MCP.
+Requirements: JDK
 
-To build, make a clean MCP with Forge installed. Then make a new file in the git clone directory called build.properties
-and put this in it.
-
-```
-mcpLocation=[LOCATION TO MCP]
-```
-
-Make sure to replace the [LOCATION TO MCP] with the location to your MCP directory. Then cd to the directory you cloned
-the repository to and run "ant build".
+Open a command line, and change the directory to the base directory of the project. Run `gradlew setupDevWorkspace build`. The builds are in projectRoot\build\libs\CodeLyoko-*.jar
