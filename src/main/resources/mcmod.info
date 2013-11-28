@@ -1,0 +1,21 @@
+[
+{
+  "modid" : "CodeLyoko",
+  "name" : "Code Lyoko",
+  "version" : "0.5.0-Beta",
+  "url" : "http://www.minecraftforum.net/topic/1403995-151-code-lyoko-mod-043-minecraft-forum/",
+  "credits" : "Matthew, Andrew, Marq, Jake",
+  "authors": [
+    "986523714 (aka EnderShadow)", "MoonMagick", "Wolfspirit1st", "Jadar"
+  ],
+  "description": "Recreates the TV show Code Lyoko to the best of minecraft's abilities.",
+  "logoFile" : "eye-xana.png",
+  "updateUrl" : "",
+  "parent" : "",
+  "screenshots": [
+  ],
+  "dependancies": [
+    "Forge"
+  ]
+}
+]
