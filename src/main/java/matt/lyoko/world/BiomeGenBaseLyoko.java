@@ -17,7 +17,8 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
 {
     public byte blockID;
 
-    protected BiomeGenBaseLyoko(int par1)
+    @SuppressWarnings("rawtypes")
+	protected BiomeGenBaseLyoko(int par1)
     {
         super(par1);
         this.topBlock = (byte) Block.grass.blockID;

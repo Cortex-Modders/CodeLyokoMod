@@ -27,9 +27,11 @@ import cpw.mods.fml.common.network.Player;
 
 public class CommandHandler implements ICommand
 {
-    private List aliases;
+    @SuppressWarnings("rawtypes")
+	private List aliases;
 
-    public CommandHandler()
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public CommandHandler()
     {
         this.aliases = new ArrayList();
         this.aliases.add("devirt");
@@ -47,7 +49,8 @@ public class CommandHandler implements ICommand
         return "devirtualize";
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public List getCommandAliases()
     {
         return this.aliases;
@@ -108,7 +111,8 @@ public class CommandHandler implements ICommand
         return true;
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public List addTabCompletionOptions(ICommandSender icommandsender, String[] astring)
     {
         return null;

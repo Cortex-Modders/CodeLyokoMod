@@ -26,7 +26,8 @@ public class ItemBlockTowerFloor extends ItemBlock
         this.blockID = par1 + 256;
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         list.add("Shift right click when placing");

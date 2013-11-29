@@ -40,7 +40,8 @@ public class ItemLyoko extends Item
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         if (stack.getItem().equals(ModItems.LaserArrow))
@@ -53,7 +54,8 @@ public class ItemLyoko extends Item
         }
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if (stack.getItem().equals(ModItems.LaserArrow))

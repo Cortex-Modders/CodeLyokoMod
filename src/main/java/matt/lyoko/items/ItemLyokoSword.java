@@ -99,7 +99,8 @@ public class ItemLyokoSword extends ItemSword
             this.itemIcon = iconRegister.registerIcon("lyoko:zweihander");
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public Multimap getItemAttributeModifiers()
     {
         Multimap multimap = super.getItemAttributeModifiers();

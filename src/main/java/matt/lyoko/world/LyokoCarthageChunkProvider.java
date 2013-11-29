@@ -22,14 +22,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenRavine;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.MapGenScatteredFeature;
-import net.minecraft.world.gen.structure.MapGenMineshaft;
-import net.minecraft.world.gen.structure.MapGenStronghold;
-import net.minecraft.world.gen.structure.MapGenVillage;
 
 public class LyokoCarthageChunkProvider implements IChunkProvider
 {
@@ -45,12 +38,6 @@ public class LyokoCarthageChunkProvider implements IChunkProvider
     private final boolean mapFeaturesEnabled;
     private double[] noiseArray;
     private double[] stoneNoise = new double[256];
-    private MapGenBase caveGenerator = new MapGenCaves();
-    private MapGenStronghold strongholdGenerator = new MapGenStronghold();
-    private MapGenVillage villageGenerator = new MapGenVillage();
-    private MapGenMineshaft mineshaftGenerator = new MapGenMineshaft();
-    private MapGenScatteredFeature scatteredFeatureGenerator = new MapGenScatteredFeature();
-    private MapGenBase ravineGenerator = new MapGenRavine();
     private BiomeGenBase[] biomesForGeneration;
     double[] noise3;
     double[] noise1;
@@ -416,7 +403,8 @@ public class LyokoCarthageChunkProvider implements IChunkProvider
         return "RandomLevelSource";
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
     {
         return null;

@@ -45,7 +45,8 @@ public class ItemLyokoFuel extends ItemLyoko
         return this.depletedForm;
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         list.add(Integer.toString(stack.getMaxDamage() - stack.getItemDamage()) + "/" + Integer.toString(stack.getMaxDamage()));

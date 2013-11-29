@@ -27,7 +27,8 @@ public class Recipes
         GameRegistry.addRecipe(new ItemStack(ModBlocks.SuperCalc, 1), new Object[] { "#o#", "#*#", "#o#", Character.valueOf('#'), Item.ingotGold, Character.valueOf('*'), ModItems.QuantumMatrix, Character.valueOf('o'), Block.obsidian });
     }
 
-    public static void registerItemRecipes()
+    @SuppressWarnings("unchecked")
+	public static void registerItemRecipes()
     {
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.UraniumCell), "ingotUranium", ModItems.EmptyCell));
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.UraniumCell, 2), "*#*", Character.valueOf('*'), ModItems.DepletedUraniumCell, Character.valueOf('#'), "ingotUranium"));

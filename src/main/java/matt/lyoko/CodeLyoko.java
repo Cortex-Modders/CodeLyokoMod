@@ -14,33 +14,46 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import com.jadarstudios.developercapes.DevCapesUtil;
-
-import matt.lyoko.blocks.*;
+import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.GuiHandler;
 import matt.lyoko.client.render.TileAnimator;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
-import matt.lyoko.entities.tileentity.*;
 import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.handlers.CommandHandler;
 import matt.lyoko.handlers.PacketHandler;
-import matt.lyoko.items.*;
-import matt.lyoko.lib.*;
-import matt.lyoko.world.*;
-import net.minecraft.block.material.*;
+import matt.lyoko.items.ModItems;
+import matt.lyoko.lib.DimensionIds;
+import matt.lyoko.lib.ModProperties;
+import matt.lyoko.lib.Recipes;
+import matt.lyoko.world.BiomeGenBaseLyoko;
+import matt.lyoko.world.BiomeGenCarthageSector;
+import matt.lyoko.world.BiomeGenDesertSector;
+import matt.lyoko.world.BiomeGenForestSector;
+import matt.lyoko.world.BiomeGenMountainSector;
+import matt.lyoko.world.BiomeGenPolarSector;
+import matt.lyoko.world.WorldGenLyokoOre;
+import matt.lyoko.world.WorldGenTower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.oredict.*;
+import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
+
+import com.jadarstudios.developercapes.DevCapesUtil;
+
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.*;
-import cpw.mods.fml.common.network.*;
-import cpw.mods.fml.common.registry.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors", "Vehicle"}, packetHandler = PacketHandler.class)

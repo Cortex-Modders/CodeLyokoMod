@@ -27,7 +27,8 @@ public class ItemBlockEffect extends ItemBlock
         super(par1);
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         if (stack.itemID == ModBlocks.TowerBase.blockID)

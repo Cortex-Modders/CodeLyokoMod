@@ -34,7 +34,8 @@ public class ItemLaserShooter extends Item
         this.setFull3D();
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         list.add("This is a debug tool that shoots lasers.");

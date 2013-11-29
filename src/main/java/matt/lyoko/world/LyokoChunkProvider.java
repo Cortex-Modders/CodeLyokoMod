@@ -307,7 +307,8 @@ public class LyokoChunkProvider implements IChunkProvider
      * will generates all the blocks for the
      * specified chunk from the map seed and chunk seed
      */
-    @Override
+    @SuppressWarnings("unused")
+	@Override
     public Chunk provideChunk(int par1, int par2)
     {
         this.rand.setSeed(par1 * 341873128712L + par2 * 132897987541L);
@@ -602,7 +603,8 @@ public class LyokoChunkProvider implements IChunkProvider
      * Returns a list of creatures of the specified type that can spawn at the
      * given location.
      */
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public List getPossibleCreatures(EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
     {
         BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(par2, par4);

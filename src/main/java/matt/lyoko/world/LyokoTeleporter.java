@@ -26,7 +26,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class LyokoTeleporter
 {
-    public static void transferPlayerToDimension(EntityPlayerMP par1EntityPlayerMP, int par2)
+    @SuppressWarnings("rawtypes")
+	public static void transferPlayerToDimension(EntityPlayerMP par1EntityPlayerMP, int par2)
     {
         MinecraftServer minecraftServer = MinecraftServer.getServer();
         int j = par1EntityPlayerMP.dimension;

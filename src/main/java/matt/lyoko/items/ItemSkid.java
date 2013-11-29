@@ -44,7 +44,8 @@ public class ItemSkid extends Item
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         float f = 1.0F;
