@@ -350,6 +350,15 @@ public class BlockScanner extends BlockContainer
          * AxisAlignedBB.getBoundingBox(x + 0, y + 0, z + 0, x + 1, y + 1, z +
          * 1); }
          */
+    	int pos = getPositionInMultiBlock(world, x, y, z);
+    	if(pos == 0)
+    	{
+    		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 0.5, z + 1);
+    	}
+    	else if(pos == 4)
+    	{
+    		return AxisAlignedBB.getBoundingBox(x, y + 0.5, z, x + 1, y + 1, z + 1);
+    	}
         return null;
     }
 
