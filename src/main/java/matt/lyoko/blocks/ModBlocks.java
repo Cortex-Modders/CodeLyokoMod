@@ -19,33 +19,18 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ModBlocks
 {
     public static Block SectorBlock;
-
-    public static Block TowerBlock;// = new BlockLyoko(Lyoko_Tower,
-                                   // 0).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
-    public static Block TowerBase;// = new BlockTowerBase(Lyoko_Tower_Base, 1,
-                                  // false).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-    public static Block Grass;// = new BlockLyoko(Lyoko_Grass,
-                              // 2).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-    public static Block Stone;// = new BlockLyoko(Lyoko_Stone,
-                              // 3).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-    public static Block Sand;// = new BlockLyoko(Lyoko_Sand,
-                             // 4).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-    public static Block Ice;// = new BlockLyokoIce(Lyoko_Ice, 5, Material.glass,
-                            // false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-    public static Block Log;// = new BlockLyoko(Lyoko_Log,
-                            // 6).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-    public static Block Carthage;// = new BlockLyoko(Lyoko_Carthage,
-                                 // 7).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-    public static Block QuantumOre;// = new BlockLyoko(Lyoko_Ore,
-                                   // 8).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
-    public static Block DigitalSeaBlock;// = new
-                                        // BlockDigitalSea(Lyoko_Sea_Block,
-                                        // 9).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-    public static Block DigitalSeaLiquid;// = new
-                                         // BlockFlowingDigitalSea(Lyoko_Sea_Flowing,
-                                         // Material.water).setHardness(100F).setLightOpacity(3).setUnlocalizedName("DigitalSeaFlowing").setRequiresSelfNotify();
-    public static Block LeadOre;// = new BlockLyoko(Lyoko_Lead_Ore,
-                                // 10).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
+    public static Block TowerBlock;
+    public static Block TowerBase;
+    public static Block Grass;
+    public static Block Stone;
+    public static Block Sand;
+    public static Block Ice;
+    public static Block Log;
+    public static Block Carthage;
+    public static Block QuantumOre;
+    public static Block DigitalSeaBlock;
+    public static Block DigitalSeaLiquid;
+    public static Block LeadOre;
     public static Block VirtualBlock;
     public static Block UraniumOre;
     public static Block Marabounta;
@@ -54,22 +39,12 @@ public class ModBlocks
     public static Block Cable;
     public static Block Scanner;
     public static Block SuperCalcConsole;
-    public static Block LyokoPolarPortal;// = new BlockLyoko(Lyoko_Polar_Portal,
-                                         // 12).setUnlocalizedName("Polar Portal");
-    public static Block LyokoDesertPortal;// = new
-                                          // BlockLyoko(Lyoko_Desert_Portal,
-                                          // 13).setUnlocalizedName("Desert Portal");
-    public static Block LyokoForestPortal;// = new
-                                          // BlockLyoko(Lyoko_Forest_Portal,
-                                          // 14).setUnlocalizedName("Forest Portal");
-    public static Block LyokoMountainPortal;// = new
-                                            // BlockLyoko(Lyoko_Mountain_Portal,
-                                            // 15).setUnlocalizedName("Mountain Portal");
-    public static Block LyokoCarthagePortal;// = new
-                                            // BlockLyoko(Lyoko_Carthage_Portal,
-                                            // 16).setUnlocalizedName("Carthage Portal");
-    public static Block SuperCalc;// = new
-                                  // BlockSuperCalc(Lyoko_Super_Calc).setHardness(20).setResistance(6000000).setUnlocalizedName("Super Computer").setRequiresSelfNotify();
+    public static Block LyokoPolarPortal;
+    public static Block LyokoDesertPortal;
+    public static Block LyokoForestPortal;
+    public static Block LyokoMountainPortal;
+    public static Block LyokoCarthagePortal;
+    public static Block SuperCalc;
     public static Block Holomap;
 
     public static void init()
