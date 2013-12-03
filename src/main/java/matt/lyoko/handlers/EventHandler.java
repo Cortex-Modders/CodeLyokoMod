@@ -9,11 +9,16 @@
 package matt.lyoko.handlers;
 
 import matt.lyoko.CodeLyoko;
+import matt.lyoko.entities.mobs.EntityLyoko;
+import matt.lyoko.entities.mobs.EntitySpecter;
 import matt.lyoko.entities.mobs.EntityXanafiedMob;
+import matt.lyoko.entities.vehicles.EntityVehicle;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -22,6 +27,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 import org.lwjgl.opengl.GL11;
 
@@ -78,11 +84,24 @@ public class EventHandler extends Gui implements IPlayerTracker
             }
         }
     }
+    
+    @ForgeSubscribe
+    public void onEntityJoinWorld(EntityJoinWorldEvent event)
+    {
+    	Entity ent = event.entity;
+    	if(!(ent instanceof EntityPlayer || ent instanceof EntityLyoko || ent instanceof EntitySpecter || ent instanceof IProjectile || ent instanceof EntityVehicle))
+    	{
+    		if(CodeLyoko.entityInLyoko(ent))
+    		{
+    			event.setCanceled(true);
+    		}
+    	}
+    }
 
     @ForgeSubscribe
     public void onEntityConstruct(EntityConstructing event)
     {
-        if (event.entity instanceof EntityPlayer)
+        if(event.entity instanceof EntityPlayer)
             event.entity.registerExtendedProperties(PlayerInformation.IDENTIFIER, new PlayerInformation((EntityPlayer) event.entity));
     }
 

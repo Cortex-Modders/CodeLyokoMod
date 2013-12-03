@@ -48,8 +48,6 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
-
-    // TODO: Move to better place. And not use static?
     public static final int scannerRenderId = RenderingRegistry.getNextAvailableRenderId();
     public static final int superCalcConsoleRenderId = RenderingRegistry.getNextAvailableRenderId();
     public static final int holomapRenderId = RenderingRegistry.getNextAvailableRenderId();

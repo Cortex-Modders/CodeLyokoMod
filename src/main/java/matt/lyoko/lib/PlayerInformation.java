@@ -28,10 +28,8 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
     }
-
-    public boolean dirty = true;
-
-    /** The current amount of mana the player has in their mana bar */
+    
+    /** The current amount of lifepoints the player has */
     private int lifePoints;
     public int coolDown;
     private int scannerPosX;
@@ -93,7 +91,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
 
     public int setLifePoints(int lifePoints)
     {
-        if (this.lifePoints != lifePoints)
+        if(this.lifePoints != lifePoints)
         {
             this.lifePoints = lifePoints;
             this.setDirty();
@@ -109,24 +107,22 @@ public final class PlayerInformation implements IExtendedEntityProperties
     public int decreaseLifePoints(int decrement)
     {
         this.lifePoints -= decrement;
-        this.setDirty();
         if (this.lifePoints < 0)
         {
             this.lifePoints = 0;
-            this.setDirty();
         }
+        this.setDirty();
         return this.lifePoints;
     }
 
     public int increaseLifePoints(int increment)
     {
         this.lifePoints += increment;
-        this.setDirty();
         if (this.lifePoints > 100)
         {
             this.lifePoints = 100;
-            this.setDirty();
         }
+        this.setDirty();
         return this.lifePoints;
     }
 
@@ -182,8 +178,6 @@ public final class PlayerInformation implements IExtendedEntityProperties
      */
     public void setDirty()
     {
-        this.dirty = true;
-
         ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
         DataOutputStream outputStream = new DataOutputStream(bos);
         try
@@ -198,7 +192,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         packet.channel = "LifePoints";
         packet.data = bos.toByteArray();
         packet.length = bos.size();
-
-        PacketDispatcher.sendPacketToPlayer(packet, (Player) this.player);
+        
+        PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
     }
 }

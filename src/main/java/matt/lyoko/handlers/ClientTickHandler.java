@@ -50,6 +50,6 @@ public class ClientTickHandler implements ITickHandler
     @Override
     public String getLabel()
     {
-        return null;
+        return "Code Lyoko Client Tick Handler";
     }
 }

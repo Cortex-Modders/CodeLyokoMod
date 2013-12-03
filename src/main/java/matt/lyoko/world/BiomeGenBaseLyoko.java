@@ -8,8 +8,6 @@
 
 package matt.lyoko.world;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.biome.BiomeGenBase;
 
@@ -17,10 +15,9 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
 {
     public byte blockID;
 
-    @SuppressWarnings("rawtypes")
-	protected BiomeGenBaseLyoko(int par1)
+	protected BiomeGenBaseLyoko(int id)
     {
-        super(par1);
+        super(id);
         this.topBlock = (byte) Block.grass.blockID;
         this.fillerBlock = (byte) Block.dirt.blockID;
         this.field_76754_C = 5169201;
@@ -29,16 +26,12 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.temperature = 0.5F;
         this.rainfall = 0.5F;
         this.waterColorMultiplier = 16777215;
-        this.spawnableMonsterList = new ArrayList();
-        // this.spawnableCreatureList = new ArrayList();
-        // this.spawnableWaterCreatureList = n ew ArrayList();
-        // this.spawnableCaveCreatureList = new ArrayList();
-        // this.worldGeneratorTrees = new WorldGenTrees(false);
-        // this.worldGeneratorBigTree = new WorldGenBigTree(false);
-        // this.worldGeneratorForest = new WorldGenForest(false);
-        // this.worldGeneratorSwamp = new WorldGenSwamp();
-        biomeList[par1] = this;
-        this.theBiomeDecorator = this.createBiomeDecorator();
+        this.spawnableCaveCreatureList.clear();
+        this.spawnableCreatureList.clear();
+        this.spawnableMonsterList.clear();
+        this.spawnableWaterCreatureList.clear();
+        biomeList[id] = this;
+        this.setDisableRain();
     }
 
     public BiomeGenBase setLyokoBiomeName(String par1Str)

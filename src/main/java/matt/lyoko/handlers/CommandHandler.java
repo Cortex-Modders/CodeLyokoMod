@@ -62,26 +62,26 @@ public class CommandHandler implements ICommand
         if (icommandsender instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) icommandsender;
-            if (!CodeLyoko.entityInLyoko(player))
+            if(!CodeLyoko.entityInLyoko(player))
             {
-                if (player.worldObj.isRemote)
+                if(player.worldObj.isRemote)
                     player.addChatMessage("You cannot be devirtualized because you are not in lyoko");
                 return;
             }
 
             PlayerInformation pi = PlayerInformation.forPlayer(player);
 
-            if (player instanceof EntityPlayerMP)
+            if(player instanceof EntityPlayerMP)
             {
                 LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, pi.scannerDim);
                 ((EntityPlayerMP) player).setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
             }
 
             TileEntityScanner tile = (TileEntityScanner) player.worldObj.getBlockTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
-            if (tile != null)
+            if(tile != null)
                 tile.toggleAllDoors();
 
-            ByteArrayOutputStream bos = new ByteArrayOutputStream(28);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
             DataOutputStream outputStream = new DataOutputStream(bos);
             try
             {
@@ -89,16 +89,14 @@ public class CommandHandler implements ICommand
                 outputStream.writeDouble(pi.getScannerPosY());
                 outputStream.writeDouble(pi.getScannerPosZ() + 0.5D);
                 outputStream.writeFloat(pi.scannerYaw);
-            } catch (Exception ex)
+            }
+            catch(Exception ex)
             {
                 ex.printStackTrace();
             }
 
-            Packet250CustomPayload packet = new Packet250CustomPayload();
-            packet.channel = "Devirt";
-            packet.data = bos.toByteArray();
-            packet.length = bos.size();
-
+            Packet250CustomPayload packet = PacketDispatcher.getPacket("Devirt", bos.toByteArray());
+            PacketDispatcher.sendPacketToServer(packet);
             PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
         }
         // wait for ChatMessageComponent to get names put in.
