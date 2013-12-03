@@ -27,41 +27,39 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class LyokoTeleporter
 {
     @SuppressWarnings("rawtypes")
-	public static void transferPlayerToDimension(EntityPlayerMP par1EntityPlayerMP, int par2)
+	public static void transferPlayerToDimension(EntityPlayerMP playerMP, int newDim)
     {
         MinecraftServer minecraftServer = MinecraftServer.getServer();
-        int j = par1EntityPlayerMP.dimension;
-        WorldServer worldserver = minecraftServer.worldServerForDimension(par1EntityPlayerMP.dimension);
-        par1EntityPlayerMP.dimension = par2;
-        WorldServer worldserver1 = minecraftServer.worldServerForDimension(par1EntityPlayerMP.dimension);
-        par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(par1EntityPlayerMP.dimension, (byte) par1EntityPlayerMP.worldObj.difficultySetting, worldserver1.getWorldInfo().getTerrainType(), worldserver1.getHeight(), par1EntityPlayerMP.theItemInWorldManager.getGameType()));
-        worldserver.removePlayerEntityDangerously(par1EntityPlayerMP);
-        par1EntityPlayerMP.isDead = false;
-        transferEntityToWorld(par1EntityPlayerMP, j, worldserver, worldserver1);
+        int j = playerMP.dimension;
+        WorldServer worldserver = minecraftServer.worldServerForDimension(playerMP.dimension);
+        playerMP.dimension = newDim;
+        WorldServer worldserver1 = minecraftServer.worldServerForDimension(playerMP.dimension);
+        playerMP.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(playerMP.dimension, (byte) playerMP.worldObj.difficultySetting, worldserver1.getWorldInfo().getTerrainType(), worldserver1.getHeight(), playerMP.theItemInWorldManager.getGameType()));
+        //worldserver.removePlayerEntityDangerously(playerMP);
+        playerMP.isDead = false;
+        transferEntityToWorld(playerMP, j, worldserver, worldserver1);
 
-        if (worldserver != null)
-            worldserver.getPlayerManager().removePlayer(par1EntityPlayerMP);
-        worldserver1.getPlayerManager().addPlayer(par1EntityPlayerMP);
-        worldserver1.theChunkProviderServer.loadChunk((int) par1EntityPlayerMP.posX >> 4, (int) par1EntityPlayerMP.posZ >> 4);
+        if(worldserver != null)
+            worldserver.getPlayerManager().removePlayer(playerMP);
+        worldserver1.getPlayerManager().addPlayer(playerMP);
+        worldserver1.theChunkProviderServer.loadChunk((int) playerMP.posX >> 4, (int) playerMP.posZ >> 4);
 
-        par1EntityPlayerMP.playerNetServerHandler.setPlayerLocation(par1EntityPlayerMP.posX, par1EntityPlayerMP.posY, par1EntityPlayerMP.posZ, par1EntityPlayerMP.rotationYaw, par1EntityPlayerMP.rotationPitch);
-        par1EntityPlayerMP.theItemInWorldManager.setWorld(worldserver1);
-        updateTimeAndWeatherForPlayer(par1EntityPlayerMP, worldserver1);
-        syncPlayerInventory(par1EntityPlayerMP);
-        Iterator iterator = par1EntityPlayerMP.getActivePotionEffects().iterator();
+        playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+        playerMP.theItemInWorldManager.setWorld(worldserver1);
+        updateTimeAndWeatherForPlayer(playerMP, worldserver1);
+        syncPlayerInventory(playerMP);
+        Iterator iterator = playerMP.getActivePotionEffects().iterator();
 
         while (iterator.hasNext())
         {
             PotionEffect potioneffect = (PotionEffect) iterator.next();
-            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(par1EntityPlayerMP.entityId, potioneffect));
+            playerMP.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(playerMP.entityId, potioneffect));
         }
 
-        GameRegistry.onPlayerChangedDimension(par1EntityPlayerMP);
+        GameRegistry.onPlayerChangedDimension(playerMP);
     }
 
-    private static void transferEntityToWorld(EntityPlayer player, int currentDim, WorldServer currentWorldServer, WorldServer newWorldServer)// ,
-                                                                                                                                              // Teleporter
-                                                                                                                                              // teleporter)
+    private static void transferEntityToWorld(EntityPlayer player, int currentDim, WorldServer currentWorldServer, WorldServer newWorldServer)
     {
         WorldProvider pOld = currentWorldServer.provider;
         WorldProvider pNew = newWorldServer.provider;
