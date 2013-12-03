@@ -138,7 +138,8 @@ public class BlockHolomap extends BlockContainer
         return new TileEntityHolomap();
     }
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(ModBlocks.Holomap, 1, 8));

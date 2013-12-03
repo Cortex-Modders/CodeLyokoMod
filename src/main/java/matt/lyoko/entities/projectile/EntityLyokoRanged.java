@@ -189,7 +189,8 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
     /**
      * Called to update the entity's position/logic.
      */
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public void onUpdate()
     {
         super.onUpdate();
