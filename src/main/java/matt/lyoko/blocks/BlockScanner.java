@@ -8,6 +8,7 @@ package matt.lyoko.blocks;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.util.List;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.client.ClientProxy;
@@ -18,6 +19,7 @@ import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -98,7 +100,7 @@ public class BlockScanner extends BlockContainer
      * 
      * Returns the position at which the block is in the multiblock.
      * 
-     * -1 = none, 1 = bottom, 2-4 = middle, 5 = top
+     * -1 = none, 0 = bottom, 1-3 = middle, 4 = top
      * 
      * @param world
      * @param x
@@ -339,27 +341,46 @@ public class BlockScanner extends BlockContainer
 
         par1World.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+    
+    @SuppressWarnings("rawtypes")
+	@Override
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axisAlignedBB, List list, Entity ent)
     {
-        /*
-         * int meta = world.getBlockMetadata(x, y, z); int pos =
-         * getPositionInMultiBlock(world, x, y, z); double pixel = 0.0625;
-         * if(meta == 0 && ((pos > 0 && pos < 4) || pos == -1)) { return
-         * AxisAlignedBB.getBoundingBox(x + 0, y + 0, z + 0, x + 1, y + 1, z +
-         * 1); }
-         */
     	int pos = getPositionInMultiBlock(world, x, y, z);
     	if(pos == 0)
     	{
-    		return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 0.5, z + 1);
+    		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+    		super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
     	}
     	else if(pos == 4)
     	{
-    		return AxisAlignedBB.getBoundingBox(x, y + 0.5, z, x + 1, y + 1, z + 1);
+    		this.setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+    		super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
     	}
-        return null;
+    	
+    	int meta = world.getBlockMetadata(x, y, z);
+        float f = 0.25F;
+        if(meta != 3 || !((TileEntityScanner) world.getBlockTileEntity(x, y, z)).doorsOpen)
+        {
+        	this.setBlockBounds(-f, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F);
+        	super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
+        }
+        if(meta != 0 || !((TileEntityScanner) world.getBlockTileEntity(x, y, z)).doorsOpen)
+        {
+        	this.setBlockBounds(0.0F, 0.0F, -f, 1.0F, 1.0F, 0.0F);
+        	super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
+        }
+        if(meta != 1 || !((TileEntityScanner) world.getBlockTileEntity(x, y, z)).doorsOpen)
+        {
+        	this.setBlockBounds(1.0F, 0.0F, 0.0F, 1.0F + f, 1.0F, 1.0F);
+        	super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
+        }
+        if(meta != 2 || !((TileEntityScanner) world.getBlockTileEntity(x, y, z)).doorsOpen)
+        {
+        	this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F + f);
+        	super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
+        }
+        this.setBlockBoundsForItemRender();
     }
 
     @Override
