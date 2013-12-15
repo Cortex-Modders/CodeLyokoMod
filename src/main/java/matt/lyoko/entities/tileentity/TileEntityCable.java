@@ -13,6 +13,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 public class TileEntityCable extends TileEntity
 {
@@ -54,6 +55,12 @@ public class TileEntityCable extends TileEntity
     public void resetCoolDown()
     {
         this.coolDown = 5;
+    }
+    
+    @Override
+    public AxisAlignedBB getRenderBoundingBox()
+    {
+    	return INFINITE_EXTENT_AABB;
     }
 
     @Override
