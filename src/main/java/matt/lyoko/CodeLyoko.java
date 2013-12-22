@@ -102,7 +102,7 @@ public class CodeLyoko
 	@EventHandler
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
-		DevCapesUtil.getInstance().addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
+		DevCapesUtil.addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
 		
 		ModFluids.init();
 		ModItems.init();
