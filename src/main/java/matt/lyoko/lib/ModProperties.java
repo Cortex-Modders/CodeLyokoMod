@@ -27,8 +27,6 @@ public class ModProperties
     public static final String GUI_TEXTURE_PREFIX = RESOURCE_PREFIX + "textures/gui/";
     public static final String MODEL_TEXTURE_PREFIX = RESOURCE_PREFIX + "textures/models/";
 
-    /** Use this when loading sounds. */
-    public static final String SOUND_LOAD_PREFIX = RESOURCE_PREFIX + "sounds/";
-    /** Use this when playing sounds. */
-    public static final String SOUND_PLAY_PREFIX = SOUND_LOAD_PREFIX.replaceAll("/", ".");
+    /** Use this when loading or playing sounds. */
+    public static final String SOUND_PREFIX = "lyoko:";
 }

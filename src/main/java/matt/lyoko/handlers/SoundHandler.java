@@ -18,36 +18,33 @@ import net.minecraftforge.event.ForgeSubscribe;
 
 public class SoundHandler
 {
-
-    /**
-     * When Minecraft loads sounds, load our sounds too.
-     * 
-     * @param event
-     */
-    @ForgeSubscribe
-    public void onSoundLoad(SoundLoadEvent event)
-    {
-        this.loadSound(event.manager, "scannerClose.ogg");
-        this.loadSound(event.manager, "scannerOpen.ogg");
-    }
-
-    /**
-     * Tries to load sounds to game.
-     * 
-     * @param manager
-     * @param file
-     */
-    public void loadSound(SoundManager manager, String file)
-    {
-        try
-        {
-            // manager.addSound(ModProperties.SOUND_LOAD_PREFIX + file,
-            // this.getClass().getResource("/" + ModProperties.SOUND_LOAD_PREFIX
-            // + file));
-            manager.addSound(ModProperties.SOUND_LOAD_PREFIX + file);
-        } catch (Exception e)
-        {
-            ModLogger.log(Level.WARNING, "Error not load sound " + file);
-        }
-    }
+	/**
+	 * When Minecraft loads sounds, load our sounds too.
+	 * 
+	 * @param event
+	 */
+	@ForgeSubscribe
+	public void onSoundLoad(SoundLoadEvent event)
+	{
+		this.loadSound(event.manager, "scannerClose.ogg");
+		this.loadSound(event.manager, "scannerOpen.ogg");
+	}
+	
+	/**
+	 * Tries to load sounds to game.
+	 * 
+	 * @param manager
+	 * @param file
+	 */
+	public void loadSound(SoundManager manager, String file)
+	{
+		try
+		{
+			manager.addSound(ModProperties.SOUND_PREFIX + file);
+		}
+		catch(Exception e)
+		{
+			ModLogger.log(Level.WARNING, "Error cannot load sound " + file);
+		}
+	}
 }

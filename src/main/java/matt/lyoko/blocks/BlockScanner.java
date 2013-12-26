@@ -14,6 +14,7 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.DimensionIds;
+import matt.lyoko.lib.ModProperties;
 import matt.lyoko.lib.PlayerInformation;
 import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.BlockContainer;
@@ -92,7 +93,6 @@ public class BlockScanner extends BlockContainer
      */
     public static boolean isMultiBlock(World world, int x, int y, int z)
     {
-
         return getPositionInMultiBlock(world, x, y, z) != -1;
     }
 
@@ -316,9 +316,9 @@ public class BlockScanner extends BlockContainer
             TileEntityScanner core = (TileEntityScanner) world.getBlockTileEntity((int) array[0].xCoord, (int) array[0].yCoord, (int) array[0].zCoord);
             if (!core.doorsOpen)// && core.yCoord == (int)player.posY - 1)
             {
-                // if(core.xCoord == Math.floor(player.posX) && core.zCoord ==
-                // Math.floor(player.posZ))
-                // {
+            	if(world.isRemote)
+            		world.playSoundAtEntity(player, ModProperties.SOUND_PREFIX + "scannerClose", 1.0F, 1.0F);
+            	
                 PlayerInformation pi = PlayerInformation.forPlayer(player);
 
                 pi.scannerDim = world.provider.dimensionId;
@@ -326,7 +326,6 @@ public class BlockScanner extends BlockContainer
                 core.setPlayerDevirtYaw(pi);
 
                 this.virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
-                // }
             }
             return true;
         }
