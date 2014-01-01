@@ -8,24 +8,29 @@
 
 package matt.lyoko;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import matt.lyoko.lib.ModProperties;
-import cpw.mods.fml.common.FMLLog;
+
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ModLogger
 {
 
-    private static Logger logger = Logger.getLogger(ModProperties.MOD_ID);
-
-    public static void init()
-    {
-        logger.setParent(FMLLog.getLogger());
-    }
+    private static Logger logger = LogManager.getLogger(ModProperties.MOD_ID);
 
     public static void log(Level parLevel, String parString)
     {
         logger.log(parLevel, parString);
+    }
+    
+    public static void info(String parString)
+    {
+        log(Level.INFO, parString);
+    }
+    
+    public static void severe(String parString)
+    {
+        log(Level.ERROR, parString);
     }
 }

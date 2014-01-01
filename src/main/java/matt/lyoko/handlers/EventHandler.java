@@ -24,16 +24,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.event.EventPriority;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.IPlayerTracker;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class EventHandler extends Gui implements IPlayerTracker
+public class EventHandler extends Gui
 {
     private Minecraft mc;
     private static final ResourceLocation inventoryTexture = new ResourceLocation("/gui/inventory.png");
@@ -44,7 +42,7 @@ public class EventHandler extends Gui implements IPlayerTracker
         this.mc = Minecraft.getMinecraft();
     }
 
-    @ForgeSubscribe(priority = EventPriority.NORMAL)
+    @SubscribeEvent
     public void renderGameOverlayEvent(RenderGameOverlayEvent event)
     {
         // We draw after the ExperienceBar has drawn. The event raised by
@@ -72,7 +70,7 @@ public class EventHandler extends Gui implements IPlayerTracker
         this.drawString(this.mc.fontRenderer, "Life Points: " + pi.getLifePoints(), xPos, yPos, 16777215);
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onLivingRender(RenderLivingEvent.Specials.Pre event)
     {
         if (event.entity instanceof EntityXanafiedMob)
@@ -85,7 +83,7 @@ public class EventHandler extends Gui implements IPlayerTracker
         }
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent event)
     {
     	Entity ent = event.entity;
@@ -98,7 +96,7 @@ public class EventHandler extends Gui implements IPlayerTracker
     	}
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onEntityConstruct(EntityConstructing event)
     {
         if(event.entity instanceof EntityPlayer)
