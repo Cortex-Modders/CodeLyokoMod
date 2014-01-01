@@ -51,12 +51,12 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkMod;
+//import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors", "Vehicle"}, packetHandler = PacketHandler.class)
+//@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors", "Vehicle"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
@@ -128,10 +128,10 @@ public class CodeLyoko
     	proxy.registerTileEntities();
     	proxy.registerDimensions();
     	
-    	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+    	NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     	
-    	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre());
-    	GameRegistry.registerWorldGenerator(new WorldGenTower());
+    	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre(), 0);
+    	GameRegistry.registerWorldGenerator(new WorldGenTower(), 0);
     	
     	MinecraftForge.setBlockHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
     	MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);

@@ -30,7 +30,7 @@ public class GuiSuperCalc extends GuiContainer
     public TileEntitySuperCalc tsc;
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int param1, int param2)
+    protected void func_146979_b(int param1, int param2)
     {
         // draw text and stuff here
         // the parameters for drawString are: string, x, y, color
@@ -43,7 +43,7 @@ public class GuiSuperCalc extends GuiContainer
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    protected void func_146976_a(float par1, int par2, int par3)
     {
         // draw your Gui here, only thing you need to change is the path
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

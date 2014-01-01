@@ -10,27 +10,25 @@ package matt.lyoko;
 
 import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class LyokoTab extends CreativeTabs
 {
-
     public LyokoTab(String par2Str)
     {
         super(par2Str);
-
     }
-
+    
     @Override
-    public int getTabIconItemIndex()
+    public Item getTabIconItem()
     {
-        return ModBlocks.Log.blockID;
-
+        return new ItemStack(ModBlocks.Log).getItem();
     }
-
+    
     @Override
     public String getTranslatedTabLabel()
     {
         return "Lyoko";
     }
-
 }

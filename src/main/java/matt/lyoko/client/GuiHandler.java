@@ -23,7 +23,7 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.func_147438_o(x, y, z);
 
         if (tileEntity instanceof TileEntitySuperCalc)
             return new ContainerSuperCalc(player.inventory, (TileEntitySuperCalc) tileEntity);
@@ -39,7 +39,7 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.func_147438_o(x, y, z);
 
         if (tileEntity instanceof TileEntitySuperCalc)
             return new GuiSuperCalc(player.inventory, (TileEntitySuperCalc) tileEntity);
