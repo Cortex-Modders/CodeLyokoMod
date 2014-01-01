@@ -1,0 +1,9 @@
+These are the things commented out of code for updating.
+
+- tick handler
+- tick registration
+- player events
+- convert packet system to netty.
+- change from fluid to liquids
+- update devcapes
+- 

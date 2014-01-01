@@ -9,7 +9,7 @@
 package matt.lyoko.client.render.tileentity;
 
 import matt.lyoko.blocks.BlockScanner;
-import matt.lyoko.client.model.tileentity.ModelScannerBottom;
+import matt.lyoko.client.model.tileentity.ModelScanner;
 import matt.lyoko.client.model.tileentity.ModelScannerMiddle;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import net.minecraft.block.Block;
@@ -29,7 +29,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler
 {
 
-    private ModelScannerBottom modelBot = new ModelScannerBottom();
+    private ModelScanner model = new ModelScanner();
+    
     private ModelScannerMiddle modelMid = new ModelScannerMiddle();
     private static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/scanner.png");
     private final int renderId;
@@ -73,7 +74,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
 
         // placement in multi block
         int p = BlockScanner.getPositionInMultiBlock(entity.worldObj, entity.xCoord, entity.yCoord, entity.zCoord);
-
+        /*
         // if top
         if (p == 4)
         {
@@ -81,6 +82,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
             GL11.glRotatef(180F, 0F, 1F, 0F);
             GL11.glTranslatef(0F, 1F, 0F);
         }
+        
         // if in middle or not at all
         if (p >= 1 & p <= 3 || p == -1)
         {
@@ -95,20 +97,23 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
 
             this.modelMid.render(null, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
         }
+        */
+        
+        /*
         // if bottom or top
         if (p == 0 || p == 4)
-        {
+        {*/
 
-            this.modelBot.doorL.rotateAngleY = (float) Math.toRadians(entity.doorRotationYaw);
-            this.modelBot.doorL.rotationPointX = entity.doorPosX;
-            this.modelBot.doorL.rotationPointZ = entity.doorPosZ;
+            this.model.doorL.rotateAngleY = (float) Math.toRadians(entity.doorRotationYaw);
+            this.model.doorL.rotationPointX = entity.doorPosX;
+            this.model.doorL.rotationPointZ = entity.doorPosZ;
 
-            this.modelBot.doorR.rotateAngleY = -(float) Math.toRadians(entity.doorRotationYaw + 180);
-            this.modelBot.doorR.rotationPointX = -entity.doorPosX;
-            this.modelBot.doorR.rotationPointZ = entity.doorPosZ;
+            this.model.doorR.rotateAngleY = -(float) Math.toRadians(entity.doorRotationYaw + 180);
+            this.model.doorR.rotationPointX = -entity.doorPosX;
+            this.model.doorR.rotationPointZ = entity.doorPosZ;
 
-            this.modelBot.render(null, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
-        }
+            this.model.render(null, (float) x, (float) y, (float) z, p, 0.0F, 0.0625F);
+        
 
         GL11.glPopMatrix();
     }

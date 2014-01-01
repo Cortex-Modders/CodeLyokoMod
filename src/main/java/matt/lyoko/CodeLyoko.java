@@ -38,10 +38,10 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.jadarstudios.developercapes.DevCapesUtil;
+//import com.jadarstudios.developercapes.DevCapesUtil;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -102,7 +102,7 @@ public class CodeLyoko
 	@EventHandler
     public void CodeLyokoLoad(FMLInitializationEvent evt)
     {
-		DevCapesUtil.addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
+		//DevCapesUtil.addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
 		
 		ModFluids.init();
 		ModItems.init();

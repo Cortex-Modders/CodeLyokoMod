@@ -30,8 +30,8 @@ public class TileEntityScanner extends TileEntity
     // Doors are open by default.
     public boolean doorsOpen = true;
     public float doorRotationYaw = 0;
-    // Position for left door. Right door just inverts left door. Y sould never
-    // change, so it is not used.
+    
+    // Position for left door. Right door just inverts left door. Y sould never change, so it is not used.
     public float doorPosX = -9;
     public float doorPosZ = 0;
 

@@ -45,14 +45,14 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
+//import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy
@@ -64,8 +64,8 @@ public class CommonProxy
 
     public void registerTickHandlers()
     {
-        TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
-        TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+        //TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
+        //TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
     }
 
     public void registerKeyBindingHandler()
@@ -84,10 +84,12 @@ public class CommonProxy
     public void registerEventHandlers()
     {
         EventHandler handler = new EventHandler();
+        
         MinecraftForge.EVENT_BUS.register(handler);
-        GameRegistry.registerPlayerTracker(handler);
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
         MinecraftForge.EVENT_BUS.register(new ModFluids());
+        
+        //GameRegistry.registerPlayerTracker(handler);
     }
 
     public void addChestLoot()
