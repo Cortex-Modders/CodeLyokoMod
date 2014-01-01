@@ -34,12 +34,12 @@ public class GuiSuperCalc extends GuiContainer
     {
         // draw text and stuff here
         // the parameters for drawString are: string, x, y, color
-        this.fontRenderer.drawString("Super Calculator", 8, 6, 4210752);
-        this.fontRenderer.drawString("Fuel Cell: ", 8, 25, 4210752);
-        this.fontRenderer.drawString("Time Remaining: " + this.tsc.timeLeft, 8, 42, 4210752);
-        this.fontRenderer.drawString("Temperature: " + this.tsc.getTemperature(), 8, 52, 4210752);
+        this.field_146289_q.drawString("Super Calculator", 8, 6, 4210752);
+        this.field_146289_q.drawString("Fuel Cell: ", 8, 25, 4210752);
+        this.field_146289_q.drawString("Time Remaining: " + this.tsc.timeLeft, 8, 42, 4210752);
+        this.field_146289_q.drawString("Temperature: " + this.tsc.getTemperature(), 8, 52, 4210752);
         // draws "Inventory" or your regional equivalent
-        this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        this.field_146289_q.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class GuiSuperCalc extends GuiContainer
     {
         // draw your Gui here, only thing you need to change is the path
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/supercalculator.png"));
+        this.field_146297_k.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/supercalculator.png"));
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);

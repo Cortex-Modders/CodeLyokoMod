@@ -48,8 +48,8 @@ public class GuiTowerConsole extends GuiContainer
     public void initGui()
     {
         super.initGui();
-        this.textBoxCode = new GuiTextField(this.fontRenderer, (this.width - this.xSize) / 2 + this.xSize / 2 - 40, (this.height - this.ySize) / 2 + this.ySize / 2, 80, 10);
-        this.textBoxCode.setText(this.code);
+        this.textBoxCode = new GuiTextField(this.field_146289_q, (this.width - this.xSize) / 2 + this.xSize / 2 - 40, (this.height - this.ySize) / 2 + this.ySize / 2, 80, 10);
+        this.textBoxCode.func_146180_a(this.code);
     }
 
     @Override
@@ -109,11 +109,11 @@ public class GuiTowerConsole extends GuiContainer
 
             ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
 
-            this.textBoxCode.setText("");
+            this.textBoxCode.func_146191_b("");
         }
 
-        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode && !this.textBoxCode.isFocused())
-            this.mc.thePlayer.closeScreen();
+        if (par2 == 1 || par2 == this.field_146297_k.gameSettings.keyBindInventory.keyCode && !this.textBoxCode.isFocused())
+            this.field_146297_k.thePlayer.closeScreen();
 
     }
 
@@ -122,7 +122,7 @@ public class GuiTowerConsole extends GuiContainer
     {
         super.mouseClicked(par1, par2, par3);
 
-        this.textBoxCode.mouseClicked(par1, par2, par3);
+        this.textBoxCode.func_146192_a(par1, par2, par3);
     }
 
     @Override
@@ -133,19 +133,19 @@ public class GuiTowerConsole extends GuiContainer
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int param1, int param2)
+    protected void func_146979_b(int param1, int param2)
     {
         // draw text and stuff here
         // the parameters for drawString are: string, x, y, color
-        this.fontRenderer.drawString("Code", 75, 36, 4210752);
+        this.field_146289_q.drawString("Code", 75, 36, 4210752);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
+    protected void func_146976_a(float par1, int par2, int par3)
     {
         // draw your Gui here, only thing you need to change is the path
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/towerconsole.png"));
+        this.field_146297_k.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/towerconsole.png"));
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);
