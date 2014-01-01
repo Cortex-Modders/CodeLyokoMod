@@ -40,11 +40,11 @@ public class RenderCable extends TileEntitySpecialRenderer
     // your TileEntity
     public void renderAModelAt(TileEntityCable tile, double d, double d1, double d2, float f)
     {
-        if (tile.worldObj != null)
-            tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        if (tile.func_145831_w() != null)
+            tile.func_145831_w().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
 
         // directory of the model's texture file
-        this.bindTexture(texture);
+        this.func_147499_a(texture);
 
         GL11.glPushMatrix();
         GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
@@ -60,12 +60,12 @@ public class RenderCable extends TileEntitySpecialRenderer
         int x = tile.xCoord;
         int y = tile.yCoord;
         int z = tile.zCoord;
-        this.top = this.configSide(tile.worldObj, x, y + 1, z, 1);
-        this.bottom = this.configSide(tile.worldObj, x, y - 1, z, 0);
-        this.left = this.configSide(tile.worldObj, x + 1, y, z, 3);
-        this.right = this.configSide(tile.worldObj, x - 1, y, z, 2);
-        this.front = this.configSide(tile.worldObj, x, y, z + 1, 5);
-        this.back = this.configSide(tile.worldObj, x, y, z - 1, 4);
+        this.top = this.configSide(tile.func_145831_w(), x, y + 1, z, 1);
+        this.bottom = this.configSide(tile.func_145831_w(), x, y - 1, z, 0);
+        this.left = this.configSide(tile.func_145831_w(), x + 1, y, z, 3);
+        this.right = this.configSide(tile.func_145831_w(), x - 1, y, z, 2);
+        this.front = this.configSide(tile.func_145831_w(), x, y, z + 1, 5);
+        this.back = this.configSide(tile.func_145831_w(), x, y, z - 1, 4);
     }
 
     private boolean configSide(World world, int x, int y, int z, int side)
@@ -82,7 +82,7 @@ public class RenderCable extends TileEntitySpecialRenderer
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
+    public void func_147500_a(TileEntity tileentity, double d, double d1, double d2, float f)
     {
         // your TileEntity
         this.renderAModelAt((TileEntityCable) tileentity, d, d1, d2, f);

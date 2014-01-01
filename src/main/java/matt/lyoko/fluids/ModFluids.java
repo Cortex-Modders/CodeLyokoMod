@@ -10,9 +10,9 @@ package matt.lyoko.fluids;
 
 import matt.lyoko.blocks.ModBlocks;
 import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -32,11 +32,11 @@ public class ModFluids
         FluidRegistry.registerFluid(digitalSea);
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void textureHook(TextureStitchEvent.Post event)
     {
-        if (event.map.textureType == 0)
+        if (event.map.getTextureType() == 0)
             digitalSea.setIcons(ModBlocks.DigitalSeaLiquid.getBlockTextureFromSide(1));
     }
 }

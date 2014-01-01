@@ -31,6 +31,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
+// TODO re-implement IPlayerTracker
 public class EventHandler extends Gui
 {
     private Minecraft mc;

@@ -24,6 +24,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
@@ -109,7 +110,7 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
         else
             this.attackStrength = this.MAX_ATTACK_STRENGTH;
 
-        if (!this.worldObj.isRemote && this.worldObj.difficultySetting == 0)
+        if (!this.worldObj.isRemote && this.worldObj.difficultySetting.equals(EnumDifficulty.PEACEFUL))
             this.setDead();
 
         if (this.getHealth() <= 0)

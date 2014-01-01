@@ -11,6 +11,7 @@ package matt.lyoko.entities.mobs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityXanafiedMob extends EntitySpecter
@@ -47,7 +48,7 @@ public class EntityXanafiedMob extends EntitySpecter
         if (this.infectedMob != null && this.infectedMob.isDead)
             this.infectedMob.isDead = false;
 
-        if (!this.worldObj.isRemote && this.worldObj.difficultySetting == 0)
+        if (!this.worldObj.isRemote && this.worldObj.difficultySetting.equals(EnumDifficulty.PEACEFUL))
             if (this.infectedMob != null)
                 this.worldObj.spawnEntityInWorld(this.infectedMob);
 
