@@ -11,9 +11,10 @@ import matt.lyoko.entities.tileentity.TileEntityCable;
 import matt.lyoko.entities.tileentity.TileEntityHolomap;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -29,12 +30,14 @@ public class BlockCable extends BlockContainer
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int neighborID)
+    //onNeighborBlockChange
+    public void func_149695_a(World world, int x, int y, int z, Block neighborBlock)
     {
-        if (world.getBlockTileEntity(x, y, z) instanceof TileEntityCable)
+        // world.func_147438_o - world.getTileEntity
+        if (world.func_147438_o(x, y, z) instanceof TileEntityCable)
         {
-            TileEntityCable tile = (TileEntityCable) world.getBlockTileEntity(x, y, z);
-            if (neighborID == this.blockID && tile != null)
+            TileEntityCable tile = (TileEntityCable) world.func_147438_o(x, y, z);
+            if (neighborBlock instanceof BlockCable && tile != null)
             {
                 String test1 = tile.getSector();
                 this.syncBlock(world, x + 1, y, z, tile);
@@ -44,8 +47,10 @@ public class BlockCable extends BlockContainer
                 this.syncBlock(world, x, y, z + 1, tile);
                 this.syncBlock(world, x, y, z - 1, tile);
                 String test2 = tile.getSector();
+                
+                // func_147459_d - notifyBlocksOfNeighborChange
                 if (!test1.equals(test2))
-                    world.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
+                    world.func_147459_d(x, y, z, this);
                 this.syncBlock2(world, x + 1, y, z, tile);
                 this.syncBlock2(world, x - 1, y, z, tile);
                 this.syncBlock2(world, x, y + 1, z, tile);
@@ -70,9 +75,10 @@ public class BlockCable extends BlockContainer
 
     public void syncBlock(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        if (world.getBlockId(x, y, z) == this.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityCable)
+        // func_147439_a - getBlock
+        if (world.func_147439_a(x, y, z) instanceof BlockCable && world.func_147438_o(x, y, z) instanceof TileEntityCable)
         {
-            TileEntityCable tile = (TileEntityCable) world.getBlockTileEntity(x, y, z);
+            TileEntityCable tile = (TileEntityCable) world.func_147438_o(x, y, z);
             if (tile != null && localCable.getCoolDown() == 0 && !tile.getSector().equals("") && localCable.getSector().equals(""))
             {
                 localCable.resetCoolDown();
@@ -96,28 +102,28 @@ public class BlockCable extends BlockContainer
 
     public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        if (world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalc)
-        {
-            TileEntitySuperCalc tile = (TileEntitySuperCalc) world.getBlockTileEntity(x, y, z);
-            if (tile != null && !localCable.getSector().equals("") && tile.sector.equals(""))
-            {
-                tile.sector = localCable.getSector();
-                world.markBlockForUpdate(x, y, z);
-            }
-        }
+//        if (world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalc)
+//        {
+//            TileEntitySuperCalc tile = (TileEntitySuperCalc) world.getBlockTileEntity(x, y, z);
+//            if (tile != null && !localCable.getSector().equals("") && tile.sector.equals(""))
+//            {
+//                tile.sector = localCable.getSector();
+//                world.markBlockForUpdate(x, y, z);
+//            }
+//        }
     }
 
     public void syncBlock4(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        if (world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityHolomap)
-        {
-            TileEntityHolomap tile = (TileEntityHolomap) world.getBlockTileEntity(x, y, z);
-            if (tile != null && !localCable.getSector().equals(""))
-            {
-                tile.sector = (byte) (this.convertSectorToInt(localCable.getSector()) + 1);
-                world.markBlockForUpdate(x, y, z);
-            }
-        }
+//        if (world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityHolomap)
+//        {
+//            TileEntityHolomap tile = (TileEntityHolomap) world.getBlockTileEntity(x, y, z);
+//            if (tile != null && !localCable.getSector().equals(""))
+//            {
+//                tile.sector = (byte) (this.convertSectorToInt(localCable.getSector()) + 1);
+//                world.markBlockForUpdate(x, y, z);
+//            }
+//        }
     }
 
     public int convertSectorToInt(String sector)
