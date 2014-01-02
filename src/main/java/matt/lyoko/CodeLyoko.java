@@ -20,8 +20,8 @@ import matt.lyoko.client.render.TileAnimator;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.handlers.CommandHandler;
-import matt.lyoko.handlers.PacketHandler;
 import matt.lyoko.items.ModItems;
+import matt.lyoko.lib.ModProperties.ConfigCategories;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.ModProperties;
 import matt.lyoko.lib.Recipes;
@@ -38,22 +38,21 @@ import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.Configuration;
 //import com.jadarstudios.developercapes.DevCapesUtil;
-
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+//import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-//import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 //@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors", "Vehicle"}, packetHandler = PacketHandler.class)
@@ -75,6 +74,8 @@ public class CodeLyoko
 	public static BiomeGenBaseLyoko lyokopolar;
 	public static BiomeGenBaseLyoko lyokocarthage;
 	
+	private Configuration modConfig;
+	
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
 	@Instance
@@ -83,19 +84,18 @@ public class CodeLyoko
 	@EventHandler
 	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
 	{
-    	Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
-		config.load();
+	    modConfig = proxy.initConfig(preevt.getSuggestedConfigurationFile());
+	    
+		proxy.registerBlockIds(modConfig);
+		proxy.registerItemIds(modConfig);
+		proxy.registerDimensionIds(modConfig);
 		
-		proxy.registerBlockIds(config);
-		proxy.registerItemIds(config);
-		proxy.registerDimensionIds(config);
-		
-        enableAdminPowers = config.get(Configuration.CATEGORY_GENERAL, "enableAdminPowers", false).getBoolean(false);
-        useHDTextures = config.get(Configuration.CATEGORY_GENERAL, "useHDTextures", false).getBoolean(false);
+        enableAdminPowers = modConfig.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
+        useHDTextures = modConfig.get(ModProperties.ConfigCategories.OTHER.name(), "useHDTextures", false).getBoolean(false);
         
-		if(config.hasChanged())
+		if(modConfig.hasChanged())
 		{
-			config.save();
+		    modConfig.save();
 		}
 	}
 	

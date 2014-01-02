@@ -29,4 +29,12 @@ public class ModProperties
 
     /** Use this when loading or playing sounds. */
     public static final String SOUND_PREFIX = "lyoko:";
+    
+    public static enum ConfigCategories
+    {
+        BLOCKS,
+        ITEMS,
+        DIMENSIONS,
+        OTHER,
+    }
 }

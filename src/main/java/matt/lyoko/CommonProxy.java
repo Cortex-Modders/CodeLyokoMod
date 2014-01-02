@@ -8,6 +8,8 @@
 
 package matt.lyoko;
 
+import java.io.File;
+
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
@@ -27,15 +29,14 @@ import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
 import matt.lyoko.fluids.ModFluids;
-import matt.lyoko.handlers.ClientTickHandler;
 import matt.lyoko.handlers.EventHandler;
-import matt.lyoko.handlers.ServerTickHandler;
 import matt.lyoko.handlers.SoundHandler;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.lib.BlockIds;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.EntityIds;
 import matt.lyoko.lib.ItemIds;
+import matt.lyoko.lib.ModProperties.ConfigCategories;
 import matt.lyoko.world.LyokoCarthageSector;
 import matt.lyoko.world.LyokoDesertSector;
 import matt.lyoko.world.LyokoForestSector;
@@ -45,18 +46,18 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 //import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 public class CommonProxy
 {
+    
     public void registerRenderInformation()
     {
         // unused server side. -- see ClientProxy for implementation
@@ -193,54 +194,74 @@ public class CommonProxy
         LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta.player", "%1$s was absorbed by the marabounta while fighting %2$s");
     }
 
+    /**
+     * Initialized the configuration with categories.
+     * @param parFile
+     * @return
+     */
+    public Configuration initConfig(final File parFile)
+    {
+        final Configuration config = new Configuration(parFile);
+        
+        for(ConfigCategories category : ConfigCategories.values())
+        {
+            config.getCategory(category.name());
+        }
+        
+        if(config.hasChanged())
+            config.save();
+        
+        return config;
+    }
+    
     public void registerBlockIds(Configuration config)
     {
         //config.addCustomCategoryComment(Configuration.CATEGORY_BLOCK, "This id MUST be under 255 or the game will have problems.");
         //BlockIds.SECTOR_BLOCK = config.getBlock("sectorBlock", BlockIds.SECTOR_BLOCK_DEFAULT).getInt();
         BlockIds.SECTOR_BLOCK = 255;
     	
-        BlockIds.LYOKO_TOWER = config.getBlock("lyokoTower", BlockIds.LYOKO_TOWER_DEFAULT).getInt();
-        BlockIds.LYOKO_TOWER_BASE = config.getBlock("lyokoTowerBase", BlockIds.LYOKO_TOWER_BASE_DEFAULT).getInt();
-        BlockIds.LYOKO_GRASS = config.getBlock("lyokoGrass", BlockIds.LYOKO_GRASS_DEFAULT).getInt();
-        BlockIds.LYOKO_STONE = config.getBlock("lyokoStone", BlockIds.LYOKO_STONE_DEFAULT).getInt();
-        BlockIds.LYOKO_SAND = config.getBlock("lyokoSand", BlockIds.LYOKO_SAND_DEFAULT).getInt();
-        BlockIds.LYOKO_ICE = config.getBlock("lyokoIce", BlockIds.LYOKO_ICE_DEFAULT).getInt();
-        BlockIds.LYOKO_LOG = config.getBlock("lyokoLog", BlockIds.LYOKO_LOG_DEFAULT).getInt();
-        BlockIds.LYOKO_DIGITAL_SEA_BLOCK = config.getBlock("lyokoSeaBlock", BlockIds.LYOKO_DIGITAL_SEA_BLOCK_DEFAULT).getInt();
-        BlockIds.LYOKO_DIGITAL_SEA_LIQUID = config.getBlock("lyokoSeaFlowing", BlockIds.LYOKO_DIGITAL_SEA_LIQUID_DEFAULT).getInt();
-        BlockIds.CABLE = config.getBlock("cable", BlockIds.CABLE_DEFAULT).getInt();
-        BlockIds.LYOKO_VIRTUAL_BLOCK = config.getBlock("lyokovirtualblock", BlockIds.LYOKO_VIRTUAL_BLOCK_DEFAULT).getInt();
-        BlockIds.LYOKO_CARTHAGE = config.getBlock("lyokoCarthage", BlockIds.LYOKO_CARTHAGE_DEFAULT).getInt();
-        BlockIds.LYOKO_ORE = config.getBlock("lyokoOre", BlockIds.LYOKO_ORE_DEFAULT).getInt();
-        BlockIds.LYOKO_ICE_PORTAL = config.getBlock("lyokoPolarPortal", BlockIds.LYOKO_ICE_PORTAL_DEFAULT).getInt();
-        BlockIds.LYOKO_DESERT_PORTAL = config.getBlock("lyokoDesertPortal", BlockIds.LYOKO_DESERT_PORTAL_DEFAULT).getInt();
-        BlockIds.LYOKO_FOREST_PORTAL = config.getBlock("lyokoForestPortal", BlockIds.LYOKO_FOREST_PORTAL_DEFAULT).getInt();
-        BlockIds.LYOKO_MOUNTAIN_PORTAL = config.getBlock("lyokoMountainPortal", BlockIds.LYOKO_MOUNTAIN_PORTAL_DEFAULT).getInt();
-        BlockIds.LYOKO_CARTHAGE_PORTAL = config.getBlock("lyokoCarthagePortal", BlockIds.LYOKO_CARTHAGE_PORTAL_DEFAULT).getInt();
-        BlockIds.LYOKO_URANIUM_ORE = config.getBlock("lyokoUraniumOre", BlockIds.LYOKO_URANIUM_ORE_DEFAULT).getInt();
-        BlockIds.LYOKO_SUPER_CALC = config.getBlock("lyokoSuperCalculator", BlockIds.LYOKO_SUPER_CALC_DEFAULT).getInt();
-        BlockIds.LYOKO_LEAD_ORE = config.getBlock("lyokoLeadOre", BlockIds.LYOKO_LEAD_ORE_DEFAULT).getInt();
-        BlockIds.LYOKO_MARABOUNTA = config.getBlock("marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
-        BlockIds.TOWER_CONSOLE = config.getBlock("towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
-        BlockIds.TOWER_FLOOR = config.getBlock("towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
-        BlockIds.SCANNER = config.getBlock("scanner", BlockIds.SCANNER_DEFAULT).getInt();
-        BlockIds.SUPER_CALC_CONSOLE = config.getBlock("superCalcConsole", BlockIds.SUPER_CALC_CONSOLE_DEFAULT).getInt();
-        BlockIds.HOLOMAP = config.getBlock("holomap", BlockIds.HOLOMAP_DEFAULT).getInt();
+        BlockIds.LYOKO_TOWER = config.get(ConfigCategories.BLOCKS.name(), "lyokoTower", BlockIds.LYOKO_TOWER_DEFAULT).getInt();
+        BlockIds.LYOKO_TOWER_BASE = config.get(ConfigCategories.BLOCKS.name(), "lyokoTowerBase", BlockIds.LYOKO_TOWER_BASE_DEFAULT).getInt();
+        BlockIds.LYOKO_GRASS = config.get(ConfigCategories.BLOCKS.name(), "lyokoGrass", BlockIds.LYOKO_GRASS_DEFAULT).getInt();
+        BlockIds.LYOKO_STONE = config.get(ConfigCategories.BLOCKS.name(), "lyokoStone", BlockIds.LYOKO_STONE_DEFAULT).getInt();
+        BlockIds.LYOKO_SAND = config.get(ConfigCategories.BLOCKS.name(), "lyokoSand", BlockIds.LYOKO_SAND_DEFAULT).getInt();
+        BlockIds.LYOKO_ICE = config.get(ConfigCategories.BLOCKS.name(), "lyokoIce", BlockIds.LYOKO_ICE_DEFAULT).getInt();
+        BlockIds.LYOKO_LOG = config.get(ConfigCategories.BLOCKS.name(), "lyokoLog", BlockIds.LYOKO_LOG_DEFAULT).getInt();
+        BlockIds.LYOKO_DIGITAL_SEA_BLOCK = config.get(ConfigCategories.BLOCKS.name(), "lyokoSeaBlock", BlockIds.LYOKO_DIGITAL_SEA_BLOCK_DEFAULT).getInt();
+        BlockIds.LYOKO_DIGITAL_SEA_LIQUID = config.get(ConfigCategories.BLOCKS.name(), "lyokoSeaFlowing", BlockIds.LYOKO_DIGITAL_SEA_LIQUID_DEFAULT).getInt();
+        BlockIds.CABLE = config.get(ConfigCategories.BLOCKS.name(), "cable", BlockIds.CABLE_DEFAULT).getInt();
+        BlockIds.LYOKO_VIRTUAL_BLOCK = config.get(ConfigCategories.BLOCKS.name(), "lyokovirtualblock", BlockIds.LYOKO_VIRTUAL_BLOCK_DEFAULT).getInt();
+        BlockIds.LYOKO_CARTHAGE = config.get(ConfigCategories.BLOCKS.name(), "lyokoCarthage", BlockIds.LYOKO_CARTHAGE_DEFAULT).getInt();
+        BlockIds.LYOKO_ORE = config.get(ConfigCategories.BLOCKS.name(), "lyokoOre", BlockIds.LYOKO_ORE_DEFAULT).getInt();
+        BlockIds.LYOKO_ICE_PORTAL = config.get(ConfigCategories.BLOCKS.name(), "lyokoPolarPortal", BlockIds.LYOKO_ICE_PORTAL_DEFAULT).getInt();
+        BlockIds.LYOKO_DESERT_PORTAL = config.get(ConfigCategories.BLOCKS.name(), "lyokoDesertPortal", BlockIds.LYOKO_DESERT_PORTAL_DEFAULT).getInt();
+        BlockIds.LYOKO_FOREST_PORTAL = config.get(ConfigCategories.BLOCKS.name(), "lyokoForestPortal", BlockIds.LYOKO_FOREST_PORTAL_DEFAULT).getInt();
+        BlockIds.LYOKO_MOUNTAIN_PORTAL = config.get(ConfigCategories.BLOCKS.name(), "lyokoMountainPortal", BlockIds.LYOKO_MOUNTAIN_PORTAL_DEFAULT).getInt();
+        BlockIds.LYOKO_CARTHAGE_PORTAL = config.get(ConfigCategories.BLOCKS.name(), "lyokoCarthagePortal", BlockIds.LYOKO_CARTHAGE_PORTAL_DEFAULT).getInt();
+        BlockIds.LYOKO_URANIUM_ORE = config.get(ConfigCategories.BLOCKS.name(), "lyokoUraniumOre", BlockIds.LYOKO_URANIUM_ORE_DEFAULT).getInt();
+        BlockIds.LYOKO_SUPER_CALC = config.get(ConfigCategories.BLOCKS.name(), "lyokoSuperCalculator", BlockIds.LYOKO_SUPER_CALC_DEFAULT).getInt();
+        BlockIds.LYOKO_LEAD_ORE = config.get(ConfigCategories.BLOCKS.name(), "lyokoLeadOre", BlockIds.LYOKO_LEAD_ORE_DEFAULT).getInt();
+        BlockIds.LYOKO_MARABOUNTA = config.get(ConfigCategories.BLOCKS.name(), "marabounta", BlockIds.LYOKO_MARABOUNTA_DEFAULT).getInt();
+        BlockIds.TOWER_CONSOLE = config.get(ConfigCategories.BLOCKS.name(), "towerConsole", BlockIds.TOWER_CONSOLE_DEFAULT).getInt();
+        BlockIds.TOWER_FLOOR = config.get(ConfigCategories.BLOCKS.name(), "towerWall", BlockIds.TOWER_FLOOR_DEFAULT).getInt();
+        BlockIds.SCANNER = config.get(ConfigCategories.BLOCKS.name(), "scanner", BlockIds.SCANNER_DEFAULT).getInt();
+        BlockIds.SUPER_CALC_CONSOLE = config.get(ConfigCategories.BLOCKS.name(), "superCalcConsole", BlockIds.SUPER_CALC_CONSOLE_DEFAULT).getInt();
+        BlockIds.HOLOMAP = config.get(ConfigCategories.BLOCKS.name(), "holomap", BlockIds.HOLOMAP_DEFAULT).getInt();
     }
 
     public void registerItemIds(Configuration config)
     {
-        ItemIds.WEAPON_LYOKO_1 = config.getItem("weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
-        ItemIds.WEAPON_LYOKO_2 = config.getItem("weaponLyoko2", ItemIds.WEAPON_LYOKO_2_DEFAULT).getInt();
-        ItemIds.WEAPON_LYOKO_3 = config.getItem("weaponLyoko3", ItemIds.WEAPON_LYOKO_3_DEFAULT).getInt();
-        ItemIds.WEAPON_LYOKO_4 = config.getItem("weaponLyoko4", ItemIds.WEAPON_LYOKO_4_DEFAULT).getInt();
-        ItemIds.WEAPON_LYOKO_5 = config.getItem("weaponLyoko5", ItemIds.WEAPON_LYOKO_5_DEFAULT).getInt();
-        ItemIds.WEAPON_LYOKO_6 = config.getItem("weaponLyoko6", ItemIds.WEAPON_LYOKO_6_DEFAULT).getInt();
-        ItemIds.ITEM_SKID = config.getItem("itemLyoko1", ItemIds.ITEM_SKID_DEFAULT).getInt();
-        ItemIds.ITEM_OVERBOARD = config.getItem("itemOverboard", ItemIds.ITEM_OVERBOARD_DEFAULT).getInt();
-        ItemIds.ITEM_QUANTUM_MATRIX = config.getItem("itemQuantumMatrix", ItemIds.ITEM_QUANTUM_MATRIX_DEFAULT).getInt();
-        ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL = config.getItem("itemQuantumContainmentCell", ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL_DEFAULT).getInt();
-        ItemIds.LASER_SHOOTER = config.getItem("laserShooter", ItemIds.LASER_SHOOTER_DEFAULT).getInt();
+        ItemIds.WEAPON_LYOKO_1 = config.get(ConfigCategories.ITEMS.name(), "weaponLyoko1", ItemIds.WEAPON_LYOKO_1_DEFAULT).getInt();
+        ItemIds.WEAPON_LYOKO_2 = config.get(ConfigCategories.ITEMS.name(), "weaponLyoko2", ItemIds.WEAPON_LYOKO_2_DEFAULT).getInt();
+        ItemIds.WEAPON_LYOKO_3 = config.get(ConfigCategories.ITEMS.name(), "weaponLyoko3", ItemIds.WEAPON_LYOKO_3_DEFAULT).getInt();
+        ItemIds.WEAPON_LYOKO_4 = config.get(ConfigCategories.ITEMS.name(), "weaponLyoko4", ItemIds.WEAPON_LYOKO_4_DEFAULT).getInt();
+        ItemIds.WEAPON_LYOKO_5 = config.get(ConfigCategories.ITEMS.name(), "weaponLyoko5", ItemIds.WEAPON_LYOKO_5_DEFAULT).getInt();
+        ItemIds.WEAPON_LYOKO_6 = config.get(ConfigCategories.ITEMS.name(), "weaponLyoko6", ItemIds.WEAPON_LYOKO_6_DEFAULT).getInt();
+        ItemIds.ITEM_SKID = config.get(ConfigCategories.ITEMS.name(), "itemLyoko1", ItemIds.ITEM_SKID_DEFAULT).getInt();
+        ItemIds.ITEM_OVERBOARD = config.get(ConfigCategories.ITEMS.name(), "itemOverboard", ItemIds.ITEM_OVERBOARD_DEFAULT).getInt();
+        ItemIds.ITEM_QUANTUM_MATRIX = config.get(ConfigCategories.ITEMS.name(), "itemQuantumMatrix", ItemIds.ITEM_QUANTUM_MATRIX_DEFAULT).getInt();
+        ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL = config.get(ConfigCategories.ITEMS.name(), "itemQuantumContainmentCell", ItemIds.ITEM_QUANTUM_CONTAINMENT_CELL_DEFAULT).getInt();
+        ItemIds.LASER_SHOOTER = config.get(ConfigCategories.ITEMS.name(), "laserShooter", ItemIds.LASER_SHOOTER_DEFAULT).getInt();
         /*
          * commented out until needed so that the config file isn't cluttered
          * with unused stuff
@@ -255,45 +276,45 @@ public class CommonProxy
         // ItemIds.NOT_USED8_DEFAULT).getInt();
         // ItemIds.NOT_USED9 = config.getItem("itemLyoko9",
         // ItemIds.NOT_USED9_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_URANIUM = config.getItem("itemLyokoUranium", ItemIds.ITEM_LYOKO_URANIUM_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_11 = config.getItem("itemLyoko11", ItemIds.ITEM_LYOKO_11_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_12 = config.getItem("itemLyoko12", ItemIds.ITEM_LYOKO_12_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_13 = config.getItem("itemLyoko13", ItemIds.ITEM_LYOKO_13_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_14 = config.getItem("itemLyoko14", ItemIds.ITEM_LYOKO_14_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_15 = config.getItem("itemLyoko15", ItemIds.ITEM_LYOKO_15_DEFAULT).getInt();
-        ItemIds.AELITA_ARMOR_HELMET = config.getItem("aelitaArmorHelmet", ItemIds.AELITA_ARMOR_HELMET_DEFAULT).getInt();
-        ItemIds.AELITA_ARMOR_CHEST = config.getItem("aelitaArmorChest", ItemIds.AELITA_ARMOR_CHEST_DEFAULT).getInt();
-        ItemIds.AELITA_ARMOR_PANTS = config.getItem("aelitaArmorPants", ItemIds.AELITA_ARMOR_PANTS_DEFAULT).getInt();
-        ItemIds.AELITA_ARMOR_BOOTS = config.getItem("aelitaArmorBoots", ItemIds.AELITA_ARMOR_BOOTS_DEFAULT).getInt();
-        ItemIds.ODD_ARMOR_HELMET = config.getItem("oddArmorHelmet", ItemIds.ODD_ARMOR_HELMET_DEFAULT).getInt();
-        ItemIds.ODD_ARMOR_CHEST = config.getItem("oddArmorChest", ItemIds.ODD_ARMOR_CHEST_DEFAULT).getInt();
-        ItemIds.ODD_ARMOR_PANTS = config.getItem("oddArmorPants", ItemIds.ODD_ARMOR_PANTS_DEFAULT).getInt();
-        ItemIds.ODD_ARMOR_BOOTS = config.getItem("oddArmorBoots", ItemIds.ODD_ARMOR_BOOTS_DEFAULT).getInt();
-        ItemIds.ULRICH_ARMOR_HELMET = config.getItem("ulrichArmorHelmet", ItemIds.ULRICH_ARMOR_HELMET_DEFAULT).getInt();
-        ItemIds.ULRICH_ARMOR_CHEST = config.getItem("ulrichArmorChest", ItemIds.ULRICH_ARMOR_CHEST_DEFAULT).getInt();
-        ItemIds.ULRICH_ARMOR_PANTS = config.getItem("ulrichArmorPants", ItemIds.ULRICH_ARMOR_PANTS_DEFAULT).getInt();
-        ItemIds.ULRICH_ARMOR_BOOTS = config.getItem("ulrichArmorBoots", ItemIds.ULRICH_ARMOR_BOOTS_DEFAULT).getInt();
-        ItemIds.YUMI_ARMOR_HELMET = config.getItem("yumiArmorHelmet", ItemIds.YUMI_ARMOR_HELMET_DEFAULT).getInt();
-        ItemIds.YUMI_ARMOR_CHEST = config.getItem("yumiArmorChest", ItemIds.YUMI_ARMOR_CHEST_DEFAULT).getInt();
-        ItemIds.YUMI_ARMOR_PANTS = config.getItem("yumiArmorPants", ItemIds.YUMI_ARMOR_PANTS_DEFAULT).getInt();
-        ItemIds.YUMI_ARMOR_BOOTS = config.getItem("yumiArmorBoots", ItemIds.YUMI_ARMOR_BOOTS_DEFAULT).getInt();
-        ItemIds.WILLIAM_ARMOR_HELMET = config.getItem("williamArmorHelmet", ItemIds.WILLIAM_ARMOR_HELMET_DEFAULT).getInt();
-        ItemIds.WILLIAM_ARMOR_CHEST = config.getItem("williamArmorChest", ItemIds.WILLIAM_ARMOR_CHEST_DEFAULT).getInt();
-        ItemIds.WILLIAM_ARMOR_PANTS = config.getItem("williamArmorPants", ItemIds.WILLIAM_ARMOR_PANTS_DEFAULT).getInt();
-        ItemIds.WILLIAM_ARMOR_BOOTS = config.getItem("williamArmorBoots", ItemIds.WILLIAM_ARMOR_BOOTS_DEFAULT).getInt();
-        ItemIds.DATA_FRAGMENT = config.getItem("dataFragment", ItemIds.DATA_FRAGMENT_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_URANIUM_CELL = config.getItem("itemLyokoUraniumCell", ItemIds.ITEM_LYOKO_URANIUM_CELL_DEFAULT).getInt();
-        ItemIds.ITEM_LYOKO_DEPLETED_URANIUM = config.getItem("itemLyokoDepletedUranium", ItemIds.ITEM_LYOKO_DEPLETED_URANIUM_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_URANIUM = config.get(ConfigCategories.ITEMS.name(), "itemLyokoUranium", ItemIds.ITEM_LYOKO_URANIUM_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_11 = config.get(ConfigCategories.ITEMS.name(), "itemLyoko11", ItemIds.ITEM_LYOKO_11_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_12 = config.get(ConfigCategories.ITEMS.name(), "itemLyoko12", ItemIds.ITEM_LYOKO_12_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_13 = config.get(ConfigCategories.ITEMS.name(), "itemLyoko13", ItemIds.ITEM_LYOKO_13_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_14 = config.get(ConfigCategories.ITEMS.name(), "itemLyoko14", ItemIds.ITEM_LYOKO_14_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_15 = config.get(ConfigCategories.ITEMS.name(), "itemLyoko15", ItemIds.ITEM_LYOKO_15_DEFAULT).getInt();
+        ItemIds.AELITA_ARMOR_HELMET = config.get(ConfigCategories.ITEMS.name(), "aelitaArmorHelmet", ItemIds.AELITA_ARMOR_HELMET_DEFAULT).getInt();
+        ItemIds.AELITA_ARMOR_CHEST = config.get(ConfigCategories.ITEMS.name(), "aelitaArmorChest", ItemIds.AELITA_ARMOR_CHEST_DEFAULT).getInt();
+        ItemIds.AELITA_ARMOR_PANTS = config.get(ConfigCategories.ITEMS.name(), "aelitaArmorPants", ItemIds.AELITA_ARMOR_PANTS_DEFAULT).getInt();
+        ItemIds.AELITA_ARMOR_BOOTS = config.get(ConfigCategories.ITEMS.name(), "aelitaArmorBoots", ItemIds.AELITA_ARMOR_BOOTS_DEFAULT).getInt();
+        ItemIds.ODD_ARMOR_HELMET = config.get(ConfigCategories.ITEMS.name(), "oddArmorHelmet", ItemIds.ODD_ARMOR_HELMET_DEFAULT).getInt();
+        ItemIds.ODD_ARMOR_CHEST = config.get(ConfigCategories.ITEMS.name(), "oddArmorChest", ItemIds.ODD_ARMOR_CHEST_DEFAULT).getInt();
+        ItemIds.ODD_ARMOR_PANTS = config.get(ConfigCategories.ITEMS.name(), "oddArmorPants", ItemIds.ODD_ARMOR_PANTS_DEFAULT).getInt();
+        ItemIds.ODD_ARMOR_BOOTS = config.get(ConfigCategories.ITEMS.name(), "oddArmorBoots", ItemIds.ODD_ARMOR_BOOTS_DEFAULT).getInt();
+        ItemIds.ULRICH_ARMOR_HELMET = config.get(ConfigCategories.ITEMS.name(), "ulrichArmorHelmet", ItemIds.ULRICH_ARMOR_HELMET_DEFAULT).getInt();
+        ItemIds.ULRICH_ARMOR_CHEST = config.get(ConfigCategories.ITEMS.name(), "ulrichArmorChest", ItemIds.ULRICH_ARMOR_CHEST_DEFAULT).getInt();
+        ItemIds.ULRICH_ARMOR_PANTS = config.get(ConfigCategories.ITEMS.name(), "ulrichArmorPants", ItemIds.ULRICH_ARMOR_PANTS_DEFAULT).getInt();
+        ItemIds.ULRICH_ARMOR_BOOTS = config.get(ConfigCategories.ITEMS.name(), "ulrichArmorBoots", ItemIds.ULRICH_ARMOR_BOOTS_DEFAULT).getInt();
+        ItemIds.YUMI_ARMOR_HELMET = config.get(ConfigCategories.ITEMS.name(), "yumiArmorHelmet", ItemIds.YUMI_ARMOR_HELMET_DEFAULT).getInt();
+        ItemIds.YUMI_ARMOR_CHEST = config.get(ConfigCategories.ITEMS.name(), "yumiArmorChest", ItemIds.YUMI_ARMOR_CHEST_DEFAULT).getInt();
+        ItemIds.YUMI_ARMOR_PANTS = config.get(ConfigCategories.ITEMS.name(), "yumiArmorPants", ItemIds.YUMI_ARMOR_PANTS_DEFAULT).getInt();
+        ItemIds.YUMI_ARMOR_BOOTS = config.get(ConfigCategories.ITEMS.name(), "yumiArmorBoots", ItemIds.YUMI_ARMOR_BOOTS_DEFAULT).getInt();
+        ItemIds.WILLIAM_ARMOR_HELMET = config.get(ConfigCategories.ITEMS.name(), "williamArmorHelmet", ItemIds.WILLIAM_ARMOR_HELMET_DEFAULT).getInt();
+        ItemIds.WILLIAM_ARMOR_CHEST = config.get(ConfigCategories.ITEMS.name(), "williamArmorChest", ItemIds.WILLIAM_ARMOR_CHEST_DEFAULT).getInt();
+        ItemIds.WILLIAM_ARMOR_PANTS = config.get(ConfigCategories.ITEMS.name(), "williamArmorPants", ItemIds.WILLIAM_ARMOR_PANTS_DEFAULT).getInt();
+        ItemIds.WILLIAM_ARMOR_BOOTS = config.get(ConfigCategories.ITEMS.name(), "williamArmorBoots", ItemIds.WILLIAM_ARMOR_BOOTS_DEFAULT).getInt();
+        ItemIds.DATA_FRAGMENT = config.get(ConfigCategories.ITEMS.name(), "dataFragment", ItemIds.DATA_FRAGMENT_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_URANIUM_CELL = config.get(ConfigCategories.ITEMS.name(), "itemLyokoUraniumCell", ItemIds.ITEM_LYOKO_URANIUM_CELL_DEFAULT).getInt();
+        ItemIds.ITEM_LYOKO_DEPLETED_URANIUM = config.get(ConfigCategories.ITEMS.name(), "itemLyokoDepletedUranium", ItemIds.ITEM_LYOKO_DEPLETED_URANIUM_DEFAULT).getInt();
     }
 
     public void registerDimensionIds(Configuration config)
     {
-        DimensionIds.ICE = config.get(Configuration.CATEGORY_GENERAL, "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
-        DimensionIds.MOUNTAIN = config.get(Configuration.CATEGORY_GENERAL, "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
-        DimensionIds.FOREST = config.get(Configuration.CATEGORY_GENERAL, "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
-        DimensionIds.DESERT = config.get(Configuration.CATEGORY_GENERAL, "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
-        DimensionIds.CARTHAGE = config.get(Configuration.CATEGORY_GENERAL, "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
-        DimensionIds.DIGITALSEA = config.get(Configuration.CATEGORY_GENERAL, "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
-        DimensionIds.CORTEX = config.get(Configuration.CATEGORY_GENERAL, "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
+        DimensionIds.ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
+        DimensionIds.MOUNTAIN = config.get(ConfigCategories.DIMENSIONS.name(), "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
+        DimensionIds.FOREST = config.get(ConfigCategories.DIMENSIONS.name(), "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
+        DimensionIds.DESERT = config.get(ConfigCategories.DIMENSIONS.name(), "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
+        DimensionIds.CARTHAGE = config.get(ConfigCategories.DIMENSIONS.name(), "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
+        DimensionIds.DIGITALSEA = config.get(ConfigCategories.DIMENSIONS.name(), "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
+        DimensionIds.CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
     }
 }

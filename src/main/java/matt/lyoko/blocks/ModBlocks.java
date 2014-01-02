@@ -82,11 +82,11 @@ public class ModBlocks
         DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, ModFluids.digitalSea, Material.water).setUnlocalizedName("DigitalSeaLiquid");
 
         // Portal (Unused)
-        LyokoPolarPortal = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
-        LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
-        LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setUnlocalizedName("ForestPortal").setCreativeTab(null);
-        LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
-        LyokoCarthagePortal = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
+        //LyokoPolarPortal = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
+        //LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
+        //LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setUnlocalizedName("ForestPortal").setCreativeTab(null);
+        //LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
+        //LyokoCarthagePortal = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
 
         registerBlocks();
         registerLanguage();
