@@ -74,8 +74,6 @@ public class CodeLyoko
 	public static BiomeGenBaseLyoko lyokopolar;
 	public static BiomeGenBaseLyoko lyokocarthage;
 	
-	private Configuration modConfig;
-	
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
 	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
 	@Instance
@@ -84,18 +82,18 @@ public class CodeLyoko
 	@EventHandler
 	public void CodeLyokoPreLoad(FMLPreInitializationEvent preevt)
 	{
-	    modConfig = proxy.initConfig(preevt.getSuggestedConfigurationFile());
+		Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
 	    
-		proxy.registerBlockIds(modConfig);
-		proxy.registerItemIds(modConfig);
-		proxy.registerDimensionIds(modConfig);
+		proxy.registerBlockIds(config);
+		proxy.registerItemIds(config);
+		proxy.registerDimensionIds(config);
 		
-        enableAdminPowers = modConfig.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
-        useHDTextures = modConfig.get(ModProperties.ConfigCategories.OTHER.name(), "useHDTextures", false).getBoolean(false);
+        enableAdminPowers = config.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
+        useHDTextures = config.get(ModProperties.ConfigCategories.OTHER.name(), "useHDTextures", false).getBoolean(false);
         
-		if(modConfig.hasChanged())
+		if(config.hasChanged())
 		{
-		    modConfig.save();
+			config.save();
 		}
 	}
 	

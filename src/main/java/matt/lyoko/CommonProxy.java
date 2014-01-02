@@ -8,8 +8,6 @@
 
 package matt.lyoko;
 
-import java.io.File;
-
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;
@@ -192,26 +190,6 @@ public class CommonProxy
         LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.digitalSea.player", "%1$s fell into the digital sea while fighting %2$s");
         LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta", "%1$s was absorbed by the marabounta");
         LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta.player", "%1$s was absorbed by the marabounta while fighting %2$s");
-    }
-
-    /**
-     * Initialized the configuration with categories.
-     * @param parFile
-     * @return
-     */
-    public Configuration initConfig(final File parFile)
-    {
-        final Configuration config = new Configuration(parFile);
-        
-        for(ConfigCategories category : ConfigCategories.values())
-        {
-            config.getCategory(category.name());
-        }
-        
-        if(config.hasChanged())
-            config.save();
-        
-        return config;
     }
     
     public void registerBlockIds(Configuration config)
