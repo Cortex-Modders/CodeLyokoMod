@@ -65,7 +65,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         nbt.setInteger("coolDown", this.coolDown);
         nbt.setInteger("spx", this.scannerPosX);
         nbt.setInteger("spy", this.scannerPosY);
-        nbt.setInteger("spz", this.scannerPwhat Z);
+        nbt.setInteger("spz", this.scannerPosZ);
         nbt.setInteger("sd", this.scannerDim);
         nbt.setInteger("sy", this.scannerYaw);
         compound.setCompoundTag(IDENTIFIER, nbt);
