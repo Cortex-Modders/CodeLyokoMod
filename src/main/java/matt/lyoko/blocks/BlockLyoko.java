@@ -19,30 +19,37 @@ import net.minecraft.world.World;
 
 public class BlockLyoko extends Block
 {
-    public BlockLyoko(int par1)
+    public BlockLyoko()
     {
-        super(par1, Material.iron);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        super(Material.field_151573_f);
+        // setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
+        
+        
+        
+        
     }
 
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
-        if (this.blockID == ModBlocks.Grass.blockID)
+        int blockId = Block.func_149682_b(this);
+        
+        if (blockId == ModBlocks.Grass.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
-        if (this.blockID == ModBlocks.Stone.blockID)
+        if (blockId == ModBlocks.Stone.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokostone");
-        if (this.blockID == ModBlocks.Sand.blockID)
+        if (blockId == ModBlocks.Sand.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokosand");
-        if (this.blockID == ModBlocks.Log.blockID)
+        if (blockId == ModBlocks.Log.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokolog");
-        if (this.blockID == ModBlocks.Carthage.blockID)
+        if (blockId == ModBlocks.Carthage.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:carthage");
-        if (this.blockID == ModBlocks.QuantumOre.blockID)
+        if (blockId == ModBlocks.QuantumOre.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        if (this.blockID == ModBlocks.LeadOre.blockID)
+        if (blockId == ModBlocks.LeadOre.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:lead");
-        if (this.blockID == ModBlocks.UraniumOre.blockID)
+        if (blockId == ModBlocks.UraniumOre.blockID)
             this.blockIcon = par1IconRegister.registerIcon("lyoko:uranium");
     }
 

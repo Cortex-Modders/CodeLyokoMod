@@ -20,10 +20,12 @@ import net.minecraft.world.World;
 
 public class BlockCable extends BlockContainer
 {
-    public BlockCable(int par1)
+    public BlockCable()
     {
-        super(par1, Material.cloth);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        // Material.cloth
+        super(Material.field_151580_n);
+        // setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     @Override

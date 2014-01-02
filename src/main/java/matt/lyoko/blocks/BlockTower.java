@@ -8,29 +8,31 @@ package matt.lyoko.blocks;
 
 import java.util.Random;
 
+import javax.swing.Icon;
+
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.particles.LyokoParticleEffects;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+
 public class BlockTower extends BlockContainer
 {
-    public BlockTower(int par1)
+    public BlockTower()
     {
-        super(par1, Material.iron);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        super(Material.field_151573_f);
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     Icon inside;
@@ -38,19 +40,20 @@ public class BlockTower extends BlockContainer
     @Override
     public void registerIcons(IconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("lyoko:tower");
+        this.field_149761_L = par1IconRegister.registerIcon("lyoko:tower");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
 
     @Override
-    public TileEntity createNewTileEntity(World var1)
+    public TileEntity func_149915_a(World var1, int metadata)
     {
         return new TileEntityTower();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int side, int meta)
+    //getIcon
+    public IIcon func_149691_a(int side, int meta)
     {
         if (side == 2 && meta == 0)
             return this.inside;
@@ -80,7 +83,8 @@ public class BlockTower extends BlockContainer
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random)
+    // randomDisplayTick
+    public void func_149734_b(World world, int x, int y, int z, Random random)
     {
         TileEntityTower tet = (TileEntityTower) world.getBlockTileEntity(x, y, z);
 
@@ -143,4 +147,5 @@ public class BlockTower extends BlockContainer
         if (l == 3)
             par1World.setBlockMetadataWithNotify(x, y, z, 3, 2);
     }
+
 }
