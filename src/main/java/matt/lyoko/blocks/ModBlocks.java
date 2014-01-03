@@ -6,6 +6,7 @@
 
 package matt.lyoko.blocks;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.items.ItemBlockEffect;
 import matt.lyoko.items.ItemBlockTowerFloor;
@@ -47,46 +48,60 @@ public class ModBlocks
     public static Block SuperCalc;
     public static Block Holomap;
 
+    
+    
+    /**
+     * func_149722_s - setBlockUnbreakable
+     * func_149752_b - setResistance
+     * func_149711_c - setHardness
+     * func_149663_c - setUnlocalizedBlockName
+     * func_149715_a - setLightValue
+     * func_149713_g - setLightOpacity
+     */
     public static void init()
     {
         // Lyoko
-        SectorBlock = new BlockSector(BlockIds.SECTOR_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoSectorBlock");
+        SectorBlock = new BlockSector().func_149752_b(1.0F).func_149711_c(1.0F).func_149672_a(Block.field_149778_k).func_149663_c("LyokoSectorBlock");
 
-        TowerBlock = new BlockTower(BlockIds.LYOKO_TOWER).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBlock");
-        TowerBase = new BlockTowerBase(BlockIds.LYOKO_TOWER_BASE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerBase");
-        Grass = new BlockLyoko(BlockIds.LYOKO_GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundGrassFootstep).setUnlocalizedName("LyokoGrass");
-        Stone = new BlockLyoko(BlockIds.LYOKO_STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoStone");
-        Sand = new BlockLyoko(BlockIds.LYOKO_SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundSandFootstep).setUnlocalizedName("LyokoSand");
-        Ice = new BlockLyokoIce(BlockIds.LYOKO_ICE, "lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoIce");
-        Log = new BlockLyoko(BlockIds.LYOKO_LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundWoodFootstep).setUnlocalizedName("LyokoLog");
-        Carthage = new BlockLyoko(BlockIds.LYOKO_CARTHAGE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundMetalFootstep).setUnlocalizedName("LyokoCarthage");
-        VirtualBlock = new BlockVirtual(BlockIds.LYOKO_VIRTUAL_BLOCK).setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundGlassFootstep).setUnlocalizedName("LyokoVirtualBlock");
-        Marabounta = new BlockMarabounta(BlockIds.LYOKO_MARABOUNTA).setResistance(3.0F).setHardness(10.0F).setUnlocalizedName("MarabountaBlock");
-        TowerConsole = new BlockTowerConsole(BlockIds.TOWER_CONSOLE).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerConsole");
-        TowerFloor = new BlockTowerFloor(BlockIds.TOWER_FLOOR).setResistance(6000000F).setBlockUnbreakable().setLightValue(7F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("TowerFloor");
+        TowerBlock = new BlockTower().func_149722_s().func_149752_b(6000000.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerBlock");
+        TowerBase = new BlockTowerBase().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerBase");
+        Grass = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149779_h).func_149663_c("LyokoGrass").func_149658_d("lyoko:lyokograss");
+        Stone = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149769_e).func_149663_c("LyokoStone").func_149658_d("lyoko:lyokostone");
+        Sand = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149776_m).func_149663_c("LyokoSand").func_149658_d("lyoko:lyokosand");
+        Ice = new BlockLyokoIce("lyokoIce", Material.field_151592_s, false).func_149752_b(6000000F).func_149722_s().func_149713_g(3).func_149672_a(Block.field_149778_k).func_149663_c("LyokoIce").func_149658_d("lyoko:lyokoice");
+        Log = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149766_f).func_149663_c("LyokoLog").func_149658_d("lyoko:lyokolog");
+        Carthage = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149777_j).func_149663_c("LyokoCarthage").func_149658_d("lyoko:carthage");
+        VirtualBlock = new BlockVirtual().func_149752_b(1.0F).func_149711_c(1.0F).func_149672_a(Block.field_149778_k).func_149663_c("LyokoVirtualBlock");
+        Marabounta = new BlockMarabounta().func_149752_b(3.0F).func_149711_c(10.0F).func_149663_c("MarabountaBlock");
+        TowerConsole = new BlockTowerConsole().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerConsole");
+        TowerFloor = new BlockTowerFloor().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerFloor");
 
         // Ore
-        QuantumOre = new BlockLyoko(BlockIds.LYOKO_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LyokoOre");
-        LeadOre = new BlockLyoko(BlockIds.LYOKO_LEAD_ORE).setHardness(10F).setResistance(20F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("LeadOre").setLightValue(10F);
-        UraniumOre = new BlockLyoko(BlockIds.LYOKO_URANIUM_ORE).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("UraniumOre").setLightValue(10F);
+        QuantumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.QUANTUM).func_149711_c(10F).func_149752_b(20F).func_149672_a(Block.field_149769_e).func_149663_c("LyokoOre").func_149658_d("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
+        LeadOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.LEAD).func_149711_c(10F).func_149752_b(20F).func_149672_a(Block.field_149769_e).func_149663_c("LeadOre").func_149713_g(10).func_149658_d("lyoko:lead");
+        UraniumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.URANIUM).func_149711_c(10F).func_149752_b(20.0F).func_149672_a(Block.field_149769_e).func_149663_c("UraniumOre").func_149713_g(10).func_149658_d("lyoko:uranium");
 
+        QuantumOre.setHarvestLevel("pickaxe", 2);
+        LeadOre.setHarvestLevel("pickaxe", 2);
+        UraniumOre.setHarvestLevel("pickaxe", 2);
+        
         // Other
-        SuperCalc = new BlockSuperCalc(BlockIds.LYOKO_SUPER_CALC).setHardness(20F).setResistance(10.0F).setUnlocalizedName("Super Computer");
-        Cable = new BlockCable(BlockIds.CABLE).setResistance(4F).setHardness(1F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("Cable");
-        Scanner = new BlockScanner(BlockIds.SCANNER).setHardness(20F).setResistance(0F).setUnlocalizedName("Scanner");
-        SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).setResistance(6000000F).setHardness(20.0F).setLightValue(7.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("SuperCalcConsole");
-        Holomap = new BlockHolomap(BlockIds.HOLOMAP).setResistance(6000000F).setHardness(10.0F).setLightValue(15.0F).setStepSound(Block.soundMetalFootstep).setUnlocalizedName("Holomap");
+        SuperCalc = new BlockSuperCalc().func_149711_c(20F).func_149752_b(10.0F).func_149663_c("Super Computer");
+        Cable = new BlockCable().func_149752_b(4F).func_149711_c(1F).func_149672_a(Block.field_149775_l).func_149663_c("Cable");
+        Scanner = new BlockScanner().func_149711_c(20F).func_149752_b(0F).func_149663_c("Scanner");
+        SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).func_149752_b(6000000F).func_149711_c(20.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("SuperCalcConsole");
+        Holomap = new BlockHolomap().func_149752_b(6000000F).func_149711_c(10.0F).func_149713_g(15).func_149672_a(Block.field_149777_j).func_149663_c("Holomap");
 
         // Digital Sea
-        DigitalSeaBlock = new BlockDigitalSea(BlockIds.LYOKO_DIGITAL_SEA_BLOCK).setResistance(6000000F).setBlockUnbreakable().setUnlocalizedName("DigitalSeaBlock");
-        DigitalSeaLiquid = new BlockDigitalSeaLiquid(BlockIds.LYOKO_DIGITAL_SEA_LIQUID, ModFluids.digitalSea, Material.water).setUnlocalizedName("DigitalSeaLiquid");
+        DigitalSeaBlock = new BlockDigitalSea().func_149752_b(6000000F).func_149722_s().func_149663_c("DigitalSeaBlock");
+        DigitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.field_151586_h).func_149663_c("DigitalSeaLiquid");
 
         // Portal (Unused)
-        //LyokoPolarPortal = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setUnlocalizedName("PolarPortal").setCreativeTab(null);
-        //LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setUnlocalizedName("DesertPortal").setCreativeTab(null);
-        //LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setUnlocalizedName("ForestPortal").setCreativeTab(null);
-        //LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setUnlocalizedName("MountainPortal").setCreativeTab(null);
-        //LyokoCarthagePortal = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setUnlocalizedName("CarthagePortal").setCreativeTab(null);
+        //LyokoPolarPortal = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).func_149663_c("PolarPortal").setCreativeTab(null);
+        //LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).func_149663_c("DesertPortal").setCreativeTab(null);
+        //LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).func_149663_c("ForestPortal").setCreativeTab(null);
+        //LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).func_149663_c("MountainPortal").setCreativeTab(null);
+        //LyokoCarthagePortal = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).func_149663_c("CarthagePortal").setCreativeTab(null);
 
         registerBlocks();
         registerLanguage();
@@ -94,6 +109,7 @@ public class ModBlocks
 
     public static void registerBlocks()
     {
+        
         GameRegistry.registerBlock(SectorBlock, "SectorBlock");
 
         GameRegistry.registerBlock(Scanner, "Scanner");

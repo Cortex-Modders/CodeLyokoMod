@@ -14,7 +14,7 @@ import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -75,7 +75,7 @@ public class BlockCable extends BlockContainer
 
     public void syncBlock(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        // func_147439_a - getBlock
+        // func_147439_a - getBlock | func_147438_o - getTileEntity
         if (world.func_147439_a(x, y, z) instanceof BlockCable && world.func_147438_o(x, y, z) instanceof TileEntityCable)
         {
             TileEntityCable tile = (TileEntityCable) world.func_147438_o(x, y, z);
@@ -89,41 +89,45 @@ public class BlockCable extends BlockContainer
 
     public void syncBlock2(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        if (world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityScanner)
+        // func_147439_a - getBlock
+        if (world.func_147439_a(x, y, z) instanceof BlockScanner && world.func_147438_o(x, y, z) instanceof TileEntityScanner)
         {
-            TileEntityScanner tile = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
+            TileEntityScanner tile = (TileEntityScanner) world.func_147438_o(x, y, z);
             if (tile != null && !localCable.getSector().equals("") && tile.sector == -1)
             {
                 tile.sector = this.convertSectorToInt(localCable.getSector());
-                world.markBlockForUpdate(x, y, z);
+                // func_147471_g - markBlockForUpdate
+                world.func_147471_g(x, y, z);
             }
         }
     }
 
     public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
     {
-//        if (world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalc)
-//        {
-//            TileEntitySuperCalc tile = (TileEntitySuperCalc) world.getBlockTileEntity(x, y, z);
-//            if (tile != null && !localCable.getSector().equals("") && tile.sector.equals(""))
-//            {
-//                tile.sector = localCable.getSector();
-//                world.markBlockForUpdate(x, y, z);
-//            }
-//        }
+        if (world.func_147439_a(x, y, z) instanceof BlockSuperCalc && world.func_147438_o(x, y, z) instanceof TileEntitySuperCalc)
+        {
+            TileEntitySuperCalc tile = (TileEntitySuperCalc) world.func_147438_o(x, y, z);
+            if (tile != null && !localCable.getSector().equals("") && tile.sector.equals(""))
+            {
+                tile.sector = localCable.getSector();
+                // func_147471_g - markBlockForUpdate
+                world.func_147471_g(x, y, z);
+            }
+        }
     }
 
     public void syncBlock4(World world, int x, int y, int z, TileEntityCable localCable)
     {
-//        if (world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && world.getBlockTileEntity(x, y, z) instanceof TileEntityHolomap)
-//        {
-//            TileEntityHolomap tile = (TileEntityHolomap) world.getBlockTileEntity(x, y, z);
-//            if (tile != null && !localCable.getSector().equals(""))
-//            {
-//                tile.sector = (byte) (this.convertSectorToInt(localCable.getSector()) + 1);
-//                world.markBlockForUpdate(x, y, z);
-//            }
-//        }
+        if (world.func_147439_a(x, y, z) instanceof BlockHolomap && world.func_147438_o(x, y, z) instanceof TileEntityHolomap)
+        {
+            TileEntityHolomap tile = (TileEntityHolomap) world.func_147438_o(x, y, z);
+            if (tile != null && !localCable.getSector().equals(""))
+            {
+                tile.sector = (byte) (this.convertSectorToInt(localCable.getSector()) + 1);
+                // func_147471_g - markBlockForUpdate
+                world.func_147471_g(x, y, z);
+            }
+        }
     }
 
     public int convertSectorToInt(String sector)
@@ -156,77 +160,94 @@ public class BlockCable extends BlockContainer
      */
 
     @Override
-    public int getRenderBlockPass()
+    //getRenderBlockPass
+    public int func_149701_w()
     {
         return 1;
     }
 
     @Override
-    public int getRenderType()
+    // getRenderType
+    public int func_149645_b()
     {
         return -1;
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    //registerBlockIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("lyoko:cable");
+        //blockIcon
+        this.field_149761_L = par1IconRegister.registerIcon("lyoko:cable");
     }
 
     @Override
-    public boolean isOpaqueCube()
+    //isOpaqueCube
+    public boolean func_149662_c()
     {
         return false;
 
     }
 
-    private boolean validBlock(int block, int side)
+    private boolean validBlock(Block block, int side)
     {
-        if (block == this.blockID || block == ModBlocks.SuperCalcConsole.blockID)
+        if (block instanceof BlockCable || block instanceof BlockSuperCalcConsole)
             return true;
-        else if (block == ModBlocks.SuperCalc.blockID && (side == 1 || side == 0))
+        else if (block instanceof BlockSuperCalc && (side == 1 || side == 0))
             return true;
-        else if (block == ModBlocks.Holomap.blockID && side != 0)
+        else if (block instanceof BlockHolomap && side != 0)
             return true;
-        else if (block == ModBlocks.Scanner.blockID && (side == 0 || side == 1))
+        else if (block instanceof BlockScanner && (side == 0 || side == 1))
             return true;
         return false;
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int x, int y, int z)
+    //setBlockBoundsBasedOnState
+    public void func_149719_a(IBlockAccess world, int x, int y, int z)
     {
-        this.setBlockBounds(0.3125F, 0.3125F, 0.3125F, 0.6875F, 0.6875F, 0.6875F);
-        float minx = (float) this.minX;
-        float maxx = (float) this.maxX;
-        float miny = (float) this.minY;
-        float maxy = (float) this.maxY;
-        float minz = (float) this.minZ;
-        float maxz = (float) this.maxZ;
+        //func_149676_a - setBlockBounds
+        this.func_149676_a(0.3125F, 0.3125F, 0.3125F, 0.6875F, 0.6875F, 0.6875F);
+        
+        /*
+         * field_149759_B - blockMinX
+         * field_149760_C - blockMinY
+         * field_149754_D - blockMinZ
+         * field_149755_E - blockMaxX
+         * field_149756_F - blockMaxY
+         * field_149757_G - blockMaxZ
+         */
+        float minx = (float) this.field_149759_B;
+        float maxx = (float) this.field_149760_C;
+        float miny = (float) this.field_149754_D;
+        float maxy = (float) this.field_149755_E;
+        float minz = (float) this.field_149756_F;
+        float maxz = (float) this.field_149757_G;
 
-        if (this.validBlock(par1IBlockAccess.getBlockId(x - 1, y, z), 2))
+        if (this.validBlock(world.func_147439_a(x - 1, y, z), 2))
             minx = 0;
 
-        if (this.validBlock(par1IBlockAccess.getBlockId(x + 1, y, z), 3))
+        if (this.validBlock(world.func_147439_a(x + 1, y, z), 3))
             maxx = 1;
 
-        if (this.validBlock(par1IBlockAccess.getBlockId(x, y - 1, z), 0))
+        if (this.validBlock(world.func_147439_a(x, y - 1, z), 0))
             miny = 0;
 
-        if (this.validBlock(par1IBlockAccess.getBlockId(x, y + 1, z), 1))
+        if (this.validBlock(world.func_147439_a(x, y + 1, z), 1))
             maxy = 1;
 
-        if (this.validBlock(par1IBlockAccess.getBlockId(x, y, z - 1), 4))
+        if (this.validBlock(world.func_147439_a(x, y, z - 1), 4))
             minz = 0;
 
-        if (this.validBlock(par1IBlockAccess.getBlockId(x, y, z + 1), 5))
+        if (this.validBlock(world.func_147439_a(x, y, z + 1), 5))
             maxz = 1;
 
-        this.setBlockBounds(minx, miny, minz, maxx, maxy, maxz);
+        this.func_149676_a(minx, miny, minz, maxx, maxy, maxz);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    // createNewTileEntity
+    public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntityCable();
     }

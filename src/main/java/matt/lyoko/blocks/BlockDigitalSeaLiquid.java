@@ -11,7 +11,7 @@ import matt.lyoko.lib.LyokoDamageSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -19,33 +19,39 @@ import net.minecraftforge.fluids.Fluid;
 
 public class BlockDigitalSeaLiquid extends BlockFluidClassic
 {
-    public BlockDigitalSeaLiquid(int i, Fluid fluid, Material material)
+    public BlockDigitalSeaLiquid(Fluid fluid, Material material)
     {
-        super(i, fluid, material);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        super(0, fluid, material);
+        // setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     @Override
-    public Icon getIcon(int side, int meta)
+    //getIcon
+    public IIcon func_149691_a(int side, int meta)
     {
-        return Block.waterMoving.getIcon(side, meta);
+        //func_149684_b - getBlockFromName
+        return Block.func_149684_b("flowing_water").func_149691_a(side, meta);
 
     }
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-        return this.maxScaledLight;
+        // fix later
+        return 10;//this.maxScaledLight;
     }
 
     @Override
-    public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)
+    //colorMultiplayer
+    public int func_149720_d(IBlockAccess iblockaccess, int i, int j, int k)
     {
         return this.getFluid().getColor();
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
+    //onEntityCollidedWithBlock
+    public void func_149670_a(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         par5Entity.attackEntityFrom(LyokoDamageSource.digitalSea, 100);
     }

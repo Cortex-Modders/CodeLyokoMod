@@ -15,12 +15,12 @@ import net.minecraft.client.renderer.texture.IconRegister;
 
 public class BlockLyokoIce extends BlockBreakable
 {
-    public BlockLyokoIce(int par1, String par2, Material material, boolean flag)
+    public BlockLyokoIce(String par2, Material material, boolean flag)
     {
-        super(par1, par2, material, flag);
+        super(par2, material, flag);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
-        this.setBlockUnbreakable();
-
+        //setBlockUnbreakable
+        this.func_149722_s();
     }
 
     @Override
