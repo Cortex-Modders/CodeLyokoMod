@@ -106,7 +106,7 @@ public class BlockMarabounta extends BlockContainer
         if (block instanceof ILyokoTerrain)
         {
             // setBlock
-            world.func_147465_d(x, y, z, ModBlocks.Marabounta, 0, 0);
+            world.func_147465_d(x, y, z, ModBlocks.Marabounta, 0, 2);
             tem = (TileEntityMarabounta) world.func_147438_o(x, y, z);
             tem.consumedBlock = block;
         }
