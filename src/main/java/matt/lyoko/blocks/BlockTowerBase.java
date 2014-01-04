@@ -35,17 +35,17 @@ public class BlockTowerBase extends BlockContainer
     IIcon inside;
 
     @Override
-    //registerBlockIcons
+    // registerBlockIcons
     public void func_149651_a(IIconRegister par1IconRegister)
     {
-        //blockIcon
+        // blockIcon
         this.field_149761_L = par1IconRegister.registerIcon("lyoko:towerbase");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    //getIcon
+    // getIcon
     public IIcon func_149691_a(int side, int meta)
     {
         if (side == 2 && (meta == 0 || meta == 5))
@@ -56,19 +56,19 @@ public class BlockTowerBase extends BlockContainer
             return this.inside;
         else if (side == 5 && (meta == 1 || meta == 6))
             return this.inside;
-        //blockIcon
+        // blockIcon
         return this.field_149761_L;
     }
 
     @Override
-    //createNewTileEntity
+    // createNewTileEntity
     public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntityTower();
     }
 
     @Override
-    //onBlockPlacedBy
+    // onBlockPlacedBy
     public void func_149689_a(World world, int x, int y, int z, EntityLivingBase ent, ItemStack stack)
     {
         int l = MathHelper.floor_double(ent.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
@@ -80,7 +80,7 @@ public class BlockTowerBase extends BlockContainer
     }
 
     @Override
-    //getCollisionBoundingBoxFromPool
+    // getCollisionBoundingBoxFromPool
     public AxisAlignedBB func_149668_a(World world, int x, int y, int z)
     {
         if (world.getBlockMetadata(x, y, z) >= 5 && world.getBlockMetadata(x, y, z) <= 8)
@@ -89,7 +89,7 @@ public class BlockTowerBase extends BlockContainer
     }
 
     @Override
-    //onEntityCollidedWithBlock
+    // onEntityCollidedWithBlock
     public void func_149670_a(World world, int x, int y, int z, Entity ent)
     {
         if (ent instanceof EntityPlayer && !ent.worldObj.isRemote && world.getBlockMetadata(x, y, z) >= 5 && world.getBlockMetadata(x, y, z) <= 8)
@@ -106,14 +106,14 @@ public class BlockTowerBase extends BlockContainer
     }
 
     @Override
-    //renderAsNormalBlock
+    // renderAsNormalBlock
     public boolean func_149686_d()
     {
         return false;
     }
 
     @Override
-    //isOpaqueCube
+    // isOpaqueCube
     public boolean func_149662_c()
     {
         return false;

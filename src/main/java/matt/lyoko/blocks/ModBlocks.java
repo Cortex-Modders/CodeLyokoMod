@@ -11,7 +11,6 @@ import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.items.ItemBlockEffect;
 import matt.lyoko.items.ItemBlockTowerFloor;
 import matt.lyoko.items.ItemBlockVirtual;
-import matt.lyoko.lib.BlockIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -48,8 +47,6 @@ public class ModBlocks
     public static Block SuperCalc;
     public static Block Holomap;
 
-    
-    
     /**
      * func_149722_s - setBlockUnbreakable
      * func_149752_b - setResistance
@@ -65,11 +62,12 @@ public class ModBlocks
 
         TowerBlock = new BlockTower().func_149722_s().func_149752_b(6000000.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerBlock");
         TowerBase = new BlockTowerBase().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerBase");
-        Grass = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149779_h).func_149663_c("LyokoGrass").func_149658_d("lyoko:lyokograss");
-        Stone = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149769_e).func_149663_c("LyokoStone").func_149658_d("lyoko:lyokostone");
-        Sand = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149776_m).func_149663_c("LyokoSand").func_149658_d("lyoko:lyokosand");
+        Grass = new BlockLyokoTerrain(LyokoTerrainTypes.GRASS).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149779_h).func_149663_c("LyokoGrass").func_149658_d("lyoko:lyokograss");
+        Stone = new BlockLyokoTerrain(LyokoTerrainTypes.STONE).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149769_e).func_149663_c("LyokoStone").func_149658_d("lyoko:lyokostone");
+        Sand = new BlockLyokoTerrain(LyokoTerrainTypes.SAND).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149776_m).func_149663_c("LyokoSand").func_149658_d("lyoko:lyokosand");
         Ice = new BlockLyokoIce("lyokoIce", Material.field_151592_s, false).func_149752_b(6000000F).func_149722_s().func_149713_g(3).func_149672_a(Block.field_149778_k).func_149663_c("LyokoIce").func_149658_d("lyoko:lyokoice");
-        Log = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149766_f).func_149663_c("LyokoLog").func_149658_d("lyoko:lyokolog");
+
+        Log = new BlockLyokoTerrain(LyokoTerrainTypes.LOG).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149766_f).func_149663_c("LyokoLog").func_149658_d("lyoko:lyokolog");
         Carthage = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149777_j).func_149663_c("LyokoCarthage").func_149658_d("lyoko:carthage");
         VirtualBlock = new BlockVirtual().func_149752_b(1.0F).func_149711_c(1.0F).func_149672_a(Block.field_149778_k).func_149663_c("LyokoVirtualBlock");
         Marabounta = new BlockMarabounta().func_149752_b(3.0F).func_149711_c(10.0F).func_149663_c("MarabountaBlock");
@@ -84,12 +82,12 @@ public class ModBlocks
         QuantumOre.setHarvestLevel("pickaxe", 2);
         LeadOre.setHarvestLevel("pickaxe", 2);
         UraniumOre.setHarvestLevel("pickaxe", 2);
-        
+
         // Other
         SuperCalc = new BlockSuperCalc().func_149711_c(20F).func_149752_b(10.0F).func_149663_c("Super Computer");
         Cable = new BlockCable().func_149752_b(4F).func_149711_c(1F).func_149672_a(Block.field_149775_l).func_149663_c("Cable");
         Scanner = new BlockScanner().func_149711_c(20F).func_149752_b(0F).func_149663_c("Scanner");
-        SuperCalcConsole = new BlockSuperCalcConsole(BlockIds.SUPER_CALC_CONSOLE).func_149752_b(6000000F).func_149711_c(20.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("SuperCalcConsole");
+        SuperCalcConsole = new BlockSuperCalcConsole().func_149752_b(6000000F).func_149711_c(20.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("SuperCalcConsole");
         Holomap = new BlockHolomap().func_149752_b(6000000F).func_149711_c(10.0F).func_149713_g(15).func_149672_a(Block.field_149777_j).func_149663_c("Holomap");
 
         // Digital Sea
@@ -97,11 +95,16 @@ public class ModBlocks
         DigitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.field_151586_h).func_149663_c("DigitalSeaLiquid");
 
         // Portal (Unused)
-        //LyokoPolarPortal = new BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).func_149663_c("PolarPortal").setCreativeTab(null);
-        //LyokoDesertPortal = new BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).func_149663_c("DesertPortal").setCreativeTab(null);
-        //LyokoForestPortal = new BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).func_149663_c("ForestPortal").setCreativeTab(null);
-        //LyokoMountainPortal = new BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).func_149663_c("MountainPortal").setCreativeTab(null);
-        //LyokoCarthagePortal = new BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).func_149663_c("CarthagePortal").setCreativeTab(null);
+        // LyokoPolarPortal = new
+        // BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).func_149663_c("PolarPortal").setCreativeTab(null);
+        // LyokoDesertPortal = new
+        // BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).func_149663_c("DesertPortal").setCreativeTab(null);
+        // LyokoForestPortal = new
+        // BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).func_149663_c("ForestPortal").setCreativeTab(null);
+        // LyokoMountainPortal = new
+        // BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).func_149663_c("MountainPortal").setCreativeTab(null);
+        // LyokoCarthagePortal = new
+        // BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).func_149663_c("CarthagePortal").setCreativeTab(null);
 
         registerBlocks();
         registerLanguage();
@@ -109,7 +112,7 @@ public class ModBlocks
 
     public static void registerBlocks()
     {
-        
+
         GameRegistry.registerBlock(SectorBlock, "SectorBlock");
 
         GameRegistry.registerBlock(Scanner, "Scanner");

@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class BlockDigitalSea extends Block
 {
-    public BlockDigitalSea(int par1)
+    public BlockDigitalSea()
     {
         // Material.iron
         super(Material.field_151573_f);
@@ -30,7 +30,7 @@ public class BlockDigitalSea extends Block
     }
 
     @Override
-    //registerBlockIcons
+    // registerBlockIcons
     public void func_149651_a(IIconRegister par1IconRegister)
     {
         this.field_149761_L = par1IconRegister.registerIcon("lyoko:digitalseablock");
@@ -43,14 +43,14 @@ public class BlockDigitalSea extends Block
     }
 
     @Override
-    //quantityDropped
+    // quantityDropped
     public int func_149745_a(Random par1Random)
     {
         return 0;
     }
 
     @Override
-    //getCollisionBoundingBoxFromPool
+    // getCollisionBoundingBoxFromPool
     public AxisAlignedBB func_149668_a(World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
@@ -58,7 +58,7 @@ public class BlockDigitalSea extends Block
     }
 
     @Override
-    //onEntityCollidedWithBlock
+    // onEntityCollidedWithBlock
     public void func_149670_a(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         par5Entity.attackEntityFrom(LyokoDamageSource.digitalSea, 100);

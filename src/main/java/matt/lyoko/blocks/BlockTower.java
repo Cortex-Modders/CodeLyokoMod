@@ -25,22 +25,23 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-
 public class BlockTower extends BlockContainer
 {
     public BlockTower()
     {
+        // Material.iron
         super(Material.field_151573_f);
+        // setCreativeTab
         this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     IIcon inside;
 
     @Override
-    //registerBlockIcons
+    // registerBlockIcons
     public void func_149651_a(IIconRegister par1IconRegister)
     {
-        //blockIcon
+        // blockIcon
         this.field_149761_L = par1IconRegister.registerIcon("lyoko:tower");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
@@ -53,7 +54,7 @@ public class BlockTower extends BlockContainer
 
     @SideOnly(Side.CLIENT)
     @Override
-    //getIcon
+    // getIcon
     public IIcon func_149691_a(int side, int meta)
     {
         if (side == 2 && meta == 0)
@@ -104,22 +105,22 @@ public class BlockTower extends BlockContainer
             double y2 = y + worldRand.nextFloat();
             double z2 = z + worldRand.nextFloat();
 
-            if (side == 0 && !world.isBlockOpaqueCube(x, y + 1, z))
+            if (side == 0 && !world.func_147439_a(x, y + 1, z).func_149662_c())
                 y2 = y + 1 + pixelWidth;
 
-            if (side == 1 && !world.isBlockOpaqueCube(x, y - 1, z))
+            if (side == 1 && !world.func_147439_a(x, y - 1, z).func_149662_c())
                 y2 = y + 0 - pixelWidth;
 
-            if (side == 2 && !world.isBlockOpaqueCube(x, y, z + 1) && meta != 2)
+            if (side == 2 && !world.func_147439_a(x, y, z + 1).func_149662_c() && meta != 2)
                 z2 = z + 1 + pixelWidth;
 
-            if (side == 3 && !world.isBlockOpaqueCube(x, y, z - 1) && meta != 0)
+            if (side == 3 && !world.func_147439_a(x, y, z - 1).func_149662_c() && meta != 0)
                 z2 = z + 0 - pixelWidth;
 
-            if (side == 4 && !world.isBlockOpaqueCube(x + 1, y, z) && meta != 1)
+            if (side == 4 && !world.func_147439_a(x + 1, y, z).func_149662_c() && meta != 1)
                 x2 = x + 1 + pixelWidth;
 
-            if (side == 5 && !world.isBlockOpaqueCube(x - 1, y, z) && meta != 3)
+            if (side == 5 && !world.func_147439_a(x - 1, y, z).func_149662_c() && meta != 3)
                 x2 = x + 0 - pixelWidth;
 
             if (x2 < x || x2 > x + 1 || y2 < 0.0D || y2 > y + 1 || z2 < z || z2 > z + 1)
@@ -135,7 +136,8 @@ public class BlockTower extends BlockContainer
     }
 
     @Override
-    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    // onBlockPlacedBy
+    public void func_149689_a(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 

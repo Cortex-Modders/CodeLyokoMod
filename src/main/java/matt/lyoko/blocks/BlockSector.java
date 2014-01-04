@@ -8,59 +8,66 @@ package matt.lyoko.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntitySector;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockSector extends BlockContainer
 {
-    public BlockSector(int par1)
+    public BlockSector()
     {
-        super(par1, Material.iron);
+        // iron
+        super(Material.field_151573_f);
     }
 
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand)
-    {
-        super.updateTick(world, x, y, z, rand);
-        world.getBlockTileEntity(x, y, z).updateEntity();
-    }
-
-    @Override
-    public void onEntityWalking(World world, int x, int y, int z, Entity ent)
-    {
-        this.updateTick(world, x, y, z, null);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World world)
+    // createNewTileEntity
+    public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntitySector();
     }
-    
+
+    @Override
+    //updateTick
+    public void func_149674_a(World world, int x, int y, int z, Random rand)
+    {
+        super.func_149674_a(world, x, y, z, rand);
+        //updateTileEntity
+        //TODO: figure out what this does
+        world.func_147438_o(x, y, z).func_145845_h();
+    }
+
+    @Override
+    //onEntityWalking
+    public void func_149724_b(World world, int x, int y, int z, Entity ent)
+    {
+        //updateTick
+        this.func_149674_a(world, x, y, z, null);
+    }
+
     @SideOnly(Side.CLIENT)
-    private Icon virtualGrass;
+    private IIcon virtualGrass;
     @SideOnly(Side.CLIENT)
-    private Icon virtualStone;
+    private IIcon virtualStone;
     @SideOnly(Side.CLIENT)
-    private Icon virtualSand;
+    private IIcon virtualSand;
     @SideOnly(Side.CLIENT)
-    private Icon virtualIce;
+    private IIcon virtualIce;
     @SideOnly(Side.CLIENT)
-    private Icon virtualCarthage;
+    private IIcon virtualCarthage;
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
+    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
     {
         if (access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokoforest))
             return this.virtualGrass;
@@ -77,9 +84,10 @@ public class BlockSector extends BlockContainer
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+    // registerBlockIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
-        this.virtualGrass = this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
+        this.virtualGrass = this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokograss");
         this.virtualStone = par1IconRegister.registerIcon("lyoko:lyokostone");
         this.virtualSand = par1IconRegister.registerIcon("lyoko:lyokosand");
         this.virtualIce = par1IconRegister.registerIcon("lyoko:lyokoice");

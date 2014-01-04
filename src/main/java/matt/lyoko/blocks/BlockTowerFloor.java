@@ -9,38 +9,41 @@ package matt.lyoko.blocks;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockTowerFloor extends Block
 {
-    public BlockTowerFloor(int par1)
+    public BlockTowerFloor()
     {
-        super(par1, Material.iron);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        // material.iron
+        super(Material.field_151573_f);
+        // setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     public boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
     {
-        if (access.getBlockId(x + 1, y, z + 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 1, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 1, y, z - 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x, y, z + 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x, y, z - 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x - 1, y, z + 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x - 1, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x - 1, y, z - 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 2, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 3, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockMetadata(x, y, z) == 0)
+        if (access.func_147439_a(x + 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z) instanceof BlockTowerFloor && access.func_147439_a(x, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x + 2, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 3, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 0)
             return true;
-        else if (access.getBlockId(x + 1, y, z + 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 1, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 1, y, z - 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x, y, z + 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x, y, z - 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x - 1, y, z + 1) == ModBlocks.TowerFloor.blockID && access.getBlockId(x - 1, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x - 1, y, z - 1) == ModBlocks.TowerFloor.blockID && access.getBlockMetadata(x, y, z) == 1)
+        else if (access.func_147439_a(x + 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z) instanceof BlockTowerFloor && access.func_147439_a(x, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z - 1) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 1)
             return true;
         return false;
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
+    // onEntityCollidedWithBlock
+    public void func_149670_a(World world, int x, int y, int z, Entity ent)
     {
         int distance = y + 2;
         if (world.getBlockMetadata(x, y, z) == 0 && this.isMultiBlock(world, x, y, z))
         {
             for (int i = y + 1; i < 256; i++)
-                if (world.getBlockId(x, i, z) == ModBlocks.TowerFloor.blockID)
+                if (world.func_147439_a(x, i, z) instanceof BlockTowerFloor)
                 {
                     distance = i + 1;
                     break;
@@ -48,10 +51,11 @@ public class BlockTowerFloor extends Block
             ent.setLocationAndAngles(x + 1.75, distance, z + 0.5, 90, ent.rotationPitch);
             if (!ent.worldObj.isRemote)
                 ent.setVelocity(0.0D, 0.0D, 0.0D);
-        } else if (world.getBlockMetadata(x, y, z) == 1 && this.isMultiBlock(world, x, y, z))
+        }
+        else if (world.getBlockMetadata(x, y, z) == 1 && this.isMultiBlock(world, x, y, z))
         {
             for (int i = 0; i < y; i++)
-                if (world.getBlockId(x, i, z) == ModBlocks.TowerFloor.blockID)
+                if (world.func_147439_a(x, i, z) instanceof BlockTowerFloor)
                 {
                     distance = i + 1;
                     break;
@@ -63,35 +67,37 @@ public class BlockTowerFloor extends Block
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    // getCollisionBoundingBoxFromPool
+    public AxisAlignedBB func_149668_a(World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
         return AxisAlignedBB.getBoundingBox(par2 - 1, par3 - 1, par4 - 1, par2 + 1, par3 + 1 - f, par4 + 1);
     }
 
-    private Icon tr;
-    private Icon tc;
-    private Icon tl;
-    private Icon cr;
-    private Icon cc;
-    private Icon cl;
-    private Icon cl2;
-    private Icon br;
-    private Icon bc;
-    private Icon bl;
-    private Icon bottomSide;
-    private Icon extension;
+    private IIcon tr;
+    private IIcon tc;
+    private IIcon tl;
+    private IIcon cr;
+    private IIcon cc;
+    private IIcon cl;
+    private IIcon cl2;
+    private IIcon br;
+    private IIcon bc;
+    private IIcon bl;
+    private IIcon bottomSide;
+    private IIcon extension;
 
-    private Icon[][] topIcons = new Icon[3][3];
+    private IIcon[][] topIcons = new IIcon[3][3];
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    // registerBlockIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
         this.tr = par1IconRegister.registerIcon("lyoko:tr");
         this.tc = par1IconRegister.registerIcon("lyoko:tc");
         this.tl = par1IconRegister.registerIcon("lyoko:tl");
         this.cr = par1IconRegister.registerIcon("lyoko:cr");
-        this.cc = this.blockIcon = par1IconRegister.registerIcon("lyoko:cc");
+        this.cc = this.field_149761_L = par1IconRegister.registerIcon("lyoko:cc");
         this.cl = par1IconRegister.registerIcon("lyoko:cl");
         this.cl2 = par1IconRegister.registerIcon("lyoko:cl2");
         this.br = par1IconRegister.registerIcon("lyoko:br");
@@ -112,7 +118,8 @@ public class BlockTowerFloor extends Block
     }
 
     @Override
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
+    // getIcon
+    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
     {
         if (side == 1)
         {
@@ -121,7 +128,7 @@ public class BlockTowerFloor extends Block
                     if (this.isMultiBlock(access, x - i + 1, y, z - j + 1))
                     {
                         if (j == 1 && i == 2)
-                            if (access.getBlockId(x + 1, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockId(x + 2, y, z) == ModBlocks.TowerFloor.blockID && access.getBlockMetadata(x - 1, y, z) == 0)
+                            if (access.func_147439_a(x + 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 2, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x - 1, y, z) == 0)
                                 return this.cl2;
                         return this.topIcons[j][i];
                     }

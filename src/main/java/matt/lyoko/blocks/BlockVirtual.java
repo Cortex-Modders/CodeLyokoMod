@@ -10,27 +10,31 @@ import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.DimensionIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockVirtual extends Block
 {
-    public BlockVirtual(int par1)
+    public BlockVirtual()
     {
-        super(par1, Material.iron);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        // material.iron
+        super(Material.field_151573_f);
+        // setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     @Override
-    public void onBlockAdded(World world, int x, int y, int z)
+    // onBlockAdded
+    public void func_149726_b(World world, int x, int y, int z)
     {
-        super.onBlockAdded(world, x, y, z);
+        super.func_149726_b(world, x, y, z);
         if (world.provider.dimensionId != DimensionIds.ICE && world.provider.dimensionId != DimensionIds.MOUNTAIN && world.provider.dimensionId != DimensionIds.FOREST && world.provider.dimensionId != DimensionIds.DESERT && world.provider.dimensionId != DimensionIds.CARTHAGE)
-            world.setBlock(x, y, z, 0);
+            // setBlock
+            world.func_147468_f(x, y, z);
     }
 
     public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase ent)
@@ -42,14 +46,15 @@ public class BlockVirtual extends Block
         }
     }
 
-    private Icon virtualGrass;
-    private Icon virtualStone;
-    private Icon virtualSand;
-    private Icon virtualIce;
-    private Icon virtualCarthage;
+    private IIcon virtualGrass;
+    private IIcon virtualStone;
+    private IIcon virtualSand;
+    private IIcon virtualIce;
+    private IIcon virtualCarthage;
 
     @Override
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
+    // getBlockTextures
+    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
     {
         if (access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokoforest))
             return this.virtualGrass;
@@ -65,9 +70,10 @@ public class BlockVirtual extends Block
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    // registerIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
-        this.virtualGrass = this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
+        this.virtualGrass = this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokograss");
         this.virtualStone = par1IconRegister.registerIcon("lyoko:lyokostone");
         this.virtualSand = par1IconRegister.registerIcon("lyoko:lyokosand");
         this.virtualIce = par1IconRegister.registerIcon("lyoko:lyokoice");

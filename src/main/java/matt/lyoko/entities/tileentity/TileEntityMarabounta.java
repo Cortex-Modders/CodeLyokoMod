@@ -8,7 +8,10 @@
 
 package matt.lyoko.entities.tileentity;
 
+import matt.lyoko.blocks.LyokoTerrainTypes;
 import matt.lyoko.blocks.ModBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -17,7 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityMarabounta extends TileEntity
 {
-    public int consumedBlock = 0;
+    public Block consumedBlock = Blocks.air;
 
     @Override
     public void updateEntity()

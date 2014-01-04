@@ -13,35 +13,43 @@ import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 
-public class BlockLyokoIce extends BlockBreakable
+public class BlockLyokoIce extends BlockBreakable implements ILyokoTerrain
 {
+
     public BlockLyokoIce(String par2, Material material, boolean flag)
     {
         super(par2, material, flag);
-        //setCreativeTab
+        // setCreativeTab
         this.func_149647_a(CodeLyoko.LyokoTabs);
-        //setBlockUnbreakable
+        // setBlockUnbreakable
         this.func_149722_s();
     }
 
     @Override
-    			//registerIcons
+    // registerIcons
     public void func_149651_a(IIconRegister par1IconRegister)
     {
-    	//blockIcon
+        // blockIcon
         this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokoice");
     }
 
     @Override
-    public int getRenderBlockPass()
+    // getRenderBlockPass
+    public int func_149701_w()
     {
         return 1;
     }
 
     @Override
-    		//quantityDropped
+    // quantityDropped
     public int func_149745_a(Random par1Random)
     {
         return 1;
+    }
+
+    @Override
+    public LyokoTerrainTypes getType()
+    {
+        return LyokoTerrainTypes.ICE;
     }
 }

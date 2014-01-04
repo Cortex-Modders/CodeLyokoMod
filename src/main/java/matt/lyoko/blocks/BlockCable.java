@@ -30,7 +30,7 @@ public class BlockCable extends BlockContainer
     }
 
     @Override
-    //onNeighborBlockChange
+    // onNeighborBlockChange
     public void func_149695_a(World world, int x, int y, int z, Block neighborBlock)
     {
         // world.func_147438_o - world.getTileEntity
@@ -47,7 +47,7 @@ public class BlockCable extends BlockContainer
                 this.syncBlock(world, x, y, z + 1, tile);
                 this.syncBlock(world, x, y, z - 1, tile);
                 String test2 = tile.getSector();
-                
+
                 // func_147459_d - notifyBlocksOfNeighborChange
                 if (!test1.equals(test2))
                     world.func_147459_d(x, y, z, this);
@@ -160,7 +160,7 @@ public class BlockCable extends BlockContainer
      */
 
     @Override
-    //getRenderBlockPass
+    // getRenderBlockPass
     public int func_149701_w()
     {
         return 1;
@@ -174,15 +174,15 @@ public class BlockCable extends BlockContainer
     }
 
     @Override
-    //registerBlockIcons
+    // registerBlockIcons
     public void func_149651_a(IIconRegister par1IconRegister)
     {
-        //blockIcon
+        // blockIcon
         this.field_149761_L = par1IconRegister.registerIcon("lyoko:cable");
     }
 
     @Override
-    //isOpaqueCube
+    // isOpaqueCube
     public boolean func_149662_c()
     {
         return false;
@@ -203,12 +203,12 @@ public class BlockCable extends BlockContainer
     }
 
     @Override
-    //setBlockBoundsBasedOnState
+    // setBlockBoundsBasedOnState
     public void func_149719_a(IBlockAccess world, int x, int y, int z)
     {
-        //func_149676_a - setBlockBounds
+        // func_149676_a - setBlockBounds
         this.func_149676_a(0.3125F, 0.3125F, 0.3125F, 0.6875F, 0.6875F, 0.6875F);
-        
+
         /*
          * field_149759_B - blockMinX
          * field_149760_C - blockMinY

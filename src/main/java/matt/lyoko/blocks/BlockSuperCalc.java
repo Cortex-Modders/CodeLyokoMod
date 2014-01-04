@@ -29,9 +29,9 @@ public class BlockSuperCalc extends BlockContainer
 
     public BlockSuperCalc()
     {
-        //Material.iron
+        // Material.iron
         super(Material.field_151573_f);
-        //setCreativeTab
+        // setCreativeTab
         this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
@@ -87,7 +87,7 @@ public class BlockSuperCalc extends BlockContainer
     private IIcon pillarLower;
 
     @Override
-    //registerIcons
+    // registerIcons
     public void func_149651_a(IIconRegister par1IconRegister)
     {
         // field_149761_L - blockIcon
@@ -115,7 +115,7 @@ public class BlockSuperCalc extends BlockContainer
         // case 3: //left
         // case 4: //front
         // case 5: //back
-        //getTileEntity | getWorldObj
+        // getTileEntity | getWorldObj
         World world = access.func_147438_o(x, y, z).func_145831_w();
         if (side == 0 || side == 1)
             return this.topBottom;
@@ -183,7 +183,7 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    //onBlockActivated
+    // onBlockActivated
     public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
         TileEntity tileEntity = world.func_147438_o(x, y, z);
@@ -202,7 +202,8 @@ public class BlockSuperCalc extends BlockContainer
             {
                 player.openGui(CodeLyoko.instance, 0, world, x, y - 1, z);
                 return true;
-            } else if (BlockSuperCalc.isMultiBlock(world, x, y - 2, z))
+            }
+            else if (BlockSuperCalc.isMultiBlock(world, x, y - 2, z))
             {
                 player.openGui(CodeLyoko.instance, 0, world, x, y - 2, z);
                 return true;
@@ -212,7 +213,7 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    //breakBlock
+    // breakBlock
     public void func_149749_a(World world, int x, int y, int z, Block block, int metadata)
     {
         this.dropItems(world, x, y, z);
@@ -254,7 +255,7 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    //createNewTileEntity
+    // createNewTileEntity
     public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntitySuperCalc();

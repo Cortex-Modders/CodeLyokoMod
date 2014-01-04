@@ -11,7 +11,7 @@ import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,22 +22,26 @@ import net.minecraft.world.World;
 
 public class BlockSuperCalcConsole extends BlockContainer
 {
-    public BlockSuperCalcConsole(int par1)
+    public BlockSuperCalcConsole()
     {
-        super(par1, Material.iron);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        // material.iron
+        super(Material.field_151573_f);
+        // setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    // createNewTileEntity
+    public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntitySuperCalcConsole();
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    // onBlockActiavted
+    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.func_147438_o(x, y, z);
         if (tileEntity == null || player.isSneaking())
             return false;
         else
@@ -48,55 +52,63 @@ public class BlockSuperCalcConsole extends BlockContainer
     }
 
     @Override
-    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    // onBlockPlacedBy
+    public void func_149689_a(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
-        super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
+        super.func_149689_a(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         par1World.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
+    // setBlockBoundsBasedOnState
+    public void func_149719_a(IBlockAccess blockAccess, int x, int y, int z)
     {
-        super.setBlockBoundsBasedOnState(blockAccess, x, y, z);
+        super.func_149719_a(blockAccess, x, y, z);
         int meta = blockAccess.getBlockMetadata(x, y, z);
-
+        // setBlockBounds - func_149676_a
         if (meta == 0 || meta == 2)
-            this.setBlockBounds(-0.35F, -0.12F, 0.0F, 1.35F, 1.12F, 1.0F);
+            this.func_149676_a(-0.35F, -0.12F, 0.0F, 1.35F, 1.12F, 1.0F);
         else if (meta == 1 || meta == 3)
-            this.setBlockBounds(0.0F, -0.12F, -0.35F, 1.0F, 1.12F, 1.35F);
+            this.func_149676_a(0.0F, -0.12F, -0.35F, 1.0F, 1.12F, 1.35F);
         else
-            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            this.func_149676_a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    // registerBlockIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("lyoko:supercalcconsole");
+        // blockIcon
+        this.field_149761_L = par1IconRegister.registerIcon("lyoko:supercalcconsole");
     }
 
     @Override
-    public int getRenderType()
+    // getRenderType
+    public int func_149645_b()
     {
         return ClientProxy.superCalcConsoleRenderId;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    // isOpaqueCube
+    public boolean func_149662_c()
     {
         return false;
     }
 
     @Override
-    public boolean isBlockSolid(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    // isBlockSolid
+    public boolean func_149747_d(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return true;
     }
 
     @Override
-    public boolean renderAsNormalBlock()
+    // renderAsNormalBlock
+    public boolean func_149686_d()
     {
         return false;
     }

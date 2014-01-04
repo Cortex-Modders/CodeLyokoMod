@@ -12,16 +12,15 @@ public class BlockLyokoOre extends BlockLyoko
 {
 
     private final OreTypes type;
-    
-    
+
     public BlockLyokoOre(OreTypes parType)
     {
-        //Material.rock
+        // Material.rock
         super(Material.field_151576_e);
-        
-        type = parType;
+
+        this.type = parType;
     }
-    
+
     @Override
     // onEntityWalking
     public void func_149724_b(World par1World, int par2, int par3, int par4, Entity par5Entity)
@@ -45,11 +44,9 @@ public class BlockLyokoOre extends BlockLyoko
                 ((EntityLiving) par5Entity).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 500, 2));
             }
     }
-    
+
     public static enum OreTypes
     {
-        URANIUM,
-        LEAD,
-        QUANTUM
+        URANIUM, LEAD, QUANTUM
     }
 }
