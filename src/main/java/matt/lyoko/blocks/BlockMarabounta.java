@@ -166,7 +166,8 @@ public class BlockMarabounta extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    // createNewTileEntity
+    public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntityMarabounta();
     }
