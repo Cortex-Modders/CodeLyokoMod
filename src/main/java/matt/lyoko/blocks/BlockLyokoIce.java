@@ -11,22 +11,25 @@ import java.util.Random;
 import matt.lyoko.CodeLyoko;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class BlockLyokoIce extends BlockBreakable
 {
     public BlockLyokoIce(String par2, Material material, boolean flag)
     {
         super(par2, material, flag);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        //setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
         //setBlockUnbreakable
         this.func_149722_s();
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    			//registerIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokoice");
+    	//blockIcon
+        this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokoice");
     }
 
     @Override
@@ -36,7 +39,8 @@ public class BlockLyokoIce extends BlockBreakable
     }
 
     @Override
-    public int quantityDropped(Random par1Random)
+    		//quantityDropped
+    public int func_149745_a(Random par1Random)
     {
         return 1;
     }
