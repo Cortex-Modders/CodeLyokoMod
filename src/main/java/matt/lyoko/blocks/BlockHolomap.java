@@ -175,6 +175,7 @@ public class BlockHolomap extends BlockContainer
     }
 
     @Override
+    // isOpaqueCube
     public boolean func_149662_c()
     {
         return false;

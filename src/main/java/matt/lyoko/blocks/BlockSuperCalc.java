@@ -10,83 +10,88 @@ import java.util.Random;
 
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalc;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockSuperCalc extends BlockContainer
 {
 
-    public BlockSuperCalc(int id)
+    public BlockSuperCalc()
     {
-        super(id, Material.iron);
-        this.setCreativeTab(CodeLyoko.LyokoTabs);
+        //Material.iron
+        super(Material.field_151573_f);
+        //setCreativeTab
+        this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
     public static boolean isMultiBlock(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x, y + 1, z) == ModBlocks.SuperCalc.blockID && world.getBlockId(x, y + 2, z) == ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y, z + 1) == ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y, z - 1) == ModBlocks.SuperCalc.blockID && world.getBlockId(x, y, z + 1) == ModBlocks.SuperCalc.blockID && world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockId(x, y, z - 1) == ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y, z + 1) == ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y, z) == ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y, z - 1) == ModBlocks.SuperCalc.blockID && checkNotConflicting(world, x, y, z))
+        if (world.func_147439_a(x, y + 1, z) instanceof BlockSuperCalc && world.func_147439_a(x, y + 2, z) instanceof BlockSuperCalc && world.func_147439_a(x + 1, y, z + 1) instanceof BlockSuperCalc && world.func_147439_a(x + 1, y, z) instanceof BlockSuperCalc && world.func_147439_a(x + 1, y, z - 1) instanceof BlockSuperCalc && world.func_147439_a(x, y, z + 1) instanceof BlockSuperCalc && world.func_147439_a(x, y, z) instanceof BlockSuperCalc && world.func_147439_a(x, y, z - 1) instanceof BlockSuperCalc && world.func_147439_a(x - 1, y, z + 1) instanceof BlockSuperCalc && world.func_147439_a(x - 1, y, z) instanceof BlockSuperCalc && world.func_147439_a(x - 1, y, z - 1) instanceof BlockSuperCalc && checkNotConflicting(world, x, y, z))
             return true;
         return false;
     }
 
     public static boolean checkNotConflicting(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x + 1, y - 1, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y - 1, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y - 1, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y - 1, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y - 1, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y - 1, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y - 1, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y - 1, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y - 1, z - 1) != ModBlocks.SuperCalc.blockID && aroundBase(world, x, y, z) && aroundPillarLower(world, x, y, z) && aroundPillarUpper(world, x, y, z) && world.getBlockId(x, y + 3, z) != ModBlocks.SuperCalc.blockID)
+        if (!(world.func_147439_a(x + 1, y - 1, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 1, y - 1, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 1, y - 1, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y - 1, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y - 1, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y - 1, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y - 1, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y - 1, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y - 1, z - 1) instanceof BlockSuperCalc) && aroundBase(world, x, y, z) && aroundPillarLower(world, x, y, z) && aroundPillarUpper(world, x, y, z) && !(world.func_147439_a(x, y + 3, z) instanceof BlockSuperCalc))
             return true;
         return false;
     }
 
     public static boolean aroundBase(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x - 2, y, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 2, y, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 2, y, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 2, y, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 2, y, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 2, y, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y, z + 2) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y, z - 2) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y, z + 2) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y, z - 2) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y, z + 2) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y, z - 2) != ModBlocks.SuperCalc.blockID)
+        if (!(world.func_147439_a(x - 2, y, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 2, y, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 2, y, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 2, y, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 2, y, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 2, y, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 1, y, z + 2) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 1, y, z - 2) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y, z + 2) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y, z - 2) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y, z + 2) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y, z - 2) instanceof BlockSuperCalc))
             return true;
         return false;
     }
 
     public static boolean aroundPillarLower(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x + 1, y + 1, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y + 1, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x + 1, y + 1, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y + 1, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y + 1, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y + 1, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y + 1, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y + 1, z - 1) != ModBlocks.SuperCalc.blockID)
+        if (!(world.func_147439_a(x + 1, y + 1, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 1, y + 1, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x + 1, y + 1, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y + 1, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y + 1, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y + 1, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y + 1, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y + 1, z - 1) instanceof BlockSuperCalc))
             return true;
         return false;
     }
 
     public static boolean aroundPillarUpper(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x + 1, y + 2, z) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y + 2, z + 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x, y + 2, z - 1) != ModBlocks.SuperCalc.blockID && world.getBlockId(x - 1, y + 2, z) != ModBlocks.SuperCalc.blockID)
+        if (!(world.func_147439_a(x + 1, y + 2, z) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y + 2, z + 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x, y + 2, z - 1) instanceof BlockSuperCalc) && !(world.func_147439_a(x - 1, y + 2, z) instanceof BlockSuperCalc))
             return true;
         return false;
     }
 
-    private Icon side1;
-    private Icon side2;
-    private Icon side3;
-    private Icon side4;
-    private Icon side5;
-    private Icon side6;
-    private Icon side7;
-    private Icon side8;
-    private Icon side9;
-    private Icon side10;
-    private Icon side11;
-    private Icon side12;
-    private Icon topBottom;
-    private Icon pillarUpper;
-    private Icon pillarLower;
+    private IIcon side1;
+    private IIcon side2;
+    private IIcon side3;
+    private IIcon side4;
+    private IIcon side5;
+    private IIcon side6;
+    private IIcon side7;
+    private IIcon side8;
+    private IIcon side9;
+    private IIcon side10;
+    private IIcon side11;
+    private IIcon side12;
+    private IIcon topBottom;
+    private IIcon pillarUpper;
+    private IIcon pillarLower;
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    //registerIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
-        this.side1 = this.blockIcon = par1IconRegister.registerIcon("lyoko:computer_1");
+        // field_149761_L - blockIcon
+        this.side1 = this.field_149761_L = par1IconRegister.registerIcon("lyoko:computer_1");
         this.side2 = par1IconRegister.registerIcon("lyoko:computer_2");
         this.side3 = par1IconRegister.registerIcon("lyoko:computer_3");
         this.side4 = par1IconRegister.registerIcon("lyoko:computer_4");
@@ -104,13 +109,14 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side)
+    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
     {
         // case 2: //right
         // case 3: //left
         // case 4: //front
         // case 5: //back
-        World world = access.getBlockTileEntity(x, y, z).worldObj;
+        //getTileEntity | getWorldObj
+        World world = access.func_147438_o(x, y, z).func_145831_w();
         if (side == 0 || side == 1)
             return this.topBottom;
         if (isMultiBlock(world, x + 1, y, z + 1))
@@ -177,9 +183,10 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
+    //onBlockActivated
+    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.func_147438_o(x, y, z);
         if (tileEntity == null || player.isSneaking())
             return false;
         else
@@ -205,17 +212,18 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6)
+    //breakBlock
+    public void func_149749_a(World world, int x, int y, int z, Block block, int metadata)
     {
         this.dropItems(world, x, y, z);
-        super.breakBlock(world, x, y, z, par5, par6);
+        super.func_149749_a(world, x, y, z, block, metadata);
     }
 
     private void dropItems(World world, int x, int y, int z)
     {
         Random rand = new Random();
 
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.func_147438_o(x, y, z);
         if (!(tileEntity instanceof IInventory))
             return;
         IInventory inventory = (IInventory) tileEntity;
@@ -230,7 +238,7 @@ public class BlockSuperCalc extends BlockContainer
                 float ry = rand.nextFloat() * 0.8F + 0.1F;
                 float rz = rand.nextFloat() * 0.8F + 0.1F;
 
-                EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, new ItemStack(item.itemID, item.stackSize, item.getItemDamage()));
+                EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, new ItemStack(item.getItem(), item.stackSize, item.getItemDamage()));
 
                 if (item.hasTagCompound())
                     entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
@@ -246,7 +254,8 @@ public class BlockSuperCalc extends BlockContainer
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world)
+    //createNewTileEntity
+    public TileEntity func_149915_a(World world, int metadata)
     {
         return new TileEntitySuperCalc();
     }

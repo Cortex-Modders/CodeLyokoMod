@@ -21,7 +21,6 @@ import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.fluids.ModFluids;
 import matt.lyoko.handlers.CommandHandler;
 import matt.lyoko.items.ModItems;
-import matt.lyoko.lib.ModProperties.ConfigCategories;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.ModProperties;
 import matt.lyoko.lib.Recipes;
@@ -33,26 +32,26 @@ import matt.lyoko.world.BiomeGenMountainSector;
 import matt.lyoko.world.BiomeGenPolarSector;
 import matt.lyoko.world.WorldGenLyokoOre;
 import matt.lyoko.world.WorldGenTower;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
-//import com.jadarstudios.developercapes.DevCapesUtil;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-//import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+//import com.jadarstudios.developercapes.DevCapesUtil;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+//import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 //@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors", "Vehicle"}, packetHandler = PacketHandler.class)
@@ -131,9 +130,9 @@ public class CodeLyoko
     	GameRegistry.registerWorldGenerator(new WorldGenLyokoOre(), 0);
     	GameRegistry.registerWorldGenerator(new WorldGenTower(), 0);
     	
-    	MinecraftForge.setBlockHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
-    	MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
-    	MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
+    	//Block.setHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
+    	//MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
+    	//MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
     }
     
 	@EventHandler

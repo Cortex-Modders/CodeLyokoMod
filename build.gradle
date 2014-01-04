@@ -23,7 +23,7 @@ apply plugin: 'forge'
 
 // minecraft properteis
 minecraft {
-	version = "1.7.2-10.12.0.982"
+	version = "1.7.2-10.12.0.985"
 }
 
 // version and stuff

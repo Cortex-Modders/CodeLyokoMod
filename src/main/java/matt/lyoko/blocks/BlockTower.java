@@ -8,14 +8,13 @@ package matt.lyoko.blocks;
 
 import java.util.Random;
 
-import javax.swing.Icon;
-
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.items.ModItems;
 import matt.lyoko.particles.LyokoParticleEffects;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -35,11 +34,13 @@ public class BlockTower extends BlockContainer
         this.func_149647_a(CodeLyoko.LyokoTabs);
     }
 
-    Icon inside;
+    IIcon inside;
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    //registerBlockIcons
+    public void func_149651_a(IIconRegister par1IconRegister)
     {
+        //blockIcon
         this.field_149761_L = par1IconRegister.registerIcon("lyoko:tower");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
@@ -63,19 +64,21 @@ public class BlockTower extends BlockContainer
             return this.inside;
         else if (side == 5 && meta == 1)
             return this.inside;
-        return this.blockIcon;
+        return this.field_149761_L;
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        TileEntityTower tet = (TileEntityTower) world.getBlockTileEntity(x, y, z);
+        // func_147438_o - getTileEntity
+        TileEntityTower tet = (TileEntityTower) world.func_147438_o(x, y, z);
 
         if (!world.isRemote)
             if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.LaserArrow)
             {
                 tet.owner = "reset";
-                world.markBlockForUpdate(x, y, z);
+                // func_147471_g - markBlockForUpdate
+                world.func_147471_g(x, y, z);
                 return true;
             }
         return false;
@@ -86,12 +89,13 @@ public class BlockTower extends BlockContainer
     // randomDisplayTick
     public void func_149734_b(World world, int x, int y, int z, Random random)
     {
-        TileEntityTower tet = (TileEntityTower) world.getBlockTileEntity(x, y, z);
+        // func_147438_o - getTileEntity
+        TileEntityTower tet = (TileEntityTower) world.func_147438_o(x, y, z);
 
         int meta = world.getBlockMetadata(x, y, z);
 
         Random worldRand = world.rand;
-        // 1/16th of a block
+        // 1/16th of a block - one 'pixel'
         double pixelWidth = 0.0625D;
 
         for (int side = 0; side < 6; ++side)
