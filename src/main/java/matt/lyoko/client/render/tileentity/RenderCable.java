@@ -8,6 +8,11 @@
 
 package matt.lyoko.client.render.tileentity;
 
+import matt.lyoko.blocks.BlockCable;
+import matt.lyoko.blocks.BlockHolomap;
+import matt.lyoko.blocks.BlockScanner;
+import matt.lyoko.blocks.BlockSuperCalc;
+import matt.lyoko.blocks.BlockSuperCalcConsole;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.model.tileentity.ModelCable;
 import matt.lyoko.entities.tileentity.TileEntityCable;
@@ -41,7 +46,7 @@ public class RenderCable extends TileEntitySpecialRenderer
     public void renderAModelAt(TileEntityCable tile, double d, double d1, double d2, float f)
     {
         if (tile.func_145831_w() != null)
-            tile.func_145831_w().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+            tile.func_145831_w().getBlockMetadata(tile.field_145851_c, tile.field_145848_d, tile.field_145849_e);
 
         // directory of the model's texture file
         this.func_147499_a(texture);
@@ -57,9 +62,9 @@ public class RenderCable extends TileEntitySpecialRenderer
 
     public void configureSides(TileEntityCable tile)
     {
-        int x = tile.xCoord;
-        int y = tile.yCoord;
-        int z = tile.zCoord;
+        int x = tile.field_145851_c;
+        int y = tile.field_145848_d;
+        int z = tile.field_145849_e;
         this.top = this.configSide(tile.func_145831_w(), x, y + 1, z, 1);
         this.bottom = this.configSide(tile.func_145831_w(), x, y - 1, z, 0);
         this.left = this.configSide(tile.func_145831_w(), x + 1, y, z, 3);
@@ -70,13 +75,13 @@ public class RenderCable extends TileEntitySpecialRenderer
 
     private boolean configSide(World world, int x, int y, int z, int side)
     {
-        if (world.getBlockId(x, y, z) == ModBlocks.Cable.blockID || world.getBlockId(x, y, z) == ModBlocks.SuperCalcConsole.blockID)
+        if (world.func_147439_a(x, y, z) instanceof BlockCable || world.func_147439_a(x, y, z) instanceof BlockSuperCalcConsole)
             return true;
-        else if (world.getBlockId(x, y, z) == ModBlocks.SuperCalc.blockID && (side == 1 || side == 0))
+        else if (world.func_147439_a(x, y, z) instanceof BlockSuperCalc && (side == 1 || side == 0))
             return true;
-        else if (world.getBlockId(x, y, z) == ModBlocks.Holomap.blockID && side != 0)
+        else if (world.func_147439_a(x, y, z) instanceof BlockHolomap && side != 0)
             return true;
-        else if (world.getBlockId(x, y, z) == ModBlocks.Scanner.blockID && (side == 0 || side == 1))
+        else if (world.func_147439_a(x, y, z) instanceof BlockScanner && (side == 0 || side == 1))
             return true;
         return false;
     }

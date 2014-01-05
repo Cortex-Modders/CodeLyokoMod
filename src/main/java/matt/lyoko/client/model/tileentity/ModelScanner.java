@@ -12,8 +12,6 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-import org.lwjgl.util.vector.Vector2f;
-
 public class ModelScanner extends ModelBase
 {
     // fields
@@ -35,8 +33,8 @@ public class ModelScanner extends ModelBase
     public boolean isBottom = false;
     public boolean isTop = false;
     
-    private static final Vector2f doorTextureOrigin = new Vector2f(8, 56);
-    private static final Vector2f doorTextureSize = new Vector2f(20, 16);
+    //private static final Vector2f doorTextureOrigin = new Vector2f(8, 56);
+    //private static final Vector2f doorTextureSize = new Vector2f(20, 16);
     
     public ModelScanner()
     {

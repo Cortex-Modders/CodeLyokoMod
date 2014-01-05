@@ -46,10 +46,10 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
     public void doRender(TileEntityScanner entity, double x, double y, double z, float tick)
     {
 
-        int i = entity.getBlockMetadata();
+        int i = entity.func_145832_p();
 
         // Binds the texture
-        this.bindTexture(texture);
+        this.func_147499_a(texture);
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x, (float) y, (float) z);
         GL11.glTranslatef(0.5F, 0F, 0.5F);

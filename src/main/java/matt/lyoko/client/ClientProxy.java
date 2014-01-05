@@ -34,7 +34,6 @@ import matt.lyoko.entities.tileentity.TileEntityTower;
 import matt.lyoko.entities.tileentity.TileEntityTowerConsole;
 import matt.lyoko.entities.vehicles.EntityOverboard;
 import matt.lyoko.entities.vehicles.EntitySkid;
-import matt.lyoko.handlers.KeyBindingHandler;
 import matt.lyoko.items.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
@@ -43,7 +42,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
@@ -89,7 +87,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
         RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
 
-        MinecraftForgeClient.registerItemRenderer(ModItems.Glove.itemID, new ItemRenderGlove());
+        MinecraftForgeClient.registerItemRenderer(ModItems.Glove, new ItemRenderGlove());
 
         // ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class,
         // new RenderSuperCalc());
@@ -113,7 +111,8 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerKeyBindingHandler()
     {
-        KeyBindingRegistry.registerKeyBinding(new KeyBindingHandler());
+        //TODO: fix keybindings
+        //KeyBinding.registerKeyBinding(new KeyBindingHandler());
     }
 
     /**

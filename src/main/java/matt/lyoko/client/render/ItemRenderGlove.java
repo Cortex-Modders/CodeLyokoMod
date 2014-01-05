@@ -9,7 +9,7 @@
 package matt.lyoko.client.render;
 
 import matt.lyoko.client.model.ModelGlove;
-import matt.lyoko.items.ModItems;
+import matt.lyoko.items.ItemGlove;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -93,7 +93,7 @@ public class ItemRenderGlove implements IItemRenderer
             }
 
             EntityPlayer player = (EntityPlayer) data[1];
-            if (player.isUsingItem() && player.getItemInUse() != null && player.getItemInUse().itemID == ModItems.Glove.itemID)
+            if (player.isUsingItem() && player.getItemInUse() != null && player.getItemInUse().getItem() instanceof ItemGlove)
                 this.gloveModel.clenchHand();
             else
                 this.gloveModel.unclenchHand();
