@@ -8,25 +8,14 @@
 
 package matt.lyoko.entities.projectile;
 
-import java.util.List;
-
 import matt.lyoko.CodeLyoko;
 import matt.lyoko.lib.PlayerInformation;
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet70GameEvent;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -195,203 +184,203 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
     {
         super.onUpdate();
 
-        if (CodeLyoko.entityInLyoko(this))
-            this.setDamage(0.0D);
-        else
-            this.setDamage(this.MAX_DAMAGE);
-
-        if (this.ticksExisted >= 200)
-        {
-            this.setDead();
-            return;
-        }
-
-        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
-        {
-            float var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, var1) * 180.0D / Math.PI);
-        }
-
-        int var16 = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
-
-        if (var16 > 0)
-        {
-            Block.blocksList[var16].setBlockBoundsBasedOnState(this.worldObj, this.xTile, this.yTile, this.zTile);
-            AxisAlignedBB var2 = Block.blocksList[var16].getCollisionBoundingBoxFromPool(this.worldObj, this.xTile, this.yTile, this.zTile);
-
-            if (var2 != null && var2.isVecInside(this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ)))
-                this.inGround = true;
-        }
-
-        if (this.arrowShake > 0)
-            --this.arrowShake;
-
-        if (this.inGround)
-            this.setDead();
-        else
-        {
-            ++this.ticksInAir;
-            Vec3 var17 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            Vec3 var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition var4 = this.worldObj.rayTraceBlocks_do_do(var17, var3, false, true);
-            var17 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
-            var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-
-            if (var4 != null)
-                var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(var4.hitVec.xCoord, var4.hitVec.yCoord, var4.hitVec.zCoord);
-
-            Entity var5 = null;
-            List var6 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
-            double var7 = 0.0D;
-            int var9;
-            float var11;
-
-            for (var9 = 0; var9 < var6.size(); ++var9)
-            {
-                Entity var10 = (Entity) var6.get(var9);
-
-                if (var10.canBeCollidedWith() && (var10 != this.shootingEntity || this.ticksInAir >= 5))
-                {
-                    var11 = 0.3F;
-                    AxisAlignedBB var12 = var10.boundingBox.expand(var11, var11, var11);
-                    MovingObjectPosition var13 = var12.calculateIntercept(var17, var3);
-
-                    if (var13 != null)
-                    {
-                        double var14 = var17.distanceTo(var13.hitVec);
-
-                        if (var14 < var7 || var7 == 0.0D)
-                        {
-                            var5 = var10;
-                            var7 = var14;
-                        }
-                    }
-                }
-            }
-
-            if (var5 != null)
-                var4 = new MovingObjectPosition(var5);
-
-            float var20;
-            float var26;
-
-            if (var4 != null)
-                if (var4.entityHit != null)
-                {
-                    if (!(var4.entityHit instanceof EntityPlayer))
-                        this.setDamage(this.MAX_DAMAGE);
-                    else if (CodeLyoko.entityInLyoko(var4.entityHit))
-                        this.onCollideWithPlayer((EntityPlayer) var4.entityHit);
-
-                    int var23 = MathHelper.ceiling_double_int(this.damage);
-
-                    DamageSource var21 = null;
-
-                    if (this.shootingEntity == null)
-                        var21 = CodeLyoko.causeLyokoRangedDamage(this, this);
-                    else
-                        var21 = CodeLyoko.causeLyokoRangedDamage(this, this.shootingEntity);
-
-                    if (this.isBurning() && !(var4.entityHit instanceof EntityEnderman))
-                        var4.entityHit.setFire(5);
-
-                    if (var4.entityHit.attackEntityFrom(var21, var23))
-                    {
-                        if (var4.entityHit instanceof EntityLivingBase)
-                        {
-                            EntityLivingBase var24 = (EntityLivingBase) var4.entityHit;
-
-                            if (this.knockbackStrength > 0)
-                            {
-                                var26 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-                                if (var26 > 0.0F)
-                                    var4.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / var26, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / var26);
-                            }
-
-                            EnchantmentThorns.func_92096_a(this.shootingEntity, var24, this.rand);
-
-                            if (this.shootingEntity != null && var4.entityHit != this.shootingEntity && var4.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
-                                ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(6, 0));
-                        }
-
-                        this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-                        this.setDead();
-                    } else
-                    {
-                        this.motionX *= -0.10000000149011612D;
-                        this.motionY *= -0.10000000149011612D;
-                        this.motionZ *= -0.10000000149011612D;
-                        this.rotationYaw += 180.0F;
-                        this.prevRotationYaw += 180.0F;
-                        this.ticksInAir = 0;
-                    }
-                } else
-                {
-                    this.xTile = var4.blockX;
-                    this.yTile = var4.blockY;
-                    this.zTile = var4.blockZ;
-                    this.inTile = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
-                    this.inData = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
-                    this.motionX = (float) (var4.hitVec.xCoord - this.posX);
-                    this.motionY = (float) (var4.hitVec.yCoord - this.posY);
-                    this.motionZ = (float) (var4.hitVec.zCoord - this.posZ);
-                    var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                    this.posX -= this.motionX / var20 * 0.05000000074505806D;
-                    this.posY -= this.motionY / var20 * 0.05000000074505806D;
-                    this.posZ -= this.motionZ / var20 * 0.05000000074505806D;
-                    this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
-                    this.inGround = true;
-                    this.arrowShake = 7;
-                    this.setIsCritical(false);
-
-                    if (this.inTile != 0)
-                        Block.blocksList[this.inTile].onEntityCollidedWithBlock(this.worldObj, this.xTile, this.yTile, this.zTile, this);
-                }
-
-            if (this.getIsCritical())
-                for (var9 = 0; var9 < 4; ++var9)
-                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * var9 / 4.0D, this.posY + this.motionY * var9 / 4.0D, this.posZ + this.motionZ * var9 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
-
-            this.posX += this.motionX;
-            this.posY += this.motionY;
-            this.posZ += this.motionZ;
-            var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-
-            while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
-                this.prevRotationPitch += 360.0F;
-
-            while (this.rotationYaw - this.prevRotationYaw < -180.0F)
-                this.prevRotationYaw -= 360.0F;
-
-            while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
-                this.prevRotationYaw += 360.0F;
-
-            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
-            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-            float var22 = 0.99F;
-            var11 = 0.05F;
-
-            if (this.isInWater())
-            {
-                for (int var25 = 0; var25 < 4; ++var25)
-                {
-                    var26 = 0.25F;
-                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * var26, this.posY - this.motionY * var26, this.posZ - this.motionZ * var26, this.motionX, this.motionY, this.motionZ);
-                }
-
-                var22 = 0.8F;
-            }
-
-            this.motionX *= var22;
-            this.motionY *= var22;
-            this.motionZ *= var22;
-            this.motionY -= var11;
-            this.setPosition(this.posX, this.posY, this.posZ);
-            this.doBlockCollisions();
-        }
+//        if (CodeLyoko.entityInLyoko(this))
+//            this.setDamage(0.0D);
+//        else
+//            this.setDamage(this.MAX_DAMAGE);
+//
+//        if (this.ticksExisted >= 200)
+//        {
+//            this.setDead();
+//            return;
+//        }
+//
+//        if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
+//        {
+//            float var1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+//            this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+//            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, var1) * 180.0D / Math.PI);
+//        }
+//
+//        Block var16 = this.worldObj.func_151337_f(this.xTile, this.yTile, this.zTile);
+//
+//        if (var16 > 0)
+//        {
+//            Block.blocksList[var16].setBlockBoundsBasedOnState(this.worldObj, this.xTile, this.yTile, this.zTile);
+//            AxisAlignedBB var2 = Block.blocksList[var16].getCollisionBoundingBoxFromPool(this.worldObj, this.xTile, this.yTile, this.zTile);
+//
+//            if (var2 != null && var2.isVecInside(this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ)))
+//                this.inGround = true;
+//        }
+//
+//        if (this.arrowShake > 0)
+//            --this.arrowShake;
+//
+//        if (this.inGround)
+//            this.setDead();
+//        else
+//        {
+//            ++this.ticksInAir;
+//            Vec3 var17 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
+//            Vec3 var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+//            MovingObjectPosition var4 = this.worldObj.rayTraceBlocks_do_do(var17, var3, false, true);
+//            var17 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
+//            var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+//
+//            if (var4 != null)
+//                var3 = this.worldObj.getWorldVec3Pool().getVecFromPool(var4.hitVec.xCoord, var4.hitVec.yCoord, var4.hitVec.zCoord);
+//
+//            Entity var5 = null;
+//            List var6 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+//            double var7 = 0.0D;
+//            int var9;
+//            float var11;
+//
+//            for (var9 = 0; var9 < var6.size(); ++var9)
+//            {
+//                Entity var10 = (Entity) var6.get(var9);
+//
+//                if (var10.canBeCollidedWith() && (var10 != this.shootingEntity || this.ticksInAir >= 5))
+//                {
+//                    var11 = 0.3F;
+//                    AxisAlignedBB var12 = var10.boundingBox.expand(var11, var11, var11);
+//                    MovingObjectPosition var13 = var12.calculateIntercept(var17, var3);
+//
+//                    if (var13 != null)
+//                    {
+//                        double var14 = var17.distanceTo(var13.hitVec);
+//
+//                        if (var14 < var7 || var7 == 0.0D)
+//                        {
+//                            var5 = var10;
+//                            var7 = var14;
+//                        }
+//                    }
+//                }
+//            }
+//
+//            if (var5 != null)
+//                var4 = new MovingObjectPosition(var5);
+//
+//            float var20;
+//            float var26;
+//
+//            if (var4 != null)
+//                if (var4.entityHit != null)
+//                {
+//                    if (!(var4.entityHit instanceof EntityPlayer))
+//                        this.setDamage(this.MAX_DAMAGE);
+//                    else if (CodeLyoko.entityInLyoko(var4.entityHit))
+//                        this.onCollideWithPlayer((EntityPlayer) var4.entityHit);
+//
+//                    int var23 = MathHelper.ceiling_double_int(this.damage);
+//
+//                    DamageSource var21 = null;
+//
+//                    if (this.shootingEntity == null)
+//                        var21 = CodeLyoko.causeLyokoRangedDamage(this, this);
+//                    else
+//                        var21 = CodeLyoko.causeLyokoRangedDamage(this, this.shootingEntity);
+//
+//                    if (this.isBurning() && !(var4.entityHit instanceof EntityEnderman))
+//                        var4.entityHit.setFire(5);
+//
+//                    if (var4.entityHit.attackEntityFrom(var21, var23))
+//                    {
+//                        if (var4.entityHit instanceof EntityLivingBase)
+//                        {
+//                            EntityLivingBase var24 = (EntityLivingBase) var4.entityHit;
+//
+//                            if (this.knockbackStrength > 0)
+//                            {
+//                                var26 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+//
+//                                if (var26 > 0.0F)
+//                                    var4.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / var26, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / var26);
+//                            }
+//
+//                            EnchantmentThorns.func_92096_a(this.shootingEntity, var24, this.rand);
+//
+//                            if (this.shootingEntity != null && var4.entityHit != this.shootingEntity && var4.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
+//                                ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(6, 0));
+//                        }
+//
+//                        this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+//                        this.setDead();
+//                    } else
+//                    {
+//                        this.motionX *= -0.10000000149011612D;
+//                        this.motionY *= -0.10000000149011612D;
+//                        this.motionZ *= -0.10000000149011612D;
+//                        this.rotationYaw += 180.0F;
+//                        this.prevRotationYaw += 180.0F;
+//                        this.ticksInAir = 0;
+//                    }
+//                } else
+//                {
+//                    this.xTile = var4.blockX;
+//                    this.yTile = var4.blockY;
+//                    this.zTile = var4.blockZ;
+//                    this.inTile = this.worldObj.getBlockId(this.xTile, this.yTile, this.zTile);
+//                    this.inData = this.worldObj.getBlockMetadata(this.xTile, this.yTile, this.zTile);
+//                    this.motionX = (float) (var4.hitVec.xCoord - this.posX);
+//                    this.motionY = (float) (var4.hitVec.yCoord - this.posY);
+//                    this.motionZ = (float) (var4.hitVec.zCoord - this.posZ);
+//                    var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+//                    this.posX -= this.motionX / var20 * 0.05000000074505806D;
+//                    this.posY -= this.motionY / var20 * 0.05000000074505806D;
+//                    this.posZ -= this.motionZ / var20 * 0.05000000074505806D;
+//                    this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+//                    this.inGround = true;
+//                    this.arrowShake = 7;
+//                    this.setIsCritical(false);
+//
+//                    if (this.inTile != 0)
+//                        Block.blocksList[this.inTile].onEntityCollidedWithBlock(this.worldObj, this.xTile, this.yTile, this.zTile, this);
+//                }
+//
+//            if (this.getIsCritical())
+//                for (var9 = 0; var9 < 4; ++var9)
+//                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * var9 / 4.0D, this.posY + this.motionY * var9 / 4.0D, this.posZ + this.motionZ * var9 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+//
+//            this.posX += this.motionX;
+//            this.posY += this.motionY;
+//            this.posZ += this.motionZ;
+//            var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+//            this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+//
+//            while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+//                this.prevRotationPitch += 360.0F;
+//
+//            while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+//                this.prevRotationYaw -= 360.0F;
+//
+//            while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+//                this.prevRotationYaw += 360.0F;
+//
+//            this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
+//            this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
+//            float var22 = 0.99F;
+//            var11 = 0.05F;
+//
+//            if (this.isInWater())
+//            {
+//                for (int var25 = 0; var25 < 4; ++var25)
+//                {
+//                    var26 = 0.25F;
+//                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * var26, this.posY - this.motionY * var26, this.posZ - this.motionZ * var26, this.motionX, this.motionY, this.motionZ);
+//                }
+//
+//                var22 = 0.8F;
+//            }
+//
+//            this.motionX *= var22;
+//            this.motionY *= var22;
+//            this.motionZ *= var22;
+//            this.motionY -= var11;
+//            this.setPosition(this.posX, this.posY, this.posZ);
+//            this.doBlockCollisions();
+//        }
     }
 
     /**

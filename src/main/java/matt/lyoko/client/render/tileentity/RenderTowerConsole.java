@@ -34,7 +34,7 @@ public class RenderTowerConsole extends TileEntitySpecialRenderer
     public void render(TileEntityTowerConsole entity, double x, double y, double z, float scale)
     {
 
-        this.bindTexture(texture);
+        this.func_147499_a(texture);
 
         GL11.glPushMatrix();
         {
@@ -44,8 +44,8 @@ public class RenderTowerConsole extends TileEntitySpecialRenderer
             GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 
             short rotate = 0;
-            int i = entity.getBlockMetadata();
-            switch (i)
+            int metadata = entity.func_145832_p();
+            switch (metadata)
             {
                 case 0:
                     rotate = 180;
@@ -71,7 +71,7 @@ public class RenderTowerConsole extends TileEntitySpecialRenderer
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
+    public void func_147500_a(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
     {
         this.render((TileEntityTowerConsole) par1TileEntity, par2, par4, par6, par8);
     }

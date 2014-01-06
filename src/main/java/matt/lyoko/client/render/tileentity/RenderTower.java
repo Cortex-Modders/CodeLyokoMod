@@ -9,7 +9,7 @@
 package matt.lyoko.client.render.tileentity;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.blocks.ModBlocks;
+import matt.lyoko.blocks.BlockTower;
 import matt.lyoko.client.render.RenderUtil;
 import matt.lyoko.client.render.TileAnimator;
 import matt.lyoko.entities.tileentity.TileEntityTower;
@@ -40,17 +40,17 @@ public class RenderTower extends TileEntitySpecialRenderer
     /**
      * Renders the TileEntity for the Tower at a position.
      */
-    public void render(TileEntityTower entity, double x, double y, double z, float scale)
+    public void doRender(TileEntityTower entity, double x, double y, double z, float scale)
     {
         Tessellator tessellator = Tessellator.instance;
 
-        this.bindTexture(texture);
+        this.func_147499_a(texture);
 
-        int i = entity.getBlockMetadata();
-        if (i == 4)
+        int metadata = entity.func_145832_p();
+        if (metadata == 4)
             return;
-        else if (i > 4)
-            i -= 5;
+        else if (metadata > 4)
+            metadata -= 5;
 
         GL11.glPushMatrix();
         RenderUtil.alphaOn();
@@ -62,14 +62,14 @@ public class RenderTower extends TileEntitySpecialRenderer
         float offsetZ = 0;
         float rotationY = 0;
 
-        if (entity.worldObj.getBlockId((int) x - 1, (int) y, (int) z - 1) == ModBlocks.TowerBlock.blockID || entity.worldObj.getBlockId((int) x + 1, (int) y, (int) z + 1) == ModBlocks.TowerBlock.blockID || entity.worldObj.getBlockId((int) x - 1, (int) y, (int) z + 1) == ModBlocks.TowerBlock.blockID || entity.worldObj.getBlockId((int) x + 1, (int) y, (int) z - 1) == ModBlocks.TowerBlock.blockID)
+        if (entity.func_145831_w().func_147439_a((int) x - 1, (int) y, (int) z - 1) instanceof BlockTower || entity.func_145831_w().func_147439_a((int) x + 1, (int) y, (int) z + 1) instanceof BlockTower || entity.func_145831_w().func_147439_a((int) x - 1, (int) y, (int) z + 1) instanceof BlockTower || entity.func_145831_w().func_147439_a((int) x + 1, (int) y, (int) z - 1) instanceof BlockTower)
         {
             width = 0.8F;
             System.out.println(width);
 
         }
 
-        switch (i)
+        switch (metadata)
         {
             case 0:
                 offsetZ = -0.001F;
@@ -100,9 +100,9 @@ public class RenderTower extends TileEntitySpecialRenderer
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
+    public void func_147500_a(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
     {
-        this.render((TileEntityTower) par1TileEntity, par2, par4, par6, par8);
+        this.doRender((TileEntityTower) par1TileEntity, par2, par4, par6, par8);
     }
 
     private void renderRect(Tessellator tessellator, float w, float h)

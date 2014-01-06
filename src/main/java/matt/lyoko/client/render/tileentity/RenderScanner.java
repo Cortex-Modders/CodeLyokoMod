@@ -73,7 +73,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
         GL11.glRotatef(rotate, 0F, 1F, 0F);
 
         // placement in multi block
-        int p = BlockScanner.getPositionInMultiBlock(entity.worldObj, entity.xCoord, entity.yCoord, entity.zCoord);
+        int p = BlockScanner.getPositionInMultiBlock(entity.func_145831_w(), entity.field_145851_c, entity.field_145848_d, entity.field_145849_e);
         /*
         // if top
         if (p == 4)
@@ -119,7 +119,8 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
     }
 
     @Override
-    public void renderTileEntityAt(TileEntity entity, double par2, double par4, double par6, float par8)
+    //renderTileEntityAt
+    public void func_147500_a(TileEntity entity, double par2, double par4, double par6, float par8)
     {
         this.doRender((TileEntityScanner) entity, par2, par4, par6, par8);
     }
@@ -131,7 +132,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
 
         GL11.glPushMatrix();
         // Binds the texture
-        this.bindTexture(texture);
+        this.func_147499_a(texture);
 
         GL11.glRotatef(180, 0F, 1F, 0F);
         GL11.glTranslatef(0F, 0.5F, 0F);
@@ -148,7 +149,7 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
     }
 
     @Override
-    public boolean shouldRender3DInInventory()
+    public boolean shouldRender3DInInventory(int modelId)
     {
         return true;
     }

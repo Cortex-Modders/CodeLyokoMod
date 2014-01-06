@@ -9,9 +9,6 @@
 package matt.lyoko.entities.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -21,7 +18,7 @@ public class TileEntityCable extends TileEntity
     private int coolDown = 0;
 
     @Override
-    public void updateEntity()
+    public void func_145845_h()
     {
         if (this.coolDown > 0)
             this.coolDown--;
@@ -63,33 +60,33 @@ public class TileEntityCable extends TileEntity
     	return INFINITE_EXTENT_AABB;
     }
 
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        NBTTagCompound tag = new NBTTagCompound();
-        this.writeToNBT(tag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
-    }
+//    @Override
+//    public Packet getDescriptionPacket()
+//    {
+//        NBTTagCompound tag = new NBTTagCompound();
+//        this.writeToNBT(tag);
+//        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
+//    }
+//
+//    @Override
+//    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+//    {
+//        NBTTagCompound tag = pkt.data;
+//        this.readFromNBT(tag);
+//    }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+    public void func_145839_a(NBTTagCompound tagCompound)
     {
-        NBTTagCompound tag = pkt.data;
-        this.readFromNBT(tag);
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound tagCompound)
-    {
-        super.readFromNBT(tagCompound);
+        super.func_145839_a(tagCompound);
         this.coolDown = tagCompound.getInteger("cool");
         this.sector = tagCompound.getString("sector");
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound)
+    public void func_145841_b(NBTTagCompound tagCompound)
     {
-        super.writeToNBT(tagCompound);
+        super.func_145841_b(tagCompound);
         tagCompound.setInteger("cool", this.coolDown);
         tagCompound.setString("sector", this.sector);
     }

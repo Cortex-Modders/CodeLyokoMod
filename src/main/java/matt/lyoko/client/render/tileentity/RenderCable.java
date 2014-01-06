@@ -13,7 +13,6 @@ import matt.lyoko.blocks.BlockHolomap;
 import matt.lyoko.blocks.BlockScanner;
 import matt.lyoko.blocks.BlockSuperCalc;
 import matt.lyoko.blocks.BlockSuperCalcConsole;
-import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.model.tileentity.ModelCable;
 import matt.lyoko.entities.tileentity.TileEntityCable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

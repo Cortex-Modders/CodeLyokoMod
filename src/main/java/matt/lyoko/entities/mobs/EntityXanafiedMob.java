@@ -66,7 +66,7 @@ public class EntityXanafiedMob extends EntitySpecter
             this.infectedMob.writeToNBT(infected);
             this.infectedMob.writeEntityToNBT(infected);
         }
-        tag.setCompoundTag("infectedMob", infected);
+        tag.setTag("infectedMob", infected);
     }
 
     @Override
