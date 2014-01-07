@@ -86,8 +86,8 @@ public class Recipes
 
     public static void registerSmelting()
     {
-        GameRegistry.addSmelting(ModBlocks.UraniumOre.blockID, new ItemStack(ModItems.Uranium, 1), 5F);
-        GameRegistry.addSmelting(ModBlocks.LeadOre.blockID, new ItemStack(ModItems.Lead, 1), 5F);
-        GameRegistry.addSmelting(ModBlocks.QuantumOre.blockID, new ItemStack(ModItems.QuantumOrb, 1), 5F);
+        GameRegistry.addSmelting(ModBlocks.UraniumOre, new ItemStack(ModItems.Uranium, 1), 5F);
+        GameRegistry.addSmelting(ModBlocks.LeadOre, new ItemStack(ModItems.Lead, 1), 5F);
+        GameRegistry.addSmelting(ModBlocks.QuantumOre, new ItemStack(ModItems.QuantumOrb, 1), 5F);
     }
 }

@@ -13,13 +13,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomeGenBaseLyoko extends BiomeGenBase
 {
-    public byte blockID;
+    //public byte blockID;
 
 	protected BiomeGenBaseLyoko(int id)
     {
         super(id);
-        this.topBlock = (byte) Block.grass.blockID;
-        this.fillerBlock = (byte) Block.dirt.blockID;
+        this.topBlock = Block.grass;
+        this.fillerBlock = Block.dirt;
         this.field_76754_C = 5169201;
         this.minHeight = 0.1F;
         this.maxHeight = 0.3F;
@@ -30,7 +30,6 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
-        biomeList[id] = this;
         this.setDisableRain();
     }
 

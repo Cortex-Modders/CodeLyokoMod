@@ -34,7 +34,7 @@ public class LyokoTeleporter
         WorldServer worldserver = minecraftServer.worldServerForDimension(playerMP.dimension);
         playerMP.dimension = newDim;
         WorldServer worldserver1 = minecraftServer.worldServerForDimension(playerMP.dimension);
-        playerMP.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(playerMP.dimension, (byte) playerMP.worldObj.difficultySetting, worldserver1.getWorldInfo().getTerrainType(), worldserver1.getHeight(), playerMP.theItemInWorldManager.getGameType()));
+        playerMP.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(playerMP.dimension, playerMP.worldObj.difficultySetting, worldserver1.getWorldInfo().getTerrainType(), worldserver1.getHeight(), playerMP.theItemInWorldManager.getGameType()));
         //worldserver.removePlayerEntityDangerously(playerMP);
         playerMP.isDead = false;
         transferEntityToWorld(playerMP, j, worldserver, worldserver1);
@@ -43,8 +43,8 @@ public class LyokoTeleporter
             worldserver.getPlayerManager().removePlayer(playerMP);
         worldserver1.getPlayerManager().addPlayer(playerMP);
         worldserver1.theChunkProviderServer.loadChunk((int) playerMP.posX >> 4, (int) playerMP.posZ >> 4);
-
-        playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+        								// setPlayerLocation
+        playerMP.playerNetServerHandler.func_147364_a(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
         playerMP.theItemInWorldManager.setWorld(worldserver1);
         updateTimeAndWeatherForPlayer(playerMP, worldserver1);
         syncPlayerInventory(playerMP);
