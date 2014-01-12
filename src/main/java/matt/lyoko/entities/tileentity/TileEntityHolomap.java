@@ -10,9 +10,6 @@ package matt.lyoko.entities.tileentity;
 
 import matt.lyoko.blocks.BlockHolomap;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 

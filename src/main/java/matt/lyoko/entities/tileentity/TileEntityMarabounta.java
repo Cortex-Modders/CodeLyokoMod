@@ -8,15 +8,13 @@
 
 package matt.lyoko.entities.tileentity;
 
-import matt.lyoko.blocks.LyokoTerrainTypes;
 import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
 
 public class TileEntityMarabounta extends TileEntity
 {
@@ -52,34 +50,37 @@ public class TileEntityMarabounta extends TileEntity
             }
     }
 
-    @Override
-    public Packet getDescriptionPacket()
-    {
-        NBTTagCompound tag = new NBTTagCompound();
-        this.func_145841_b(tag);
-        return new Packet132TileEntityData(this.field_145851_c, this.field_145848_d, this.field_145849_e, 0, tag);
-    }
+//    @Override
+//    public Packet getDescriptionPacket()
+//    {
+//        NBTTagCompound tag = new NBTTagCompound();
+//        this.func_145841_b(tag);
+//        return new Packet132TileEntityData(this.field_145851_c, this.field_145848_d, this.field_145849_e, 0, tag);
+//    }
+//
+//    @Override
+//    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+//    {
+//        NBTTagCompound tag = pkt.data;
+//        this.func_145839_a(tag);
+//    }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-    {
-        NBTTagCompound tag = pkt.data;
-        this.func_145839_a(tag);
-    }
-
-    @Override
-    			//readFromNBT
+    //readFromNBT
     public void func_145839_a(NBTTagCompound tagCompound)
     {
         super.func_145839_a(tagCompound);
-        this.consumedBlock = tagCompound.getInteger("block");
+        String[] block = tagCompound.getString("blockString").split(":");
+        if(block.length > 0 && block.length <= 2)
+            this.consumedBlock = GameRegistry.findBlock(block[0], block[1]);
     }
 
     @Override
-    			//writeToNBT
+    //writeToNBT
     public void func_145841_b(NBTTagCompound tagCompound)
     {
         super.func_145841_b(tagCompound);
-        tagCompound.setInteger("block", this.consumedBlock);
+        UniqueIdentifier block = GameRegistry.findUniqueIdentifierFor(this.consumedBlock);
+        tagCompound.setString("blockString", String.format("%s:%s", block.modId, block.name));
     }
 }
