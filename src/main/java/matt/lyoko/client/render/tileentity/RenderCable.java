@@ -27,38 +27,40 @@ public class RenderCable extends TileEntitySpecialRenderer
     // Model file
     private ModelCable model;
     private static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/cable.png");
-
+    
     private boolean top = false;
     private boolean bottom = false;
     private boolean left = false;
     private boolean right = false;
     private boolean front = false;
     private boolean back = false;
-
+    
     public RenderCable()
     {
         // initialization of Model File
         this.model = new ModelCable();
     }
-
+    
     // your TileEntity
-    public void renderAModelAt(TileEntityCable tile, double d, double d1, double d2, float f)
+    public void renderAModelAt(TileEntityCable tile, double x, double y, double z, float delta)
     {
         if (tile.func_145831_w() != null)
             tile.func_145831_w().getBlockMetadata(tile.field_145851_c, tile.field_145848_d, tile.field_145849_e);
-
+        
         // directory of the model's texture file
         this.func_147499_a(texture);
-
+        
         GL11.glPushMatrix();
-        GL11.glTranslatef((float) d + 0.5F, (float) d1 + 1.5F, (float) d2 + 0.5F);
-        GL11.glRotatef(0, 0.0F, 1.0F, 0.0F);
-        GL11.glScalef(1.0F, -1F, -1F);
-        this.configureSides(tile);
-        this.model.renderModel(0.0625F, this.top, this.bottom, this.left, this.right, this.front, this.back);
+        {
+            GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
+            GL11.glRotatef(0, 0.0F, 1.0F, 0.0F);
+            GL11.glScalef(1.0F, -1F, -1F);
+            this.configureSides(tile);
+            this.model.renderModel(0.0625F, this.top, this.bottom, this.left, this.right, this.front, this.back);
+        }
         GL11.glPopMatrix();
     }
-
+    
     public void configureSides(TileEntityCable tile)
     {
         int x = tile.field_145851_c;
@@ -71,7 +73,7 @@ public class RenderCable extends TileEntitySpecialRenderer
         this.front = this.configSide(tile.func_145831_w(), x, y, z + 1, 5);
         this.back = this.configSide(tile.func_145831_w(), x, y, z - 1, 4);
     }
-
+    
     private boolean configSide(World world, int x, int y, int z, int side)
     {
         if (world.func_147439_a(x, y, z) instanceof BlockCable || world.func_147439_a(x, y, z) instanceof BlockSuperCalcConsole)
@@ -84,7 +86,7 @@ public class RenderCable extends TileEntitySpecialRenderer
             return true;
         return false;
     }
-
+    
     @Override
     public void func_147500_a(TileEntity tileentity, double d, double d1, double d2, float f)
     {
