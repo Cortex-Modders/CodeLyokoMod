@@ -44,7 +44,7 @@ public class LyokoTeleporter
         worldserver1.getPlayerManager().addPlayer(playerMP);
         worldserver1.theChunkProviderServer.loadChunk((int) playerMP.posX >> 4, (int) playerMP.posZ >> 4);
         								// setPlayerLocation
-        playerMP.playerNetServerHandler.func_147364_a(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+        playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
         playerMP.theItemInWorldManager.setWorld(worldserver1);
         updateTimeAndWeatherForPlayer(playerMP, worldserver1);
         syncPlayerInventory(playerMP);

@@ -22,19 +22,19 @@ public class BlockVirtual extends Block
     public BlockVirtual()
     {
         // material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
     // onBlockAdded
-    public void func_149726_b(World world, int x, int y, int z)
+    public void onBlockAdded(World world, int x, int y, int z)
     {
-        super.func_149726_b(world, x, y, z);
+        super.onBlockAdded(world, x, y, z);
         if (world.provider.dimensionId != DimensionIds.ICE && world.provider.dimensionId != DimensionIds.MOUNTAIN && world.provider.dimensionId != DimensionIds.FOREST && world.provider.dimensionId != DimensionIds.DESERT && world.provider.dimensionId != DimensionIds.CARTHAGE)
             // setBlock
-            world.func_147468_f(x, y, z);
+            world.setBlockToAir(x, y, z);
     }
 
     public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase ent)
@@ -54,7 +54,7 @@ public class BlockVirtual extends Block
 
     @Override
     // getBlockTextures
-    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
+    public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)
     {
         if (access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokoforest))
             return this.virtualGrass;
@@ -71,9 +71,9 @@ public class BlockVirtual extends Block
 
     @Override
     // registerIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.virtualGrass = this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokograss");
+        this.virtualGrass = this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
         this.virtualStone = par1IconRegister.registerIcon("lyoko:lyokostone");
         this.virtualSand = par1IconRegister.registerIcon("lyoko:lyokosand");
         this.virtualIce = par1IconRegister.registerIcon("lyoko:lyokoice");

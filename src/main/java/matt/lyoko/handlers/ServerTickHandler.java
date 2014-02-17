@@ -32,23 +32,23 @@ public class ServerTickHandler implements ITickHandler
     {
         if(CodeLyoko.enableAdminPowers)
         {
-            if(player.username.equals(CodeLyoko.getDevelopers()[0]))
+            if(player.getGameProfile().getName().equals(CodeLyoko.getDevelopers()[0]))
             {
                 player.capabilities.allowFlying = true;
                 player.fallDistance = 0;
                 player.sendPlayerAbilities();
             }
-            else if(player.username.equals(CodeLyoko.getDevelopers()[1]))
+            else if(player.getGameProfile().getName().equals(CodeLyoko.getDevelopers()[1]))
             {
                 player.addPotionEffect(new PotionEffect(Potion.jump.getId(), 20, 3));
                 player.fallDistance = 0;
             }
-            else if(player.username.equals(CodeLyoko.getDevelopers()[2]))
+            else if(player.getGameProfile().getName().equals(CodeLyoko.getDevelopers()[2]))
             {
                 player.addPotionEffect(new PotionEffect(Potion.jump.getId(), 20, 3));
                 player.fallDistance = 0;
             }
-            else if(player.username.equals(CodeLyoko.getDevelopers()[3]))
+            else if(player.getGameProfile().getName().equals(CodeLyoko.getDevelopers()[3]))
             {
                 if(player.isSprinting())
                 {
@@ -71,7 +71,7 @@ public class ServerTickHandler implements ITickHandler
                 ((EntityPlayerMP) player).setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
             }
             
-            TileEntityScanner tile = (TileEntityScanner) player.worldObj.getBlockTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
+            TileEntityScanner tile = (TileEntityScanner) player.worldObj.getTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
             if(tile != null)
                 tile.toggleAllDoors();
             

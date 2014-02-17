@@ -108,29 +108,29 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
 
     public void resetSector(World world, int x, int y, int z)
     {
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x + 1, y, z + 1)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x + 1, y, z)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x + 1, y, z - 1)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x, y, z + 1)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x, y, z)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x, y, z - 1)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x - 1, y, z + 1)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x - 1, y, z)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x - 1, y, z - 1)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x, y + 1, z)).sector = "";
-        ((TileEntitySuperCalc) world.getBlockTileEntity(x, y + 2, z)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x + 1, y, z + 1)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x + 1, y, z)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x + 1, y, z - 1)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x, y, z + 1)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x, y, z)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x, y, z - 1)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x - 1, y, z + 1)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x - 1, y, z)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x - 1, y, z - 1)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x, y + 1, z)).sector = "";
+        ((TileEntitySuperCalc) world.getTileEntity(x, y + 2, z)).sector = "";
     }
 
     public void syncCable(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x, y, z) == ModBlocks.Cable.blockID && world.getBlockTileEntity(x, y, z) != null)
+        if (world.getBlock(x, y, z) == ModBlocks.Cable && world.getTileEntity(x, y, z) != null)
         {
-            TileEntityCable cable = (TileEntityCable) world.getBlockTileEntity(x, y, z);
+            TileEntityCable cable = (TileEntityCable) world.getTileEntity(x, y, z);
             if (cable != null && cable.getCoolDown() == 0 && cable.getSector().equals(""))
             {
                 cable.resetCoolDown();
                 cable.setSector(this.sector.substring(0, this.sector.length() - 3));
-                world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.Cable.blockID);
+                world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.Cable);
             }
         }
     }
@@ -141,10 +141,10 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         for (int i = -1; i < 2; i++)
             for (int j = -1; j < 2; j++)
             {
-                int block = world.getBlockId(x + i, y, z + j);
-                if (block == Block.waterMoving.blockID || block == Block.waterStill.blockID)
+                int block = world.getBlock(x + i, y, z + j);
+                if (block == Block.waterMoving || block == Block.waterStill)
                     coolant += 0.2F;
-                else if (block == Block.lavaMoving.blockID || block == Block.lavaStill.blockID)
+                else if (block == Block.lavaMoving || block == Block.lavaStill)
                     coolant -= 0.2F;
                 else if (Block.blocksList[block] != null && Block.blocksList[block] instanceof BlockFluidBase)
                 {
@@ -204,9 +204,9 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
                 for (int k = -1; k < 2; k++)
                     for (int j = 0; j < 3; j++)
                         if (i != 0 || j != 0 || k != 0)
-                            if (this.worldObj.getBlockTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k) instanceof TileEntitySuperCalc)
+                            if (this.worldObj.getTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k) instanceof TileEntitySuperCalc)
                             {
-                                TileEntitySuperCalc slave = (TileEntitySuperCalc) this.worldObj.getBlockTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k);
+                                TileEntitySuperCalc slave = (TileEntitySuperCalc) this.worldObj.getTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k);
                                 {
                                     if (slave != null)
                                     {
@@ -295,17 +295,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5) < 64;
-    }
-
-    @Override
-    public void openChest()
-    {
-    }
-
-    @Override
-    public void closeChest()
-    {
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5) < 64;
     }
 
     @Override
@@ -350,18 +340,6 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
     }
 
     @Override
-    public String getInvName()
-    {
-        return "tileentitysupercalc";
-    }
-
-    @Override
-    public boolean isInvNameLocalized()
-    {
-        return false;
-    }
-
-    @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
         for (int i = -1; i < 2; i++)
@@ -372,7 +350,25 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
                             return true;
         return false;
     }
-
+    
+	@Override
+	public String getInventoryName()
+	{
+		return "tileentitysupercalc";
+	}
+	
+	@Override
+	public boolean hasCustomInventoryName()
+	{
+		return true;
+	}
+	
+	@Override
+	public void openInventory() {}
+	
+	@Override
+	public void closeInventory() {}
+	
     /*
      * @Override
      * public int[] getAccessibleSlotsFromSide(int side)

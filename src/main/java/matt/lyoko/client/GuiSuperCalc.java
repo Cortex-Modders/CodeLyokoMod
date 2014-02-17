@@ -30,24 +30,24 @@ public class GuiSuperCalc extends GuiContainer
     public TileEntitySuperCalc tsc;
 
     @Override
-    protected void func_146979_b(int param1, int param2)
+    protected void drawGuiContainerForegroundLayer(int param1, int param2)
     {
         // draw text and stuff here
         // the parameters for drawString are: string, x, y, color
-        this.field_146289_q.drawString("Super Calculator", 8, 6, 4210752);
-        this.field_146289_q.drawString("Fuel Cell: ", 8, 25, 4210752);
-        this.field_146289_q.drawString("Time Remaining: " + this.tsc.timeLeft, 8, 42, 4210752);
-        this.field_146289_q.drawString("Temperature: " + this.tsc.getTemperature(), 8, 52, 4210752);
+        this.fontRendererObj.drawString("Super Calculator", 8, 6, 4210752);
+        this.fontRendererObj.drawString("Fuel Cell: ", 8, 25, 4210752);
+        this.fontRendererObj.drawString("Time Remaining: " + this.tsc.timeLeft, 8, 42, 4210752);
+        this.fontRendererObj.drawString("Temperature: " + this.tsc.getTemperature(), 8, 52, 4210752);
         // draws "Inventory" or your regional equivalent
-        this.field_146289_q.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override
-    protected void func_146976_a(float par1, int par2, int par3)
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
         // draw your Gui here, only thing you need to change is the path
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.field_146297_k.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/supercalculator.png"));
+        this.mc.renderEngine.bindTexture(new ResourceLocation("lyoko:textures/gui/supercalculator.png"));
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);

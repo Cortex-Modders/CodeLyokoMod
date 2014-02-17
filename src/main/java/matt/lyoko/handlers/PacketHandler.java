@@ -63,15 +63,15 @@ public class PacketHandler implements IPacketHandler
             return;
         }
 
-        if (world.getBlockTileEntity(x, y, z) != null && world.getBlockTileEntity(x, y, z) instanceof TileEntityTowerConsole)
+        if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityTowerConsole)
         {
-            TileEntityTowerConsole tetc = (TileEntityTowerConsole) world.getBlockTileEntity(x, y, z);
+            TileEntityTowerConsole tetc = (TileEntityTowerConsole) world.getTileEntity(x, y, z);
             tetc.owner = code;
             world.markBlockForUpdate(x, y, z);
         }
-        if (world.getBlockTileEntity(x, y, z) != null && world.getBlockTileEntity(x, y, z) instanceof TileEntitySuperCalcConsole)
+        if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntitySuperCalcConsole)
         {
-            TileEntitySuperCalcConsole tescc = (TileEntitySuperCalcConsole) world.getBlockTileEntity(x, y, z);
+            TileEntitySuperCalcConsole tescc = (TileEntitySuperCalcConsole) world.getTileEntity(x, y, z);
             tescc.sector = code;
             world.markBlockForUpdate(x, y, z);
         }
@@ -142,9 +142,9 @@ public class PacketHandler implements IPacketHandler
             return;
         }
 
-        if (world.getBlockTileEntity(x, y, z) != null && world.getBlockTileEntity(x, y, z) instanceof TileEntityScanner)
+        if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityScanner)
         {
-            TileEntityScanner tes = (TileEntityScanner) world.getBlockTileEntity(x, y, z);
+            TileEntityScanner tes = (TileEntityScanner) world.getTileEntity(x, y, z);
             tes.doorsOpen = open;
             world.markBlockForUpdate(x, y, z);
         }

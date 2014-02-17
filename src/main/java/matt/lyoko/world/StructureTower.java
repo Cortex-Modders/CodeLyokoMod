@@ -28,7 +28,7 @@ public class StructureTower extends WorldGenerator
         while (distanceToAir < 256)
         {
         			// getBlock
-            if(!world.func_147439_a(x, distanceToAir, z).equals(Block.func_149684_b("air")))
+            if(!world.getBlock(x, distanceToAir, z).equals(Block.getBlockFromName("air")))
                 return false;
             distanceToAir++;
         }
@@ -36,15 +36,15 @@ public class StructureTower extends WorldGenerator
         for (int i = 0; i < 7; i++)
             for (int j = 0; j < 7; j++)
                 if (!(i > 0 && i < 6 || j > 0 && j < 6))
-                    if (world.func_147439_a(x + i, y, z + j).equals(Block.func_149684_b("air")))
+                    if (world.getBlock(x + i, y, z + j).equals(Block.getBlockFromName("air")))
                         return false;
 
-        Block block = world.func_147439_a(x, y, z);
-        Block blockAbove = world.func_147439_a(x, y + 1, z);
-        Block blockBelow = world.func_147439_a(x, y - 1, z);
+        Block block = world.getBlock(x, y, z);
+        Block blockAbove = world.getBlock(x, y + 1, z);
+        Block blockBelow = world.getBlock(x, y - 1, z);
         for (Block b : this.GetValidSpawnBlocks())
         {
-            if (!blockAbove.equals(Block.func_149684_b("air")))
+            if (!blockAbove.equals(Block.getBlockFromName("air")))
                 return false;
             if (block.equals(b))
                 return true;

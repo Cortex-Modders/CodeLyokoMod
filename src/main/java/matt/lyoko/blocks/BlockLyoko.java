@@ -15,21 +15,21 @@ public class BlockLyoko extends Block
 
     public BlockLyoko()
     {
-        this(Material.field_151573_f);
+        this(Material.iron);
     }
 
     public BlockLyoko(Material material)
     {
         super(material);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     // NO MORE
     // @Override
     // public void registerIcons(IIconRegister par1IconRegister)
     // {
-    // int blockId = Block.func_149682_b(this);
+    // int blockId = Block.getIdFromBlock(this);
     //
     // if (blockId == ModBlocks.Grass.blockID)
     // this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");

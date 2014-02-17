@@ -44,11 +44,11 @@ public class RenderCable extends TileEntitySpecialRenderer
     // your TileEntity
     public void renderAModelAt(TileEntityCable tile, double x, double y, double z, float delta)
     {
-        if (tile.func_145831_w() != null)
-            tile.func_145831_w().getBlockMetadata(tile.field_145851_c, tile.field_145848_d, tile.field_145849_e);
+        if (tile.getWorldObj() != null)
+            tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
         
         // directory of the model's texture file
-        this.func_147499_a(texture);
+        this.bindTexture(texture);
         
         GL11.glPushMatrix();
         {
@@ -63,32 +63,32 @@ public class RenderCable extends TileEntitySpecialRenderer
     
     public void configureSides(TileEntityCable tile)
     {
-        int x = tile.field_145851_c;
-        int y = tile.field_145848_d;
-        int z = tile.field_145849_e;
-        this.top = this.configSide(tile.func_145831_w(), x, y + 1, z, 1);
-        this.bottom = this.configSide(tile.func_145831_w(), x, y - 1, z, 0);
-        this.left = this.configSide(tile.func_145831_w(), x + 1, y, z, 3);
-        this.right = this.configSide(tile.func_145831_w(), x - 1, y, z, 2);
-        this.front = this.configSide(tile.func_145831_w(), x, y, z + 1, 5);
-        this.back = this.configSide(tile.func_145831_w(), x, y, z - 1, 4);
+        int x = tile.xCoord;
+        int y = tile.yCoord;
+        int z = tile.zCoord;
+        this.top = this.configSide(tile.getWorldObj(), x, y + 1, z, 1);
+        this.bottom = this.configSide(tile.getWorldObj(), x, y - 1, z, 0);
+        this.left = this.configSide(tile.getWorldObj(), x + 1, y, z, 3);
+        this.right = this.configSide(tile.getWorldObj(), x - 1, y, z, 2);
+        this.front = this.configSide(tile.getWorldObj(), x, y, z + 1, 5);
+        this.back = this.configSide(tile.getWorldObj(), x, y, z - 1, 4);
     }
     
     private boolean configSide(World world, int x, int y, int z, int side)
     {
-        if (world.func_147439_a(x, y, z) instanceof BlockCable || world.func_147439_a(x, y, z) instanceof BlockSuperCalcConsole)
+        if (world.getBlock(x, y, z) instanceof BlockCable || world.getBlock(x, y, z) instanceof BlockSuperCalcConsole)
             return true;
-        else if (world.func_147439_a(x, y, z) instanceof BlockSuperCalc && (side == 1 || side == 0))
+        else if (world.getBlock(x, y, z) instanceof BlockSuperCalc && (side == 1 || side == 0))
             return true;
-        else if (world.func_147439_a(x, y, z) instanceof BlockHolomap && side != 0)
+        else if (world.getBlock(x, y, z) instanceof BlockHolomap && side != 0)
             return true;
-        else if (world.func_147439_a(x, y, z) instanceof BlockScanner && (side == 0 || side == 1))
+        else if (world.getBlock(x, y, z) instanceof BlockScanner && (side == 0 || side == 1))
             return true;
         return false;
     }
     
     @Override
-    public void func_147500_a(TileEntity tileentity, double d, double d1, double d2, float f)
+    public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
     {
         // your TileEntity
         this.renderAModelAt((TileEntityCable) tileentity, d, d1, d2, f);

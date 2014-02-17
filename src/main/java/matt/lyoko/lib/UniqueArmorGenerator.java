@@ -15,7 +15,7 @@ public class UniqueArmorGenerator
     public static int[] getUniquePlayerIdentifier(EntityPlayer player)
     {
         int[] playerIdentifier = new int[7];
-        int usernameLength = player.username.length();
+        int usernameLength = player.getGameProfile().getName().length();
         int i = Math.abs(usernameLength + 9 - 5 * usernameLength / 2);
         playerIdentifier[0] = i % 5;
         i = Math.abs(usernameLength - 4 + 3 * usernameLength / 2) + 42;

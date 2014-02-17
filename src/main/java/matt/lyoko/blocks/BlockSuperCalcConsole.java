@@ -25,23 +25,23 @@ public class BlockSuperCalcConsole extends BlockContainer
     public BlockSuperCalcConsole()
     {
         // material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
     // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntitySuperCalcConsole();
     }
 
     @Override
     // onBlockActiavted
-    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        TileEntity tileEntity = world.func_147438_o(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking())
             return false;
         else
@@ -53,9 +53,9 @@ public class BlockSuperCalcConsole extends BlockContainer
 
     @Override
     // onBlockPlacedBy
-    public void func_149689_a(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
-        super.func_149689_a(par1World, x, y, z, par5EntityLiving, par6ItemStack);
+        super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         par1World.setBlockMetadataWithNotify(x, y, z, l, 2);
@@ -63,52 +63,52 @@ public class BlockSuperCalcConsole extends BlockContainer
 
     @Override
     // setBlockBoundsBasedOnState
-    public void func_149719_a(IBlockAccess blockAccess, int x, int y, int z)
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
     {
-        super.func_149719_a(blockAccess, x, y, z);
+        super.setBlockBoundsBasedOnState(blockAccess, x, y, z);
         int meta = blockAccess.getBlockMetadata(x, y, z);
-        // setBlockBounds - func_149676_a
+        // setBlockBounds - setBlockBounds
         if (meta == 0 || meta == 2)
-            this.func_149676_a(-0.35F, -0.12F, 0.0F, 1.35F, 1.12F, 1.0F);
+            this.setBlockBounds(-0.35F, -0.12F, 0.0F, 1.35F, 1.12F, 1.0F);
         else if (meta == 1 || meta == 3)
-            this.func_149676_a(0.0F, -0.12F, -0.35F, 1.0F, 1.12F, 1.35F);
+            this.setBlockBounds(0.0F, -0.12F, -0.35F, 1.0F, 1.12F, 1.35F);
         else
-            this.func_149676_a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 
     }
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         // blockIcon
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:supercalcconsole");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:supercalcconsole");
     }
 
     @Override
     // getRenderType
-    public int func_149645_b()
+    public int getRenderType()
     {
         return ClientProxy.superCalcConsoleRenderId;
     }
 
     @Override
     // isOpaqueCube
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
         return false;
     }
 
     @Override
     // isBlockSolid
-    public boolean func_149747_d(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public boolean isBlockSolid(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return true;
     }
 
     @Override
     // renderAsNormalBlock
-    public boolean func_149686_d()
+    public boolean renderAsNormalBlock()
     {
         return false;
     }

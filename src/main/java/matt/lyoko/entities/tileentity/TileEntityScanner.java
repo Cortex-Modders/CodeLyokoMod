@@ -41,15 +41,15 @@ public class TileEntityScanner extends TileEntity
     private final float openScannerZ = 0F;
 
     @Override
-    public void func_145845_h()
+    public void updateEntity()
     {
         if (this.sector != -1)
-            if (BlockScanner.isMultiBlock(this.field_145850_b, this.field_145851_c, this.field_145848_d, this.field_145849_e))
+            if (BlockScanner.isMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord))
             {
-                int yOffset = BlockScanner.getPositionInMultiBlock(this.field_145850_b, this.field_145851_c, this.field_145848_d, this.field_145849_e);
+                int yOffset = BlockScanner.getPositionInMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
                 if (yOffset > 0)
                 {
-                    TileEntityScanner core = (TileEntityScanner) this.field_145850_b.func_147438_o(this.field_145851_c, this.field_145848_d - yOffset, this.field_145849_e);
+                    TileEntityScanner core = (TileEntityScanner) this.worldObj.getTileEntity(this.xCoord, this.yCoord - yOffset, this.zCoord);
                     if (this.sector != core.sector && core.sector == -1)
                         core.sector = this.sector;
                     this.sector = -1;
@@ -106,13 +106,13 @@ public class TileEntityScanner extends TileEntity
 
     public void toggleAllDoors()
     {
-        Vec3[] array = BlockScanner.getBlockCoordsInMultiBlock(this.field_145850_b, this.field_145851_c, this.field_145848_d, this.field_145849_e);
+        Vec3[] array = BlockScanner.getBlockCoordsInMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
 
         this.toggleDoors();
 
         for (Vec3 coords : array)
         {
-            TileEntityScanner scanner = (TileEntityScanner) this.field_145850_b.func_147438_o((int) coords.xCoord, (int) coords.yCoord, (int) coords.zCoord);
+            TileEntityScanner scanner = (TileEntityScanner) this.worldObj.getTileEntity((int) coords.xCoord, (int) coords.yCoord, (int) coords.zCoord);
             scanner.doorsOpen = this.doorsOpen;
 
             ByteArrayOutputStream bos = new ByteArrayOutputStream(13);
@@ -139,7 +139,7 @@ public class TileEntityScanner extends TileEntity
 
     public void setPlayerDevirtYaw(PlayerInformation pi)
     {
-        switch (this.field_145850_b.getBlockMetadata(this.field_145851_c, this.field_145848_d, this.field_145849_e))
+        switch (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord))
         {
             case 0:
                 pi.scannerYaw = 180;
@@ -167,7 +167,7 @@ public class TileEntityScanner extends TileEntity
 //    {
 //        NBTTagCompound tag = new NBTTagCompound();
 //        this.writeToNBT(tag);
-//        return new Packet132TileEntityData(this.field_145851_c, this.field_145848_d, this.field_145849_e, 0, tag);
+//        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
 //    }
 //
 //    @Override
@@ -178,17 +178,17 @@ public class TileEntityScanner extends TileEntity
 //    }
 
     @Override
-    public void func_145839_a(NBTTagCompound tagCompound)
+    public void readFromNBT(NBTTagCompound tagCompound)
     {
-        super.func_145839_a(tagCompound);
+        super.readFromNBT(tagCompound);
         this.sector = tagCompound.getInteger("sector");
         this.doorsOpen = tagCompound.getBoolean("doorsOpen");
     }
 
     @Override
-    public void func_145841_b(NBTTagCompound tagCompound)
+    public void writeToNBT(NBTTagCompound tagCompound)
     {
-        super.func_145841_b(tagCompound);
+        super.writeToNBT(tagCompound);
         tagCompound.setInteger("sector", this.sector);
         tagCompound.setBoolean("doorsOpen", this.doorsOpen);
     }

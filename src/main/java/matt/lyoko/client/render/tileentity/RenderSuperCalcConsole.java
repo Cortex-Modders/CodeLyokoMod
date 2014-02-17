@@ -42,7 +42,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
     {
 
         // Binds the texture
-        this.func_147499_a(texture);
+        this.bindTexture(texture);
 
         GL11.glPushMatrix();
         {
@@ -53,7 +53,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
             GL11.glRotatef(180, 0F, 0F, 1F);
 
             short rotate = 0;
-            int metadata = entity.func_145832_p();
+            int metadata = entity.getBlockMetadata();
             switch (metadata)
             {
                 case 0:
@@ -78,7 +78,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
     }
 
     @Override
-    public void func_147500_a(TileEntity entity, double par2, double par4, double par6, float par8)
+    public void renderTileEntityAt(TileEntity entity, double par2, double par4, double par6, float par8)
     {
         if (entity instanceof TileEntitySuperCalcConsole)
             this.doRender((TileEntitySuperCalcConsole) entity, par2, par4, par6, par8);
@@ -91,7 +91,7 @@ public class RenderSuperCalcConsole extends TileEntitySpecialRenderer implements
 
         GL11.glPushMatrix();
         // Binds the texture
-        this.func_147499_a(texture);
+        this.bindTexture(texture);
 
         GL11.glRotatef(180, 0F, 1F, 0F);
         GL11.glTranslatef(0F, 0.5F, 0F);

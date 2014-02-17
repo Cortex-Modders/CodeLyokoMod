@@ -26,32 +26,32 @@ public class BlockSector extends BlockContainer
     public BlockSector()
     {
         // iron
-        super(Material.field_151573_f);
+        super(Material.iron);
     }
 
     @Override
     // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntitySector();
     }
 
     @Override
     //updateTick
-    public void func_149674_a(World world, int x, int y, int z, Random rand)
+    public void updateTick(World world, int x, int y, int z, Random rand)
     {
-        super.func_149674_a(world, x, y, z, rand);
+        super.updateTick(world, x, y, z, rand);
         //updateTileEntity
         //TODO: figure out what this does
-        world.func_147438_o(x, y, z).func_145845_h();
+        world.getTileEntity(x, y, z).updateEntity();
     }
 
     @Override
     //onEntityWalking
-    public void func_149724_b(World world, int x, int y, int z, Entity ent)
+    public void onEntityWalking(World world, int x, int y, int z, Entity ent)
     {
         //updateTick
-        this.func_149674_a(world, x, y, z, null);
+        this.updateTick(world, x, y, z, null);
     }
 
     @SideOnly(Side.CLIENT)
@@ -67,7 +67,7 @@ public class BlockSector extends BlockContainer
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
+    public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)
     {
         if (access.getBiomeGenForCoords(x, y).equals(CodeLyoko.lyokoforest))
             return this.virtualGrass;
@@ -85,9 +85,9 @@ public class BlockSector extends BlockContainer
     @Override
     @SideOnly(Side.CLIENT)
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.virtualGrass = this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokograss");
+        this.virtualGrass = this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
         this.virtualStone = par1IconRegister.registerIcon("lyoko:lyokostone");
         this.virtualSand = par1IconRegister.registerIcon("lyoko:lyokosand");
         this.virtualIce = par1IconRegister.registerIcon("lyoko:lyokoice");

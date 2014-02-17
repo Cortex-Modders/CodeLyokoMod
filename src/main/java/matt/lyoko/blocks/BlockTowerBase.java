@@ -28,25 +28,25 @@ public class BlockTowerBase extends BlockContainer
 {
     public BlockTowerBase()
     {
-        super(Material.field_151573_f);
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        super(Material.iron);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     IIcon inside;
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         // blockIcon
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:towerbase");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:towerbase");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     // getIcon
-    public IIcon func_149691_a(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         if (side == 2 && (meta == 0 || meta == 5))
             return this.inside;
@@ -57,19 +57,19 @@ public class BlockTowerBase extends BlockContainer
         else if (side == 5 && (meta == 1 || meta == 6))
             return this.inside;
         // blockIcon
-        return this.field_149761_L;
+        return this.blockIcon;
     }
 
     @Override
     // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityTower();
     }
 
     @Override
     // onBlockPlacedBy
-    public void func_149689_a(World world, int x, int y, int z, EntityLivingBase ent, ItemStack stack)
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase ent, ItemStack stack)
     {
         int l = MathHelper.floor_double(ent.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
@@ -81,16 +81,16 @@ public class BlockTowerBase extends BlockContainer
 
     @Override
     // getCollisionBoundingBoxFromPool
-    public AxisAlignedBB func_149668_a(World world, int x, int y, int z)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
     {
         if (world.getBlockMetadata(x, y, z) >= 5 && world.getBlockMetadata(x, y, z) <= 8)
             return null;
-        return super.func_149668_a(world, x, y, z);
+        return super.getCollisionBoundingBoxFromPool(world, x, y, z);
     }
 
     @Override
     // onEntityCollidedWithBlock
-    public void func_149670_a(World world, int x, int y, int z, Entity ent)
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
     {
         if (ent instanceof EntityPlayer && !ent.worldObj.isRemote && world.getBlockMetadata(x, y, z) >= 5 && world.getBlockMetadata(x, y, z) <= 8)
         {
@@ -107,14 +107,14 @@ public class BlockTowerBase extends BlockContainer
 
     @Override
     // renderAsNormalBlock
-    public boolean func_149686_d()
+    public boolean renderAsNormalBlock()
     {
         return false;
     }
 
     @Override
     // isOpaqueCube
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
         return false;
     }

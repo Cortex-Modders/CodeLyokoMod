@@ -44,9 +44,9 @@ public class RenderTower extends TileEntitySpecialRenderer
     {
         Tessellator tessellator = Tessellator.instance;
 
-        this.func_147499_a(texture);
+        this.bindTexture(texture);
 
-        int metadata = entity.func_145832_p();
+        int metadata = entity.getBlockMetadata();
         if (metadata == 4)
             return;
         else if (metadata > 4)
@@ -62,7 +62,7 @@ public class RenderTower extends TileEntitySpecialRenderer
         float offsetZ = 0;
         float rotationY = 0;
 
-        if (entity.func_145831_w().func_147439_a((int) x - 1, (int) y, (int) z - 1) instanceof BlockTower || entity.func_145831_w().func_147439_a((int) x + 1, (int) y, (int) z + 1) instanceof BlockTower || entity.func_145831_w().func_147439_a((int) x - 1, (int) y, (int) z + 1) instanceof BlockTower || entity.func_145831_w().func_147439_a((int) x + 1, (int) y, (int) z - 1) instanceof BlockTower)
+        if (entity.getWorldObj().getBlock((int) x - 1, (int) y, (int) z - 1) instanceof BlockTower || entity.getWorldObj().getBlock((int) x + 1, (int) y, (int) z + 1) instanceof BlockTower || entity.getWorldObj().getBlock((int) x - 1, (int) y, (int) z + 1) instanceof BlockTower || entity.getWorldObj().getBlock((int) x + 1, (int) y, (int) z - 1) instanceof BlockTower)
         {
             width = 0.8F;
             System.out.println(width);
@@ -100,7 +100,7 @@ public class RenderTower extends TileEntitySpecialRenderer
     }
 
     @Override
-    public void func_147500_a(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
+    public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
     {
         this.doRender((TileEntityTower) par1TileEntity, par2, par4, par6, par8);
     }

@@ -116,7 +116,7 @@ public abstract class EntityVehicle extends Entity
                 if (player.isSneaking())
                 {
                     this.kill();
-                    this.dropItem(this.droppedItem.itemID, 1);
+                    this.dropItem(this.droppedItem, 1);
                 } else
                     player.mountEntity(this);
             return true;

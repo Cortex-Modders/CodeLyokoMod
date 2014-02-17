@@ -202,7 +202,7 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
 //            this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, var1) * 180.0D / Math.PI);
 //        }
 //
-//        Block var16 = this.worldObj.func_151337_f(this.xTile, this.yTile, this.zTile);
+//        Block var16 = this.worldObj.getBlock(this.xTile, this.yTile, this.zTile);
 //
 //        if (var16 > 0)
 //        {

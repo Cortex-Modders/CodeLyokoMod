@@ -18,7 +18,7 @@ public class TileEntityCable extends TileEntity
     private int coolDown = 0;
 
     @Override
-    public void func_145845_h()
+    public void updateEntity()
     {
         if (this.coolDown > 0)
             this.coolDown--;
@@ -76,17 +76,17 @@ public class TileEntityCable extends TileEntity
 //    }
 
     @Override
-    public void func_145839_a(NBTTagCompound tagCompound)
+    public void readFromNBT(NBTTagCompound tagCompound)
     {
-        super.func_145839_a(tagCompound);
+        super.readFromNBT(tagCompound);
         this.coolDown = tagCompound.getInteger("cool");
         this.sector = tagCompound.getString("sector");
     }
 
     @Override
-    public void func_145841_b(NBTTagCompound tagCompound)
+    public void writeToNBT(NBTTagCompound tagCompound)
     {
-        super.func_145841_b(tagCompound);
+        super.writeToNBT(tagCompound);
         tagCompound.setInteger("cool", this.coolDown);
         tagCompound.setString("sector", this.sector);
     }

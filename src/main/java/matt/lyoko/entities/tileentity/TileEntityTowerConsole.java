@@ -53,7 +53,7 @@ public class TileEntityTowerConsole extends TileEntity
                                 if (this.tetArray[x][y][z] != null && !this.tetArray[x][y][z].owner.equals(this.owner))
                                 {
                                     this.tetArray[x][y][z].owner = this.owner;
-                                    this.tetArray[x][y][z].worldObj.markBlockForUpdate(this.tetArray[x][y][z].xCoord, this.tetArray[x][y][z].yCoord, this.tetArray[x][y][z].zCoord);
+                                    this.tetArray[x][y][z].getWorldObj().markBlockForUpdate(this.tetArray[x][y][z].xCoord, this.tetArray[x][y][z].yCoord, this.tetArray[x][y][z].zCoord);
                                 }
                     this.owner = "";
                 }

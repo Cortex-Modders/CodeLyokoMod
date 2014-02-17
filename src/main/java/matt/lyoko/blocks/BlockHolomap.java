@@ -29,15 +29,15 @@ public class BlockHolomap extends BlockContainer
     public BlockHolomap()
     {
         // material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     public static boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
     {
-        // func_147439_a - getBlock
-        if (access.func_147439_a(x - 1, y, z - 1) instanceof BlockHolomap && access.func_147439_a(x - 1, y, z) instanceof BlockHolomap && access.func_147439_a(x - 1, y, z + 1) instanceof BlockHolomap && access.func_147439_a(x, y, z - 1) instanceof BlockHolomap && access.func_147439_a(x, y, z) instanceof BlockHolomap && access.func_147439_a(x, y, z + 1) instanceof BlockHolomap && access.func_147439_a(x + 1, y, z - 1) instanceof BlockHolomap && access.func_147439_a(x + 1, y, z) instanceof BlockHolomap && access.func_147439_a(x + 1, y, z + 1) instanceof BlockHolomap && clearOnSides(access, x, y, z))
+        // getBlock - getBlock
+        if (access.getBlock(x - 1, y, z - 1) instanceof BlockHolomap && access.getBlock(x - 1, y, z) instanceof BlockHolomap && access.getBlock(x - 1, y, z + 1) instanceof BlockHolomap && access.getBlock(x, y, z - 1) instanceof BlockHolomap && access.getBlock(x, y, z) instanceof BlockHolomap && access.getBlock(x, y, z + 1) instanceof BlockHolomap && access.getBlock(x + 1, y, z - 1) instanceof BlockHolomap && access.getBlock(x + 1, y, z) instanceof BlockHolomap && access.getBlock(x + 1, y, z + 1) instanceof BlockHolomap && clearOnSides(access, x, y, z))
             return true;
         return false;
     }
@@ -47,15 +47,15 @@ public class BlockHolomap extends BlockContainer
         for (int i = -2; i < 3; i++)
             for (int j = -2; j < 3; j++)
                 if (i == -2 || i == 2 || j == -2 || j == 2)
-                    // func_147439_a - getBlock
-                    if (access.func_147439_a(x + i, y, z + j) instanceof BlockHolomap)
+                    // getBlock - getBlock
+                    if (access.getBlock(x + i, y, z + j) instanceof BlockHolomap)
                         return false;
         return true;
     }
 
     @Override
     // onBlockPlaced
-    public int func_149660_a(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta)
+    public int onBlockPlaced(World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta)
     {
         meta = 8;
         return meta;
@@ -63,9 +63,9 @@ public class BlockHolomap extends BlockContainer
 
     @Override
     // breakBlock
-    public void func_149749_a(World world, int x, int y, int z, Block block, int meta)
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta)
     {
-        super.func_149749_a(world, x, y, z, block, meta);
+        super.breakBlock(world, x, y, z, block, meta);
         if (isMultiBlock(world, x, y, z))
         {
 
@@ -74,9 +74,9 @@ public class BlockHolomap extends BlockContainer
 
     @Override
     // setBlocKBoundsBasedOnState
-    public void func_149719_a(IBlockAccess access, int x, int y, int z)
+    public void setBlockBoundsBasedOnState(IBlockAccess access, int x, int y, int z)
     {
-        this.func_149676_a(0.0F, 0.0F, 0.0F, 1.0F, access.getBlockMetadata(x, y, z) < 8 ? 1.0F : isMultiBlock(access, x, y, z) ? 1.0F : 0.5F, 1.0F);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, access.getBlockMetadata(x, y, z) < 8 ? 1.0F : isMultiBlock(access, x, y, z) ? 1.0F : 0.5F, 1.0F);
     }
 
     @Override
@@ -107,16 +107,16 @@ public class BlockHolomap extends BlockContainer
 
     @Override
     // damageDropped
-    public int func_149692_a(int par1)
+    public int damageDropped(int par1)
     {
         return 8;
     }
 
     @Override
     // onBlockAdded
-    public void func_149726_b(World world, int x, int y, int z)
+    public void onBlockAdded(World world, int x, int y, int z)
     {
-        super.func_149726_b(world, x, y, z);
+        super.onBlockAdded(world, x, y, z);
         if (!world.isRemote)
             for (int i = -1; i < 2; i++)
                 for (int j = -1; j < 2; j++)
@@ -139,15 +139,15 @@ public class BlockHolomap extends BlockContainer
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister register)
+    public void registerBlockIcons(IIconRegister register)
     {
         // blockIcon
-        this.field_149761_L = register.registerIcon("lyoko:holomap");
+        this.blockIcon = register.registerIcon("lyoko:holomap");
     }
 
     @Override
     // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityHolomap();
     }
@@ -155,28 +155,28 @@ public class BlockHolomap extends BlockContainer
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     // getSubBlocks
-    public void func_149666_a(Item par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(ModBlocks.Holomap, 1, 8));
     }
 
     @Override
     // getRenderBlockPass
-    public int func_149701_w()
+    public int getRenderBlockPass()
     {
         return 0;
     }
 
     @Override
     // getRenderType
-    public int func_149645_b()
+    public int getRenderType()
     {
         return ClientProxy.holomapRenderId;
     }
 
     @Override
     // isOpaqueCube
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
         return false;
     }

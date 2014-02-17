@@ -37,9 +37,9 @@ public class TileEntitySuperCalcConsole extends TileEntity
 
     public void syncCable(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x, y, z) == ModBlocks.Cable.blockID && world.getBlockTileEntity(x, y, z) != null)
+        if (world.getBlock(x, y, z) == ModBlocks.Cable && world.getTileEntity(x, y, z) != null)
         {
-            TileEntityCable cable = (TileEntityCable) world.getBlockTileEntity(x, y, z);
+            TileEntityCable cable = (TileEntityCable) world.getTileEntity(x, y, z);
             if (cable != null && cable.getCoolDown() == 0 && cable.getSector().equals(""))
             {
                 cable.resetCoolDown();

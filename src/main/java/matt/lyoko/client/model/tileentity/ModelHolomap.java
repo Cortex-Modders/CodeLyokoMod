@@ -66,12 +66,12 @@ public class ModelHolomap extends ModelBase
         this.setRotationAngles(f, f1, f2, f3, f4, f5, tile);
         if (tile != null)
         {
-            if (tile.func_145832_p() < 4)
+            if (tile.getBlockMetadata() < 4)
             {
                 this.edge1.render(f5);
                 this.edgeInside1.render(f5);
             }
-            if (tile.func_145832_p() < 8)
+            if (tile.getBlockMetadata() < 8)
             {
                 this.edge2.render(f5);
                 this.edgeInside2.render(f5);

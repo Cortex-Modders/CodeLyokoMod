@@ -20,33 +20,33 @@ public class TileEntityMarabounta extends TileEntity
 {
     public Block consumedBlock = Blocks.air;
     
-    // xCoord = field_145851_c
-    // yCoord = field_145848_d
-    // zCoord = field_145849_e
-    // worldObj = field_145850_b
-    // getBlockTileEntity = func_147438_o
-    // setBlockTileEntity = func_147455_a
+    // xCoord = xCoord
+    // yCoord = yCoord
+    // zCoord = zCoord
+    // worldObj = worldObj
+    // getBlockTileEntity = getTileEntity
+    // setBlockTileEntity = setTileEntity
 
     @Override
     			//updateEntity
-    public void func_145845_h()
+    public void updateEntity()
     {
-        this.syncMarabounta(this.field_145851_c + 1, this.field_145848_d, this.field_145849_e);
-        this.syncMarabounta(this.field_145851_c - 1, this.field_145848_d, this.field_145849_e);
-        this.syncMarabounta(this.field_145851_c, this.field_145848_d + 1, this.field_145849_e);
-        this.syncMarabounta(this.field_145851_c, this.field_145848_d - 1, this.field_145849_e);
-        this.syncMarabounta(this.field_145851_c, this.field_145848_d, this.field_145849_e + 1);
-        this.syncMarabounta(this.field_145851_c, this.field_145848_d, this.field_145849_e - 1);
+        this.syncMarabounta(this.xCoord + 1, this.yCoord, this.zCoord);
+        this.syncMarabounta(this.xCoord - 1, this.yCoord, this.zCoord);
+        this.syncMarabounta(this.xCoord, this.yCoord + 1, this.zCoord);
+        this.syncMarabounta(this.xCoord, this.yCoord - 1, this.zCoord);
+        this.syncMarabounta(this.xCoord, this.yCoord, this.zCoord + 1);
+        this.syncMarabounta(this.xCoord, this.yCoord, this.zCoord - 1);
     }
 
     public void syncMarabounta(int x, int y, int z)
     {
-        if (this.field_145850_b.func_147439_a(x, y, z) == ModBlocks.Marabounta && this.field_145850_b.func_147438_o(x, y, z) != null && this.field_145850_b.getBlockMetadata(x, y, z) == 0)
-            if (this.field_145850_b.getBlockMetadata(this.field_145851_c, this.field_145848_d, this.field_145849_e) == 1)
+        if (this.worldObj.getBlock(x, y, z) == ModBlocks.Marabounta && this.worldObj.getTileEntity(x, y, z) != null && this.worldObj.getBlockMetadata(x, y, z) == 0)
+            if (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord) == 1)
             {
-                TileEntityMarabounta temp = (TileEntityMarabounta) this.field_145850_b.func_147438_o(x, y, z);
-                this.field_145850_b.setBlockMetadataWithNotify(x, y, z, 1, 2);
-                this.field_145850_b.func_147455_a(x, y, z, temp);
+                TileEntityMarabounta temp = (TileEntityMarabounta) this.worldObj.getTileEntity(x, y, z);
+                this.worldObj.setBlockMetadataWithNotify(x, y, z, 1, 2);
+                this.worldObj.setTileEntity(x, y, z, temp);
             }
     }
 
@@ -54,22 +54,22 @@ public class TileEntityMarabounta extends TileEntity
 //    public Packet getDescriptionPacket()
 //    {
 //        NBTTagCompound tag = new NBTTagCompound();
-//        this.func_145841_b(tag);
-//        return new Packet132TileEntityData(this.field_145851_c, this.field_145848_d, this.field_145849_e, 0, tag);
+//        this.writeToNBT(tag);
+//        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
 //    }
 //
 //    @Override
 //    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
 //    {
 //        NBTTagCompound tag = pkt.data;
-//        this.func_145839_a(tag);
+//        this.readFromNBT(tag);
 //    }
 
     @Override
     //readFromNBT
-    public void func_145839_a(NBTTagCompound tagCompound)
+    public void readFromNBT(NBTTagCompound tagCompound)
     {
-        super.func_145839_a(tagCompound);
+        super.readFromNBT(tagCompound);
         String[] block = tagCompound.getString("blockString").split(":");
         if(block.length > 0 && block.length <= 2)
             this.consumedBlock = GameRegistry.findBlock(block[0], block[1]);
@@ -77,9 +77,9 @@ public class TileEntityMarabounta extends TileEntity
 
     @Override
     //writeToNBT
-    public void func_145841_b(NBTTagCompound tagCompound)
+    public void writeToNBT(NBTTagCompound tagCompound)
     {
-        super.func_145841_b(tagCompound);
+        super.writeToNBT(tagCompound);
         UniqueIdentifier block = GameRegistry.findUniqueIdentifierFor(this.consumedBlock);
         tagCompound.setString("blockString", String.format("%s:%s", block.modId, block.name));
     }

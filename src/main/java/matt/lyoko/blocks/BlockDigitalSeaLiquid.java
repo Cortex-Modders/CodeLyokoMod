@@ -21,17 +21,16 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 {
     public BlockDigitalSeaLiquid(Fluid fluid, Material material)
     {
-        super(0, fluid, material);
-        // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        super(fluid, material);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
     // getIcon
-    public IIcon func_149691_a(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
-        // func_149684_b - getBlockFromName
-        return Block.func_149684_b("flowing_water").func_149691_a(side, meta);
+        // getBlockFromName - getBlockFromName
+        return Block.getBlockFromName("flowing_water").getIcon(side, meta);
 
     }
 
@@ -44,14 +43,14 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
 
     @Override
     // colorMultiplayer
-    public int func_149720_d(IBlockAccess iblockaccess, int i, int j, int k)
+    public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)
     {
         return this.getFluid().getColor();
     }
 
     @Override
     // onEntityCollidedWithBlock
-    public void func_149670_a(World par1World, int par2, int par3, int par4, Entity par5Entity)
+    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         par5Entity.attackEntityFrom(LyokoDamageSource.digitalSea, 100);
     }

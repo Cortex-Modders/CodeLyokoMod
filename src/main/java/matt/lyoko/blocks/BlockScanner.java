@@ -40,50 +40,50 @@ public class BlockScanner extends BlockContainer
     public BlockScanner()
     {
         // material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
     // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityScanner();
     }
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         // blockIcon
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:scanner");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:scanner");
     }
 
     @Override
     // getRenderType
-    public int func_149645_b()
+    public int getRenderType()
     {
         return ClientProxy.scannerRenderId;
     }
 
     @Override
     // isOpaqueCube
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
         return false;
     }
 
     @Override
     // isBlockSolid
-    public boolean func_149747_d(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public boolean isBlockSolid(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return true;
     }
 
     @Override
     // renderAsNormalBlock
-    public boolean func_149686_d()
+    public boolean renderAsNormalBlock()
     {
         return false;
     }
@@ -125,7 +125,7 @@ public class BlockScanner extends BlockContainer
         for (int i = 0; i <= 4; i++)
         {
             int meta = world.getBlockMetadata(x, y + i, z);
-            if (!(world.func_147439_a(x, y + i, z) instanceof BlockScanner))
+            if (!(world.getBlock(x, y + i, z) instanceof BlockScanner))
                 break;
             if (prevMeta != -1 & meta != prevMeta)
                 break;
@@ -139,7 +139,7 @@ public class BlockScanner extends BlockContainer
         for (int i = -1; i <= 3; i++)
         {
             int meta = world.getBlockMetadata(x, y + i, z);
-            if (!(world.func_147439_a(x, y + i, z) instanceof BlockScanner))
+            if (!(world.getBlock(x, y + i, z) instanceof BlockScanner))
                 break;
             if (prevMeta != -1 & meta != prevMeta)
                 break;
@@ -153,7 +153,7 @@ public class BlockScanner extends BlockContainer
         for (int i = -2; i <= 2; i++)
         {
             int meta = world.getBlockMetadata(x, y + i, z);
-            if (!(world.func_147439_a(x, y + i, z) instanceof BlockScanner))
+            if (!(world.getBlock(x, y + i, z) instanceof BlockScanner))
                 break;
             if (prevMeta != -1 & meta != prevMeta)
                 break;
@@ -167,7 +167,7 @@ public class BlockScanner extends BlockContainer
         for (int i = -3; i <= 1; i++)
         {
             int meta = world.getBlockMetadata(x, y + i, z);
-            if (!(world.func_147439_a(x, y + i, z) instanceof BlockScanner))
+            if (!(world.getBlock(x, y + i, z) instanceof BlockScanner))
                 break;
             if (prevMeta != -1 & meta != prevMeta)
                 break;
@@ -181,7 +181,7 @@ public class BlockScanner extends BlockContainer
         for (int i = -4; i <= 0; i++)
         {
             int meta = world.getBlockMetadata(x, y + i, z);
-            if (!(world.func_147439_a(x, y + i, z) instanceof BlockScanner))
+            if (!(world.getBlock(x, y + i, z) instanceof BlockScanner))
                 break;
             if (prevMeta != -1 & meta != prevMeta)
                 break;
@@ -215,7 +215,7 @@ public class BlockScanner extends BlockContainer
         int j = 0;
         for (int i = 0 - pos; i < 5 - pos; i++)
         {
-            if (world.func_147439_a(x, y + i, z) instanceof BlockScanner)
+            if (world.getBlock(x, y + i, z) instanceof BlockScanner)
                 array[j] = Vec3.createVectorHelper(x, y + i, z);
 
             j++;
@@ -229,7 +229,7 @@ public class BlockScanner extends BlockContainer
 
     public void virtualize(World world, int x, int y, int z, EntityPlayer player)
     {
-        TileEntityScanner tile = (TileEntityScanner) world.func_147438_o(x, y, z);
+        TileEntityScanner tile = (TileEntityScanner) world.getTileEntity(x, y, z);
         if (tile != null)
         {
             /**
@@ -244,8 +244,8 @@ public class BlockScanner extends BlockContainer
                 if (player.worldObj.isRemote)
                 {
                     // addChatMessage
-                    player.func_145747_a(new ChatComponentText("You can't be virtualized while already virtualized."));
-                    player.func_145747_a(new ChatComponentText("Yes, that's right, I thought you, " + player.func_146103_bH().getName() + ", would try to do that."));
+                    player.addChatMessage(new ChatComponentText("You can't be virtualized while already virtualized."));
+                    player.addChatMessage(new ChatComponentText("Yes, that's right, I thought you, " + player.getGameProfile().getName() + ", would try to do that."));
                 }
                 return;
             }
@@ -277,7 +277,7 @@ public class BlockScanner extends BlockContainer
             int xPos = (int) player.posX;
             int yPos = (int) player.posY;
             int zPos = (int) player.posZ;
-            while (!(player.worldObj.func_147439_a(xPos, yPos, zPos) instanceof BlockAir) && yPos < 256)
+            while (!(player.worldObj.getBlock(xPos, yPos, zPos) instanceof BlockAir) && yPos < 256)
                 yPos++;
 
             if (player instanceof EntityPlayerMP)
@@ -311,11 +311,11 @@ public class BlockScanner extends BlockContainer
 
     @Override
     // onBlockActivated
-    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
         if (isMultiBlock(world, x, y, z))
         {
-            TileEntity tileEntity = world.func_147438_o(x, y, z);
+            TileEntity tileEntity = world.getTileEntity(x, y, z);
             if (tileEntity == null || player.isSneaking() || !(tileEntity instanceof TileEntityScanner))
                 return false;
 
@@ -325,7 +325,7 @@ public class BlockScanner extends BlockContainer
 
             tile.toggleAllDoors();
 
-            TileEntityScanner core = (TileEntityScanner) world.func_147438_o((int) array[0].xCoord, (int) array[0].yCoord, (int) array[0].zCoord);
+            TileEntityScanner core = (TileEntityScanner) world.getTileEntity((int) array[0].xCoord, (int) array[0].yCoord, (int) array[0].zCoord);
             if (!core.doorsOpen)// && core.yCoord == (int)player.posY - 1)
             {
                 if (world.isRemote)
@@ -334,10 +334,10 @@ public class BlockScanner extends BlockContainer
                 PlayerInformation pi = PlayerInformation.forPlayer(player);
 
                 pi.scannerDim = world.provider.dimensionId;
-                pi.setScannerPosition(core.field_145851_c, core.field_145848_d + 1, core.field_145849_e);
+                pi.setScannerPosition(core.xCoord, core.yCoord + 1, core.zCoord);
                 core.setPlayerDevirtYaw(pi);
 
-                this.virtualize(world, core.field_145851_c, core.field_145848_d, core.field_145849_e, player);
+                this.virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
             }
             return true;
         }
@@ -346,9 +346,9 @@ public class BlockScanner extends BlockContainer
 
     @Override
     // onBlockPlacedBy
-    public void func_149689_a(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
-        super.func_149689_a(par1World, x, y, z, par5EntityLiving, par6ItemStack);
+        super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         par1World.setBlockMetadataWithNotify(x, y, z, l, 2);
@@ -357,50 +357,50 @@ public class BlockScanner extends BlockContainer
     @SuppressWarnings("rawtypes")
     @Override
     // addCollisionBoxesToList
-    // func_149676_a - setBlockBounds
-    public void func_149743_a(World world, int x, int y, int z, AxisAlignedBB axisAlignedBB, List list, Entity ent)
+    // setBlockBounds - setBlockBounds
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axisAlignedBB, List list, Entity ent)
     {
         int pos = getPositionInMultiBlock(world, x, y, z);
         if (pos == 0)
         {
-            this.func_149676_a(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-            super.func_149743_a(world, x, y, z, axisAlignedBB, list, ent);
+            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+            super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
         else if (pos == 4)
         {
-            this.func_149676_a(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
-            super.func_149743_a(world, x, y, z, axisAlignedBB, list, ent);
+            this.setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+            super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
 
         int meta = world.getBlockMetadata(x, y, z);
         float f = 0.25F;
-        if (meta != 3 || !((TileEntityScanner) world.func_147438_o(x, y, z)).doorsOpen)
+        if (meta != 3 || !((TileEntityScanner) world.getTileEntity(x, y, z)).doorsOpen)
         {
-            this.func_149676_a(-f, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F);
-            super.func_149743_a(world, x, y, z, axisAlignedBB, list, ent);
+            this.setBlockBounds(-f, 0.0F, 0.0F, 0.0F, 1.0F, 1.0F);
+            super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
-        if (meta != 0 || !((TileEntityScanner) world.func_147438_o(x, y, z)).doorsOpen)
+        if (meta != 0 || !((TileEntityScanner) world.getTileEntity(x, y, z)).doorsOpen)
         {
-            this.func_149676_a(0.0F, 0.0F, -f, 1.0F, 1.0F, 0.0F);
-            super.func_149743_a(world, x, y, z, axisAlignedBB, list, ent);
+            this.setBlockBounds(0.0F, 0.0F, -f, 1.0F, 1.0F, 0.0F);
+            super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
-        if (meta != 1 || !((TileEntityScanner) world.func_147438_o(x, y, z)).doorsOpen)
+        if (meta != 1 || !((TileEntityScanner) world.getTileEntity(x, y, z)).doorsOpen)
         {
-            this.func_149676_a(1.0F, 0.0F, 0.0F, 1.0F + f, 1.0F, 1.0F);
-            super.func_149743_a(world, x, y, z, axisAlignedBB, list, ent);
+            this.setBlockBounds(1.0F, 0.0F, 0.0F, 1.0F + f, 1.0F, 1.0F);
+            super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
-        if (meta != 2 || !((TileEntityScanner) world.func_147438_o(x, y, z)).doorsOpen)
+        if (meta != 2 || !((TileEntityScanner) world.getTileEntity(x, y, z)).doorsOpen)
         {
-            this.func_149676_a(0.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F + f);
-            super.func_149743_a(world, x, y, z, axisAlignedBB, list, ent);
+            this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F + f);
+            super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
         // setBlockBoundsForItemRender
-        this.func_149683_g();
+        this.setBlockBoundsForItemRender();
     }
 
     @Override
     // setBlockBoundsBasedOnState
-    public void func_149719_a(IBlockAccess blockAccess, int x, int y, int z)
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
     {
         int meta = blockAccess.getBlockMetadata(x, y, z);
         int pos = getPositionInMultiBlock(blockAccess, x, y, z);
@@ -408,14 +408,14 @@ public class BlockScanner extends BlockContainer
         float twoPixel = 0.25F;
 
         if (meta == 0 && (pos > 0 && pos < 4 || pos == -1))
-            this.func_149676_a(0 - twoPixel, 0, 0 - pixel, 1 + twoPixel, 1, 1 + twoPixel);
+            this.setBlockBounds(0 - twoPixel, 0, 0 - pixel, 1 + twoPixel, 1, 1 + twoPixel);
         else if (meta == 1 && (pos > 0 && pos < 4 || pos == -1))
-            this.func_149676_a(0 - twoPixel, 0, 0 - twoPixel, 1 + pixel, 1, 1 + twoPixel);
+            this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + pixel, 1, 1 + twoPixel);
         else if (meta == 2 && (pos > 0 && pos < 4 || pos == -1))
-            this.func_149676_a(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + pixel);
+            this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + pixel);
         else if (meta == 3 && (pos > 0 && pos < 4 || pos == -1))
-            this.func_149676_a(0 - pixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
+            this.setBlockBounds(0 - pixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
         else
-            this.func_149676_a(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
+            this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
     }
 }

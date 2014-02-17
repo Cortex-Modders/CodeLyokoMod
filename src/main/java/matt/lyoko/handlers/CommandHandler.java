@@ -77,7 +77,7 @@ public class CommandHandler implements ICommand
                 ((EntityPlayerMP) player).setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
             }
 
-            TileEntityScanner tile = (TileEntityScanner) player.worldObj.getBlockTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
+            TileEntityScanner tile = (TileEntityScanner) player.worldObj.getTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
             if(tile != null)
                 tile.toggleAllDoors();
 

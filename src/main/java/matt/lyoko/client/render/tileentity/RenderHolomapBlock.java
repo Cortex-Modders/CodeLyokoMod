@@ -47,10 +47,10 @@ public class RenderHolomapBlock extends TileEntitySpecialRenderer implements ISi
      */
     public void doRender(TileEntityHolomap entity, double x, double y, double z, float partialTick)
     {
-        int i = entity.func_145832_p();
+        int i = entity.getBlockMetadata();
 
         // Binds the texture
-        this.func_147499_a(texture);
+        this.bindTexture(texture);
         GL11.glPushMatrix();
         {
             GL11.glTranslatef((float) x, (float) y, (float) z);
@@ -86,7 +86,7 @@ public class RenderHolomapBlock extends TileEntitySpecialRenderer implements ISi
     }
 
     @Override
-    public void func_147500_a(TileEntity entity, double par2, double par4, double par6, float par8)
+    public void renderTileEntityAt(TileEntity entity, double par2, double par4, double par6, float par8)
     {
         this.doRender((TileEntityHolomap) entity, par2, par4, par6, par8);
     }
@@ -98,7 +98,7 @@ public class RenderHolomapBlock extends TileEntitySpecialRenderer implements ISi
 
         GL11.glPushMatrix();
         // Binds the texture
-        this.func_147499_a(texture);
+        this.bindTexture(texture);
 
         GL11.glRotatef(180, 0F, 1F, 0F);
         // Use this or else model renders upside-down.

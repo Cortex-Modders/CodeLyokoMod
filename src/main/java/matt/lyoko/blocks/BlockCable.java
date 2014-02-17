@@ -23,20 +23,16 @@ public class BlockCable extends BlockContainer
 {
     public BlockCable()
     {
-        // Material.cloth
-        super(Material.field_151580_n);
-        // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        super(Material.cloth);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
-    // onNeighborBlockChange
-    public void func_149695_a(World world, int x, int y, int z, Block neighborBlock)
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock)
     {
-        // world.func_147438_o - world.getTileEntity
-        if (world.func_147438_o(x, y, z) instanceof TileEntityCable)
+        if (world.getTileEntity(x, y, z) instanceof TileEntityCable)
         {
-            TileEntityCable tile = (TileEntityCable) world.func_147438_o(x, y, z);
+            TileEntityCable tile = (TileEntityCable) world.getTileEntity(x, y, z);
             if (neighborBlock instanceof BlockCable && tile != null)
             {
                 String test1 = tile.getSector();
@@ -47,10 +43,9 @@ public class BlockCable extends BlockContainer
                 this.syncBlock(world, x, y, z + 1, tile);
                 this.syncBlock(world, x, y, z - 1, tile);
                 String test2 = tile.getSector();
-
-                // func_147459_d - notifyBlocksOfNeighborChange
+                
                 if (!test1.equals(test2))
-                    world.func_147459_d(x, y, z, this);
+                    world.notifyBlocksOfNeighborChange(x, y, z, this);
                 this.syncBlock2(world, x + 1, y, z, tile);
                 this.syncBlock2(world, x - 1, y, z, tile);
                 this.syncBlock2(world, x, y + 1, z, tile);
@@ -75,10 +70,9 @@ public class BlockCable extends BlockContainer
 
     public void syncBlock(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        // func_147439_a - getBlock | func_147438_o - getTileEntity
-        if (world.func_147439_a(x, y, z) instanceof BlockCable && world.func_147438_o(x, y, z) instanceof TileEntityCable)
+        if (world.getBlock(x, y, z) instanceof BlockCable && world.getTileEntity(x, y, z) instanceof TileEntityCable)
         {
-            TileEntityCable tile = (TileEntityCable) world.func_147438_o(x, y, z);
+            TileEntityCable tile = (TileEntityCable) world.getTileEntity(x, y, z);
             if (tile != null && localCable.getCoolDown() == 0 && !tile.getSector().equals("") && localCable.getSector().equals(""))
             {
                 localCable.resetCoolDown();
@@ -89,43 +83,39 @@ public class BlockCable extends BlockContainer
 
     public void syncBlock2(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        // func_147439_a - getBlock
-        if (world.func_147439_a(x, y, z) instanceof BlockScanner && world.func_147438_o(x, y, z) instanceof TileEntityScanner)
+        if (world.getBlock(x, y, z) instanceof BlockScanner && world.getTileEntity(x, y, z) instanceof TileEntityScanner)
         {
-            TileEntityScanner tile = (TileEntityScanner) world.func_147438_o(x, y, z);
+            TileEntityScanner tile = (TileEntityScanner) world.getTileEntity(x, y, z);
             if (tile != null && !localCable.getSector().equals("") && tile.sector == -1)
             {
                 tile.sector = this.convertSectorToInt(localCable.getSector());
-                // func_147471_g - markBlockForUpdate
-                world.func_147471_g(x, y, z);
+                world.markBlockForUpdate(x, y, z);
             }
         }
     }
 
     public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        if (world.func_147439_a(x, y, z) instanceof BlockSuperCalc && world.func_147438_o(x, y, z) instanceof TileEntitySuperCalc)
+        if (world.getBlock(x, y, z) instanceof BlockSuperCalc && world.getTileEntity(x, y, z) instanceof TileEntitySuperCalc)
         {
-            TileEntitySuperCalc tile = (TileEntitySuperCalc) world.func_147438_o(x, y, z);
+            TileEntitySuperCalc tile = (TileEntitySuperCalc) world.getTileEntity(x, y, z);
             if (tile != null && !localCable.getSector().equals("") && tile.sector.equals(""))
             {
                 tile.sector = localCable.getSector();
-                // func_147471_g - markBlockForUpdate
-                world.func_147471_g(x, y, z);
+                world.markBlockForUpdate(x, y, z);
             }
         }
     }
 
     public void syncBlock4(World world, int x, int y, int z, TileEntityCable localCable)
     {
-        if (world.func_147439_a(x, y, z) instanceof BlockHolomap && world.func_147438_o(x, y, z) instanceof TileEntityHolomap)
+        if (world.getBlock(x, y, z) instanceof BlockHolomap && world.getTileEntity(x, y, z) instanceof TileEntityHolomap)
         {
-            TileEntityHolomap tile = (TileEntityHolomap) world.func_147438_o(x, y, z);
+            TileEntityHolomap tile = (TileEntityHolomap) world.getTileEntity(x, y, z);
             if (tile != null && !localCable.getSector().equals(""))
             {
                 tile.sector = (byte) (this.convertSectorToInt(localCable.getSector()) + 1);
-                // func_147471_g - markBlockForUpdate
-                world.func_147471_g(x, y, z);
+                world.markBlockForUpdate(x, y, z);
             }
         }
     }
@@ -160,30 +150,25 @@ public class BlockCable extends BlockContainer
      */
 
     @Override
-    // getRenderBlockPass
-    public int func_149701_w()
+    public int getRenderBlockPass()
     {
         return 1;
     }
 
     @Override
-    // getRenderType
-    public int func_149645_b()
+    public int getRenderType()
     {
         return -1;
     }
 
     @Override
-    // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        // blockIcon
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:cable");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:cable");
     }
 
     @Override
-    // isOpaqueCube
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
         return false;
 
@@ -203,51 +188,40 @@ public class BlockCable extends BlockContainer
     }
 
     @Override
-    // setBlockBoundsBasedOnState
-    public void func_149719_a(IBlockAccess world, int x, int y, int z)
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
     {
-        // func_149676_a - setBlockBounds
-        this.func_149676_a(0.3125F, 0.3125F, 0.3125F, 0.6875F, 0.6875F, 0.6875F);
+        this.setBlockBounds(0.3125F, 0.3125F, 0.3125F, 0.6875F, 0.6875F, 0.6875F);
+        
+        float minx = (float) this.minX;
+        float maxx = (float) this.maxX;
+        float miny = (float) this.minY;
+        float maxy = (float) this.maxY;
+        float minz = (float) this.minZ;
+        float maxz = (float) this.maxZ;
 
-        /*
-         * field_149759_B - blockMinX
-         * field_149760_C - blockMinY
-         * field_149754_D - blockMinZ
-         * field_149755_E - blockMaxX
-         * field_149756_F - blockMaxY
-         * field_149757_G - blockMaxZ
-         */
-        float minx = (float) this.field_149759_B;
-        float maxx = (float) this.field_149760_C;
-        float miny = (float) this.field_149754_D;
-        float maxy = (float) this.field_149755_E;
-        float minz = (float) this.field_149756_F;
-        float maxz = (float) this.field_149757_G;
-
-        if (this.validBlock(world.func_147439_a(x - 1, y, z), 2))
+        if (this.validBlock(world.getBlock(x - 1, y, z), 2))
             minx = 0;
 
-        if (this.validBlock(world.func_147439_a(x + 1, y, z), 3))
+        if (this.validBlock(world.getBlock(x + 1, y, z), 3))
             maxx = 1;
 
-        if (this.validBlock(world.func_147439_a(x, y - 1, z), 0))
+        if (this.validBlock(world.getBlock(x, y - 1, z), 0))
             miny = 0;
 
-        if (this.validBlock(world.func_147439_a(x, y + 1, z), 1))
+        if (this.validBlock(world.getBlock(x, y + 1, z), 1))
             maxy = 1;
 
-        if (this.validBlock(world.func_147439_a(x, y, z - 1), 4))
+        if (this.validBlock(world.getBlock(x, y, z - 1), 4))
             minz = 0;
 
-        if (this.validBlock(world.func_147439_a(x, y, z + 1), 5))
+        if (this.validBlock(world.getBlock(x, y, z + 1), 5))
             maxz = 1;
 
-        this.func_149676_a(minx, miny, minz, maxx, maxy, maxz);
+        this.setBlockBounds(minx, miny, minz, maxx, maxy, maxz);
     }
 
     @Override
-    // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityCable();
     }

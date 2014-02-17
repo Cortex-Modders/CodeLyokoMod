@@ -16,14 +16,14 @@ public class BlockLyokoOre extends BlockLyoko
     public BlockLyokoOre(OreTypes parType)
     {
         // Material.rock
-        super(Material.field_151576_e);
+        super(Material.rock);
 
         this.type = parType;
     }
 
     @Override
     // onEntityWalking
-    public void func_149724_b(World par1World, int par2, int par3, int par4, Entity par5Entity)
+    public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         if (this.type == OreTypes.LEAD || this.type == OreTypes.URANIUM)
         {

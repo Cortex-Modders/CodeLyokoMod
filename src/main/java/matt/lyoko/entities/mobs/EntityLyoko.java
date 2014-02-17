@@ -65,15 +65,15 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
     protected void applyEntityAttributes()
     {
         // Max Health - default 20.0D - min 0.0D - max Double.MAX_VALUE
-        this.getAttributeMap().func_111150_b(SharedMonsterAttributes.maxHealth).setAttribute(50.0D);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D);
         // Follow Range - default 32.0D - min 0.0D - max 2048.0D
-        this.getAttributeMap().func_111150_b(SharedMonsterAttributes.followRange).setAttribute(32.0D);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.followRange).setBaseValue(32.0D);
         // Knockback Resistance - default 0.0D - min 0.0D - max 1.0D
-        this.getAttributeMap().func_111150_b(SharedMonsterAttributes.knockbackResistance).setAttribute(0.0D);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.0D);
         // Movement Speed - default 0.699D - min 0.0D - max Double.MAX_VALUE
-        this.getAttributeMap().func_111150_b(SharedMonsterAttributes.movementSpeed).setAttribute(this.mobSpeed);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(this.mobSpeed);
         // Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
-        this.getAttributeMap().func_111150_b(SharedMonsterAttributes.attackDamage).setAttribute(this.attackStrength);
+        this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.attackStrength);
     }
 
     /**

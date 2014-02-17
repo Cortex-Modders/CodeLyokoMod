@@ -25,28 +25,28 @@ public class BlockTowerConsole extends BlockContainer
     public BlockTowerConsole()
     {
         // material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:towerconsole");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:towerconsole");
     }
 
     @Override
     // createNewTileEntity
-    public TileEntity func_149915_a(World world, int metadata)
+    public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityTowerConsole();
     }
 
     @Override
     // getCollisionBoundingBoxFromPool
-    public AxisAlignedBB func_149668_a(World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         return null;
     }
@@ -54,7 +54,7 @@ public class BlockTowerConsole extends BlockContainer
     // Set to transparent.
     @Override
     // isOpaqueCube
-    public boolean func_149662_c()
+    public boolean isOpaqueCube()
     {
 
         return false;
@@ -63,16 +63,16 @@ public class BlockTowerConsole extends BlockContainer
     // Will not render actual block, just the tile entity.
     @Override
     // getRenderType
-    public int func_149645_b()
+    public int getRenderType()
     {
         return -1;
     }
 
     @Override
     // onBlockActivated
-    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        TileEntity tileEntity = world.func_147438_o(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking())
             return false;
         else
@@ -84,25 +84,25 @@ public class BlockTowerConsole extends BlockContainer
 
     @Override
     // setBlockBoundsBasedOnState
-    public void func_149719_a(IBlockAccess blockAccess, int x, int y, int z)
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
     {
-        super.func_149719_a(blockAccess, x, y, z);
+        super.setBlockBoundsBasedOnState(blockAccess, x, y, z);
         int meta = blockAccess.getBlockMetadata(x, y, z);
 
         if (meta == 0 || meta == 2)
-            this.func_149676_a(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
+            this.setBlockBounds(-0.25F, 0.0F, 0.0F, 1.25F, 1.0F, 1.0F);
         else if (meta == 1 || meta == 3)
-            this.func_149676_a(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
+            this.setBlockBounds(0.0F, 0.0F, -0.25F, 1.0F, 1.0F, 1.25F);
         else
-            this.func_149676_a(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+            this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 
     }
 
     @Override
     // onBlockPlacedBy
-    public void func_149689_a(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
-        super.func_149689_a(par1World, x, y, z, par5EntityLiving, par6ItemStack);
+        super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         if (l == 0)

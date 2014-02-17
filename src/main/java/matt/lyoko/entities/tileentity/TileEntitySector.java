@@ -22,29 +22,29 @@ public class TileEntitySector extends TileEntity
             int dimId = this.worldObj.provider.dimensionId;
             if (dimId == DimensionIds.CARTHAGE)
             {
-            	this.worldObj.removeBlockTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Carthage.blockID, 0, 3);
+            	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Carthage, 0, 3);
             }
             else if (dimId == DimensionIds.DESERT)
             {
-            	this.worldObj.removeBlockTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Sand.blockID, 0, 3);
+            	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Sand, 0, 3);
             }
             else if (dimId == DimensionIds.FOREST)
             {
-            	this.worldObj.removeBlockTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Grass.blockID, 0, 3);
+            	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Grass, 0, 3);
 
             }
             else if (dimId == DimensionIds.ICE)
             {
-            	this.worldObj.removeBlockTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Ice.blockID, 0, 3);
+            	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Ice, 0, 3);
             }
             else if (dimId == DimensionIds.MOUNTAIN)
             {
-            	this.worldObj.removeBlockTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Stone.blockID, 0, 3);
+            	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Stone, 0, 3);
             }
             for (int i = -1; i < 2; i++)
             {

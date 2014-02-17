@@ -20,29 +20,29 @@ public class BlockLyokoIce extends BlockBreakable implements ILyokoTerrain
     {
         super(par2, material, flag);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
         // setBlockUnbreakable
-        this.func_149722_s();
+        this.setBlockUnbreakable();
     }
 
     @Override
     // registerIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         // blockIcon
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:lyokoice");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokoice");
     }
 
     @Override
     // getRenderBlockPass
-    public int func_149701_w()
+    public int getRenderBlockPass()
     {
         return 1;
     }
 
     @Override
     // quantityDropped
-    public int func_149745_a(Random par1Random)
+    public int quantityDropped(Random par1Random)
     {
         return 1;
     }

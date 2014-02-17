@@ -50,9 +50,9 @@ public class KeyBindingHandler extends KeyHandler
         if (player != null && player.isRiding() && player.ridingEntity instanceof EntityVehicle)
         {
             EntityVehicle vehicle = (EntityVehicle) player.ridingEntity;
-            if (kb.keyCode == settings.keyBindJump.keyCode)
+            if (kb.getKeyCode() == settings.keyBindJump.getgetKeyCode()())
                 vehicle.motionY = 1.0D;
-            else if (kb.keyCode == settings.keyBindSneak.keyCode)
+            else if (kb.getKeyCode() == settings.keyBindSneak.getKeyCode())
                 vehicle.motionY = -1.0D;
             else
                 vehicle.motionY = 0.0D;
@@ -61,7 +61,7 @@ public class KeyBindingHandler extends KeyHandler
 
             try
             {
-                data.writeInt(vehicle.entityId);
+                data.writeInt(vehicle.getEntityId());
                 data.writeDouble(vehicle.motionY);
             } catch (Exception e)
             {

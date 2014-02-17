@@ -18,24 +18,24 @@ public class TileEntityHolomap extends TileEntity
     public byte sector = -1;
 
     @Override
-    public void func_145845_h()
+    public void updateEntity()
     {
         if (this.sector != -1)
             for (int i = -1; i < 2; i++)
                 for (int j = -1; j < 2; j++)
                     if (i != 0 || j != 0)
-                        if (BlockHolomap.isMultiBlock(this.field_145850_b, this.field_145851_c + i, this.field_145848_d, this.field_145849_e + j) && !this.field_145850_b.isRemote)
+                        if (BlockHolomap.isMultiBlock(this.worldObj, this.xCoord + i, this.yCoord, this.zCoord + j) && !this.worldObj.isRemote)
                         {
-                            TileEntityHolomap core = (TileEntityHolomap) this.field_145850_b.func_147438_o(this.field_145851_c + i, this.field_145848_d, this.field_145849_e + j);
+                            TileEntityHolomap core = (TileEntityHolomap) this.worldObj.getTileEntity(this.xCoord + i, this.yCoord, this.zCoord + j);
                             if (this.sector != core.sector)
                                 core.sector = this.sector;
                             this.sector = -1;
                         }
 
-        if (BlockHolomap.isMultiBlock(this.field_145850_b, this.field_145851_c, this.field_145848_d, this.field_145849_e) && !this.field_145850_b.isRemote)
+        if (BlockHolomap.isMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord) && !this.worldObj.isRemote)
         {
             // System.out.println(getBlockMetadata());
-            byte meta = (byte) this.field_145850_b.getBlockMetadata(this.field_145851_c, this.field_145848_d, this.field_145849_e);
+            byte meta = (byte) this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord);
             if ((meta & 8) == 8)
             {
                 byte metaSector = (byte) (meta & 7);
@@ -44,7 +44,7 @@ public class TileEntityHolomap extends TileEntity
                     metaSector = this.sector;
                     meta &= ~7;
                     meta |= metaSector;
-                    this.field_145850_b.setBlockMetadataWithNotify(this.field_145851_c, this.field_145848_d, this.field_145849_e, meta, 3);
+                    this.worldObj.setBlockMetadataWithNotify(this.xCoord, this.yCoord, this.zCoord, meta, 3);
                 }
             }
         }
@@ -55,7 +55,7 @@ public class TileEntityHolomap extends TileEntity
 //    {
 //        NBTTagCompound tag = new NBTTagCompound();
 //        this.writeToNBT(tag);
-//        return new Packet132TileEntityData(this.field_145851_c, this.field_145848_d, this.field_145849_e, 0, tag);
+//        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
 //    }
 //
 //    @Override
@@ -66,16 +66,16 @@ public class TileEntityHolomap extends TileEntity
 //    }
 
     @Override
-    public void func_145839_a(NBTTagCompound tagCompound)
+    public void readFromNBT(NBTTagCompound tagCompound)
     {
-        super.func_145839_a(tagCompound);
+        super.readFromNBT(tagCompound);
         this.sector = tagCompound.getByte("sector");
     }
 
     @Override
-    public void func_145841_b(NBTTagCompound tagCompound)
+    public void writeToNBT(NBTTagCompound tagCompound)
     {
-        super.func_145841_b(tagCompound);
+        super.writeToNBT(tagCompound);
         tagCompound.setByte("sector", this.sector);
     }
 

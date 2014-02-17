@@ -48,63 +48,63 @@ public class ModBlocks
     public static Block Holomap;
 
     /**
-     * func_149722_s - setBlockUnbreakable
-     * func_149752_b - setResistance
-     * func_149711_c - setHardness
-     * func_149663_c - setUnlocalizedBlockName
-     * func_149715_a - setLightValue
-     * func_149713_g - setLightOpacity
+     * setBlockUnbreakable - setBlockUnbreakable
+     * setResistance - setResistance
+     * setHardness - setHardness
+     * setBlockName - setUnlocalizedBlockName
+     * setLightLevel - setLightValue
+     * setLightOpacity - setLightOpacity
      */
     public static void init()
     {
         // Lyoko
-        SectorBlock = new BlockSector().func_149752_b(1.0F).func_149711_c(1.0F).func_149672_a(Block.field_149778_k).func_149663_c("LyokoSectorBlock");
+        SectorBlock = new BlockSector().setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("LyokoSectorBlock");
 
-        TowerBlock = new BlockTower().func_149722_s().func_149752_b(6000000.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerBlock");
-        TowerBase = new BlockTowerBase().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerBase");
-        Grass = new BlockLyokoTerrain(LyokoTerrainTypes.GRASS).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149779_h).func_149663_c("LyokoGrass").func_149658_d("lyoko:lyokograss");
-        Stone = new BlockLyokoTerrain(LyokoTerrainTypes.STONE).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149769_e).func_149663_c("LyokoStone").func_149658_d("lyoko:lyokostone");
-        Sand = new BlockLyokoTerrain(LyokoTerrainTypes.SAND).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149776_m).func_149663_c("LyokoSand").func_149658_d("lyoko:lyokosand");
-        Ice = new BlockLyokoIce("lyokoIce", Material.field_151592_s, false).func_149752_b(6000000F).func_149722_s().func_149713_g(3).func_149672_a(Block.field_149778_k).func_149663_c("LyokoIce").func_149658_d("lyoko:lyokoice");
+        TowerBlock = new BlockTower().setBlockUnbreakable().setResistance(6000000.0F).setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerBlock");
+        TowerBase = new BlockTowerBase().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerBase");
+        Grass = new BlockLyokoTerrain(LyokoTerrainTypes.GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeGrass).setBlockName("LyokoGrass").setBlockTextureName("lyoko:lyokograss");
+        Stone = new BlockLyokoTerrain(LyokoTerrainTypes.STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeStone).setBlockName("LyokoStone").setBlockTextureName("lyoko:lyokostone");
+        Sand = new BlockLyokoTerrain(LyokoTerrainTypes.SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeSand).setBlockName("LyokoSand").setBlockTextureName("lyoko:lyokosand");
+        Ice = new BlockLyokoIce("lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundTypeGlass).setBlockName("LyokoIce").setBlockTextureName("lyoko:lyokoice");
 
-        Log = new BlockLyokoTerrain(LyokoTerrainTypes.LOG).func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149766_f).func_149663_c("LyokoLog").func_149658_d("lyoko:lyokolog");
-        Carthage = new BlockLyoko().func_149752_b(6000000F).func_149722_s().func_149672_a(Block.field_149777_j).func_149663_c("LyokoCarthage").func_149658_d("lyoko:carthage");
-        VirtualBlock = new BlockVirtual().func_149752_b(1.0F).func_149711_c(1.0F).func_149672_a(Block.field_149778_k).func_149663_c("LyokoVirtualBlock");
-        Marabounta = new BlockMarabounta().func_149752_b(3.0F).func_149711_c(10.0F).func_149663_c("MarabountaBlock");
-        TowerConsole = new BlockTowerConsole().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerConsole");
-        TowerFloor = new BlockTowerFloor().func_149752_b(6000000F).func_149722_s().func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("TowerFloor");
+        Log = new BlockLyokoTerrain(LyokoTerrainTypes.LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeWood).setBlockName("LyokoLog").setBlockTextureName("lyoko:lyokolog");
+        Carthage = new BlockLyoko().setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeMetal).setBlockName("LyokoCarthage").setBlockTextureName("lyoko:carthage");
+        VirtualBlock = new BlockVirtual().setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("LyokoVirtualBlock");
+        Marabounta = new BlockMarabounta().setResistance(3.0F).setHardness(10.0F).setBlockName("MarabountaBlock");
+        TowerConsole = new BlockTowerConsole().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerConsole");
+        TowerFloor = new BlockTowerFloor().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerFloor");
 
         // Ore
-        QuantumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.QUANTUM).func_149711_c(10F).func_149752_b(20F).func_149672_a(Block.field_149769_e).func_149663_c("LyokoOre").func_149658_d("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        LeadOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.LEAD).func_149711_c(10F).func_149752_b(20F).func_149672_a(Block.field_149769_e).func_149663_c("LeadOre").func_149713_g(10).func_149658_d("lyoko:lead");
-        UraniumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.URANIUM).func_149711_c(10F).func_149752_b(20.0F).func_149672_a(Block.field_149769_e).func_149663_c("UraniumOre").func_149713_g(10).func_149658_d("lyoko:uranium");
+        QuantumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.QUANTUM).setHardness(10F).setResistance(20F).setStepSound(Block.soundTypeStone).setBlockName("LyokoOre").setBlockTextureName("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
+        LeadOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.LEAD).setHardness(10F).setResistance(20F).setStepSound(Block.soundTypeStone).setBlockName("LeadOre").setLightOpacity(10).setBlockTextureName("lyoko:lead");
+        UraniumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.URANIUM).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("UraniumOre").setLightOpacity(10).setBlockTextureName("lyoko:uranium");
 
         QuantumOre.setHarvestLevel("pickaxe", 2);
         LeadOre.setHarvestLevel("pickaxe", 2);
         UraniumOre.setHarvestLevel("pickaxe", 2);
 
         // Other
-        SuperCalc = new BlockSuperCalc().func_149711_c(20F).func_149752_b(10.0F).func_149663_c("Super Computer");
-        Cable = new BlockCable().func_149752_b(4F).func_149711_c(1F).func_149672_a(Block.field_149775_l).func_149663_c("Cable");
-        Scanner = new BlockScanner().func_149711_c(20F).func_149752_b(0F).func_149663_c("Scanner");
-        SuperCalcConsole = new BlockSuperCalcConsole().func_149752_b(6000000F).func_149711_c(20.0F).func_149713_g(7).func_149672_a(Block.field_149777_j).func_149663_c("SuperCalcConsole");
-        Holomap = new BlockHolomap().func_149752_b(6000000F).func_149711_c(10.0F).func_149713_g(15).func_149672_a(Block.field_149777_j).func_149663_c("Holomap");
+        SuperCalc = new BlockSuperCalc().setHardness(20F).setResistance(10.0F).setBlockName("Super Computer");
+        Cable = new BlockCable().setResistance(4F).setHardness(1F).setStepSound(Block.soundTypeCloth).setBlockName("Cable");
+        Scanner = new BlockScanner().setHardness(20F).setResistance(0F).setBlockName("Scanner");
+        SuperCalcConsole = new BlockSuperCalcConsole().setResistance(6000000F).setHardness(20.0F).setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("SuperCalcConsole");
+        Holomap = new BlockHolomap().setResistance(6000000F).setHardness(10.0F).setLightOpacity(15).setStepSound(Block.soundTypeMetal).setBlockName("Holomap");
 
         // Digital Sea
-        DigitalSeaBlock = new BlockDigitalSea().func_149752_b(6000000F).func_149722_s().func_149663_c("DigitalSeaBlock");
-        DigitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.field_151586_h).func_149663_c("DigitalSeaLiquid");
+        DigitalSeaBlock = new BlockDigitalSea().setResistance(6000000F).setBlockUnbreakable().setBlockName("DigitalSeaBlock");
+        DigitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.water).setBlockName("DigitalSeaLiquid");
 
         // Portal (Unused)
         // LyokoPolarPortal = new
-        // BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).func_149663_c("PolarPortal").setCreativeTab(null);
+        // BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setBlockName("PolarPortal").setCreativeTab(null);
         // LyokoDesertPortal = new
-        // BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).func_149663_c("DesertPortal").setCreativeTab(null);
+        // BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setBlockName("DesertPortal").setCreativeTab(null);
         // LyokoForestPortal = new
-        // BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).func_149663_c("ForestPortal").setCreativeTab(null);
+        // BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setBlockName("ForestPortal").setCreativeTab(null);
         // LyokoMountainPortal = new
-        // BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).func_149663_c("MountainPortal").setCreativeTab(null);
+        // BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setBlockName("MountainPortal").setCreativeTab(null);
         // LyokoCarthagePortal = new
-        // BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).func_149663_c("CarthagePortal").setCreativeTab(null);
+        // BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setBlockName("CarthagePortal").setCreativeTab(null);
 
         registerBlocks();
         registerLanguage();

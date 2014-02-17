@@ -30,24 +30,24 @@ public class BlockTower extends BlockContainer
     public BlockTower()
     {
         // Material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     IIcon inside;
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         // blockIcon
-        this.field_149761_L = par1IconRegister.registerIcon("lyoko:tower");
+        this.blockIcon = par1IconRegister.registerIcon("lyoko:tower");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
 
     @Override
-    public TileEntity func_149915_a(World var1, int metadata)
+    public TileEntity createNewTileEntity(World var1, int metadata)
     {
         return new TileEntityTower();
     }
@@ -55,7 +55,7 @@ public class BlockTower extends BlockContainer
     @SideOnly(Side.CLIENT)
     @Override
     // getIcon
-    public IIcon func_149691_a(int side, int meta)
+    public IIcon getIcon(int side, int meta)
     {
         if (side == 2 && meta == 0)
             return this.inside;
@@ -65,21 +65,21 @@ public class BlockTower extends BlockContainer
             return this.inside;
         else if (side == 5 && meta == 1)
             return this.inside;
-        return this.field_149761_L;
+        return this.blockIcon;
     }
 
     @Override
-    public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-        // func_147438_o - getTileEntity
-        TileEntityTower tet = (TileEntityTower) world.func_147438_o(x, y, z);
+        // getTileEntity - getTileEntity
+        TileEntityTower tet = (TileEntityTower) world.getTileEntity(x, y, z);
 
         if (!world.isRemote)
             if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.LaserArrow)
             {
                 tet.owner = "reset";
-                // func_147471_g - markBlockForUpdate
-                world.func_147471_g(x, y, z);
+                // markBlockForUpdate - markBlockForUpdate
+                world.markBlockForUpdate(x, y, z);
                 return true;
             }
         return false;
@@ -88,10 +88,10 @@ public class BlockTower extends BlockContainer
     @Override
     @SideOnly(Side.CLIENT)
     // randomDisplayTick
-    public void func_149734_b(World world, int x, int y, int z, Random random)
+    public void randomDisplayTick(World world, int x, int y, int z, Random random)
     {
-        // func_147438_o - getTileEntity
-        TileEntityTower tet = (TileEntityTower) world.func_147438_o(x, y, z);
+        // getTileEntity - getTileEntity
+        TileEntityTower tet = (TileEntityTower) world.getTileEntity(x, y, z);
 
         int meta = world.getBlockMetadata(x, y, z);
 
@@ -105,22 +105,22 @@ public class BlockTower extends BlockContainer
             double y2 = y + worldRand.nextFloat();
             double z2 = z + worldRand.nextFloat();
 
-            if (side == 0 && !world.func_147439_a(x, y + 1, z).func_149662_c())
+            if (side == 0 && !world.getBlock(x, y + 1, z).isOpaqueCube())
                 y2 = y + 1 + pixelWidth;
 
-            if (side == 1 && !world.func_147439_a(x, y - 1, z).func_149662_c())
+            if (side == 1 && !world.getBlock(x, y - 1, z).isOpaqueCube())
                 y2 = y + 0 - pixelWidth;
 
-            if (side == 2 && !world.func_147439_a(x, y, z + 1).func_149662_c() && meta != 2)
+            if (side == 2 && !world.getBlock(x, y, z + 1).isOpaqueCube() && meta != 2)
                 z2 = z + 1 + pixelWidth;
 
-            if (side == 3 && !world.func_147439_a(x, y, z - 1).func_149662_c() && meta != 0)
+            if (side == 3 && !world.getBlock(x, y, z - 1).isOpaqueCube() && meta != 0)
                 z2 = z + 0 - pixelWidth;
 
-            if (side == 4 && !world.func_147439_a(x + 1, y, z).func_149662_c() && meta != 1)
+            if (side == 4 && !world.getBlock(x + 1, y, z).isOpaqueCube() && meta != 1)
                 x2 = x + 1 + pixelWidth;
 
-            if (side == 5 && !world.func_147439_a(x - 1, y, z).func_149662_c() && meta != 3)
+            if (side == 5 && !world.getBlock(x - 1, y, z).isOpaqueCube() && meta != 3)
                 x2 = x + 0 - pixelWidth;
 
             if (x2 < x || x2 > x + 1 || y2 < 0.0D || y2 > y + 1 || z2 < z || z2 > z + 1)
@@ -137,7 +137,7 @@ public class BlockTower extends BlockContainer
 
     @Override
     // onBlockPlacedBy
-    public void func_149689_a(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
+    public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 

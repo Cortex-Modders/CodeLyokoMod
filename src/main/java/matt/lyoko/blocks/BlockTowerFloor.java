@@ -21,29 +21,29 @@ public class BlockTowerFloor extends Block
     public BlockTowerFloor()
     {
         // material.iron
-        super(Material.field_151573_f);
+        super(Material.iron);
         // setCreativeTab
-        this.func_149647_a(CodeLyoko.LyokoTabs);
+        this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     public boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
     {
-        if (access.func_147439_a(x + 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z) instanceof BlockTowerFloor && access.func_147439_a(x, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x + 2, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 3, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 0)
+        if (access.getBlock(x + 1, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x + 1, y, z) instanceof BlockTowerFloor && access.getBlock(x + 1, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x, y, z) instanceof BlockTowerFloor && access.getBlock(x, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x + 2, y, z) instanceof BlockTowerFloor && access.getBlock(x + 3, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 0)
             return true;
-        else if (access.func_147439_a(x + 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 1, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x, y, z) instanceof BlockTowerFloor && access.func_147439_a(x, y, z - 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z + 1) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x - 1, y, z - 1) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 1)
+        else if (access.getBlock(x + 1, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x + 1, y, z) instanceof BlockTowerFloor && access.getBlock(x + 1, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x, y, z) instanceof BlockTowerFloor && access.getBlock(x, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z - 1) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 1)
             return true;
         return false;
     }
 
     @Override
     // onEntityCollidedWithBlock
-    public void func_149670_a(World world, int x, int y, int z, Entity ent)
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
     {
         int distance = y + 2;
         if (world.getBlockMetadata(x, y, z) == 0 && this.isMultiBlock(world, x, y, z))
         {
             for (int i = y + 1; i < 256; i++)
-                if (world.func_147439_a(x, i, z) instanceof BlockTowerFloor)
+                if (world.getBlock(x, i, z) instanceof BlockTowerFloor)
                 {
                     distance = i + 1;
                     break;
@@ -55,7 +55,7 @@ public class BlockTowerFloor extends Block
         else if (world.getBlockMetadata(x, y, z) == 1 && this.isMultiBlock(world, x, y, z))
         {
             for (int i = 0; i < y; i++)
-                if (world.func_147439_a(x, i, z) instanceof BlockTowerFloor)
+                if (world.getBlock(x, i, z) instanceof BlockTowerFloor)
                 {
                     distance = i + 1;
                     break;
@@ -68,7 +68,7 @@ public class BlockTowerFloor extends Block
 
     @Override
     // getCollisionBoundingBoxFromPool
-    public AxisAlignedBB func_149668_a(World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
         return AxisAlignedBB.getBoundingBox(par2 - 1, par3 - 1, par4 - 1, par2 + 1, par3 + 1 - f, par4 + 1);
@@ -91,13 +91,13 @@ public class BlockTowerFloor extends Block
 
     @Override
     // registerBlockIcons
-    public void func_149651_a(IIconRegister par1IconRegister)
+    public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.tr = par1IconRegister.registerIcon("lyoko:tr");
         this.tc = par1IconRegister.registerIcon("lyoko:tc");
         this.tl = par1IconRegister.registerIcon("lyoko:tl");
         this.cr = par1IconRegister.registerIcon("lyoko:cr");
-        this.cc = this.field_149761_L = par1IconRegister.registerIcon("lyoko:cc");
+        this.cc = this.blockIcon = par1IconRegister.registerIcon("lyoko:cc");
         this.cl = par1IconRegister.registerIcon("lyoko:cl");
         this.cl2 = par1IconRegister.registerIcon("lyoko:cl2");
         this.br = par1IconRegister.registerIcon("lyoko:br");
@@ -119,7 +119,7 @@ public class BlockTowerFloor extends Block
 
     @Override
     // getIcon
-    public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side)
+    public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)
     {
         if (side == 1)
         {
@@ -128,7 +128,7 @@ public class BlockTowerFloor extends Block
                     if (this.isMultiBlock(access, x - i + 1, y, z - j + 1))
                     {
                         if (j == 1 && i == 2)
-                            if (access.func_147439_a(x + 1, y, z) instanceof BlockTowerFloor && access.func_147439_a(x + 2, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x - 1, y, z) == 0)
+                            if (access.getBlock(x + 1, y, z) instanceof BlockTowerFloor && access.getBlock(x + 2, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x - 1, y, z) == 0)
                                 return this.cl2;
                         return this.topIcons[j][i];
                     }
