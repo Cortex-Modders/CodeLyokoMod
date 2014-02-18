@@ -6,9 +6,7 @@
  * http://opensource.org/licenses/MIT
  */
 
-package matt.lyoko;
-
-import matt.lyoko.lib.ModProperties;
+package matt.lyoko.lib;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

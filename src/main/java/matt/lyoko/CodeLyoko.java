@@ -16,6 +16,7 @@ import java.util.List;
 
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.client.GuiHandler;
+import matt.lyoko.client.LyokoTab;
 import matt.lyoko.client.render.TileAnimator;
 import matt.lyoko.entities.projectile.EntityLyokoRanged;
 import matt.lyoko.fluids.ModFluids;
@@ -24,6 +25,7 @@ import matt.lyoko.items.ModItems;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.ModProperties;
 import matt.lyoko.lib.Recipes;
+import matt.lyoko.proxy.CommonProxy;
 import matt.lyoko.world.BiomeGenBaseLyoko;
 import matt.lyoko.world.BiomeGenCarthageSector;
 import matt.lyoko.world.BiomeGenDesertSector;

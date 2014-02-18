@@ -7,8 +7,8 @@
 package matt.lyoko.blocks;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
+import matt.lyoko.proxy.ClientProxy;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

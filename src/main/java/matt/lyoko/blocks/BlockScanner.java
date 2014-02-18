@@ -11,11 +11,11 @@ import java.io.DataOutputStream;
 import java.util.List;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityScanner;
 import matt.lyoko.lib.DimensionIds;
 import matt.lyoko.lib.ModProperties;
 import matt.lyoko.lib.PlayerInformation;
+import matt.lyoko.proxy.ClientProxy;
 import matt.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockContainer;

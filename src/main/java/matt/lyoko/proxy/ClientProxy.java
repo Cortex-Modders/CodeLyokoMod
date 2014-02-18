@@ -4,9 +4,8 @@
  * http://opensource.org/licenses/MIT
  */
 
-package matt.lyoko.client;
+package matt.lyoko.proxy;
 
-import matt.lyoko.CommonProxy;
 import matt.lyoko.client.render.ItemRenderGlove;
 import matt.lyoko.client.render.mobs.RenderBlok;
 import matt.lyoko.client.render.mobs.RenderTank;

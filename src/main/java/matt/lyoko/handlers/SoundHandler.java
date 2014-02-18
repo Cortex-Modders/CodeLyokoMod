@@ -10,7 +10,7 @@ package matt.lyoko.handlers;
 
 import java.util.logging.Level;
 
-import matt.lyoko.ModLogger;
+import matt.lyoko.lib.ModLogger;
 import matt.lyoko.lib.ModProperties;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;

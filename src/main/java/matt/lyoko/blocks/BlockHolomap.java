@@ -9,8 +9,8 @@ package matt.lyoko.blocks;
 import java.util.List;
 
 import matt.lyoko.CodeLyoko;
-import matt.lyoko.client.ClientProxy;
 import matt.lyoko.entities.tileentity.TileEntityHolomap;
+import matt.lyoko.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

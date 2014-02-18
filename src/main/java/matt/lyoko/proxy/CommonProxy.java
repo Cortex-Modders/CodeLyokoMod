@@ -6,8 +6,9 @@
  * http://opensource.org/licenses/MIT
  */
 
-package matt.lyoko;
+package matt.lyoko.proxy;
 
+import matt.lyoko.CodeLyoko;
 import matt.lyoko.blocks.ModBlocks;
 import matt.lyoko.entities.mobs.EntityBlok;
 import matt.lyoko.entities.mobs.EntityMegaTank;

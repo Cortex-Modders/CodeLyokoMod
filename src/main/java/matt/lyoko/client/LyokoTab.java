@@ -6,7 +6,7 @@
  * http://opensource.org/licenses/MIT
  */
 
-package matt.lyoko;
+package matt.lyoko.client;
 
 import matt.lyoko.blocks.ModBlocks;
 import net.minecraft.creativetab.CreativeTabs;
