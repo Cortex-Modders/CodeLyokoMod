@@ -7,3 +7,4 @@ ToDo in update. (These are the stuff that we undid so we could start testing qui
 -xana attacks
   -polymorphic specters
   -infected mobs
+-black list the shell block from ichun's sync mod
