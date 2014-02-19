@@ -14,11 +14,8 @@ import java.io.DataOutputStream;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 
 public final class PlayerInformation implements IExtendedEntityProperties
 {
@@ -173,6 +170,11 @@ public final class PlayerInformation implements IExtendedEntityProperties
         return this.scannerPosZ;
     }
 
+    public EntityPlayer getPlayer()
+    {
+        return this.player;
+    }
+    
     /*
      * marks that this needs to be resend to the client
      */
@@ -188,11 +190,12 @@ public final class PlayerInformation implements IExtendedEntityProperties
             ex.printStackTrace();
         }
 
-        Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = "LifePoints";
-        packet.data = bos.toByteArray();
-        packet.length = bos.size();
-        
-        PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
+        //TODO: update this to new packet system.
+//        Packet250CustomPayload packet = new Packet250CustomPayload();
+//        packet.channel = "LifePoints";
+//        packet.data = bos.toByteArray();
+//        packet.length = bos.size();
+//        
+//        PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
     }
 }

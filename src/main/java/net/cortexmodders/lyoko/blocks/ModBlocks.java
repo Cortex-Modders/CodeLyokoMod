@@ -94,18 +94,6 @@ public class ModBlocks
         DigitalSeaBlock = new BlockDigitalSea().setResistance(6000000F).setBlockUnbreakable().setBlockName("DigitalSeaBlock");
         DigitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.water).setBlockName("DigitalSeaLiquid");
 
-        // Portal (Unused)
-        // LyokoPolarPortal = new
-        // BlockLyoko(BlockIds.LYOKO_ICE_PORTAL).setBlockName("PolarPortal").setCreativeTab(null);
-        // LyokoDesertPortal = new
-        // BlockLyoko(BlockIds.LYOKO_DESERT_PORTAL).setBlockName("DesertPortal").setCreativeTab(null);
-        // LyokoForestPortal = new
-        // BlockLyoko(BlockIds.LYOKO_FOREST_PORTAL).setBlockName("ForestPortal").setCreativeTab(null);
-        // LyokoMountainPortal = new
-        // BlockLyoko(BlockIds.LYOKO_MOUNTAIN_PORTAL).setBlockName("MountainPortal").setCreativeTab(null);
-        // LyokoCarthagePortal = new
-        // BlockLyoko(BlockIds.LYOKO_CARTHAGE_PORTAL).setBlockName("CarthagePortal").setCreativeTab(null);
-
         registerBlocks();
         registerLanguage();
     }

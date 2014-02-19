@@ -11,9 +11,11 @@ package net.cortexmodders.lyoko.items;
 import java.util.List;
 
 import net.cortexmodders.lyoko.blocks.ModBlocks;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -22,16 +24,17 @@ import net.minecraft.world.World;
 
 public class ItemBlockEffect extends ItemBlock
 {
-    public ItemBlockEffect(int par1)
+
+    public ItemBlockEffect(Block block)
     {
-        super(par1);
+        super(block);
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
-        if (stack.itemID == ModBlocks.TowerBase.blockID)
+        if (stack.getItem() instanceof ModBlocks.)
         {
             list.add("hold shift when placing the block");
             list.add("to be able to walk through it.");
@@ -42,7 +45,7 @@ public class ItemBlockEffect extends ItemBlock
     @Override
     public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
     {
-        if (stack.itemID == ModBlocks.LeadOre.blockID || stack.itemID == ModBlocks.UraniumOre.blockID)
+        if (stack.getItem() instanceof ModBlocks.LeadOre || stack.itemID == ModBlocks.UraniumOre.blockID)
         {
             if (ent instanceof EntityPlayer)
             {

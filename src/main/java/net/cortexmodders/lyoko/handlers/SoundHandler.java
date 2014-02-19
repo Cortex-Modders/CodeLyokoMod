@@ -8,13 +8,13 @@
 
 package net.cortexmodders.lyoko.handlers;
 
-import java.util.logging.Level;
-
 import net.cortexmodders.lyoko.lib.ModLogger;
-import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.event.ForgeSubscribe;
+
+import org.apache.logging.log4j.Level;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class SoundHandler
 {
@@ -23,7 +23,7 @@ public class SoundHandler
 	 * 
 	 * @param event
 	 */
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onSoundLoad(SoundLoadEvent event)
 	{
 		this.loadSound(event.manager, "scannerClose.ogg");
@@ -40,11 +40,12 @@ public class SoundHandler
 	{
 		try
 		{
-			manager.addSound(ModProperties.SOUND_PREFIX + file);
+		    //TODO: figure out new sound system
+			//manager. //(ModProperties.SOUND_PREFIX + file);
 		}
 		catch(Exception e)
 		{
-			ModLogger.log(Level.WARNING, "Error cannot load sound " + file);
+			ModLogger.log(Level.WARN, "Error cannot load sound " + file);
 		}
 	}
 }

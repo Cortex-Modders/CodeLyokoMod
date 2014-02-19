@@ -8,11 +8,8 @@
 
 package net.cortexmodders.lyoko.handlers;
 
-import ibxm.Player;
-
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.util.EnumSet;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;

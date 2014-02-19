@@ -80,9 +80,9 @@ public class CodeLyoko
 	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable
 	
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent preevt)
+	public void preInit(FMLPreInitializationEvent event)
 	{
-		Configuration config = new Configuration(preevt.getSuggestedConfigurationFile());
+		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 	    
 		proxy.registerBlockIds(config);
 		proxy.registerItemIds(config);
@@ -98,7 +98,7 @@ public class CodeLyoko
 	}
 	
 	@EventHandler
-    public void init(FMLInitializationEvent evt)
+    public void init(FMLInitializationEvent event)
     {
 		//DevCapesUtil.addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
 		
@@ -124,6 +124,7 @@ public class CodeLyoko
     	proxy.addChestLoot();
     	proxy.registerTileEntities();
     	proxy.registerDimensions();
+    	proxy.registerEventHandlers();
     	
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     	
@@ -138,9 +139,9 @@ public class CodeLyoko
     }
     
 	@EventHandler
-    public void postInit(FMLPostInitializationEvent postevt)
+    public void postInit(FMLPostInitializationEvent event)
     {
-    	proxy.registerEventHandlers();
+    	
     }
     
     @EventHandler

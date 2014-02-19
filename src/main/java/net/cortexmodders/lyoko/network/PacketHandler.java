@@ -65,18 +65,18 @@ public class PacketHandler
         clientChannel.pipeline().addAfter(codec, "ClientHandler", new ConsolePacketHandler());
     }
     
-    public static class ConsolePacketHandler extends FMLIndexedMessageToMessageCodec<ConsoleMessage>
+    public static class ConsolePacketHandler extends FMLIndexedMessageToMessageCodec<PacketNBTTag>
     {
 
         @Override
-        public void encodeInto(ChannelHandlerContext ctx, ConsoleMessage msg, ByteBuf target) throws Exception
+        public void encodeInto(ChannelHandlerContext ctx, PacketNBTTag msg, ByteBuf target) throws Exception
         {
             // TODO Auto-generated method stub
             
         }
 
         @Override
-        public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, ConsoleMessage msg)
+        public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, PacketNBTTag msg)
         {
             // TODO Auto-generated method stub
             
@@ -84,6 +84,8 @@ public class PacketHandler
         
     }
     
+    
+    /*
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player)
     {
@@ -226,4 +228,5 @@ public class PacketHandler
         if (vehicle != null)
             vehicle.motionY = motionY;
     }
+    */
 }
