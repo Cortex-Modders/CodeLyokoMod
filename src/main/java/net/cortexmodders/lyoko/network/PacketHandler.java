@@ -47,12 +47,16 @@ public class PacketHandler
         }
     }
     
-    public static PacketHandler getInstance()
+    public static void init()
     {
         if(INSTANCE == null)
         {
             INSTANCE = new PacketHandler();
         }
+    }
+    
+    public static PacketHandler getInstance()
+    {
         return INSTANCE;
     }
     
