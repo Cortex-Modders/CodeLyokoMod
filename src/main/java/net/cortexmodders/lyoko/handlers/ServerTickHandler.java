@@ -8,6 +8,8 @@
 
 package net.cortexmodders.lyoko.handlers;
 
+import ibxm.Player;
+
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.EnumSet;
@@ -18,18 +20,19 @@ import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.cortexmodders.lyoko.world.LyokoTeleporter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
 
-public class ServerTickHandler implements ITickHandler
+public class ServerTickHandler
 {
-    private void onPlayerTick(EntityPlayer player)
+    
+    @SubscribeEvent
+    private void onPlayerTick(PlayerTickEvent event)
     {
+        EntityPlayer player = event.player;
+        
         if(CodeLyoko.enableAdminPowers)
         {
             if(player.getGameProfile().getName().equals(CodeLyoko.getDevelopers()[0]))
@@ -89,37 +92,13 @@ public class ServerTickHandler implements ITickHandler
                 ex.printStackTrace();
             }
             
-            Packet250CustomPayload packet = PacketDispatcher.getPacket("Devirt", bos.toByteArray());
-            PacketDispatcher.sendPacketToServer(packet);
-            PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
+            //TODO: update to new packet system
+            //            Packet250CustomPayload packet = PacketDispatcher.getPacket("Devirt", bos.toByteArray());
+            //            PacketDispatcher.sendPacketToServer(packet);
+            //            PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
             
             pi.setLifePoints(100);
             pi.setDirty();
         }
-    }
-
-    @Override
-    public void tickStart(EnumSet<TickType> type, Object... tickData)
-    {
-        if (type.equals(EnumSet.of(TickType.PLAYER)))
-            this.onPlayerTick((EntityPlayer) tickData[0]);
-    }
-
-    @Override
-    public EnumSet<TickType> ticks()
-    {
-        return EnumSet.of(TickType.PLAYER, TickType.SERVER);
-    }
-
-    @Override
-    public void tickEnd(EnumSet<TickType> type, Object... tickData)
-    {
-
-    }
-
-    @Override
-    public String getLabel()
-    {
-        return "Code Lyoko Server Tick Handler";
     }
 }
