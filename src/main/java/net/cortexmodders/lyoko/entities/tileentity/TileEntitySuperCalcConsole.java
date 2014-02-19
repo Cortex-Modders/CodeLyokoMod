@@ -44,7 +44,7 @@ public class TileEntitySuperCalcConsole extends TileEntity
             {
                 cable.resetCoolDown();
                 cable.setSector(this.sector + "scc");
-                world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.Cable.blockID);
+                world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.Cable);
             }
         }
     }

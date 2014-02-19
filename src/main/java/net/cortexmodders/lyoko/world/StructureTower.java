@@ -48,7 +48,7 @@ public class StructureTower extends WorldGenerator
                 return false;
             if (block.equals(b))
                 return true;
-            else if (block.equals(Block.snow) && blockBelow.equals(b))
+            else if (block.equals(Block.getBlockFromName("snow")) && blockBelow.equals(b))
                 return true;
         }
         return false;
@@ -108,11 +108,11 @@ public class StructureTower extends WorldGenerator
         for (int i = 0; i < 11; i++)
             for (int j = 1; j < 25; j++)
                 for (int k = 0; k < 11; k++)
-                    world.setBlock(x + i - 2, y + j, z + k - 2, 0);
+                    world.setBlockToAir(x + i - 2, y + j, z + k - 2);
         for (int i = 1; i < 6; i++)
             for (int j = 0; j > -6; j--)
                 for (int k = 1; k < 6; k++)
-                    world.setBlock(x + i, y + j, z + k, 0);
+                    world.setBlockToAir(x + i, y + j, z + k);
     }
 
     private void makeBaseLayer(World world, int x, int y, int z)

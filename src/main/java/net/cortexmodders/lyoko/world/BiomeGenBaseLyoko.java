@@ -8,21 +8,19 @@
 
 package net.cortexmodders.lyoko.world;
 
-import net.minecraft.block.Block;
+import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomeGenBaseLyoko extends BiomeGenBase
 {
-    //public byte blockID;
-
 	protected BiomeGenBaseLyoko(int id)
     {
         super(id);
-        this.topBlock = Block.grass;
-        this.fillerBlock = Block.dirt;
+        this.topBlock = ModBlocks.SectorBlock;
+        this.fillerBlock = ModBlocks.SectorBlock;
         this.field_76754_C = 5169201;
-        this.minHeight = 0.1F;
-        this.maxHeight = 0.3F;
+        this.rootHeight = 0.1F;
+        this.heightVariation = 0.2F;
         this.temperature = 0.5F;
         this.rainfall = 0.5F;
         this.waterColorMultiplier = 16777215;

@@ -35,15 +35,15 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCaves;
 import net.minecraft.world.gen.MapGenRavine;
+import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.feature.MapGenScatteredFeature;
 import net.minecraft.world.gen.feature.WorldGenDungeons;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.structure.MapGenMineshaft;
+import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraft.world.gen.structure.MapGenStronghold;
 import net.minecraft.world.gen.structure.MapGenVillage;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
@@ -143,15 +143,15 @@ public class LyokoChunkProvider implements IChunkProvider
         this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
         this.mobSpawnerNoise = new NoiseGeneratorOctaves(this.rand, 8);
 
-        NoiseGeneratorOctaves[] noiseGens = { this.noiseGen1, this.noiseGen2, this.noiseGen3, this.noiseGen4, this.noiseGen5, this.noiseGen6, this.mobSpawnerNoise };
+        NoiseGenerator[] noiseGens = { this.noiseGen1, this.noiseGen2, this.noiseGen3, this.noiseGen4, this.noiseGen5, this.noiseGen6, this.mobSpawnerNoise };
         noiseGens = TerrainGen.getModdedNoiseGenerators(par1World, this.rand, noiseGens);
-        this.noiseGen1 = noiseGens[0];
-        this.noiseGen2 = noiseGens[1];
-        this.noiseGen3 = noiseGens[2];
-        this.noiseGen4 = noiseGens[3];
-        this.noiseGen5 = noiseGens[4];
-        this.noiseGen6 = noiseGens[5];
-        this.mobSpawnerNoise = noiseGens[6];
+        this.noiseGen1 = (NoiseGeneratorOctaves) noiseGens[0];
+        this.noiseGen2 = (NoiseGeneratorOctaves) noiseGens[1];
+        this.noiseGen3 = (NoiseGeneratorOctaves) noiseGens[2];
+        this.noiseGen4 = (NoiseGeneratorOctaves) noiseGens[3];
+        this.noiseGen5 = (NoiseGeneratorOctaves) noiseGens[4];
+        this.noiseGen6 = (NoiseGeneratorOctaves) noiseGens[5];
+        this.mobSpawnerNoise = (NoiseGeneratorOctaves) noiseGens[6];
     }
 
     /**
@@ -203,9 +203,9 @@ public class LyokoChunkProvider implements IChunkProvider
 
                             for (int k2 = 0; k2 < 4; ++k2)
                                 if ((d16 += d15) > 0.0D)
-                                    par3ArrayOfShort[j2 += short1] = (short) Block.stone.blockID;
+                                    par3ArrayOfShort[j2 += short1] = Block.getBlockFromName("stone");
                                 else if (k1 * 8 + l1 < b2)
-                                    par3ArrayOfShort[j2 += short1] = (short) Block.waterStill.blockID;
+                                    par3ArrayOfShort[j2 += short1] = Block.getBlockFromName("water");
                                 else
                                     par3ArrayOfShort[j2 += short1] = 0;
 

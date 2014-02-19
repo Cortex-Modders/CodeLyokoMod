@@ -53,7 +53,7 @@ public class LyokoTeleporter
         while (iterator.hasNext())
         {
             PotionEffect potioneffect = (PotionEffect) iterator.next();
-            playerMP.playerNetServerHandler.sendPacketToPlayer(new Packet41EntityEffect(playerMP.entityId, potioneffect));
+            playerMP.playerNetServerHandler.sendPacket(new Packet41EntityEffect(playerMP.entityId, potioneffect));
         }
 
         GameRegistry.onPlayerChangedDimension(playerMP);

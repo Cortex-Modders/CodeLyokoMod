@@ -30,7 +30,7 @@ public class LyokoMountainSector extends WorldProvider
     @Override
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokomountain, 0.8F, 0F);
+        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokomountain, 0F);
     }
 
     public IChunkProvider getChunkProvider()

@@ -26,8 +26,8 @@ public class TileEntityTowerConsole extends TileEntity
         for (int x = -4; x < 5; x++)
             for (int y = -4; y < 5; y++)
                 for (int z = -4; z < 5; z++)
-                    if (this.worldObj.getBlockTileEntity(x + this.xCoord, y + this.yCoord, z + this.zCoord) instanceof TileEntityTower)
-                        this.tetArray[x + 4][y + 4][z + 4] = (TileEntityTower) this.worldObj.getBlockTileEntity(x + this.xCoord, y + this.yCoord, z + this.zCoord);
+                    if (this.worldObj.getTileEntity(x + this.xCoord, y + this.yCoord, z + this.zCoord) instanceof TileEntityTower)
+                        this.tetArray[x + 4][y + 4][z + 4] = (TileEntityTower) this.worldObj.getTileEntity(x + this.xCoord, y + this.yCoord, z + this.zCoord);
 
         if (!this.owner.equals(""))
         {

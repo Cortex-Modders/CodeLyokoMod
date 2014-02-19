@@ -141,14 +141,14 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         for (int i = -1; i < 2; i++)
             for (int j = -1; j < 2; j++)
             {
-                int block = world.getBlock(x + i, y, z + j);
-                if (block == Block.waterMoving || block == Block.waterStill)
+                Block block = world.getBlock(x + i, y, z + j);
+                if (block == Block.getBlockFromName("flowing_water") || block == Block.getBlockFromName("water"))
                     coolant += 0.2F;
-                else if (block == Block.lavaMoving || block == Block.lavaStill)
+                else if (block == Block.getBlockFromName("flowing_lava") || block == Block.getBlockFromName("lava"))
                     coolant -= 0.2F;
-                else if (Block.blocksList[block] != null && Block.blocksList[block] instanceof BlockFluidBase)
+                else if (block != null && block instanceof BlockFluidBase)
                 {
-                    BlockFluidBase liquid = (BlockFluidBase) Block.blocksList[block];
+                    BlockFluidBase liquid = (BlockFluidBase) block;
                     Fluid fluid = liquid.getFluid();
                     if (fluid != null)
                     {
@@ -302,10 +302,10 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
+        NBTTagList tagList = tagCompound.getTagList("Inventory", 10);
         for (int i = 0; i < tagList.tagCount(); i++)
         {
-            NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < this.inv.length)
                 this.inv[slot] = ItemStack.loadItemStackFromNBT(tag);

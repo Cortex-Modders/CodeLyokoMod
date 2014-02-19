@@ -30,7 +30,7 @@ public class LyokoPolarSector extends WorldProvider
     @Override
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokopolar, 0.8F, 0F);
+        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokopolar, 0F);
     }
 
     public IChunkProvider getChunkProvider()

@@ -18,8 +18,8 @@ public class BiomeGenCarthageSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.topBlock = (byte) ModBlocks.SectorBlock.blockID;
-        this.fillerBlock = (byte) ModBlocks.SectorBlock.blockID;
+        this.topBlock = ModBlocks.SectorBlock;
+        this.fillerBlock = ModBlocks.SectorBlock;
         this.setBiomeName("Carthage");
         
         this.waterColorMultiplier = 0xE42D14;
