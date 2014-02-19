@@ -25,7 +25,6 @@ import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.lib.Recipes;
-import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.proxy.CommonProxy;
 import net.cortexmodders.lyoko.world.BiomeGenBaseLyoko;
 import net.cortexmodders.lyoko.world.BiomeGenCarthageSector;
@@ -134,8 +133,6 @@ public class CodeLyoko
     	//Block.setHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
     	//MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
     	//MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
-    	
-    	PacketHandler.getInstance();
     }
     
 	@EventHandler
