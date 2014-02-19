@@ -12,7 +12,7 @@ public class ModProperties
 {
 
     // Type inferance in use.
-    public static final String MOD_ID = "codelyoko";
+    public static final String MOD_ID = "CodeLyoko";
     public static final String MOD_NAME = "Code Lyoko";
     // Ant build script will replace this String with the actual version.
     public static final String MOD_VERSION = "@VERSION@";

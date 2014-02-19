@@ -84,8 +84,6 @@ public class CodeLyoko
 	{
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 	    
-		proxy.registerBlockIds(config);
-		proxy.registerItemIds(config);
 		proxy.registerDimensionIds(config);
 		
         enableAdminPowers = config.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
