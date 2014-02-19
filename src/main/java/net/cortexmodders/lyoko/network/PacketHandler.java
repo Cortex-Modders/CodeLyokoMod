@@ -57,6 +57,10 @@ public class PacketHandler
     
     public static PacketHandler getInstance()
     {
+    	if(INSTANCE == null)
+    	{
+    		init();
+    	}
         return INSTANCE;
     }
     
