@@ -28,7 +28,9 @@ import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
 import net.cortexmodders.lyoko.fluids.ModFluids;
+import net.cortexmodders.lyoko.handlers.ClientTickHandler;
 import net.cortexmodders.lyoko.handlers.EventHandler;
+import net.cortexmodders.lyoko.handlers.ServerTickHandler;
 import net.cortexmodders.lyoko.handlers.SoundHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.BlockIds;
@@ -62,12 +64,6 @@ public class CommonProxy
         // unused server side. -- see ClientProxy for implementation
     }
 
-    public void registerTickHandlers()
-    {
-        //TickRegistry.registerTickHandler(new ClientTickHandler(), Side.CLIENT);
-        //TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
-    }
-
     public void registerKeyBindingHandler()
     {
         // unused server side
@@ -88,6 +84,9 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(handler);
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
         MinecraftForge.EVENT_BUS.register(new ModFluids());
+        
+        MinecraftForge.EVENT_BUS.register(new ClientTickHandler());
+        MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
         
         //GameRegistry.registerPlayerTracker(handler);
     }

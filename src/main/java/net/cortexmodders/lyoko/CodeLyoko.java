@@ -119,7 +119,6 @@ public class CodeLyoko
     	proxy.registerEntities();
     	proxy.registerNames();
     	proxy.registerRenderInformation();
-    	proxy.registerTickHandlers();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
     	proxy.addChestLoot();

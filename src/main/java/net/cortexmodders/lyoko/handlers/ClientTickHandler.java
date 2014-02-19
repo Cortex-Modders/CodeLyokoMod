@@ -8,14 +8,12 @@
 
 package net.cortexmodders.lyoko.handlers;
 
-import java.util.EnumSet;
-
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.client.render.TileAnimator;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 
-public class ClientTickHandler implements ITickHandler
+public class ClientTickHandler
 {
     /**
      * Used to advance all the animator instances once every tick.
@@ -28,28 +26,9 @@ public class ClientTickHandler implements ITickHandler
             inst.animate();
     }
 
-    @Override
-    public void tickStart(EnumSet<TickType> type, Object... tickData)
+    @SubscribeEvent
+    public void renderTick(RenderTickEvent event)
     {
-        if (type.equals(EnumSet.of(TickType.RENDER)))
-            this.advanceAnimatorInstances(tickData);
-    }
-
-    @Override
-    public EnumSet<TickType> ticks()
-    {
-        return EnumSet.of(TickType.PLAYER, TickType.CLIENT, TickType.RENDER);
-    }
-
-    @Override
-    public void tickEnd(EnumSet<TickType> type, Object... tickData)
-    {
-
-    }
-
-    @Override
-    public String getLabel()
-    {
-        return "Code Lyoko Client Tick Handler";
+        this.advanceAnimatorInstances(event);
     }
 }

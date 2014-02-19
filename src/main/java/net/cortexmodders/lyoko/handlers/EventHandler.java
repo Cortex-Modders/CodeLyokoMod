@@ -30,6 +30,10 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerChangedDimensionEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 // TODO re-implement IPlayerTracker
 public class EventHandler extends Gui
@@ -104,28 +108,28 @@ public class EventHandler extends Gui
             event.entity.registerExtendedProperties(PlayerInformation.IDENTIFIER, new PlayerInformation((EntityPlayer) event.entity));
     }
 
-    @Override
-    public void onPlayerChangedDimension(EntityPlayer player)
+    @SubscribeEvent
+    public void onPlayerChangedDimension(PlayerChangedDimensionEvent event)
     {
-        PlayerInformation.forPlayer(player).setDirty();
+        PlayerInformation.forPlayer(event.player).setDirty();
     }
 
-    @Override
-    public void onPlayerLogin(EntityPlayer player)
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerLoggedInEvent event)
     {
-        System.out.println(UniqueArmorGenerator.getUniquePlayerIdentifier(player));
-        PlayerInformation.forPlayer(player).setDirty();
+        System.out.println(UniqueArmorGenerator.getUniquePlayerIdentifier(event.player));
+        PlayerInformation.forPlayer(event.player).setDirty();
     }
 
-    @Override
-    public void onPlayerLogout(EntityPlayer player)
+    @SubscribeEvent
+    public void onPlayerLogout(PlayerLoggedOutEvent event)
     {
 
     }
 
-    @Override
-    public void onPlayerRespawn(EntityPlayer player)
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerRespawnEvent event)
     {
-        PlayerInformation.forPlayer(player).setDirty();
+        PlayerInformation.forPlayer(event.player).setDirty();
     }
 }

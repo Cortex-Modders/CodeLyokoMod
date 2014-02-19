@@ -21,9 +21,7 @@ import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.packet.Packet250CustomPayload;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
+import net.minecraft.util.ChatComponentText;
 
 public class CommandHandler implements ICommand
 {
@@ -65,7 +63,7 @@ public class CommandHandler implements ICommand
             if(!CodeLyoko.entityInLyoko(player))
             {
                 if(player.worldObj.isRemote)
-                    player.addChatMessage("You cannot be devirtualized because you are not in lyoko");
+                    player.addChatMessage(new ChatComponentText("You cannot be devirtualized because you are not in lyoko"));
                 return;
             }
 
@@ -95,9 +93,10 @@ public class CommandHandler implements ICommand
                 ex.printStackTrace();
             }
 
-            Packet250CustomPayload packet = PacketDispatcher.getPacket("Devirt", bos.toByteArray());
-            PacketDispatcher.sendPacketToServer(packet);
-            PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
+            //TODO: update to new packet system.
+//            Packet250CustomPayload packet = PacketDispatcher.getPacket("Devirt", bos.toByteArray());
+//            PacketDispatcher.sendPacketToServer(packet);
+//            PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
         }
         // wait for ChatMessageComponent to get names put in.
         // icommandsender.func_110122_a(ChatMessageComponent.func_11066d("this command is not ready for use at this time"));
