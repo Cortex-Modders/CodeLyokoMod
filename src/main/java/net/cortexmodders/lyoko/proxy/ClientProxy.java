@@ -37,11 +37,14 @@ import net.cortexmodders.lyoko.entities.tileentity.TileEntityTower;
 import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
+import net.cortexmodders.lyoko.handlers.ClientTickHandler;
+import net.cortexmodders.lyoko.handlers.KeyBindingHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.opengl.GL11;
 
@@ -125,6 +128,15 @@ public class ClientProxy extends CommonProxy
         {
             CodeLyoko.instance.getLogger().warn("Could not initiate capes. Are you connected to the internet?");
         }
+    }
+    
+    @Override
+    public void registerEventHandlers()
+    {
+        super.registerEventHandlers();
+        
+        MinecraftForge.EVENT_BUS.register(new ClientTickHandler());
+        MinecraftForge.EVENT_BUS.register(new KeyBindingHandler());
     }
     
     /**
