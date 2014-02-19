@@ -10,10 +10,11 @@ package net.cortexmodders.lyoko.entities.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
 
 public class TileEntityTowerConsole extends TileEntity
 {
@@ -41,8 +42,8 @@ public class TileEntityTowerConsole extends TileEntity
                 for (int i = 0; i < this.worldObj.playerEntities.size(); i++)
                 {
                     EntityPlayer player = (EntityPlayer) this.worldObj.playerEntities.get(i);
-                    player.addChatMessage("A tower has been activated at: " + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + ", in dimension: " + this.worldObj.provider.dimensionId);
-                    player.addChatMessage("Automatic deactivation will occur in 10 minutes");
+                    player.addChatMessage(new ChatComponentText("A tower has been activated at: " + this.xCoord + ", " + this.yCoord + ", " + this.zCoord + ", in dimension: " + this.worldObj.provider.dimensionId));
+                    player.addChatMessage(new ChatComponentText("Automatic deactivation will occur in 10 minutes"));
                 }
             for (int i = 0; i < TileEntityTower.getPossibleOwners().length; i++)
                 if (this.owner.equals(TileEntityTower.getPossibleOwners()[i]))
@@ -65,13 +66,13 @@ public class TileEntityTowerConsole extends TileEntity
     {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
-        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
 
