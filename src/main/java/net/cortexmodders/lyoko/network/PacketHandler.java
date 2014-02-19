@@ -33,7 +33,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class PacketHandler
 {
-    private static PacketHandler INSTANCE;
+    private static PacketHandler INSTANCE = new PacketHandler();
     
     private EnumMap<Side, FMLEmbeddedChannel> channels;
     
@@ -47,20 +47,8 @@ public class PacketHandler
         }
     }
     
-    public static void init()
-    {
-        if(INSTANCE == null)
-        {
-            INSTANCE = new PacketHandler();
-        }
-    }
-    
     public static PacketHandler getInstance()
     {
-    	if(INSTANCE == null)
-    	{
-    		init();
-    	}
         return INSTANCE;
     }
     

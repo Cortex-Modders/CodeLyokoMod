@@ -139,8 +139,6 @@ public class CodeLyoko
     	//Block.setHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
     	//MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
     	//MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
-    	
-    	PacketHandler.init();
     }
     
 	@EventHandler
