@@ -51,7 +51,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 //import cpw.mods.fml.common.registry.TickRegistry;
 
 public class CommonProxy
@@ -170,26 +169,6 @@ public class CommonProxy
         DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
 
-    public void registerNames()
-    {
-        // Specters
-        LanguageRegistry.instance().addStringLocalization("entity.XanafiedMob.name", "en_US", "Xanafied Mob");
-
-        // Monsters.
-        LanguageRegistry.instance().addStringLocalization("entity.Blok.name", "en_US", "Blok");
-        LanguageRegistry.instance().addStringLocalization("entity.Megatank.name", "en_US", "Megatank");
-
-        // Vehicles.
-        LanguageRegistry.instance().addStringLocalization("entity.Skidbladnir.name", "en_US", "Skidbladnir");
-        LanguageRegistry.instance().addStringLocalization("entity.Overboard.name", "en_US", "Overboard");
-
-        // Damage sources
-        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.digitalSea", "%1$s fell into the digital sea");
-        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.digitalSea.player", "%1$s fell into the digital sea while fighting %2$s");
-        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta", "%1$s was absorbed by the marabounta");
-        LanguageRegistry.instance().addStringLocalization("death.attack.CodeLyoko.marabounta.player", "%1$s was absorbed by the marabounta while fighting %2$s");
-    }
-
     public void registerDimensionIds(Configuration config)
     {
         DimensionIds.ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
@@ -200,4 +179,6 @@ public class CommonProxy
         DimensionIds.DIGITALSEA = config.get(ConfigCategories.DIMENSIONS.name(), "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
         DimensionIds.CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
     }
+
+    public void registerCapes() {}
 }

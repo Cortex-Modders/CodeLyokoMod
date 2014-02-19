@@ -48,14 +48,11 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-//import com.jadarstudios.developercapes.DevCapesUtil;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
-//import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
-//@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"Console", "LifePoints", "Devirt", "ScannerDoors", "Vehicle"}, packetHandler = PacketHandler.class)
 public class CodeLyoko
 {
 	private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
@@ -74,10 +71,17 @@ public class CodeLyoko
 	public static BiomeGenBaseLyoko lyokopolar;
 	public static BiomeGenBaseLyoko lyokocarthage;
 	
+	/**
+	 * Common proxy instance. Used for utility function and keeping server and client code apart.
+	 */
 	@SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
-	public static CommonProxy proxy; //This object will be populated with the class that you choose for the environment
+	public static CommonProxy proxy;
+	
+	/**
+	 * The instance of the mod.
+	 */
 	@Instance
-	public static CodeLyoko instance;//the instance of the mod that will be defined, populated, and callable
+	public static CodeLyoko instance;
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
@@ -97,9 +101,7 @@ public class CodeLyoko
 	
 	@EventHandler
     public void init(FMLInitializationEvent event)
-    {
-		//DevCapesUtil.addFileUrl("https://dl.dropboxusercontent.com/u/87762025/lyokocapes.txt");
-		
+	{	
 		ModFluids.init();
 		ModItems.init();
 		ModBlocks.init();
@@ -115,7 +117,6 @@ public class CodeLyoko
 		Recipes.registerItemRecipes();
     	
     	proxy.registerEntities();
-    	proxy.registerNames();
     	proxy.registerRenderInformation();
     	proxy.registerKeyBindingHandler();
     	proxy.registerOreDictionaryOres();
@@ -123,6 +124,7 @@ public class CodeLyoko
     	proxy.registerTileEntities();
     	proxy.registerDimensions();
     	proxy.registerEventHandlers();
+    	proxy.registerCapes();
     	
     	NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     	

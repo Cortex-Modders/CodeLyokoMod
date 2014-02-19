@@ -29,6 +29,7 @@ public class ModProperties
 
     /** Use this when loading or playing sounds. */
     public static final String SOUND_PREFIX = "lyoko:";
+    public static final String CAPE_CONFIG_URL = "https://raw2.github.com/Cortex-Modders/CodeLyokoMod/master/capes/config.json";
     
     public static enum ConfigCategories
     {

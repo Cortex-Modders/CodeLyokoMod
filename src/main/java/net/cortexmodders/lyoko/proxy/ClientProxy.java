@@ -6,6 +6,9 @@
 
 package net.cortexmodders.lyoko.proxy;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import net.cortexmodders.lyoko.client.render.ItemRenderGlove;
 import net.cortexmodders.lyoko.client.render.mobs.RenderBlok;
 import net.cortexmodders.lyoko.client.render.mobs.RenderTank;
@@ -34,11 +37,16 @@ import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
 import net.cortexmodders.lyoko.items.ModItems;
+import net.cortexmodders.lyoko.lib.ModLogger;
+import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraftforge.client.MinecraftForgeClient;
 
+import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.GL11;
+
+import com.jadarstudios.developercapes.DevCapes;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -57,7 +65,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/u");
         RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/y");
         RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/w");
-
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderSnowball(ModItems.Fan));
         RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderSnowball(ModItems.EnergyField));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderSnowball(ModItems.LaserArrow));
@@ -108,12 +116,18 @@ public class ClientProxy extends CommonProxy
     }
 
     @Override
-    public void registerKeyBindingHandler()
+    public void registerCapes()
     {
-        //TODO: fix keybindings
-        //KeyBinding.registerKeyBinding(new KeyBindingHandler());
+        try
+        {
+            DevCapes.getInstance().registerConfig(new URL(ModProperties.CAPE_CONFIG_URL), ModProperties.MOD_ID);
+        }
+        catch (MalformedURLException e)
+        {
+            ModLogger.log(Level.WARN, "Could not initiate capes. Are you connected to the internet?");
+        }
     }
-
+    
     /**
      * 
      * called for things with alpha. thank you MachineMuse. :D
