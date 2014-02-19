@@ -17,7 +17,6 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Keyboard;
@@ -26,12 +25,12 @@ import org.lwjgl.opengl.GL11;
 public class GuiTowerConsole extends GuiContainer
 {
     private GuiTextField textBoxCode;
-
+    
     private String code;
-
+    
     private EntityPlayer player;
     public TileEntityTowerConsole ttc;
-
+    
     public GuiTowerConsole(InventoryPlayer inv, TileEntityTowerConsole tileEntity)
     {
         // the container is instanciated and passed to the superclass for
@@ -43,7 +42,7 @@ public class GuiTowerConsole extends GuiContainer
         this.player = inv.player;
         this.code = "";
     }
-
+    
     @Override
     public void initGui()
     {
@@ -51,19 +50,19 @@ public class GuiTowerConsole extends GuiContainer
         this.textBoxCode = new GuiTextField(this.fontRendererObj, (this.width - this.xSize) / 2 + this.xSize / 2 - 40, (this.height - this.ySize) / 2 + this.ySize / 2, 80, 10);
         this.textBoxCode.setText(this.code);
     }
-
+    
     @Override
     public void updateScreen()
     {
         this.textBoxCode.updateCursorCounter();
     }
-
+    
     @Override
     public void onGuiClosed()
     {
         Keyboard.enableRepeatEvents(false);
     }
-
+    
     @Override
     protected void keyTyped(char par1, int par2)
     {
@@ -72,7 +71,7 @@ public class GuiTowerConsole extends GuiContainer
             this.textBoxCode.textboxKeyTyped(par1, par2);
             this.code = this.textBoxCode.getText();
         }
-
+        
         if (par2 == 28)
         {
             if (this.code.equals("developer"))
@@ -88,7 +87,7 @@ public class GuiTowerConsole extends GuiContainer
                 if (!valid)
                     this.code = "lol";
             }
-
+            
             ByteArrayOutputStream bos = new ByteArrayOutputStream(this.code.length() * 2 + 12);
             DataOutputStream outputStream = new DataOutputStream(bos);
             try
@@ -101,37 +100,38 @@ public class GuiTowerConsole extends GuiContainer
             {
                 ex.printStackTrace();
             }
-
-            Packet250CustomPayload packet = new Packet250CustomPayload();
-            packet.channel = "Console";
-            packet.data = bos.toByteArray();
-            packet.length = bos.size();
-
-            ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
-
+            
+            //TODO: update to new packet system.
+//            Packet250CustomPayload packet = new Packet250CustomPayload();
+//            packet.channel = "Console";
+//            packet.data = bos.toByteArray();
+//            packet.length = bos.size();
+//
+//            ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
+            
             this.textBoxCode.writeText("");
         }
-
+        
         if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode() && !this.textBoxCode.isFocused())
             this.mc.thePlayer.closeScreen();
-
+        
     }
-
+    
     @Override
     protected void mouseClicked(int par1, int par2, int par3)
     {
         super.mouseClicked(par1, par2, par3);
-
+        
         this.textBoxCode.mouseClicked(par1, par2, par3);
     }
-
+    
     @Override
     public void drawScreen(int par1, int par2, float par3)
     {
         super.drawScreen(par1, par2, par3);
         this.textBoxCode.drawTextBox();
     }
-
+    
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2)
     {
@@ -139,7 +139,7 @@ public class GuiTowerConsole extends GuiContainer
         // the parameters for drawString are: string, x, y, color
         this.fontRendererObj.drawString("Code", 75, 36, 4210752);
     }
-
+    
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {

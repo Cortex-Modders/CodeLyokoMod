@@ -12,13 +12,13 @@ public class ModProperties
 {
 
     // Type inferance in use.
-    public static final String MOD_ID = "CodeLyoko";
+    public static final String MOD_ID = "codelyoko";
     public static final String MOD_NAME = "Code Lyoko";
     // Ant build script will replace this String with the actual version.
-    public static final String MOD_VERSION = "0.5.0-Beta";
+    public static final String MOD_VERSION = "@VERSION@";
 
-    public static final String CLIENT_PROXY = "matt.lyoko.client.ClientProxy";
-    public static final String COMMON_PROXY = "matt.lyoko.client.CommonProxy";
+    public static final String CLIENT_PROXY = "net.cortexmodders.lyoko.client.ClientProxy";
+    public static final String COMMON_PROXY = "net.cortexmodders.lyoko.client.CommonProxy";
 
     public static final String RESOURCE_PREFIX = "assets/lyoko/";
     public static final String BLOCK_TEXTURE_PREFIX = RESOURCE_PREFIX + "textures/blocks/";

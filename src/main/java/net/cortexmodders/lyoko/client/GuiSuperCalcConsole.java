@@ -11,12 +11,10 @@ import java.io.DataOutputStream;
 
 import net.cortexmodders.lyoko.container.ContainerSuperCalcConsole;
 import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Keyboard;
@@ -87,12 +85,13 @@ public class GuiSuperCalcConsole extends GuiContainer
                 ex.printStackTrace();
             }
 
-            Packet250CustomPayload packet = new Packet250CustomPayload();
-            packet.channel = "Console";
-            packet.data = bos.toByteArray();
-            packet.length = bos.size();
+            //TODO: update to new packet system.
+//            Packet250CustomPayload packet = new Packet250CustomPayload();
+//            packet.channel = "Console";
+//            packet.data = bos.toByteArray();
+//            packet.length = bos.size();
 
-            ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
+//            ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
 
             this.textBoxCode.setText("");
         }
