@@ -8,12 +8,9 @@
 
 package net.cortexmodders.lyoko.handlers;
 
-import net.cortexmodders.lyoko.lib.ModLogger;
+import net.cortexmodders.lyoko.CodeLyoko;
 import net.minecraft.client.audio.SoundManager;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
-
-import org.apache.logging.log4j.Level;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class SoundHandler
@@ -45,7 +42,7 @@ public class SoundHandler
 		}
 		catch(Exception e)
 		{
-			ModLogger.log(Level.WARN, "Error cannot load sound " + file);
+			CodeLyoko.instance.getLogger().warn("Error cannot load sound " + file);
 		}
 	}
 }

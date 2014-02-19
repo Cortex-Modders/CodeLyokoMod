@@ -23,6 +23,7 @@ import net.cortexmodders.lyoko.fluids.ModFluids;
 import net.cortexmodders.lyoko.handlers.CommandHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
+import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.lib.Recipes;
 import net.cortexmodders.lyoko.network.PacketHandler;
@@ -83,6 +84,8 @@ public class CodeLyoko
 	@Instance
 	public static CodeLyoko instance;
 	
+	private ModLogger modLogger;
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -97,6 +100,8 @@ public class CodeLyoko
 		{
 			config.save();
 		}
+		
+		modLogger = new ModLogger(event.getModLog());
 	}
 	
 	@EventHandler
@@ -149,6 +154,11 @@ public class CodeLyoko
 	{
 		event.registerServerCommand(new CommandHandler());
 	}
+    
+    public ModLogger getLogger()
+    {
+        return this.modLogger;
+    }
     
     public static boolean entityInLyoko(Entity ent)
     {

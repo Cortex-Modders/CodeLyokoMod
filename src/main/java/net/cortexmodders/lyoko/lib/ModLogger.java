@@ -9,26 +9,35 @@
 package net.cortexmodders.lyoko.lib;
 
 import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ModLogger
 {
 
-    private static Logger logger = LogManager.getLogger(ModProperties.MOD_ID);
+    private final Logger logger;
 
-    public static void log(Level parLevel, String parString)
+    public ModLogger(Logger modLog)
+    {
+        logger = modLog;
+    }
+
+    public void log(Level parLevel, String parString)
     {
         logger.log(parLevel, parString);
     }
     
-    public static void info(String parString)
+    public void info(String parString)
     {
         log(Level.INFO, parString);
     }
     
-    public static void severe(String parString)
+    public void severe(String parString)
     {
         log(Level.ERROR, parString);
+    }
+    
+    public void warn(String parString)
+    {
+        log(Level.WARN, parString);
     }
 }

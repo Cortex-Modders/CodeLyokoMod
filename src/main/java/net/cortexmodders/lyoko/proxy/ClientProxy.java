@@ -9,6 +9,7 @@ package net.cortexmodders.lyoko.proxy;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.client.render.ItemRenderGlove;
 import net.cortexmodders.lyoko.client.render.mobs.RenderBlok;
 import net.cortexmodders.lyoko.client.render.mobs.RenderTank;
@@ -37,13 +38,11 @@ import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
 import net.cortexmodders.lyoko.items.ModItems;
-import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.GL11;
 
 import com.jadarstudios.developercapes.DevCapes;
@@ -124,7 +123,7 @@ public class ClientProxy extends CommonProxy
         }
         catch (MalformedURLException e)
         {
-            ModLogger.log(Level.WARN, "Could not initiate capes. Are you connected to the internet?");
+            CodeLyoko.instance.getLogger().warn("Could not initiate capes. Are you connected to the internet?");
         }
     }
     
