@@ -6,7 +6,7 @@
  * http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.entities.tileentity;
+package net.cortexmodders.lyoko.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

@@ -8,14 +8,15 @@
 
 package net.cortexmodders.lyoko.lib;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
+import net.cortexmodders.lyoko.network.PacketHandler;
+import net.cortexmodders.lyoko.network.PacketPlayerInformation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
+import cpw.mods.fml.relauncher.Side;
 
 public final class PlayerInformation implements IExtendedEntityProperties
 {
@@ -180,22 +181,11 @@ public final class PlayerInformation implements IExtendedEntityProperties
      */
     public void setDirty()
     {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream(4);
-        DataOutputStream outputStream = new DataOutputStream(bos);
-        try
-        {
-            outputStream.writeInt(this.getLifePoints());
-        } catch (Exception ex)
-        {
-            ex.printStackTrace();
-        }
-
-        //TODO: update this to new packet system.
-//        Packet250CustomPayload packet = new Packet250CustomPayload();
-//        packet.channel = "LifePoints";
-//        packet.data = bos.toByteArray();
-//        packet.length = bos.size();
-//        
-//        PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
+        PacketHandler packetHandler = PacketHandler.getInstance();
+        
+        PacketPlayerInformation message = new PacketPlayerInformation(this.lifePoints);
+        
+        Packet packet = packetHandler.generatePacketFrom(message, Side.SERVER);
+        packetHandler.sendPacketToPlayer(packet, this.player);
     }
 }

@@ -4,14 +4,14 @@
  * http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.client;
+package net.cortexmodders.lyoko.client.gui;
 
 import net.cortexmodders.lyoko.container.ContainerSuperCalc;
 import net.cortexmodders.lyoko.container.ContainerSuperCalcConsole;
 import net.cortexmodders.lyoko.container.ContainerTowerConsole;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalc;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalc;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

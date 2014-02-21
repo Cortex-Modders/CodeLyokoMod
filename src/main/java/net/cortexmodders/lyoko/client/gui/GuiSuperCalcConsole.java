@@ -4,13 +4,13 @@
  * http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.client;
+package net.cortexmodders.lyoko.client.gui;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import net.cortexmodders.lyoko.container.ContainerSuperCalcConsole;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;

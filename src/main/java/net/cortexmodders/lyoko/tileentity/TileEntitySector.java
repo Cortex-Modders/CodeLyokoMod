@@ -6,7 +6,7 @@
  * http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.entities.tileentity;
+package net.cortexmodders.lyoko.tileentity;
 
 import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.lib.DimensionIds;

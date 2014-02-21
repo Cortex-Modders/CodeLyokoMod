@@ -8,30 +8,24 @@
 
 package net.cortexmodders.lyoko.network;
 
-import ibxm.Player;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.util.EnumMap;
 
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
-import net.cortexmodders.lyoko.entities.vehicles.EntityVehicle;
-import net.cortexmodders.lyoko.lib.PlayerInformation;
+import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import net.minecraft.network.Packet;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
+import cpw.mods.fml.common.network.FMLOutboundHandler;
+import cpw.mods.fml.common.network.FMLOutboundHandler.OutboundTarget;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PacketHandler
+public class PacketHandler 
 {
     private static PacketHandler INSTANCE = new PacketHandler();
     
@@ -39,7 +33,7 @@ public class PacketHandler
     
     private PacketHandler() 
     {
-        this.channels = NetworkRegistry.INSTANCE.newChannel("Console", new ConsolePacketHandler());
+        this.channels = NetworkRegistry.INSTANCE.newChannel(ModProperties.MOD_ID, new ChannelHandler());
         
         if(FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
@@ -50,6 +44,7 @@ public class PacketHandler
     public static PacketHandler getInstance()
     {
         return INSTANCE;
+        
     }
     
     @SideOnly(Side.CLIENT)
@@ -57,29 +52,66 @@ public class PacketHandler
         FMLEmbeddedChannel clientChannel = this.channels.get(Side.CLIENT);
         // These two lines find the existing codec (Ironchestcodec) and insert our message handler after it
         // in the pipeline
-        String codec = clientChannel.findChannelHandlerNameForType(IronChestCodec.class);
-        clientChannel.pipeline().addAfter(codec, "ClientHandler", new ConsolePacketHandler());
+        String codec = clientChannel.findChannelHandlerNameForType(ChannelHandler.class);
+        clientChannel.pipeline().addAfter(codec, "PlayerInformation", new ChannelHandler());
     }
     
-    public static class ConsolePacketHandler extends FMLIndexedMessageToMessageCodec<PacketNBTTag>
+    /**
+     * Wrapper method for {@link FMLEmbeddedChannel#generatePacketFrom(Object)}.
+     * Must have a codec in place to transform it for it to return anything.
+     * 
+     * @param msg object to generate from
+     * @param side channel to side
+     * @return created packet
+     */
+    public Packet generatePacketFrom(PacketLyoko msg, Side side)
+    {
+        return this.channels.get(side).generatePacketFrom(msg);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public void sendPacketToServer(Packet packet)
+    {
+        sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.TOSERVER);
+    }
+    
+    public void sendPacketToPlayer(Packet packet, EntityPlayer player)
+    {
+        channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+        sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.PLAYER);
+    }
+    
+    public void sendPacketToAllPlayers(Packet packet, EntityPlayer player)
+    {
+        sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.ALL);
+    }
+    
+    protected void sendPacketToTarget(Packet packet, OutboundTarget target)
+    {
+        channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(target);
+        channels.get(Side.SERVER).writeOutbound(packet);
+    }
+    
+    private static class ChannelHandler extends FMLIndexedMessageToMessageCodec<PacketLyoko>
     {
 
-        @Override
-        public void encodeInto(ChannelHandlerContext ctx, PacketNBTTag msg, ByteBuf target) throws Exception
+        public ChannelHandler()
         {
-            // TODO Auto-generated method stub
-            
+            addDiscriminator(0, PacketPlayerInformation.class);
+        }
+        
+        @Override
+        public void encodeInto(ChannelHandlerContext ctx, PacketLyoko msg, ByteBuf target) throws Exception
+        {
+            msg.write(target);
         }
 
         @Override
-        public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, PacketNBTTag msg)
+        public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, PacketLyoko msg)
         {
-            // TODO Auto-generated method stub
-            
+            msg.read(source);
         }
-        
     }
-    
     
     /*
     @Override

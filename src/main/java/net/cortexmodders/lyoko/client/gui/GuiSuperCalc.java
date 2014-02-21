@@ -4,10 +4,10 @@
  * http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.client;
+package net.cortexmodders.lyoko.client.gui;
 
 import net.cortexmodders.lyoko.container.ContainerSuperCalc;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalc;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalc;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
