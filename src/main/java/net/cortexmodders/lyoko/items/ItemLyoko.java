@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 
 public class ItemLyoko extends Item
 {
-    public ItemLyoko(int par1)
+    public ItemLyoko()
     {
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }

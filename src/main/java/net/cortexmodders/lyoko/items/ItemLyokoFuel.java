@@ -21,9 +21,8 @@ import net.minecraft.world.World;
 public class ItemLyokoFuel extends ItemLyoko
 {
 
-    public ItemLyokoFuel(int id, int maxEnergy, Item depletedItem)
+    public ItemLyokoFuel(int maxEnergy, Item depletedItem)
     {
-        super(id);
         this.setMaxDamage(maxEnergy);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.depletedForm = depletedItem;
