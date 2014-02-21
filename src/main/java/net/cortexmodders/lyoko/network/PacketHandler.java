@@ -61,7 +61,7 @@ public class PacketHandler
      * Must have a codec in place to transform it for it to return anything.
      * 
      * @param msg object to generate from
-     * @param side channel to side
+     * @param side channel to side being sent to
      * @return created packet
      */
     public Packet generatePacketFrom(PacketLyoko msg, Side side)
@@ -98,6 +98,7 @@ public class PacketHandler
         public ChannelHandler()
         {
             addDiscriminator(0, PacketPlayerInformation.class);
+            addDiscriminator(1, PacketConsoleCommand.class);
         }
         
         @Override
