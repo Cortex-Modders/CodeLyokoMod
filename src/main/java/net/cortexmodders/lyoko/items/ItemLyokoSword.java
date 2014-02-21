@@ -51,24 +51,24 @@ public class ItemLyokoSword extends ItemSword
                 ItemStack chest = player.getCurrentArmor(3);
                 ItemStack legs = player.getCurrentArmor(2);
                 ItemStack boots = player.getCurrentArmor(1);
-                if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest && legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
+                if (helmet.getItem() == ModItems.aelitaHelmet && chest.getItem() == ModItems.aelitaChest && legs.getItem() == ModItems.aelitaLegs && boots.getItem() == ModItems.aelitaBoots)
                 {
-                    if (stack.getItem() != ModItems.EnergyField)
+                    if (stack.getItem() != ModItems.energyField)
                         player.inventory.setInventorySlotContents(slot, null);
-                } else if (helmet.getItem() == ModItems.OddHelmet && chest.getItem() == ModItems.OddChest && legs.getItem() == ModItems.OddLegs && boots.getItem() == ModItems.OddBoots)
+                } else if (helmet.getItem() == ModItems.oddHelmet && chest.getItem() == ModItems.oddChest && legs.getItem() == ModItems.oddLegs && boots.getItem() == ModItems.oddBoots)
                 {
-                    if (stack.getItem() != ModItems.Glove)
+                    if (stack.getItem() != ModItems.glove)
                         player.inventory.setInventorySlotContents(slot, null);
-                } else if (helmet.getItem() == ModItems.YumiHelmet && chest.getItem() == ModItems.YumiChest && legs.getItem() == ModItems.YumiLegs && boots.getItem() == ModItems.YumiBoots)
+                } else if (helmet.getItem() == ModItems.yumiHelmet && chest.getItem() == ModItems.yumiChest && legs.getItem() == ModItems.yumiLegs && boots.getItem() == ModItems.yumiBoots)
                 {
-                    if (stack.getItem() != ModItems.Fan)
+                    if (stack.getItem() != ModItems.fan)
                         player.inventory.setInventorySlotContents(slot, null);
-                } else if (helmet.getItem() == ModItems.UlrichHelmet && chest.getItem() == ModItems.UlrichChest && legs.getItem() == ModItems.UlrichLegs && boots.getItem() == ModItems.UlrichBoots)
+                } else if (helmet.getItem() == ModItems.ulrichHelmet && chest.getItem() == ModItems.ulrichChest && legs.getItem() == ModItems.ulrichLegs && boots.getItem() == ModItems.ulrichBoots)
                 {
-                    if (stack.getItem() != ModItems.Katana)
+                    if (stack.getItem() != ModItems.katana)
                         player.inventory.setInventorySlotContents(slot, null);
-                } else if (helmet.getItem() == ModItems.WilliamHelmet && chest.getItem() == ModItems.WilliamChest && legs.getItem() == ModItems.WilliamLegs && boots.getItem() == ModItems.WilliamBoots)
-                    if (stack.getItem() != ModItems.Zweihander)
+                } else if (helmet.getItem() == ModItems.williamHelmet && chest.getItem() == ModItems.williamChest && legs.getItem() == ModItems.williamLegs && boots.getItem() == ModItems.williamBoots)
+                    if (stack.getItem() != ModItems.zweihander)
                         player.inventory.setInventorySlotContents(slot, null);
             } else if ((player.getCurrentArmor(4) == null || player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null) && player.capabilities.isCreativeMode == false)
                 player.inventory.setInventorySlotContents(slot, null);
@@ -92,9 +92,9 @@ public class ItemLyokoSword extends ItemSword
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        if (this == ModItems.Katana)
+        if (this == ModItems.katana)
             this.itemIcon = iconRegister.registerIcon("lyoko:katana");
-        if (this == ModItems.Zweihander)
+        if (this == ModItems.zweihander)
             this.itemIcon = iconRegister.registerIcon("lyoko:zweihander");
     }
 

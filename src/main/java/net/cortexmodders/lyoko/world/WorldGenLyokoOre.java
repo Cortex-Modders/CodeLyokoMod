@@ -42,7 +42,7 @@ public class WorldGenLyokoOre implements IWorldGenerator
             int Zcoord = baseZ + rand.nextInt(16);
             int Ycoord = rand.nextInt(30);
             // Max Vein Size
-            new WorldGenMinable(ModBlocks.QuantumOre, 4).generate(world, rand, Xcoord, Ycoord, Zcoord);
+            new WorldGenMinable(ModBlocks.quantumOre, 4).generate(world, rand, Xcoord, Ycoord, Zcoord);
         }
 
         // rarity -smaller number = rarer
@@ -52,7 +52,7 @@ public class WorldGenLyokoOre implements IWorldGenerator
             int Zcoord = baseZ + rand.nextInt(16);
             int Ycoord = rand.nextInt(20) + 30;
             // Max Vein Size
-            new WorldGenMinable(ModBlocks.LeadOre, 5).generate(world, rand, Xcoord, Ycoord, Zcoord);
+            new WorldGenMinable(ModBlocks.leadOre, 5).generate(world, rand, Xcoord, Ycoord, Zcoord);
         }
 
         // rarity -smaller number = rarer
@@ -62,7 +62,7 @@ public class WorldGenLyokoOre implements IWorldGenerator
             int Zcoord = baseZ + rand.nextInt(16);
             int Ycoord = rand.nextInt(10) + 20;
             // Max Vein Size
-            new WorldGenMinable(ModBlocks.UraniumOre, 1).generate(world, rand, Xcoord, Ycoord, Zcoord);
+            new WorldGenMinable(ModBlocks.uraniumOre, 1).generate(world, rand, Xcoord, Ycoord, Zcoord);
         }
     }
 

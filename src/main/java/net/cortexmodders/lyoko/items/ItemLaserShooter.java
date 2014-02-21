@@ -53,7 +53,7 @@ public class ItemLaserShooter extends Item
 
         boolean var5 = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.Fan))
+        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.fan))
         {
             float var7 = var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -128,7 +128,7 @@ public class ItemLaserShooter extends Item
         if (event.isCanceled())
             return event.result;
 
-        if (player.capabilities.isCreativeMode || player.inventory.hasItem(ModItems.LaserShooter))
+        if (player.capabilities.isCreativeMode || player.inventory.hasItem(ModItems.laserShooter))
             player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 
         player.setItemInUse(stack, 72000000);

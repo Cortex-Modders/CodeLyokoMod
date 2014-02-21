@@ -23,28 +23,28 @@ public class TileEntitySector extends TileEntity
             if (dimId == DimensionIds.CARTHAGE)
             {
             	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Carthage, 0, 3);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.carthage, 0, 3);
             }
             else if (dimId == DimensionIds.DESERT)
             {
             	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Sand, 0, 3);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.sand, 0, 3);
             }
             else if (dimId == DimensionIds.FOREST)
             {
             	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Grass, 0, 3);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.grass, 0, 3);
 
             }
             else if (dimId == DimensionIds.ICE)
             {
             	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Ice, 0, 3);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.ice, 0, 3);
             }
             else if (dimId == DimensionIds.MOUNTAIN)
             {
             	this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
-            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.Stone, 0, 3);
+            	this.worldObj.setBlock(this.xCoord, this.yCoord, this.zCoord, ModBlocks.stone, 0, 3);
             }
             for (int i = -1; i < 2; i++)
             {

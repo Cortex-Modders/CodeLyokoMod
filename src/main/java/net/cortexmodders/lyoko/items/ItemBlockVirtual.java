@@ -37,9 +37,9 @@ public class ItemBlockVirtual extends ItemBlock
                 ItemStack chest = player.getCurrentArmor(3);
                 ItemStack legs = player.getCurrentArmor(2);
                 ItemStack boots = player.getCurrentArmor(1);
-                if(helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest && legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
+                if(helmet.getItem() == ModItems.aelitaHelmet && chest.getItem() == ModItems.aelitaChest && legs.getItem() == ModItems.aelitaLegs && boots.getItem() == ModItems.aelitaBoots)
                 {
-                    if(stack.getItem() != Item.getItemFromBlock(ModBlocks.VirtualBlock))
+                    if(stack.getItem() != Item.getItemFromBlock(ModBlocks.virtualBlock))
                         player.inventory.setInventorySlotContents(slot, null);
                 }
                 else

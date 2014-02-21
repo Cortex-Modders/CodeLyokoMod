@@ -157,7 +157,7 @@ public class BlockHolomap extends BlockContainer
     // getSubBlocks
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        par3List.add(new ItemStack(ModBlocks.Holomap, 1, 8));
+        par3List.add(new ItemStack(ModBlocks.holomap, 1, 8));
     }
 
     @Override

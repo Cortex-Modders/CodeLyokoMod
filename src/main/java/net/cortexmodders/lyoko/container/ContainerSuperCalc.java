@@ -72,7 +72,7 @@ public class ContainerSuperCalc extends Container
                 slot.onSlotChange(itemstack1, itemstack);
             } else if (slotId != 0)
             {
-                if (itemstack1 != null && itemstack1.getItem() != null && (itemstack1.getItem() instanceof ItemLyokoFuel || itemstack1.getItem().equals(ModItems.LaserArrow)))
+                if (itemstack1 != null && itemstack1.getItem() != null && (itemstack1.getItem() instanceof ItemLyokoFuel || itemstack1.getItem().equals(ModItems.laserArrow)))
                 {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
                         return null;

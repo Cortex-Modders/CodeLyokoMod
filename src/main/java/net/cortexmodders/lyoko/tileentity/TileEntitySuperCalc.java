@@ -123,14 +123,14 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
 
     public void syncCable(World world, int x, int y, int z)
     {
-        if (world.getBlock(x, y, z) == ModBlocks.Cable && world.getTileEntity(x, y, z) != null)
+        if (world.getBlock(x, y, z) == ModBlocks.cable && world.getTileEntity(x, y, z) != null)
         {
             TileEntityCable cable = (TileEntityCable) world.getTileEntity(x, y, z);
             if (cable != null && cable.getCoolDown() == 0 && cable.getSector().equals(""))
             {
                 cable.resetCoolDown();
                 cable.setSector(this.sector.substring(0, this.sector.length() - 3));
-                world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.Cable);
+                world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.cable);
             }
         }
     }
@@ -232,16 +232,16 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         ItemStack stack = this.getStackInSlot(slot);
         ItemStack stack2 = this.getStackInSlot(slot2);
 
-        if (stack != null && stack.getItem() == ModItems.LaserArrow)
+        if (stack != null && stack.getItem() == ModItems.laserArrow)
         {
-            this.setInventorySlotContents(slot2, new ItemStack(ModItems.DataFragment, 64));
+            this.setInventorySlotContents(slot2, new ItemStack(ModItems.dataFragment, 64));
             this.setPowered(true);
         } else if (stack != null && stack.getItemDamage() == stack.getMaxDamage())
         {
-            if (stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.LeadCell)
-                this.setInventorySlotContents(slot, new ItemStack(ModItems.DepletedLeadCell));
-            else if (stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.UraniumCell)
-                this.setInventorySlotContents(slot, new ItemStack(ModItems.DepletedUraniumCell));
+            if (stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.leadCell)
+                this.setInventorySlotContents(slot, new ItemStack(ModItems.depletedLeadCell));
+            else if (stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.uraniumCell)
+                this.setInventorySlotContents(slot, new ItemStack(ModItems.depletedUraniumCell));
             this.setPowered(false);
         } else if (stack != null && stack.getItemDamage() < stack.getMaxDamage() && (stack2 != null && stack2.stackSize < 64 || stack2 == null))
         {
@@ -254,7 +254,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         if (this.timeLeft <= 0.0F)
         {
             if (stack2 == null)
-                this.setInventorySlotContents(slot2, new ItemStack(ModItems.DataFragment));
+                this.setInventorySlotContents(slot2, new ItemStack(ModItems.dataFragment));
             else if (stack2.stackSize < 64)
                 stack2.stackSize++;
             this.timeLeft = 100.0F;

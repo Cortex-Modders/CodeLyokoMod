@@ -68,10 +68,10 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/y");
         RenderingRegistry.addNewArmourRendererPrefix("lyoko:textures/armor/w");
         
-        RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderSnowball(ModItems.Fan));
-        RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderSnowball(ModItems.EnergyField));
-        RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderSnowball(ModItems.LaserArrow));
-        RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderSnowball(ModItems.LaserShooter));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFan.class, new RenderSnowball(ModItems.fan));
+        RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderSnowball(ModItems.energyField));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderSnowball(ModItems.laserArrow));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderSnowball(ModItems.laserShooter));
 
         RenderingRegistry.registerEntityRenderingHandler(EntityXanafiedMob.class, new RenderXanafiedMob());
         RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok());
@@ -96,7 +96,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
         RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
 
-        MinecraftForgeClient.registerItemRenderer(ModItems.Glove, new ItemRenderGlove());
+        MinecraftForgeClient.registerItemRenderer(ModItems.glove, new ItemRenderGlove());
 
         // ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class,
         // new RenderSuperCalc());

@@ -33,7 +33,7 @@ public class ItemBlockEffect extends ItemBlock
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
-        if(stack.getItem().equals(Item.getItemFromBlock(ModBlocks.TowerBase)))
+        if(stack.getItem().equals(Item.getItemFromBlock(ModBlocks.towerBase)))
         {
             list.add("hold shift when placing the block");
             list.add("to be able to walk through it.");
@@ -44,7 +44,7 @@ public class ItemBlockEffect extends ItemBlock
     @Override
     public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
     {
-        if(stack.getItem().equals(Item.getItemFromBlock(ModBlocks.LeadOre)) || stack.getItem().equals(Item.getItemFromBlock(ModBlocks.UraniumOre)))
+        if(stack.getItem().equals(Item.getItemFromBlock(ModBlocks.leadOre)) || stack.getItem().equals(Item.getItemFromBlock(ModBlocks.uraniumOre)))
         {
             if(ent instanceof EntityPlayer)
             {
@@ -59,7 +59,7 @@ public class ItemBlockEffect extends ItemBlock
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.poison.getId(), 500, 0));
             }
         }
-        else if(stack.getItem().equals(Item.getItemFromBlock(ModBlocks.QuantumOre)))
+        else if(stack.getItem().equals(Item.getItemFromBlock(ModBlocks.quantumOre)))
         {
             if(ent instanceof EntityLiving)
             {

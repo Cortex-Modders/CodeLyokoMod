@@ -16,8 +16,8 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
 	protected BiomeGenBaseLyoko(int id)
     {
         super(id);
-        this.topBlock = ModBlocks.SectorBlock;
-        this.fillerBlock = ModBlocks.SectorBlock;
+        this.topBlock = ModBlocks.sectorBlock;
+        this.fillerBlock = ModBlocks.sectorBlock;
         this.field_76754_C = 5169201;
         this.rootHeight = 0.1F;
         this.heightVariation = 0.2F;

@@ -23,7 +23,7 @@ public class LyokoTab extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-        return new ItemStack(ModBlocks.Log).getItem();
+        return new ItemStack(ModBlocks.log).getItem();
     }
     
     @Override

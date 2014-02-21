@@ -11,41 +11,43 @@ import net.cortexmodders.lyoko.fluids.ModFluids;
 import net.cortexmodders.lyoko.items.ItemBlockEffect;
 import net.cortexmodders.lyoko.items.ItemBlockTowerFloor;
 import net.cortexmodders.lyoko.items.ItemBlockVirtual;
+import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModBlocks
 {
-    public static Block SectorBlock;
-    public static Block TowerBlock;
-    public static Block TowerBase;
-    public static Block Grass;
-    public static Block Stone;
-    public static Block Sand;
-    public static Block Ice;
-    public static Block Log;
-    public static Block Carthage;
-    public static Block QuantumOre;
-    public static Block DigitalSeaBlock;
-    public static Block DigitalSeaLiquid;
-    public static Block LeadOre;
-    public static Block VirtualBlock;
-    public static Block UraniumOre;
-    public static Block Marabounta;
-    public static Block TowerConsole;
-    public static Block TowerFloor;
-    public static Block Cable;
-    public static Block Scanner;
-    public static Block SuperCalcConsole;
+    public static Block sectorBlock;
+    public static Block towerBlock;
+    public static Block towerBase;
+    public static Block grass;
+    public static Block stone;
+    public static Block sand;
+    public static Block ice;
+    public static Block log;
+    public static Block carthage;
+    public static Block quantumOre;
+    public static Block digitalSeaBlock;
+    public static Block digitalSeaLiquid;
+    public static Block leadOre;
+    public static Block virtualBlock;
+    public static Block uraniumOre;
+    public static Block marabounta;
+    public static Block towerConsole;
+    public static Block towerFloor;
+    public static Block cable;
+    public static Block scanner;
+    public static Block superCalcConsole;
     public static Block LyokoPolarPortal;
     public static Block LyokoDesertPortal;
     public static Block LyokoForestPortal;
     public static Block LyokoMountainPortal;
     public static Block LyokoCarthagePortal;
-    public static Block SuperCalc;
-    public static Block Holomap;
+    public static Block superCalc;
+    public static Block holomap;
 
     /**
      * setBlockUnbreakable - setBlockUnbreakable
@@ -58,41 +60,41 @@ public class ModBlocks
     public static void init()
     {
         // Lyoko
-        SectorBlock = new BlockSector().setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("LyokoSectorBlock");
+        sectorBlock = new BlockSector().setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("LyokoSectorBlock");
 
-        TowerBlock = new BlockTower().setBlockUnbreakable().setResistance(6000000.0F).setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerBlock");
-        TowerBase = new BlockTowerBase().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerBase");
-        Grass = new BlockLyokoTerrain(LyokoTerrainTypes.GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeGrass).setBlockName("LyokoGrass").setBlockTextureName("lyoko:lyokograss");
-        Stone = new BlockLyokoTerrain(LyokoTerrainTypes.STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeStone).setBlockName("LyokoStone").setBlockTextureName("lyoko:lyokostone");
-        Sand = new BlockLyokoTerrain(LyokoTerrainTypes.SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeSand).setBlockName("LyokoSand").setBlockTextureName("lyoko:lyokosand");
-        Ice = new BlockLyokoIce("lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundTypeGlass).setBlockName("LyokoIce").setBlockTextureName("lyoko:lyokoice");
+        towerBlock = new BlockTower().setBlockUnbreakable().setResistance(6000000.0F).setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerBlock");
+        towerBase = new BlockTowerBase().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerBase");
+        grass = new BlockLyokoTerrain(LyokoTerrainTypes.GRASS).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeGrass).setBlockName("LyokoGrass").setBlockTextureName("lyoko:lyokograss");
+        stone = new BlockLyokoTerrain(LyokoTerrainTypes.STONE).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeStone).setBlockName("LyokoStone").setBlockTextureName("lyoko:lyokostone");
+        sand = new BlockLyokoTerrain(LyokoTerrainTypes.SAND).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeSand).setBlockName("LyokoSand").setBlockTextureName("lyoko:lyokosand");
+        ice = new BlockLyokoIce("lyokoIce", Material.glass, false).setResistance(6000000F).setBlockUnbreakable().setLightOpacity(3).setStepSound(Block.soundTypeGlass).setBlockName("LyokoIce").setBlockTextureName("lyoko:lyokoice");
 
-        Log = new BlockLyokoTerrain(LyokoTerrainTypes.LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeWood).setBlockName("LyokoLog").setBlockTextureName("lyoko:lyokolog");
-        Carthage = new BlockLyoko().setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeMetal).setBlockName("LyokoCarthage").setBlockTextureName("lyoko:carthage");
-        VirtualBlock = new BlockVirtual().setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("LyokoVirtualBlock");
-        Marabounta = new BlockMarabounta().setResistance(3.0F).setHardness(10.0F).setBlockName("MarabountaBlock");
-        TowerConsole = new BlockTowerConsole().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerConsole");
-        TowerFloor = new BlockTowerFloor().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerFloor");
+        log = new BlockLyokoTerrain(LyokoTerrainTypes.LOG).setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeWood).setBlockName("LyokoLog").setBlockTextureName("lyoko:lyokolog");
+        carthage = new BlockLyoko().setResistance(6000000F).setBlockUnbreakable().setStepSound(Block.soundTypeMetal).setBlockName("LyokoCarthage").setBlockTextureName("lyoko:carthage");
+        virtualBlock = new BlockVirtual().setResistance(1.0F).setHardness(1.0F).setStepSound(Block.soundTypeGlass).setBlockName("LyokoVirtualBlock");
+        marabounta = new BlockMarabounta().setResistance(3.0F).setHardness(10.0F).setBlockName("MarabountaBlock");
+        towerConsole = new BlockTowerConsole().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerConsole");
+        towerFloor = new BlockTowerFloor().setResistance(6000000F).setBlockUnbreakable().setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("TowerFloor");
 
         // Ore
-        QuantumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.QUANTUM).setHardness(10F).setResistance(20F).setStepSound(Block.soundTypeStone).setBlockName("LyokoOre").setBlockTextureName("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        LeadOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.LEAD).setHardness(10F).setResistance(20F).setStepSound(Block.soundTypeStone).setBlockName("LeadOre").setLightOpacity(10).setBlockTextureName("lyoko:lead");
-        UraniumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.URANIUM).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("UraniumOre").setLightOpacity(10).setBlockTextureName("lyoko:uranium");
+        quantumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.QUANTUM).setHardness(10F).setResistance(20F).setStepSound(Block.soundTypeStone).setBlockName("LyokoOre").setBlockTextureName("lyoko:quantumore" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
+        leadOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.LEAD).setHardness(10F).setResistance(20F).setStepSound(Block.soundTypeStone).setBlockName("LeadOre").setLightOpacity(10).setBlockTextureName("lyoko:lead");
+        uraniumOre = new BlockLyokoOre(BlockLyokoOre.OreTypes.URANIUM).setHardness(10F).setResistance(20.0F).setStepSound(Block.soundTypeStone).setBlockName("UraniumOre").setLightOpacity(10).setBlockTextureName("lyoko:uranium");
 
-        QuantumOre.setHarvestLevel("pickaxe", 2);
-        LeadOre.setHarvestLevel("pickaxe", 2);
-        UraniumOre.setHarvestLevel("pickaxe", 2);
+        quantumOre.setHarvestLevel("pickaxe", 2);
+        leadOre.setHarvestLevel("pickaxe", 2);
+        uraniumOre.setHarvestLevel("pickaxe", 2);
 
         // Other
-        SuperCalc = new BlockSuperCalc().setHardness(20F).setResistance(10.0F).setBlockName("Super Computer");
-        Cable = new BlockCable().setResistance(4F).setHardness(1F).setStepSound(Block.soundTypeCloth).setBlockName("Cable");
-        Scanner = new BlockScanner().setHardness(20F).setResistance(0F).setBlockName("Scanner");
-        SuperCalcConsole = new BlockSuperCalcConsole().setResistance(6000000F).setHardness(20.0F).setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("SuperCalcConsole");
-        Holomap = new BlockHolomap().setResistance(6000000F).setHardness(10.0F).setLightOpacity(15).setStepSound(Block.soundTypeMetal).setBlockName("Holomap");
+        superCalc = new BlockSuperCalc().setHardness(20F).setResistance(10.0F).setBlockName("Super Computer");
+        cable = new BlockCable().setResistance(4F).setHardness(1F).setStepSound(Block.soundTypeCloth).setBlockName("Cable");
+        scanner = new BlockScanner().setHardness(20F).setResistance(0F).setBlockName("Scanner");
+        superCalcConsole = new BlockSuperCalcConsole().setResistance(6000000F).setHardness(20.0F).setLightOpacity(7).setStepSound(Block.soundTypeMetal).setBlockName("SuperCalcConsole");
+        holomap = new BlockHolomap().setResistance(6000000F).setHardness(10.0F).setLightOpacity(15).setStepSound(Block.soundTypeMetal).setBlockName("Holomap");
 
         // Digital Sea
-        DigitalSeaBlock = new BlockDigitalSea().setResistance(6000000F).setBlockUnbreakable().setBlockName("DigitalSeaBlock");
-        DigitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.water).setBlockName("DigitalSeaLiquid");
+        digitalSeaBlock = new BlockDigitalSea().setResistance(6000000F).setBlockUnbreakable().setBlockName("DigitalSeaBlock");
+        digitalSeaLiquid = new BlockDigitalSeaLiquid(ModFluids.digitalSea, Material.water).setBlockName("DigitalSeaLiquid");
 
         registerBlocks();
         registerLanguage();
@@ -101,66 +103,66 @@ public class ModBlocks
     public static void registerBlocks()
     {
 
-        GameRegistry.registerBlock(SectorBlock, "SectorBlock");
+        GameRegistry.registerBlock(sectorBlock, "SectorBlock");
 
-        GameRegistry.registerBlock(Scanner, "Scanner");
-        GameRegistry.registerBlock(Cable, "Cable");
-        GameRegistry.registerBlock(SuperCalcConsole, "Super Computer Console");
-        GameRegistry.registerBlock(SuperCalc, "Super Computer");
-        GameRegistry.registerBlock(TowerFloor, ItemBlockTowerFloor.class, "Tower Floor");
-        GameRegistry.registerBlock(TowerConsole, "Tower Console");
-        GameRegistry.registerBlock(Marabounta, "Marabounta");
-        GameRegistry.registerBlock(VirtualBlock, ItemBlockVirtual.class, "Virtual Block");
-        GameRegistry.registerBlock(LyokoCarthagePortal, "Carthage Portal");
-        GameRegistry.registerBlock(LyokoPolarPortal, "LyokoPolarPortal");
-        GameRegistry.registerBlock(LyokoDesertPortal, "Desert Portal");
-        GameRegistry.registerBlock(LyokoForestPortal, "Forest Portal");
-        GameRegistry.registerBlock(LyokoMountainPortal, "Mountain Portal");
-        GameRegistry.registerBlock(LeadOre, ItemBlockEffect.class, "Lead Isotope 210 Ore");
-        GameRegistry.registerBlock(UraniumOre, ItemBlockEffect.class, "Uranium Ore");
-        GameRegistry.registerBlock(TowerBlock, "Tower");
-        GameRegistry.registerBlock(TowerBase, ItemBlockEffect.class, "Tower Base");
-        GameRegistry.registerBlock(Grass, "Lyoko Grass");
-        GameRegistry.registerBlock(Stone, "Lyoko Stone");
-        GameRegistry.registerBlock(Sand, "Lyoko Sand");
-        GameRegistry.registerBlock(Ice, "Lyoko Ice");
-        GameRegistry.registerBlock(Log, "Lyoko Log");
-        GameRegistry.registerBlock(DigitalSeaBlock, "Digital Sea Block");
-        GameRegistry.registerBlock(Carthage, "Carthage Block");
-        GameRegistry.registerBlock(QuantumOre, ItemBlockEffect.class, "Quantum Ore");
-        GameRegistry.registerBlock(DigitalSeaLiquid, "Digital Sea Liquid");
-        GameRegistry.registerBlock(Holomap, "Holomap");
+        GameRegistry.registerBlock(scanner, ItemBlock.class, "Scanner", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(cable, ItemBlock.class, "Cable", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(superCalcConsole, ItemBlock.class, "Super Computer Console", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(superCalc, ItemBlock.class, "Super Computer", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(towerFloor, ItemBlockTowerFloor.class, "Tower Floor", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(towerConsole, ItemBlock.class, "Tower Console", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(marabounta, ItemBlock.class, "Marabounta", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(virtualBlock, ItemBlockVirtual.class, "Virtual Block", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(LyokoCarthagePortal, ItemBlock.class, "Carthage Portal", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(LyokoPolarPortal, ItemBlock.class, "LyokoPolarPortal", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(LyokoDesertPortal, ItemBlock.class, "Desert Portal", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(LyokoForestPortal, ItemBlock.class, "Forest Portal", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(LyokoMountainPortal, ItemBlock.class, "Mountain Portal", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(leadOre, ItemBlockEffect.class, "Lead Isotope 210 Ore", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(uraniumOre, ItemBlockEffect.class, "Uranium Ore", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(towerBlock, ItemBlock.class, "Tower", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(towerBase, ItemBlockEffect.class, "Tower Base", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(grass, ItemBlock.class, "Lyoko Grass", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(stone, ItemBlock.class, "Lyoko Stone", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(sand, ItemBlock.class, "Lyoko Sand", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(ice, ItemBlock.class, "Lyoko Ice", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(log, ItemBlock.class, "Lyoko Log", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(digitalSeaBlock, ItemBlock.class, "Digital Sea Block", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(carthage, ItemBlock.class, "Carthage Block", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(quantumOre, ItemBlockEffect.class, "Quantum Ore", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(digitalSeaLiquid, ItemBlock.class, "Digital Sea Liquid", ModProperties.MOD_ID);
+        GameRegistry.registerBlock(holomap, ItemBlock.class, "Holomap", ModProperties.MOD_ID);
     }
 
     public static void registerLanguage()
     {
-        LanguageRegistry.addName(SectorBlock, "Sector Block");
-        LanguageRegistry.addName(Scanner, "Scanner");
-        LanguageRegistry.addName(Cable, "Cable");
-        LanguageRegistry.addName(SuperCalcConsole, "Super Computer Console");
-        LanguageRegistry.addName(SuperCalc, "Super Computer");
-        LanguageRegistry.addName(TowerFloor, "Tower Floor");
-        LanguageRegistry.addName(TowerConsole, "Tower Console");
-        LanguageRegistry.addName(Marabounta, "Marabounta");
-        LanguageRegistry.addName(VirtualBlock, "Virtual Block");
+        LanguageRegistry.addName(sectorBlock, "Sector Block");
+        LanguageRegistry.addName(scanner, "Scanner");
+        LanguageRegistry.addName(cable, "Cable");
+        LanguageRegistry.addName(superCalcConsole, "Super Computer Console");
+        LanguageRegistry.addName(superCalc, "Super Computer");
+        LanguageRegistry.addName(towerFloor, "Tower Floor");
+        LanguageRegistry.addName(towerConsole, "Tower Console");
+        LanguageRegistry.addName(marabounta, "Marabounta");
+        LanguageRegistry.addName(virtualBlock, "Virtual Block");
         LanguageRegistry.addName(LyokoCarthagePortal, "Carthage Portal");
         LanguageRegistry.addName(LyokoPolarPortal, "Ice Portal");
         LanguageRegistry.addName(LyokoDesertPortal, "Desert Portal");
         LanguageRegistry.addName(LyokoForestPortal, "Forest Portal");
         LanguageRegistry.addName(LyokoMountainPortal, "Mountain Portal");
-        LanguageRegistry.addName(LeadOre, "Lead Isotope 210 Ore");
-        LanguageRegistry.addName(UraniumOre, "Uranium Ore");
-        LanguageRegistry.addName(TowerBlock, "Tower");
-        LanguageRegistry.addName(TowerBase, "Tower Base");
-        LanguageRegistry.addName(Grass, "Lyoko Grass");
-        LanguageRegistry.addName(Stone, "Lyoko Stone");
-        LanguageRegistry.addName(Sand, "Lyoko Sand");
-        LanguageRegistry.addName(Ice, "Lyoko Ice");
-        LanguageRegistry.addName(Log, "Lyoko Log");
-        LanguageRegistry.addName(DigitalSeaBlock, "Digital Sea Block");
-        LanguageRegistry.addName(Carthage, "Carthage Block");
-        LanguageRegistry.addName(QuantumOre, "Quantum Ore");
-        LanguageRegistry.addName(DigitalSeaLiquid, "Digital Sea");
-        LanguageRegistry.addName(Holomap, "Holomap");
+        LanguageRegistry.addName(leadOre, "Lead Isotope 210 Ore");
+        LanguageRegistry.addName(uraniumOre, "Uranium Ore");
+        LanguageRegistry.addName(towerBlock, "Tower");
+        LanguageRegistry.addName(towerBase, "Tower Base");
+        LanguageRegistry.addName(grass, "Lyoko Grass");
+        LanguageRegistry.addName(stone, "Lyoko Stone");
+        LanguageRegistry.addName(sand, "Lyoko Sand");
+        LanguageRegistry.addName(ice, "Lyoko Ice");
+        LanguageRegistry.addName(log, "Lyoko Log");
+        LanguageRegistry.addName(digitalSeaBlock, "Digital Sea Block");
+        LanguageRegistry.addName(carthage, "Carthage Block");
+        LanguageRegistry.addName(quantumOre, "Quantum Ore");
+        LanguageRegistry.addName(digitalSeaLiquid, "Digital Sea");
+        LanguageRegistry.addName(holomap, "Holomap");
     }
 }

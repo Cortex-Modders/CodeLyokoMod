@@ -106,7 +106,7 @@ public class BlockMarabounta extends BlockContainer
         if (block instanceof ILyokoTerrain)
         {
             // setBlock
-            world.setBlock(x, y, z, ModBlocks.Marabounta, 0, 2);
+            world.setBlock(x, y, z, ModBlocks.marabounta, 0, 2);
             tem = (TileEntityMarabounta) world.getTileEntity(x, y, z);
             tem.consumedBlock = block;
         }

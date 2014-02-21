@@ -84,11 +84,11 @@ public class TileEntityTower extends TileEntity
 
     public void syncTower(int x, int y, int z, String newOwner)
     {
-        if ((this.worldObj.getBlock(x, y, z) == ModBlocks.TowerBlock || this.worldObj.getBlock(x, y, z) == ModBlocks.TowerBase) && this.worldObj.getTileEntity(x, y, z) != null && ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner != newOwner && this.ownerValue(newOwner) > this.ownerValue(((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner))
+        if ((this.worldObj.getBlock(x, y, z) == ModBlocks.towerBlock || this.worldObj.getBlock(x, y, z) == ModBlocks.towerBase) && this.worldObj.getTileEntity(x, y, z) != null && ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner != newOwner && this.ownerValue(newOwner) > this.ownerValue(((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner))
         {
             if (!newOwner.equals("reset") || !((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner.equals("none"))
                 ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner = newOwner;
-        } else if ((this.worldObj.getBlock(x, y, z) == ModBlocks.TowerBlock || this.worldObj.getBlock(x, y, z) == ModBlocks.TowerBase) && this.worldObj.getTileEntity(x, y, z) != null && ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner != newOwner && newOwner.equals("none") && ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner.equals("reset"))
+        } else if ((this.worldObj.getBlock(x, y, z) == ModBlocks.towerBlock || this.worldObj.getBlock(x, y, z) == ModBlocks.towerBase) && this.worldObj.getTileEntity(x, y, z) != null && ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner != newOwner && newOwner.equals("none") && ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner.equals("reset"))
             ((TileEntityTower) this.worldObj.getTileEntity(x, y, z)).owner = newOwner;
     }
 

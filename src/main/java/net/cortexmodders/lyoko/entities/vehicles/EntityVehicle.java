@@ -22,7 +22,7 @@ public abstract class EntityVehicle extends Entity
 {
 
     public float hoverSpeed = 0.0F;// 0.0625F; // 1/16 is the speed
-    private Item droppedItem = ModItems.DataFragment;
+    private Item droppedItem = ModItems.dataFragment;
 
     public EntityVehicle(World par1World)
     {

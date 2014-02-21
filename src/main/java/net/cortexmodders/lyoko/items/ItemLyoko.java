@@ -43,7 +43,7 @@ public class ItemLyoko extends Item
 	@Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
-        if (stack.getItem().equals(ModItems.LaserArrow))
+        if (stack.getItem().equals(ModItems.laserArrow))
         {
             list.add("This is the mod's equivalent of an");
             list.add("infinite battery. Use this as a fuel");
@@ -57,7 +57,7 @@ public class ItemLyoko extends Item
 	@Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
-        if (stack.getItem().equals(ModItems.LaserArrow))
+        if (stack.getItem().equals(ModItems.laserArrow))
             if (player.isSneaking())
             {
                 Item item;
@@ -138,7 +138,7 @@ public class ItemLyoko extends Item
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase ent, EntityLivingBase player)
     {
-        if (stack.getItem().equals(ModItems.LaserArrow) && !(ent instanceof EntityLyoko) && !(ent instanceof EntitySpecter))
+        if (stack.getItem().equals(ModItems.laserArrow) && !(ent instanceof EntityLyoko) && !(ent instanceof EntitySpecter))
         {
             EntityXanafiedMob xana = new EntityXanafiedMob(ent.worldObj, ent.posX, ent.posY, ent.posZ, ent);
             if (!player.worldObj.isRemote)
@@ -153,23 +153,23 @@ public class ItemLyoko extends Item
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        if (this.equals(ModItems.LaserArrow))
+        if (this.equals(ModItems.laserArrow))
             this.itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
-        if (this.equals(ModItems.QuantumOrb))
+        if (this.equals(ModItems.quantumOrb))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantumorb" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        if (this.equals(ModItems.Lead))
+        if (this.equals(ModItems.lead))
             this.itemIcon = iconRegister.registerIcon("lyoko:leadingot");
-        if (this.equals(ModItems.EmptyCell))
+        if (this.equals(ModItems.emptyCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:emptycell");
-        if (this.equals(ModItems.DepletedLeadCell))
+        if (this.equals(ModItems.depletedLeadCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:depletedleadcell");
-        if (this.equals(ModItems.Uranium))
+        if (this.equals(ModItems.uranium))
             this.itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
-        if (this.equals(ModItems.DepletedUraniumCell))
+        if (this.equals(ModItems.depletedUraniumCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
-        if (this.equals(ModItems.QuantumMatrix))
+        if (this.equals(ModItems.quantumMatrix))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantummatrix" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        if (this.equals(ModItems.QuantumContainmentCell))
+        if (this.equals(ModItems.quantumContainmentCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
     }
 
@@ -177,7 +177,7 @@ public class ItemLyoko extends Item
     public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
     {
 
-        if (stack.getItem() == ModItems.Lead || stack.getItem() == ModItems.Uranium)
+        if (stack.getItem() == ModItems.lead || stack.getItem() == ModItems.uranium)
         {
             if (ent instanceof EntityPlayer)
             {
@@ -191,7 +191,7 @@ public class ItemLyoko extends Item
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 100, 0));
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.poison.getId(), 100, 0));
             }
-        } else if (stack.getItem() == ModItems.QuantumOrb)
+        } else if (stack.getItem() == ModItems.quantumOrb)
             if (ent instanceof EntityLiving)
             {
                 ((EntityLiving) ent).clearActivePotions();

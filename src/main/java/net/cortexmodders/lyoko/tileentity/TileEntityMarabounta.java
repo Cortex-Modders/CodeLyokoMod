@@ -41,7 +41,7 @@ public class TileEntityMarabounta extends TileEntity
 
     public void syncMarabounta(int x, int y, int z)
     {
-        if (this.worldObj.getBlock(x, y, z) == ModBlocks.Marabounta && this.worldObj.getTileEntity(x, y, z) != null && this.worldObj.getBlockMetadata(x, y, z) == 0)
+        if (this.worldObj.getBlock(x, y, z) == ModBlocks.marabounta && this.worldObj.getTileEntity(x, y, z) != null && this.worldObj.getBlockMetadata(x, y, z) == 0)
             if (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord) == 1)
             {
                 TileEntityMarabounta temp = (TileEntityMarabounta) this.worldObj.getTileEntity(x, y, z);

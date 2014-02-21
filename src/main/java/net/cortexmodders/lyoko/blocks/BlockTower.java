@@ -75,7 +75,7 @@ public class BlockTower extends BlockContainer
         TileEntityTower tet = (TileEntityTower) world.getTileEntity(x, y, z);
 
         if (!world.isRemote)
-            if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.LaserArrow)
+            if (player.getHeldItem() != null && player.getHeldItem().getItem() == ModItems.laserArrow)
             {
                 tet.owner = "reset";
                 // markBlockForUpdate - markBlockForUpdate

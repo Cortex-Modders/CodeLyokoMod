@@ -17,14 +17,14 @@ public class EntityOverboard extends EntityVehicle
     {
         super(world);
         this.setSize(1.125F, 0.375F);
-        this.setDroppedItem(ModItems.Overboard);
+        this.setDroppedItem(ModItems.overboard);
     }
 
     public EntityOverboard(World world, double x, double y, double z)
     {
         super(world, x, y, z);
         this.setSize(1.125F, 0.375F);
-        this.setDroppedItem(ModItems.Overboard);
+        this.setDroppedItem(ModItems.overboard);
     }
 
     /**

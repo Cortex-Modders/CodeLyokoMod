@@ -31,9 +31,9 @@ public class ItemLyokoFuel extends ItemLyoko
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
-        if (this == ModItems.LeadCell)
+        if (this == ModItems.leadCell)
             this.itemIcon = iconRegister.registerIcon("lyoko:leadcell");
-        if (this == ModItems.UraniumCell)
+        if (this == ModItems.uraniumCell)
             this.itemIcon = iconRegister.registerIcon("lyoko:uraniumcell");
     }
 

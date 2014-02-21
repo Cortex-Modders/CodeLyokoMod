@@ -24,14 +24,14 @@ public class EntitySkid extends EntityVehicle
     {
         super(world);
         this.setSize(2.0F, 6.9375F);
-        this.setDroppedItem(ModItems.Skid);
+        this.setDroppedItem(ModItems.skidbladnir);
     }
 
     public EntitySkid(World world, double x, double y, double z)
     {
         super(world, x, y, z);
         this.setSize(2.0F, 6.9375F);
-        this.setDroppedItem(ModItems.Skid);
+        this.setDroppedItem(ModItems.skidbladnir);
     }
 
     public int getMaxHealth()

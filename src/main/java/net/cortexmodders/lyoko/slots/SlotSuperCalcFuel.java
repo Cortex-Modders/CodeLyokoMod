@@ -33,7 +33,7 @@ public class SlotSuperCalcFuel extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        if (stack.getItem() instanceof ItemLyokoFuel || stack.getItem() == ModItems.LaserArrow)
+        if (stack.getItem() instanceof ItemLyokoFuel || stack.getItem() == ModItems.laserArrow)
             return true;
         return false;
     }

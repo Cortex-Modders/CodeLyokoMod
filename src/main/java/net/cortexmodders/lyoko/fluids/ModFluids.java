@@ -37,6 +37,6 @@ public class ModFluids
     public void textureHook(TextureStitchEvent.Post event)
     {
         if (event.map.getTextureType() == 0)
-            digitalSea.setIcons(ModBlocks.DigitalSeaLiquid.getBlockTextureFromSide(1));
+            digitalSea.setIcons(ModBlocks.digitalSeaLiquid.getBlockTextureFromSide(1));
     }
 }
