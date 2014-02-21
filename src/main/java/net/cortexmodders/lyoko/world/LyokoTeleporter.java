@@ -12,38 +12,33 @@ import java.util.Iterator;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.packet.Packet16BlockItemSwitch;
-import net.minecraft.network.packet.Packet41EntityEffect;
-import net.minecraft.network.packet.Packet4UpdateTime;
-import net.minecraft.network.packet.Packet70GameEvent;
-import net.minecraft.network.packet.Packet9Respawn;
+import net.minecraft.network.play.server.S03PacketTimeUpdate;
+import net.minecraft.network.play.server.S07PacketRespawn;
+import net.minecraft.network.play.server.S09PacketHeldItemChange;
+import net.minecraft.network.play.server.S1DPacketEntityEffect;
+import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldServer;
-import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class LyokoTeleporter
 {
     @SuppressWarnings("rawtypes")
 	public static void transferPlayerToDimension(EntityPlayerMP playerMP, int newDim)
     {
-        MinecraftServer minecraftServer = MinecraftServer.getServer();
-        int j = playerMP.dimension;
-        WorldServer worldserver = minecraftServer.worldServerForDimension(playerMP.dimension);
+    	MinecraftServer mcServer = MinecraftServer.getServer();
+    	int j = playerMP.dimension;
+        WorldServer worldserver = mcServer.worldServerForDimension(playerMP.dimension);
         playerMP.dimension = newDim;
-        WorldServer worldserver1 = minecraftServer.worldServerForDimension(playerMP.dimension);
-        playerMP.playerNetServerHandler.sendPacketToPlayer(new Packet9Respawn(playerMP.dimension, playerMP.worldObj.difficultySetting, worldserver1.getWorldInfo().getTerrainType(), worldserver1.getHeight(), playerMP.theItemInWorldManager.getGameType()));
-        //worldserver.removePlayerEntityDangerously(playerMP);
+        WorldServer worldserver1 = mcServer.worldServerForDimension(playerMP.dimension);
+        playerMP.playerNetServerHandler.sendPacket(new S07PacketRespawn(playerMP.dimension, playerMP.worldObj.difficultySetting, playerMP.worldObj.getWorldInfo().getTerrainType(), playerMP.theItemInWorldManager.getGameType()));
+        worldserver.removePlayerEntityDangerously(playerMP);
         playerMP.isDead = false;
-        transferEntityToWorld(playerMP, j, worldserver, worldserver1);
-
-        if(worldserver != null)
-            worldserver.getPlayerManager().removePlayer(playerMP);
-        worldserver1.getPlayerManager().addPlayer(playerMP);
-        worldserver1.theChunkProviderServer.loadChunk((int) playerMP.posX >> 4, (int) playerMP.posZ >> 4);
-        								// setPlayerLocation
+        transferEntityToWorld((EntityPlayer) playerMP, j, worldserver, worldserver1);
+        func_72375_a(playerMP, worldserver);
         playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
         playerMP.theItemInWorldManager.setWorld(worldserver1);
         updateTimeAndWeatherForPlayer(playerMP, worldserver1);
@@ -52,11 +47,10 @@ public class LyokoTeleporter
 
         while (iterator.hasNext())
         {
-            PotionEffect potioneffect = (PotionEffect) iterator.next();
-            playerMP.playerNetServerHandler.sendPacket(new Packet41EntityEffect(playerMP.entityId, potioneffect));
+            PotionEffect potioneffect = (PotionEffect)iterator.next();
+            playerMP.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(playerMP.getEntityId(), potioneffect));
         }
-
-        GameRegistry.onPlayerChangedDimension(playerMP);
+        FMLCommonHandler.instance().firePlayerChangedDimensionEvent(playerMP, j, newDim);
     }
 
     private static void transferEntityToWorld(EntityPlayer player, int currentDim, WorldServer currentWorldServer, WorldServer newWorldServer)
@@ -88,16 +82,33 @@ public class LyokoTeleporter
 
     private static void updateTimeAndWeatherForPlayer(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
     {
-        par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet4UpdateTime(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime(), par2WorldServer.getGameRules().getGameRuleBooleanValue("doDaylightCycle")));
+    	par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S03PacketTimeUpdate(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime(), par2WorldServer.getGameRules().getGameRuleBooleanValue("doDaylightCycle")));
 
         if (par2WorldServer.isRaining())
-            par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(1, 0));
+        {
+            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(1, 0.0F));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(7, par2WorldServer.getRainStrength(1.0F)));
+            par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(8, par2WorldServer.getWeightedThunderStrength(1.0F)));
+        }
     }
 
     private static void syncPlayerInventory(EntityPlayerMP par1EntityPlayerMP)
     {
-        par1EntityPlayerMP.sendContainerToPlayer(par1EntityPlayerMP.inventoryContainer);
+    	par1EntityPlayerMP.sendContainerToPlayer(par1EntityPlayerMP.inventoryContainer);
         par1EntityPlayerMP.setPlayerHealthUpdated();
-        par1EntityPlayerMP.playerNetServerHandler.sendPacketToPlayer(new Packet16BlockItemSwitch(par1EntityPlayerMP.inventory.currentItem));
+        par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S09PacketHeldItemChange(par1EntityPlayerMP.inventory.currentItem));
+    }
+    
+    public static void func_72375_a(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
+    {
+        WorldServer worldserver1 = par1EntityPlayerMP.getServerForPlayer();
+
+        if (par2WorldServer != null)
+        {
+            par2WorldServer.getPlayerManager().removePlayer(par1EntityPlayerMP);
+        }
+
+        worldserver1.getPlayerManager().addPlayer(par1EntityPlayerMP);
+        worldserver1.theChunkProviderServer.loadChunk((int)par1EntityPlayerMP.posX >> 4, (int)par1EntityPlayerMP.posZ >> 4);
     }
 }

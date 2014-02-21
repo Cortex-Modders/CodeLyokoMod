@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderEnd;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -35,7 +36,7 @@ public class LyokoPolarSector extends WorldProvider
 
     public IChunkProvider getChunkProvider()
     {
-        return new LyokoPolarChunkProvider(this.worldObj, this.worldObj.getSeed());
+        return new ChunkProviderEnd(this.worldObj, this.worldObj.getSeed());
     }
 
     @Override
