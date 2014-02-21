@@ -247,24 +247,5 @@ public class PacketHandler
             world.markBlockForUpdate(x, y, z);
         }
     }
-
-    private void handlePacketV(DataInputStream data, World world)
-    {
-        int entityId;
-        double motionY;
-        try
-        {
-            entityId = data.readInt();
-            motionY = data.readDouble();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
-        EntityVehicle vehicle = (EntityVehicle) world.getEntityByID(entityId);
-        if (vehicle != null)
-            vehicle.motionY = motionY;
-    }
     */
 }

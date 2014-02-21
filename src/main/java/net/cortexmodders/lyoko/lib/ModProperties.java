@@ -17,8 +17,8 @@ public class ModProperties
     // Ant build script will replace this String with the actual version.
     public static final String MOD_VERSION = "@VERSION@";
 
-    public static final String CLIENT_PROXY = "net.cortexmodders.lyoko.client.ClientProxy";
-    public static final String COMMON_PROXY = "net.cortexmodders.lyoko.client.CommonProxy";
+    public static final String CLIENT_PROXY = "net.cortexmodders.lyoko.proxy.ClientProxy";
+    public static final String COMMON_PROXY = "net.cortexmodders.lyoko.proxy.CommonProxy";
 
     public static final String RESOURCE_PREFIX = "assets/lyoko/";
     public static final String BLOCK_TEXTURE_PREFIX = RESOURCE_PREFIX + "textures/blocks/";

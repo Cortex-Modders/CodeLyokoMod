@@ -41,11 +41,6 @@ public class ModBlocks
     public static Block cable;
     public static Block scanner;
     public static Block superCalcConsole;
-    public static Block LyokoPolarPortal;
-    public static Block LyokoDesertPortal;
-    public static Block LyokoForestPortal;
-    public static Block LyokoMountainPortal;
-    public static Block LyokoCarthagePortal;
     public static Block superCalc;
     public static Block holomap;
 
@@ -113,11 +108,6 @@ public class ModBlocks
         GameRegistry.registerBlock(towerConsole, ItemBlock.class, "Tower Console", ModProperties.MOD_ID);
         GameRegistry.registerBlock(marabounta, ItemBlock.class, "Marabounta", ModProperties.MOD_ID);
         GameRegistry.registerBlock(virtualBlock, ItemBlockVirtual.class, "Virtual Block", ModProperties.MOD_ID);
-        GameRegistry.registerBlock(LyokoCarthagePortal, ItemBlock.class, "Carthage Portal", ModProperties.MOD_ID);
-        GameRegistry.registerBlock(LyokoPolarPortal, ItemBlock.class, "LyokoPolarPortal", ModProperties.MOD_ID);
-        GameRegistry.registerBlock(LyokoDesertPortal, ItemBlock.class, "Desert Portal", ModProperties.MOD_ID);
-        GameRegistry.registerBlock(LyokoForestPortal, ItemBlock.class, "Forest Portal", ModProperties.MOD_ID);
-        GameRegistry.registerBlock(LyokoMountainPortal, ItemBlock.class, "Mountain Portal", ModProperties.MOD_ID);
         GameRegistry.registerBlock(leadOre, ItemBlockEffect.class, "Lead Isotope 210 Ore", ModProperties.MOD_ID);
         GameRegistry.registerBlock(uraniumOre, ItemBlockEffect.class, "Uranium Ore", ModProperties.MOD_ID);
         GameRegistry.registerBlock(towerBlock, ItemBlock.class, "Tower", ModProperties.MOD_ID);
@@ -145,11 +135,6 @@ public class ModBlocks
         LanguageRegistry.addName(towerConsole, "Tower Console");
         LanguageRegistry.addName(marabounta, "Marabounta");
         LanguageRegistry.addName(virtualBlock, "Virtual Block");
-        LanguageRegistry.addName(LyokoCarthagePortal, "Carthage Portal");
-        LanguageRegistry.addName(LyokoPolarPortal, "Ice Portal");
-        LanguageRegistry.addName(LyokoDesertPortal, "Desert Portal");
-        LanguageRegistry.addName(LyokoForestPortal, "Forest Portal");
-        LanguageRegistry.addName(LyokoMountainPortal, "Mountain Portal");
         LanguageRegistry.addName(leadOre, "Lead Isotope 210 Ore");
         LanguageRegistry.addName(uraniumOre, "Uranium Ore");
         LanguageRegistry.addName(towerBlock, "Tower");
