@@ -24,7 +24,7 @@ public class Recipes
     {
         GameRegistry.addRecipe(new ItemStack(ModBlocks.scanner, 1), new Object[] { "###", "#*#", "###", Character.valueOf('#'), Items.gold_ingot, Character.valueOf('*'), ModItems.quantumMatrix });
         GameRegistry.addRecipe(new ItemStack(ModBlocks.cable, 12), new Object[] { "###", "$*$", "###", Character.valueOf('#'), Blocks.wool, Character.valueOf('*'), Items.gold_ingot, Character.valueOf('$'), Items.redstone });
-        GameRegistry.addRecipe(new ItemStack(ModBlocks.superCalc, 1), new Object[] { "#o#", "#*#", "#o#", Character.valueOf('#'), Items.gold_ingot, Character.valueOf('*'), ModItems.quantumMatrix, Character.valueOf('o'), Blocks.obsidian });
+        GameRegistry.addRecipe(new ItemStack(ModBlocks.superComputer, 1), new Object[] { "#o#", "#*#", "#o#", Character.valueOf('#'), Items.gold_ingot, Character.valueOf('*'), ModItems.quantumMatrix, Character.valueOf('o'), Blocks.obsidian });
     }
 
     @SuppressWarnings("unchecked")
