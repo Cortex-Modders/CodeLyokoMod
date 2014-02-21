@@ -6,21 +6,22 @@
 
 package net.cortexmodders.lyoko.client.gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.container.ContainerTowerConsole;
+import net.cortexmodders.lyoko.network.PacketConsoleCommand;
+import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
-import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.network.Packet;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
 
 public class GuiTowerConsole extends GuiContainer
 {
@@ -88,26 +89,11 @@ public class GuiTowerConsole extends GuiContainer
                     this.code = "lol";
             }
             
-            ByteArrayOutputStream bos = new ByteArrayOutputStream(this.code.length() * 2 + 12);
-            DataOutputStream outputStream = new DataOutputStream(bos);
-            try
-            {
-                outputStream.writeUTF(this.code);
-                outputStream.writeInt(this.ttc.xCoord);
-                outputStream.writeInt(this.ttc.yCoord);
-                outputStream.writeInt(this.ttc.zCoord);
-            } catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
+            PacketHandler packetHandler = PacketHandler.getInstance();
             
-            //TODO: update to new packet system.
-//            Packet250CustomPayload packet = new Packet250CustomPayload();
-//            packet.channel = "Console";
-//            packet.data = bos.toByteArray();
-//            packet.length = bos.size();
-//
-//            ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
+            PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.ttc.xCoord, this.ttc.yCoord, this.ttc.zCoord);
+            Packet packet = packetHandler.generatePacketFrom(message, Side.CLIENT);
+            packetHandler.sendPacketToPlayer(packet, this.player);
             
             this.textBoxCode.writeText("");
         }

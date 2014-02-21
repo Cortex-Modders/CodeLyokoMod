@@ -6,19 +6,21 @@
 
 package net.cortexmodders.lyoko.client.gui;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
 import net.cortexmodders.lyoko.container.ContainerSuperCalcConsole;
+import net.cortexmodders.lyoko.network.PacketConsoleCommand;
+import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.network.Packet;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
 
 public class GuiSuperCalcConsole extends GuiContainer
 {
@@ -72,27 +74,12 @@ public class GuiSuperCalcConsole extends GuiContainer
 
         if (par2 == 28)
         {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream(this.code.length() * 2 + 12);
-            DataOutputStream outputStream = new DataOutputStream(bos);
-            try
-            {
-                outputStream.writeUTF(this.code);
-                outputStream.writeInt(this.tscc.xCoord);
-                outputStream.writeInt(this.tscc.yCoord);
-                outputStream.writeInt(this.tscc.zCoord);
-            } catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
-
-            //TODO: update to new packet system.
-//            Packet250CustomPayload packet = new Packet250CustomPayload();
-//            packet.channel = "Console";
-//            packet.data = bos.toByteArray();
-//            packet.length = bos.size();
-
-//            ((EntityClientPlayerMP) this.player).sendQueue.addToSendQueue(packet);
-
+            PacketHandler packetHandler = PacketHandler.getInstance();
+            
+            PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.tscc.xCoord, this.tscc.yCoord, this.tscc.zCoord);
+            Packet packet = packetHandler.generatePacketFrom(message, Side.CLIENT);
+            packetHandler.sendPacketToPlayer(packet, this.player);
+            
             this.textBoxCode.setText("");
         }
 

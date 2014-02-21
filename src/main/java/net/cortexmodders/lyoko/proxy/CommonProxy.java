@@ -20,7 +20,6 @@ import net.cortexmodders.lyoko.entities.projectile.EntityLaserArrow;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
 import net.cortexmodders.lyoko.fluids.ModFluids;
-import net.cortexmodders.lyoko.handlers.ClientTickHandler;
 import net.cortexmodders.lyoko.handlers.EventHandler;
 import net.cortexmodders.lyoko.handlers.ServerTickHandler;
 import net.cortexmodders.lyoko.handlers.SoundHandler;
