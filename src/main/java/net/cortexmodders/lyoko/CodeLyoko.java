@@ -26,7 +26,6 @@ import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.lib.Recipes;
-import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.proxy.CommonProxy;
 import net.cortexmodders.lyoko.world.BiomeGenBaseLyoko;
 import net.cortexmodders.lyoko.world.BiomeGenCarthageSector;

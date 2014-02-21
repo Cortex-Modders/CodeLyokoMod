@@ -51,10 +51,6 @@ public class KeyBindingHandler
                 {
                     e.printStackTrace();
                 }
-                
-                //TODO: upgrade to new packet system
-//                Packet packet = PacketDispatcher.getPacket("Vehicle", bos.toByteArray());
-//                PacketDispatcher.sendPacketToServer(packet);
             }
         }
     }
