@@ -8,11 +8,11 @@
 
 package net.cortexmodders.lyoko.container;
 
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalc;
 import net.cortexmodders.lyoko.items.ItemLyokoFuel;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.slots.SlotSuperCalc;
 import net.cortexmodders.lyoko.slots.SlotSuperCalcFuel;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalc;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

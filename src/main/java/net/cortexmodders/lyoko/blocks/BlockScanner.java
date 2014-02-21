@@ -11,11 +11,11 @@ import java.io.DataOutputStream;
 import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.cortexmodders.lyoko.proxy.ClientProxy;
+import net.cortexmodders.lyoko.tileentity.TileEntityScanner;
 import net.cortexmodders.lyoko.world.LyokoTeleporter;
 import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockContainer;

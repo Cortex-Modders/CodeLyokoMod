@@ -9,8 +9,8 @@ package net.cortexmodders.lyoko.blocks;
 import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityHolomap;
 import net.cortexmodders.lyoko.proxy.ClientProxy;
+import net.cortexmodders.lyoko.tileentity.TileEntityHolomap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

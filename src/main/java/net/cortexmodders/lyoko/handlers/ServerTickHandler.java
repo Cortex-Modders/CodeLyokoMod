@@ -12,8 +12,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
+import net.cortexmodders.lyoko.tileentity.TileEntityScanner;
 import net.cortexmodders.lyoko.world.LyokoTeleporter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

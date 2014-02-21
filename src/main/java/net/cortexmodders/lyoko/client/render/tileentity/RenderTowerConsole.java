@@ -10,7 +10,7 @@ package net.cortexmodders.lyoko.client.render.tileentity;
 
 import net.cortexmodders.lyoko.client.model.tileentity.ModelConsole;
 import net.cortexmodders.lyoko.client.render.RenderUtil;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

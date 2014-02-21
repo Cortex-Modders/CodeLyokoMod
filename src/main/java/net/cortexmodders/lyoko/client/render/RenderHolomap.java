@@ -10,7 +10,7 @@
 
 package net.cortexmodders.lyoko.client.render;
 
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityHolomap;
+import net.cortexmodders.lyoko.tileentity.TileEntityHolomap;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 

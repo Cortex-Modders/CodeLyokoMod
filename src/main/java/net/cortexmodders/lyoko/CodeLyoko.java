@@ -15,8 +15,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import net.cortexmodders.lyoko.blocks.ModBlocks;
-import net.cortexmodders.lyoko.client.GuiHandler;
 import net.cortexmodders.lyoko.client.LyokoTab;
+import net.cortexmodders.lyoko.client.gui.GuiHandler;
 import net.cortexmodders.lyoko.client.render.TileAnimator;
 import net.cortexmodders.lyoko.entities.projectile.EntityLyokoRanged;
 import net.cortexmodders.lyoko.fluids.ModFluids;

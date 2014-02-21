@@ -8,7 +8,7 @@
 
 package net.cortexmodders.lyoko.container;
 
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

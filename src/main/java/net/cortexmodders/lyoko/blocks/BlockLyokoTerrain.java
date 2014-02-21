@@ -17,7 +17,6 @@ public class BlockLyokoTerrain extends BlockLyoko implements ILyokoTerrain
     @Override
     public LyokoTerrainTypes getType()
     {
-        // TODO Auto-generated method stub
         return null;
     }
 

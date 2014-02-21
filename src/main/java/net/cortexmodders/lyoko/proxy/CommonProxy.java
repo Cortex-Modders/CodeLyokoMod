@@ -17,14 +17,6 @@ import net.cortexmodders.lyoko.entities.projectile.EntityEnergyField;
 import net.cortexmodders.lyoko.entities.projectile.EntityFan;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaser;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaserArrow;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityCable;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityHolomap;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityMarabounta;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalc;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTower;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
 import net.cortexmodders.lyoko.fluids.ModFluids;
@@ -36,6 +28,14 @@ import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.EntityIds;
 import net.cortexmodders.lyoko.lib.ModProperties.ConfigCategories;
+import net.cortexmodders.lyoko.tileentity.TileEntityCable;
+import net.cortexmodders.lyoko.tileentity.TileEntityHolomap;
+import net.cortexmodders.lyoko.tileentity.TileEntityMarabounta;
+import net.cortexmodders.lyoko.tileentity.TileEntityScanner;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalc;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntityTower;
+import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.world.LyokoCarthageSector;
 import net.cortexmodders.lyoko.world.LyokoDesertSector;
 import net.cortexmodders.lyoko.world.LyokoForestSector;
@@ -51,7 +51,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-//import cpw.mods.fml.common.registry.TickRegistry;
 
 public class CommonProxy
 {
@@ -82,7 +81,6 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
         MinecraftForge.EVENT_BUS.register(new ModFluids());
         
-        MinecraftForge.EVENT_BUS.register(new ClientTickHandler());
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
         
         //GameRegistry.registerPlayerTracker(handler);

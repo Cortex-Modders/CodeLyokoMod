@@ -12,7 +12,7 @@ import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.blocks.BlockTower;
 import net.cortexmodders.lyoko.client.render.RenderUtil;
 import net.cortexmodders.lyoko.client.render.TileAnimator;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTower;
+import net.cortexmodders.lyoko.tileentity.TileEntityTower;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

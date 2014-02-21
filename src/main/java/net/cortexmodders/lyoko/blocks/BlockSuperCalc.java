@@ -9,7 +9,7 @@ package net.cortexmodders.lyoko.blocks;
 import java.util.Random;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalc;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

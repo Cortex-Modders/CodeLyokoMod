@@ -8,7 +8,7 @@
 
 package net.cortexmodders.lyoko.client.model.tileentity;
 
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
+import net.cortexmodders.lyoko.tileentity.TileEntityScanner;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 

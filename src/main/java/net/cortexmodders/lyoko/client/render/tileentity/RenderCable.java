@@ -14,7 +14,7 @@ import net.cortexmodders.lyoko.blocks.BlockScanner;
 import net.cortexmodders.lyoko.blocks.BlockSuperCalc;
 import net.cortexmodders.lyoko.blocks.BlockSuperCalcConsole;
 import net.cortexmodders.lyoko.client.model.tileentity.ModelCable;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityCable;
+import net.cortexmodders.lyoko.tileentity.TileEntityCable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

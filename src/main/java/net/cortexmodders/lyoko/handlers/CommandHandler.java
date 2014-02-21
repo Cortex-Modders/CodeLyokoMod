@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
+import net.cortexmodders.lyoko.tileentity.TileEntityScanner;
 import net.cortexmodders.lyoko.world.LyokoTeleporter;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;

@@ -12,7 +12,7 @@ package net.cortexmodders.lyoko.client.render.tileentity;
 
 import net.cortexmodders.lyoko.client.model.tileentity.ModelHolomap;
 import net.cortexmodders.lyoko.client.render.RenderHolomap;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityHolomap;
+import net.cortexmodders.lyoko.tileentity.TileEntityHolomap;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

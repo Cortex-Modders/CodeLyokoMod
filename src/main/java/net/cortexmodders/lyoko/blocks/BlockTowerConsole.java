@@ -7,7 +7,7 @@
 package net.cortexmodders.lyoko.blocks;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityTowerConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -11,7 +11,7 @@ package net.cortexmodders.lyoko.client.render.tileentity;
 import net.cortexmodders.lyoko.blocks.BlockScanner;
 import net.cortexmodders.lyoko.client.model.tileentity.ModelScanner;
 import net.cortexmodders.lyoko.client.model.tileentity.ModelScannerMiddle;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntityScanner;
+import net.cortexmodders.lyoko.tileentity.TileEntityScanner;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

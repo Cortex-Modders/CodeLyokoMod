@@ -398,21 +398,16 @@ public class LyokoDesertChunkProvider implements IChunkProvider
     @Override
     public void recreateStructures(int var1, int var2)
     {
-        // TODO Auto-generated method stub
-
     }
 
     @Override
     public boolean unloadQueuedChunks()
     {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public void saveExtraData()
     {
-        // TODO Auto-generated method stub
-
     }
 }

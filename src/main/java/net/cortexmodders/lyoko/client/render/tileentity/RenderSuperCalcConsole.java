@@ -9,7 +9,7 @@
 package net.cortexmodders.lyoko.client.render.tileentity;
 
 import net.cortexmodders.lyoko.client.model.tileentity.ModelSuperCalcConsole;
-import net.cortexmodders.lyoko.entities.tileentity.TileEntitySuperCalcConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

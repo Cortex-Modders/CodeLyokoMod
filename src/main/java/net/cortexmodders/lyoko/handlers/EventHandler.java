@@ -35,7 +35,6 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
-// TODO re-implement IPlayerTracker
 public class EventHandler extends Gui
 {
     private Minecraft mc;
