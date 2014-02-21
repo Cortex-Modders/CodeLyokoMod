@@ -1,6 +1,7 @@
 package net.cortexmodders.lyoko.network;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.world.World;
 
 
 public class PacketConsoleCommand extends PacketTileUpdate
@@ -8,13 +9,18 @@ public class PacketConsoleCommand extends PacketTileUpdate
 
     public String command;
     
-    public PacketConsoleCommand(String command, int xCoord, int yCoord, int zCoord)
+    public PacketConsoleCommand(String command, int xCoord, int yCoord, int zCoord, int dimensionId)
     {
-        super(xCoord, yCoord, zCoord);
+        super(xCoord, yCoord, zCoord, dimensionId);
 
         this.command = command;
     }
-
+    
+    public PacketConsoleCommand(String command, int xCoord, int yCoord, int zCoord, World world)
+    {
+        this(command, xCoord, yCoord, zCoord, world.provider.dimensionId);
+    }
+    
     @Override
     public void write(ByteBuf data)
     {
@@ -32,8 +38,4 @@ public class PacketConsoleCommand extends PacketTileUpdate
         
         this.command = readString(data);
     }
-    
-    
-    
-    
 }

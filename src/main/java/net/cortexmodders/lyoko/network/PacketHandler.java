@@ -10,12 +10,18 @@ package net.cortexmodders.lyoko.network;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.util.EnumMap;
 
 import net.cortexmodders.lyoko.lib.ModProperties;
+import net.cortexmodders.lyoko.lib.PlayerInformation;
+import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
+import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.Packet;
+import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.FMLEmbeddedChannel;
 import cpw.mods.fml.common.network.FMLIndexedMessageToMessageCodec;
@@ -33,7 +39,7 @@ public class PacketHandler
     
     private PacketHandler() 
     {
-        this.channels = NetworkRegistry.INSTANCE.newChannel(ModProperties.MOD_ID, new ChannelHandler());
+        this.channels = NetworkRegistry.INSTANCE.newChannel(ModProperties.MOD_ID, new ChannelCodec());
         
         if(FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
@@ -50,9 +56,8 @@ public class PacketHandler
     @SideOnly(Side.CLIENT)
     private void addClientHandler() {
         FMLEmbeddedChannel clientChannel = this.channels.get(Side.CLIENT);
-        // These two lines find the existing codec (Ironchestcodec) and insert our message handler after it
-        // in the pipeline
-        String codec = clientChannel.findChannelHandlerNameForType(ChannelHandler.class);
+        
+        String codec = clientChannel.findChannelHandlerNameForType(ChannelCodec.class);
         clientChannel.pipeline().addAfter(codec, "PlayerInformation", new ChannelHandler());
     }
     
@@ -92,13 +97,15 @@ public class PacketHandler
         channels.get(Side.SERVER).writeOutbound(packet);
     }
     
-    private static class ChannelHandler extends FMLIndexedMessageToMessageCodec<PacketLyoko>
+    private static class ChannelCodec extends FMLIndexedMessageToMessageCodec<PacketLyoko>
     {
 
-        public ChannelHandler()
+        public ChannelCodec()
         {
-            addDiscriminator(0, PacketPlayerInformation.class);
-            addDiscriminator(1, PacketConsoleCommand.class);
+            for(PacketType type : PacketType.values())
+            {
+                addDiscriminator(type.ordinal(), type.packetClass);
+            }
         }
         
         @Override
@@ -111,6 +118,26 @@ public class PacketHandler
         public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, PacketLyoko msg)
         {
             msg.read(source);
+            
+            
+        }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    private static class ChannelHandler extends SimpleChannelInboundHandler<PacketLyoko>
+    {
+
+        @Override
+        protected void channelRead0(ChannelHandlerContext ctx, PacketLyoko packet) throws Exception
+        {
+            if(packet instanceof PacketConsoleCommand)
+            {
+                PacketHandler.getInstance().handlePacketConsole((PacketConsoleCommand) packet);
+            }
+            else if(packet instanceof PacketPlayerInformation)
+            {
+                PacketHandler.getInstance().handlePacketPlayerInformation((PacketPlayerInformation) packet, Minecraft.getMinecraft().thePlayer);
+            }
         }
     }
     
@@ -132,26 +159,15 @@ public class PacketHandler
         if (packet.channel.equals("Vehicle"))
             this.handlePacketV(data, sender.worldObj);
     }
-
-    private void handlePacketConsole(DataInputStream data, World world)
+*/
+    private void handlePacketConsole(PacketConsoleCommand packet)
     {
-        String code;
-        int x;
-        int y;
-        int z;
-
-        try
-        {
-            code = data.readUTF();
-            x = data.readInt();
-            y = data.readInt();
-            z = data.readInt();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
+        String code = packet.command;
+        int x       = packet.xCoord;
+        int y       = packet.yCoord;
+        int z       = packet.zCoord;
+        World world = packet.getWorld(); 
+        
         if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityTowerConsole)
         {
             TileEntityTowerConsole tetc = (TileEntityTowerConsole) world.getTileEntity(x, y, z);
@@ -166,18 +182,10 @@ public class PacketHandler
         }
     }
 
-    private void handlePacketLP(DataInputStream data, World world, EntityPlayer player)
+    private void handlePacketPlayerInformation(PacketPlayerInformation packet, EntityPlayer player)
     {
-        int lifepoints;
-
-        try
-        {
-            lifepoints = data.readInt();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            return;
-        }
+        //TODO: fix this so it doesn't need a player instance.
+        int lifepoints = packet.lifePoints;
 
         if (player != null)
         {
@@ -186,6 +194,7 @@ public class PacketHandler
         }
     }
 
+    /*
     private void handlePacketD(DataInputStream data, World world, EntityPlayer player)
     {
         // int dim;

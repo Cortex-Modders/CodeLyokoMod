@@ -91,7 +91,7 @@ public class GuiTowerConsole extends GuiContainer
             
             PacketHandler packetHandler = PacketHandler.getInstance();
             
-            PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.ttc.xCoord, this.ttc.yCoord, this.ttc.zCoord);
+            PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.ttc.xCoord, this.ttc.yCoord, this.ttc.zCoord, this.ttc.getWorldObj());
             Packet packet = packetHandler.generatePacketFrom(message, Side.CLIENT);
             packetHandler.sendPacketToPlayer(packet, this.player);
             
