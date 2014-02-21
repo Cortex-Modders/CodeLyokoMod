@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class BlockDigitalSeaLiquid extends BlockFluidClassic
 {
@@ -46,6 +47,12 @@ public class BlockDigitalSeaLiquid extends BlockFluidClassic
     public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k)
     {
         return this.getFluid().getColor();
+    }
+    
+    @Override
+    public Fluid getFluid()
+    {
+    	return FluidRegistry.getFluid(fluidName);
     }
 
     @Override
