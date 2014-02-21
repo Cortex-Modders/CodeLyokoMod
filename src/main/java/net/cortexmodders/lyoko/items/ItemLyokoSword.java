@@ -10,13 +10,12 @@ package net.cortexmodders.lyoko.items;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.world.World;
@@ -27,9 +26,9 @@ public class ItemLyokoSword extends ItemSword
 {
     private int weaponDamage;
 
-    public ItemLyokoSword(int par1, EnumToolMaterial par2EnumToolMaterial)
+    public ItemLyokoSword(ToolMaterial par2EnumToolMaterial)
     {
-        super(par1, par2EnumToolMaterial);
+        super(par2EnumToolMaterial);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.setMaxDamage(0);
     }
@@ -46,12 +45,12 @@ public class ItemLyokoSword extends ItemSword
         {
             EntityPlayer player = (EntityPlayer) ent;
 
-            if (player.getCurrentItemOrArmor(4) != null && player.getCurrentItemOrArmor(3) != null && player.getCurrentItemOrArmor(2) != null && player.getCurrentItemOrArmor(1) != null)
+            if (player.getCurrentArmor(4) != null && player.getCurrentArmor(3) != null && player.getCurrentArmor(2) != null && player.getCurrentArmor(1) != null)
             {
-                ItemStack helmet = player.getCurrentItemOrArmor(4);
-                ItemStack chest = player.getCurrentItemOrArmor(3);
-                ItemStack legs = player.getCurrentItemOrArmor(2);
-                ItemStack boots = player.getCurrentItemOrArmor(1);
+                ItemStack helmet = player.getCurrentArmor(4);
+                ItemStack chest = player.getCurrentArmor(3);
+                ItemStack legs = player.getCurrentArmor(2);
+                ItemStack boots = player.getCurrentArmor(1);
                 if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest && legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
                 {
                     if (stack.getItem() != ModItems.EnergyField)
@@ -71,7 +70,7 @@ public class ItemLyokoSword extends ItemSword
                 } else if (helmet.getItem() == ModItems.WilliamHelmet && chest.getItem() == ModItems.WilliamChest && legs.getItem() == ModItems.WilliamLegs && boots.getItem() == ModItems.WilliamBoots)
                     if (stack.getItem() != ModItems.Zweihander)
                         player.inventory.setInventorySlotContents(slot, null);
-            } else if ((player.getCurrentItemOrArmor(4) == null || player.getCurrentItemOrArmor(3) == null || player.getCurrentItemOrArmor(2) == null || player.getCurrentItemOrArmor(1) == null) && player.capabilities.isCreativeMode == false)
+            } else if ((player.getCurrentArmor(4) == null || player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null) && player.capabilities.isCreativeMode == false)
                 player.inventory.setInventorySlotContents(slot, null);
         }
     }
@@ -91,11 +90,11 @@ public class ItemLyokoSword extends ItemSword
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        if (this.itemID == ModItems.Katana.itemID)
+        if (this == ModItems.Katana)
             this.itemIcon = iconRegister.registerIcon("lyoko:katana");
-        if (this.itemID == ModItems.Zweihander.itemID)
+        if (this == ModItems.Zweihander)
             this.itemIcon = iconRegister.registerIcon("lyoko:zweihander");
     }
 

@@ -9,17 +9,16 @@
 package net.cortexmodders.lyoko.items;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.lib.ItemIds;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.EnumHelper;
+import net.minecraft.item.Item.ToolMaterial;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraftforge.common.util.EnumHelper;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModItems
 {
-    public static EnumToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
-    public static EnumArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 200, new int[] { 5, 10, 8, 5 }, 30);
+    public static ToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
+    public static ArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 200, new int[] { 5, 10, 8, 5 }, 30);
 
     public static Item Katana;
     public static Item Zweihander;
@@ -64,7 +63,7 @@ public class ModItems
 
     public static void init()
     {
-        Katana = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_1, toolLYOKO).setUnlocalizedName("Katana");
+        Katana = new ItemLyokoSword(toolLYOKO).setUnlocalizedName("Katana");
         Zweihander = new ItemLyokoSword(ItemIds.WEAPON_LYOKO_2, toolLYOKO).setUnlocalizedName("Zweihander");
         Fan = new ItemFan(ItemIds.WEAPON_LYOKO_3).setUnlocalizedName("Fan");
         EnergyField = new ItemEnergyField(ItemIds.WEAPON_LYOKO_4).setUnlocalizedName("EnergyField");

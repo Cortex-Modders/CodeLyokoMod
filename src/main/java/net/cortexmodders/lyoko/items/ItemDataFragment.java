@@ -8,7 +8,7 @@
 
 package net.cortexmodders.lyoko.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class ItemDataFragment extends ItemLyoko
 {
@@ -18,9 +18,9 @@ public class ItemDataFragment extends ItemLyoko
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        if (this.itemID == ModItems.DataFragment.itemID)
+        if(this == ModItems.DataFragment)
             this.itemIcon = iconRegister.registerIcon("lyoko:datafrag");
     }
 }

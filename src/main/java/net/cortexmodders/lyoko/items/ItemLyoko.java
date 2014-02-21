@@ -16,7 +16,7 @@ import net.cortexmodders.lyoko.entities.mobs.EntitySpecter;
 import net.cortexmodders.lyoko.entities.mobs.EntityXanafiedMob;
 import net.cortexmodders.lyoko.world.StructureTower;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,9 +26,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
@@ -36,7 +36,6 @@ public class ItemLyoko extends Item
 {
     public ItemLyoko(int par1)
     {
-        super(par1);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
@@ -85,7 +84,7 @@ public class ItemLyoko extends Item
                 float f8 = f3 * f5;
                 double d3 = 5.0D;
                 Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-                MovingObjectPosition movingobjectposition = world.clip(vec3, vec31, true);
+                MovingObjectPosition movingobjectposition = world.rayTraceBlocks(vec3, vec31, true);
 
                 if (movingobjectposition == null)
                     return stack;
@@ -115,13 +114,13 @@ public class ItemLyoko extends Item
                         return stack;
                     else
                     {
-                        if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE)
+                        if (movingobjectposition.typeOfHit == MovingObjectType.BLOCK)
                         {
                             i = movingobjectposition.blockX;
                             int j = movingobjectposition.blockY;
                             int k = movingobjectposition.blockZ;
 
-                            if (world.getBlockId(i, j, k) == Block.snow.blockID)
+                            if (world.getBlock(i, j, k) == Block.getBlockFromName("snow"))
                                 --j;
 
                             new StructureTower().generate(world, itemRand, i - 3, j, k - 3);
@@ -152,25 +151,25 @@ public class ItemLyoko extends Item
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        if (this.itemID == ModItems.LaserArrow.itemID)
+        if (this.equals(ModItems.LaserArrow))
             this.itemIcon = iconRegister.registerIcon("lyoko:laserarrow");
-        if (this.itemID == ModItems.QuantumOrb.itemID)
+        if (this.equals(ModItems.QuantumOrb))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantumorb" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        if (this.itemID == ModItems.Lead.itemID)
+        if (this.equals(ModItems.Lead))
             this.itemIcon = iconRegister.registerIcon("lyoko:leadingot");
-        if (this.itemID == ModItems.EmptyCell.itemID)
+        if (this.equals(ModItems.EmptyCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:emptycell");
-        if (this.itemID == ModItems.DepletedLeadCell.itemID)
+        if (this.equals(ModItems.DepletedLeadCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:depletedleadcell");
-        if (this.itemID == ModItems.Uranium.itemID)
+        if (this.equals(ModItems.Uranium))
             this.itemIcon = iconRegister.registerIcon("lyoko:uraniumingot");
-        if (this.itemID == ModItems.DepletedUraniumCell.itemID)
+        if (this.equals(ModItems.DepletedUraniumCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:depleteduraniumcell");
-        if (this.itemID == ModItems.QuantumMatrix.itemID)
+        if (this.equals(ModItems.QuantumMatrix))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantummatrix" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
-        if (this.itemID == ModItems.QuantumContainmentCell.itemID)
+        if (this.equals(ModItems.QuantumContainmentCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
     }
 

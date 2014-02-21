@@ -11,7 +11,7 @@ package net.cortexmodders.lyoko.items;
 import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -30,11 +30,11 @@ public class ItemLyokoFuel extends ItemLyoko
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
-        if (this.itemID == ModItems.LeadCell.itemID)
+        if (this == ModItems.LeadCell)
             this.itemIcon = iconRegister.registerIcon("lyoko:leadcell");
-        if (this.itemID == ModItems.UraniumCell.itemID)
+        if (this == ModItems.UraniumCell)
             this.itemIcon = iconRegister.registerIcon("lyoko:uraniumcell");
     }
 

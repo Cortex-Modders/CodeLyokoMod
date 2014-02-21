@@ -13,29 +13,28 @@ import java.util.List;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 public class ItemOverboard extends Item
 {
-    public ItemOverboard(int par1)
+    public ItemOverboard()
     {
-        super(par1);
         this.maxStackSize = 1;
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
         this.itemIcon = iconRegister.registerIcon("lyoko:overboard");
     }
@@ -63,7 +62,7 @@ public class ItemOverboard extends Item
         float f8 = f3 * f5;
         double d3 = 5.0D;
         Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
-        MovingObjectPosition movingobjectposition = par2World.clip(vec3, vec31, true);
+        MovingObjectPosition movingobjectposition = par2World.rayTraceBlocks(vec3, vec31, true);
 
         if (movingobjectposition == null)
             return par1ItemStack;
@@ -93,13 +92,13 @@ public class ItemOverboard extends Item
                 return par1ItemStack;
             else
             {
-                if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE)
+                if (movingobjectposition.typeOfHit == MovingObjectType.BLOCK)
                 {
                     i = movingobjectposition.blockX;
                     int j = movingobjectposition.blockY;
                     int k = movingobjectposition.blockZ;
 
-                    if (par2World.getBlockId(i, j, k) == Block.snow.blockID)
+                    if (par2World.getBlock(i, j, k) == Block.getBlockFromName("snow"))
                         --j;
 
                     EntityOverboard entOverboard = new EntityOverboard(par2World, i + 0.5F, j + 1.0F, k + 0.5F);

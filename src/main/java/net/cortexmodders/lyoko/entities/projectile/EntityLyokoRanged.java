@@ -13,7 +13,6 @@ import java.util.List;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.minecraft.block.Block;
-import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
@@ -21,6 +20,7 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.S2BPacketChangeGameState;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -300,17 +300,17 @@ public abstract class EntityLyokoRanged extends Entity implements IProjectile
                         if (var4.entityHit instanceof EntityLivingBase)
                         {
                             EntityLivingBase var24 = (EntityLivingBase) var4.entityHit;
-
+                            
                             if (this.knockbackStrength > 0)
                             {
                                 var26 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
                                 if (var26 > 0.0F)
-                                    var4.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / var26, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / var26);
+                                    var24.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / var26, 0.1D, this.motionZ * this.knockbackStrength * 0.6000000238418579D / var26);
                             }
 
-                            if (this.shootingEntity != null && var4.entityHit != this.shootingEntity && var4.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
-                                ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(6, 0));
+                            if (this.shootingEntity != null && var24 != this.shootingEntity && var24 instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
+                                ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
                         }
 
                         this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));

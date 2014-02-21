@@ -10,7 +10,7 @@ package net.cortexmodders.lyoko.items;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaserArrow;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -24,9 +24,8 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 
 public class ItemGlove extends Item
 {
-    public ItemGlove(int id)
+    public ItemGlove()
     {
-        super(id);
         this.maxStackSize = 1;
         this.setMaxDamage(0);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
@@ -47,7 +46,7 @@ public class ItemGlove extends Item
 
         boolean var5 = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.Glove.itemID))
+        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.Glove))
         {
             float var7 = var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -119,7 +118,7 @@ public class ItemGlove extends Item
         if (event.isCanceled())
             return event.result;
 
-        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(ModItems.Glove.itemID))
+        if (par3EntityPlayer.capabilities.isCreativeMode || par3EntityPlayer.inventory.hasItem(ModItems.Glove))
             par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
 
         par3EntityPlayer.setItemInUse(par1ItemStack, 72000000);
@@ -138,7 +137,7 @@ public class ItemGlove extends Item
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
         this.itemIcon = iconRegister.registerIcon("lyoko:glove");
     }
@@ -150,12 +149,12 @@ public class ItemGlove extends Item
         {
             EntityPlayer player = (EntityPlayer) ent;
 
-            if (player.getCurrentItemOrArmor(4) != null && player.getCurrentItemOrArmor(3) != null && player.getCurrentItemOrArmor(2) != null && player.getCurrentItemOrArmor(1) != null)
+            if (player.getCurrentArmor(4) != null && player.getCurrentArmor(3) != null && player.getCurrentArmor(2) != null && player.getCurrentArmor(1) != null)
             {
-                ItemStack helmet = player.getCurrentItemOrArmor(4);
-                ItemStack chest = player.getCurrentItemOrArmor(3);
-                ItemStack legs = player.getCurrentItemOrArmor(2);
-                ItemStack boots = player.getCurrentItemOrArmor(1);
+                ItemStack helmet = player.getCurrentArmor(4);
+                ItemStack chest = player.getCurrentArmor(3);
+                ItemStack legs = player.getCurrentArmor(2);
+                ItemStack boots = player.getCurrentArmor(1);
                 if (helmet.getItem() == ModItems.AelitaHelmet && chest.getItem() == ModItems.AelitaChest && legs.getItem() == ModItems.AelitaLegs && boots.getItem() == ModItems.AelitaBoots)
                 {
                     if (stack.getItem() != ModItems.EnergyField)
@@ -175,7 +174,7 @@ public class ItemGlove extends Item
                 } else if (helmet.getItem() == ModItems.WilliamHelmet && chest.getItem() == ModItems.WilliamChest && legs.getItem() == ModItems.WilliamLegs && boots.getItem() == ModItems.WilliamBoots)
                     if (stack.getItem() != ModItems.Zweihander)
                         player.inventory.setInventorySlotContents(slot, null);
-            } else if ((player.getCurrentItemOrArmor(4) == null || player.getCurrentItemOrArmor(3) == null || player.getCurrentItemOrArmor(2) == null || player.getCurrentItemOrArmor(1) == null) && player.capabilities.isCreativeMode == false)
+            } else if ((player.getCurrentArmor(4) == null || player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null) && player.capabilities.isCreativeMode == false)
                 player.inventory.setInventorySlotContents(slot, null);
         }
     }

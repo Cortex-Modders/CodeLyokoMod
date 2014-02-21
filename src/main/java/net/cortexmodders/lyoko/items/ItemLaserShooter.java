@@ -12,7 +12,7 @@ import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaser;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +25,8 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 
 public class ItemLaserShooter extends Item
 {
-    public ItemLaserShooter(int id)
+    public ItemLaserShooter()
     {
-        super(id);
         this.maxStackSize = 1;
         this.setMaxDamage(0);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
@@ -54,7 +53,7 @@ public class ItemLaserShooter extends Item
 
         boolean var5 = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.Fan.itemID))
+        if (var5 || par3EntityPlayer.inventory.hasItem(ModItems.Fan))
         {
             float var7 = var6 / 20.0F;
             var7 = (var7 * var7 + var7 * 2.0F) / 3.0F;
@@ -129,7 +128,7 @@ public class ItemLaserShooter extends Item
         if (event.isCanceled())
             return event.result;
 
-        if (player.capabilities.isCreativeMode || player.inventory.hasItem(ModItems.LaserShooter.itemID))
+        if (player.capabilities.isCreativeMode || player.inventory.hasItem(ModItems.LaserShooter))
             player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 
         player.setItemInUse(stack, 72000000);
@@ -148,7 +147,7 @@ public class ItemLaserShooter extends Item
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons(IIconRegister iconRegister)
     {
         this.itemIcon = iconRegister.registerIcon("lyoko:laser");
     }
