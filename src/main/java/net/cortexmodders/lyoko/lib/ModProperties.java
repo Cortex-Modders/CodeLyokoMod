@@ -1,9 +1,7 @@
 /*
- * Code Lyoko Mod for Minecraft v@VERSION
- * Copyright 2013 Cortex Modders, Matthew Warren, Jacob Rhoda, and
- * other contributors.
- * Released under the MIT license
- * http://opensource.org/licenses/MIT
+ * Code Lyoko Mod for Minecraft ${version}
+ * Copyright 2014 Cortex Modders, Matthew Warren, Jacob Rhoda, and other contributors.
+ * Released under the MIT license http://opensource.org/licenses/MIT
  */
 
 package net.cortexmodders.lyoko.lib;
@@ -15,7 +13,7 @@ public class ModProperties
     public static final String MOD_ID = "CodeLyoko";
     public static final String MOD_NAME = "Code Lyoko";
     // Ant build script will replace this String with the actual version.
-    public static final String MOD_VERSION = "@VERSION@";
+    public static final String MOD_VERSION = "${version}@";
 
     public static final String CLIENT_PROXY = "net.cortexmodders.lyoko.proxy.ClientProxy";
     public static final String COMMON_PROXY = "net.cortexmodders.lyoko.proxy.CommonProxy";
