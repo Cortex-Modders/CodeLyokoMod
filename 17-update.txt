@@ -1,6 +1,0 @@
-These are the things commented out of code for updating.
-
-- convert packet system to netty.
-- change from fluid to liquids
-- update devcapes
-- key events
