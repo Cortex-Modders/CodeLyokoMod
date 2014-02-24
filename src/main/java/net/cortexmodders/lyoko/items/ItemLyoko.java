@@ -9,9 +9,9 @@ package net.cortexmodders.lyoko.items;
 import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.mobs.EntityLyoko;
-import net.cortexmodders.lyoko.entities.mobs.EntitySpecter;
-import net.cortexmodders.lyoko.entities.mobs.EntityXanafiedMob;
+import net.cortexmodders.lyoko.entities.mob.EntityLyoko;
+import net.cortexmodders.lyoko.entities.mob.EntitySpecter;
+import net.cortexmodders.lyoko.entities.mob.EntityXanafiedMob;
 import net.cortexmodders.lyoko.world.StructureTower;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;

@@ -9,8 +9,8 @@ package net.cortexmodders.lyoko.blocks;
 import java.util.Random;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.mobs.EntityLyoko;
-import net.cortexmodders.lyoko.entities.vehicles.EntityVehicle;
+import net.cortexmodders.lyoko.entities.mob.EntityLyoko;
+import net.cortexmodders.lyoko.entities.vehicle.EntityVehicle;
 import net.cortexmodders.lyoko.lib.LyokoDamageSource;
 import net.cortexmodders.lyoko.tileentity.TileEntityMarabounta;
 import net.minecraft.block.Block;

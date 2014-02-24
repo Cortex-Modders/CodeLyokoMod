@@ -9,7 +9,7 @@ package net.cortexmodders.lyoko.items;
 import java.util.List;
 
 import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
+import net.cortexmodders.lyoko.entities.vehicle.EntityOverboard;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;

@@ -8,19 +8,19 @@ package net.cortexmodders.lyoko.proxy;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.blocks.ModBlocks;
-import net.cortexmodders.lyoko.entities.mobs.EntityBlok;
-import net.cortexmodders.lyoko.entities.mobs.EntityMegaTank;
-import net.cortexmodders.lyoko.entities.mobs.EntityXanafiedMob;
+import net.cortexmodders.lyoko.entities.mob.EntityBlok;
+import net.cortexmodders.lyoko.entities.mob.EntityMegaTank;
+import net.cortexmodders.lyoko.entities.mob.EntityXanafiedMob;
 import net.cortexmodders.lyoko.entities.projectile.EntityEnergyField;
 import net.cortexmodders.lyoko.entities.projectile.EntityFan;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaser;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaserArrow;
-import net.cortexmodders.lyoko.entities.vehicles.EntityOverboard;
-import net.cortexmodders.lyoko.entities.vehicles.EntitySkid;
+import net.cortexmodders.lyoko.entities.vehicle.EntityOverboard;
+import net.cortexmodders.lyoko.entities.vehicle.EntitySkid;
 import net.cortexmodders.lyoko.fluids.ModFluids;
-import net.cortexmodders.lyoko.handlers.EventHandler;
-import net.cortexmodders.lyoko.handlers.ServerTickHandler;
-import net.cortexmodders.lyoko.handlers.SoundHandler;
+import net.cortexmodders.lyoko.handler.EventHandler;
+import net.cortexmodders.lyoko.handler.ServerTickHandler;
+import net.cortexmodders.lyoko.handler.SoundHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.EntityIds;
@@ -125,8 +125,8 @@ public class CommonProxy
         EntityRegistry.registerModEntity(EntityEnergyField.class, "EnergyField", EntityIds.ENERGYFIELD, CodeLyoko.instance, 50, 1, true);
 
         // Naturally spawn in Lyoko.
-        EntityRegistry.addSpawn(net.cortexmodders.lyoko.entities.mobs.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
-        EntityRegistry.addSpawn(net.cortexmodders.lyoko.entities.mobs.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
+        EntityRegistry.addSpawn(net.cortexmodders.lyoko.entities.mob.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
+        EntityRegistry.addSpawn(net.cortexmodders.lyoko.entities.mob.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
     }
 
     public void registerTileEntities()

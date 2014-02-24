@@ -16,7 +16,7 @@ import net.cortexmodders.lyoko.client.gui.GuiHandler;
 import net.cortexmodders.lyoko.client.render.TileAnimator;
 import net.cortexmodders.lyoko.entities.projectile.EntityLyokoRanged;
 import net.cortexmodders.lyoko.fluids.ModFluids;
-import net.cortexmodders.lyoko.handlers.CommandHandler;
+import net.cortexmodders.lyoko.handler.CommandHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModLogger;
