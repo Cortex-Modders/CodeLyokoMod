@@ -4,7 +4,7 @@
  * Released under the MIT license http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.handler;
+package net.cortexmodders.lyoko.client.handler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

@@ -10,6 +10,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import net.cortexmodders.lyoko.CodeLyoko;
+import net.cortexmodders.lyoko.client.handler.ClientEventHandler;
+import net.cortexmodders.lyoko.client.handler.ClientTickHandler;
+import net.cortexmodders.lyoko.client.handler.KeyBindingHandler;
+import net.cortexmodders.lyoko.client.handler.SoundHandler;
 import net.cortexmodders.lyoko.client.render.ItemRenderGlove;
 import net.cortexmodders.lyoko.client.render.mob.RenderBlok;
 import net.cortexmodders.lyoko.client.render.mob.RenderTank;
@@ -31,8 +35,6 @@ import net.cortexmodders.lyoko.entities.projectile.EntityLaser;
 import net.cortexmodders.lyoko.entities.projectile.EntityLaserArrow;
 import net.cortexmodders.lyoko.entities.vehicle.EntityOverboard;
 import net.cortexmodders.lyoko.entities.vehicle.EntitySkid;
-import net.cortexmodders.lyoko.handler.ClientTickHandler;
-import net.cortexmodders.lyoko.handler.KeyBindingHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.tileentity.TileEntityCable;
@@ -137,6 +139,8 @@ public class ClientProxy extends CommonProxy
         
         MinecraftForge.EVENT_BUS.register(new ClientTickHandler());
         MinecraftForge.EVENT_BUS.register(new KeyBindingHandler());
+        MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
+        MinecraftForge.EVENT_BUS.register(new SoundHandler());
     }
     
     /**

@@ -8,6 +8,7 @@ package net.cortexmodders.lyoko.proxy;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.blocks.ModBlocks;
+import net.cortexmodders.lyoko.client.handler.SoundHandler;
 import net.cortexmodders.lyoko.entities.mob.EntityBlok;
 import net.cortexmodders.lyoko.entities.mob.EntityMegaTank;
 import net.cortexmodders.lyoko.entities.mob.EntityXanafiedMob;
@@ -20,7 +21,6 @@ import net.cortexmodders.lyoko.entities.vehicle.EntitySkid;
 import net.cortexmodders.lyoko.fluids.ModFluids;
 import net.cortexmodders.lyoko.handler.EventHandler;
 import net.cortexmodders.lyoko.handler.ServerTickHandler;
-import net.cortexmodders.lyoko.handler.SoundHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.EntityIds;
@@ -69,9 +69,7 @@ public class CommonProxy
         EventHandler handler = new EventHandler();
         
         MinecraftForge.EVENT_BUS.register(handler);
-        MinecraftForge.EVENT_BUS.register(new SoundHandler());
         MinecraftForge.EVENT_BUS.register(new ModFluids());
-        
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
         
         //GameRegistry.registerPlayerTracker(handler);

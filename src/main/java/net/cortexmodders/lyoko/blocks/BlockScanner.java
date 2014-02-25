@@ -418,4 +418,5 @@ public class BlockScanner extends BlockContainer
         else
             this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
     }
+
 }

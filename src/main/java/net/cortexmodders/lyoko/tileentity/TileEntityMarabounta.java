@@ -10,6 +10,9 @@ import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
@@ -17,16 +20,8 @@ import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
 public class TileEntityMarabounta extends TileEntity
 {
     public Block consumedBlock = Blocks.air;
-    
-    // xCoord = xCoord
-    // yCoord = yCoord
-    // zCoord = zCoord
-    // worldObj = worldObj
-    // getBlockTileEntity = getTileEntity
-    // setBlockTileEntity = setTileEntity
 
     @Override
-    			//updateEntity
     public void updateEntity()
     {
         this.syncMarabounta(this.xCoord + 1, this.yCoord, this.zCoord);
@@ -48,23 +43,22 @@ public class TileEntityMarabounta extends TileEntity
             }
     }
 
-//    @Override
-//    public Packet getDescriptionPacket()
-//    {
-//        NBTTagCompound tag = new NBTTagCompound();
-//        this.writeToNBT(tag);
-//        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
-//    }
-//
-//    @Override
-//    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-//    {
-//        NBTTagCompound tag = pkt.data;
-//        this.readFromNBT(tag);
-//    }
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+    }
 
     @Override
-    //readFromNBT
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    {
+        NBTTagCompound tag = pkt.func_148857_g();
+        this.readFromNBT(tag);
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
@@ -74,7 +68,6 @@ public class TileEntityMarabounta extends TileEntity
     }
 
     @Override
-    //writeToNBT
     public void writeToNBT(NBTTagCompound tagCompound)
     {
         super.writeToNBT(tagCompound);

@@ -12,6 +12,9 @@ import java.io.DataOutputStream;
 import net.cortexmodders.lyoko.blocks.BlockScanner;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
@@ -97,7 +100,7 @@ public class TileEntityScanner extends TileEntity
      * 
      * @return
      */
-    public void toggleDoors()
+    private void toggleDoors()
     {
         this.doorsOpen = !this.doorsOpen;
     }
@@ -126,12 +129,7 @@ public class TileEntityScanner extends TileEntity
                 ex.printStackTrace();
             }
 
-//            Packet250CustomPayload packet = new Packet250CustomPayload();
-//            packet.channel = "ScannerDoors";
-//            packet.data = bos.toByteArray();
-//            packet.length = bos.size();
-//
-//            PacketDispatcher.sendPacketToAllPlayers(packet);
+            
         }
     }
 
@@ -160,20 +158,20 @@ public class TileEntityScanner extends TileEntity
     	return INFINITE_EXTENT_AABB;
     }
     
-//    @Override
-//    public Packet getDescriptionPacket()
-//    {
-//        NBTTagCompound tag = new NBTTagCompound();
-//        this.writeToNBT(tag);
-//        return new Packet132TileEntityData(this.xCoord, this.yCoord, this.zCoord, 0, tag);
-//    }
-//
-//    @Override
-//    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt)
-//    {
-//        NBTTagCompound tag = pkt.data;
-//        this.readFromNBT(tag);
-//    }
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    {
+        NBTTagCompound tag = pkt.func_148857_g();
+        this.readFromNBT(tag);
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)

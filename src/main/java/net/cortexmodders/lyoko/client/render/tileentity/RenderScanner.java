@@ -71,53 +71,15 @@ public class RenderScanner extends TileEntitySpecialRenderer implements ISimpleB
         GL11.glRotatef(rotate, 0F, 1F, 0F);
 
         // placement in multi block
-        int p = BlockScanner.getPositionInMultiBlock(entity.getWorldObj(), entity.xCoord, entity.yCoord, entity.zCoord);
-        /*
-        // if top
-        if (p == 4)
-        {
-            GL11.glRotatef(180F, 1F, 0F, 0F);
-            GL11.glRotatef(180F, 0F, 1F, 0F);
-            GL11.glTranslatef(0F, 1F, 0F);
-        }
-        
-        // if in middle or not at all
-        if (p >= 1 & p <= 3 || p == -1)
-        {
+        int p = BlockScanner.getPositionInMultiBlock(entity.getWorldObj(), entity.xCoord, entity.yCoord, entity.zCoord);    
 
-            this.modelMid.doorL.rotateAngleY = (float) Math.toRadians(entity.doorRotationYaw);
-            this.modelMid.doorL.rotationPointX = entity.doorPosX;
-            this.modelMid.doorL.rotationPointZ = entity.doorPosZ;
-
-            this.modelMid.doorR.rotateAngleY = -(float) Math.toRadians(entity.doorRotationYaw + 180);
-            this.modelMid.doorR.rotationPointX = -entity.doorPosX;
-            this.modelMid.doorR.rotationPointZ = entity.doorPosZ;
-
-            this.modelMid.render(null, (float) x, (float) y, (float) z, 0.0F, 0.0F, 0.0625F);
-        }
-        */
-        
-        /*
-        // if bottom or top
-        if (p == 0 || p == 4)
-        {*/
-
-            this.model.doorL.rotateAngleY = (float) Math.toRadians(entity.doorRotationYaw);
-            this.model.doorL.rotationPointX = entity.doorPosX;
-            this.model.doorL.rotationPointZ = entity.doorPosZ;
-
-            this.model.doorR.rotateAngleY = -(float) Math.toRadians(entity.doorRotationYaw + 180);
-            this.model.doorR.rotationPointX = -entity.doorPosX;
-            this.model.doorR.rotationPointZ = entity.doorPosZ;
-
-            this.model.render(null, (float) x, (float) y, (float) z, p, 0.0F, 0.0625F);
+        this.model.render(null, entity.doorRotationYaw, entity.doorPosX, entity.doorPosZ, 0.0F, p, 0.0625F);
         
 
         GL11.glPopMatrix();
     }
 
     @Override
-    //renderTileEntityAt
     public void renderTileEntityAt(TileEntity entity, double par2, double par4, double par6, float par8)
     {
         this.doRender((TileEntityScanner) entity, par2, par4, par6, par8);
