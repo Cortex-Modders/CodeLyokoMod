@@ -39,50 +39,41 @@ public class BlockScanner extends BlockContainer
     
     public BlockScanner()
     {
-        // material.iron
         super(Material.iron);
-        // setCreativeTab
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
     
     @Override
-    // createNewTileEntity
     public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityScanner();
     }
     
     @Override
-    // registerBlockIcons
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        // blockIcon
         this.blockIcon = par1IconRegister.registerIcon("lyoko:scanner");
     }
     
     @Override
-    // getRenderType
     public int getRenderType()
     {
         return ClientProxy.scannerRenderId;
     }
     
     @Override
-    // isOpaqueCube
     public boolean isOpaqueCube()
     {
         return false;
     }
     
     @Override
-    // isBlockSolid
     public boolean isBlockSolid(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return true;
     }
     
     @Override
-    // renderAsNormalBlock
     public boolean renderAsNormalBlock()
     {
         return false;
@@ -243,7 +234,6 @@ public class BlockScanner extends BlockContainer
             {
                 if (player.worldObj.isRemote)
                 {
-                    // addChatMessage
                     player.addChatMessage(new ChatComponentText("You can't be virtualized while already virtualized."));
                     player.addChatMessage(new ChatComponentText("Yes, that's right, I thought you, " + player.getGameProfile().getName() + ", would try to do that."));
                 }
@@ -310,7 +300,6 @@ public class BlockScanner extends BlockContainer
     }
     
     @Override
-    // onBlockActivated
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
         if (isMultiBlock(world, x, y, z))
@@ -326,7 +315,7 @@ public class BlockScanner extends BlockContainer
             tile.toggleAllDoors();
             
             TileEntityScanner core = (TileEntityScanner) world.getTileEntity((int) array[0].xCoord, (int) array[0].yCoord, (int) array[0].zCoord);
-            if (!core.doorsOpen)// && core.yCoord == (int)player.posY - 1)
+            if (!core.doorsOpen)
             {
                 if (world.isRemote)
                     world.playSoundAtEntity(player, ModProperties.SOUND_PREFIX + "scannerClose", 1.0F, 1.0F);
@@ -345,7 +334,6 @@ public class BlockScanner extends BlockContainer
     }
     
     @Override
-    // onBlockPlacedBy
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
         super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
@@ -356,8 +344,6 @@ public class BlockScanner extends BlockContainer
     
     @SuppressWarnings("rawtypes")
     @Override
-    // addCollisionBoxesToList
-    // setBlockBounds - setBlockBounds
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB axisAlignedBB, List list, Entity ent)
     {
         int pos = getPositionInMultiBlock(world, x, y, z);
@@ -394,12 +380,11 @@ public class BlockScanner extends BlockContainer
             this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F, 1.0F, 1.0F + f);
             super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
-        // setBlockBoundsForItemRender
+
         this.setBlockBoundsForItemRender();
     }
     
     @Override
-    // setBlockBoundsBasedOnState
     public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
     {
         int meta = blockAccess.getBlockMetadata(x, y, z);

@@ -140,16 +140,8 @@ public class PacketHandler
      * {
      * DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
      * EntityPlayer sender = (EntityPlayer) player;
-     * if (packet.channel.equals("Console"))
-     * this.handlePacketConsole(data, sender.worldObj);
-     * if (packet.channel.equals("LifePoints"))
-     * this.handlePacketLP(data, sender.worldObj, sender);
      * if (packet.channel.equals("Devirt"))
      * this.handlePacketD(data, sender.worldObj, sender);
-     * if (packet.channel.equals("ScannerDoors"))
-     * this.handlePacketSD(data, sender.worldObj);
-     * if (packet.channel.equals("Vehicle"))
-     * this.handlePacketV(data, sender.worldObj);
      * }
      */
     private void handlePacketConsole(PacketConsoleCommand packet)

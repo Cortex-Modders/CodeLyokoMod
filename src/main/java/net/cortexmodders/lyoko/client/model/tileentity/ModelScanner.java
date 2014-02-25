@@ -46,20 +46,13 @@ public class ModelScanner extends ModelBase
      * whatever you get from
      * {@link BlockScanner#getPositionInMultiBlock(IBlockAccess, int, int, int)}
      * 
-     * @param entity
-     *            null (this is for a {@link TileEntity})
-     * @param doorAngle
-     *            door angle in degrees
-     * @param doorPosX
-     *            door X coord
-     * @param doorPosZ
-     *            door Z coord
-     * @param f3
-     *            nothing
-     * @param modelType
-     *            model type.
-     * @param scale
-     *            scale, typically 1/16.
+     * @param entity null (this is for a {@link TileEntity})
+     * @param doorAngle door angle in degrees
+     * @param doorPosX door X coord
+     * @param doorPosZ door Z coord
+     * @param f3 nothing
+     * @param modelType model type.
+     * @param scale scale, typically 1/16.
      */
     @Override
     public void render(Entity entity, float doorAngle, float doorPosX, float doorPosZ, float f3, float modelType, float scale)
@@ -202,8 +195,8 @@ public class ModelScanner extends ModelBase
                 int position = (int) modelType;
                 position = 5 - position;
                 
-                this.doorL.setTextureOffset(DEFAULT_TEXTURE_OFFSET_X * position, DEFAULT_TEXTURE_OFFSET_Y * position);
-                this.doorR.setTextureOffset(DEFAULT_TEXTURE_OFFSET_X * position, DEFAULT_TEXTURE_OFFSET_Y * position);
+                //this.doorL.setTextureOffset(DEFAULT_TEXTURE_OFFSET_X * position, DEFAULT_TEXTURE_OFFSET_Y * position);
+                //this.doorR.setTextureOffset(DEFAULT_TEXTURE_OFFSET_X * position, DEFAULT_TEXTURE_OFFSET_Y * position);
             }
             
             GL11.glPushMatrix();

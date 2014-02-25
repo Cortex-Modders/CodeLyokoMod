@@ -172,6 +172,7 @@ public class TileEntityScanner extends TileEntity
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
+        System.out.println("Scanner Tile Updated!");
     }
     
     @Override
