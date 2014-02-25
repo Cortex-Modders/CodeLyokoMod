@@ -28,32 +28,32 @@ public class BlockSector extends BlockContainer
         // iron
         super(Material.iron);
     }
-
+    
     @Override
     // createNewTileEntity
     public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntitySector();
     }
-
+    
     @Override
-    //updateTick
+    // updateTick
     public void updateTick(World world, int x, int y, int z, Random rand)
     {
         super.updateTick(world, x, y, z, rand);
-        //updateTileEntity
-        //TODO: figure out what this does
+        // updateTileEntity
+        // TODO: figure out what this does
         world.getTileEntity(x, y, z).updateEntity();
     }
-
+    
     @Override
-    //onEntityWalking
+    // onEntityWalking
     public void onEntityWalking(World world, int x, int y, int z, Entity ent)
     {
-        //updateTick
+        // updateTick
         this.updateTick(world, x, y, z, null);
     }
-
+    
     @SideOnly(Side.CLIENT)
     private IIcon virtualGrass;
     @SideOnly(Side.CLIENT)
@@ -64,7 +64,7 @@ public class BlockSector extends BlockContainer
     private IIcon virtualIce;
     @SideOnly(Side.CLIENT)
     private IIcon virtualCarthage;
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)
@@ -81,7 +81,7 @@ public class BlockSector extends BlockContainer
             return this.virtualCarthage;
         return this.virtualGrass;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     // registerBlockIcons

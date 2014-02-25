@@ -11,7 +11,7 @@ import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomeGenBaseLyoko extends BiomeGenBase
 {
-	protected BiomeGenBaseLyoko(int id)
+    protected BiomeGenBaseLyoko(int id)
     {
         super(id);
         this.topBlock = ModBlocks.sectorBlock;
@@ -28,13 +28,13 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.spawnableWaterCreatureList.clear();
         this.setDisableRain();
     }
-
+    
     public BiomeGenBase setLyokoBiomeName(String par1Str)
     {
         this.biomeName = par1Str;
         return this;
     }
-
+    
     @Override
     public BiomeGenBase setColor(int par1)
     {

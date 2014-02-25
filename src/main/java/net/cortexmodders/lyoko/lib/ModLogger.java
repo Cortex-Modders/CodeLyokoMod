@@ -11,31 +11,31 @@ import org.apache.logging.log4j.Logger;
 
 public class ModLogger
 {
-
+    
     private final Logger logger;
-
+    
     public ModLogger(Logger modLog)
     {
-        logger = modLog;
+        this.logger = modLog;
     }
-
+    
     public void log(Level parLevel, String parString)
     {
-        logger.log(parLevel, parString);
+        this.logger.log(parLevel, parString);
     }
     
     public void info(String parString)
     {
-        log(Level.INFO, parString);
+        this.log(Level.INFO, parString);
     }
     
     public void severe(String parString)
     {
-        log(Level.ERROR, parString);
+        this.log(Level.ERROR, parString);
     }
     
     public void warn(String parString)
     {
-        log(Level.WARN, parString);
+        this.log(Level.WARN, parString);
     }
 }

@@ -25,46 +25,42 @@ import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 
 public class EventHandler
 {
-
+    
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent event)
     {
-    	Entity ent = event.entity;
-    	if(!(ent instanceof EntityPlayer || ent instanceof EntityLyoko || ent instanceof EntitySpecter || ent instanceof IProjectile || ent instanceof EntityVehicle))
-    	{
-    		if(CodeLyoko.entityInLyoko(ent))
-    		{
-    			event.setCanceled(true);
-    		}
-    	}
+        Entity ent = event.entity;
+        if (!(ent instanceof EntityPlayer || ent instanceof EntityLyoko || ent instanceof EntitySpecter || ent instanceof IProjectile || ent instanceof EntityVehicle))
+            if (CodeLyoko.entityInLyoko(ent))
+                event.setCanceled(true);
     }
-
+    
     @SubscribeEvent
     public void onEntityConstruct(EntityConstructing event)
     {
-        if(event.entity instanceof EntityPlayer)
+        if (event.entity instanceof EntityPlayer)
             event.entity.registerExtendedProperties(PlayerInformation.IDENTIFIER, new PlayerInformation((EntityPlayer) event.entity));
     }
-
+    
     @SubscribeEvent
     public void onPlayerChangedDimension(PlayerChangedDimensionEvent event)
     {
         PlayerInformation.forPlayer(event.player).setDirty();
     }
-
+    
     @SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event)
     {
         System.out.println(UniqueArmorGenerator.getUniquePlayerIdentifier(event.player));
         PlayerInformation.forPlayer(event.player).setDirty();
     }
-
+    
     @SubscribeEvent
     public void onPlayerLogout(PlayerLoggedOutEvent event)
     {
-
+        
     }
-
+    
     @SubscribeEvent
     public void onPlayerRespawn(PlayerRespawnEvent event)
     {

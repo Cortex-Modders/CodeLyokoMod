@@ -15,7 +15,7 @@ public class RenderSkid extends RenderVehicle
     {
         super(new ModelSkid(), 0.5F, "lyoko:textures/models/skid.png");
     }
-
+    
     public void renderNavSkids(EntitySkid entSkid)
     {
         if (entSkid.getNavSkid(0))

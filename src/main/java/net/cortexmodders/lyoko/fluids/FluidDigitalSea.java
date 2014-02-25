@@ -15,7 +15,7 @@ public class FluidDigitalSea extends Fluid
         super(fluidName);
         this.setLuminosity(15);
     }
-
+    
     @Override
     public int getColor()
     {

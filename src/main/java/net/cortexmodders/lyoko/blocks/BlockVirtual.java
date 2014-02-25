@@ -26,7 +26,7 @@ public class BlockVirtual extends Block
         // setCreativeTab
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @Override
     // onBlockAdded
     public void onBlockAdded(World world, int x, int y, int z)
@@ -36,7 +36,7 @@ public class BlockVirtual extends Block
             // setBlock
             world.setBlockToAir(x, y, z);
     }
-
+    
     public void onBlockPlacedBy(World world, int par2, int par3, int par4, EntityLivingBase ent)
     {
         if (ent instanceof EntityPlayer)
@@ -45,13 +45,13 @@ public class BlockVirtual extends Block
             entp.setHealth(entp.getHealth() - 1);
         }
     }
-
+    
     private IIcon virtualGrass;
     private IIcon virtualStone;
     private IIcon virtualSand;
     private IIcon virtualIce;
     private IIcon virtualCarthage;
-
+    
     @Override
     // getBlockTextures
     public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)
@@ -68,7 +68,7 @@ public class BlockVirtual extends Block
             return this.virtualCarthage;
         return this.virtualGrass;
     }
-
+    
     @Override
     // registerIcons
     public void registerBlockIcons(IIconRegister par1IconRegister)

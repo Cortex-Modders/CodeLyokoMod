@@ -13,18 +13,18 @@ import net.minecraft.tileentity.TileEntity;
 
 public class ModelHolomap extends ModelBase
 {
-
+    
     ModelRenderer edge1;
     ModelRenderer edge2;
     ModelRenderer floor;
     ModelRenderer edgeInside1;
     ModelRenderer edgeInside2;
-
+    
     public ModelHolomap()
     {
         this.textureWidth = 64;
         this.textureHeight = 128;
-
+        
         this.edge1 = new ModelRenderer(this, 0, 0);
         this.edge1.addBox(-1F, 0F, -8F, 2, 8, 14);
         this.edge1.setRotationPoint(-7F, 8F, 0F);
@@ -56,7 +56,7 @@ public class ModelHolomap extends ModelBase
         this.edgeInside2.mirror = true;
         this.setRotation(this.edgeInside2, -0.7679449F, 0F, 0F);
     }
-
+    
     public void render(TileEntityHolomap tile, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.setRotationAngles(f, f1, f2, f3, f4, f5, tile);
@@ -75,16 +75,16 @@ public class ModelHolomap extends ModelBase
         }
         this.floor.render(f5);
     }
-
+    
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, TileEntity ent)
     {
-
+        
     }
 }

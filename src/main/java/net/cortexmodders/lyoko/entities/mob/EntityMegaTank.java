@@ -18,7 +18,7 @@ public class EntityMegaTank extends EntityLyoko
         super(par1World, 40, 1.5F);
         this.setSize(1.25F, 1.25F);
     }
-
+    
     @Override
     public void onCollideWithPlayer(EntityPlayer entp)
     {
@@ -30,7 +30,7 @@ public class EntityMegaTank extends EntityLyoko
             pi.setLifePoints(0);
         }
     }
-
+    
     /**
      * Returns the sound this mob makes while it's alive.
      */
@@ -39,7 +39,7 @@ public class EntityMegaTank extends EntityLyoko
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes when it is hurt.
      */
@@ -48,7 +48,7 @@ public class EntityMegaTank extends EntityLyoko
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes on death.
      */

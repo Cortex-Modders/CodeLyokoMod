@@ -16,17 +16,17 @@ import net.minecraft.world.World;
 
 public class BlockLyokoOre extends BlockLyoko
 {
-
+    
     private final OreTypes type;
-
+    
     public BlockLyokoOre(OreTypes parType)
     {
         // Material.rock
         super(Material.rock);
-
+        
         this.type = parType;
     }
-
+    
     @Override
     // onEntityWalking
     public void onEntityWalking(World par1World, int par2, int par3, int par4, Entity par5Entity)
@@ -42,7 +42,7 @@ public class BlockLyokoOre extends BlockLyoko
                     ((EntityPlayer) par5Entity).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 500, 2));
             }
         }
-
+        
         else if (this.type == OreTypes.QUANTUM)
             if (par5Entity instanceof EntityLiving)
             {
@@ -50,7 +50,7 @@ public class BlockLyokoOre extends BlockLyoko
                 ((EntityLiving) par5Entity).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 500, 2));
             }
     }
-
+    
     public static enum OreTypes
     {
         URANIUM, LEAD, QUANTUM

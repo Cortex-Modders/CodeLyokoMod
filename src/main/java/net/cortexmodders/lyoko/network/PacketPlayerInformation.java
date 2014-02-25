@@ -8,7 +8,6 @@ package net.cortexmodders.lyoko.network;
 
 import io.netty.buffer.ByteBuf;
 
-
 public class PacketPlayerInformation extends PacketLyoko
 {
     public int lifePoints = 0;

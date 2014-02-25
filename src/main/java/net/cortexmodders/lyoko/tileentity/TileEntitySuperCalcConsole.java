@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class TileEntitySuperCalcConsole extends TileEntity
 {
     public String sector = "";
-
+    
     @Override
     public void updateEntity()
     {
@@ -32,7 +32,7 @@ public class TileEntitySuperCalcConsole extends TileEntity
             this.sector = "";
         }
     }
-
+    
     public void syncCable(World world, int x, int y, int z)
     {
         if (world.getBlock(x, y, z) == ModBlocks.cable && world.getTileEntity(x, y, z) != null)
@@ -46,7 +46,7 @@ public class TileEntitySuperCalcConsole extends TileEntity
             }
         }
     }
-
+    
     @Override
     public Packet getDescriptionPacket()
     {
@@ -54,21 +54,21 @@ public class TileEntitySuperCalcConsole extends TileEntity
         this.writeToNBT(tag);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
         this.sector = tagCompound.getString("sector");
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound tagCompound)
     {

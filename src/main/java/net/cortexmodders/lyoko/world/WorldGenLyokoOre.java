@@ -16,7 +16,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGenLyokoOre implements IWorldGenerator
 {
-
+    
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
@@ -26,11 +26,11 @@ public class WorldGenLyokoOre implements IWorldGenerator
                 this.generateNether(world, random, chunkX * 16, chunkZ * 16);
             case 0:
                 this.generateSurface(world, random, chunkX * 16, chunkZ * 16);
-
+                
         }
-
+        
     }
-
+    
     private void generateSurface(World world, Random rand, int baseX, int baseZ)
     {
         // rarity -smaller number = rarer
@@ -42,7 +42,7 @@ public class WorldGenLyokoOre implements IWorldGenerator
             // Max Vein Size
             new WorldGenMinable(ModBlocks.quantumOre, 4).generate(world, rand, Xcoord, Ycoord, Zcoord);
         }
-
+        
         // rarity -smaller number = rarer
         for (int x = 0; x < 10; x++)
         {
@@ -52,7 +52,7 @@ public class WorldGenLyokoOre implements IWorldGenerator
             // Max Vein Size
             new WorldGenMinable(ModBlocks.leadOre, 5).generate(world, rand, Xcoord, Ycoord, Zcoord);
         }
-
+        
         // rarity -smaller number = rarer
         for (int x = 0; x < 10; x++)
         {
@@ -63,10 +63,10 @@ public class WorldGenLyokoOre implements IWorldGenerator
             new WorldGenMinable(ModBlocks.uraniumOre, 1).generate(world, rand, Xcoord, Ycoord, Zcoord);
         }
     }
-
+    
     private void generateNether(World world, Random random, int i, int j)
     {
-
+        
     }
-
+    
 }

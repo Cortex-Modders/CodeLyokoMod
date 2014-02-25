@@ -36,7 +36,7 @@ import net.minecraft.world.World;
 
 public class BlockScanner extends BlockContainer
 {
-
+    
     public BlockScanner()
     {
         // material.iron
@@ -44,14 +44,14 @@ public class BlockScanner extends BlockContainer
         // setCreativeTab
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @Override
     // createNewTileEntity
     public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityScanner();
     }
-
+    
     @Override
     // registerBlockIcons
     public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -59,35 +59,35 @@ public class BlockScanner extends BlockContainer
         // blockIcon
         this.blockIcon = par1IconRegister.registerIcon("lyoko:scanner");
     }
-
+    
     @Override
     // getRenderType
     public int getRenderType()
     {
         return ClientProxy.scannerRenderId;
     }
-
+    
     @Override
     // isOpaqueCube
     public boolean isOpaqueCube()
     {
         return false;
     }
-
+    
     @Override
     // isBlockSolid
     public boolean isBlockSolid(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return true;
     }
-
+    
     @Override
     // renderAsNormalBlock
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-
+    
     /**
      * 
      * Finds if it is part of a multi block. Returns boolean. Use
@@ -103,7 +103,7 @@ public class BlockScanner extends BlockContainer
     {
         return getPositionInMultiBlock(world, x, y, z) != -1;
     }
-
+    
     /**
      * 
      * Returns the position at which the block is in the multiblock.
@@ -119,7 +119,7 @@ public class BlockScanner extends BlockContainer
     public static int getPositionInMultiBlock(IBlockAccess world, int x, int y, int z)
     {
         int prevMeta;
-
+        
         // From bottom block.
         prevMeta = -1;
         for (int i = 0; i <= 4; i++)
@@ -133,7 +133,7 @@ public class BlockScanner extends BlockContainer
                 return 0;
             prevMeta = meta;
         }
-
+        
         // From 1st to bottom block. i.e. block above bottom.
         prevMeta = -1;
         for (int i = -1; i <= 3; i++)
@@ -147,7 +147,7 @@ public class BlockScanner extends BlockContainer
                 return 1;
             prevMeta = meta;
         }
-
+        
         // From 2nd to bottom block. i.e. very middle block.
         prevMeta = -1;
         for (int i = -2; i <= 2; i++)
@@ -161,7 +161,7 @@ public class BlockScanner extends BlockContainer
                 return 2;
             prevMeta = meta;
         }
-
+        
         // From 1nd to top block. i.e. block under top block.
         prevMeta = -1;
         for (int i = -3; i <= 1; i++)
@@ -175,7 +175,7 @@ public class BlockScanner extends BlockContainer
                 return 3;
             prevMeta = meta;
         }
-
+        
         // From top block.
         prevMeta = -1;
         for (int i = -4; i <= 0; i++)
@@ -191,7 +191,7 @@ public class BlockScanner extends BlockContainer
         }
         return -1;
     }
-
+    
     /**
      * 
      * Returns an array of Vector3s that correspond to scanner blocks in a multi
@@ -209,24 +209,24 @@ public class BlockScanner extends BlockContainer
         int pos = getPositionInMultiBlock(world, x, y, z);
         if (pos == -1)
             return null;
-
+        
         Vec3[] array = new Vec3[5];
-
+        
         int j = 0;
         for (int i = 0 - pos; i < 5 - pos; i++)
         {
             if (world.getBlock(x, y + i, z) instanceof BlockScanner)
                 array[j] = Vec3.createVectorHelper(x, y + i, z);
-
+            
             j++;
         }
-
+        
         if (j != 5)
             return null;
-
+        
         return array;
     }
-
+    
     public void virtualize(World world, int x, int y, int z, EntityPlayer player)
     {
         TileEntityScanner tile = (TileEntityScanner) world.getTileEntity(x, y, z);
@@ -238,7 +238,7 @@ public class BlockScanner extends BlockContainer
              * at -1, keep the doors open.
              * 
              */
-
+            
             if (CodeLyoko.entityInLyoko(player))
             {
                 if (player.worldObj.isRemote)
@@ -249,7 +249,7 @@ public class BlockScanner extends BlockContainer
                 }
                 return;
             }
-
+            
             int dim;
             switch (tile.sector)
             {
@@ -271,7 +271,7 @@ public class BlockScanner extends BlockContainer
                 default:
                     return;
             }
-
+            
             if (player instanceof EntityPlayerMP)
                 LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, dim);
             int xPos = (int) player.posX;
@@ -279,10 +279,10 @@ public class BlockScanner extends BlockContainer
             int zPos = (int) player.posZ;
             while (!(player.worldObj.getBlock(xPos, yPos, zPos) instanceof BlockAir) && yPos < 256)
                 yPos++;
-
+            
             if (player instanceof EntityPlayerMP)
                 ((EntityPlayerMP) player).setPositionAndRotation(player.posX, yPos, player.posZ, player.rotationYaw, player.rotationPitch);
-
+            
             ByteArrayOutputStream bos = new ByteArrayOutputStream(28);
             DataOutputStream outputStream = new DataOutputStream(bos);
             try
@@ -296,7 +296,7 @@ public class BlockScanner extends BlockContainer
             {
                 ex.printStackTrace();
             }
-
+            
             // TODO: Networking!
             // Packet250CustomPayload packet = new Packet250CustomPayload();
             // packet.channel = "Devirt";
@@ -304,11 +304,11 @@ public class BlockScanner extends BlockContainer
             // packet.length = bos.size();
             //
             // PacketDispatcher.sendPacketToPlayer(packet, (Player) player);
-
+            
             tile.sector = -1;
         }
     }
-
+    
     @Override
     // onBlockActivated
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
@@ -318,42 +318,42 @@ public class BlockScanner extends BlockContainer
             TileEntity tileEntity = world.getTileEntity(x, y, z);
             if (tileEntity == null || player.isSneaking() || !(tileEntity instanceof TileEntityScanner))
                 return false;
-
+            
             TileEntityScanner tile = (TileEntityScanner) tileEntity;
-
+            
             Vec3[] array = getBlockCoordsInMultiBlock(world, x, y, z);
-
+            
             tile.toggleAllDoors();
-
+            
             TileEntityScanner core = (TileEntityScanner) world.getTileEntity((int) array[0].xCoord, (int) array[0].yCoord, (int) array[0].zCoord);
             if (!core.doorsOpen)// && core.yCoord == (int)player.posY - 1)
             {
                 if (world.isRemote)
                     world.playSoundAtEntity(player, ModProperties.SOUND_PREFIX + "scannerClose", 1.0F, 1.0F);
-
+                
                 PlayerInformation pi = PlayerInformation.forPlayer(player);
-
+                
                 pi.scannerDim = world.provider.dimensionId;
                 pi.setScannerPosition(core.xCoord, core.yCoord + 1, core.zCoord);
                 core.setPlayerDevirtYaw(pi);
-
+                
                 this.virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
             }
             return true;
         }
         return false;
     }
-
+    
     @Override
     // onBlockPlacedBy
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLivingBase par5EntityLiving, ItemStack par6ItemStack)
     {
         super.onBlockPlacedBy(par1World, x, y, z, par5EntityLiving, par6ItemStack);
         int l = MathHelper.floor_double(par5EntityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-
+        
         par1World.setBlockMetadataWithNotify(x, y, z, l, 2);
     }
-
+    
     @SuppressWarnings("rawtypes")
     @Override
     // addCollisionBoxesToList
@@ -371,7 +371,7 @@ public class BlockScanner extends BlockContainer
             this.setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
             super.addCollisionBoxesToList(world, x, y, z, axisAlignedBB, list, ent);
         }
-
+        
         int meta = world.getBlockMetadata(x, y, z);
         float f = 0.25F;
         if (meta != 3 || !((TileEntityScanner) world.getTileEntity(x, y, z)).doorsOpen)
@@ -397,7 +397,7 @@ public class BlockScanner extends BlockContainer
         // setBlockBoundsForItemRender
         this.setBlockBoundsForItemRender();
     }
-
+    
     @Override
     // setBlockBoundsBasedOnState
     public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z)
@@ -406,7 +406,7 @@ public class BlockScanner extends BlockContainer
         int pos = getPositionInMultiBlock(blockAccess, x, y, z);
         float pixel = 0.125F;
         float twoPixel = 0.25F;
-
+        
         if (meta == 0 && (pos > 0 && pos < 4 || pos == -1))
             this.setBlockBounds(0 - twoPixel, 0, 0 - pixel, 1 + twoPixel, 1, 1 + twoPixel);
         else if (meta == 1 && (pos > 0 && pos < 4 || pos == -1))
@@ -418,5 +418,5 @@ public class BlockScanner extends BlockContainer
         else
             this.setBlockBounds(0 - twoPixel, 0, 0 - twoPixel, 1 + twoPixel, 1, 1 + twoPixel);
     }
-
+    
 }

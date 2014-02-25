@@ -15,7 +15,7 @@ public class EntityBlok extends EntityLyoko
         super(par1World, 0.3F);
         this.setSize(0.9375F, 1.5F);
     }
-
+    
     /*
      * @Override
      * protected void applyEntityAttributes()
@@ -38,7 +38,7 @@ public class EntityBlok extends EntityLyoko
      * );
      * }
      */
-
+    
     /**
      * Returns the sound this mob makes while it's alive.
      */
@@ -47,7 +47,7 @@ public class EntityBlok extends EntityLyoko
     {
         return null;// "mob.skeleton.say";
     }
-
+    
     /**
      * Returns the sound this mob makes when it is hurt.
      */
@@ -56,7 +56,7 @@ public class EntityBlok extends EntityLyoko
     {
         return null;// "mob.skeleton.hurt";
     }
-
+    
     /**
      * Returns the sound this mob makes on death.
      */
@@ -65,5 +65,5 @@ public class EntityBlok extends EntityLyoko
     {
         return null;// "mob.skeleton.death";
     }
-
+    
 }

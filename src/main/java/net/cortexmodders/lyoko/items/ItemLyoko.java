@@ -36,9 +36,9 @@ public class ItemLyoko extends Item
     {
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         if (stack.getItem().equals(ModItems.laserArrow))
@@ -50,9 +50,9 @@ public class ItemLyoko extends Item
             list.add("well.");
         }
     }
-
+    
     @SuppressWarnings("rawtypes")
-	@Override
+    @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if (stack.getItem().equals(ModItems.laserArrow))
@@ -65,7 +65,8 @@ public class ItemLyoko extends Item
                 else
                     item = CodeLyoko.debugTools.get(index + 1);
                 stack = new ItemStack(item, stack.stackSize);
-            } else if (CodeLyoko.entityInLyoko(player))
+            }
+            else if (CodeLyoko.entityInLyoko(player))
             {
                 float f = 1.0F;
                 float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
@@ -83,7 +84,7 @@ public class ItemLyoko extends Item
                 double d3 = 5.0D;
                 Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
                 MovingObjectPosition movingobjectposition = world.rayTraceBlocks(vec3, vec31, true);
-
+                
                 if (movingobjectposition == null)
                     return stack;
                 else
@@ -93,21 +94,21 @@ public class ItemLyoko extends Item
                     float f9 = 1.0F;
                     List list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.addCoord(vec32.xCoord * d3, vec32.yCoord * d3, vec32.zCoord * d3).expand(f9, f9, f9));
                     int i;
-
+                    
                     for (i = 0; i < list.size(); ++i)
                     {
                         Entity entity = (Entity) list.get(i);
-
+                        
                         if (entity.canBeCollidedWith())
                         {
                             float f10 = entity.getCollisionBorderSize();
                             AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f10, f10, f10);
-
+                            
                             if (axisalignedbb.isVecInside(vec3))
                                 flag = true;
                         }
                     }
-
+                    
                     if (flag)
                         return stack;
                     else
@@ -117,12 +118,12 @@ public class ItemLyoko extends Item
                             i = movingobjectposition.blockX;
                             int j = movingobjectposition.blockY;
                             int k = movingobjectposition.blockZ;
-
+                            
                             if (world.getBlock(i, j, k) == Block.getBlockFromName("snow"))
                                 --j;
-
+                            
                             new StructureTower().generate(world, itemRand, i - 3, j, k - 3);
-
+                            
                             if (!player.capabilities.isCreativeMode)
                                 --stack.stackSize;
                         }
@@ -132,7 +133,7 @@ public class ItemLyoko extends Item
             }
         return stack;
     }
-
+    
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase ent, EntityLivingBase player)
     {
@@ -147,7 +148,7 @@ public class ItemLyoko extends Item
         }
         return false;
     }
-
+    
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
@@ -170,11 +171,11 @@ public class ItemLyoko extends Item
         if (this.equals(ModItems.quantumContainmentCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
     }
-
+    
     @Override
     public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
     {
-
+        
         if (stack.getItem() == ModItems.lead || stack.getItem() == ModItems.uranium)
         {
             if (ent instanceof EntityPlayer)
@@ -184,12 +185,14 @@ public class ItemLyoko extends Item
                     ((EntityPlayer) ent).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 100, 0));
                     ((EntityPlayer) ent).addPotionEffect(new PotionEffect(Potion.poison.getId(), 100, 0));
                 }
-            } else
+            }
+            else
             {
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 100, 0));
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.poison.getId(), 100, 0));
             }
-        } else if (stack.getItem() == ModItems.quantumOrb)
+        }
+        else if (stack.getItem() == ModItems.quantumOrb)
             if (ent instanceof EntityLiving)
             {
                 ((EntityLiving) ent).clearActivePotions();

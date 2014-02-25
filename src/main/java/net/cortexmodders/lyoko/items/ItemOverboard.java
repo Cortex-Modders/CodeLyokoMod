@@ -30,19 +30,19 @@ public class ItemOverboard extends Item
         this.maxStackSize = 1;
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
         this.itemIcon = iconRegister.registerIcon("lyoko:overboard");
     }
-
+    
     /**
      * Called whenever this item is equipped and the right mouse button is
      * pressed. Args: itemStack, world, entityPlayer
      */
     @SuppressWarnings("rawtypes")
-	@Override
+    @Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         float f = 1.0F;
@@ -61,7 +61,7 @@ public class ItemOverboard extends Item
         double d3 = 5.0D;
         Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
         MovingObjectPosition movingobjectposition = par2World.rayTraceBlocks(vec3, vec31, true);
-
+        
         if (movingobjectposition == null)
             return par1ItemStack;
         else
@@ -71,21 +71,21 @@ public class ItemOverboard extends Item
             float f9 = 1.0F;
             List list = par2World.getEntitiesWithinAABBExcludingEntity(par3EntityPlayer, par3EntityPlayer.boundingBox.addCoord(vec32.xCoord * d3, vec32.yCoord * d3, vec32.zCoord * d3).expand(f9, f9, f9));
             int i;
-
+            
             for (i = 0; i < list.size(); ++i)
             {
                 Entity entity = (Entity) list.get(i);
-
+                
                 if (entity.canBeCollidedWith())
                 {
                     float f10 = entity.getCollisionBorderSize();
                     AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f10, f10, f10);
-
+                    
                     if (axisalignedbb.isVecInside(vec3))
                         flag = true;
                 }
             }
-
+            
             if (flag)
                 return par1ItemStack;
             else
@@ -95,23 +95,23 @@ public class ItemOverboard extends Item
                     i = movingobjectposition.blockX;
                     int j = movingobjectposition.blockY;
                     int k = movingobjectposition.blockZ;
-
+                    
                     if (par2World.getBlock(i, j, k) == Block.getBlockFromName("snow"))
                         --j;
-
+                    
                     EntityOverboard entOverboard = new EntityOverboard(par2World, i + 0.5F, j + 1.0F, k + 0.5F);
                     entOverboard.rotationYaw = ((MathHelper.floor_double(par3EntityPlayer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3) - 1) * 90;
-
+                    
                     if (!par2World.getCollidingBoundingBoxes(entOverboard, entOverboard.boundingBox.expand(-0.1D, -0.1D, -0.1D)).isEmpty())
                         return par1ItemStack;
-
+                    
                     if (!par2World.isRemote)
                         par2World.spawnEntityInWorld(entOverboard);
-
+                    
                     if (!par3EntityPlayer.capabilities.isCreativeMode)
                         --par1ItemStack.stackSize;
                 }
-
+                
                 return par1ItemStack;
             }
         }

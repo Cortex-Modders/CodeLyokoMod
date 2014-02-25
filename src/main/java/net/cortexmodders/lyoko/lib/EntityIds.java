@@ -24,7 +24,7 @@ public class EntityIds
     public static int KALAMAR = 12;
     public static int KOLOSSUS = 13;
     public static int NINJA = 14;
-
+    
     // Vehicles.
     public static int OVERBOARD = 15;
     public static int OVERBIKE = 16;
@@ -32,7 +32,7 @@ public class EntityIds
     public static int SKID = 18;
     public static int NAVSKID = 19;
     public static int MEGAPOD = 20;
-
+    
     // Projectiles
     public static int LASER = 21;
     public static int LASERARROW = 22;

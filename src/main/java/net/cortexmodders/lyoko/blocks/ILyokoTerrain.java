@@ -15,5 +15,5 @@ package net.cortexmodders.lyoko.blocks;
 public interface ILyokoTerrain
 {
     public LyokoTerrainTypes getType();
-
+    
 }

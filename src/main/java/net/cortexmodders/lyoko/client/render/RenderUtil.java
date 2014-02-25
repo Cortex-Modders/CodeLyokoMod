@@ -26,7 +26,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class RenderUtil
 {
-
+    
     public static void renderWireframe(AxisAlignedBB box)
     {
         // render wireframe
@@ -37,7 +37,7 @@ public class RenderUtil
         GL11.glLineWidth(2.0F);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glDepthMask(false);
-
+        
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawing(3);
         tessellator.addVertex(box.minX, box.minY, box.minZ);
@@ -63,19 +63,19 @@ public class RenderUtil
         tessellator.addVertex(box.minX, box.minY, box.maxZ);
         tessellator.addVertex(box.minX, box.maxY, box.maxZ);
         tessellator.draw();
-
+        
         GL11.glDepthMask(true);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glPopMatrix();
     }
-
+    
     public static void renderBox(AxisAlignedBB box)
     {
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
-
+        
         // bottom
         tessellator.addVertex(box.minX, box.maxY, box.maxZ);
         tessellator.addVertex(box.maxX, box.maxY, box.maxZ);
@@ -106,10 +106,10 @@ public class RenderUtil
         tessellator.addVertex(box.maxX, box.maxY, box.maxZ);
         tessellator.addVertex(box.maxX, box.minY, box.maxZ);
         tessellator.addVertex(box.maxX, box.minY, box.minZ);
-
+        
         tessellator.draw();
     }
-
+    
     /**
      * Renders a box with the same texture on each side.
      * 
@@ -153,10 +153,10 @@ public class RenderUtil
         tessellator.addVertexWithUV(box.maxX, box.maxY, box.maxZ, maxU, maxV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.maxZ, maxU, minV);
         tessellator.addVertexWithUV(box.maxX, box.minY, box.minZ, minU, minV);
-
+        
         tessellator.draw();
     }
-
+    
     /**
      * Draws a rectangle that can be seen on both sides.
      */
@@ -174,10 +174,10 @@ public class RenderUtil
         tessellator.addVertex(maxX, minY, maxZ);
         tessellator.addVertex(minX, minY, maxZ);
         tessellator.addVertex(minX, maxY, minZ);
-
+        
         tessellator.draw();
     }
-
+    
     /**
      * Binds a texture. Used because I hate obfuscated method names.
      * 
@@ -186,11 +186,11 @@ public class RenderUtil
     public static void bindTexture(ResourceLocation texture)
     {
         TextureManager texturemanager = Minecraft.getMinecraft().renderEngine;
-
+        
         if (texturemanager != null)
             texturemanager.bindTexture(texture);
     }
-
+    
     /**
      * 
      * called for things with alpha. thank you MachineMuse. :D
@@ -206,29 +206,29 @@ public class RenderUtil
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         }
     }
-
+    
     public static void alphaOff()
     {
         GL11.glPopAttrib();
         GL11.glPopAttrib();
     }
-
+    
     // functions
     public static Vector2f textureToGLCoordinates(int textureWidth, int textureHeight)
     {
         return new Vector2f(1F / textureWidth, 1F / textureHeight);
     }
-
+    
     public static float textureToGLCoordinates(int textureSize)
     {
         return textureToGLCoordinates(textureSize, textureSize).x;
     }
-
+    
     public static float toGLCoordinate(float textureSize, float coord)
     {
         return textureSize * coord;
     }
-
+    
     public static float toGLCoordinate1(float textureSize, float coord)
     {
         return 1 / textureSize * coord;

@@ -17,18 +17,18 @@ import net.minecraft.util.ResourceLocation;
 public class RenderXanafiedMob extends RendererLivingEntity
 {
     private static ResourceLocation texture = new ResourceLocation("lyoko:textures/models/blok.png");
-
+    
     public RenderXanafiedMob()
     {
         super(new ModelBlok(), 0.5F);
     }
-
+    
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {
         return RenderXanafiedMob.texture;
     }
-
+    
     @Override
     public void doRender(EntityLivingBase ent, double par2, double par4, double par6, float par8, float par9)
     {
@@ -37,7 +37,8 @@ public class RenderXanafiedMob extends RendererLivingEntity
         {
             RendererLivingEntity render = (RendererLivingEntity) RenderManager.instance.getEntityRenderObject(xana.infectedMob);
             render.doRender(xana, par2, par4, par6, par8, par9);
-        } else
+        }
+        else
             super.doRender(ent, par2, par4, par6, par8, par9);
     }
 }

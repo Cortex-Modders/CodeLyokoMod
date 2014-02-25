@@ -14,12 +14,12 @@ import net.minecraft.util.ResourceLocation;
 public class RenderBlok extends RenderLiving
 {
     private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/models/blok.png");
-
+    
     public RenderBlok()
     {
         super(new ModelBlok(), 0.5F);
     }
-
+    
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {

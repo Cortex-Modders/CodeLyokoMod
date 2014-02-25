@@ -6,9 +6,9 @@
 
 package net.cortexmodders.lyoko.network;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
-import io.netty.buffer.ByteBuf;
 
 /**
  * Base for tile updates. Basically just contains a x, y, and z coord.
@@ -42,7 +42,7 @@ public abstract class PacketTileUpdate extends PacketLyoko
         data.writeInt(this.yCoord);
         data.writeInt(this.zCoord);
     }
-
+    
     @Override
     public void read(ByteBuf data)
     {
@@ -53,6 +53,6 @@ public abstract class PacketTileUpdate extends PacketLyoko
     
     public World getWorld()
     {
-        return DimensionManager.getWorld(this.dimensionId); 
+        return DimensionManager.getWorld(this.dimensionId);
     }
 }

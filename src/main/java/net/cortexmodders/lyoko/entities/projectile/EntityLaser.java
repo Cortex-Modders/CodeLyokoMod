@@ -15,12 +15,12 @@ public class EntityLaser extends EntityLyokoRanged
     {
         super(par1World, par2EntityLiving, par3EntityLiving, par4, par5);
     }
-
+    
     public EntityLaser(World world, EntityLivingBase entLiving, float f)
     {
         super(world, entLiving, f);
     }
-
+    
     public EntityLaser(World world)
     {
         super(world);

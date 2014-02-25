@@ -18,10 +18,10 @@ import net.minecraft.world.World;
 
 public abstract class EntityVehicle extends Entity
 {
-
+    
     public float hoverSpeed = 0.0F;// 0.0625F; // 1/16 is the speed
     private Item droppedItem = ModItems.dataFragment;
-
+    
     public EntityVehicle(World par1World)
     {
         super(par1World);
@@ -29,7 +29,7 @@ public abstract class EntityVehicle extends Entity
         this.ignoreFrustumCheck = true;
         // this.hoverSpeed = (float)(Math.random() * Math.PI * 2.0D);
     }
-
+    
     public EntityVehicle(World par1World, double x, double y, double z)
     {
         this(par1World);
@@ -41,17 +41,17 @@ public abstract class EntityVehicle extends Entity
         this.prevPosY = y;
         this.prevPosZ = z;
     }
-
+    
     public void setDroppedItem(Item item)
     {
         this.droppedItem = item;
     }
-
+    
     public Item getDropeedItem()
     {
         return this.droppedItem;
     }
-
+    
     @Override
     protected void entityInit()
     {
@@ -59,50 +59,50 @@ public abstract class EntityVehicle extends Entity
         this.dataWatcher.addObject(18, new Integer(1));
         this.dataWatcher.addObject(19, new Integer(0));
     }
-
+    
     @Override
     public void onUpdate()
     {
-
+        
         // TEMPORARY
         if (this.posY > 100.0D)
             this.kill();
     }
-
+    
     @Override
     public AxisAlignedBB getCollisionBox(Entity par1Entity)
     {
         return par1Entity.boundingBox;
     }
-
+    
     @Override
     public AxisAlignedBB getBoundingBox()
     {
         return this.boundingBox;
     }
-
+    
     @Override
     public boolean canBeCollidedWith()
     {
         return true;
     }
-
+    
     @Override
     public boolean canBePushed()
     {
         return true;
     }
-
+    
     @Override
     public void readEntityFromNBT(NBTTagCompound par1)
     {
     }
-
+    
     @Override
     public void writeEntityToNBT(NBTTagCompound par1)
     {
     }
-
+    
     @Override
     public boolean interactFirst(EntityPlayer player)
     {
@@ -115,12 +115,13 @@ public abstract class EntityVehicle extends Entity
                 {
                     this.kill();
                     this.dropItem(this.droppedItem, 1);
-                } else
+                }
+                else
                     player.mountEntity(this);
             return true;
         }
     }
-
+    
     @Override
     public ItemStack getPickedResult(MovingObjectPosition target)
     {

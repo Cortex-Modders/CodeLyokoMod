@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy
     public static final int scannerRenderId = RenderingRegistry.getNextAvailableRenderId();
     public static final int superCalcConsoleRenderId = RenderingRegistry.getNextAvailableRenderId();
     public static final int holomapRenderId = RenderingRegistry.getNextAvailableRenderId();
-
+    
     @Override
     public void registerRenderInformation()
     {
@@ -74,7 +74,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityEnergyField.class, new RenderSnowball(ModItems.energyField));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaserArrow.class, new RenderSnowball(ModItems.laserArrow));
         RenderingRegistry.registerEntityRenderingHandler(EntityLaser.class, new RenderSnowball(ModItems.laserShooter));
-
+        
         RenderingRegistry.registerEntityRenderingHandler(EntityXanafiedMob.class, new RenderXanafiedMob());
         RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok());
         RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank());
@@ -97,28 +97,28 @@ public class ClientProxy extends CommonProxy
          */
         RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
         RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
-
+        
         MinecraftForgeClient.registerItemRenderer(ModItems.glove, new ItemRenderGlove());
-
+        
         // ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class,
         // new RenderSuperCalc());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderTowerConsole());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
-
+        
         RenderScanner scannerRenderer = new RenderScanner(scannerRenderId);
         RenderSuperCalcConsole superCalcConsoleRenderer = new RenderSuperCalcConsole(superCalcConsoleRenderId);
         RenderHolomapBlock holomapRenderer = new RenderHolomapBlock(holomapRenderId);
-
+        
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityScanner.class, scannerRenderer);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalcConsole.class, superCalcConsoleRenderer);
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHolomap.class, holomapRenderer);
-
+        
         RenderingRegistry.registerBlockHandler(scannerRenderer);
         RenderingRegistry.registerBlockHandler(superCalcConsoleRenderer);
         RenderingRegistry.registerBlockHandler(holomapRenderer);
     }
-
+    
     @Override
     public void registerCapes()
     {
@@ -158,7 +158,7 @@ public class ClientProxy extends CommonProxy
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         }
     }
-
+    
     public static void alphaOff()
     {
         GL11.glPopAttrib();

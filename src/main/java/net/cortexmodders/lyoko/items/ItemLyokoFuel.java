@@ -18,14 +18,14 @@ import net.minecraft.world.World;
 
 public class ItemLyokoFuel extends ItemLyoko
 {
-
+    
     public ItemLyokoFuel(int maxEnergy, Item depletedItem)
     {
         this.setMaxDamage(maxEnergy);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
         this.depletedForm = depletedItem;
     }
-
+    
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
@@ -34,21 +34,21 @@ public class ItemLyokoFuel extends ItemLyoko
         if (this == ModItems.uraniumCell)
             this.itemIcon = iconRegister.registerIcon("lyoko:uraniumcell");
     }
-
+    
     public Item depletedForm;
-
+    
     public Item getDepletedFuelItem()
     {
         return this.depletedForm;
     }
-
+    
     @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
         list.add(Integer.toString(stack.getMaxDamage() - stack.getItemDamage()) + "/" + Integer.toString(stack.getMaxDamage()));
     }
-
+    
     @Override
     public void onUpdate(ItemStack stack, World par2World, Entity par3Entity, int par4, boolean par5)
     {

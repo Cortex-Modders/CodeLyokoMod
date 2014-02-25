@@ -25,7 +25,7 @@ public class KeyBindingHandler
     @SubscribeEvent
     public void keyDown(KeyInputEvent event)
     {
-        if(Keyboard.getEventKeyState())
+        if (Keyboard.getEventKeyState())
         {
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
             GameSettings settings = Minecraft.getMinecraft().gameSettings;
@@ -45,7 +45,8 @@ public class KeyBindingHandler
                 {
                     data.writeInt(vehicle.getEntityId());
                     data.writeDouble(vehicle.motionY);
-                } catch (Exception e)
+                }
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }

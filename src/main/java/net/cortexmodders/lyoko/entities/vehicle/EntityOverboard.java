@@ -17,14 +17,14 @@ public class EntityOverboard extends EntityVehicle
         this.setSize(1.125F, 0.375F);
         this.setDroppedItem(ModItems.overboard);
     }
-
+    
     public EntityOverboard(World world, double x, double y, double z)
     {
         super(world, x, y, z);
         this.setSize(1.125F, 0.375F);
         this.setDroppedItem(ModItems.overboard);
     }
-
+    
     /**
      * Returns the maximum health of the entity.
      */
@@ -32,7 +32,7 @@ public class EntityOverboard extends EntityVehicle
     {
         return 1000;
     }
-
+    
     /**
      * Returns the sound this mob makes while it's alive.
      */
@@ -40,7 +40,7 @@ public class EntityOverboard extends EntityVehicle
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes when it is hurt.
      */
@@ -48,7 +48,7 @@ public class EntityOverboard extends EntityVehicle
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes on death.
      */

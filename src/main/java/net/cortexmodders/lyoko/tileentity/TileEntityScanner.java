@@ -22,25 +22,26 @@ import net.minecraft.util.Vec3;
 public class TileEntityScanner extends TileEntity
 {
     public int sector = -1;
-
+    
     // Doors are open by default.
     public boolean doorsOpen = true;
     public float doorRotationYaw = 0;
     
-    // Position for left door. Right door just inverts left door. Y sould never change, so it is not used.
+    // Position for left door. Right door just inverts left door. Y sould never change, so it is not
+    // used.
     public float doorPosX = -9;
     public float doorPosZ = 0;
-
+    
     // Constants.
     private final float closedScannerYaw = -90F;
     private final float openScannerYaw = 0F;
-
+    
     private final float closedScannerX = -8F;
     private final float openScannerX = -9F;
-
+    
     private final float closedScannerZ = -11F;
     private final float openScannerZ = 0F;
-
+    
     @Override
     public void updateEntity()
     {
@@ -56,7 +57,7 @@ public class TileEntityScanner extends TileEntity
                     this.sector = -1;
                 }
             }
-
+        
         // Open doors!
         // If doors are set to open, but have not rendered as fully open.
         if (this.doorsOpen & this.doorRotationYaw <= this.openScannerYaw)
@@ -64,7 +65,7 @@ public class TileEntityScanner extends TileEntity
             this.doorRotationYaw += 5.75;
             if (this.doorRotationYaw > this.openScannerYaw)
                 this.doorRotationYaw = this.openScannerYaw;
-
+            
             if (this.doorPosZ < this.openScannerZ)
             {
                 this.doorPosZ += 0.75;
@@ -81,7 +82,7 @@ public class TileEntityScanner extends TileEntity
             this.doorRotationYaw -= 5.75;
             if (this.doorRotationYaw < this.closedScannerYaw)
                 this.doorRotationYaw = this.closedScannerYaw;
-
+            
             if (this.doorPosZ > this.closedScannerZ)
             {
                 this.doorPosZ -= 0.75;
@@ -93,7 +94,7 @@ public class TileEntityScanner extends TileEntity
             }
         }
     }
-
+    
     /**
      * 
      * Toggles doors of this scanner
@@ -104,18 +105,18 @@ public class TileEntityScanner extends TileEntity
     {
         this.doorsOpen = !this.doorsOpen;
     }
-
+    
     public void toggleAllDoors()
     {
         Vec3[] array = BlockScanner.getBlockCoordsInMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-
+        
         this.toggleDoors();
-
+        
         for (Vec3 coords : array)
         {
             TileEntityScanner scanner = (TileEntityScanner) this.worldObj.getTileEntity((int) coords.xCoord, (int) coords.yCoord, (int) coords.zCoord);
             scanner.doorsOpen = this.doorsOpen;
-
+            
             ByteArrayOutputStream bos = new ByteArrayOutputStream(13);
             DataOutputStream outputStream = new DataOutputStream(bos);
             try
@@ -124,15 +125,15 @@ public class TileEntityScanner extends TileEntity
                 outputStream.writeInt((int) coords.xCoord);
                 outputStream.writeInt((int) coords.yCoord);
                 outputStream.writeInt((int) coords.zCoord);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 ex.printStackTrace();
             }
-
             
         }
     }
-
+    
     public void setPlayerDevirtYaw(PlayerInformation pi)
     {
         switch (this.worldObj.getBlockMetadata(this.xCoord, this.yCoord, this.zCoord))
@@ -155,7 +156,7 @@ public class TileEntityScanner extends TileEntity
     @Override
     public AxisAlignedBB getRenderBoundingBox()
     {
-    	return INFINITE_EXTENT_AABB;
+        return INFINITE_EXTENT_AABB;
     }
     
     @Override
@@ -163,16 +164,16 @@ public class TileEntityScanner extends TileEntity
     {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
@@ -180,7 +181,7 @@ public class TileEntityScanner extends TileEntity
         this.sector = tagCompound.getInteger("sector");
         this.doorsOpen = tagCompound.getBoolean("doorsOpen");
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound tagCompound)
     {

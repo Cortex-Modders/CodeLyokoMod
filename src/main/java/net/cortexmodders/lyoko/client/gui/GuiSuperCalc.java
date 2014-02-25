@@ -26,9 +26,9 @@ public class GuiSuperCalc extends GuiContainer
         this.xSize = 176;
         this.tsc = tileEntity;
     }
-
+    
     public TileEntitySuperCalc tsc;
-
+    
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2)
     {
@@ -41,7 +41,7 @@ public class GuiSuperCalc extends GuiContainer
         // draws "Inventory" or your regional equivalent
         this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
-
+    
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {

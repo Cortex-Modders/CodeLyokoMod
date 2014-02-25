@@ -14,16 +14,16 @@ package net.cortexmodders.lyoko.blocks;
  */
 public class BlockLyokoTerrain extends BlockLyoko implements ILyokoTerrain
 {
-
+    
     public BlockLyokoTerrain(LyokoTerrainTypes parType)
     {
         super();
     }
-
+    
     @Override
     public LyokoTerrainTypes getType()
     {
         return null;
     }
-
+    
 }

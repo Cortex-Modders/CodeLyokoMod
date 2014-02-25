@@ -16,19 +16,19 @@ public abstract class EntitySpecter extends EntityMob
     {
         super(world);
     }
-
+    
     public EntitySpecter(World world, double x, double y, double z)
     {
         this(world);
         this.setPosition(x, y, z);
     }
-
+    
     @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
     }
-
+    
     @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {

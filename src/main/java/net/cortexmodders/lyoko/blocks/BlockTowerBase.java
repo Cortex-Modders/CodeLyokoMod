@@ -31,9 +31,9 @@ public class BlockTowerBase extends BlockContainer
         super(Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     IIcon inside;
-
+    
     @Override
     // registerBlockIcons
     public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -42,7 +42,7 @@ public class BlockTowerBase extends BlockContainer
         this.blockIcon = par1IconRegister.registerIcon("lyoko:towerbase");
         this.inside = par1IconRegister.registerIcon("lyoko:computer_0");
     }
-
+    
     @SideOnly(Side.CLIENT)
     @Override
     // getIcon
@@ -59,26 +59,26 @@ public class BlockTowerBase extends BlockContainer
         // blockIcon
         return this.blockIcon;
     }
-
+    
     @Override
     // createNewTileEntity
     public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntityTower();
     }
-
+    
     @Override
     // onBlockPlacedBy
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase ent, ItemStack stack)
     {
         int l = MathHelper.floor_double(ent.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-
+        
         world.setBlockMetadataWithNotify(x, y, z, l, 2);
-
+        
         if (ent.isSneaking())
             world.setBlockMetadataWithNotify(x, y, z, world.getBlockMetadata(x, y, z) + 5, 2);
     }
-
+    
     @Override
     // getCollisionBoundingBoxFromPool
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
@@ -87,7 +87,7 @@ public class BlockTowerBase extends BlockContainer
             return null;
         return super.getCollisionBoundingBoxFromPool(world, x, y, z);
     }
-
+    
     @Override
     // onEntityCollidedWithBlock
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
@@ -96,7 +96,7 @@ public class BlockTowerBase extends BlockContainer
         {
             EntityPlayer player = (EntityPlayer) ent;
             PlayerInformation pi = PlayerInformation.forPlayer(player);
-
+            
             if (pi.getCoolDown() <= 0)
             {
                 pi.increaseLifePoints(25);
@@ -104,14 +104,14 @@ public class BlockTowerBase extends BlockContainer
             }
         }
     }
-
+    
     @Override
     // renderAsNormalBlock
     public boolean renderAsNormalBlock()
     {
         return false;
     }
-
+    
     @Override
     // isOpaqueCube
     public boolean isOpaqueCube()

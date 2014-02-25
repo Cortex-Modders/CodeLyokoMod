@@ -18,7 +18,7 @@ public class TileEntityTowerConsole extends TileEntity
 {
     public String owner = "";
     private TileEntityTower[][][] tetArray = new TileEntityTower[9][9][9];
-
+    
     @Override
     public void updateEntity()
     {
@@ -27,7 +27,7 @@ public class TileEntityTowerConsole extends TileEntity
                 for (int z = -4; z < 5; z++)
                     if (this.worldObj.getTileEntity(x + this.xCoord, y + this.yCoord, z + this.zCoord) instanceof TileEntityTower)
                         this.tetArray[x + 4][y + 4][z + 4] = (TileEntityTower) this.worldObj.getTileEntity(x + this.xCoord, y + this.yCoord, z + this.zCoord);
-
+        
         if (!this.owner.equals(""))
         {
             if (this.owner.equals("reset"))
@@ -58,7 +58,7 @@ public class TileEntityTowerConsole extends TileEntity
                 }
         }
     }
-
+    
     @Override
     public Packet getDescriptionPacket()
     {
@@ -66,21 +66,21 @@ public class TileEntityTowerConsole extends TileEntity
         this.writeToNBT(tag);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
         this.owner = tagCompound.getString("towerOwner");
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound tagCompound)
     {

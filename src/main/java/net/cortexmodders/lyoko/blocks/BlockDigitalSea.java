@@ -26,32 +26,32 @@ public class BlockDigitalSea extends Block
         super(Material.iron);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("lyoko:digitalseablock");
     }
-
+    
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
         return ModFluids.digitalSea.getLuminosity();
     }
-
+    
     @Override
     public int quantityDropped(Random par1Random)
     {
         return 0;
     }
-
+    
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
         return AxisAlignedBB.getBoundingBox(par2 - 1 + f, par3 - 1 + f, par4 - 1 + f, par2 + 1 - f, par3 + 1 - f, par4 + 1 - f);
     }
-
+    
     @Override
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {

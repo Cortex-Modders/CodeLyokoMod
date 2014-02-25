@@ -17,19 +17,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ModFluids
 {
     public static Fluid digitalSea;
-
+    
     public static void init()
     {
         digitalSea = new FluidDigitalSea("Digital Sea").setUnlocalizedName("DigitalSea");
-
+        
         registerFluids();
     }
-
+    
     public static void registerFluids()
     {
         FluidRegistry.registerFluid(digitalSea);
     }
-
+    
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void textureHook(TextureStitchEvent.Post event)

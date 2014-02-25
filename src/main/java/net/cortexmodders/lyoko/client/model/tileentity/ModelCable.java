@@ -20,12 +20,12 @@ public class ModelCable extends ModelBase
     ModelRenderer cableLeft;
     ModelRenderer cableBack;
     ModelRenderer cableFront;
-
+    
     public ModelCable()
     {
         this.textureWidth = 64;
         this.textureHeight = 32;
-
+        
         this.cableCore = new ModelRenderer(this, 0, 0);
         this.cableCore.addBox(-3F, 0F, -3F, 6, 6, 6);
         this.cableCore.setRotationPoint(0F, 13F, 0F);
@@ -69,7 +69,7 @@ public class ModelCable extends ModelBase
         this.cableFront.mirror = true;
         this.setRotation(this.cableFront, 0F, 0F, 0F);
     }
-
+    
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -83,20 +83,20 @@ public class ModelCable extends ModelBase
         this.cableBack.render(f5);
         this.cableFront.render(f5);
     }
-
+    
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-
+    
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity ent)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, ent);
     }
-
+    
     public void renderModel(float f, boolean top, boolean bottom, boolean left, boolean right, boolean front, boolean back)
     {
         this.cableCore.render(f);

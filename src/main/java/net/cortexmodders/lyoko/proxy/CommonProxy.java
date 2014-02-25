@@ -8,7 +8,6 @@ package net.cortexmodders.lyoko.proxy;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.blocks.ModBlocks;
-import net.cortexmodders.lyoko.client.handler.SoundHandler;
 import net.cortexmodders.lyoko.entities.mob.EntityBlok;
 import net.cortexmodders.lyoko.entities.mob.EntityMegaTank;
 import net.cortexmodders.lyoko.entities.mob.EntityXanafiedMob;
@@ -52,10 +51,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class CommonProxy
 {
     
-    public void registerRenderInformation() {}
-
-    public void registerKeyBindingHandler() {}
-
+    public void registerRenderInformation()
+    {
+    }
+    
+    public void registerKeyBindingHandler()
+    {
+    }
+    
     public void registerOreDictionaryOres()
     {
         OreDictionary.registerOre("ingotRadioactiveLead", ModItems.lead);
@@ -63,7 +66,7 @@ public class CommonProxy
         OreDictionary.registerOre("ingotUranium", ModItems.uranium);
         OreDictionary.registerOre("oreUranium", ModBlocks.uraniumOre);
     }
-
+    
     public void registerEventHandlers()
     {
         EventHandler handler = new EventHandler();
@@ -72,9 +75,9 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new ModFluids());
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
         
-        //GameRegistry.registerPlayerTracker(handler);
+        // GameRegistry.registerPlayerTracker(handler);
     }
-
+    
     public void addChestLoot()
     {
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quantumOrb), 1, 1, 005));
@@ -102,31 +105,31 @@ public class CommonProxy
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.williamBoots), 1, 1, 005));
         ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(ModItems.quantumContainmentCell), 1, 1, 005));
     }
-
+    
     public void registerEntities()
     {
         // Specters
         EntityRegistry.registerGlobalEntityID(EntityXanafiedMob.class, "XanafiedMob", EntityRegistry.findGlobalUniqueEntityId());
-
+        
         // Monsters.
         EntityRegistry.registerGlobalEntityID(EntityBlok.class, "Blok", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
         EntityRegistry.registerGlobalEntityID(EntityMegaTank.class, "Megatank", EntityRegistry.findGlobalUniqueEntityId(), 0xe3b434, 0x000000);
-
+        
         // Vehicles
         EntityRegistry.registerModEntity(EntitySkid.class, "Skidbladnir", EntityIds.SKID, CodeLyoko.instance, 50, 1, true);
         EntityRegistry.registerModEntity(EntityOverboard.class, "Overboard", EntityIds.OVERBOARD, CodeLyoko.instance, 50, 1, true);
-
+        
         // Projectiles
         EntityRegistry.registerModEntity(EntityLaser.class, "Laser", EntityIds.LASER, CodeLyoko.instance, 50, 1, true);
         EntityRegistry.registerModEntity(EntityLaserArrow.class, "LaserArrow", EntityIds.LASERARROW, CodeLyoko.instance, 50, 1, true);
         EntityRegistry.registerModEntity(EntityFan.class, "Fan", EntityIds.FAN, CodeLyoko.instance, 50, 1, true);
         EntityRegistry.registerModEntity(EntityEnergyField.class, "EnergyField", EntityIds.ENERGYFIELD, CodeLyoko.instance, 50, 1, true);
-
+        
         // Naturally spawn in Lyoko.
         EntityRegistry.addSpawn(net.cortexmodders.lyoko.entities.mob.EntityBlok.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
         EntityRegistry.addSpawn(net.cortexmodders.lyoko.entities.mob.EntityMegaTank.class, 10, 3, 15, EnumCreatureType.monster, CodeLyoko.lyokocarthage, CodeLyoko.lyokoforest, CodeLyoko.lyokomountain, CodeLyoko.lyokopolar, CodeLyoko.lyokodesert);
     }
-
+    
     public void registerTileEntities()
     {
         GameRegistry.registerTileEntity(TileEntitySuperCalc.class, "teSuperCalc");
@@ -138,7 +141,7 @@ public class CommonProxy
         GameRegistry.registerTileEntity(TileEntityCable.class, "teCable");
         GameRegistry.registerTileEntity(TileEntityHolomap.class, "teHolomap");
     }
-
+    
     public void registerDimensions()
     {
         // Dimension providers
@@ -147,7 +150,7 @@ public class CommonProxy
         DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.DESERT, LyokoDesertSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.CARTHAGE, LyokoCarthageSector.class, true);
-
+        
         // Dimensions
         DimensionManager.registerDimension(DimensionIds.ICE, DimensionIds.ICE);
         DimensionManager.registerDimension(DimensionIds.MOUNTAIN, DimensionIds.MOUNTAIN);
@@ -155,7 +158,7 @@ public class CommonProxy
         DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
         DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
-
+    
     public void registerDimensionIds(Configuration config)
     {
         DimensionIds.ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
@@ -166,6 +169,8 @@ public class CommonProxy
         DimensionIds.DIGITALSEA = config.get(ConfigCategories.DIMENSIONS.name(), "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
         DimensionIds.CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
     }
-
-    public void registerCapes() {}
+    
+    public void registerCapes()
+    {
+    }
 }

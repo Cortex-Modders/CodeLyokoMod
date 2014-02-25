@@ -20,7 +20,7 @@ import cpw.mods.fml.common.registry.GameRegistry.UniqueIdentifier;
 public class TileEntityMarabounta extends TileEntity
 {
     public Block consumedBlock = Blocks.air;
-
+    
     @Override
     public void updateEntity()
     {
@@ -31,7 +31,7 @@ public class TileEntityMarabounta extends TileEntity
         this.syncMarabounta(this.xCoord, this.yCoord, this.zCoord + 1);
         this.syncMarabounta(this.xCoord, this.yCoord, this.zCoord - 1);
     }
-
+    
     public void syncMarabounta(int x, int y, int z)
     {
         if (this.worldObj.getBlock(x, y, z) == ModBlocks.marabounta && this.worldObj.getTileEntity(x, y, z) != null && this.worldObj.getBlockMetadata(x, y, z) == 0)
@@ -42,31 +42,31 @@ public class TileEntityMarabounta extends TileEntity
                 this.worldObj.setTileEntity(x, y, z, temp);
             }
     }
-
+    
     @Override
     public Packet getDescriptionPacket()
     {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
         String[] block = tagCompound.getString("blockString").split(":");
-        if(block.length > 0 && block.length <= 2)
+        if (block.length > 0 && block.length <= 2)
             this.consumedBlock = GameRegistry.findBlock(block[0], block[1]);
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound tagCompound)
     {

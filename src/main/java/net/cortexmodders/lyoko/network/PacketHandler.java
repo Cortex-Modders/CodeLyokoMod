@@ -29,20 +29,18 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PacketHandler 
+public class PacketHandler
 {
     private static PacketHandler INSTANCE = new PacketHandler();
     
     private EnumMap<Side, FMLEmbeddedChannel> channels;
     
-    private PacketHandler() 
+    private PacketHandler()
     {
         this.channels = NetworkRegistry.INSTANCE.newChannel(ModProperties.MOD_ID, new ChannelCodec());
         
-        if(FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            addClientHandler();
-        }
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+            this.addClientHandler();
     }
     
     public static PacketHandler getInstance()
@@ -52,7 +50,8 @@ public class PacketHandler
     }
     
     @SideOnly(Side.CLIENT)
-    private void addClientHandler() {
+    private void addClientHandler()
+    {
         FMLEmbeddedChannel clientChannel = this.channels.get(Side.CLIENT);
         
         String codec = clientChannel.findChannelHandlerNameForType(ChannelCodec.class);
@@ -63,8 +62,10 @@ public class PacketHandler
      * Wrapper method for {@link FMLEmbeddedChannel#generatePacketFrom(Object)}.
      * Must have a codec in place to transform it for it to return anything.
      * 
-     * @param msg object to generate from
-     * @param side channel to side being sent to
+     * @param msg
+     *            object to generate from
+     * @param side
+     *            channel to side being sent to
      * @return created packet
      */
     public Packet generatePacketFrom(PacketLyoko msg, Side side)
@@ -75,35 +76,33 @@ public class PacketHandler
     @SideOnly(Side.CLIENT)
     public void sendPacketToServer(Packet packet)
     {
-        sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.TOSERVER);
+        this.sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.TOSERVER);
     }
     
     public void sendPacketToPlayer(Packet packet, EntityPlayer player)
     {
-        channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
-        sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.PLAYER);
+        this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
+        this.sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.PLAYER);
     }
     
     public void sendPacketToAllPlayers(Packet packet, EntityPlayer player)
     {
-        sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.ALL);
+        this.sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.ALL);
     }
     
     protected void sendPacketToTarget(Packet packet, OutboundTarget target)
     {
-        channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(target);
-        channels.get(Side.SERVER).writeOutbound(packet);
+        this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(target);
+        this.channels.get(Side.SERVER).writeOutbound(packet);
     }
     
     private static class ChannelCodec extends FMLIndexedMessageToMessageCodec<PacketLyoko>
     {
-
+        
         public ChannelCodec()
         {
-            for(PacketType type : PacketType.values())
-            {
-                addDiscriminator(type.ordinal(), type.packetClass);
-            }
+            for (PacketType type : PacketType.values())
+                this.addDiscriminator(type.ordinal(), type.packetClass);
         }
         
         @Override
@@ -111,12 +110,11 @@ public class PacketHandler
         {
             msg.write(target);
         }
-
+        
         @Override
         public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, PacketLyoko msg)
         {
             msg.read(source);
-            
             
         }
     }
@@ -124,47 +122,43 @@ public class PacketHandler
     @SideOnly(Side.CLIENT)
     private static class ChannelHandler extends SimpleChannelInboundHandler<PacketLyoko>
     {
-
+        
         @Override
         protected void channelRead0(ChannelHandlerContext ctx, PacketLyoko packet) throws Exception
         {
-            if(packet instanceof PacketConsoleCommand)
-            {
+            if (packet instanceof PacketConsoleCommand)
                 PacketHandler.getInstance().handlePacketConsole((PacketConsoleCommand) packet);
-            }
-            else if(packet instanceof PacketPlayerInformation)
-            {
+            else if (packet instanceof PacketPlayerInformation)
                 PacketHandler.getInstance().handlePacketPlayerInformation((PacketPlayerInformation) packet, Minecraft.getMinecraft().thePlayer);
-            }
         }
     }
     
     /*
-    @Override
-    public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player)
-    {
-        DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
-        EntityPlayer sender = (EntityPlayer) player;
-
-        if (packet.channel.equals("Console"))
-            this.handlePacketConsole(data, sender.worldObj);
-        if (packet.channel.equals("LifePoints"))
-            this.handlePacketLP(data, sender.worldObj, sender);
-        if (packet.channel.equals("Devirt"))
-            this.handlePacketD(data, sender.worldObj, sender);
-        if (packet.channel.equals("ScannerDoors"))
-            this.handlePacketSD(data, sender.worldObj);
-        if (packet.channel.equals("Vehicle"))
-            this.handlePacketV(data, sender.worldObj);
-    }
-*/
+     * @Override
+     * public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player
+     * player)
+     * {
+     * DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
+     * EntityPlayer sender = (EntityPlayer) player;
+     * if (packet.channel.equals("Console"))
+     * this.handlePacketConsole(data, sender.worldObj);
+     * if (packet.channel.equals("LifePoints"))
+     * this.handlePacketLP(data, sender.worldObj, sender);
+     * if (packet.channel.equals("Devirt"))
+     * this.handlePacketD(data, sender.worldObj, sender);
+     * if (packet.channel.equals("ScannerDoors"))
+     * this.handlePacketSD(data, sender.worldObj);
+     * if (packet.channel.equals("Vehicle"))
+     * this.handlePacketV(data, sender.worldObj);
+     * }
+     */
     private void handlePacketConsole(PacketConsoleCommand packet)
     {
         String code = packet.command;
-        int x       = packet.xCoord;
-        int y       = packet.yCoord;
-        int z       = packet.zCoord;
-        World world = packet.getWorld(); 
+        int x = packet.xCoord;
+        int y = packet.yCoord;
+        int z = packet.zCoord;
+        World world = packet.getWorld();
         
         if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityTowerConsole)
         {
@@ -179,71 +173,67 @@ public class PacketHandler
             world.markBlockForUpdate(x, y, z);
         }
     }
-
+    
     private void handlePacketPlayerInformation(PacketPlayerInformation packet, EntityPlayer player)
     {
-        //TODO: fix this so it doesn't need a player instance.
+        // TODO: fix this so it doesn't need a player instance.
         int lifepoints = packet.lifePoints;
-
+        
         if (player != null)
         {
             PlayerInformation pi = PlayerInformation.forPlayer(player);
             pi.setLifePoints(lifepoints);
         }
     }
-
+    
     /*
-    private void handlePacketD(DataInputStream data, World world, EntityPlayer player)
-    {
-        // int dim;
-        double posX;
-        double posY;
-        double posZ;
-        float yaw;
-
-        try
-        {
-            // dim = data.readInt();
-            posX = data.readDouble();
-            posY = data.readDouble();
-            posZ = data.readDouble();
-            yaw = data.readFloat();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
-        if (player != null)
-            // player.dimension = dim;
-            player.setLocationAndAngles(posX, posY, posZ, yaw, 0);
-    }
-
-    private void handlePacketSD(DataInputStream data, World world)
-    {
-        boolean open;
-        int x;
-        int y;
-        int z;
-
-        try
-        {
-            open = data.readBoolean();
-            x = data.readInt();
-            y = data.readInt();
-            z = data.readInt();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-
-        if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof TileEntityScanner)
-        {
-            TileEntityScanner tes = (TileEntityScanner) world.getTileEntity(x, y, z);
-            tes.doorsOpen = open;
-            world.markBlockForUpdate(x, y, z);
-        }
-    }
-    */
+     * private void handlePacketD(DataInputStream data, World world, EntityPlayer player)
+     * {
+     * // int dim;
+     * double posX;
+     * double posY;
+     * double posZ;
+     * float yaw;
+     * try
+     * {
+     * // dim = data.readInt();
+     * posX = data.readDouble();
+     * posY = data.readDouble();
+     * posZ = data.readDouble();
+     * yaw = data.readFloat();
+     * } catch (IOException e)
+     * {
+     * e.printStackTrace();
+     * return;
+     * }
+     * if (player != null)
+     * // player.dimension = dim;
+     * player.setLocationAndAngles(posX, posY, posZ, yaw, 0);
+     * }
+     * private void handlePacketSD(DataInputStream data, World world)
+     * {
+     * boolean open;
+     * int x;
+     * int y;
+     * int z;
+     * try
+     * {
+     * open = data.readBoolean();
+     * x = data.readInt();
+     * y = data.readInt();
+     * z = data.readInt();
+     * } catch (IOException e)
+     * {
+     * e.printStackTrace();
+     * return;
+     * }
+     * if (world.getTileEntity(x, y, z) != null && world.getTileEntity(x, y, z) instanceof
+     * TileEntityScanner)
+     * {
+     * TileEntityScanner tes = (TileEntityScanner) world.getTileEntity(x, y, z);
+     * tes.doorsOpen = open;
+     * world.markBlockForUpdate(x, y, z);
+     * }
+     * }
+     */
 }

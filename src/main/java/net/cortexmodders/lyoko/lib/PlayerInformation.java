@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.Side;
 public final class PlayerInformation implements IExtendedEntityProperties
 {
     public static final String IDENTIFIER = "lyoko_data";
-
+    
     public static PlayerInformation forPlayer(Entity player)
     {
         return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
@@ -33,14 +33,14 @@ public final class PlayerInformation implements IExtendedEntityProperties
     private int scannerPosZ;
     public int scannerDim;
     public int scannerYaw;
-
+    
     private final EntityPlayer player;
-
+    
     public PlayerInformation(EntityPlayer player)
     {
         this.player = player;
     }
-
+    
     @Override
     public void init(Entity entity, World world)
     {
@@ -52,7 +52,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         this.scannerDim = 0;
         this.scannerYaw = 0;
     }
-
+    
     @Override
     public void saveNBTData(NBTTagCompound compound)
     {
@@ -66,7 +66,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         nbt.setInteger("sy", this.scannerYaw);
         compound.setTag(IDENTIFIER, nbt);
     }
-
+    
     @Override
     public void loadNBTData(NBTTagCompound playerNbt)
     {
@@ -79,59 +79,55 @@ public final class PlayerInformation implements IExtendedEntityProperties
         this.scannerDim = nbt.getInteger("sd");
         this.scannerYaw = nbt.getInteger("sy");
     }
-
+    
     public int getLifePoints()
     {
         return this.lifePoints;
     }
-
+    
     public int setLifePoints(int lifePoints)
     {
-        if(this.lifePoints != lifePoints)
+        if (this.lifePoints != lifePoints)
         {
             this.lifePoints = lifePoints;
             this.setDirty();
         }
         return this.lifePoints;
     }
-
+    
     public int getMaxLifePoints()
     {
         return 100;
     }
-
+    
     public int decreaseLifePoints(int decrement)
     {
         this.lifePoints -= decrement;
         if (this.lifePoints < 0)
-        {
             this.lifePoints = 0;
-        }
         this.setDirty();
         return this.lifePoints;
     }
-
+    
     public int increaseLifePoints(int increment)
     {
         this.lifePoints += increment;
         if (this.lifePoints > 100)
-        {
             this.lifePoints = 100;
-        }
         this.setDirty();
         return this.lifePoints;
     }
-
+    
     public int getCoolDown()
     {
         return this.coolDown;
     }
-
+    
     public void resetCoolDown()
     {
         this.coolDown = 10;
     }
-
+    
     public void decreaseCoolDown(int amt)
     {
         this.coolDown -= amt;
@@ -141,34 +137,34 @@ public final class PlayerInformation implements IExtendedEntityProperties
             this.coolDown = 0;
         this.setDirty();
     }
-
+    
     public int getMaxCoolDown()
     {
         return 10;
     }
-
+    
     public void setScannerPosition(int x, int y, int z)
     {
         this.scannerPosX = x;
         this.scannerPosY = y;
         this.scannerPosZ = z;
     }
-
+    
     public int getScannerPosX()
     {
         return this.scannerPosX;
     }
-
+    
     public int getScannerPosY()
     {
         return this.scannerPosY;
     }
-
+    
     public int getScannerPosZ()
     {
         return this.scannerPosZ;
     }
-
+    
     public EntityPlayer getPlayer()
     {
         return this.player;

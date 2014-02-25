@@ -25,7 +25,7 @@ public class BlockCable extends BlockContainer
         super(Material.cloth);
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, Block neighborBlock)
     {
@@ -66,7 +66,7 @@ public class BlockCable extends BlockContainer
             }
         }
     }
-
+    
     public void syncBlock(World world, int x, int y, int z, TileEntityCable localCable)
     {
         if (world.getBlock(x, y, z) instanceof BlockCable && world.getTileEntity(x, y, z) instanceof TileEntityCable)
@@ -79,7 +79,7 @@ public class BlockCable extends BlockContainer
             }
         }
     }
-
+    
     public void syncBlock2(World world, int x, int y, int z, TileEntityCable localCable)
     {
         if (world.getBlock(x, y, z) instanceof BlockScanner && world.getTileEntity(x, y, z) instanceof TileEntityScanner)
@@ -92,7 +92,7 @@ public class BlockCable extends BlockContainer
             }
         }
     }
-
+    
     public void syncBlock3(World world, int x, int y, int z, TileEntityCable localCable)
     {
         if (world.getBlock(x, y, z) instanceof BlockSuperCalc && world.getTileEntity(x, y, z) instanceof TileEntitySuperCalc)
@@ -105,7 +105,7 @@ public class BlockCable extends BlockContainer
             }
         }
     }
-
+    
     public void syncBlock4(World world, int x, int y, int z, TileEntityCable localCable)
     {
         if (world.getBlock(x, y, z) instanceof BlockHolomap && world.getTileEntity(x, y, z) instanceof TileEntityHolomap)
@@ -118,7 +118,7 @@ public class BlockCable extends BlockContainer
             }
         }
     }
-
+    
     public int convertSectorToInt(String sector)
     {
         if (sector.toLowerCase().equals("polar") || sector.toLowerCase().equals("ice"))
@@ -133,7 +133,7 @@ public class BlockCable extends BlockContainer
             return 4;
         return -1;
     }
-
+    
     /*
      * public String convertIntToSector(int sector) { switch(sector) { case 0:
      * return "polar"; case 1: return "desert"; case 2: return "forest"; case 3:
@@ -147,32 +147,32 @@ public class BlockCable extends BlockContainer
      * world.markBlockForUpdate(x, y, z); world.notifyBlocksOfNeighborChange(x,
      * y, z, this.blockID); return true; } return false; }
      */
-
+    
     @Override
     public int getRenderBlockPass()
     {
         return 1;
     }
-
+    
     @Override
     public int getRenderType()
     {
         return -1;
     }
-
+    
     @Override
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("lyoko:cable");
     }
-
+    
     @Override
     public boolean isOpaqueCube()
     {
         return false;
-
+        
     }
-
+    
     private boolean validBlock(Block block, int side)
     {
         if (block instanceof BlockCable || block instanceof BlockSuperCalcConsole)
@@ -185,7 +185,7 @@ public class BlockCable extends BlockContainer
             return true;
         return false;
     }
-
+    
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
     {
@@ -197,28 +197,28 @@ public class BlockCable extends BlockContainer
         float maxy = (float) this.maxY;
         float minz = (float) this.minZ;
         float maxz = (float) this.maxZ;
-
+        
         if (this.validBlock(world.getBlock(x - 1, y, z), 2))
             minx = 0;
-
+        
         if (this.validBlock(world.getBlock(x + 1, y, z), 3))
             maxx = 1;
-
+        
         if (this.validBlock(world.getBlock(x, y - 1, z), 0))
             miny = 0;
-
+        
         if (this.validBlock(world.getBlock(x, y + 1, z), 1))
             maxy = 1;
-
+        
         if (this.validBlock(world.getBlock(x, y, z - 1), 4))
             minz = 0;
-
+        
         if (this.validBlock(world.getBlock(x, y, z + 1), 5))
             maxz = 1;
-
+        
         this.setBlockBounds(minx, miny, minz, maxx, maxy, maxz);
     }
-
+    
     @Override
     public TileEntity createNewTileEntity(World world, int metadata)
     {

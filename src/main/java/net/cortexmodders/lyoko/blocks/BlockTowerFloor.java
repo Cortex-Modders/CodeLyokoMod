@@ -25,7 +25,7 @@ public class BlockTowerFloor extends Block
         // setCreativeTab
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-
+    
     public boolean isMultiBlock(IBlockAccess access, int x, int y, int z)
     {
         if (access.getBlock(x + 1, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x + 1, y, z) instanceof BlockTowerFloor && access.getBlock(x + 1, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x, y, z) instanceof BlockTowerFloor && access.getBlock(x, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z + 1) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z) instanceof BlockTowerFloor && access.getBlock(x - 1, y, z - 1) instanceof BlockTowerFloor && access.getBlock(x + 2, y, z) instanceof BlockTowerFloor && access.getBlock(x + 3, y, z) instanceof BlockTowerFloor && access.getBlockMetadata(x, y, z) == 0)
@@ -34,7 +34,7 @@ public class BlockTowerFloor extends Block
             return true;
         return false;
     }
-
+    
     @Override
     // onEntityCollidedWithBlock
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
@@ -65,7 +65,7 @@ public class BlockTowerFloor extends Block
                 ent.setVelocity(0.0D, 0.0D, 0.0D);
         }
     }
-
+    
     @Override
     // getCollisionBoundingBoxFromPool
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
@@ -73,7 +73,7 @@ public class BlockTowerFloor extends Block
         float f = 0.125F;
         return AxisAlignedBB.getBoundingBox(par2 - 1, par3 - 1, par4 - 1, par2 + 1, par3 + 1 - f, par4 + 1);
     }
-
+    
     private IIcon tr;
     private IIcon tc;
     private IIcon tl;
@@ -86,9 +86,9 @@ public class BlockTowerFloor extends Block
     private IIcon bl;
     private IIcon bottomSide;
     private IIcon extension;
-
+    
     private IIcon[][] topIcons = new IIcon[3][3];
-
+    
     @Override
     // registerBlockIcons
     public void registerBlockIcons(IIconRegister par1IconRegister)
@@ -105,7 +105,7 @@ public class BlockTowerFloor extends Block
         this.bl = par1IconRegister.registerIcon("lyoko:bl");
         this.bottomSide = par1IconRegister.registerIcon("lyoko:computer_0");
         this.extension = par1IconRegister.registerIcon("lyoko:extension");
-
+        
         this.topIcons[0][0] = this.tr;
         this.topIcons[0][1] = this.tc;
         this.topIcons[0][2] = this.tl;
@@ -116,7 +116,7 @@ public class BlockTowerFloor extends Block
         this.topIcons[2][1] = this.bc;
         this.topIcons[2][2] = this.bl;
     }
-
+    
     @Override
     // getIcon
     public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)

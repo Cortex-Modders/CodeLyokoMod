@@ -23,7 +23,7 @@ public class ClientTickHandler
         for (TileAnimator inst : CodeLyoko.animatorInstances)
             inst.animate();
     }
-
+    
     @SubscribeEvent
     public void renderTick(RenderTickEvent event)
     {

@@ -24,16 +24,16 @@ public class Recipes
         GameRegistry.addRecipe(new ItemStack(ModBlocks.cable, 12), new Object[] { "###", "$*$", "###", Character.valueOf('#'), Blocks.wool, Character.valueOf('*'), Items.gold_ingot, Character.valueOf('$'), Items.redstone });
         GameRegistry.addRecipe(new ItemStack(ModBlocks.superComputer, 1), new Object[] { "#o#", "#*#", "#o#", Character.valueOf('#'), Items.gold_ingot, Character.valueOf('*'), ModItems.quantumMatrix, Character.valueOf('o'), Blocks.obsidian });
     }
-
+    
     @SuppressWarnings("unchecked")
-	public static void registerItemRecipes()
+    public static void registerItemRecipes()
     {
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.uraniumCell), "ingotUranium", ModItems.emptyCell));
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.uraniumCell, 2), "*#*", Character.valueOf('*'), ModItems.depletedUraniumCell, Character.valueOf('#'), "ingotUranium"));
         CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(new ItemStack(ModItems.leadCell), "ingotRadioactiveLead", ModItems.emptyCell));
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.leadCell, 2), "*#*", Character.valueOf('*'), ModItems.depletedLeadCell, Character.valueOf('#'), "ingotRadioactiveLead"));
         CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModItems.emptyCell, 16), " # ", "#*#", " # ", Character.valueOf('*'), Blocks.glass, Character.valueOf('#'), "ingotTin"));
-
+        
         /*
          * GameRegistry.addRecipe(new ItemStack(Overboard, 1), new Object[] {
          * "h*c", "$#$", "bml", Character.valueOf('*'), Item.boat,
@@ -81,7 +81,7 @@ public class Recipes
         GameRegistry.addRecipe(new ItemStack(ModItems.williamLegs, 1), new Object[] { "***", "*#*", "* *", Character.valueOf('*'), ModItems.dataFragment, Character.valueOf('#'), new ItemStack(Items.dye, 1, 12) });
         GameRegistry.addRecipe(new ItemStack(ModItems.williamBoots, 1), new Object[] { "*#*", "* *", Character.valueOf('*'), ModItems.dataFragment, Character.valueOf('#'), new ItemStack(Items.dye, 1, 12) });
     }
-
+    
     public static void registerSmelting()
     {
         GameRegistry.addSmelting(ModBlocks.uraniumOre, new ItemStack(ModItems.uranium, 1), 5F);

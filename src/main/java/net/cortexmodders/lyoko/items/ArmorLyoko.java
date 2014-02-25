@@ -28,9 +28,9 @@ public class ArmorLyoko extends ItemArmor
         this.armorOwner = str;
         this.setContainerItem(this);
     }
-
+    
     private String armorOwner;
-
+    
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
@@ -43,7 +43,7 @@ public class ArmorLyoko extends ItemArmor
         if (this.equals(ModItems.aelitaBoots) || this.equals(ModItems.oddBoots) || this.equals(ModItems.ulrichBoots) || this.equals(ModItems.yumiBoots) || this.equals(ModItems.williamBoots))
             this.itemIcon = iconRegister.registerIcon("lyoko:" + this.armorOwner + "boots");
     }
-
+    
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack)
     {
@@ -55,7 +55,7 @@ public class ArmorLyoko extends ItemArmor
                 ItemStack chest = player.getCurrentArmor(3);
                 ItemStack legs = player.getCurrentArmor(2);
                 ItemStack boots = player.getCurrentArmor(1);
-
+                
                 if (helmet.getItem() == ModItems.aelitaHelmet && chest.getItem() == ModItems.aelitaChest && legs.getItem() == ModItems.aelitaLegs && boots.getItem() == ModItems.aelitaBoots)
                 {
                     player.capabilities.allowFlying = true;
@@ -68,7 +68,8 @@ public class ArmorLyoko extends ItemArmor
                         if ((stack2 == null || stack2 == new ItemStack(ModItems.energyField, stack2.stackSize)) && !player.inventory.hasItem(ModItems.energyField))
                             player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.energyField, 1));
                     }
-                } else if (helmet.getItem() == ModItems.oddHelmet && chest.getItem() == ModItems.oddChest && legs.getItem() == ModItems.oddLegs && boots.getItem() == ModItems.oddBoots)
+                }
+                else if (helmet.getItem() == ModItems.oddHelmet && chest.getItem() == ModItems.oddChest && legs.getItem() == ModItems.oddLegs && boots.getItem() == ModItems.oddBoots)
                 {
                     player.addPotionEffect(new PotionEffect(Potion.jump.getId(), 1, 3));
                     player.fallDistance = 0;
@@ -78,7 +79,8 @@ public class ArmorLyoko extends ItemArmor
                         if ((stack2 == null || stack2 == new ItemStack(ModItems.glove, stack2.stackSize)) && !player.inventory.hasItem(ModItems.glove))
                             player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.glove, 1));
                     }
-                } else if (helmet.getItem() == ModItems.ulrichHelmet && chest.getItem() == ModItems.ulrichChest && legs.getItem() == ModItems.ulrichLegs && boots.getItem() == ModItems.ulrichBoots)
+                }
+                else if (helmet.getItem() == ModItems.ulrichHelmet && chest.getItem() == ModItems.ulrichChest && legs.getItem() == ModItems.ulrichLegs && boots.getItem() == ModItems.ulrichBoots)
                 {
                     if (player.isSprinting())
                         player.addPotionEffect(new PotionEffect(Potion.moveSpeed.getId(), 1, 2));
@@ -89,7 +91,8 @@ public class ArmorLyoko extends ItemArmor
                         if ((stack2 == null || stack2 == new ItemStack(ModItems.katana, stack2.stackSize)) && !player.inventory.hasItem(ModItems.katana))
                             player.inventory.setInventorySlotContents(x, new ItemStack(ModItems.katana, 1));
                     }
-                } else if (helmet.getItem() == ModItems.yumiHelmet && chest.getItem() == ModItems.yumiChest && legs.getItem() == ModItems.yumiLegs && boots.getItem() == ModItems.yumiBoots)
+                }
+                else if (helmet.getItem() == ModItems.yumiHelmet && chest.getItem() == ModItems.yumiChest && legs.getItem() == ModItems.yumiLegs && boots.getItem() == ModItems.yumiBoots)
                 {
                     player.getFoodStats().setFoodSaturationLevel(40.0F);
                     player.getFoodStats().setFoodLevel(20);
@@ -105,7 +108,8 @@ public class ArmorLyoko extends ItemArmor
                     }
                     if (player instanceof EntityPlayerMP)
                         ((EntityPlayerMP) player).theItemInWorldManager.setBlockReachDistance(10.0D);
-                } else if (helmet.getItem() == ModItems.williamHelmet && chest.getItem() == ModItems.williamChest && legs.getItem() == ModItems.williamLegs && boots.getItem() == ModItems.williamBoots)
+                }
+                else if (helmet.getItem() == ModItems.williamHelmet && chest.getItem() == ModItems.williamChest && legs.getItem() == ModItems.williamLegs && boots.getItem() == ModItems.williamBoots)
                 {
                     if (player.isSprinting())
                     {
@@ -121,7 +125,8 @@ public class ArmorLyoko extends ItemArmor
                     }
                 }
             }
-        } else if ((player.getCurrentArmor(4) == null || player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null) && player.capabilities.isCreativeMode == false)
+        }
+        else if ((player.getCurrentArmor(4) == null || player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null) && player.capabilities.isCreativeMode == false)
         {
             player.capabilities.allowFlying = false;
             if (player.capabilities.isFlying)
@@ -130,7 +135,7 @@ public class ArmorLyoko extends ItemArmor
                 ((EntityPlayerMP) player).theItemInWorldManager.setBlockReachDistance(5.0D);
         }
     }
-
+    
     @Override
     public boolean isValidArmor(ItemStack stack, int armorType, Entity ent)
     {
@@ -138,7 +143,7 @@ public class ArmorLyoko extends ItemArmor
             return true;
         return false;
     }
-
+    
     @Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type)
     {
@@ -153,7 +158,7 @@ public class ArmorLyoko extends ItemArmor
                 if (shouldDisappear)
                     return "lyoko:textures/armor/blank.png";
             }
-
+        
         if (itemstack.equals(ModItems.aelitaHelmet) || itemstack.equals(ModItems.aelitaChest) || itemstack.equals(ModItems.aelitaBoots) || itemstack.equals(ModItems.oddHelmet) || itemstack.equals(ModItems.oddChest) || itemstack.equals(ModItems.oddBoots) || itemstack.equals(ModItems.ulrichHelmet) || itemstack.equals(ModItems.ulrichChest) || itemstack.equals(ModItems.ulrichBoots) || itemstack.equals(ModItems.yumiHelmet) || itemstack.equals(ModItems.yumiChest) || itemstack.equals(ModItems.yumiBoots) || itemstack.equals(ModItems.williamHelmet) || itemstack.equals(ModItems.williamChest) || itemstack.equals(ModItems.williamBoots))
             return "lyoko:textures/armor/" + this.armorOwner + "_1.png";
         if (itemstack.equals(ModItems.aelitaLegs) || itemstack.equals(ModItems.oddLegs) || itemstack.equals(ModItems.ulrichLegs) || itemstack.equals(ModItems.yumiLegs) || itemstack.equals(ModItems.williamLegs))

@@ -25,32 +25,32 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class LyokoTeleporter
 {
     @SuppressWarnings("rawtypes")
-	public static void transferPlayerToDimension(EntityPlayerMP playerMP, int newDim)
+    public static void transferPlayerToDimension(EntityPlayerMP playerMP, int newDim)
     {
-    	MinecraftServer mcServer = MinecraftServer.getServer();
-    	int j = playerMP.dimension;
+        MinecraftServer mcServer = MinecraftServer.getServer();
+        int j = playerMP.dimension;
         WorldServer worldserver = mcServer.worldServerForDimension(playerMP.dimension);
         playerMP.dimension = newDim;
         WorldServer worldserver1 = mcServer.worldServerForDimension(playerMP.dimension);
         playerMP.playerNetServerHandler.sendPacket(new S07PacketRespawn(playerMP.dimension, playerMP.worldObj.difficultySetting, playerMP.worldObj.getWorldInfo().getTerrainType(), playerMP.theItemInWorldManager.getGameType()));
         worldserver.removePlayerEntityDangerously(playerMP);
         playerMP.isDead = false;
-        transferEntityToWorld((EntityPlayer) playerMP, j, worldserver, worldserver1);
+        transferEntityToWorld(playerMP, j, worldserver, worldserver1);
         func_72375_a(playerMP, worldserver);
         playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
         playerMP.theItemInWorldManager.setWorld(worldserver1);
         updateTimeAndWeatherForPlayer(playerMP, worldserver1);
         syncPlayerInventory(playerMP);
         Iterator iterator = playerMP.getActivePotionEffects().iterator();
-
+        
         while (iterator.hasNext())
         {
-            PotionEffect potioneffect = (PotionEffect)iterator.next();
+            PotionEffect potioneffect = (PotionEffect) iterator.next();
             playerMP.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(playerMP.getEntityId(), potioneffect));
         }
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(playerMP, j, newDim);
     }
-
+    
     private static void transferEntityToWorld(EntityPlayer player, int currentDim, WorldServer currentWorldServer, WorldServer newWorldServer)
     {
         WorldProvider pOld = currentWorldServer.provider;
@@ -59,29 +59,29 @@ public class LyokoTeleporter
         double d0 = player.posX * moveFactor;
         double d1 = player.posZ * moveFactor;
         currentWorldServer.theProfiler.startSection("moving");
-
+        
         currentWorldServer.theProfiler.endSection();
-
+        
         currentWorldServer.theProfiler.startSection("placing");
         d0 = MathHelper.clamp_int((int) d0, -29999872, 29999872);
         d1 = MathHelper.clamp_int((int) d1, -29999872, 29999872);
-
+        
         if (player.isEntityAlive())
         {
             newWorldServer.spawnEntityInWorld(player);
             player.setLocationAndAngles(d0, player.posY, d1, player.rotationYaw, player.rotationPitch);
             newWorldServer.updateEntityWithOptionalForce(player, false);
         }
-
+        
         currentWorldServer.theProfiler.endSection();
-
+        
         player.setWorld(newWorldServer);
     }
-
+    
     private static void updateTimeAndWeatherForPlayer(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
     {
-    	par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S03PacketTimeUpdate(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime(), par2WorldServer.getGameRules().getGameRuleBooleanValue("doDaylightCycle")));
-
+        par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S03PacketTimeUpdate(par2WorldServer.getTotalWorldTime(), par2WorldServer.getWorldTime(), par2WorldServer.getGameRules().getGameRuleBooleanValue("doDaylightCycle")));
+        
         if (par2WorldServer.isRaining())
         {
             par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(1, 0.0F));
@@ -89,10 +89,10 @@ public class LyokoTeleporter
             par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S2BPacketChangeGameState(8, par2WorldServer.getWeightedThunderStrength(1.0F)));
         }
     }
-
+    
     private static void syncPlayerInventory(EntityPlayerMP par1EntityPlayerMP)
     {
-    	par1EntityPlayerMP.sendContainerToPlayer(par1EntityPlayerMP.inventoryContainer);
+        par1EntityPlayerMP.sendContainerToPlayer(par1EntityPlayerMP.inventoryContainer);
         par1EntityPlayerMP.setPlayerHealthUpdated();
         par1EntityPlayerMP.playerNetServerHandler.sendPacket(new S09PacketHeldItemChange(par1EntityPlayerMP.inventory.currentItem));
     }
@@ -100,13 +100,11 @@ public class LyokoTeleporter
     public static void func_72375_a(EntityPlayerMP par1EntityPlayerMP, WorldServer par2WorldServer)
     {
         WorldServer worldserver1 = par1EntityPlayerMP.getServerForPlayer();
-
+        
         if (par2WorldServer != null)
-        {
             par2WorldServer.getPlayerManager().removePlayer(par1EntityPlayerMP);
-        }
-
+        
         worldserver1.getPlayerManager().addPlayer(par1EntityPlayerMP);
-        worldserver1.theChunkProviderServer.loadChunk((int)par1EntityPlayerMP.posX >> 4, (int)par1EntityPlayerMP.posZ >> 4);
+        worldserver1.theChunkProviderServer.loadChunk((int) par1EntityPlayerMP.posX >> 4, (int) par1EntityPlayerMP.posZ >> 4);
     }
 }

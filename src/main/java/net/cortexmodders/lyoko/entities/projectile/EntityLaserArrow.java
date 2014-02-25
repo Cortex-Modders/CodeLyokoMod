@@ -15,7 +15,7 @@ public class EntityLaserArrow extends EntityLyokoRanged
     {
         super(world, entLiving, f);
     }
-
+    
     public EntityLaserArrow(World world)
     {
         super(world);

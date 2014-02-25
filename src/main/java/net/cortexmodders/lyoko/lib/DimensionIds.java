@@ -8,7 +8,7 @@ package net.cortexmodders.lyoko.lib;
 
 public class DimensionIds
 {
-
+    
     /* Default IDs. */
     public static int ICE_DEFAULT = 3;
     public static int MOUNTAIN_DEFAULT = 4;
@@ -19,7 +19,7 @@ public class DimensionIds
     public static int CARTHAGE_DEFAULT = 8;
     public static int DIGITALSEA_DEFAULT = 9;
     public static int CORTEX_DEFAULT = 10;
-
+    
     /* IDs loaded from config. */
     public static int ICE;
     public static int MOUNTAIN;

@@ -19,7 +19,7 @@ public class ModItems
 {
     public static ToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
     public static ArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 200, new int[] { 5, 10, 8, 5 }, 30);
-
+    
     public static Item katana;
     public static Item zweihander;
     public static Item fan;
@@ -60,7 +60,7 @@ public class ModItems
     public static Item quantumMatrix;
     public static Item quantumContainmentCell;
     public static Item laserShooter;
-
+    
     public static void init()
     {
         katana = new ItemLyokoSword(toolLYOKO).setUnlocalizedName("Katana");
@@ -148,7 +148,7 @@ public class ModItems
         registerLanguage();
         registerDebugTools();
     }
-
+    
     private static void registerLanguage()
     {
         LanguageRegistry.addName(overboard, "Overboard");
@@ -192,7 +192,7 @@ public class ModItems
         LanguageRegistry.addName(laserArrow, "Laser Arrow");
         LanguageRegistry.addName(laserShooter, "Laser Shooter");
     }
-
+    
     public static void registerDebugTools()
     {
         CodeLyoko.debugTools.add(laserArrow);

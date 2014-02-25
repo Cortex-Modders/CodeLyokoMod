@@ -17,32 +17,32 @@ public class EntitySkid extends EntityVehicle
      * the nav skids are ordered like this: Front, Back, Left, Right
      */
     private boolean[] navSkid = { true, true, true, true };
-
+    
     public EntitySkid(World world)
     {
         super(world);
         this.setSize(2.0F, 6.9375F);
         this.setDroppedItem(ModItems.skidbladnir);
     }
-
+    
     public EntitySkid(World world, double x, double y, double z)
     {
         super(world, x, y, z);
         this.setSize(2.0F, 6.9375F);
         this.setDroppedItem(ModItems.skidbladnir);
     }
-
+    
     public int getMaxHealth()
     {
         return 1000;
     }
-
+    
     @Override
     public boolean shouldDismountInWater(Entity rider)
     {
         return !(rider instanceof EntityPlayer);
     }
-
+    
     /**
      * Returns the sound this mob makes while it's alive.
      */
@@ -50,7 +50,7 @@ public class EntitySkid extends EntityVehicle
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes when it is hurt.
      */
@@ -58,7 +58,7 @@ public class EntitySkid extends EntityVehicle
     {
         return null;
     }
-
+    
     /**
      * Returns the sound this mob makes on death.
      */
@@ -66,7 +66,7 @@ public class EntitySkid extends EntityVehicle
     {
         return null;
     }
-
+    
     /**
      * Returns true if this entity should push and be pushed by other entities
      * when colliding.
@@ -76,7 +76,7 @@ public class EntitySkid extends EntityVehicle
     {
         return false;
     }
-
+    
     /**
      * 
      * @param skidFront
@@ -91,7 +91,7 @@ public class EntitySkid extends EntityVehicle
         this.navSkid[2] = skidLeft;
         this.navSkid[3] = skidRight;
     }
-
+    
     /**
      * 
      * Sets the nav skid at the given slot to true or not. Maybe should be an
@@ -105,7 +105,7 @@ public class EntitySkid extends EntityVehicle
     {
         this.navSkid[arraySlot] = skid;
     }
-
+    
     /**
      * 
      * Gets the whole array of nav skids.
@@ -116,7 +116,7 @@ public class EntitySkid extends EntityVehicle
     {
         return this.navSkid;
     }
-
+    
     /**
      * 
      * Gets the specified nav skid from the array.

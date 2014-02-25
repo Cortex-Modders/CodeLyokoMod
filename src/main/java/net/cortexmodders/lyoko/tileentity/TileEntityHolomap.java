@@ -17,7 +17,7 @@ import net.minecraft.util.AxisAlignedBB;
 public class TileEntityHolomap extends TileEntity
 {
     public byte sector = -1;
-
+    
     @Override
     public void updateEntity()
     {
@@ -32,7 +32,7 @@ public class TileEntityHolomap extends TileEntity
                                 core.sector = this.sector;
                             this.sector = -1;
                         }
-
+        
         if (BlockHolomap.isMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord) && !this.worldObj.isRemote)
         {
             // System.out.println(getBlockMetadata());
@@ -50,36 +50,36 @@ public class TileEntityHolomap extends TileEntity
             }
         }
     }
-
+    
     @Override
     public Packet getDescriptionPacket()
     {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 0, tag);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
-
+    
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
         this.sector = tagCompound.getByte("sector");
     }
-
+    
     @Override
     public void writeToNBT(NBTTagCompound tagCompound)
     {
         super.writeToNBT(tagCompound);
         tagCompound.setByte("sector", this.sector);
     }
-
+    
     @Override
     public AxisAlignedBB getRenderBoundingBox()
     {

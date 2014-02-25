@@ -6,25 +6,25 @@ import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
+import net.minecraftforge.client.event.RenderLivingEvent;
 
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-public class ClientEventHandler 
+public class ClientEventHandler
 {
-
-	private Minecraft mc;
+    
+    private Minecraft mc;
     private static final ResourceLocation inventoryTexture = new ResourceLocation("/gui/inventory.png");
-
+    
     public ClientEventHandler()
     {
         this.mc = Minecraft.getMinecraft();
     }
     
-	@SubscribeEvent
+    @SubscribeEvent
     public void renderGameOverlayEvent(RenderGameOverlayEvent event)
     {
         // We draw after the ExperienceBar has drawn. The event raised by
@@ -38,7 +38,7 @@ public class ClientEventHandler
         // false and that the eventType represents the ExperienceBar event.
         if (event.isCancelable() || event.type != ElementType.EXPERIENCE || !CodeLyoko.entityInLyoko(this.mc.thePlayer))
             return;
-
+        
         // Starting position for the buff bar - 2 pixels from the top left
         // corner.
         int xPos = 2;
@@ -46,12 +46,12 @@ public class ClientEventHandler
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(GL11.GL_LIGHTING);
         this.mc.renderEngine.bindTexture(inventoryTexture);
-
+        
         PlayerInformation pi = PlayerInformation.forPlayer(this.mc.thePlayer);
-
+        
         this.mc.fontRenderer.drawStringWithShadow("Life Points: " + pi.getLifePoints(), xPos, yPos, 16777215);
     }
-
+    
     @SubscribeEvent
     public void onLivingRender(RenderLivingEvent.Specials.Pre event)
     {
