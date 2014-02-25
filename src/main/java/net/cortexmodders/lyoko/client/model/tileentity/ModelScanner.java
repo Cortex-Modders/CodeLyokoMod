@@ -9,9 +9,15 @@ package net.cortexmodders.lyoko.client.model.tileentity;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Scanner Model. Contains the model for each part of the scanner.
+ * 
+ * @author Jadar
+ */
 public class ModelScanner extends ModelBase
 {
 
@@ -29,21 +35,33 @@ public class ModelScanner extends ModelBase
 		this.scannerDoor = new ModelScannerDoor();
 	}
 
+	/**
+	 * Renders the scanner using the specified model type id with door angle and position. the id is whatever you get from 
+	 * {@link BlockScanner#getPositionInMultiBlock(IBlockAccess, int, int, int)}
+	 * 
+	 * @param entity    null (this is for a {@link TileEntity})
+	 * @param doorAngle door angle in degrees
+	 * @param doorPosX  door X coord
+	 * @param doorPosZ  door Z coord
+	 * @param f3	    nothing
+	 * @param modelType model type.
+	 * @param scale     scale, typically 1/16.
+	 */
 	@Override
 	public void render(Entity entity, float doorAngle, float doorPosX, float doorPosZ, float f3, float modelType, float scale)
 	{
-		//        this.setRotationAngles(f, f1, f2, modelType, f4, scale);
-
 		if(modelType == 4 || modelType == 0)
 		{    
 			this.scannerEnd.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, modelType, scale);
 		}
 		
 		this.scannerMiddle.render(entity, 0.0F, 0.0F, 0.0F, 0.0F, modelType, scale);
-
 		this.scannerDoor.render(entity, doorAngle, doorPosX, doorPosZ, f3, modelType, scale);
 	}
 
+	/**
+	 * Utility method for setting model rotation angles.
+	 */
 	protected static void setRotation(ModelRenderer model, float x, float y, float z)
 	{
 		model.rotateAngleX = x;
@@ -267,18 +285,6 @@ public class ModelScanner extends ModelBase
 		public void render(Entity entity, float f, float f1, float f2, float f3, float modelType, float scale)
 		{
 
-//			GL11.glPushMatrix();
-//			{
-//				if(modelType == 4)
-//				{
-//					GL11.glTranslatef(0.0F, 1.0F, 0.0F);
-//					GL11.glRotatef(180F, 0.0F, 1.0F, 0.0F);
-//				}
-//				
-//				
-//			}
-//			GL11.glPopMatrix();
-			
 			GL11.glPushMatrix();
 			{
 				if(modelType == 4)
