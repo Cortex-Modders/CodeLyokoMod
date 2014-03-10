@@ -28,9 +28,9 @@ minecraft {
 
 //buildNumber is deprecated
 def buildnumber = 0
-if(System.getenv().BUILD_NUMBER != null)
+if(System.getenv().TRAVIS_BUILD_NUMBER != null)
 {
-	buildnumber = System.getenv().BUILD_NUMBER
+	buildnumber = System.getenv().TRAVIS_BUILD_NUMBER
 }
 
 // version and stuff
@@ -59,4 +59,56 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+uploadArchives
+{
+	repositories.mavenDeployer
+	{
+		repository(url: "http://repo.jadarstudios.com/content/repositories/public/")
+		{
+			authentication(userName: System.getenv().MVN_USER, password: System.getenv().MVN_PASS)
+		}
+		
+		pom.project
+		{
+			licenses
+			{
+				license
+				{
+					name 'The MIT License'
+					url 'https://raw2.github.com/Cortex-Modders/CodeLyokoMod/master/LICENSE'
+					distribution 'repo'
+				}
+			}
+			
+			developers
+			{
+				developer
+				{
+					id 'jadar'
+					name 'Jadar'
+					roles { role 'developer' }
+				}
+			}
+			
+			scm 
+			{
+                url 'https://github.com/Cortex-Modders/CodeLyokoMod'
+                connection 'scm:git:git://github.com/Cortex-Modders/CodeLyokoMod.git'
+                developerConnection 'scm:git:git@github.com:Cortex-Modders/CodeLyokoMod.git'
+            }
+
+            issueManagement 
+            {
+                system 'github'
+                url 'https://github.com/Cortex-Modders/CodeLyokoMod/issues'
+            }
+            
+			artifactId = project.archivesBaseName
+			name = project.archivesBaseName
+			packaging = 'jar'
+			description 'This is a Minecraft mod enables players to travel the the virtual world of Lyoko and fight monsters and stop the self-aware villain Xana.'
+		}
+	}
 }
