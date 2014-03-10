@@ -105,9 +105,10 @@ uploadArchives
                 url 'https://github.com/Cortex-Modders/CodeLyokoMod/issues'
             }
             
-			artifactId = project.archivesBaseName
+            artifactId = project.archivesBaseName
 			name = project.archivesBaseName
 			packaging = 'jar'
+			version = "${minecraft.version}-${project.version}"
 			description 'This is a Minecraft mod enables players to travel the the virtual world of Lyoko and fight monsters and stop the self-aware villain Xana.'
 		}
 	}
