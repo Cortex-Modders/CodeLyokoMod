@@ -32,7 +32,8 @@ Run configuration are as follows.
 #####Main class  
 `net.minecraft.launchwrapper.Launch`   
 #####Program Arguments  
-`--version 1.6 --tweakClass cpw.mods.fml.common.launcher.FMLTweaker`  
+`--version 1.6 --tweakClass cpw.mods.fml.common.launcher.FMLTweaker --username $MC_USERNAME --password $MC_PASSWORD`  
+Username and password are optional. Password is double optional.
 #####VM Arguments
 `-Dfml.ignoreInvalidMinecraftCertificates=true`  
 If you're in IDEA then you need to add this to the VM arguments.  
