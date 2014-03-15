@@ -13,7 +13,7 @@ Version: 0.5.0
 
 The official download is on the [Minecraft Forum post](http://www.minecraftforum.net/topic/1403995-152-code-lyoko-mod-043-minecraft-forum/).
 
-We also have Travis-CI making builds for us. The downloads can be found at [repo.jadarstudios.com](http://repo.jadarstudios.com).
+We also have Travis-CI making builds for us. The downloads can be found at [repo.jadarstudios.com](http://repo.jadarstudios.com/index.html#view-repositories).
 
 [![Build Status](https://travis-ci.org/Cortex-Modders/CodeLyokoMod.png?branch=master)](https://travis-ci.org/Cortex-Modders/CodeLyokoMod)
 
