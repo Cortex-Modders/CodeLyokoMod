@@ -23,14 +23,7 @@ import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.lib.Recipes;
 import net.cortexmodders.lyoko.proxy.CommonProxy;
-import net.cortexmodders.lyoko.world.BiomeGenBaseLyoko;
-import net.cortexmodders.lyoko.world.BiomeGenCarthageSector;
-import net.cortexmodders.lyoko.world.BiomeGenDesertSector;
-import net.cortexmodders.lyoko.world.BiomeGenForestSector;
-import net.cortexmodders.lyoko.world.BiomeGenMountainSector;
-import net.cortexmodders.lyoko.world.BiomeGenPolarSector;
-import net.cortexmodders.lyoko.world.WorldGenLyokoOre;
-import net.cortexmodders.lyoko.world.WorldGenTower;
+import net.cortexmodders.lyoko.world.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -66,7 +59,9 @@ public class CodeLyoko
     public static BiomeGenBaseLyoko lyokodesert;
     public static BiomeGenBaseLyoko lyokopolar;
     public static BiomeGenBaseLyoko lyokocarthage;
-    
+
+    public WorldGenLyokoLargeTree forrestTreeGen;
+
     /**
      * Common proxy instance. Used for utility function and keeping server and client code apart.
      */
@@ -128,7 +123,10 @@ public class CodeLyoko
         
         GameRegistry.registerWorldGenerator(new WorldGenLyokoOre(), 0);
         GameRegistry.registerWorldGenerator(new WorldGenTower(), 0);
-        
+
+        forrestTreeGen = new WorldGenLyokoLargeTree();
+
+
         // Block.setHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
         // MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
         // MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);

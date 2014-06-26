@@ -19,4 +19,7 @@ public class BiomeGenDesertSector extends BiomeGenBaseLyoko
         this.topBlock = ModBlocks.sectorBlock;
         this.fillerBlock = ModBlocks.sectorBlock;
     }
+
+
+
 }

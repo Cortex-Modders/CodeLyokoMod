@@ -18,14 +18,14 @@ import net.minecraft.world.gen.ChunkProviderEnd;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class LyokoDesertSector extends WorldProvider
+public class DesertSectorWorldProvider extends WorldProvider
 {
-    
+
     public int getDimensionID()
     {
         return DimensionIds.DESERT;
     }
-    
+
     @Override
     public void registerWorldChunkManager()
     {

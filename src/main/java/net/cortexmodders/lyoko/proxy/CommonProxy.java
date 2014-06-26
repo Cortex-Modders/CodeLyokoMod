@@ -32,11 +32,8 @@ import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalc;
 import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.cortexmodders.lyoko.tileentity.TileEntityTower;
 import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
-import net.cortexmodders.lyoko.world.LyokoCarthageSector;
-import net.cortexmodders.lyoko.world.LyokoDesertSector;
-import net.cortexmodders.lyoko.world.LyokoForestSector;
-import net.cortexmodders.lyoko.world.LyokoMountainSector;
-import net.cortexmodders.lyoko.world.LyokoPolarSector;
+import net.cortexmodders.lyoko.world.*;
+import net.cortexmodders.lyoko.world.DesertSectorWorldProvider;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -148,7 +145,7 @@ public class CommonProxy
         DimensionManager.registerProviderType(DimensionIds.ICE, LyokoPolarSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.MOUNTAIN, LyokoMountainSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
-        DimensionManager.registerProviderType(DimensionIds.DESERT, LyokoDesertSector.class, true);
+        DimensionManager.registerProviderType(DimensionIds.DESERT, DesertSectorWorldProvider.class, true);
         DimensionManager.registerProviderType(DimensionIds.CARTHAGE, LyokoCarthageSector.class, true);
         
         // Dimensions

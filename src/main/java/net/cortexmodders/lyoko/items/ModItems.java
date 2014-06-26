@@ -60,7 +60,8 @@ public class ModItems
     public static Item quantumMatrix;
     public static Item quantumContainmentCell;
     public static Item laserShooter;
-    
+    public static Item debugItem;
+
     public static void init()
     {
         katana = new ItemLyokoSword(toolLYOKO).setUnlocalizedName("Katana");
@@ -103,7 +104,8 @@ public class ModItems
         quantumMatrix = new ItemLyoko().setUnlocalizedName("QuantumMatrix");
         quantumContainmentCell = new ItemLyoko().setUnlocalizedName("QuantumContainmentCell");
         laserShooter = new ItemLaserShooter().setUnlocalizedName("LaserShooter");
-        
+        debugItem = new ItemDebug().setUnlocalizedName("DebugItem");
+
         GameRegistry.registerItem(katana, "katana", ModProperties.MOD_ID);
         GameRegistry.registerItem(zweihander, "zweihander", ModProperties.MOD_ID);
         GameRegistry.registerItem(fan, "fan", ModProperties.MOD_ID);
@@ -144,7 +146,8 @@ public class ModItems
         GameRegistry.registerItem(quantumMatrix, "matrix_quantum", ModProperties.MOD_ID);
         GameRegistry.registerItem(quantumContainmentCell, "cell_quantum_containment", ModProperties.MOD_ID);
         GameRegistry.registerItem(laserShooter, "laser_shooter", ModProperties.MOD_ID);
-        
+        GameRegistry.registerItem(debugItem, "debug_item", ModProperties.MOD_ID);
+
         registerLanguage();
         registerDebugTools();
     }
