@@ -74,11 +74,10 @@ public class GuiSuperCalcConsole extends GuiContainer
         
         if (par2 == 28)
         {
-            PacketHandler packetHandler = PacketHandler.getInstance();
+            PacketHandler packetHandler = PacketHandler.INSTANCE;
             
             PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.tscc.xCoord, this.tscc.yCoord, this.tscc.zCoord, this.tscc.getWorldObj());
-            Packet packet = packetHandler.generatePacketFrom(message, Side.CLIENT);
-            packetHandler.sendPacketToPlayer(packet, this.player);
+            packetHandler.sendPacketToServer(message);
             
             this.textBoxCode.setText("");
         }

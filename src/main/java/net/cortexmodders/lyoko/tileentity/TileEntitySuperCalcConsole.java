@@ -41,7 +41,7 @@ public class TileEntitySuperCalcConsole extends TileEntity
             if (cable != null && cable.getCoolDown() == 0 && cable.getSector().equals(""))
             {
                 cable.resetCoolDown();
-                cable.setSector(this.sector + "scc");
+                cable.setSector(this.sector);// + "scc");
                 world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.cable);
             }
         }

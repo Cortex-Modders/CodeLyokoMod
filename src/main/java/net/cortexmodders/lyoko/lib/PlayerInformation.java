@@ -10,6 +10,7 @@ import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.network.PacketPlayerInformation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.world.World;
@@ -175,11 +176,11 @@ public final class PlayerInformation implements IExtendedEntityProperties
      */
     public void setDirty()
     {
-        PacketHandler packetHandler = PacketHandler.getInstance();
+        PacketHandler packetHandler = PacketHandler.INSTANCE;
         
         PacketPlayerInformation message = new PacketPlayerInformation(this.lifePoints);
         
-        Packet packet = packetHandler.generatePacketFrom(message, Side.SERVER);
-        packetHandler.sendPacketToPlayer(packet, this.player);
+//        Packet packet = packetHandler.generatePacketFrom(message, Side.SERVER);
+        packetHandler.sendPacketToPlayer(message, (EntityPlayerMP)this.player);
     }
 }

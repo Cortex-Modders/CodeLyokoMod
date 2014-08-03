@@ -23,7 +23,7 @@ apply plugin: 'forge'
 
 // minecraft properteis
 minecraft {
-	version = "1.7.2-10.12.1.1095"
+	version = "1.7.10-10.13.0.1157"
 }
 
 //buildNumber is deprecated

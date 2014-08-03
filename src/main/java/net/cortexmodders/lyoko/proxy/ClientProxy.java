@@ -50,7 +50,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.opengl.GL11;
 
-import com.jadarstudios.developercapes.DevCapes;
+//import com.jadarstudios.developercapes.DevCapes;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -122,14 +122,14 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerCapes()
     {
-        try
-        {
-            DevCapes.getInstance().registerConfig(new URL(ModProperties.CAPE_CONFIG_URL), ModProperties.MOD_ID);
-        }
-        catch (MalformedURLException e)
-        {
+//        try
+//        {
+//            DevCapes.getInstance().registerConfig(new URL(ModProperties.CAPE_CONFIG_URL), ModProperties.MOD_ID);
+//        }
+//        catch (MalformedURLException e)
+//        {
             CodeLyoko.instance.getLogger().warn("Could not initiate capes. Are you connected to the internet?");
-        }
+//        }
     }
     
     @Override

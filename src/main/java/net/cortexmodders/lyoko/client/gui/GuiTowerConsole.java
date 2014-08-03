@@ -14,6 +14,7 @@ import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.network.Packet;
 import net.minecraft.util.ResourceLocation;
@@ -89,11 +90,11 @@ public class GuiTowerConsole extends GuiContainer
                     this.code = "lol";
             }
             
-            PacketHandler packetHandler = PacketHandler.getInstance();
+            PacketHandler packetHandler = PacketHandler.INSTANCE;
             
             PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.ttc.xCoord, this.ttc.yCoord, this.ttc.zCoord, this.ttc.getWorldObj());
-            Packet packet = packetHandler.generatePacketFrom(message, Side.CLIENT);
-            packetHandler.sendPacketToPlayer(packet, this.player);
+//            Packet packet = packetHandler.generatePacketFrom(message, Side.CLIENT);
+            packetHandler.sendPacketToPlayer(message, (EntityPlayerMP)this.player);
             
             this.textBoxCode.writeText("");
         }

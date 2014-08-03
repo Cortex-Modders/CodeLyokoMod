@@ -6,6 +6,8 @@
 
 package net.cortexmodders.lyoko.network;
 
+import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -18,6 +20,7 @@ import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.Packet;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -28,111 +31,47 @@ import cpw.mods.fml.common.network.FMLOutboundHandler.OutboundTarget;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.common.MinecraftForge;
 
-public class PacketHandler
+public enum PacketHandler
 {
-    private static PacketHandler INSTANCE = new PacketHandler();
-    
-    private EnumMap<Side, FMLEmbeddedChannel> channels;
+    INSTANCE;
+
+    private SimpleNetworkWrapper networkHandler;
+
+//    private EnumMap<Side, FMLEmbeddedChannel> channels;
     
     private PacketHandler()
     {
-        this.channels = NetworkRegistry.INSTANCE.newChannel(ModProperties.MOD_ID, new ChannelCodec());
-        
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-            this.addClientHandler();
+        this.networkHandler = NetworkRegistry.INSTANCE.newSimpleChannel(ModProperties.MOD_ID);
     }
-    
-    public static PacketHandler getInstance()
-    {
-        return INSTANCE;
-        
+
+    public void initPackets() {
+        this.networkHandler.registerMessage(PacketPlayerInformation.class, PacketPlayerInformation.class, 0, Side.SERVER);
+        this.networkHandler.registerMessage(PacketConsoleCommand.class,    PacketConsoleCommand.class,    1, Side.SERVER);
     }
-    
+
     @SideOnly(Side.CLIENT)
-    private void addClientHandler()
-    {
-        FMLEmbeddedChannel clientChannel = this.channels.get(Side.CLIENT);
-        
-        String codec = clientChannel.findChannelHandlerNameForType(ChannelCodec.class);
-        clientChannel.pipeline().addAfter(codec, "PlayerInformation", new ChannelHandler());
+    public void sendPacketToServer(PacketLyoko packet) {
+        this.networkHandler.sendToServer(packet);
     }
     
-    /**
-     * Wrapper method for {@link FMLEmbeddedChannel#generatePacketFrom(Object)}.
-     * Must have a codec in place to transform it for it to return anything.
-     * 
-     * @param msg
-     *            object to generate from
-     * @param side
-     *            channel to side being sent to
-     * @return created packet
-     */
-    public Packet generatePacketFrom(PacketLyoko msg, Side side)
-    {
-        return this.channels.get(side).generatePacketFrom(msg);
+    public void sendPacketToPlayer(PacketLyoko packet, EntityPlayerMP player) {
+        this.networkHandler.sendTo(packet, player);
     }
     
-    @SideOnly(Side.CLIENT)
-    public void sendPacketToServer(Packet packet)
-    {
-        this.sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.TOSERVER);
+    public void sendPacketToAllPlayers(PacketLyoko packet, EntityPlayerMP player) {
+        this.networkHandler.sendToAll(packet);
     }
-    
-    public void sendPacketToPlayer(Packet packet, EntityPlayer player)
-    {
-        this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGETARGS).set(player);
-        this.sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.PLAYER);
+
+    public void sendPacketToDimension(PacketLyoko packet, int dimensionId) {
+        this.networkHandler.sendToDimension(packet, dimensionId);
     }
-    
-    public void sendPacketToAllPlayers(Packet packet, EntityPlayer player)
-    {
-        this.sendPacketToTarget(packet, FMLOutboundHandler.OutboundTarget.ALL);
+
+    public void sendPackeAllAround(PacketLyoko packet, NetworkRegistry.TargetPoint point) {
+        this.networkHandler.sendToAllAround(packet, point);
     }
-    
-    protected void sendPacketToTarget(Packet packet, OutboundTarget target)
-    {
-        this.channels.get(Side.SERVER).attr(FMLOutboundHandler.FML_MESSAGETARGET).set(target);
-        this.channels.get(Side.SERVER).writeOutbound(packet);
-    }
-    
-    private static class ChannelCodec extends FMLIndexedMessageToMessageCodec<PacketLyoko>
-    {
-        
-        public ChannelCodec()
-        {
-            for (PacketType type : PacketType.values())
-                this.addDiscriminator(type.ordinal(), type.packetClass);
-        }
-        
-        @Override
-        public void encodeInto(ChannelHandlerContext ctx, PacketLyoko msg, ByteBuf target) throws Exception
-        {
-            msg.write(target);
-        }
-        
-        @Override
-        public void decodeInto(ChannelHandlerContext ctx, ByteBuf source, PacketLyoko msg)
-        {
-            msg.read(source);
-            
-        }
-    }
-    
-    @SideOnly(Side.CLIENT)
-    private static class ChannelHandler extends SimpleChannelInboundHandler<PacketLyoko>
-    {
-        
-        @Override
-        protected void channelRead0(ChannelHandlerContext ctx, PacketLyoko packet) throws Exception
-        {
-            if (packet instanceof PacketConsoleCommand)
-                PacketHandler.getInstance().handlePacketConsole((PacketConsoleCommand) packet);
-            else if (packet instanceof PacketPlayerInformation)
-                PacketHandler.getInstance().handlePacketPlayerInformation((PacketPlayerInformation) packet, Minecraft.getMinecraft().thePlayer);
-        }
-    }
-    
+
     /*
      * @Override
      * public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player
@@ -228,4 +167,12 @@ public class PacketHandler
      * }
      * }
      */
+
+//    public static Side getSideForTarget(OutboundTarget target) {
+//        boolean isServer = FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER;
+//
+//        if (isServer && OutboundTarget == OutboundTarget.REPLY) {
+//            return Side.SERVER;
+//        }
+//    }
 }

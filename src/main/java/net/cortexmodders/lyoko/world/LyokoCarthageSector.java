@@ -91,7 +91,7 @@ public class LyokoCarthageSector extends WorldProvider
         var5 *= var4 * 0.0F + 0.15F;
         var6 *= var4 * 0.0F + 0.15F;
         var7 *= var4 * 0.0F + 0.15F;
-        return this.worldObj.getWorldVec3Pool().getVecFromPool(var5, var6, var7);
+        return Vec3.createVectorHelper(var5, var6, var7);
     }
     
     // removes clouds if set to false

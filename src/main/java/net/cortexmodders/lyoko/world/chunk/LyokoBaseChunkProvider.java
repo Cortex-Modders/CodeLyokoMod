@@ -223,6 +223,26 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         return false;
     }
 
+    public void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blocks, byte[] blockMeta, BiomeGenBase[] biomesForGeneration) {
+        ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, chunkX, chunkZ, blocks, blockMeta, biomesForGeneration);
+        MinecraftForge.EVENT_BUS.post(event);
+        if (event.getResult() == Event.Result.DENY) return;
+
+        double d0 = 0.03125D;
+        int posX = chunkX * 16;
+        int posZ = chunkZ * 16;
+        this.stoneNoise = this.noiseGen4.generateNoiseOctaves(this.stoneNoise, posX, posZ, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+
+        for (int z = 0; z < 16; ++z)
+        {
+            for (int x = 0; x < 16; ++x)
+            {
+                BiomeGenBase biomegenbase = biomesForGeneration[x + z * 16];
+                biomegenbase.genTerrainBlocks(this.world, this.rand, blocks, blockMeta, posX + z, posZ + x, this.stoneNoise[x + z * 16]);
+            }
+        }
+    }
+
     /**
      * Will return back a chunk, if it doesn't exist and its not a MP client it will generates all the blocks for the
      * specified chunk from the map seed and chunk seed
@@ -234,6 +254,7 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
     public Chunk provideChunk(int chunkX, int chunkZ)
     {
         this.rand.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
+        // Integer.MAX_VALUE * 2
         Block[] blocks = new Block[65536];
         byte[] blockMeta = new byte[65536];
 

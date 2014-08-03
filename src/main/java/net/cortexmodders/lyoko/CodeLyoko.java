@@ -22,6 +22,7 @@ import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.cortexmodders.lyoko.lib.Recipes;
+import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.proxy.CommonProxy;
 import net.cortexmodders.lyoko.world.*;
 import net.minecraft.creativetab.CreativeTabs;
@@ -98,7 +99,7 @@ public class CodeLyoko
         ModFluids.init();
         ModItems.init();
         ModBlocks.init();
-        
+
         lyokomountain = (BiomeGenBaseLyoko) new BiomeGenMountainSector(9).setColor(8421631).setBiomeName("Mountain Sector");
         lyokoforest = (BiomeGenBaseLyoko) new BiomeGenForestSector(10).setColor(8421631).setBiomeName("Forest Sector");
         lyokodesert = (BiomeGenBaseLyoko) new BiomeGenDesertSector(11).setColor(8421631).setBiomeName("Desert Sector");
@@ -118,7 +119,8 @@ public class CodeLyoko
         proxy.registerDimensions();
         proxy.registerEventHandlers();
         proxy.registerCapes();
-        
+
+        PacketHandler.INSTANCE.initPackets();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
         
         GameRegistry.registerWorldGenerator(new WorldGenLyokoOre(), 0);
