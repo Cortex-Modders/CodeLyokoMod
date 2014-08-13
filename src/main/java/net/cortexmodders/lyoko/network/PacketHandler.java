@@ -7,6 +7,7 @@
 package net.cortexmodders.lyoko.network;
 
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
+import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -46,9 +47,16 @@ public enum PacketHandler
         this.networkHandler = NetworkRegistry.INSTANCE.newSimpleChannel(ModProperties.MOD_ID);
     }
 
+//    @SuppressWarnings("unchecked")
     public void initPackets() {
-        this.networkHandler.registerMessage(PacketPlayerInformation.class, PacketPlayerInformation.class, 0, Side.SERVER);
-        this.networkHandler.registerMessage(PacketConsoleCommand.class,    PacketConsoleCommand.class,    1, Side.SERVER);
+        for (PacketType type : PacketType.values()) {
+
+            this.networkHandler.registerMessage((Class<IMessageHandler<IMessage, IMessage>>)type.messageHandlerClass,
+                                                (Class<IMessage>)type.packetClass, type.ordinal(),
+                                                type.recieveSide);
+        }
+//        this.networkHandler.registerMessage(PacketPlayerInformation.class, PacketPlayerInformation.class, 0, Side.SERVER);
+//        this.networkHandler.registerMessage(PacketConsoleCommand.class,    PacketConsoleCommand.class,    1, Side.SERVER);
     }
 
     @SideOnly(Side.CLIENT)
@@ -105,9 +113,7 @@ public enum PacketHandler
         }
     }
     
-    private void handlePacketPlayerInformation(PacketPlayerInformation packet, EntityPlayer player)
-    {
-        // TODO: fix this so it doesn't need a player instance.
+    private void handlePacketPlayerInformation(PacketPlayerInformation packet, EntityPlayer player) {
         int lifepoints = packet.lifePoints;
         
         if (player != null)

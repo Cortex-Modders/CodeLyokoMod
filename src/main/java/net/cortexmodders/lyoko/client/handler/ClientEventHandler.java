@@ -2,6 +2,7 @@ package net.cortexmodders.lyoko.client.handler;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.mob.EntityXanafiedMob;
+import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
@@ -48,8 +49,11 @@ public class ClientEventHandler
         this.mc.renderEngine.bindTexture(inventoryTexture);
         
         PlayerInformation pi = PlayerInformation.forPlayer(this.mc.thePlayer);
-        
-        this.mc.fontRenderer.drawStringWithShadow("Life Points: " + pi.getLifePoints(), xPos, yPos, 16777215);
+        if (pi == null) {
+            CodeLyoko.instance.getLogger().warn(String.format("Player info for %s could not be retrieved!", this.mc.thePlayer.getCommandSenderName()));
+        } else {
+            this.mc.fontRenderer.drawStringWithShadow("Life Points: " + pi.getLifePoints(), xPos, yPos, 16777215);
+        }
     }
     
     @SubscribeEvent

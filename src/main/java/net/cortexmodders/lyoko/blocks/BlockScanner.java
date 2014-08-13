@@ -10,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.util.List;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModProperties;
@@ -302,6 +304,8 @@ public class BlockScanner extends BlockContainer
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int idk, float what, float these, float are)
     {
+        if (FMLCommonHandler.instance().getEffectiveSide() != Side.SERVER) System.out.println("Block activated client");
+
         if (isMultiBlock(world, x, y, z))
         {
             TileEntity tileEntity = world.getTileEntity(x, y, z);
@@ -317,16 +321,18 @@ public class BlockScanner extends BlockContainer
             TileEntityScanner core = (TileEntityScanner) world.getTileEntity((int) array[0].xCoord, (int) array[0].yCoord, (int) array[0].zCoord);
             if (!core.doorsOpen)
             {
-                if (world.isRemote)
+                if (!world.isRemote)
                     world.playSoundAtEntity(player, ModProperties.SOUND_PREFIX + "scannerClose", 1.0F, 1.0F);
-                
-                PlayerInformation pi = PlayerInformation.forPlayer(player);
-                
-                pi.scannerDim = world.provider.dimensionId;
-                pi.setScannerPosition(core.xCoord, core.yCoord + 1, core.zCoord);
-                core.setPlayerDevirtYaw(pi);
-                
-                this.virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
+
+                if (FMLCommonHandler.instance().getEffectiveSide().isServer()) {
+                    PlayerInformation pi = PlayerInformation.forPlayer(player);
+
+                    pi.scannerDim = world.provider.dimensionId;
+                    pi.setScannerPosition(core.xCoord, core.yCoord + 1, core.zCoord);
+                    core.setPlayerDevirtYaw(pi);
+
+                    this.virtualize(world, core.xCoord, core.yCoord, core.zCoord, player);
+                }
             }
             return true;
         }

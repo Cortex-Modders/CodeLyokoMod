@@ -6,6 +6,7 @@
 
 package net.cortexmodders.lyoko.lib;
 
+import cpw.mods.fml.relauncher.SideOnly;
 import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.network.PacketPlayerInformation;
 import net.minecraft.entity.Entity;
@@ -21,17 +22,17 @@ public final class PlayerInformation implements IExtendedEntityProperties
 {
     public static final String IDENTIFIER = "lyoko_data";
     
-    public static PlayerInformation forPlayer(Entity player)
+    public static PlayerInformation forPlayer(EntityPlayer player)
     {
         return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
     }
     
     /** The current amount of lifepoints the player has */
-    private int lifePoints;
-    public int coolDown;
-    private int scannerPosX;
-    private int scannerPosY;
-    private int scannerPosZ;
+    protected int lifePoints;
+    protected int coolDown;
+    protected int scannerPosX;
+    protected int scannerPosY;
+    protected int scannerPosZ;
     public int scannerDim;
     public int scannerYaw;
     
@@ -85,7 +86,8 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         return this.lifePoints;
     }
-    
+
+//    @SideOnly(Side.SERVER)
     public int setLifePoints(int lifePoints)
     {
         if (this.lifePoints != lifePoints)
@@ -100,7 +102,8 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         return 100;
     }
-    
+
+//    @SideOnly(Side.SERVER)
     public int decreaseLifePoints(int decrement)
     {
         this.lifePoints -= decrement;
@@ -109,7 +112,8 @@ public final class PlayerInformation implements IExtendedEntityProperties
         this.setDirty();
         return this.lifePoints;
     }
-    
+
+//    @SideOnly(Side.SERVER)
     public int increaseLifePoints(int increment)
     {
         this.lifePoints += increment;
@@ -128,7 +132,8 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         this.coolDown = 10;
     }
-    
+
+//    @SideOnly(Side.SERVER)
     public void decreaseCoolDown(int amt)
     {
         this.coolDown -= amt;
@@ -143,7 +148,8 @@ public final class PlayerInformation implements IExtendedEntityProperties
     {
         return 10;
     }
-    
+
+//    @SideOnly(Side.SERVER)
     public void setScannerPosition(int x, int y, int z)
     {
         this.scannerPosX = x;
@@ -174,6 +180,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     /*
      * marks that this needs to be resend to the client
      */
+    @SideOnly(Side.SERVER)
     public void setDirty()
     {
         PacketHandler packetHandler = PacketHandler.INSTANCE;

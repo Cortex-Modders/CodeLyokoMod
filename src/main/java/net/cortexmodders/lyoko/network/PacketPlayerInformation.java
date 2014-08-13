@@ -12,7 +12,7 @@ import io.netty.buffer.ByteBuf;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class PacketPlayerInformation extends PacketLyoko<PacketPlayerInformation, IMessage>
+public class PacketPlayerInformation extends PacketLyoko<PacketPlayerInformation, PacketLyoko>
 {
     public int lifePoints = 0;
 
@@ -43,7 +43,7 @@ public class PacketPlayerInformation extends PacketLyoko<PacketPlayerInformation
      * @return an optional return message
      */
     @Override
-    public IMessage onMessage(PacketPlayerInformation packet, MessageContext ctx) {
+    public PacketLyoko onMessage(PacketPlayerInformation packet, MessageContext ctx) {
         int lifepoints = packet.lifePoints;
 
         EntityPlayer player = ctx.getServerHandler().playerEntity;

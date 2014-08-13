@@ -13,7 +13,7 @@ import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.minecraft.world.World;
 
-public class PacketConsoleCommand extends PacketTileUpdate<PacketConsoleCommand, IMessage>
+public class PacketConsoleCommand extends PacketTileUpdate<PacketConsoleCommand, PacketLyoko>
 {
     
     public String command;
@@ -58,7 +58,7 @@ public class PacketConsoleCommand extends PacketTileUpdate<PacketConsoleCommand,
      * @return an optional return message
      */
     @Override
-    public IMessage onMessage(PacketConsoleCommand packet, MessageContext ctx) {
+    public PacketLyoko onMessage(PacketConsoleCommand packet, MessageContext ctx) {
 
         String code = packet.command;
         int x = packet.xCoord;

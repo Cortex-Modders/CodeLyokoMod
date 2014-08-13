@@ -15,6 +15,7 @@ import net.cortexmodders.lyoko.lib.UniqueArmorGenerator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.EntityEvent.EntityConstructing;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -38,7 +39,8 @@ public class EventHandler
 	public void onEntityConstruct(EntityConstructing event)
 	{
 		if(event.entity instanceof EntityPlayer)
-			event.entity.registerExtendedProperties(PlayerInformation.IDENTIFIER, new PlayerInformation((EntityPlayer) event.entity));
+            if (PlayerInformation.forPlayer((EntityPlayer)event.entity) == null)
+	    		event.entity.registerExtendedProperties(PlayerInformation.IDENTIFIER, new PlayerInformation((EntityPlayer) event.entity));
 	}
 	
 	@SubscribeEvent

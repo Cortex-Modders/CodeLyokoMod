@@ -17,7 +17,7 @@ import net.minecraftforge.common.DimensionManager;
  * 
  * @author Jadar
  */
-public abstract class PacketTileUpdate<T extends PacketTileUpdate, E extends IMessage> extends PacketLyoko<T, E>
+public abstract class PacketTileUpdate<T extends PacketTileUpdate, E extends PacketLyoko> extends PacketLyoko<T, E>
 {
     public int xCoord;
     public int yCoord;
