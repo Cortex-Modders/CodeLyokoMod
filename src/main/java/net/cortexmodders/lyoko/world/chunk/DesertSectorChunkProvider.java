@@ -219,7 +219,7 @@ public class DesertSectorChunkProvider implements IChunkProvider
                 blockArray[x << 12 | z << 8] = Blocks.bedrock;
 
                 for (int y = 1; y <= 2; y++) {
-                    blockArray[x << 12 | z << 8 | y] = ModBlocks.digitalSeaBlock;
+                    blockArray[x << 12 | z << 8 | y] = ModBlocks.digitalSeaLiquid;
                 }
 
                 int y;

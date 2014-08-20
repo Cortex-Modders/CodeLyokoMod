@@ -9,6 +9,7 @@ package net.cortexmodders.lyoko.world.provider;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.world.chunk.DesertSectorChunkProvider;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -75,7 +76,7 @@ public class DesertSectorWorldProvider extends WorldProvider
     {
         return 0.5F;
     }
-    
+
     // Darken the sky if it rains is true
     public boolean darkenSkyDuringRain()
     {
@@ -95,24 +96,13 @@ public class DesertSectorWorldProvider extends WorldProvider
     @SideOnly(Side.CLIENT)
     public Vec3 getFogColor(float par1, float par2)
     {
-        int var3 = 10518688;
-        float var4 = MathHelper.cos(par1 * (float) Math.PI * 2.0F) * 2.0F + 0.5F;
-        
-        if (var4 < 0.0F)
-            var4 = 0.0F;
-        
-        if (var4 > 1.0F)
-            var4 = 1.0F;
-        
-        float var5 = (var3 >> 16 & 255) / 255.0F;
-        float var6 = (var3 >> 8 & 255) / 255.0F;
-        float var7 = (var3 & 255) / 255.0F;
-        var5 *= var4 * 0.0F + 0.15F;
-        var6 *= var4 * 0.0F + 0.15F;
-        var7 *= var4 * 0.0F + 0.15F;
-        return Vec3.createVectorHelper(var5, var6, var7);
+        return Vec3.createVectorHelper(255f / 255f, 166f / 255f, 63f / 255f);
     }
-    
+
+    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
+        return Vec3.createVectorHelper(63f / 255f, 159f / 255f, 255f / 255f);
+    }
+
     // removes clouds if set to false
     public boolean renderClouds()
     {
