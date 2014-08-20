@@ -4,21 +4,23 @@
  * Released under the MIT license http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.world;
+package net.cortexmodders.lyoko.world.provider;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.DimensionIds;
+import net.cortexmodders.lyoko.world.chunk.IceSectorChunkProvider;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderEnd;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class LyokoPolarSector extends WorldProvider
+public class WorldProviderIceSector extends WorldProvider
 {
     
     public int getDimensionID()
@@ -29,7 +31,7 @@ public class LyokoPolarSector extends WorldProvider
     @Override
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokopolar, 0F);
+        this.worldChunkMgr = new WorldChunkManagerHell(BiomeGenBase.sky, 0F);
     }
     
     public IChunkProvider getChunkProvider()
@@ -104,7 +106,11 @@ public class LyokoPolarSector extends WorldProvider
     {
         return true;
     }
-    
+
+    public boolean isSurfaceWorld() {
+        return false;
+    }
+
     @Override
     public String getDimensionName()
     {

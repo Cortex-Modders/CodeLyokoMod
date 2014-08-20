@@ -4,14 +4,17 @@
  * Released under the MIT license http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.world;
+package net.cortexmodders.lyoko.world.provider;
 
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.DimensionIds;
+import net.cortexmodders.lyoko.world.chunk.DesertSectorChunkProvider;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldProviderEnd;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderEnd;
@@ -21,6 +24,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class DesertSectorWorldProvider extends WorldProvider
 {
 
+    protected IChunkProvider chunkProvider;
+
     public int getDimensionID()
     {
         return DimensionIds.DESERT;
@@ -29,14 +34,26 @@ public class DesertSectorWorldProvider extends WorldProvider
     @Override
     public void registerWorldChunkManager()
     {
-        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokodesert, 0F);
+        super.registerWorldChunkManager();
+        isHellWorld = false;
+        this.worldChunkMgr = new WorldChunkManagerHell(CodeLyoko.lyokodesert, 0.0F);
+        this.hasNoSky = false;
     }
-    
-    public IChunkProvider getChunkProvider()
+
+    @Override
+    public IChunkProvider createChunkGenerator()
     {
-        return new ChunkProviderEnd(this.worldObj, this.worldObj.getSeed());
+        if (chunkProvider == null) {
+            this.chunkProvider = new DesertSectorChunkProvider(this.worldObj, this.worldObj.getSeed(), false);
+        }
+        return this.chunkProvider;
     }
-    
+
+    public IChunkProvider getChunkProvider() {
+        return this.chunkProvider;
+    }
+
+
     @Override
     public boolean canRespawnHere()
     {
@@ -70,7 +87,9 @@ public class DesertSectorWorldProvider extends WorldProvider
     {
         return 1.0F;
     }
-    
+
+
+
     // Fog Color
     @Override
     @SideOnly(Side.CLIENT)

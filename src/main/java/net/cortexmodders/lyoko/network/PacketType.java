@@ -10,8 +10,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.relauncher.Side;
 
-public enum PacketType
-{
+public enum PacketType {
 
     PLAYER_INFORMATION(PacketPlayerInformation.class, Side.SERVER),
     CONSOLE_COMMAND(PacketConsoleCommand.class, Side.SERVER);

@@ -4,7 +4,7 @@
  * Released under the MIT license http://opensource.org/licenses/MIT
  */
 
-package net.cortexmodders.lyoko.handler;
+package net.cortexmodders.lyoko.command;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -21,13 +21,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ChatComponentText;
 
-public class CommandHandler implements ICommand
+public class CommandDevirtualize implements ICommand
 {
     @SuppressWarnings("rawtypes")
     private List aliases;
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public CommandHandler()
+    public CommandDevirtualize()
     {
         this.aliases = new ArrayList();
         this.aliases.add("devirt");

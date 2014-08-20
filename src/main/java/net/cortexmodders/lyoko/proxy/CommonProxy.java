@@ -23,7 +23,6 @@ import net.cortexmodders.lyoko.handler.ServerTickHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.EntityIds;
-import net.cortexmodders.lyoko.lib.ModProperties.ConfigCategories;
 import net.cortexmodders.lyoko.tileentity.TileEntityCable;
 import net.cortexmodders.lyoko.tileentity.TileEntityHolomap;
 import net.cortexmodders.lyoko.tileentity.TileEntityMarabounta;
@@ -33,14 +32,14 @@ import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.cortexmodders.lyoko.tileentity.TileEntityTower;
 import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.world.*;
-import net.cortexmodders.lyoko.world.DesertSectorWorldProvider;
+import net.cortexmodders.lyoko.world.provider.DesertSectorWorldProvider;
+import net.cortexmodders.lyoko.world.provider.WorldProviderIceSector;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -142,7 +141,7 @@ public class CommonProxy
     public void registerDimensions()
     {
         // Dimension providers
-        DimensionManager.registerProviderType(DimensionIds.ICE, LyokoPolarSector.class, true);
+        DimensionManager.registerProviderType(DimensionIds.ICE, WorldProviderIceSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.MOUNTAIN, LyokoMountainSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.DESERT, DesertSectorWorldProvider.class, true);
@@ -156,16 +155,16 @@ public class CommonProxy
         DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
     
-    public void registerDimensionIds(Configuration config)
-    {
-        DimensionIds.ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
-        DimensionIds.MOUNTAIN = config.get(ConfigCategories.DIMENSIONS.name(), "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
-        DimensionIds.FOREST = config.get(ConfigCategories.DIMENSIONS.name(), "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
-        DimensionIds.DESERT = config.get(ConfigCategories.DIMENSIONS.name(), "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
-        DimensionIds.CARTHAGE = config.get(ConfigCategories.DIMENSIONS.name(), "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
-        DimensionIds.DIGITALSEA = config.get(ConfigCategories.DIMENSIONS.name(), "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
-        DimensionIds.CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
-    }
+//    public void registerDimensionIds(Configuration config)
+//    {
+//        DimensionIds.ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
+//        DimensionIds.MOUNTAIN = config.get(ConfigCategories.DIMENSIONS.name(), "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
+//        DimensionIds.FOREST = config.get(ConfigCategories.DIMENSIONS.name(), "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
+//        DimensionIds.DESERT = config.get(ConfigCategories.DIMENSIONS.name(), "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
+//        DimensionIds.CARTHAGE = config.get(ConfigCategories.DIMENSIONS.name(), "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
+//        DimensionIds.DIGITALSEA = config.get(ConfigCategories.DIMENSIONS.name(), "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
+//        DimensionIds.CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
+//    }
     
     public void registerCapes()
     {

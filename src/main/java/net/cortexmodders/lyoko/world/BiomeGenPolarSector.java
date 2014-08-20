@@ -7,6 +7,7 @@
 package net.cortexmodders.lyoko.world;
 
 import net.cortexmodders.lyoko.blocks.ModBlocks;
+import net.minecraft.init.Blocks;
 
 public class BiomeGenPolarSector extends BiomeGenBaseLyoko
 {
@@ -16,7 +17,7 @@ public class BiomeGenPolarSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.topBlock = ModBlocks.sectorBlock;
+        this.topBlock = Blocks.iron_block;
         this.fillerBlock = ModBlocks.sectorBlock;
     }
     

@@ -1,10 +1,12 @@
 package net.cortexmodders.lyoko.world.chunk;
 
 import cpw.mods.fml.common.eventhandler.Event;
+import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.world.BiomeGenBaseLyoko;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkPosition;
@@ -86,14 +88,14 @@ public class DesertSectorChunkProvider implements IChunkProvider
         this.noiseGen6          = (NoiseGeneratorOctaves)noiseGens[5];
         this.mobSpawnerNoiseGen = (NoiseGeneratorOctaves)noiseGens[6];
 
-        for (int j = -2; j <= 2; ++j)
-        {
-            for (int k = -2; k <= 2; ++k)
-            {
-                float f = 10.0F / MathHelper.sqrt_float((float) (j * j + k * k) + 0.2F);
-                this.parabolicField[j + 2 + (k + 2) * 5] = f;
-            }
-        }
+//        for (int j = -2; j <= 2; ++j)
+//        {
+//            for (int k = -2; k <= 2; ++k)
+//            {
+//                float f = 10.0F / MathHelper.sqrt_float((float) (j * j + k * k) + 0.2F);
+//                this.parabolicField[j + 2 + (k + 2) * 5] = f;
+//            }
+//        }
 
     }
 
@@ -107,38 +109,38 @@ public class DesertSectorChunkProvider implements IChunkProvider
     @Override
     public void populate(IChunkProvider chunkProvider, int chunkX, int chunkZ)
     {
-        BlockSand.fallInstantly = true;
-        int xPos = chunkX * 16;
-        int zPos = chunkZ * 16;
-
-        BiomeGenBase biome = this.world.getBiomeGenForCoords(xPos, zPos);
-        // make sure our seed is always set right.
-        this.random.setSeed(this.world.getSeed());
-
-        long i1 = this.random.nextLong() / 2L * 2L + 1L;
-        long j1 = this.random.nextLong() / 2L * 2L + 1L;
-
-        // new unique seed for this chunk.
-        this.random.setSeed((long)chunkX*i1 + (long)chunkZ*j1 ^ this.world.getSeed());
-        boolean hasVillageGenerated = false;
-
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(chunkProvider, world, random, chunkX, chunkZ, hasVillageGenerated));
-
-        if (this.mapFeaturesEnabled) {
-            // gen our features. plateaus, boulders, bridges, towers
-        }
-
-        int k1;
-        int l1;
-        int i2;
-
-        if (true) {
-
-        }
-
-
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(chunkProvider, world, random, chunkX, chunkZ, hasVillageGenerated));
-        BlockSand.fallInstantly = false;
+//        BlockSand.fallInstantly = true;
+//        int xPos = chunkX * 16;
+//        int zPos = chunkZ * 16;
+//
+//        BiomeGenBase biome = this.world.getBiomeGenForCoords(xPos, zPos);
+//        // make sure our seed is always set right.
+//        this.random.setSeed(this.world.getSeed());
+//
+//        long i1 = this.random.nextLong() / 2L * 2L + 1L;
+//        long j1 = this.random.nextLong() / 2L * 2L + 1L;
+//
+//        // new unique seed for this chunk.
+//        this.random.setSeed((long)chunkX*i1 + (long)chunkZ*j1 ^ this.world.getSeed());
+//        boolean hasVillageGenerated = false;
+//
+//        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(chunkProvider, world, random, chunkX, chunkZ, hasVillageGenerated));
+//
+//        if (this.mapFeaturesEnabled) {
+//            // gen our features. plateaus, boulders, bridges, towers
+//        }
+//
+//        int k1;
+//        int l1;
+//        int i2;
+//
+//        if (true) {
+//
+//        }
+//
+//
+//        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(chunkProvider, world, random, chunkX, chunkZ, hasVillageGenerated));
+//        BlockSand.fallInstantly = false;
     }
 
     /**
@@ -165,54 +167,96 @@ public class DesertSectorChunkProvider implements IChunkProvider
     {
         this.random.setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L);
         Block[] blockArray = new Block[65536];
-        byte[] ba = new byte[65536];
+        byte[] blockMetadata = new byte[65536];
 
         int xPos = chunkX * 16;
         int zPos = chunkZ * 16;
 
-        this.generateTerrain(chunkX, chunkZ, ba);
+        this.generateTerrain(chunkX, chunkZ, blockArray, blockMetadata);
 
-        this.biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, xPos, zPos, 16, 61);
+//        this.biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, xPos, zPos, 16, 61);
 
-        this.replaceBlocksForBiome(chunkX, chunkZ, blockArray, ba, this.biomesForGeneration);
+//        this.replaceBlocksForBiome(chunkX, chunkZ, blockArray, blockMetadata, this.biomesForGeneration);
 
-        Chunk chunk = new Chunk(this.world, blockArray, ba, chunkX, chunkZ);
-        byte[] ba1 = chunk.getBiomeArray();
+        Chunk chunk = new Chunk(this.world, blockArray, blockMetadata, chunkX, chunkZ);
+//        byte[] ba1 = chunk.getBiomeArray();
 
-        for (int i = 0; i < ba1.length; i++) {
-            ba1[i] = (byte)this.biomesForGeneration[i].biomeID;
-        }
+//        for (int i = 0; i < ba1.length; i++) {
+//            ba1[i] = (byte)this.biomesForGeneration[i].biomeID;
+//        }
 
         chunk.generateSkylightMap();
 
         return chunk;
     }
 
-    private void generateTerrain(int chunkX, int chunkZ, byte[] ba)
-    {
+    protected void generateTerrain(int chunkX, int chunkZ, Block[] blockArray, byte[] blockMetadata) {
+        // 16*16=256
+        double[] heightMap = new double[256];
+        double[] bottomHeightMap = new double[256];
+        int[] topBlock = new int[256];
+        int[] bottomBlock = new int[256];
 
-    }
+        int xPos = chunkX*16;
+        int zPos = chunkZ*16;
 
-    private void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blockArray, byte[] ba, BiomeGenBase[] biomesForGeneration)
-    {
-        ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, chunkX, chunkZ, blockArray, biomesForGeneration);
-        MinecraftForge.EVENT_BUS.post(event);
+        // map, chunkX offset, chunkY offset, chunkZ offset, chunkW, chunkH, chunkL, chunkScaleX, chunkScaleY, chunkScaleZ
+        heightMap = this.noiseGen5.generateNoiseOctaves(heightMap, chunkX * 16, 10, chunkZ * 16, 16, 1, 16, .1, 0, .1);
+        bottomHeightMap = this.noiseGen4.generateNoiseOctaves(bottomHeightMap, xPos, 1, zPos, 16, 1, 16, .003, 0, .2);
 
-        if (event.getResult() == Event.Result.DENY) return;
+        for (int i = 0; i < 256; i++) {
+            int y = (int)(32 + bottomHeightMap[i]);
+            bottomBlock[i] = y <= 255 ? y : 255 - y;
+        }
 
-        int xPos = chunkX * 16;
-        int zPos = chunkZ * 16;
-        double d0 = 0.03125D;
-        this.stoneNoise = this.noiseGen4.generateNoiseOctaves(this.stoneNoise, xPos, zPos, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+        for (int i = 0; i < 256; i++) {
+            int y = (int)(128 + heightMap[i]);
+            topBlock[i] = y <= 255 ? y : 255 - y;
+        }
 
-        for (int x = 0; x < 16; ++x)
-        {
-            for (int z = 0; z < 16; ++z)
-            {
-                BiomeGenBase biomegenbase = biomesForGeneration[z + x * 16];
-                biomegenbase.genTerrainBlocks(this.world, this.random, blockArray, ba, xPos + x, zPos * 16 + z, this.stoneNoise[z + x * 16]);
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
+                blockArray[x << 12 | z << 8] = Blocks.bedrock;
+
+                for (int y = 1; y <= 2; y++) {
+                    blockArray[x << 12 | z << 8 | y] = ModBlocks.digitalSeaBlock;
+                }
+
+                int y;
+                int yMax = topBlock[x << 4 | z] - 2;
+                int yMin = bottomBlock[x << 4 | z] - 2;
+                for (y = yMin; y < yMax; y++) {
+                    blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
+//                    blockMetadata[x << 12 | z << 8 | y] = 0;
+                }
+
+                for (; y < yMax+2; y++) {
+                    blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
+//                    blockMetadata[x << 12 | z << 8 | y] = 0;
+                }
             }
         }
+    }
+
+    private void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blockArray, byte[] ba, BiomeGenBase[] biomesForGeneration) {
+//        ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, chunkX, chunkZ, blockArray, biomesForGeneration);
+//        MinecraftForge.EVENT_BUS.post(event);
+//
+//        if (event.getResult() == Event.Result.DENY) return;
+//
+//        int xPos = chunkX * 16;
+//        int zPos = chunkZ * 16;
+//        double d0 = 0.03125D;
+//        this.stoneNoise = this.noiseGen4.generateNoiseOctaves(this.stoneNoise, xPos, zPos, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
+//
+//        for (int x = 0; x < 16; ++x)
+//        {
+//            for (int z = 0; z < 16; ++z)
+//            {
+//                BiomeGenBase biomegenbase = biomesForGeneration[z + x * 16];
+//                biomegenbase.genTerrainBlocks(this.world, this.random, blockArray, ba, xPos + x, zPos * 16 + z, this.stoneNoise[z + x * 16]);
+//            }
+//        }
     }
 
     /**

@@ -14,9 +14,10 @@ import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.client.LyokoTab;
 import net.cortexmodders.lyoko.client.gui.GuiHandler;
 import net.cortexmodders.lyoko.client.render.TileAnimator;
+import net.cortexmodders.lyoko.command.CommandDeleteDimension;
+import net.cortexmodders.lyoko.command.CommandDevirtualize;
 import net.cortexmodders.lyoko.entities.projectile.EntityLyokoRanged;
 import net.cortexmodders.lyoko.fluids.ModFluids;
-import net.cortexmodders.lyoko.handler.CommandHandler;
 import net.cortexmodders.lyoko.items.ModItems;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.cortexmodders.lyoko.lib.ModLogger;
@@ -76,14 +77,16 @@ public class CodeLyoko
     public static CodeLyoko instance;
     
     private ModLogger modLogger;
-    
+    protected Configuration config;
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-        
-        proxy.registerDimensionIds(config);
-        
+        this.config = config;
+//        proxy.registerDimensionIds(config);
+
+
         enableAdminPowers = config.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
         useHDTextures = config.get(ModProperties.ConfigCategories.OTHER.name(), "useHDTextures", false).getBoolean(false);
         
@@ -99,6 +102,7 @@ public class CodeLyoko
         ModFluids.init();
         ModItems.init();
         ModBlocks.init();
+        DimensionIds.registerIds(this.config);
 
         lyokomountain = (BiomeGenBaseLyoko) new BiomeGenMountainSector(9).setColor(8421631).setBiomeName("Mountain Sector");
         lyokoforest = (BiomeGenBaseLyoko) new BiomeGenForestSector(10).setColor(8421631).setBiomeName("Forest Sector");
@@ -143,7 +147,8 @@ public class CodeLyoko
     @EventHandler
     public void serverInit(FMLServerStartingEvent event)
     {
-        event.registerServerCommand(new CommandHandler());
+        event.registerServerCommand(new CommandDevirtualize());
+        event.registerServerCommand(new CommandDeleteDimension());
     }
     
     public ModLogger getLogger()
