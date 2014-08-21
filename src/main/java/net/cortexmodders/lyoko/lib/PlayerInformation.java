@@ -180,7 +180,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
     /*
      * marks that this needs to be resend to the client
      */
-    @SideOnly(Side.SERVER)
+//    @SideOnly(Side.SERVER)
     public void setDirty()
     {
         PacketHandler packetHandler = PacketHandler.INSTANCE;

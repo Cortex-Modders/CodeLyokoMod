@@ -76,7 +76,7 @@ public class GuiSuperCalcConsole extends GuiContainer
         {
             PacketHandler packetHandler = PacketHandler.INSTANCE;
             
-            PacketConsoleCommand message = new PacketConsoleCommand(this.code, this.tscc.xCoord, this.tscc.yCoord, this.tscc.zCoord, this.tscc.getWorldObj());
+            PacketConsoleCommand message = new PacketConsoleCommand(this.code + "scc", this.tscc.xCoord, this.tscc.yCoord, this.tscc.zCoord, this.tscc.getWorldObj());
             packetHandler.sendPacketToServer(message);
             
             this.textBoxCode.setText("");
