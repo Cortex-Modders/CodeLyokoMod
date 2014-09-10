@@ -80,7 +80,25 @@ public class BlockMarabounta extends BlockContainer
         if (tem.consumedBlock == Blocks.air)
             return world.setBlockToAir(x, y, z);
         
-        return world.setBlock(x, y, z, tem.consumedBlock, 0, 0);
+        return world.setBlock(x, y, z, tem.consumedBlock, 0, 2);
+    }
+    
+    public void chainDestroyMarabounta(World world, int x, int y, int z)
+    {
+    	world.setBlock(x, y, z, Blocks.air, 0, 2);
+    	
+    	if(world.getBlock(x + 1, y, z) == ModBlocks.marabounta)
+    		((BlockMarabounta) world.getBlock(x + 1, y, z)).chainDestroyMarabounta(world, x + 1, y, z);
+    	if(world.getBlock(x - 1, y, z) == ModBlocks.marabounta)
+    		((BlockMarabounta) world.getBlock(x - 1, y, z)).chainDestroyMarabounta(world, x - 1, y, z);
+    	if(world.getBlock(x, y + 1, z) == ModBlocks.marabounta)
+    		((BlockMarabounta) world.getBlock(x, y + 1, z)).chainDestroyMarabounta(world, x, y + 1, z);
+    	if(world.getBlock(x, y - 1, z) == ModBlocks.marabounta)
+    		((BlockMarabounta) world.getBlock(x, y - 1, z)).chainDestroyMarabounta(world, x, y - 1, z);
+    	if(world.getBlock(x, y, z + 1) == ModBlocks.marabounta)
+    		((BlockMarabounta) world.getBlock(x, y, z + 1)).chainDestroyMarabounta(world, x, y, z + 1);
+    	if(world.getBlock(x, y, z - 1) == ModBlocks.marabounta)
+    		((BlockMarabounta) world.getBlock(x, y, z - 1)).chainDestroyMarabounta(world, x, y, z - 1);
     }
     
     @Override

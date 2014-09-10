@@ -24,7 +24,6 @@ public class EntityMegaTank extends EntityLyoko
     {
         super.onCollideWithPlayer(entp);
         if (!entp.capabilities.isCreativeMode && CodeLyoko.entityInLyoko(entp))
-            ;
         {
             PlayerInformation pi = PlayerInformation.forPlayer(entp);
             pi.setLifePoints(0);

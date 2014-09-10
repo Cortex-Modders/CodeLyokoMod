@@ -147,12 +147,12 @@ public class ItemGlove extends Item
         {
             EntityPlayer player = (EntityPlayer) ent;
             
-            if (player.getCurrentArmor(4) != null && player.getCurrentArmor(3) != null && player.getCurrentArmor(2) != null && player.getCurrentArmor(1) != null)
+            if (player.getCurrentArmor(3) != null && player.getCurrentArmor(2) != null && player.getCurrentArmor(1) != null && player.getCurrentArmor(0) != null)
             {
-                ItemStack helmet = player.getCurrentArmor(4);
-                ItemStack chest = player.getCurrentArmor(3);
-                ItemStack legs = player.getCurrentArmor(2);
-                ItemStack boots = player.getCurrentArmor(1);
+                ItemStack helmet = player.getCurrentArmor(3);
+                ItemStack chest = player.getCurrentArmor(2);
+                ItemStack legs = player.getCurrentArmor(1);
+                ItemStack boots = player.getCurrentArmor(0);
                 if (helmet.getItem() == ModItems.aelitaHelmet && chest.getItem() == ModItems.aelitaChest && legs.getItem() == ModItems.aelitaLegs && boots.getItem() == ModItems.aelitaBoots)
                 {
                     if (stack.getItem() != ModItems.energyField)
@@ -177,7 +177,7 @@ public class ItemGlove extends Item
                     if (stack.getItem() != ModItems.zweihander)
                         player.inventory.setInventorySlotContents(slot, null);
             }
-            else if ((player.getCurrentArmor(4) == null || player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null) && player.capabilities.isCreativeMode == false)
+            else if ((player.getCurrentArmor(3) == null || player.getCurrentArmor(2) == null || player.getCurrentArmor(1) == null || player.getCurrentArmor(0) == null) && player.capabilities.isCreativeMode == false)
                 player.inventory.setInventorySlotContents(slot, null);
         }
     }

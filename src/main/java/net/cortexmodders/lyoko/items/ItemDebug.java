@@ -1,6 +1,8 @@
 package net.cortexmodders.lyoko.items;
 
 import net.cortexmodders.lyoko.CodeLyoko;
+import net.cortexmodders.lyoko.blocks.BlockMarabounta;
+import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -30,19 +32,29 @@ public class ItemDebug extends Item {
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        if (player.isSneaking()) {
-            this.cycleMode(player);
-            player.addChatComponentMessage(new ChatComponentText("Cycling to debug mode: " + this.mode.name));
-        } else {
-            this.player = player;
-            try {
-                this.mode.method.invoke(this);
-            } catch (IllegalAccessException e) {
-            } catch (InvocationTargetException e) {
-            }
-        }
-
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
+    {
+    	if(!world.isRemote)
+    	{
+    		if(player.isSneaking())
+    		{
+    			this.cycleMode(player);
+    			player.addChatComponentMessage(new ChatComponentText("Cycling to debug mode: " + this.mode.name));
+    		}
+    		else
+    		{
+    			this.player = player;
+    			try
+    			{
+    				this.mode.method.invoke(this);
+    			}
+    			catch (Exception e)
+    			{
+    				e.printStackTrace();
+    			}
+    		}
+    	}
+    	
         return stack;
     }
 
@@ -54,9 +66,12 @@ public class ItemDebug extends Item {
     }
 
     public void cycleMode(EntityPlayer player) {
-        Mode nextMode = mode;
         if (this.mode.ordinal() < Mode.values().length-1) {
             this.mode = Mode.values()[this.mode.ordinal() + 1];
+        }
+        else
+        {
+        	this.mode = Mode.values()[0];
         }
     }
 
@@ -65,12 +80,24 @@ public class ItemDebug extends Item {
         Vec3 pos = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
         CodeLyoko.instance.forrestTreeGen.generateTree(new Random(), (int)pos.xCoord, (int)pos.yCoord, (int)pos.zCoord, this.player.getEntityWorld());
     }
+    
+    public void destroyMarabounta()
+    {
+    	System.out.println("Destroy Marabounta");
+    	Vec3 pos = Vec3.createVectorHelper(player.posX, player.posY, player.posZ);
+    	int x = (int) pos.xCoord;
+    	int y = (int) pos.yCoord;
+    	int z = (int) pos.zCoord;
+    	if(player.getEntityWorld().getBlock(x, y, z) == ModBlocks.marabounta)
+    		((BlockMarabounta) player.getEntityWorld().getBlock(x, y, z)).chainDestroyMarabounta(player.getEntityWorld(), x, y, z);
+    }
 
 
 
 
     private static enum Mode {
-        GEN_FORREST_TREE("Generate forrest tree", "genForrestTree");
+        GEN_FORREST_TREE("Generate forrest tree", "genForrestTree"),
+        DESTROY_MARABOUNTA("Destroy Marabounta", "destroyMarabounta");
 
         String name;
         Method method;
@@ -78,7 +105,7 @@ public class ItemDebug extends Item {
             this.name = name;
 
             try {
-               this.method = ItemDebug.class.getMethod(method, null);
+               this.method = ItemDebug.class.getMethod(method);
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
