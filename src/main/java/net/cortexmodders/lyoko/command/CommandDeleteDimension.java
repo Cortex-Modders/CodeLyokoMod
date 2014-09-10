@@ -63,7 +63,7 @@ public class CommandDeleteDimension implements ICommand {
     @Override
     public void processCommand(ICommandSender icommandsender, String[] astring) {
         if (astring.length != 1) {
-            throw new WrongUsageException(this.getCommandUsage(icommandsender), null);
+            throw new WrongUsageException(this.getCommandUsage(icommandsender), (Object[])null);
         }
 
         String dimName = astring[0];
