@@ -61,9 +61,7 @@ public class ServerTickHandler
         {
             if (player instanceof EntityPlayerMP)
             {
-                PlayerInformation playerInfo = PlayerInformation.forPlayer(player);
-                LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, pi.scannerDim, playerInfo.getScannerPosX(), playerInfo.getScannerPosY(), playerInfo.getScannerPosZ(), playerInfo.scannerYaw, 0);
-                ((EntityPlayerMP) player).setPositionAndRotation(pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
+                LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, pi.scannerDim, pi.getScannerPosX() + 0.5D, pi.getScannerPosY(), pi.getScannerPosZ() + 0.5D, pi.scannerYaw, 0.0F);
             }
             
             TileEntityScanner tile = (TileEntityScanner) player.worldObj.getTileEntity(pi.getScannerPosX(), pi.getScannerPosY() - 1, pi.getScannerPosZ());
