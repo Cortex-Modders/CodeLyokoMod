@@ -28,65 +28,54 @@ import java.util.Random;
 /**
  * @author jadar 
  */
-public class DesertSectorChunkProvider implements IChunkProvider
+public class ChunkProviderDesertSector implements IChunkProvider
 {
 
     protected Random random;
 
     protected NoiseGeneratorOctaves noiseGen1;
-    protected NoiseGeneratorOctaves noiseGen2;
-    protected NoiseGeneratorOctaves noiseGen3;
+//    protected NoiseGeneratorOctaves noiseGen2;
+//    protected NoiseGeneratorOctaves noiseGen3;
     protected NoiseGeneratorOctaves noiseGen4;
-    public NoiseGeneratorOctaves noiseGen5;
-    public NoiseGeneratorOctaves noiseGen6;
-    public NoiseGeneratorOctaves mobSpawnerNoiseGen;
+//    public NoiseGeneratorOctaves noiseGen5;
+//    public NoiseGeneratorOctaves noiseGen6;
+//    public NoiseGeneratorOctaves mobSpawnerNoiseGen;
 
     protected World world;
     protected long seed;
 
     protected final boolean mapFeaturesEnabled;
 
-    protected double[] noiseArray;
-    protected double[] stoneNoise = new double[256];
-    protected BiomeGenBase[] biomesForGeneration;
+//    protected double[] noiseArray;
+//    protected double[] stoneNoise = new double[256];
+//    protected BiomeGenBase[] biomesForGeneration;
 
-    public double[] noise1;
-    public double[] noise2;
-    public double[] noise3;
-    public double[] noise4;
-    public double[] noise5;
+//    public double[] noise1;
+//    public double[] noise2;
+//    public double[] noise3;
+//    public double[] noise4;
+//    public double[] noise5;
 
-    public float[] parabolicField;
-    public int[][] field = new int[32][32];
+//    public float[] parabolicField;
+//    public int[][] field = new int[32][32];
 
     // TODO: ADD FEATURE GENERATORS
 
     private BiomeGenBaseLyoko[] biomes;
 
-    public DesertSectorChunkProvider(World world, long seed, boolean mapFeaturesEnabled)
+    public ChunkProviderDesertSector(World world, long seed, boolean mapFeaturesEnabled)
     {
         this.mapFeaturesEnabled = mapFeaturesEnabled;
         this.world = world;
         this.random = new Random(seed);
 
-        this.noiseGen1          = new NoiseGeneratorOctaves(this.random, 16);
-        this.noiseGen2          = new NoiseGeneratorOctaves(this.random, 16);
-        this.noiseGen3          = new NoiseGeneratorOctaves(this.random, 8);
+        this.noiseGen1          = new NoiseGeneratorOctaves(this.random, 8);
+//        this.noiseGen2          = new NoiseGeneratorOctaves(this.random, 16);
+//        this.noiseGen3          = new NoiseGeneratorOctaves(this.random, 8);
         this.noiseGen4          = new NoiseGeneratorOctaves(this.random, 4);
-        this.noiseGen5          = new NoiseGeneratorOctaves(this.random, 10);
-        this.noiseGen6          = new NoiseGeneratorOctaves(this.random, 16);
-        this.mobSpawnerNoiseGen = new NoiseGeneratorOctaves(this.random, 8);
-
-        NoiseGenerator[] noiseGens = {noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5, noiseGen6, mobSpawnerNoiseGen};
-        noiseGens = TerrainGen.getModdedNoiseGenerators(this.world, this.random, noiseGens);
-
-        this.noiseGen1          = (NoiseGeneratorOctaves)noiseGens[0];
-        this.noiseGen2          = (NoiseGeneratorOctaves)noiseGens[1];
-        this.noiseGen3          = (NoiseGeneratorOctaves)noiseGens[2];
-        this.noiseGen4          = (NoiseGeneratorOctaves)noiseGens[3];
-        this.noiseGen5          = (NoiseGeneratorOctaves)noiseGens[4];
-        this.noiseGen6          = (NoiseGeneratorOctaves)noiseGens[5];
-        this.mobSpawnerNoiseGen = (NoiseGeneratorOctaves)noiseGens[6];
+//        this.noiseGen5          = new NoiseGeneratorOctaves(this.random, 10);
+//        this.noiseGen6          = new NoiseGeneratorOctaves(this.random, 16);
+//        this.mobSpawnerNoiseGen = new NoiseGeneratorOctaves(this.random, 8);
 
 //        for (int j = -2; j <= 2; ++j)
 //        {
@@ -190,28 +179,50 @@ public class DesertSectorChunkProvider implements IChunkProvider
         return chunk;
     }
 
+    protected double terrainExpCurve(double noise, int ceiling) {
+        final int cover = 24;
+        final double sharpness = 0.99;
+//        noise += ceiling;
+
+//        if (c < 0) c = 0;
+
+        double density = cover - (Math.pow(sharpness, noise) * cover);
+        return density;
+    }
+
+
     protected void generateTerrain(int chunkX, int chunkZ, Block[] blockArray, byte[] blockMetadata) {
         // 16*16=256
         double[] heightMap = new double[256];
+//        double[] flatHeightMap = new double[256];
         double[] bottomHeightMap = new double[256];
         int[] topBlock = new int[256];
         int[] bottomBlock = new int[256];
+//        int[] flatBlock = new int[256];
 
         int xPos = chunkX*16;
         int zPos = chunkZ*16;
+        final double cover = 5;
 
         // map, chunkX offset, chunkY offset, chunkZ offset, chunkW, chunkH, chunkL, chunkScaleX, chunkScaleY, chunkScaleZ
-        heightMap = this.noiseGen5.generateNoiseOctaves(heightMap, chunkX * 16, 10, chunkZ * 16, 16, 1, 16, .1, 0, .1);
-        bottomHeightMap = this.noiseGen4.generateNoiseOctaves(bottomHeightMap, xPos, 1, zPos, 16, 1, 16, .003, 0, .2);
+        heightMap = this.noiseGen1.generateNoiseOctaves(heightMap, chunkX * 16, 10, chunkZ * 16, 16, 1, 16, .07, 0, .07);
+        bottomHeightMap = this.noiseGen4.generateNoiseOctaves(bottomHeightMap, xPos, 1, zPos, 16, 1, 16, .01, 0, .01);
 
+        // generate final height maps
         for (int i = 0; i < 256; i++) {
-            int y = (int)(32 + bottomHeightMap[i]);
-            bottomBlock[i] = y <= 255 ? y : 255 - y;
-        }
+            int bottomY = (int)(56 + bottomHeightMap[i]);
+            bottomBlock[i] = bottomY <= 255 ? bottomY : 255 - bottomY;
 
-        for (int i = 0; i < 256; i++) {
-            int y = (int)(128 + heightMap[i]);
-            topBlock[i] = y <= 255 ? y : 255 - y;
+            double topY = heightMap[i];
+            topY = topY > -4.0 ? 61 + this.terrainExpCurve(topY, 0) : 0;
+
+//            if (topY <= 61) {
+//                topY = 0;
+//            }
+            topY = topY <= 255 ? topY : 255 - topY;
+            topBlock[i] = (int)topY;
+//            int flatY = (int)(62 + flatHeightMap[i]);
+//            flatBlock[i] = flatY <= 255 ? flatY : 255 - flatY;
         }
 
         for (int x = 0; x < 16; x++) {
@@ -224,16 +235,24 @@ public class DesertSectorChunkProvider implements IChunkProvider
 
                 int y;
                 int yMax = topBlock[x << 4 | z] - 2;
-                int yMin = bottomBlock[x << 4 | z] - 2;
-                for (y = yMin; y < yMax; y++) {
-                    blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
-//                    blockMetadata[x << 12 | z << 8 | y] = 0;
-                }
+//                if (yMax > 65) {
+//                    yMax = flatBlock[x << 4 | z] - 2;
+//                }
 
-                for (; y < yMax+2; y++) {
-                    blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
+
+                int yMin = bottomBlock[x << 4 | z] - 2;
+//                if (yMin > 50) {
+
+                    for (y = yMin; y < yMax; y++) {
+                        blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
 //                    blockMetadata[x << 12 | z << 8 | y] = 0;
-                }
+                    }
+
+                    for (; y < yMax + 2; y++) {
+                        blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
+//                    blockMetadata[x << 12 | z << 8 | y] = 0;
+                    }
+//                }
             }
         }
     }

@@ -132,7 +132,6 @@ public class CodeLyoko
 
         forrestTreeGen = new WorldGenLyokoLargeTree();
 
-
         // Block.setHarvestLevel(ModBlocks.QuantumOre, "pickaxe", 2);
         // MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
         // MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
@@ -141,7 +140,7 @@ public class CodeLyoko
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        
+        proxy.registerClientEventHandlers();
     }
     
     @EventHandler

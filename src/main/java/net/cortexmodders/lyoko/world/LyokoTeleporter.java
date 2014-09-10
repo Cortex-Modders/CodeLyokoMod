@@ -25,22 +25,31 @@ import cpw.mods.fml.common.FMLCommonHandler;
 public class LyokoTeleporter
 {
     @SuppressWarnings("rawtypes")
-    public static void transferPlayerToDimension(EntityPlayerMP playerMP, int newDim)
+    public static void transferPlayerToDimension(EntityPlayerMP playerMP, int newDim, double xPos, double yPos, double zPos, float rotationYaw, float rotationPitch)
     {
         MinecraftServer mcServer = MinecraftServer.getServer();
+
         int j = playerMP.dimension;
         WorldServer worldserver = mcServer.worldServerForDimension(playerMP.dimension);
         playerMP.dimension = newDim;
+
         WorldServer worldserver1 = mcServer.worldServerForDimension(playerMP.dimension);
+
         playerMP.playerNetServerHandler.sendPacket(new S07PacketRespawn(playerMP.dimension, playerMP.worldObj.difficultySetting, playerMP.worldObj.getWorldInfo().getTerrainType(), playerMP.theItemInWorldManager.getGameType()));
+
         worldserver.removePlayerEntityDangerously(playerMP);
         playerMP.isDead = false;
+
         transferEntityToWorld(playerMP, j, worldserver, worldserver1);
         func_72375_a(playerMP, worldserver);
-        playerMP.playerNetServerHandler.setPlayerLocation(playerMP.posX, playerMP.posY, playerMP.posZ, playerMP.rotationYaw, playerMP.rotationPitch);
+
+        playerMP.playerNetServerHandler.setPlayerLocation(xPos, yPos, zPos, rotationYaw, rotationPitch);
+
         playerMP.theItemInWorldManager.setWorld(worldserver1);
+
         updateTimeAndWeatherForPlayer(playerMP, worldserver1);
         syncPlayerInventory(playerMP);
+
         Iterator iterator = playerMP.getActivePotionEffects().iterator();
         
         while (iterator.hasNext())
@@ -48,6 +57,7 @@ public class LyokoTeleporter
             PotionEffect potioneffect = (PotionEffect) iterator.next();
             playerMP.playerNetServerHandler.sendPacket(new S1DPacketEntityEffect(playerMP.getEntityId(), potioneffect));
         }
+
         FMLCommonHandler.instance().firePlayerChangedDimensionEvent(playerMP, j, newDim);
     }
     

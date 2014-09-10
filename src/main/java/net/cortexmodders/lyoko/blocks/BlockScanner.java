@@ -265,7 +265,7 @@ public class BlockScanner extends BlockContainer
             }
             
             if (player instanceof EntityPlayerMP)
-                LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, dim);
+                LyokoTeleporter.transferPlayerToDimension((EntityPlayerMP) player, dim, player.posX, player.posY, player.posZ,0 , 0);
             int xPos = (int) player.posX;
             int yPos = (int) player.posY;
             int zPos = (int) player.posZ;

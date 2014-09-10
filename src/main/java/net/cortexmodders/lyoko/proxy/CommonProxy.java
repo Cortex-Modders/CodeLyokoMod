@@ -32,7 +32,7 @@ import net.cortexmodders.lyoko.tileentity.TileEntitySuperCalcConsole;
 import net.cortexmodders.lyoko.tileentity.TileEntityTower;
 import net.cortexmodders.lyoko.tileentity.TileEntityTowerConsole;
 import net.cortexmodders.lyoko.world.*;
-import net.cortexmodders.lyoko.world.provider.DesertSectorWorldProvider;
+import net.cortexmodders.lyoko.world.provider.WorldProviderDesertSector;
 import net.cortexmodders.lyoko.world.provider.WorldProviderIceSector;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.ItemStack;
@@ -72,6 +72,9 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
         
         // GameRegistry.registerPlayerTracker(handler);
+    }
+
+    public void registerClientEventHandlers() { //stub
     }
     
     public void addChestLoot()
@@ -144,7 +147,7 @@ public class CommonProxy
         DimensionManager.registerProviderType(DimensionIds.ICE, WorldProviderIceSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.MOUNTAIN, LyokoMountainSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.FOREST, LyokoForestSector.class, true);
-        DimensionManager.registerProviderType(DimensionIds.DESERT, DesertSectorWorldProvider.class, true);
+        DimensionManager.registerProviderType(DimensionIds.DESERT, WorldProviderDesertSector.class, true);
         DimensionManager.registerProviderType(DimensionIds.CARTHAGE, LyokoCarthageSector.class, true);
         
         // Dimensions

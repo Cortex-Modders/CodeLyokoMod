@@ -51,7 +51,7 @@ public class ClientEventHandler
         PlayerInformation pi = PlayerInformation.forPlayer(this.mc.thePlayer);
         if (pi == null) {
             CodeLyoko.instance.getLogger().warn(String.format("Player info for %s could not be retrieved!", this.mc.thePlayer.getCommandSenderName()));
-        } else {
+        } else if (!Minecraft.getMinecraft().gameSettings.showDebugInfo) {
             this.mc.fontRenderer.drawStringWithShadow("Life Points: " + pi.getLifePoints(), xPos, yPos, 16777215);
         }
     }

@@ -7,22 +7,21 @@
 package net.cortexmodders.lyoko.world.provider;
 
 import net.cortexmodders.lyoko.CodeLyoko;
+import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.lib.DimensionIds;
-import net.cortexmodders.lyoko.world.chunk.DesertSectorChunkProvider;
+import net.cortexmodders.lyoko.lib.ModLogger;
+import net.cortexmodders.lyoko.world.chunk.ChunkProviderDesertSector;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.MathHelper;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldProviderEnd;
-import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderEnd;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class DesertSectorWorldProvider extends WorldProvider
+public class WorldProviderDesertSector extends WorldProvider
 {
 
     protected IChunkProvider chunkProvider;
@@ -45,7 +44,7 @@ public class DesertSectorWorldProvider extends WorldProvider
     public IChunkProvider createChunkGenerator()
     {
         if (chunkProvider == null) {
-            this.chunkProvider = new DesertSectorChunkProvider(this.worldObj, this.worldObj.getSeed(), false);
+            this.chunkProvider = new ChunkProviderDesertSector(this.worldObj, this.worldObj.getSeed(), false);
         }
         return this.chunkProvider;
     }
@@ -114,5 +113,12 @@ public class DesertSectorWorldProvider extends WorldProvider
     {
         return "Desert Sector";
     }
-    
+
+    public boolean canCoordinateBeSpawn(int xPos, int zPos)
+    {
+        boolean flag = this.worldObj.getTopBlock(xPos, zPos) == ModBlocks.sand;
+        CodeLyoko.instance.getLogger().info(String.format("Coordinate %d, %d is spawn: %b", xPos, zPos, flag));
+        return flag;
+    }
+
 }
