@@ -1,26 +1,17 @@
 package net.cortexmodders.lyoko.world.chunk;
 
-import cpw.mods.fml.common.eventhandler.Event;
 import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.world.BiomeGenBaseLyoko;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.terraingen.ChunkProviderEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
 
 import java.util.List;
 import java.util.Random;
@@ -179,9 +170,9 @@ public class ChunkProviderDesertSector implements IChunkProvider
         return chunk;
     }
 
-    protected double terrainExpCurve(double noise, int ceiling) {
-        final int cover = 24;
-        final double sharpness = 0.99;
+    protected double smoothNoise(double noise, double cover, double sharpness) {
+//        final int cover = 24;
+//        final double sharpness = 0.99;
 //        noise += ceiling;
 
 //        if (c < 0) c = 0;
@@ -214,45 +205,31 @@ public class ChunkProviderDesertSector implements IChunkProvider
             bottomBlock[i] = bottomY <= 255 ? bottomY : 255 - bottomY;
 
             double topY = heightMap[i];
-            topY = topY > -4.0 ? 61 + this.terrainExpCurve(topY, 0) : 0;
-
-//            if (topY <= 61) {
-//                topY = 0;
-//            }
+            topY = topY > -4.0 ? 61 + this.smoothNoise(topY, 24, 0.99) : 0;
             topY = topY <= 255 ? topY : 255 - topY;
+
             topBlock[i] = (int)topY;
-//            int flatY = (int)(62 + flatHeightMap[i]);
-//            flatBlock[i] = flatY <= 255 ? flatY : 255 - flatY;
         }
 
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
                 blockArray[x << 12 | z << 8] = Blocks.bedrock;
 
-                for (int y = 1; y <= 2; y++) {
+                for (int y = 1; y <= 14; y++) {
                     blockArray[x << 12 | z << 8 | y] = ModBlocks.digitalSeaLiquid;
                 }
 
                 int y;
                 int yMax = topBlock[x << 4 | z] - 2;
-//                if (yMax > 65) {
-//                    yMax = flatBlock[x << 4 | z] - 2;
-//                }
-
-
                 int yMin = bottomBlock[x << 4 | z] - 2;
-//                if (yMin > 50) {
 
-                    for (y = yMin; y < yMax; y++) {
-                        blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
-//                    blockMetadata[x << 12 | z << 8 | y] = 0;
-                    }
+                for (y = yMin; y < yMax; y++) {
+                    blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
+                }
 
-                    for (; y < yMax + 2; y++) {
-                        blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
-//                    blockMetadata[x << 12 | z << 8 | y] = 0;
-                    }
-//                }
+                for (; y < yMax + 2; y++) {
+                    blockArray[x << 12 | z << 8 | y] = ModBlocks.sand;
+                }
             }
         }
     }
