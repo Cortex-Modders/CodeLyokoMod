@@ -66,7 +66,7 @@ public class CommonProxy
         MinecraftForge.EVENT_BUS.register(new ModFluids());
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
 
-        // GameRegistry.registerPlayerTracker(handler);
+//        GameRegistry.registerPlayerTracker(handler);
     }
 
     public void registerClientEventHandlers()
@@ -154,17 +154,6 @@ public class CommonProxy
         DimensionManager.registerDimension(DimensionIds.DESERT, DimensionIds.DESERT);
         DimensionManager.registerDimension(DimensionIds.CARTHAGE, DimensionIds.CARTHAGE);
     }
-
-//    public void registerDimensionIds(Configuration config)
-//    {
-//        DimensionIds.ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
-//        DimensionIds.MOUNTAIN = config.get(ConfigCategories.DIMENSIONS.name(), "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
-//        DimensionIds.FOREST = config.get(ConfigCategories.DIMENSIONS.name(), "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
-//        DimensionIds.DESERT = config.get(ConfigCategories.DIMENSIONS.name(), "desertSectorID", DimensionIds.DESERT_DEFAULT).getInt();
-//        DimensionIds.CARTHAGE = config.get(ConfigCategories.DIMENSIONS.name(), "carthageSectorID", DimensionIds.CARTHAGE_DEFAULT).getInt();
-//        DimensionIds.DIGITALSEA = config.get(ConfigCategories.DIMENSIONS.name(), "digitalSeaSectorID", DimensionIds.DIGITALSEA_DEFAULT).getInt();
-//        DimensionIds.CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
-//    }
 
     public void registerCapes()
     {

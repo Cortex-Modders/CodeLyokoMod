@@ -1,10 +1,12 @@
 package net.cortexmodders.lyoko.client.render.tileentity;
 
+import net.cortexmodders.lyoko.CodeLyoko;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.*;
+import scala.tools.nsc.backend.icode.Members;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -21,46 +23,47 @@ public class RenderDigitalSea extends TileEntitySpecialRenderer
     protected static ResourceLocation texture1 = new ResourceLocation("lyoko", "textures/digitalsea.png");
     protected static ResourceLocation texture2 = new ResourceLocation("lyoko", "textures/digitalsea2.png");
 
-    protected boolean useShader;
+    protected boolean useShader = false;
+
+
     private int programId;
 
     public RenderDigitalSea()
     {
-        int vertShader = 0, fragShader = 0;
 
-        try {
-            vertShader = createShader(vertexShaderLocation, ARBVertexShader.GL_VERTEX_SHADER_ARB);
-            fragShader = createShader(fragmentShaderLocation, ARBFragmentShader.GL_FRAGMENT_SHADER_ARB);
-        } catch (Exception exc) {
-            exc.printStackTrace();
-            return;
+        if (CodeLyoko.DEBUG) {
+            int vertShader = 0, fragShader = 0;
+
+            try {
+                vertShader = createShader(vertexShaderLocation, ARBVertexShader.GL_VERTEX_SHADER_ARB);
+                fragShader = createShader(fragmentShaderLocation, ARBFragmentShader.GL_FRAGMENT_SHADER_ARB);
+            } catch (Exception exc) {
+                exc.printStackTrace();
+                return;
+            }
+
+            this.programId = ARBShaderObjects.glCreateProgramObjectARB();
+            if (this.programId == 0) {
+                return;
+            }
+
+            ARBShaderObjects.glAttachObjectARB(programId, vertShader);
+            ARBShaderObjects.glAttachObjectARB(programId, fragShader);
+
+            ARBShaderObjects.glLinkProgramARB(programId);
+            if (ARBShaderObjects.glGetObjectParameteriARB(programId, ARBShaderObjects.GL_OBJECT_LINK_STATUS_ARB) == GL11.GL_FALSE) {
+                System.err.println("Houston we have a problem!");
+                return;
+            }
+
+            ARBShaderObjects.glValidateProgramARB(programId);
+            if (ARBShaderObjects.glGetObjectParameteriARB(programId, ARBShaderObjects.GL_OBJECT_VALIDATE_STATUS_ARB) == GL11.GL_FALSE) {
+                System.err.println("Houston we have a problem!");
+                return;
+            }
+
+            useShader = true;
         }
-//        finally {
-//            if(vertShader == 0 || fragShader == 0)
-//                return;
-//        }
-
-        this.programId = ARBShaderObjects.glCreateProgramObjectARB();
-        if (this.programId == 0) {
-            return;
-        }
-
-        ARBShaderObjects.glAttachObjectARB(programId, vertShader);
-        ARBShaderObjects.glAttachObjectARB(programId, fragShader);
-
-        ARBShaderObjects.glLinkProgramARB(programId);
-        if (ARBShaderObjects.glGetObjectParameteriARB(programId, ARBShaderObjects.GL_OBJECT_LINK_STATUS_ARB) == GL11.GL_FALSE) {
-            System.err.println("Houston we have a problem!");
-            return;
-        }
-
-        ARBShaderObjects.glValidateProgramARB(programId);
-        if (ARBShaderObjects.glGetObjectParameteriARB(programId, ARBShaderObjects.GL_OBJECT_VALIDATE_STATUS_ARB) == GL11.GL_FALSE) {
-            System.err.println("Houston we have a problem!");
-            return;
-        }
-
-        useShader = true;
     }
 
     protected static int createShader(ResourceLocation location, int shaderType) throws Exception

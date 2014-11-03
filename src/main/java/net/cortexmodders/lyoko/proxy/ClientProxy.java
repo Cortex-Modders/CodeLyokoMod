@@ -10,6 +10,7 @@ import com.jadarstudios.developercapes.DevCapes;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.cortexmodders.lyoko.BootstrapWorldLoader;
+import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.client.handler.ClientEventHandler;
 import net.cortexmodders.lyoko.client.handler.ClientTickHandler;
 import net.cortexmodders.lyoko.client.handler.KeyBindingHandler;
@@ -64,30 +65,12 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityXanafiedMob.class, new RenderXanafiedMob());
         RenderingRegistry.registerEntityRenderingHandler(EntityBlok.class, new RenderBlok());
         RenderingRegistry.registerEntityRenderingHandler(EntityMegaTank.class, new RenderTank());
-        /*
-         * RenderingRegistry.registerEntityRenderingHandler(EntityHornet.class,
-         * new RenderHornet(new ModelHornet(), 0.5F));
-         * RenderingRegistry.registerEntityRenderingHandler
-         * (EntityKankrelat.class, new RenderKankrelat(new ModelKankrelat(),
-         * 0.5F));
-         * RenderingRegistry.registerEntityRenderingHandler(EntityKrab.class,
-         * new RenderKrab(new ModelKrab(), 0.5F));
-         * RenderingRegistry.registerEntityRenderingHandler
-         * (EntityLyokoCreeper.class, new RenderLyokoCreeper(new
-         * ModelLyokoCreeper(), 0.5F));
-         * RenderingRegistry.registerEntityRenderingHandler(EntityManta.class,
-         * new RenderManta(new ModelManta(), 0.5F));
-         * RenderingRegistry.registerEntityRenderingHandler
-         * (EntityTarantula.class, new RenderTarantula(new ModelTarantula(),
-         * 0.5F));
-         */
+
         RenderingRegistry.registerEntityRenderingHandler(EntitySkid.class, new RenderSkid());
         RenderingRegistry.registerEntityRenderingHandler(EntityOverboard.class, new RenderOverboard());
 
         MinecraftForgeClient.registerItemRenderer(ModItems.glove, new ItemRenderGlove());
 
-        // ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySuperCalc.class,
-        // new RenderSuperCalc());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTowerConsole.class, new RenderTowerConsole());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTower.class, new RenderTower());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCable.class, new RenderCable());
@@ -122,7 +105,9 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(new KeyBindingHandler());
         MinecraftForge.EVENT_BUS.register(new ClientEventHandler());
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
-        MinecraftForge.EVENT_BUS.register(new BootstrapWorldLoader("Dimensions"));
+
+        if (CodeLyoko.DEBUG)
+            MinecraftForge.EVENT_BUS.register(new BootstrapWorldLoader("Dimensions"));
     }
 
     /**

@@ -46,6 +46,8 @@ import java.util.List;
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 public class CodeLyoko
 {
+    public static final boolean DEBUG = false;
+
     private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
     public static List<Item> debugTools = new ArrayList<Item>();
 
@@ -84,8 +86,6 @@ public class CodeLyoko
     {
         Configuration config = new Configuration(event.getSuggestedConfigurationFile());
         this.config = config;
-//        proxy.registerDimensionIds(config);
-
 
         enableAdminPowers = config.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
         useHDTextures = config.get(ModProperties.ConfigCategories.OTHER.name(), "useHDTextures", false).getBoolean(false);
