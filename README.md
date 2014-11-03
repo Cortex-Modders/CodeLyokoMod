@@ -11,7 +11,7 @@ Version: 0.5.0
 
 ###Download
 
-The official download is on the [Minecraft Forum post](http://www.minecraftforum.net/topic/1403995-152-code-lyoko-mod-043-minecraft-forum/).
+The official download is on the [Minecraft Forum post](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2269908-1-7-10-forge-opensource-beta-code-lyoko-mod-v1-6).
 
 We also have Travis-CI making builds for us. The downloads can be found at [repo.jadarstudios.com](http://repo.jadarstudios.com/index.html#view-repositories).
 
