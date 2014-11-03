@@ -6,12 +6,12 @@
 
 package net.cortexmodders.lyoko.world;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.IWorldGenerator;
 import net.cortexmodders.lyoko.lib.DimensionIds;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.common.IWorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenTower implements IWorldGenerator
 {
@@ -21,15 +21,14 @@ public class WorldGenTower implements IWorldGenerator
         if (world.provider.dimensionId == DimensionIds.ICE || world.provider.dimensionId == DimensionIds.MOUNTAIN || world.provider.dimensionId == DimensionIds.FOREST || world.provider.dimensionId == DimensionIds.DESERT || world.provider.dimensionId == DimensionIds.CARTHAGE)
             this.generateTower(world, random, chunkX * 16, chunkZ * 16);
     }
-    
+
     private void generateTower(World world, Random random, int blockX, int blockZ)
     {
-        if (random.nextInt(10) == 0)
-        {
+        if (random.nextInt(10) == 0) {
             int x = blockX + random.nextInt(16);
             int z = blockZ + random.nextInt(16);
             int y = world.getHeightValue(x, z);
-            
+
             new StructureTower().generate(world, random, x, y, z);
         }
     }

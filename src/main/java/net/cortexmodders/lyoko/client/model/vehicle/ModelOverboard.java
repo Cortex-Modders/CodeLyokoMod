@@ -22,12 +22,12 @@ public class ModelOverboard extends ModelVehicle
     ModelRenderer baseRear2;
     ModelRenderer baseRear3;
     ModelRenderer baseRear4;
-    
+
     public ModelOverboard()
     {
         this.textureWidth = 256;
         this.textureHeight = 128;
-        
+
         this.base = new ModelRenderer(this, 0, 74);
         this.base.addBox(-3F, -1F, -8F, 6, 2, 14);
         this.base.setRotationPoint(-7F, 19F, 0F);
@@ -95,7 +95,7 @@ public class ModelOverboard extends ModelVehicle
         this.baseRear4.mirror = true;
         this.setRotation(this.baseRear4, 0F, 0F, 0F);
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -113,23 +113,23 @@ public class ModelOverboard extends ModelVehicle
         this.baseRear3.render(f5);
         this.baseRear4.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     }
-    
+
     @Override
     public void doAnimation()
     {
-        
+
     }
 }

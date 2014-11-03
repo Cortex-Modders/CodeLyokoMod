@@ -14,12 +14,12 @@ import net.minecraft.util.ResourceLocation;
 public class RenderTank extends RenderLiving
 {
     private static final ResourceLocation texture = new ResourceLocation("lyoko:textures/models/tank.png");
-    
+
     public RenderTank()
     {
         super(new ModelTank(), 0.5F);
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(Entity entity)
     {

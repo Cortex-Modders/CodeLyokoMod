@@ -15,7 +15,7 @@ public class EntityEnergyField extends EntityLyokoRanged
     {
         super(world, entLiving, f);
     }
-    
+
     public EntityEnergyField(World world)
     {
         super(world);

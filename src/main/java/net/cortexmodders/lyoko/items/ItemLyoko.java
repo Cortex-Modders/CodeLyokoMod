@@ -6,8 +6,6 @@
 
 package net.cortexmodders.lyoko.items;
 
-import java.util.List;
-
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.mob.EntityLyoko;
 import net.cortexmodders.lyoko.entities.mob.EntitySpecter;
@@ -30,19 +28,20 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemLyoko extends Item
 {
     public ItemLyoko()
     {
         this.setCreativeTab(CodeLyoko.LyokoTabs);
     }
-    
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean B)
     {
-        if (stack.getItem().equals(ModItems.laserArrow))
-        {
+        if (stack.getItem().equals(ModItems.laserArrow)) {
             list.add("This is the mod's equivalent of an");
             list.add("infinite battery. Use this as a fuel");
             list.add("cell in the Super Computer. This is");
@@ -50,14 +49,13 @@ public class ItemLyoko extends Item
             list.add("well.");
         }
     }
-    
+
     @SuppressWarnings("rawtypes")
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player)
     {
         if (stack.getItem().equals(ModItems.laserArrow))
-            if (player.isSneaking())
-            {
+            if (player.isSneaking()) {
                 Item item;
                 int index = CodeLyoko.debugTools.indexOf(this);
                 if (CodeLyoko.debugTools.size() == index + 1)
@@ -65,16 +63,14 @@ public class ItemLyoko extends Item
                 else
                     item = CodeLyoko.debugTools.get(index + 1);
                 stack = new ItemStack(item, stack.stackSize);
-            }
-            else if (CodeLyoko.entityInLyoko(player))
-            {
+            } else if (CodeLyoko.entityInLyoko(player)) {
                 float f = 1.0F;
                 float f1 = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * f;
                 float f2 = player.prevRotationYaw + (player.rotationYaw - player.prevRotationYaw) * f;
                 double d0 = player.prevPosX + (player.posX - player.prevPosX) * f;
                 double d1 = player.prevPosY + (player.posY - player.prevPosY) * f + 1.62D - player.yOffset;
                 double d2 = player.prevPosZ + (player.posZ - player.prevPosZ) * f;
-                Vec3 vec3 = world.getWorldVec3Pool().getVecFromPool(d0, d1, d2);
+                Vec3 vec3 = Vec3.createVectorHelper(d0, d1, d2);
                 float f3 = MathHelper.cos(-f2 * 0.017453292F - (float) Math.PI);
                 float f4 = MathHelper.sin(-f2 * 0.017453292F - (float) Math.PI);
                 float f5 = -MathHelper.cos(-f1 * 0.017453292F);
@@ -84,46 +80,41 @@ public class ItemLyoko extends Item
                 double d3 = 5.0D;
                 Vec3 vec31 = vec3.addVector(f7 * d3, f6 * d3, f8 * d3);
                 MovingObjectPosition movingobjectposition = world.rayTraceBlocks(vec3, vec31, true);
-                
+
                 if (movingobjectposition == null)
                     return stack;
-                else
-                {
+                else {
                     Vec3 vec32 = player.getLook(f);
                     boolean flag = false;
                     float f9 = 1.0F;
                     List list = world.getEntitiesWithinAABBExcludingEntity(player, player.boundingBox.addCoord(vec32.xCoord * d3, vec32.yCoord * d3, vec32.zCoord * d3).expand(f9, f9, f9));
                     int i;
-                    
-                    for (i = 0; i < list.size(); ++i)
-                    {
+
+                    for (i = 0; i < list.size(); ++i) {
                         Entity entity = (Entity) list.get(i);
-                        
-                        if (entity.canBeCollidedWith())
-                        {
+
+                        if (entity.canBeCollidedWith()) {
                             float f10 = entity.getCollisionBorderSize();
                             AxisAlignedBB axisalignedbb = entity.boundingBox.expand(f10, f10, f10);
-                            
+
                             if (axisalignedbb.isVecInside(vec3))
                                 flag = true;
                         }
                     }
-                    
+
                     if (flag)
                         return stack;
-                    else
-                    {
-                        if (movingobjectposition.typeOfHit == MovingObjectType.BLOCK)
-                        {
+                    else {
+                        if (movingobjectposition.typeOfHit == MovingObjectType.BLOCK) {
                             i = movingobjectposition.blockX;
                             int j = movingobjectposition.blockY;
                             int k = movingobjectposition.blockZ;
-                            
+
                             if (world.getBlock(i, j, k) == Block.getBlockFromName("snow"))
                                 --j;
-                            
+
                             new StructureTower().generate(world, itemRand, i - 3, j, k - 3);
-                            
+
                             if (!player.capabilities.isCreativeMode)
                                 --stack.stackSize;
                         }
@@ -133,22 +124,20 @@ public class ItemLyoko extends Item
             }
         return stack;
     }
-    
+
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase ent, EntityLivingBase player)
     {
-        if (stack.getItem().equals(ModItems.laserArrow) && !(ent instanceof EntityLyoko) && !(ent instanceof EntitySpecter))
-        {
+        if (stack.getItem().equals(ModItems.laserArrow) && !(ent instanceof EntityLyoko) && !(ent instanceof EntitySpecter)) {
             EntityXanafiedMob xana = new EntityXanafiedMob(ent.worldObj, ent.posX, ent.posY, ent.posZ, ent);
-            if (!player.worldObj.isRemote)
-            {
+            if (!player.worldObj.isRemote) {
                 ent.worldObj.spawnEntityInWorld(xana);
                 ent.setDead();
             }
         }
         return false;
     }
-    
+
     @Override
     public void registerIcons(IIconRegister iconRegister)
     {
@@ -171,30 +160,23 @@ public class ItemLyoko extends Item
         if (this.equals(ModItems.quantumContainmentCell))
             this.itemIcon = iconRegister.registerIcon("lyoko:quantumcontainmentcell" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
     }
-    
+
     @Override
     public void onUpdate(ItemStack stack, World world, Entity ent, int par4, boolean par5)
     {
-        
-        if (stack.getItem() == ModItems.lead || stack.getItem() == ModItems.uranium)
-        {
-            if (ent instanceof EntityPlayer)
-            {
-                if (!((EntityPlayer) ent).capabilities.isCreativeMode)
-                {
+
+        if (stack.getItem() == ModItems.lead || stack.getItem() == ModItems.uranium) {
+            if (ent instanceof EntityPlayer) {
+                if (!((EntityPlayer) ent).capabilities.isCreativeMode) {
                     ((EntityPlayer) ent).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 100, 0));
                     ((EntityPlayer) ent).addPotionEffect(new PotionEffect(Potion.poison.getId(), 100, 0));
                 }
-            }
-            else
-            {
+            } else {
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.hunger.getId(), 100, 0));
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.poison.getId(), 100, 0));
             }
-        }
-        else if (stack.getItem() == ModItems.quantumOrb)
-            if (ent instanceof EntityLiving)
-            {
+        } else if (stack.getItem() == ModItems.quantumOrb)
+            if (ent instanceof EntityLiving) {
                 ((EntityLiving) ent).clearActivePotions();
                 ((EntityLiving) ent).addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 100, 0));
             }

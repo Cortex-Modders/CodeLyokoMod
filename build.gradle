@@ -20,10 +20,11 @@ buildscript {
 
 // apply plugin to this project
 apply plugin: 'forge'
+apply from: 'snapshot.gradle'
 
 // minecraft properteis
 minecraft {
-	version = "1.7.2-10.12.1.1095"
+	version = "1.7.10-10.13.2.1232"
 }
 
 //buildNumber is deprecated
@@ -34,7 +35,7 @@ if(System.getenv().TRAVIS_BUILD_NUMBER != null)
 }
 
 // version and stuff
-version = "1.5.0.${buildnumber}"
+version = "1.6.0.0"
 group = "net.cortexmodders.lyoko"
 archivesBaseName = "CodeLyoko-forge"
 

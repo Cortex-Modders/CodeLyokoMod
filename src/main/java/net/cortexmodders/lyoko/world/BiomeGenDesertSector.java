@@ -16,7 +16,8 @@ public class BiomeGenDesertSector extends BiomeGenBaseLyoko
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
-        this.topBlock = ModBlocks.sectorBlock;
+        this.topBlock = ModBlocks.sand;
         this.fillerBlock = ModBlocks.sectorBlock;
+
     }
 }

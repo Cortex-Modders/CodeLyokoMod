@@ -15,7 +15,7 @@ public class EntityFan extends EntityLyokoRanged
     {
         super(world, entLiving, f);
     }
-    
+
     public EntityFan(World world)
     {
         super(world);

@@ -6,31 +6,27 @@
 
 package net.cortexmodders.lyoko.client.handler;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.cortexmodders.lyoko.entities.vehicle.EntityVehicle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.player.EntityPlayer;
-
 import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 
 public class KeyBindingHandler
 {
-    
+
     @SubscribeEvent
     public void keyDown(KeyInputEvent event)
     {
-        if (Keyboard.getEventKeyState())
-        {
+        if (Keyboard.getEventKeyState()) {
             EntityPlayer player = Minecraft.getMinecraft().thePlayer;
             GameSettings settings = Minecraft.getMinecraft().gameSettings;
-            if (player != null && player.isRiding() && player.ridingEntity instanceof EntityVehicle)
-            {
+            if (player != null && player.isRiding() && player.ridingEntity instanceof EntityVehicle) {
                 EntityVehicle vehicle = (EntityVehicle) player.ridingEntity;
                 if (Keyboard.getEventKey() == settings.keyBindJump.getKeyCode())
                     vehicle.motionY = 1.0D;
@@ -40,14 +36,11 @@ public class KeyBindingHandler
                     vehicle.motionY = 0.0D;
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 DataOutputStream data = new DataOutputStream(bos);
-                
-                try
-                {
+
+                try {
                     data.writeInt(vehicle.getEntityId());
                     data.writeDouble(vehicle.motionY);
-                }
-                catch (Exception e)
-                {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

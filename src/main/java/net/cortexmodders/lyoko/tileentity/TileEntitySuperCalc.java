@@ -33,16 +33,16 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
     public int flush = 20;
     private boolean isPowered;
     private float temperature;
-    
+
     // private Ticket ticket;
-    
+
     public TileEntitySuperCalc()
     {
         this.inv = new ItemStack[2];
         this.timeLeft = 100.0F;
         this.setPowered(false);
         this.temperature = 295.0F;
-        
+
         // ticket = ForgeChunkManager.requestTicket(CodeLyoko.instance,
         // worldObj, Type.NORMAL);
         // ticket.getModData().setInteger("SuperCalcX", xCoord);
@@ -52,19 +52,19 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         // zCoord));
         // System.out.println("chunk loaded");
     }
-    
+
     @Override
     public int getSizeInventory()
     {
         return this.inv.length;
     }
-    
+
     @Override
     public ItemStack getStackInSlot(int slot)
     {
         return this.inv[slot];
     }
-    
+
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack)
     {
@@ -72,7 +72,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         if (stack != null && stack.stackSize > this.getInventoryStackLimit())
             stack.stackSize = this.getInventoryStackLimit();
     }
-    
+
     @Override
     public ItemStack decrStackSize(int slot, int amt)
     {
@@ -80,30 +80,29 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         if (stack != null)
             if (stack.stackSize <= amt)
                 this.setInventorySlotContents(slot, null);
-            else
-            {
+            else {
                 stack = stack.splitStack(amt);
                 if (stack.stackSize == 0)
                     this.setInventorySlotContents(slot, null);
             }
         return stack;
     }
-    
+
     public void setPowered(boolean powered)
     {
         this.isPowered = powered;
     }
-    
+
     public boolean isPowered()
     {
         return this.isPowered;
     }
-    
+
     public float getTemperature()
     {
         return this.temperature;
     }
-    
+
     public void resetSector(World world, int x, int y, int z)
     {
         ((TileEntitySuperCalc) world.getTileEntity(x + 1, y, z + 1)).sector = "";
@@ -118,38 +117,33 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         ((TileEntitySuperCalc) world.getTileEntity(x, y + 1, z)).sector = "";
         ((TileEntitySuperCalc) world.getTileEntity(x, y + 2, z)).sector = "";
     }
-    
+
     public void syncCable(World world, int x, int y, int z)
     {
-        if (world.getBlock(x, y, z) == ModBlocks.cable && world.getTileEntity(x, y, z) != null)
-        {
+        if (world.getBlock(x, y, z) == ModBlocks.cable && world.getTileEntity(x, y, z) != null) {
             TileEntityCable cable = (TileEntityCable) world.getTileEntity(x, y, z);
-            if (cable != null && cable.getCoolDown() == 0 && cable.getSector().equals(""))
-            {
+            if (cable != null && cable.getCoolDown() == 0 && cable.getSector().equals("")) {
                 cable.resetCoolDown();
                 cable.setSector(this.sector.substring(0, this.sector.length() - 3));
                 world.notifyBlocksOfNeighborChange(x, y, z, ModBlocks.cable);
             }
         }
     }
-    
+
     public float getCoolant(World world, int x, int y, int z)
     {
         float coolant = 0.0F;
         for (int i = -1; i < 2; i++)
-            for (int j = -1; j < 2; j++)
-            {
+            for (int j = -1; j < 2; j++) {
                 Block block = world.getBlock(x + i, y, z + j);
                 if (block == Block.getBlockFromName("flowing_water") || block == Block.getBlockFromName("water"))
                     coolant += 0.2F;
                 else if (block == Block.getBlockFromName("flowing_lava") || block == Block.getBlockFromName("lava"))
                     coolant -= 0.2F;
-                else if (block != null && block instanceof BlockFluidBase)
-                {
+                else if (block != null && block instanceof BlockFluidBase) {
                     BlockFluidBase liquid = (BlockFluidBase) block;
                     Fluid fluid = liquid.getFluid();
-                    if (fluid != null)
-                    {
+                    if (fluid != null) {
                         float fluidTemp = fluid.getTemperature(world, x + i, y, z + j);
                         if (fluidTemp < this.getTemperature())
                             coolant += (this.getTemperature() - fluidTemp) / 10;
@@ -160,12 +154,11 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
             }
         return coolant;
     }
-    
+
     @Override
     public void updateEntity()
     {
-        if (!this.sector.equals("") && this.isPowered())
-        {
+        if (!this.sector.equals("") && this.isPowered()) {
             this.syncCable(this.worldObj, this.xCoord + 1, this.yCoord, this.zCoord);
             this.syncCable(this.worldObj, this.xCoord - 1, this.yCoord, this.zCoord);
             this.syncCable(this.worldObj, this.xCoord, this.yCoord + 1, this.zCoord);
@@ -173,15 +166,13 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
             this.syncCable(this.worldObj, this.xCoord, this.yCoord, this.zCoord + 1);
             this.syncCable(this.worldObj, this.xCoord, this.yCoord, this.zCoord - 1);
         }
-        
-        if (BlockSuperCalc.isMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord))
-        {
+
+        if (BlockSuperCalc.isMultiBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord)) {
             if (this.flush > 0)
                 this.flush--;
             else if (this.flush < 0)
                 this.flush = 0;
-            else if (this.flush == 0)
-            {
+            else if (this.flush == 0) {
                 this.resetSector(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
                 this.flush = 20;
                 if (this.isPowered())
@@ -197,19 +188,16 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
                 if (this.temperature < 0.0F)
                     this.temperature = 0.0F;
             }
-            
+
             for (int i = -1; i < 2; i++)
                 for (int k = -1; k < 2; k++)
                     for (int j = 0; j < 3; j++)
                         if (i != 0 || j != 0 || k != 0)
-                            if (this.worldObj.getTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k) instanceof TileEntitySuperCalc)
-                            {
+                            if (this.worldObj.getTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k) instanceof TileEntitySuperCalc) {
                                 TileEntitySuperCalc slave = (TileEntitySuperCalc) this.worldObj.getTileEntity(this.xCoord + i, this.yCoord + j, this.zCoord + k);
                                 {
-                                    if (slave != null)
-                                    {
-                                        if (!slave.sector.equals(""))
-                                        {
+                                    if (slave != null) {
+                                        if (!slave.sector.equals("")) {
                                             if (this.sector.equals(""))
                                                 this.sector = slave.sector;
                                             slave.sector = "";
@@ -217,53 +205,45 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
                                         if (slave.isPowered() != this.isPowered())
                                             slave.setPowered(this.isPowered());
                                     }
-                                    
+
                                     if (slave != null && !this.sector.equals(""))
                                         slave.sector = this.sector;
                                 }
                             }
         }
-        
+
         int slot = 0;
         int slot2 = 1;
-        
+
         ItemStack stack = this.getStackInSlot(slot);
         ItemStack stack2 = this.getStackInSlot(slot2);
-        
-        if (stack != null && stack.getItem() == ModItems.laserArrow)
-        {
+
+        if (stack != null && stack.getItem() == ModItems.laserArrow) {
             this.setInventorySlotContents(slot2, new ItemStack(ModItems.dataFragment, 64));
             this.setPowered(true);
-        }
-        else if (stack != null && stack.getItemDamage() == stack.getMaxDamage())
-        {
+        } else if (stack != null && stack.getItemDamage() == stack.getMaxDamage()) {
             if (stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.leadCell)
                 this.setInventorySlotContents(slot, new ItemStack(ModItems.depletedLeadCell));
             else if (stack.getItem() instanceof ItemLyokoFuel && stack.getItem() == ModItems.uraniumCell)
                 this.setInventorySlotContents(slot, new ItemStack(ModItems.depletedUraniumCell));
             this.setPowered(false);
-        }
-        else if (stack != null && stack.getItemDamage() < stack.getMaxDamage() && (stack2 != null && stack2.stackSize < 64 || stack2 == null))
-        {
+        } else if (stack != null && stack.getItemDamage() < stack.getMaxDamage() && (stack2 != null && stack2.stackSize < 64 || stack2 == null)) {
             this.setInventorySlotContents(slot, new ItemStack(stack.getItem(), 1, stack.getItemDamage() + 1));
             if (!this.isPowered())
                 this.setPowered(true);
-        }
-        else if (stack == null)
+        } else if (stack == null)
             this.setPowered(false);
-        
-        if (this.timeLeft <= 0.0F)
-        {
+
+        if (this.timeLeft <= 0.0F) {
             if (stack2 == null)
                 this.setInventorySlotContents(slot2, new ItemStack(ModItems.dataFragment));
             else if (stack2.stackSize < 64)
                 stack2.stackSize++;
             this.timeLeft = 100.0F;
-        }
-        else if (this.timeLeft > 0.0F && (stack2 != null && stack2.stackSize < 64 || stack2 == null) && stack != null && stack.getItem() instanceof ItemLyokoFuel)
+        } else if (this.timeLeft > 0.0F && (stack2 != null && stack2.stackSize < 64 || stack2 == null) && stack != null && stack.getItem() instanceof ItemLyokoFuel)
             this.timeLeft = this.timeLeft - 0.05F;
     }
-    
+
     @Override
     public Packet getDescriptionPacket()
     {
@@ -271,14 +251,14 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         this.writeToNBT(tag);
         return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tag);
     }
-    
+
     @Override
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         NBTTagCompound tag = pkt.func_148857_g();
         this.readFromNBT(tag);
     }
-    
+
     @Override
     public ItemStack getStackInSlotOnClosing(int slot)
     {
@@ -287,26 +267,25 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
             this.setInventorySlotContents(slot, null);
         return stack;
     }
-    
+
     @Override
     public int getInventoryStackLimit()
     {
         return 64;
     }
-    
+
     @Override
     public boolean isUseableByPlayer(EntityPlayer player)
     {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && player.getDistanceSq(this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5) < 64;
     }
-    
+
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
         NBTTagList tagList = tagCompound.getTagList("Inventory", 10);
-        for (int i = 0; i < tagList.tagCount(); i++)
-        {
+        for (int i = 0; i < tagList.tagCount(); i++) {
             NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < this.inv.length)
@@ -317,7 +296,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         this.setPowered(tagCompound.getBoolean("isPowered"));
         this.temperature = tagCompound.getFloat("temperature");
     }
-    
+
     @Override
     public void writeToNBT(NBTTagCompound tagCompound)
     {
@@ -327,11 +306,9 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         tagCompound.setBoolean("isPowered", this.isPowered());
         tagCompound.setFloat("temperature", this.temperature);
         NBTTagList itemList = new NBTTagList();
-        for (int i = 0; i < this.inv.length; i++)
-        {
+        for (int i = 0; i < this.inv.length; i++) {
             ItemStack stack = this.inv[i];
-            if (stack != null)
-            {
+            if (stack != null) {
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setByte("Slot", (byte) i);
                 stack.writeToNBT(tag);
@@ -340,7 +317,7 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
         }
         tagCompound.setTag("Inventory", itemList);
     }
-    
+
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
@@ -352,24 +329,24 @@ public class TileEntitySuperCalc extends TileEntity implements IInventory// ,
                             return true;
         return false;
     }
-    
+
     @Override
     public String getInventoryName()
     {
         return "tileentitysupercalc";
     }
-    
+
     @Override
     public boolean hasCustomInventoryName()
     {
         return true;
     }
-    
+
     @Override
     public void openInventory()
     {
     }
-    
+
     @Override
     public void closeInventory()
     {

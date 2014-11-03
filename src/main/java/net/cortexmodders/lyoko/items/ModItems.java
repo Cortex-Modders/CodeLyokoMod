@@ -6,20 +6,20 @@
 
 package net.cortexmodders.lyoko.items;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.lib.ModProperties;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ModItems
 {
     public static ToolMaterial toolLYOKO = EnumHelper.addToolMaterial("LYOKO", 3, 100, 14F, 30, 30);
-    public static ArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 200, new int[] { 5, 10, 8, 5 }, 30);
-    
+    public static ArmorMaterial armorLYOKO = EnumHelper.addArmorMaterial("LYOKO", 200, new int[]{5, 10, 8, 5}, 30);
+
     public static Item katana;
     public static Item zweihander;
     public static Item fan;
@@ -60,7 +60,8 @@ public class ModItems
     public static Item quantumMatrix;
     public static Item quantumContainmentCell;
     public static Item laserShooter;
-    
+    public static Item debugItem;
+
     public static void init()
     {
         katana = new ItemLyokoSword(toolLYOKO).setUnlocalizedName("Katana");
@@ -74,7 +75,7 @@ public class ModItems
         emptyCell = new ItemLyoko().setUnlocalizedName("Cell");
         leadCell = new ItemLyokoFuel(5000, depletedLeadCell).setUnlocalizedName("Lead210Cell");
         depletedLeadCell = new ItemLyoko().setUnlocalizedName("DepletedLead210Cell");
-        aelitaHelmet = new ArmorLyoko(armorLYOKO, 5, 0, "aelita").setUnlocalizedName("AelitaHelmet");
+        aelitaHelmet = new ArmorLyoko(armorLYOKO, 5, 0, "aelita").setUnlocalizedName("DepletedLead210Cell");
         aelitaChest = new ArmorLyoko(armorLYOKO, 5, 1, "aelita").setUnlocalizedName("AelitaChest");
         aelitaLegs = new ArmorLyoko(armorLYOKO, 5, 2, "aelita").setUnlocalizedName("AelitaPants");
         aelitaBoots = new ArmorLyoko(armorLYOKO, 5, 3, "aelita").setUnlocalizedName("AelitaBoots");
@@ -103,7 +104,10 @@ public class ModItems
         quantumMatrix = new ItemLyoko().setUnlocalizedName("QuantumMatrix");
         quantumContainmentCell = new ItemLyoko().setUnlocalizedName("QuantumContainmentCell");
         laserShooter = new ItemLaserShooter().setUnlocalizedName("LaserShooter");
-        
+
+        if (CodeLyoko.DEBUG)
+            debugItem = new ItemDebug().setUnlocalizedName("DebugItem");
+
         GameRegistry.registerItem(katana, "katana", ModProperties.MOD_ID);
         GameRegistry.registerItem(zweihander, "zweihander", ModProperties.MOD_ID);
         GameRegistry.registerItem(fan, "fan", ModProperties.MOD_ID);
@@ -144,55 +148,13 @@ public class ModItems
         GameRegistry.registerItem(quantumMatrix, "matrix_quantum", ModProperties.MOD_ID);
         GameRegistry.registerItem(quantumContainmentCell, "cell_quantum_containment", ModProperties.MOD_ID);
         GameRegistry.registerItem(laserShooter, "laser_shooter", ModProperties.MOD_ID);
-        
-        registerLanguage();
-        registerDebugTools();
+
+        if (CodeLyoko.DEBUG) {
+            GameRegistry.registerItem(debugItem, "debug_item", ModProperties.MOD_ID);
+            registerDebugTools();
+        }
     }
-    
-    private static void registerLanguage()
-    {
-        LanguageRegistry.addName(overboard, "Overboard");
-        LanguageRegistry.addName(skidbladnir, "Skidbladnir");
-        LanguageRegistry.addName(quantumMatrix, "Quantum Matrix");
-        LanguageRegistry.addName(quantumContainmentCell, "Quantum Containment Cell");
-        LanguageRegistry.addName(dataFragment, "Data Fragment");
-        LanguageRegistry.addName(uranium, "Uranium");
-        LanguageRegistry.addName(uraniumCell, "Uranium Fuel Cell");
-        LanguageRegistry.addName(depletedUraniumCell, "Depleted Uranium Fuel Cell");
-        LanguageRegistry.addName(lead, "Lead Isotope 210");
-        LanguageRegistry.addName(emptyCell, "Empty Fuel Cell");
-        LanguageRegistry.addName(leadCell, "Lead Isotope 210 Fuel Cell");
-        LanguageRegistry.addName(depletedLeadCell, "Depleted Lead Isotope 210 Fuel Cell");
-        LanguageRegistry.addName(quantumOrb, "Quantum Orb");
-        LanguageRegistry.addName(aelitaHelmet, "Aelita's Helmet");
-        LanguageRegistry.addName(aelitaChest, "Aelita's Chestplate");
-        LanguageRegistry.addName(aelitaLegs, "Aelita's Leggings");
-        LanguageRegistry.addName(aelitaBoots, "Aelita's Boots");
-        LanguageRegistry.addName(oddHelmet, "Odd's Helmet");
-        LanguageRegistry.addName(oddChest, "Odd's Chestplate");
-        LanguageRegistry.addName(oddLegs, "Odd's Leggings");
-        LanguageRegistry.addName(oddBoots, "Odd's Boots");
-        LanguageRegistry.addName(ulrichHelmet, "Ulrich's Helmet");
-        LanguageRegistry.addName(ulrichChest, "Ulrich's Chestplate");
-        LanguageRegistry.addName(ulrichLegs, "Ulrich's Leggings");
-        LanguageRegistry.addName(ulrichBoots, "Ulrich's Boots");
-        LanguageRegistry.addName(yumiHelmet, "Yumi's Helmet");
-        LanguageRegistry.addName(yumiChest, "Yumi's Chestplate");
-        LanguageRegistry.addName(yumiLegs, "Yumi's Leggings");
-        LanguageRegistry.addName(yumiBoots, "Yumi's Boots");
-        LanguageRegistry.addName(williamHelmet, "William's Helmet");
-        LanguageRegistry.addName(williamChest, "William's Chestplate");
-        LanguageRegistry.addName(williamLegs, "William's Leggings");
-        LanguageRegistry.addName(williamBoots, "William's Boots");
-        LanguageRegistry.addName(katana, "Katana");
-        LanguageRegistry.addName(zweihander, "Zweihander");
-        LanguageRegistry.addName(fan, "Fan");
-        LanguageRegistry.addName(energyField, "Energy Field");
-        LanguageRegistry.addName(glove, "Laser Arrow Glove");
-        LanguageRegistry.addName(laserArrow, "Laser Arrow");
-        LanguageRegistry.addName(laserShooter, "Laser Shooter");
-    }
-    
+
     public static void registerDebugTools()
     {
         CodeLyoko.debugTools.add(laserArrow);

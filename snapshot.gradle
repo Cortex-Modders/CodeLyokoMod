@@ -1,0 +1,22 @@
+//takes *.csv files under the gradle dir and applies them to the current project
+//for details how to generate these files, check https://gist.github.com/xaeroverse/0c3736fc14fa168a7706
+
+afterEvaluate {
+    ["forge", "fml", "liteloader"].each { fgPluginName ->
+        if (project.plugins.hasPlugin(fgPluginName)) {
+            def fgPlugin = project.plugins.findPlugin(fgPluginName)
+            def mcpSnapshotsDir = fgPlugin.delayedString(project.getProjectDir().getPath() + "/conf/").call()
+            def confDir = fgPlugin.delayedString("{USER_DEV}/conf/").call()	// UserConstants.CONF_DIR
+
+            def suffix = fgPluginName[0].toUpperCase() + fgPluginName.substring(1)
+            task("copyMcpSnapshot$suffix", type: Copy) {
+                from mcpSnapshotsDir
+                into confDir
+                include '*.csv'
+            }
+
+            tasks["copyMcpSnapshot$suffix"].mustRunAfter extractUserDev
+            tasks.genSrgs.dependsOn tasks["copyMcpSnapshot$suffix"]
+        }
+    }
+}

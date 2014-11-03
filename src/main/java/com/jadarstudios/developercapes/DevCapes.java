@@ -2,306 +2,141 @@
  * DeveloperCapes by Jadar
  * License: MIT License
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
- * version 3.3.0.0
+ * version 4.0.0.x
  */
 package com.jadarstudios.developercapes;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.ITextureObject;
-
+import com.jadarstudios.developercapes.cape.CapeConfig;
+import com.jadarstudios.developercapes.cape.CapeConfigManager;
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.io.ByteStreams;
-import com.google.gson.Gson;
-import com.google.gson.stream.MalformedJsonException;
-import com.jadarstudios.developercapes.user.DefaultUser;
-import com.jadarstudios.developercapes.user.GroupUser;
-import com.jadarstudios.developercapes.user.IUser;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
- * This library adds capes for people you specify
- * 
- * @author Jadar
+ * DeveloperCapes is a library for Minecraft. It allows developers to quickly add capes for players they specify. DevCapes uses Minecraft Forge.
+ *
+ * @author jadar
  */
-@SideOnly(Side.CLIENT)
-public class DevCapes
-{
-    
-    private static DevCapes    instance;
-    
+public class DevCapes {
+    private static DevCapes instance;
+
     public static final Logger logger = LogManager.getLogger("DevCapes");
-    
-    /**
-     * Gets the DevCapes instance
-     */
-    public static DevCapes getInstance()
-    {
-        if (instance == null)
+
+    protected DevCapes() {
+        MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
+    }
+
+    public static DevCapes getInstance() {
+        if (instance == null) {
             instance = new DevCapes();
+        }
         return instance;
     }
-    
-    // name->group
-    private HashMap<String, IUser>          users;
-    // group->cape
-    private HashMap<String, ITextureObject> groups;
-    
+
     /**
-     * Object constructor.
-     */
-    private DevCapes()
-    {
-        this.groups = new HashMap<String, ITextureObject>();
-        this.users = new HashMap<String, IUser>();
-    }
-    
-    /**
-     * @param groupName
-     *            The name of the group that you wish to add
-     * @param texture
-     *            The {@link ITextureObject} that contains the texture of the
-     *            group's cape
-     */
-    public void addGroup(final String groupName, final ITextureObject texture)
-    {
-        this.groups.put(groupName, texture);
-    }
-    
-    /**
-     * @param groupName
-     *            The name of the group that you wish to add
-     * @param capeUrl
-     *            The URL as a String of the cape that you wish to assign to the
-     *            group
-     */
-    public void addGroup(final String groupName, final String capeUrl)
-    {
-        this.addGroup(groupName, new ThreadDownloadImageData(capeUrl, null, new HDImageBuffer()));
-    }
-    
-    /**
-     * @param username
-     *            The user name of the player that you wish to add to the group
-     * @param group
-     *            The group that you wish to add the user to
-     */
-    public void addGroupUser(final String username, final String group)
-    {
-        IUser user = this.users.get(username);
-        if (user == null)
-        {
-            user = new GroupUser(username, group);
-            this.users.put(username, user);
-            
-            // make sure to call this last
-            this.loadCape(username);
-        }
-    }
-    
-    /**
-     * @param username
-     *            The name of the user that you want to give a cape to
-     * @param capeUrl
-     *            The URL as a String of the cape that you wish to assign to the
-     *            user
-     */
-    public void addSingleUser(final String username, final String capeUrl)
-    {
-        IUser user = this.users.get(username);
-        if (user == null)
-        {
-            user = new DefaultUser(username, capeUrl);
-            this.users.put(username, user);
-            this.loadCape(username);
-        }
-    }
-    
-    /**
-     * @param group
-     *            The name of the group whose cape you want to get
-     * @return The {@link ITextureObject} that contains the group's cape
-     */
-    public ITextureObject getGroupTexture(final String group)
-    {
-        return this.groups.get(group);
-    }
-    
-    /**
+     * InputStream.close() needs to be called on this after you're done!
      * 
-     * @param username
-     *            The name of the user that you wish to get
-     * @return The {@link IUser} containing the information of the specified
-     *         user
+     * @return {@link InputStream} for the {@link URL}
      */
-    public IUser getUser(final String username)
-    {
-        return this.users.get(username);
+    public InputStream getStreamForURL(URL url) {
+        InputStream is = null;
+        try {
+            URLConnection connection = url.openConnection();
+            connection.setRequestProperty("User-Agent", System.getProperty("java.version"));
+            connection.connect();
+
+            is = connection.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return is;
     }
-    
+
     /**
-     * @param username
-     *            The name of the user that you wish to get the group that they
-     *            belong in
-     * @return The group that the user is in. Null if the user is not in a group
-     */
-    public String getUserGroup(final String username)
-    {
-        return this.isPlayerInGroup(username) ? ((GroupUser) this.users.get(username)).group : null;
-    }
-    
-    /**
+     * InputStream.close() needs to be called on this after you're done!
      * 
-     * @param username
-     *            The name of the user that you wish to get the cape that is
-     *            assigned to them
-     * @return The {@link ITextureObject} that contains the user's cape
+     * @return {@link InputStream} for the {@link File}
      */
-    protected ITextureObject getUserTexture(final String username)
-    {
-        return this.getUser(username).getTexture();
-    }
-    
-    /**
-     * 
-     * @param username
-     *            The name of the user that you wish to see if they are in a
-     *            group
-     * @return true if the user is in a group
-     */
-    public boolean isPlayerInGroup(final String username)
-    {
-        return this.users.containsKey(username) && this.users.get(username) instanceof GroupUser;
-    }
-    
-    /**
-     * @param username
-     *            The name of the user whose cape you wish to load
-     * @return true of the cape was loaded properly
-     */
-    public boolean loadCape(final String username)
-    {
-        IUser user = this.users.get(username);
-        return Minecraft.getMinecraft().renderEngine.loadTexture(user.getResource(), user.getTexture());
-    }
-    
-    /**
-     * @param jsonFile
-     *            The {@link File} in Json format that you wish to add
-     * @param identifier
-     *            A unique Identifier, normally your mod id
-     */
-    public void registerConfig(final File jsonFile, final String identifier)
-    {
-        try
-        {
-            this.registerConfig(new FileInputStream(jsonFile), identifier);
-        }
-        catch (FileNotFoundException e)
-        {
+    public InputStream getStreamForFile(File file) {
+        InputStream is = null;
+        try {
+            is = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return is;
     }
-    
+
+    @Deprecated
     /**
-     * @param input
-     *            An {@link InputStream} containing the Json data that you wish
-     *            to add
-     * @param identifier
-     *            A unique Identifier, normally your mod id
-     */
-    @SuppressWarnings("unchecked")
-    public void registerConfig(final InputStream input, final String identifier)
-    {
-        try
-        {
-            String data = new String(ByteStreams.toByteArray(input));
-            input.close();
-            
-            Map<String, Object> groups = new Gson().fromJson(data, Map.class);
-            for (Entry<String, Object> e : groups.entrySet())
-            {
-                final String nodeName = e.getKey();
-                final Object obj = e.getValue();
-                if (obj instanceof Map)
-                {
-                    String groupName = nodeName + identifier;
-                    Map<String, Object> group = (Map<String, Object>) obj;
-                    
-                    String capeUrl = (String) group.get("capeUrl");
-                    
-                    this.addGroup(groupName, capeUrl);
-                    
-                    ArrayList<String> users = (ArrayList<String>) group.get("users");
-                    if (users != null)
-                        for (String username : users)
-                            this.addGroupUser(username, groupName);
-                }
-                else if (obj instanceof String)
-                    this.addSingleUser(nodeName, (String) obj);
-            }
-            
-        }
-        catch (MalformedJsonException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    /**
-     * @param jsonUrl
-     *            A {@link URL} that links to the Json file that you want to add
-     * @param identifier
-     *            A unique Identifier, normally your mod id
-     */
-    public void registerConfig(final URL jsonUrl, final String identifier)
-    {
-        try
-        {
-            this.registerConfig(jsonUrl.openStream(), identifier);
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    /**
+     * DEPRECATED: Please use {@link #registerConfig(String jsonUrl)} instead.<p>
+     * Registers a config with DevCapes.
+     *
      * @param jsonUrl
      *            The URL as a String that links to the Json file that you want
      *            to add
      * @param identifier
      *            A unique Identifier, normally your mod id
+     * @return The id of the registered config
      */
-    public void registerConfig(final String jsonUrl, final String identifier)
-    {
-        try
-        {
-            this.registerConfig(new URL(jsonUrl), identifier);
-        }
-        catch (MalformedURLException e)
-        {
+    public int registerConfig(String jsonURL, String identifier) {
+        return this.registerConfig(jsonURL);
+    }
+
+    /**
+     * Registers a config with DevCapes.
+     *
+     * @param jsonUrl The URL as a String that links to the Json file that you want
+     *                to add
+     * @return The id of the registered config
+     */
+    public int registerConfig(String jsonUrl) {
+        int id = -1;
+        try {
+            URL url = new URL(jsonUrl);
+            id = this.registerConfig(url);
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        return id;
+    }
+
+    @Deprecated
+    /**
+     * DEPRECATED: Please use {@link #registerConfig(URL url)} instead.<p>
+     * Registers a config with DevCapes.
+     *
+     * @param jsonUrl
+     *            A {@link URL} that links to the Json file that you want to add
+     * @param identifier
+     *            A unique Identifier, normally your mod id
+     * @return The id of the registered config
+     */
+    public int registerConfig(URL url, String identifier) {
+        return this.registerConfig(url);
+    }
+
+    /**
+     * Registers a config with DevCapes and returns the ID of the config.
+     *
+     * @param jsonUrl A {@link URL} that links to the Json file that you want to add
+     * @return The id of the registered config
+     */
+    public int registerConfig(URL jsonUrl) {
+        InputStream is = this.getStreamForURL(jsonUrl);
+        CapeConfig config = CapeConfigManager.getInstance().parseFromStream(is);
+
+        if (config == null) {
+            return -1;
+        }
+
+        int id = CapeConfigManager.getUniqueId();
+        CapeConfigManager.getInstance().addConfig(id, config);
+        return id;
     }
 }

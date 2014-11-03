@@ -32,12 +32,12 @@ public class ModelScanner2 extends ModelBase
     ModelRenderer topF;
     ModelRenderer topB;
     ModelRenderer topR;
-    
+
     public ModelScanner2()
     {
         this.textureWidth = 128;
         this.textureHeight = 128;
-        
+
         this.base = new ModelRenderer(this, 0, 28);
         this.base.addBox(-10F, -8F, -10F, 20, 8, 20);
         this.base.setRotationPoint(0F, 0F, 0F);
@@ -153,7 +153,7 @@ public class ModelScanner2 extends ModelBase
         this.topR.mirror = true;
         this.setRotation(this.topR, 0F, 1.570796F, 0F);
     }
-    
+
     public void render(TileEntityScanner entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -177,14 +177,14 @@ public class ModelScanner2 extends ModelBase
         this.topB.render(f5);
         this.topR.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, TileEntityScanner entity)
     {
         // Stub

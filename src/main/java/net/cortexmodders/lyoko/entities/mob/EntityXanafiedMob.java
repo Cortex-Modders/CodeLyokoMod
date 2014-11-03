@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class EntityXanafiedMob extends EntitySpecter
 {
     public EntityLivingBase infectedMob;
-    
+
     /**
      * DO NOT USE THIS CONSTRUCTOR
      */
@@ -23,7 +23,7 @@ public class EntityXanafiedMob extends EntitySpecter
     {
         super(world);
     }
-    
+
     public EntityXanafiedMob(World world, EntityLivingBase infectedMob)
     {
         this(world);
@@ -33,65 +33,60 @@ public class EntityXanafiedMob extends EntitySpecter
         else
             this.setSize(1.0F, 1.0F);
     }
-    
+
     public EntityXanafiedMob(World world, double x, double y, double z, EntityLivingBase infectedMob)
     {
         this(world, infectedMob);
         this.setPosition(x, y, z);
     }
-    
+
     @Override
     public void onUpdate()
     {
         if (this.infectedMob != null && this.infectedMob.isDead)
             this.infectedMob.isDead = false;
-        
+
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting.equals(EnumDifficulty.PEACEFUL))
             if (this.infectedMob != null)
                 this.worldObj.spawnEntityInWorld(this.infectedMob);
-        
+
         super.onUpdate();
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound tag)
     {
         super.writeEntityToNBT(tag);
         NBTTagCompound infected = new NBTTagCompound();
-        if (this.infectedMob != null)
-        {
+        if (this.infectedMob != null) {
             tag.setString("className", this.infectedMob.getClass().getName());
             this.infectedMob.writeToNBT(infected);
             this.infectedMob.writeEntityToNBT(infected);
         }
         tag.setTag("infectedMob", infected);
     }
-    
+
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)
     {
         super.readEntityFromNBT(tag);
-        try
-        {
+        try {
             this.infectedMob = (EntityLivingBase) Class.forName(tag.getString("className")).getConstructor(World.class).newInstance(this.worldObj);
             NBTTagCompound infected = tag.getCompoundTag("infectedMob");
             if (infected == null)
                 infected = new NBTTagCompound();
             this.infectedMob.readFromNBT(infected);
             this.infectedMob.readEntityFromNBT(infected);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
-    
+
     @Override
     public void onDeath(DamageSource damageSource)
     {
-        if (!this.worldObj.isRemote && this.infectedMob != null)
-        {
+        if (!this.worldObj.isRemote && this.infectedMob != null) {
             this.infectedMob.isDead = false;
             this.worldObj.spawnEntityInWorld(this.infectedMob);
         }

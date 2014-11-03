@@ -6,16 +6,16 @@
 
 package net.cortexmodders.lyoko.client.handler;
 
-import net.cortexmodders.lyoko.CodeLyoko;
-import net.cortexmodders.lyoko.client.render.TileAnimator;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
+import net.cortexmodders.lyoko.CodeLyoko;
+import net.cortexmodders.lyoko.client.render.TileAnimator;
 
 public class ClientTickHandler
 {
     /**
      * Used to advance all the animator instances once every tick.
-     * 
+     *
      * @param tickData
      */
     public void advanceAnimatorInstances(Object... tickData)
@@ -23,7 +23,7 @@ public class ClientTickHandler
         for (TileAnimator inst : CodeLyoko.animatorInstances)
             inst.animate();
     }
-    
+
     @SubscribeEvent
     public void renderTick(RenderTickEvent event)
     {

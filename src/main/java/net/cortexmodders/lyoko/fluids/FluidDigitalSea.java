@@ -6,6 +6,7 @@
 
 package net.cortexmodders.lyoko.fluids;
 
+import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidDigitalSea extends Fluid
@@ -14,8 +15,11 @@ public class FluidDigitalSea extends Fluid
     {
         super(fluidName);
         this.setLuminosity(15);
+        this.setBlock(ModBlocks.digitalSeaLiquid);
+        this.setUnlocalizedName("DigitalSeaWater");
+
     }
-    
+
     @Override
     public int getColor()
     {

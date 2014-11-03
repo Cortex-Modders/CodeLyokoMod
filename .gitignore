@@ -2,6 +2,9 @@
 target/
 build/
 bin/
+run/
+.idea/
+*.iml
 
 # Other files and folders
 .settings/

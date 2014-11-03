@@ -6,8 +6,8 @@
 
 package net.cortexmodders.lyoko.blocks;
 
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.tileentity.TileEntitySector;
 import net.minecraft.block.BlockContainer;
@@ -18,8 +18,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BlockSector extends BlockContainer
 {
@@ -28,14 +28,14 @@ public class BlockSector extends BlockContainer
         // iron
         super(Material.iron);
     }
-    
+
     @Override
     // createNewTileEntity
     public TileEntity createNewTileEntity(World world, int metadata)
     {
         return new TileEntitySector();
     }
-    
+
     @Override
     // updateTick
     public void updateTick(World world, int x, int y, int z, Random rand)
@@ -45,7 +45,7 @@ public class BlockSector extends BlockContainer
         // TODO: figure out what this does
         world.getTileEntity(x, y, z).updateEntity();
     }
-    
+
     @Override
     // onEntityWalking
     public void onEntityWalking(World world, int x, int y, int z, Entity ent)
@@ -53,7 +53,7 @@ public class BlockSector extends BlockContainer
         // updateTick
         this.updateTick(world, x, y, z, null);
     }
-    
+
     @SideOnly(Side.CLIENT)
     private IIcon virtualGrass;
     @SideOnly(Side.CLIENT)
@@ -64,7 +64,7 @@ public class BlockSector extends BlockContainer
     private IIcon virtualIce;
     @SideOnly(Side.CLIENT)
     private IIcon virtualCarthage;
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side)
@@ -81,10 +81,10 @@ public class BlockSector extends BlockContainer
             return this.virtualCarthage;
         return this.virtualGrass;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    // registerBlockIcons
+    // registerIcons
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
         this.virtualGrass = this.blockIcon = par1IconRegister.registerIcon("lyoko:lyokograss");
