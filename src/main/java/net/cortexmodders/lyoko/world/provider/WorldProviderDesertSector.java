@@ -6,20 +6,18 @@
 
 package net.cortexmodders.lyoko.world.provider;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.lib.DimensionIds;
-import net.cortexmodders.lyoko.lib.ModLogger;
 import net.cortexmodders.lyoko.world.chunk.ChunkProviderDesertSector;
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class WorldProviderDesertSector extends WorldProvider
 {
@@ -49,7 +47,8 @@ public class WorldProviderDesertSector extends WorldProvider
         return this.chunkProvider;
     }
 
-    public IChunkProvider getChunkProvider() {
+    public IChunkProvider getChunkProvider()
+    {
         return this.chunkProvider;
     }
 
@@ -59,18 +58,18 @@ public class WorldProviderDesertSector extends WorldProvider
     {
         return false;
     }
-    
+
     // Ender sky if set true
     public boolean renderEndSky()
     {
         return true;
     }
-    
+
     public float setSunSize()
     {
         return 2.0F;
     }
-    
+
     public float setMoonSize()
     {
         return 0.5F;
@@ -81,13 +80,12 @@ public class WorldProviderDesertSector extends WorldProvider
     {
         return false;
     }
-    
+
     // Star brightness 1.0F lets you see stars in day
     public float getStarBrightness(World world, float f)
     {
         return 1.0F;
     }
-
 
 
     // Fog Color
@@ -98,7 +96,8 @@ public class WorldProviderDesertSector extends WorldProvider
         return Vec3.createVectorHelper(255f / 255f, 166f / 255f, 63f / 255f);
     }
 
-    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks) {
+    public Vec3 getSkyColor(Entity cameraEntity, float partialTicks)
+    {
         return Vec3.createVectorHelper(63f / 255f, 159f / 255f, 255f / 255f);
     }
 
@@ -107,7 +106,7 @@ public class WorldProviderDesertSector extends WorldProvider
     {
         return false;
     }
-    
+
     @Override
     public String getDimensionName()
     {

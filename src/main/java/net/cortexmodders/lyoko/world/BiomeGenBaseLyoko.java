@@ -28,13 +28,13 @@ public class BiomeGenBaseLyoko extends BiomeGenBase
         this.spawnableWaterCreatureList.clear();
         this.setDisableRain();
     }
-    
+
     public BiomeGenBase setLyokoBiomeName(String par1Str)
     {
         this.biomeName = par1Str;
         return this;
     }
-    
+
     @Override
     public BiomeGenBase setColor(int par1)
     {

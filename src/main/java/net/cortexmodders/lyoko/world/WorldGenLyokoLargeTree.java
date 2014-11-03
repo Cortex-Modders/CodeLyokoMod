@@ -12,11 +12,13 @@ import java.util.Random;
 /**
  * Created by jacob on 6/6/14.
  */
-public class WorldGenLyokoLargeTree implements IWorldGenerator {
+public class WorldGenLyokoLargeTree implements IWorldGenerator
+{
 
 
     @Override
-    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+    {
         if (world.provider.dimensionId == DimensionIds.FOREST) {
             int blockX = chunkX * 16;
             int blockZ = chunkZ * 16;
@@ -31,7 +33,8 @@ public class WorldGenLyokoLargeTree implements IWorldGenerator {
 
     }
 
-    public void generateTree(Random random, int blockX, int blockY, int blockZ, World world) {
+    public void generateTree(Random random, int blockX, int blockY, int blockZ, World world)
+    {
         int height = 50 + random.nextInt(28);
 
 
@@ -43,10 +46,11 @@ public class WorldGenLyokoLargeTree implements IWorldGenerator {
             world.setBlock(blockX + xOffset, blockY + i, blockZ + zOffset, ModBlocks.log);
         }
 
-        this.makeBranches(random, blockX, blockY + height+1, blockZ, world);
+        this.makeBranches(random, blockX, blockY + height + 1, blockZ, world);
     }
 
-    public void makeBranches(Random random, int centerX, int currentY, int centerZ, World world) {
+    public void makeBranches(Random random, int centerX, int currentY, int centerZ, World world)
+    {
         for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
             if (direction == ForgeDirection.DOWN || direction == ForgeDirection.UP) {
                 continue;

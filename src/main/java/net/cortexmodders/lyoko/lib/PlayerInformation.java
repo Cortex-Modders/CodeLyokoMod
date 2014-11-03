@@ -6,28 +6,27 @@
 
 package net.cortexmodders.lyoko.lib;
 
-import cpw.mods.fml.relauncher.SideOnly;
 import net.cortexmodders.lyoko.network.PacketHandler;
 import net.cortexmodders.lyoko.network.PacketPlayerInformation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
-import cpw.mods.fml.relauncher.Side;
 
 public final class PlayerInformation implements IExtendedEntityProperties
 {
     public static final String IDENTIFIER = "lyoko_data";
-    
+
     public static PlayerInformation forPlayer(EntityPlayer player)
     {
         return (PlayerInformation) player.getExtendedProperties(IDENTIFIER);
     }
-    
-    /** The current amount of lifepoints the player has */
+
+    /**
+     * The current amount of lifepoints the player has
+     */
     protected int lifePoints;
     protected int coolDown;
     protected int scannerPosX;
@@ -35,14 +34,14 @@ public final class PlayerInformation implements IExtendedEntityProperties
     protected int scannerPosZ;
     public int scannerDim;
     public int scannerYaw;
-    
+
     private final EntityPlayer player;
-    
+
     public PlayerInformation(EntityPlayer player)
     {
         this.player = player;
     }
-    
+
     @Override
     public void init(Entity entity, World world)
     {
@@ -54,7 +53,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         this.scannerDim = 0;
         this.scannerYaw = 0;
     }
-    
+
     @Override
     public void saveNBTData(NBTTagCompound compound)
     {
@@ -68,7 +67,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         nbt.setInteger("sy", this.scannerYaw);
         compound.setTag(IDENTIFIER, nbt);
     }
-    
+
     @Override
     public void loadNBTData(NBTTagCompound playerNbt)
     {
@@ -81,29 +80,28 @@ public final class PlayerInformation implements IExtendedEntityProperties
         this.scannerDim = nbt.getInteger("sd");
         this.scannerYaw = nbt.getInteger("sy");
     }
-    
+
     public int getLifePoints()
     {
         return this.lifePoints;
     }
 
-//    @SideOnly(Side.SERVER)
+    //    @SideOnly(Side.SERVER)
     public int setLifePoints(int lifePoints)
     {
-        if (this.lifePoints != lifePoints)
-        {
+        if (this.lifePoints != lifePoints) {
             this.lifePoints = lifePoints;
             this.setDirty();
         }
         return this.lifePoints;
     }
-    
+
     public int getMaxLifePoints()
     {
         return 100;
     }
 
-//    @SideOnly(Side.SERVER)
+    //    @SideOnly(Side.SERVER)
     public int decreaseLifePoints(int decrement)
     {
         this.lifePoints -= decrement;
@@ -113,7 +111,7 @@ public final class PlayerInformation implements IExtendedEntityProperties
         return this.lifePoints;
     }
 
-//    @SideOnly(Side.SERVER)
+    //    @SideOnly(Side.SERVER)
     public int increaseLifePoints(int increment)
     {
         this.lifePoints += increment;
@@ -122,18 +120,18 @@ public final class PlayerInformation implements IExtendedEntityProperties
         this.setDirty();
         return this.lifePoints;
     }
-    
+
     public int getCoolDown()
     {
         return this.coolDown;
     }
-    
+
     public void resetCoolDown()
     {
         this.coolDown = 10;
     }
 
-//    @SideOnly(Side.SERVER)
+    //    @SideOnly(Side.SERVER)
     public void decreaseCoolDown(int amt)
     {
         this.coolDown -= amt;
@@ -143,40 +141,40 @@ public final class PlayerInformation implements IExtendedEntityProperties
             this.coolDown = 0;
         this.setDirty();
     }
-    
+
     public int getMaxCoolDown()
     {
         return 10;
     }
 
-//    @SideOnly(Side.SERVER)
+    //    @SideOnly(Side.SERVER)
     public void setScannerPosition(int x, int y, int z)
     {
         this.scannerPosX = x;
         this.scannerPosY = y;
         this.scannerPosZ = z;
     }
-    
+
     public int getScannerPosX()
     {
         return this.scannerPosX;
     }
-    
+
     public int getScannerPosY()
     {
         return this.scannerPosY;
     }
-    
+
     public int getScannerPosZ()
     {
         return this.scannerPosZ;
     }
-    
+
     public EntityPlayer getPlayer()
     {
         return this.player;
     }
-    
+
     /*
      * marks that this needs to be resend to the client
      */
@@ -184,10 +182,10 @@ public final class PlayerInformation implements IExtendedEntityProperties
     public void setDirty()
     {
         PacketHandler packetHandler = PacketHandler.INSTANCE;
-        
+
         PacketPlayerInformation message = new PacketPlayerInformation(this.lifePoints);
-        
+
 //        Packet packet = packetHandler.generatePacketFrom(message, Side.SERVER);
-        packetHandler.sendPacketToPlayer(message, (EntityPlayerMP)this.player);
+        packetHandler.sendPacketToPlayer(message, (EntityPlayerMP) this.player);
     }
 }

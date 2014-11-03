@@ -15,23 +15,19 @@ public class RenderSkid extends RenderVehicle
     {
         super(new ModelSkid(), 0.5F, "lyoko:textures/models/skid.png");
     }
-    
+
     public void renderNavSkids(EntitySkid entSkid)
     {
-        if (entSkid.getNavSkid(0))
-        {
+        if (entSkid.getNavSkid(0)) {
             // TODO render front navSkid
         }
-        if (entSkid.getNavSkid(1))
-        {
+        if (entSkid.getNavSkid(1)) {
             // TODO render back navSkid
         }
-        if (entSkid.getNavSkid(2))
-        {
+        if (entSkid.getNavSkid(2)) {
             // TODO render left navSkid
         }
-        if (entSkid.getNavSkid(3))
-        {
+        if (entSkid.getNavSkid(3)) {
             // TODO render right navSkid
         }
     }

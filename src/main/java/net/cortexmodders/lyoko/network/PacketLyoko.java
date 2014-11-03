@@ -19,13 +19,13 @@ public abstract class PacketLyoko<T extends PacketLyoko, E extends PacketLyoko> 
         data.writeInt(stringBytes.length);
         data.writeBytes(stringBytes);
     }
-    
+
     public String readString(ByteBuf data)
     {
         int length = data.readInt();
         byte[] stringBytes = new byte[length];
         data.readBytes(stringBytes);
-        
+
         return new String(stringBytes);
     }
 }

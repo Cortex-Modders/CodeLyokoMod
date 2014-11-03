@@ -25,7 +25,7 @@ public class ChunkProviderDesertSector implements IChunkProvider
     protected Random random;
 
     protected NoiseGeneratorOctaves noiseGen1;
-//    protected NoiseGeneratorOctaves noiseGen2;
+    //    protected NoiseGeneratorOctaves noiseGen2;
 //    protected NoiseGeneratorOctaves noiseGen3;
     protected NoiseGeneratorOctaves noiseGen4;
 //    public NoiseGeneratorOctaves noiseGen5;
@@ -60,10 +60,10 @@ public class ChunkProviderDesertSector implements IChunkProvider
         this.world = world;
         this.random = new Random(seed);
 
-        this.noiseGen1          = new NoiseGeneratorOctaves(this.random, 8);
+        this.noiseGen1 = new NoiseGeneratorOctaves(this.random, 8);
 //        this.noiseGen2          = new NoiseGeneratorOctaves(this.random, 16);
 //        this.noiseGen3          = new NoiseGeneratorOctaves(this.random, 8);
-        this.noiseGen4          = new NoiseGeneratorOctaves(this.random, 4);
+        this.noiseGen4 = new NoiseGeneratorOctaves(this.random, 4);
 //        this.noiseGen5          = new NoiseGeneratorOctaves(this.random, 10);
 //        this.noiseGen6          = new NoiseGeneratorOctaves(this.random, 16);
 //        this.mobSpawnerNoiseGen = new NoiseGeneratorOctaves(this.random, 8);
@@ -83,8 +83,8 @@ public class ChunkProviderDesertSector implements IChunkProvider
      * Populates chunk with ores etc etc
      *
      * @param chunkProvider
-     * @param chunkX the x position of the chunk
-     * @param chunkZ the z position of the chunk
+     * @param chunkX        the x position of the chunk
+     * @param chunkZ        the z position of the chunk
      */
     @Override
     public void populate(IChunkProvider chunkProvider, int chunkX, int chunkZ)
@@ -145,7 +145,7 @@ public class ChunkProviderDesertSector implements IChunkProvider
     @Override
     public Chunk provideChunk(int chunkX, int chunkZ)
     {
-        this.random.setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L);
+        this.random.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
         Block[] blockArray = new Block[65536];
         byte[] blockMetadata = new byte[65536];
 
@@ -170,7 +170,8 @@ public class ChunkProviderDesertSector implements IChunkProvider
         return chunk;
     }
 
-    protected double smoothNoise(double noise, double cover, double sharpness) {
+    protected double smoothNoise(double noise, double cover, double sharpness)
+    {
 //        final int cover = 24;
 //        final double sharpness = 0.99;
 //        noise += ceiling;
@@ -182,7 +183,8 @@ public class ChunkProviderDesertSector implements IChunkProvider
     }
 
 
-    protected void generateTerrain(int chunkX, int chunkZ, Block[] blockArray, byte[] blockMetadata) {
+    protected void generateTerrain(int chunkX, int chunkZ, Block[] blockArray, byte[] blockMetadata)
+    {
         // 16*16=256
         double[] heightMap = new double[256];
 //        double[] flatHeightMap = new double[256];
@@ -191,8 +193,8 @@ public class ChunkProviderDesertSector implements IChunkProvider
         int[] bottomBlock = new int[256];
 //        int[] flatBlock = new int[256];
 
-        int xPos = chunkX*16;
-        int zPos = chunkZ*16;
+        int xPos = chunkX * 16;
+        int zPos = chunkZ * 16;
         final double cover = 5;
 
         // map, chunkX offset, chunkY offset, chunkZ offset, chunkW, chunkH, chunkL, chunkScaleX, chunkScaleY, chunkScaleZ
@@ -201,14 +203,14 @@ public class ChunkProviderDesertSector implements IChunkProvider
 
         // generate final height maps
         for (int i = 0; i < 256; i++) {
-            int bottomY = (int)(56 + bottomHeightMap[i]);
+            int bottomY = (int) (56 + bottomHeightMap[i]);
             bottomBlock[i] = bottomY <= 255 ? bottomY : 255 - bottomY;
 
             double topY = heightMap[i];
             topY = topY > -4.0 ? 61 + this.smoothNoise(topY, 24, 0.99) : 0;
             topY = topY <= 255 ? topY : 255 - topY;
 
-            topBlock[i] = (int)topY;
+            topBlock[i] = (int) topY;
         }
 
         for (int x = 0; x < 16; x++) {
@@ -234,7 +236,8 @@ public class ChunkProviderDesertSector implements IChunkProvider
         }
     }
 
-    private void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blockArray, byte[] ba, BiomeGenBase[] biomesForGeneration) {
+    private void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blockArray, byte[] ba, BiomeGenBase[] biomesForGeneration)
+    {
 //        ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, chunkX, chunkZ, blockArray, biomesForGeneration);
 //        MinecraftForge.EVENT_BUS.post(event);
 //
@@ -337,8 +340,7 @@ public class ChunkProviderDesertSector implements IChunkProvider
     @Override
     public void recreateStructures(int var1, int var2)
     {
-        if (this.mapFeaturesEnabled)
-        {
+        if (this.mapFeaturesEnabled) {
             // generate features again
         }
     }
@@ -348,5 +350,7 @@ public class ChunkProviderDesertSector implements IChunkProvider
      * unimplemented.
      */
     @Override
-    public void saveExtraData() {}
+    public void saveExtraData()
+    {
+    }
 }

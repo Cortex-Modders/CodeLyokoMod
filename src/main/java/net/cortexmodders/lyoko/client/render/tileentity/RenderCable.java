@@ -6,18 +6,13 @@
 
 package net.cortexmodders.lyoko.client.render.tileentity;
 
-import net.cortexmodders.lyoko.blocks.BlockCable;
-import net.cortexmodders.lyoko.blocks.BlockHolomap;
-import net.cortexmodders.lyoko.blocks.BlockScanner;
-import net.cortexmodders.lyoko.blocks.BlockSuperCalc;
-import net.cortexmodders.lyoko.blocks.BlockSuperCalcConsole;
+import net.cortexmodders.lyoko.blocks.*;
 import net.cortexmodders.lyoko.client.model.tileentity.ModelCable;
 import net.cortexmodders.lyoko.tileentity.TileEntityCable;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-
 import org.lwjgl.opengl.GL11;
 
 public class RenderCable extends TileEntitySpecialRenderer
@@ -25,29 +20,29 @@ public class RenderCable extends TileEntitySpecialRenderer
     // Model file
     private ModelCable model;
     private static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/cable.png");
-    
+
     private boolean top = false;
     private boolean bottom = false;
     private boolean left = false;
     private boolean right = false;
     private boolean front = false;
     private boolean back = false;
-    
+
     public RenderCable()
     {
         // initialization of Model File
         this.model = new ModelCable();
     }
-    
+
     // your TileEntity
     public void renderAModelAt(TileEntityCable tile, double x, double y, double z, float delta)
     {
         if (tile.getWorldObj() != null)
             tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
-        
+
         // directory of the model's texture file
         this.bindTexture(texture);
-        
+
         GL11.glPushMatrix();
         {
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
@@ -58,7 +53,7 @@ public class RenderCable extends TileEntitySpecialRenderer
         }
         GL11.glPopMatrix();
     }
-    
+
     public void configureSides(TileEntityCable tile)
     {
         int x = tile.xCoord;
@@ -71,7 +66,7 @@ public class RenderCable extends TileEntitySpecialRenderer
         this.front = this.configSide(tile.getWorldObj(), x, y, z + 1, 5);
         this.back = this.configSide(tile.getWorldObj(), x, y, z - 1, 4);
     }
-    
+
     private boolean configSide(World world, int x, int y, int z, int side)
     {
         if (world.getBlock(x, y, z) instanceof BlockCable || world.getBlock(x, y, z) instanceof BlockSuperCalcConsole)
@@ -84,7 +79,7 @@ public class RenderCable extends TileEntitySpecialRenderer
             return true;
         return false;
     }
-    
+
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, float f)
     {

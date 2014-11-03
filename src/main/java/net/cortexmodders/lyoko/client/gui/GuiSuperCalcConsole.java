@@ -14,23 +14,19 @@ import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.network.Packet;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
 
 public class GuiSuperCalcConsole extends GuiContainer
 {
     private GuiTextField textBoxCode;
-    
+
     private String code;
-    
+
     private EntityPlayer player;
     public TileEntitySuperCalcConsole tscc;
-    
+
     public GuiSuperCalcConsole(InventoryPlayer inv, TileEntitySuperCalcConsole tileEntity)
     {
         // the container is instanciated and passed to the superclass for
@@ -42,7 +38,7 @@ public class GuiSuperCalcConsole extends GuiContainer
         this.player = inv.player;
         this.code = "";
     }
-    
+
     @Override
     public void initGui()
     {
@@ -50,58 +46,56 @@ public class GuiSuperCalcConsole extends GuiContainer
         this.textBoxCode = new GuiTextField(this.fontRendererObj, (this.width - this.xSize) / 2 + this.xSize / 2 - 40, (this.height - this.ySize) / 2 + this.ySize / 2, 80, 10);
         this.textBoxCode.setText(this.code);
     }
-    
+
     @Override
     public void updateScreen()
     {
         this.textBoxCode.updateCursorCounter();
     }
-    
+
     @Override
     public void onGuiClosed()
     {
         Keyboard.enableRepeatEvents(false);
     }
-    
+
     @Override
     protected void keyTyped(char par1, int par2)
     {
-        if (this.textBoxCode.isFocused())
-        {
+        if (this.textBoxCode.isFocused()) {
             this.textBoxCode.textboxKeyTyped(par1, par2);
             this.code = this.textBoxCode.getText();
         }
-        
-        if (par2 == 28)
-        {
+
+        if (par2 == 28) {
             PacketHandler packetHandler = PacketHandler.INSTANCE;
-            
+
             PacketConsoleCommand message = new PacketConsoleCommand(this.code + "scc", this.tscc.xCoord, this.tscc.yCoord, this.tscc.zCoord, this.tscc.getWorldObj());
             packetHandler.sendPacketToServer(message);
-            
+
             this.textBoxCode.setText("");
         }
-        
+
         if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode() && !this.textBoxCode.isFocused())
             this.mc.thePlayer.closeScreen();
-        
+
     }
-    
+
     @Override
     protected void mouseClicked(int par1, int par2, int par3)
     {
         super.mouseClicked(par1, par2, par3);
-        
+
         this.textBoxCode.mouseClicked(par1, par2, par3);
     }
-    
+
     @Override
     public void drawScreen(int par1, int par2, float par3)
     {
         super.drawScreen(par1, par2, par3);
         this.textBoxCode.drawTextBox();
     }
-    
+
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2)
     {
@@ -109,7 +103,7 @@ public class GuiSuperCalcConsole extends GuiContainer
         // the parameters for drawString are: string, x, y, color
         // fontRenderer.drawString("Code", 75, 36, 4210752);
     }
-    
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {

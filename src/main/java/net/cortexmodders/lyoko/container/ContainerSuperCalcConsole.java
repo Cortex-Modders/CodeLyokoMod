@@ -14,12 +14,12 @@ import net.minecraft.inventory.Container;
 public class ContainerSuperCalcConsole extends Container
 {
     protected TileEntitySuperCalcConsole tileEntity;
-    
+
     public ContainerSuperCalcConsole(InventoryPlayer invPlayer, TileEntitySuperCalcConsole te)
     {
         this.tileEntity = te;
     }
-    
+
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {

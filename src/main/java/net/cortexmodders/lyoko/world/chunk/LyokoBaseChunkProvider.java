@@ -67,8 +67,7 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         MinecraftForge.EVENT_BUS.post(event);
         if (event.getResult() == Event.Result.DENY) return event.noisefield;
 
-        if (noiseArray == null)
-        {
+        if (noiseArray == null) {
             noiseArray = new double[xSize * ySize * zSize];
         }
 
@@ -84,61 +83,49 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         double[] adouble1 = new double[ySize];
         int i2;
 
-        for (i2 = 0; i2 < ySize; ++i2)
-        {
-            adouble1[i2] = Math.cos((double)i2 * Math.PI * 6.0D / (double)ySize) * 2.0D;
-            double d2 = (double)i2;
+        for (i2 = 0; i2 < ySize; ++i2) {
+            adouble1[i2] = Math.cos((double) i2 * Math.PI * 6.0D / (double) ySize) * 2.0D;
+            double d2 = (double) i2;
 
-            if (i2 > ySize / 2)
-            {
-                d2 = (double)(ySize - 1 - i2);
+            if (i2 > ySize / 2) {
+                d2 = (double) (ySize - 1 - i2);
             }
 
-            if (d2 < 4.0D)
-            {
+            if (d2 < 4.0D) {
                 d2 = 4.0D - d2;
                 adouble1[i2] -= d2 * d2 * d2 * 10.0D;
             }
         }
 
-        for (i2 = 0; i2 < xSize; ++i2)
-        {
-            for (int k2 = 0; k2 < zSize; ++k2)
-            {
+        for (i2 = 0; i2 < xSize; ++i2) {
+            for (int k2 = 0; k2 < zSize; ++k2) {
                 double d3 = (this.noise4[l1] + 256.0D) / 512.0D;
 
-                if (d3 > 1.0D)
-                {
+                if (d3 > 1.0D) {
                     d3 = 1.0D;
                 }
 
                 double d4 = 0.0D;
                 double d5 = this.noise5[l1] / 8000.0D;
 
-                if (d5 < 0.0D)
-                {
+                if (d5 < 0.0D) {
                     d5 = -d5;
                 }
 
                 d5 = d5 * 3.0D - 3.0D;
 
-                if (d5 < 0.0D)
-                {
+                if (d5 < 0.0D) {
                     d5 /= 2.0D;
 
-                    if (d5 < -1.0D)
-                    {
+                    if (d5 < -1.0D) {
                         d5 = -1.0D;
                     }
 
                     d5 /= 1.4D;
                     d5 /= 2.0D;
                     d3 = 0.0D;
-                }
-                else
-                {
-                    if (d5 > 1.0D)
-                    {
+                } else {
+                    if (d5 > 1.0D) {
                         d5 = 1.0D;
                     }
 
@@ -146,50 +133,40 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
                 }
 
                 d3 += 0.5D;
-                d5 = d5 * (double)ySize / 16.0D;
+                d5 = d5 * (double) ySize / 16.0D;
                 ++l1;
 
-                for (int j2 = 0; j2 < ySize; ++j2)
-                {
+                for (int j2 = 0; j2 < ySize; ++j2) {
                     double d6 = 0.0D;
                     double d7 = adouble1[j2];
                     double d8 = this.noise2[k1] / 512.0D;
                     double d9 = this.noise3[k1] / 512.0D;
                     double d10 = (this.noise1[k1] / 10.0D + 1.0D) / 2.0D;
 
-                    if (d10 < 0.0D)
-                    {
+                    if (d10 < 0.0D) {
                         d6 = d8;
-                    }
-                    else if (d10 > 1.0D)
-                    {
+                    } else if (d10 > 1.0D) {
                         d6 = d9;
-                    }
-                    else
-                    {
+                    } else {
                         d6 = d8 + (d9 - d8) * d10;
                     }
 
                     d6 -= d7;
                     double d11;
 
-                    if (j2 > ySize - 4)
-                    {
-                        d11 = (double)((float)(j2 - (ySize - 4)) / 3.0F);
+                    if (j2 > ySize - 4) {
+                        d11 = (double) ((float) (j2 - (ySize - 4)) / 3.0F);
                         d6 = d6 * (1.0D - d11) + -10.0D * d11;
                     }
 
-                    if ((double)j2 < d4)
-                    {
-                        d11 = (d4 - (double)j2) / 4.0D;
+                    if ((double) j2 < d4) {
+                        d11 = (d4 - (double) j2) / 4.0D;
 
-                        if (d11 < 0.0D)
-                        {
+                        if (d11 < 0.0D) {
                             d11 = 0.0D;
                         }
 
-                        if (d11 > 1.0D)
-                        {
+                        if (d11 > 1.0D) {
                             d11 = 1.0D;
                         }
 
@@ -206,6 +183,7 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
     }
 
     public abstract void generateTerrain(int chunkX, int chunkZ, Block[] blocks, byte[] blockMeta);
+
     public abstract void modifyTerrain(int chunkX, int chunkZ, Block[] blocks, byte[] blockMeta);
 
 
@@ -223,7 +201,8 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         return false;
     }
 
-    public void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blocks, byte[] blockMeta, BiomeGenBase[] biomesForGeneration) {
+    public void replaceBlocksForBiome(int chunkX, int chunkZ, Block[] blocks, byte[] blockMeta, BiomeGenBase[] biomesForGeneration)
+    {
         ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, chunkX, chunkZ, blocks, blockMeta, biomesForGeneration);
         MinecraftForge.EVENT_BUS.post(event);
         if (event.getResult() == Event.Result.DENY) return;
@@ -233,10 +212,8 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         int posZ = chunkZ * 16;
         this.stoneNoise = this.noiseGen4.generateNoiseOctaves(this.stoneNoise, posX, posZ, 16, 16, d0 * 2.0D, d0 * 2.0D, 1.0D);
 
-        for (int z = 0; z < 16; ++z)
-        {
-            for (int x = 0; x < 16; ++x)
-            {
+        for (int z = 0; z < 16; ++z) {
+            for (int x = 0; x < 16; ++x) {
                 BiomeGenBase biomegenbase = biomesForGeneration[x + z * 16];
                 biomegenbase.genTerrainBlocks(this.world, this.rand, blocks, blockMeta, posX + z, posZ + x, this.stoneNoise[x + z * 16]);
             }
@@ -259,7 +236,7 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         byte[] blockMeta = new byte[65536];
 
         this.generateTerrain(chunkX, chunkZ, blocks, blockMeta);
-        this.biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, chunkX*16, chunkZ*16, 16, 16);
+        this.biomesForGeneration = this.world.getWorldChunkManager().loadBlockGeneratorData(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
 
         this.replaceBlocksForBiome(chunkX, chunkZ, blocks, blockMeta, this.biomesForGeneration);
 
@@ -267,7 +244,7 @@ public abstract class LyokoBaseChunkProvider implements IChunkProvider
         byte[] ba1 = chunk.getBiomeArray();
 
         for (int i = 0; i < ba1.length; i++) {
-            ba1[i] = (byte)this.biomesForGeneration[i].biomeID;
+            ba1[i] = (byte) this.biomesForGeneration[i].biomeID;
         }
 
         chunk.generateSkylightMap();

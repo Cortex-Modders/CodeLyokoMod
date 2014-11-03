@@ -26,7 +26,8 @@ import java.util.Random;
 /**
  * @author jadar
  */
-public class IceSectorChunkProvider implements IChunkProvider {
+public class IceSectorChunkProvider implements IChunkProvider
+{
 
     private Random random;
     private NoiseGeneratorOctaves noiseGen1;
@@ -36,7 +37,9 @@ public class IceSectorChunkProvider implements IChunkProvider {
     public NoiseGeneratorOctaves noiseGen5;
     private World world;
     private double[] densities;
-    /** The biomes that are used to generate the chunk */
+    /**
+     * The biomes that are used to generate the chunk
+     */
     private BiomeGenBase[] biomesForGeneration;
     double[] noiseData1;
     double[] noiseData2;
@@ -57,11 +60,11 @@ public class IceSectorChunkProvider implements IChunkProvider {
 
         NoiseGenerator[] noiseGens = {noiseGen1, noiseGen2, noiseGen3, noiseGen4, noiseGen5};
         noiseGens = TerrainGen.getModdedNoiseGenerators(world, this.random, noiseGens);
-        this.noiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
-        this.noiseGen2 = (NoiseGeneratorOctaves)noiseGens[1];
-        this.noiseGen3 = (NoiseGeneratorOctaves)noiseGens[2];
-        this.noiseGen4 = (NoiseGeneratorOctaves)noiseGens[3];
-        this.noiseGen5 = (NoiseGeneratorOctaves)noiseGens[4];
+        this.noiseGen1 = (NoiseGeneratorOctaves) noiseGens[0];
+        this.noiseGen2 = (NoiseGeneratorOctaves) noiseGens[1];
+        this.noiseGen3 = (NoiseGeneratorOctaves) noiseGens[2];
+        this.noiseGen4 = (NoiseGeneratorOctaves) noiseGens[3];
+        this.noiseGen5 = (NoiseGeneratorOctaves) noiseGens[4];
     }
 
     public void func_147420_a(int p_147420_1_, int p_147420_2_, Block[] p_147420_3_, BiomeGenBase[] p_147420_4_)
@@ -72,12 +75,9 @@ public class IceSectorChunkProvider implements IChunkProvider {
         int l = b0 + 1;
         this.densities = this.initializeNoiseField(this.densities, p_147420_1_ * b0, 0, p_147420_2_ * b0, k, b1, l);
 
-        for (int i1 = 0; i1 < b0; ++i1)
-        {
-            for (int j1 = 0; j1 < b0; ++j1)
-            {
-                for (int k1 = 0; k1 < 32; ++k1)
-                {
+        for (int i1 = 0; i1 < b0; ++i1) {
+            for (int j1 = 0; j1 < b0; ++j1) {
+                for (int k1 = 0; k1 < 32; ++k1) {
                     double d0 = 0.25D;
                     double d1 = this.densities[((i1 + 0) * l + j1 + 0) * b1 + k1 + 0];
                     double d2 = this.densities[((i1 + 0) * l + j1 + 1) * b1 + k1 + 0];
@@ -88,28 +88,24 @@ public class IceSectorChunkProvider implements IChunkProvider {
                     double d7 = (this.densities[((i1 + 1) * l + j1 + 0) * b1 + k1 + 1] - d3) * d0;
                     double d8 = (this.densities[((i1 + 1) * l + j1 + 1) * b1 + k1 + 1] - d4) * d0;
 
-                    for (int l1 = 0; l1 < 4; ++l1)
-                    {
+                    for (int l1 = 0; l1 < 4; ++l1) {
                         double d9 = 0.125D;
                         double d10 = d1;
                         double d11 = d2;
                         double d12 = (d3 - d1) * d9;
                         double d13 = (d4 - d2) * d9;
 
-                        for (int i2 = 0; i2 < 8; ++i2)
-                        {
+                        for (int i2 = 0; i2 < 8; ++i2) {
                             int j2 = i2 + i1 * 8 << 11 | 0 + j1 * 8 << 7 | k1 * 4 + l1;
                             short short1 = 128;
                             double d14 = 0.125D;
                             double d15 = d10;
                             double d16 = (d11 - d10) * d14;
 
-                            for (int k2 = 0; k2 < 8; ++k2)
-                            {
+                            for (int k2 = 0; k2 < 8; ++k2) {
                                 Block block = null;
 
-                                if (d15 > 0.0D)
-                                {
+                                if (d15 > 0.0D) {
                                     block = Blocks.end_stone;
                                 }
 
@@ -138,52 +134,38 @@ public class IceSectorChunkProvider implements IChunkProvider {
         MinecraftForge.EVENT_BUS.post(event);
         if (event.getResult() == Event.Result.DENY) return;
 
-        for (int k = 0; k < 16; ++k)
-        {
-            for (int l = 0; l < 16; ++l)
-            {
+        for (int k = 0; k < 16; ++k) {
+            for (int l = 0; l < 16; ++l) {
                 byte b0 = 1;
                 int i1 = -1;
                 Block block = Blocks.end_stone;
                 Block block1 = Blocks.end_stone;
 
-                for (int j1 = 127; j1 >= 0; --j1)
-                {
+                for (int j1 = 127; j1 >= 0; --j1) {
                     int k1 = (l * 16 + k) * 128 + j1;
                     Block block2 = p_147421_3_[k1];
 
-                    if (block2 != null && block2.getMaterial() != Material.air)
-                    {
-                        if (block2 == Blocks.stone)
-                        {
-                            if (i1 == -1)
-                            {
-                                if (b0 <= 0)
-                                {
+                    if (block2 != null && block2.getMaterial() != Material.air) {
+                        if (block2 == Blocks.stone) {
+                            if (i1 == -1) {
+                                if (b0 <= 0) {
                                     block = null;
                                     block1 = Blocks.end_stone;
                                 }
 
                                 i1 = b0;
 
-                                if (j1 >= 0)
-                                {
+                                if (j1 >= 0) {
                                     p_147421_3_[k1] = block;
-                                }
-                                else
-                                {
+                                } else {
                                     p_147421_3_[k1] = block1;
                                 }
-                            }
-                            else if (i1 > 0)
-                            {
+                            } else if (i1 > 0) {
                                 --i1;
                                 p_147421_3_[k1] = block1;
                             }
                         }
-                    }
-                    else
-                    {
+                    } else {
                         i1 = -1;
                     }
                 }
@@ -213,9 +195,8 @@ public class IceSectorChunkProvider implements IChunkProvider {
         Chunk chunk = new Chunk(this.world, ablock, p_73154_1_, p_73154_2_);
         byte[] abyte = chunk.getBiomeArray();
 
-        for (int k = 0; k < abyte.length; ++k)
-        {
-            abyte[k] = (byte)this.biomesForGeneration[k].biomeID;
+        for (int k = 0; k < abyte.length; ++k) {
+            abyte[k] = (byte) this.biomesForGeneration[k].biomeID;
         }
 
         chunk.generateSkylightMap();
@@ -232,8 +213,7 @@ public class IceSectorChunkProvider implements IChunkProvider {
         MinecraftForge.EVENT_BUS.post(event);
         if (event.getResult() == Event.Result.DENY) return event.noisefield;
 
-        if (p_73187_1_ == null)
-        {
+        if (p_73187_1_ == null) {
             p_73187_1_ = new double[p_73187_5_ * p_73187_6_ * p_73187_7_];
         }
 
@@ -248,64 +228,54 @@ public class IceSectorChunkProvider implements IChunkProvider {
         int k1 = 0;
         int l1 = 0;
 
-        for (int i2 = 0; i2 < p_73187_5_; ++i2)
-        {
-            for (int j2 = 0; j2 < p_73187_7_; ++j2)
-            {
+        for (int i2 = 0; i2 < p_73187_5_; ++i2) {
+            for (int j2 = 0; j2 < p_73187_7_; ++j2) {
                 double d2 = (this.noiseData4[l1] + 256.0D) / 512.0D;
 
-                if (d2 > 1.0D)
-                {
+                if (d2 > 1.0D) {
                     d2 = 1.0D;
                 }
 
                 double d3 = this.noiseData5[l1] / 8000.0D;
 
-                if (d3 < 0.0D)
-                {
+                if (d3 < 0.0D) {
                     d3 = -d3 * 0.3D;
                 }
 
                 d3 = d3 * 3.0D - 2.0D;
-                float f = (float)(i2 + p_73187_2_ - 0) / 1.0F;
-                float f1 = (float)(j2 + p_73187_4_ - 0) / 1.0F;
+                float f = (float) (i2 + p_73187_2_ - 0) / 1.0F;
+                float f1 = (float) (j2 + p_73187_4_ - 0) / 1.0F;
                 float f2 = 100.0F - MathHelper.sqrt_float(f * f + f1 * f1) * 8.0F;
 
-                if (f2 > 80.0F)
-                {
+                if (f2 > 80.0F) {
                     f2 = 80.0F;
                 }
 
-                if (f2 < -100.0F)
-                {
+                if (f2 < -100.0F) {
                     f2 = -100.0F;
                 }
 
-                if (d3 > 1.0D)
-                {
+                if (d3 > 1.0D) {
                     d3 = 1.0D;
                 }
 
                 d3 /= 8.0D;
                 d3 = 0.0D;
 
-                if (d2 < 0.0D)
-                {
+                if (d2 < 0.0D) {
                     d2 = 0.0D;
                 }
 
                 d2 += 0.5D;
-                d3 = d3 * (double)p_73187_6_ / 16.0D;
+                d3 = d3 * (double) p_73187_6_ / 16.0D;
                 ++l1;
-                double d4 = (double)p_73187_6_ / 2.0D;
+                double d4 = (double) p_73187_6_ / 2.0D;
 
-                for (int k2 = 0; k2 < p_73187_6_; ++k2)
-                {
+                for (int k2 = 0; k2 < p_73187_6_; ++k2) {
                     double d5 = 0.0D;
-                    double d6 = ((double)k2 - d4) * 8.0D / d2;
+                    double d6 = ((double) k2 - d4) * 8.0D / d2;
 
-                    if (d6 < 0.0D)
-                    {
+                    if (d6 < 0.0D) {
                         d6 *= -1.0D;
                     }
 
@@ -313,35 +283,27 @@ public class IceSectorChunkProvider implements IChunkProvider {
                     double d8 = this.noiseData3[k1] / 512.0D;
                     double d9 = (this.noiseData1[k1] / 10.0D + 1.0D) / 2.0D;
 
-                    if (d9 < 0.0D)
-                    {
+                    if (d9 < 0.0D) {
                         d5 = d7;
-                    }
-                    else if (d9 > 1.0D)
-                    {
+                    } else if (d9 > 1.0D) {
                         d5 = d8;
-                    }
-                    else
-                    {
+                    } else {
                         d5 = d7 + (d8 - d7) * d9;
                     }
 
                     d5 -= 8.0D;
-                    d5 += (double)f2;
+                    d5 += (double) f2;
                     byte b0 = 2;
                     double d10;
 
-                    if (k2 > p_73187_6_ / 2 - b0)
-                    {
-                        d10 = (double)((float)(k2 - (p_73187_6_ / 2 - b0)) / 64.0F);
+                    if (k2 > p_73187_6_ / 2 - b0) {
+                        d10 = (double) ((float) (k2 - (p_73187_6_ / 2 - b0)) / 64.0F);
 
-                        if (d10 < 0.0D)
-                        {
+                        if (d10 < 0.0D) {
                             d10 = 0.0D;
                         }
 
-                        if (d10 > 1.0D)
-                        {
+                        if (d10 > 1.0D) {
                             d10 = 1.0D;
                         }
 
@@ -350,9 +312,8 @@ public class IceSectorChunkProvider implements IChunkProvider {
 
                     b0 = 8;
 
-                    if (k2 < b0)
-                    {
-                        d10 = (double)((float)(b0 - k2) / ((float)b0 - 1.0F));
+                    if (k2 < b0) {
+                        d10 = (double) ((float) (b0 - k2) / ((float) b0 - 1.0F));
                         d5 = d5 * (1.0D - d10) + -30.0D * d10;
                     }
 
@@ -405,7 +366,9 @@ public class IceSectorChunkProvider implements IChunkProvider {
      * Save extra data not associated with any Chunk.  Not saved during autosave, only during world unload.  Currently
      * unimplemented.
      */
-    public void saveExtraData() {}
+    public void saveExtraData()
+    {
+    }
 
     /**
      * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
@@ -450,5 +413,7 @@ public class IceSectorChunkProvider implements IChunkProvider {
         return 0;
     }
 
-    public void recreateStructures(int p_82695_1_, int p_82695_2_) {}
+    public void recreateStructures(int p_82695_1_, int p_82695_2_)
+    {
+    }
 }

@@ -6,14 +6,12 @@
 
 package net.cortexmodders.lyoko.client.render;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.cortexmodders.lyoko.tileentity.TileEntityHolomap;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 /**
@@ -21,21 +19,21 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class RenderHolomap
 {
-    
+
     private float centerRotation = 0;
     public static final ResourceLocation texture = new ResourceLocation("lyoko", "textures/models/lyokocore.png");
-    
+
     public RenderHolomap()
     {
-        
+
     }
-    
+
     public void render(TileEntityHolomap entity, double x, double y, double z, float partialTick)
     {
         this.renderSectors(entity, x, y, z, partialTick);
         this.centerRotation += 0.8 * partialTick;
     }
-    
+
     private void renderSectors(TileEntityHolomap entity, double x, double y, double z, float partialTick)
     {
         GL11.glPushMatrix();
@@ -44,7 +42,7 @@ public class RenderHolomap
             GL11.glTranslatef(-1.5F, -2.5F, -1.5F); // temporary
             AxisAlignedBB box = AxisAlignedBB.getBoundingBox(0, 0, 0, 3, 3, 3);
             RenderUtil.renderWireframe(box);
-            
+
             GL11.glPushMatrix();
             {
                 RenderUtil.bindTexture(texture);
@@ -55,7 +53,7 @@ public class RenderHolomap
                 // RenderUtil.renderWireframe(box);
             }
             GL11.glPopMatrix();
-            
+
             // these are the sectors
             // left
             GL11.glPushMatrix();
@@ -118,7 +116,7 @@ public class RenderHolomap
             }
             GL11.glPopMatrix();
             // end sectors
-            
+
             // map marker guide thingy.
             GL11.glPushMatrix();
             {
@@ -129,7 +127,7 @@ public class RenderHolomap
                 float f = 1.40F;
                 float f1 = 1.60F;
                 float f2 = 0.027F;
-                
+
                 for (float i = 0; i <= 3; i += 0.15F)
                     RenderUtil.drawRect(f, i, f1, i + f2, 0, 0);
                 for (float i = 0; i <= 3; i += 0.15F)
@@ -157,5 +155,5 @@ public class RenderHolomap
         }
         GL11.glPopMatrix();
     }
-    
+
 }

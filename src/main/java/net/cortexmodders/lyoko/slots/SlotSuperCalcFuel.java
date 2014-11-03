@@ -15,15 +15,17 @@ import net.minecraft.item.ItemStack;
 
 public class SlotSuperCalcFuel extends Slot
 {
-    /** The container this slot belongs to. */
+    /**
+     * The container this slot belongs to.
+     */
     final ContainerSuperCalc supercalc;
-    
+
     public SlotSuperCalcFuel(ContainerSuperCalc par1ContainerSuperCalc, IInventory par2IInventory, int par3, int par4, int par5)
     {
         super(par2IInventory, par3, par4, par5);
         this.supercalc = par1ContainerSuperCalc;
     }
-    
+
     /**
      * Check if the stack is a valid item for this slot. Always true beside for
      * the armor slots.
@@ -35,7 +37,7 @@ public class SlotSuperCalcFuel extends Slot
             return true;
         return false;
     }
-    
+
     /**
      * Returns the maximum stack size for a given slot (usually the same as
      * getInventoryStackLimit(), but 1 in the case

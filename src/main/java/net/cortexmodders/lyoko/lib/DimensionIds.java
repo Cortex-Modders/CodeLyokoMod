@@ -6,13 +6,12 @@
 
 package net.cortexmodders.lyoko.lib;
 
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.config.Configuration;
 import net.cortexmodders.lyoko.lib.ModProperties.ConfigCategories;
+import net.minecraftforge.common.config.Configuration;
 
 public class DimensionIds
 {
-//    ICE,
+    //    ICE,
 //    MOUNTAIN,
 //    FOREST,
 //    DESERT,
@@ -29,7 +28,7 @@ public class DimensionIds
     public static int CARTHAGE_DEFAULT = 8;
     public static int DIGITALSEA_DEFAULT = 9;
     public static int CORTEX_DEFAULT = 10;
-    
+
     /* IDs loaded from config. */
     public static int ICE;
     public static int MOUNTAIN;
@@ -39,7 +38,8 @@ public class DimensionIds
     public static int DIGITALSEA;
     public static int CORTEX;
 
-    public static void registerIds(Configuration config) {
+    public static void registerIds(Configuration config)
+    {
         ICE = config.get(ConfigCategories.DIMENSIONS.name(), "polarSectorID", DimensionIds.ICE_DEFAULT).getInt();
         MOUNTAIN = config.get(ConfigCategories.DIMENSIONS.name(), "mountainSectorID", DimensionIds.MOUNTAIN_DEFAULT).getInt();
         FOREST = config.get(ConfigCategories.DIMENSIONS.name(), "forestSectorID", DimensionIds.FOREST_DEFAULT).getInt();
@@ -49,7 +49,8 @@ public class DimensionIds
         CORTEX = config.get(ConfigCategories.DIMENSIONS.name(), "cortexSectorID", DimensionIds.CORTEX_DEFAULT).getInt();
     }
 
-    public static String dimensionName(int id) {
+    public static String dimensionName(int id)
+    {
         String name = null;
         if (id == ICE) {
             name = "ice";
@@ -70,13 +71,14 @@ public class DimensionIds
         return name;
     }
 
-    public static int dimensionIdForName(String name) {
+    public static int dimensionIdForName(String name)
+    {
         int id = -2;
         if (name.equalsIgnoreCase("ice")) {
             id = ICE;
         } else if (name.equalsIgnoreCase("mountain")) {
             id = MOUNTAIN;
-        } else if (name.equalsIgnoreCase( "forest")) {
+        } else if (name.equalsIgnoreCase("forest")) {
             id = FOREST;
         } else if (name.equalsIgnoreCase("desert")) {
             id = DESERT;

@@ -6,8 +6,8 @@
 
 package net.cortexmodders.lyoko.blocks;
 
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.cortexmodders.lyoko.CodeLyoko;
 import net.cortexmodders.lyoko.entities.mob.EntityLyoko;
 import net.cortexmodders.lyoko.entities.vehicle.EntityVehicle;
@@ -24,8 +24,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class BlockMarabounta extends BlockContainer
 {
@@ -37,10 +37,10 @@ public class BlockMarabounta extends BlockContainer
         // setTickRandomly
         this.setTickRandomly(true);
     }
-    
+
     private IIcon normalTexture;
     private IIcon evilTexture;
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     // registerIcons
@@ -49,14 +49,13 @@ public class BlockMarabounta extends BlockContainer
         this.normalTexture = par1IconRegister.registerIcon("lyoko:marabounta" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
         this.evilTexture = par1IconRegister.registerIcon("lyoko:evilmarabounta" + (!CodeLyoko.useHDTextures ? "_16_16" : ""));
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     // getIcon
     public IIcon getIcon(int side, int meta)
     {
-        switch (meta)
-        {
+        switch (meta) {
             case 0:
                 return this.normalTexture;
             case 1:
@@ -65,42 +64,42 @@ public class BlockMarabounta extends BlockContainer
                 return this.normalTexture;
         }
     }
-    
+
     // @Override
     // public int idDropped(int par1, Random par1Random, int par2)
     // {
     // return 0;
     // }
-    
+
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z)
     {
         TileEntityMarabounta tem = (TileEntityMarabounta) world.getTileEntity(x, y, z);
-        
+
         if (tem.consumedBlock == Blocks.air)
             return world.setBlockToAir(x, y, z);
-        
+
         return world.setBlock(x, y, z, tem.consumedBlock, 0, 2);
     }
-    
+
     public void chainDestroyMarabounta(World world, int x, int y, int z)
     {
-    	world.setBlock(x, y, z, Blocks.air, 0, 2);
-    	
-    	if(world.getBlock(x + 1, y, z) == ModBlocks.marabounta)
-    		((BlockMarabounta) world.getBlock(x + 1, y, z)).chainDestroyMarabounta(world, x + 1, y, z);
-    	if(world.getBlock(x - 1, y, z) == ModBlocks.marabounta)
-    		((BlockMarabounta) world.getBlock(x - 1, y, z)).chainDestroyMarabounta(world, x - 1, y, z);
-    	if(world.getBlock(x, y + 1, z) == ModBlocks.marabounta)
-    		((BlockMarabounta) world.getBlock(x, y + 1, z)).chainDestroyMarabounta(world, x, y + 1, z);
-    	if(world.getBlock(x, y - 1, z) == ModBlocks.marabounta)
-    		((BlockMarabounta) world.getBlock(x, y - 1, z)).chainDestroyMarabounta(world, x, y - 1, z);
-    	if(world.getBlock(x, y, z + 1) == ModBlocks.marabounta)
-    		((BlockMarabounta) world.getBlock(x, y, z + 1)).chainDestroyMarabounta(world, x, y, z + 1);
-    	if(world.getBlock(x, y, z - 1) == ModBlocks.marabounta)
-    		((BlockMarabounta) world.getBlock(x, y, z - 1)).chainDestroyMarabounta(world, x, y, z - 1);
+        world.setBlock(x, y, z, Blocks.air, 0, 2);
+
+        if (world.getBlock(x + 1, y, z) == ModBlocks.marabounta)
+            ((BlockMarabounta) world.getBlock(x + 1, y, z)).chainDestroyMarabounta(world, x + 1, y, z);
+        if (world.getBlock(x - 1, y, z) == ModBlocks.marabounta)
+            ((BlockMarabounta) world.getBlock(x - 1, y, z)).chainDestroyMarabounta(world, x - 1, y, z);
+        if (world.getBlock(x, y + 1, z) == ModBlocks.marabounta)
+            ((BlockMarabounta) world.getBlock(x, y + 1, z)).chainDestroyMarabounta(world, x, y + 1, z);
+        if (world.getBlock(x, y - 1, z) == ModBlocks.marabounta)
+            ((BlockMarabounta) world.getBlock(x, y - 1, z)).chainDestroyMarabounta(world, x, y - 1, z);
+        if (world.getBlock(x, y, z + 1) == ModBlocks.marabounta)
+            ((BlockMarabounta) world.getBlock(x, y, z + 1)).chainDestroyMarabounta(world, x, y, z + 1);
+        if (world.getBlock(x, y, z - 1) == ModBlocks.marabounta)
+            ((BlockMarabounta) world.getBlock(x, y, z - 1)).chainDestroyMarabounta(world, x, y, z - 1);
     }
-    
+
     @Override
     // updateTick
     public void updateTick(World world, int x, int y, int z, Random rand)
@@ -112,24 +111,23 @@ public class BlockMarabounta extends BlockContainer
         this.convertLyokoBlocks(world, x, y, z + 1);
         this.convertLyokoBlocks(world, x, y, z - 1);
     }
-    
+
     public void convertLyokoBlocks(World world, int x, int y, int z)
     {
         TileEntityMarabounta tem;
-        
+
         Block block = world.getBlock(x, y, z);
-        
+
         // getBlock
-        
-        if (block instanceof ILyokoTerrain)
-        {
+
+        if (block instanceof ILyokoTerrain) {
             // setBlock
             world.setBlock(x, y, z, ModBlocks.marabounta, 0, 2);
             tem = (TileEntityMarabounta) world.getTileEntity(x, y, z);
             tem.consumedBlock = block;
         }
     }
-    
+
     @Override
     // getCollisionBoundingBoxFromPool
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
@@ -137,7 +135,7 @@ public class BlockMarabounta extends BlockContainer
         float f = 0.125F;
         return AxisAlignedBB.getBoundingBox(par2 - 1 + f, par3 - 1 + f, par4 - 1 + f, par2 + 1 - f, par3 + 1 - f, par4 + 1 - f);
     }
-    
+
     @Override
     // onEntityCollidedWithBlock
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity ent)
@@ -150,7 +148,7 @@ public class BlockMarabounta extends BlockContainer
             if (!((EntityPlayer) ent).capabilities.isCreativeMode)
                 ent.attackEntityFrom(LyokoDamageSource.marabounta, 9);
     }
-    
+
     @Override
     // onBlockClicked
     public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
@@ -161,7 +159,7 @@ public class BlockMarabounta extends BlockContainer
         // setTileEntity
         world.setTileEntity(x, y, z, temp);
     }
-    
+
     @Override
     // createNewTileEntity
     public TileEntity createNewTileEntity(World world, int metadata)

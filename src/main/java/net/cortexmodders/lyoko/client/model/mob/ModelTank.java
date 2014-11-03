@@ -20,12 +20,12 @@ public class ModelTank extends ModelBase
     ModelRenderer right;
     ModelRenderer front;
     ModelRenderer back;
-    
+
     public ModelTank()
     {
         this.textureWidth = 128;
         this.textureHeight = 64;
-        
+
         this.core = new ModelRenderer(this, 0, 0);
         this.core.addBox(-8F, -8F, -8F, 16, 16, 16);
         this.core.setRotationPoint(0F, 14F, 0F);
@@ -69,7 +69,7 @@ public class ModelTank extends ModelBase
         this.back.mirror = true;
         this.setRotation(this.back, 0F, 0F, 0F);
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -83,18 +83,18 @@ public class ModelTank extends ModelBase
         this.front.render(f5);
         this.back.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity ent)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, ent);
     }
-    
+
 }

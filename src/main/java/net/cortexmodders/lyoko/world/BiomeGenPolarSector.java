@@ -20,5 +20,5 @@ public class BiomeGenPolarSector extends BiomeGenBaseLyoko
         this.topBlock = Blocks.iron_block;
         this.fillerBlock = ModBlocks.sectorBlock;
     }
-    
+
 }

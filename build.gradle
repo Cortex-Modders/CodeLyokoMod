@@ -20,10 +20,11 @@ buildscript {
 
 // apply plugin to this project
 apply plugin: 'forge'
+apply from: 'snapshot.gradle'
 
 // minecraft properteis
 minecraft {
-	version = "1.7.10-10.13.0.1157"
+	version = "1.7.10-10.13.2.1232"
 }
 
 //buildNumber is deprecated

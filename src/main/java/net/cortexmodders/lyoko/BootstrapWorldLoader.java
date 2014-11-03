@@ -1,7 +1,6 @@
 package net.cortexmodders.lyoko;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.Minecraft;
@@ -14,23 +13,25 @@ import net.minecraft.world.storage.WorldInfo;
 import net.minecraftforge.client.event.GuiScreenEvent;
 
 /**
- *
  * This class will automatically load a world upon the first display of the Minecraft main menu. <br />
  * Initialize an instance of this class, then register it with {@link net.minecraftforge.common.MinecraftForge MinecraftForge.EVENT_BUS} <br />
  *
  * @author jadar
  */
-public class BootstrapWorldLoader {
+public class BootstrapWorldLoader
+{
 
     public boolean eventTriggered = false;
     public final String worldName;
 
-    public BootstrapWorldLoader(String worldName) {
+    public BootstrapWorldLoader(String worldName)
+    {
         this.worldName = worldName;
     }
 
     @SubscribeEvent
-    public void guiOpened(GuiScreenEvent.InitGuiEvent.Post event) {
+    public void guiOpened(GuiScreenEvent.InitGuiEvent.Post event)
+    {
         if (!(event.gui instanceof GuiMainMenu)) {
             return;
         }

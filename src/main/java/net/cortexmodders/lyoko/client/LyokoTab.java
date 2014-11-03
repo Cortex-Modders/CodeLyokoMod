@@ -17,13 +17,13 @@ public class LyokoTab extends CreativeTabs
     {
         super(par2Str);
     }
-    
+
     @Override
     public Item getTabIconItem()
     {
         return new ItemStack(ModBlocks.log).getItem();
     }
-    
+
     @Override
     public String getTranslatedTabLabel()
     {

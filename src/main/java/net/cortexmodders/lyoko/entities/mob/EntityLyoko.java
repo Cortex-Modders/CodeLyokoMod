@@ -12,13 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIArrowAttack;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,10 +22,12 @@ import net.minecraft.world.World;
 public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
 {
     protected final int MAX_ATTACK_STRENGTH;// = 2;
-    /** How much damage this mob's attacks deal */
+    /**
+     * How much damage this mob's attacks deal
+     */
     protected int attackStrength;// = MAX_ATTACK_STRENGTH;
     protected double mobSpeed = 0.5F;
-    
+
     private EntityLyoko(World par1World, int attackStrength, boolean specialAttack, double speed)
     {
         super(par1World);
@@ -48,17 +44,17 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
     }
-    
+
     public EntityLyoko(World world, int attackStrength, double speed)
     {
         this(world, attackStrength, true, speed);
     }
-    
+
     public EntityLyoko(World world, double speed)
     {
         this(world, 2, false, speed);
     }
-    
+
     @Override
     protected void applyEntityAttributes()
     {
@@ -73,7 +69,7 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
         // Attack Damage - default 2.0D - min 0.0D - max Doubt.MAX_VALUE
         this.getAttributeMap().registerAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(this.attackStrength);
     }
-    
+
     /**
      * Returns true if the newer Entity AI code should be run
      */
@@ -82,19 +78,19 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
     {
         return true;
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
     }
-    
+
     @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
     }
-    
+
     /**
      * Called to update the entity's position/logic.
      */
@@ -102,23 +98,22 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         if (CodeLyoko.entityInLyoko(this))
             this.attackStrength = 0;
         else
             this.attackStrength = this.MAX_ATTACK_STRENGTH;
-        
+
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting.equals(EnumDifficulty.PEACEFUL))
             this.setDead();
-        
-        if (this.getHealth() <= 0)
-        {
+
+        if (this.getHealth() <= 0) {
             this.setDead();
             if (this.worldObj.getGameRules().getGameRuleBooleanValue("mobGriefing"))
                 this.worldObj.createExplosion((Entity) null, this.posX, this.posY, this.posZ, 2.0F, true);
         }
     }
-    
+
     /**
      * Checks to make sure the light is not too bright where the mob is spawning
      */
@@ -127,7 +122,7 @@ public abstract class EntityLyoko extends EntityMob implements IRangedAttackMob
     {
         return true;
     }
-    
+
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase entitylivingbase, float f)
     {

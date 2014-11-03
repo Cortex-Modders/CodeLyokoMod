@@ -6,7 +6,6 @@
 
 package net.cortexmodders.lyoko.network;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.cortexmodders.lyoko.lib.PlayerInformation;
@@ -16,18 +15,21 @@ public class PacketPlayerInformation extends PacketLyoko<PacketPlayerInformation
 {
     public int lifePoints = 0;
 
-    public PacketPlayerInformation() {}
+    public PacketPlayerInformation()
+    {
+    }
+
     public PacketPlayerInformation(int lifePoints)
     {
         this.lifePoints = lifePoints;
     }
-    
+
     @Override
     public void toBytes(ByteBuf data)
     {
         data.writeInt(this.lifePoints);
     }
-    
+
     @Override
     public void fromBytes(ByteBuf data)
     {
@@ -43,13 +45,13 @@ public class PacketPlayerInformation extends PacketLyoko<PacketPlayerInformation
      * @return an optional return message
      */
     @Override
-    public PacketLyoko onMessage(PacketPlayerInformation packet, MessageContext ctx) {
+    public PacketLyoko onMessage(PacketPlayerInformation packet, MessageContext ctx)
+    {
         int lifepoints = packet.lifePoints;
 
         EntityPlayer player = ctx.getServerHandler().playerEntity;
 
-        if (player != null)
-        {
+        if (player != null) {
             PlayerInformation pi = PlayerInformation.forPlayer(player);
             pi.setLifePoints(lifepoints);
         }

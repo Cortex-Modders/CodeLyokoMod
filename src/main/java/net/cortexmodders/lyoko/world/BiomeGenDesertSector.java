@@ -10,7 +10,8 @@ import net.cortexmodders.lyoko.blocks.ModBlocks;
 
 public class BiomeGenDesertSector extends BiomeGenBaseLyoko
 {
-    public BiomeGenDesertSector(int par1) {
+    public BiomeGenDesertSector(int par1)
+    {
         super(par1);
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();

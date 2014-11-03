@@ -28,12 +28,12 @@ public class ModelBlok extends ModelBase
     ModelRenderer sub_leg_4;
     ModelRenderer sub_leg_5;
     ModelRenderer sub_leg_6;
-    
+
     public ModelBlok()
     {
         this.textureWidth = 69;
         this.textureHeight = 30;
-        
+
         this.Body = new ModelRenderer(this, 9, 0);
         this.Body.addBox(-7.5F, 0F, -7.5F, 15, 15, 15);
         this.Body.setRotationPoint(0F, 1F, 0F);
@@ -119,7 +119,7 @@ public class ModelBlok extends ModelBase
         this.sub_leg_6.mirror = true;
         this.setRotation(this.sub_leg_6, 0F, 0F, 0F);
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
@@ -140,30 +140,30 @@ public class ModelBlok extends ModelBase
         this.sub_leg_5.render(f5);
         this.sub_leg_6.render(f5);
     }
-    
+
     private void setRotation(ModelRenderer model, float x, float y, float z)
     {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
     {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        
+
         this.Body.rotateAngleY = f4 / (180F / (float) Math.PI);
         this.leg_1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.sub_leg_1.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.leg_2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 2.0F * f1 * 0.5F;
         this.sub_leg_2.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 2.0F * f1 * 0.5F;
-        
+
         this.leg_3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.sub_leg_3.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.leg_4.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 2.0F * f1 * 0.5F;
         this.sub_leg_4.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 2.0F * f1 * 0.5F;
-        
+
         this.leg_5.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.sub_leg_5.rotateAngleX = MathHelper.cos(f * 0.6662F) * 2.0F * f1 * 0.5F;
         this.leg_6.rotateAngleX = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 2.0F * f1 * 0.5F;

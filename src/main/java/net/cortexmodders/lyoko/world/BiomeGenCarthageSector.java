@@ -19,7 +19,7 @@ public class BiomeGenCarthageSector extends BiomeGenBaseLyoko
         this.topBlock = ModBlocks.sectorBlock;
         this.fillerBlock = ModBlocks.sectorBlock;
         this.setBiomeName("Carthage");
-        
+
         this.waterColorMultiplier = 0xE42D14;
     }
 }

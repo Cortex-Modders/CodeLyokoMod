@@ -6,10 +6,16 @@
 
 package net.cortexmodders.lyoko;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.cortexmodders.lyoko.blocks.ModBlocks;
 import net.cortexmodders.lyoko.client.LyokoTab;
 import net.cortexmodders.lyoko.client.gui.GuiHandler;
@@ -32,30 +38,24 @@ import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraftforge.common.config.Configuration;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 public class CodeLyoko
 {
-    private static String[] developers = { "986523714", "MoonMagick", "Wolfspirit1st", "JadarMC" };
+    private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
     public static List<Item> debugTools = new ArrayList<Item>();
-    
+
     public static HashSet<TileAnimator> animatorInstances = new HashSet<TileAnimator>();
-    
+
     public static boolean enableAdminPowers;
     public static boolean useHDTextures;
-    
+
     public static CreativeTabs LyokoTabs = new LyokoTab("LyokoTabs");
-    
+
     public static BiomeGenBaseLyoko lyokomountain;
     public static BiomeGenBaseLyoko lyokoforest;
     public static BiomeGenBaseLyoko lyokodesert;
@@ -69,13 +69,13 @@ public class CodeLyoko
      */
     @SidedProxy(clientSide = ModProperties.CLIENT_PROXY, serverSide = ModProperties.COMMON_PROXY)
     public static CommonProxy proxy;
-    
+
     /**
      * The instance of the mod.
      */
     @Instance
     public static CodeLyoko instance;
-    
+
     private ModLogger modLogger;
     protected Configuration config;
 
@@ -89,13 +89,13 @@ public class CodeLyoko
 
         enableAdminPowers = config.get(ModProperties.ConfigCategories.OTHER.name(), "enableAdminPowers", false).getBoolean(false);
         useHDTextures = config.get(ModProperties.ConfigCategories.OTHER.name(), "useHDTextures", false).getBoolean(false);
-        
+
         if (config.hasChanged())
             config.save();
-        
+
         this.modLogger = new ModLogger(event.getModLog());
     }
-    
+
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
@@ -109,11 +109,11 @@ public class CodeLyoko
         lyokodesert = (BiomeGenBaseLyoko) new BiomeGenDesertSector(11).setColor(8421631).setBiomeName("Desert Sector");
         lyokopolar = (BiomeGenBaseLyoko) new BiomeGenPolarSector(12).setColor(8421631).setBiomeName("Polar Sector");
         lyokocarthage = (BiomeGenBaseLyoko) new BiomeGenCarthageSector(13).setColor(8421631).setBiomeName("Carthage Sector");
-        
+
         Recipes.registerBlockRecipes();
         Recipes.registerSmelting();
         Recipes.registerItemRecipes();
-        
+
         proxy.registerEntities();
         proxy.registerRenderInformation();
         proxy.registerKeyBindingHandler();
@@ -126,7 +126,7 @@ public class CodeLyoko
 
         PacketHandler.INSTANCE.initPackets();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-        
+
         GameRegistry.registerWorldGenerator(new WorldGenLyokoOre(), 0);
         GameRegistry.registerWorldGenerator(new WorldGenTower(), 0);
 
@@ -136,37 +136,37 @@ public class CodeLyoko
         // MinecraftForge.setBlockHarvestLevel(ModBlocks.LeadOre, "pickaxe", 2);
         // MinecraftForge.setBlockHarvestLevel(ModBlocks.UraniumOre, "pickaxe", 2);
     }
-    
+
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.registerClientEventHandlers();
     }
-    
+
     @EventHandler
     public void serverInit(FMLServerStartingEvent event)
     {
         event.registerServerCommand(new CommandDevirtualize());
         event.registerServerCommand(new CommandDeleteDimension());
     }
-    
+
     public ModLogger getLogger()
     {
         return this.modLogger;
     }
-    
+
     public static boolean entityInLyoko(Entity ent)
     {
         if (ent != null)
             return ent.dimension == DimensionIds.CARTHAGE || ent.dimension == DimensionIds.ICE || ent.dimension == DimensionIds.MOUNTAIN || ent.dimension == DimensionIds.FOREST || ent.dimension == DimensionIds.DESERT || ent.dimension == DimensionIds.CORTEX || ent.dimension == DimensionIds.DIGITALSEA;
         return false;
     }
-    
+
     public static String[] getDevelopers()
     {
         return developers;
     }
-    
+
     public static DamageSource causeLyokoRangedDamage(EntityLyokoRanged par0EntityLaserArrow, Entity par1Entity)
     {
         return new EntityDamageSourceIndirect("arrow", par0EntityLaserArrow, par1Entity).setProjectile();

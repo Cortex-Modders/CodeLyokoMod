@@ -14,12 +14,12 @@ import net.minecraft.inventory.Container;
 public class ContainerTowerConsole extends Container
 {
     protected TileEntityTowerConsole tileEntity;
-    
+
     public ContainerTowerConsole(InventoryPlayer invPlayer, TileEntityTowerConsole te)
     {
         this.tileEntity = te;
     }
-    
+
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
