@@ -46,7 +46,7 @@ import java.util.List;
 @Mod(modid = ModProperties.MOD_ID, name = ModProperties.MOD_NAME, version = ModProperties.MOD_VERSION, useMetadata = true)
 public class CodeLyoko
 {
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = true;
 
     private static String[] developers = {"986523714", "MoonMagick", "Wolfspirit1st", "JadarMC"};
     public static List<Item> debugTools = new ArrayList<Item>();
