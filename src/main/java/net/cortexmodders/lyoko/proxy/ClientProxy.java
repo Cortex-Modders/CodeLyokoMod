@@ -93,7 +93,10 @@ public class ClientProxy extends CommonProxy
     @Override
     public void registerCapes()
     {
-        DevCapes.getInstance().registerConfig(ModProperties.CAPE_CONFIG_URL);
+        int id = DevCapes.getInstance().registerConfig(ModProperties.CAPE_CONFIG_URL);
+        if (id > 0) {
+            CodeLyoko.instance.getLogger().info("Capes Registered!");
+        }
     }
 
     @Override

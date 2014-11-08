@@ -136,7 +136,13 @@ public class DevCapes {
         }
 
         int id = CapeConfigManager.getUniqueId();
-        CapeConfigManager.getInstance().addConfig(id, config);
+        try {
+            CapeConfigManager.getInstance().addConfig(id, config);
+        } catch (CapeConfigManager.InvalidCapeConfigIdException e) {
+            e.printStackTrace();
+            return -1;
+        }
+
         return id;
     }
 }

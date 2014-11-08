@@ -16,6 +16,7 @@ import com.jadarstudios.developercapes.user.Group;
 import com.jadarstudios.developercapes.user.GroupManager;
 import com.jadarstudios.developercapes.user.User;
 import com.jadarstudios.developercapes.user.UserManager;
+import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import java.io.*;
 import java.util.BitSet;
@@ -48,7 +49,7 @@ public class CapeConfigManager {
         return instance;
     }
 
-    public void addConfig(int id, CapeConfig config) {
+    public void addConfig(int id, CapeConfig config) throws InvalidCapeConfigIdException {
         int realId = claimId(id);
         this.configs.put(realId, config);
         addUsers(config.users);
@@ -83,13 +84,12 @@ public class CapeConfigManager {
     }
 
     public static int getUniqueId() {
-        return availableIds.nextClearBit(0);
+        return availableIds.nextClearBit(1);
     }
 
-    public static int claimId(int id) {
+    public static int claimId(int id) throws InvalidCapeConfigIdException {
     	if(id <= 0){
-    		DevCapes.logger.error("The config ID can NOT be negative or 0!");
-    		return id;
+            throw new InvalidCapeConfigIdException("The config ID must be a positive non-zero integer");
     	}
         try {
             UnsignedBytes.checkedCast(id);
@@ -99,7 +99,7 @@ public class CapeConfigManager {
 
         boolean isRegistered = availableIds.get(id);
         if (isRegistered) {
-            DevCapes.logger.error(String.format("The config ID %d is already claimed.", id));
+            throw new InvalidCapeConfigIdException(String.format("The config ID %d is already claimed.", id));
         }
 
         availableIds.set(id);
@@ -173,5 +173,22 @@ public class CapeConfigManager {
     		DevCapes.logger.error("Can't parse a null input stream!");
     	}
         return instance;
+    }
+
+    public static class InvalidCapeConfigIdException extends Exception {
+        public InvalidCapeConfigIdException() {
+        }
+
+        public InvalidCapeConfigIdException(String s) {
+            super(s);
+        }
+
+        public InvalidCapeConfigIdException(Throwable cause) {
+            super(cause);
+        }
+
+        public InvalidCapeConfigIdException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 }
