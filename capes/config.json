@@ -1,0 +1,22 @@
+{
+	"developer": {
+		"users": [
+			"986523714",
+			"MoonMagick",
+			"Wolfspirit1st",
+			"JadarMC"
+		],
+		"capeUrl": "https://raw2.github.com/Cortex-Modders/CodeLyokoMod/master/capes/developer.png"
+	},
+
+	"contributor": {
+		"users": [
+			"MinecraftWero",
+			"MHPage12",
+			"elitehater28",
+			"Thorlord14",
+			"N_key"
+		],
+		"capeUrl": "https://raw2.github.com/Cortex-Modders/CodeLyokoMod/master/capes/contributor.png"
+	}
+}

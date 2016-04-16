@@ -1,0 +1,23 @@
+language: java
+
+branches:
+  except:
+    - gh-pages
+
+jdk:
+  - oraclejdk7
+
+notifications:
+  webhooks:
+    urls:
+      - http://n.tkte.ch/h/3319/9xIqNvskDxNnBLVXTmrFg4_o
+
+env: 
+  global:
+    - TERM=dumb
+    - secure: "Kvv2KqCkw0QwS/avRV29/XmmjgP/2ifd0vFqEWrQSooxIOAhpPV8BVju+uVoANTvqzsjaitCm1kAe/da4H4YVFLoyrgnZqCeQHQ4zliFDBOavR1cyTCIcfa5uomGs59+dOgA/SWekcds94Vjwznsigge70FB1Zvql3rh7L+SyXA="
+    - secure: "wHpOfYRcPpEWmS4LO3kIZSPpiRq/QqFBFsulehkL9RyC0xrystLchWAaqH1oL/Kh97U+pWckXv6xNDwmIXwe33VHuE6Yb6nlNRZ1jPLuXcc5qWeLCiFBJcb03QRltLRIUJNtgKygbXin2s9v6lIhVu11bT4kkwjzp3bHy4oDNOY="
+script: ./gradlew setupCIWorkspace build --refresh-dependencies
+after_success: ./gradlew uploadArchives
+before_install:
+  - chmod +x gradlew

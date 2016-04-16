@@ -8,43 +8,41 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
-        maven {
-            name = "jenkins-releases"
-            url = "http://repo.jenkins-ci.org/releases/"
+		maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
-        classpath group: 'org.jenkins-ci', name: 'jenkins', version: '1.33'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
 // apply plugin to this project
 apply plugin: 'forge'
+apply from: 'snapshot.gradle'
 
 // minecraft properteis
 minecraft {
-	version = "1.6.4-9.11.1.964"
+	version = "1.7.10-10.13.2.1232"
+}
+
+//buildNumber is deprecated
+def buildnumber = 0
+if(System.getenv().TRAVIS_BUILD_NUMBER != null)
+{
+	buildnumber = System.getenv().TRAVIS_BUILD_NUMBER
 }
 
 // version and stuff
-version = "0.5.0"
-group= "matt.lyoko"
-archivesBaseName = "CodeLyoko-forge-${minecraft.version}"
+version = "1.6.0.0"
+group = "net.cortexmodders.lyoko"
+archivesBaseName = "CodeLyoko-forge"
 
 // jar naming
 jar
 {
-    if(System.getenv().BUILD_NUMBER != null)
-    {
-        classifier = "universal-jenkins-${System.getenv().BUILD_NUMBER}"
-        // for getting the version name in jenkins
-        new File("envInject.properties").write("VERSION=$version")
-    }
-    else
-    {
-        classifier = "universal-gradle"
-    }
+    appendix = "${minecraft.version}"
 }
 
 // fix mcmod.info and include resources
@@ -62,4 +60,57 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+uploadArchives
+{
+	repositories.mavenDeployer
+	{
+		repository(url: "http://repo.jadarstudios.com/content/repositories/public/")
+		{
+			authentication(userName: System.getenv().MVN_USER, password: System.getenv().MVN_PASS)
+		}
+		
+		pom.project
+		{
+			licenses
+			{
+				license
+				{
+					name 'The MIT License'
+					url 'https://raw2.github.com/Cortex-Modders/CodeLyokoMod/master/LICENSE'
+					distribution 'repo'
+				}
+			}
+			
+			developers
+			{
+				developer
+				{
+					id 'jadar'
+					name 'Jadar'
+					roles { role 'developer' }
+				}
+			}
+			
+			scm 
+			{
+                url 'https://github.com/Cortex-Modders/CodeLyokoMod'
+                connection 'scm:git:git://github.com/Cortex-Modders/CodeLyokoMod.git'
+                developerConnection 'scm:git:git@github.com:Cortex-Modders/CodeLyokoMod.git'
+            }
+
+            issueManagement 
+            {
+                system 'github'
+                url 'https://github.com/Cortex-Modders/CodeLyokoMod/issues'
+            }
+            
+            artifactId = project.archivesBaseName
+			name = project.archivesBaseName
+			packaging = 'jar'
+			version = "${minecraft.version}-${project.version}"
+			description 'This is a Minecraft mod enables players to travel the the virtual world of Lyoko and fight monsters and stop the self-aware villain Xana.'
+		}
+	}
 }

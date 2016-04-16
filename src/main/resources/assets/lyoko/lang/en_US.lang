@@ -1,0 +1,82 @@
+entity.XanafiedMob.name=Xanafied Mob
+entity.Blok.name=Blok
+entity.Megatank.name=Megatank
+
+entity.Skidbladnir.name=Skidbladnir
+entity.Overboard.name=Overboard
+
+death.attack.CodeLyoko.digitalSea=%1$s fell into the digital sea
+death.attack.CodeLyoko.digitalSea.player=%1$s fell into the digital sea while fighting %2$s
+death.attack.CodeLyoko.marabounta=%1$s was absorbed by the marabounta
+death.attack.CodeLyoko.marabounta.player=%1$s was absorbed by the marabounta while fighting %2$s
+
+tile.Scanner.name=Scanner
+tile.Cable.name=Cable
+tile.SuperComputerConsole.name=Super Computer Console
+tile.SuperComputer.name=Super Computer
+tile.Holomap.name=Holomap
+
+tile.TowerFloor.name=Tower Floor
+tile.TowerConsole.name=Tower Console
+tile.TowerBase.name=Tower Base
+tile.TowerBlock.name=Tower
+
+tile.Marabounta.name=Marabounta
+tile.VirtualBlock.name=Virtual Block
+
+tile.LeadOre.name=Lead Isotope 210 Ore
+tile.UraniumOre.name=Uranium Ore
+tile.QuantumOre.name=Quantum Ore
+
+tile.LyokoSectorBlock.name=Sector Block
+tile.LyokoGrass.name=Lyoko Grass
+tile.LyokoStone.name=Lyoko Stone
+tile.LyokoSand.name=Lyoko Sand
+tile.LyokoIce.name=Lyoko Ice
+tile.LyokoLog.name=Lyoko Log
+tile.LyokoVirtualBlock.name=Lyoko Virtual Block
+tile.LyokoCarthage.name=Lyoko Carthage
+tile.DigitalSeaBlock.name=Digital Sea Block
+tile.DigitalSeaLiquid.name=Digital Sea Liquid
+
+item.Katana.name=Katana
+item.Zweihander.name=Zweihander
+item.Fan.name=Fan
+item.EnergyField.name=Energy Field
+item.Glove.name=Glove
+item.LaserArrow.name=Laser Arrow
+item.LyokoIngot.name=Lyoko Ingot
+item.Lead210.name=Lead 210
+item.Cell.name=Cell
+item.Lead210Cell.name=Lead 210 Cell
+item.DepletedLead210Cell.name=Depleted Lead 210 Cell
+item.AelitaHelmet.name=Aelita Helmet
+item.AelitaChest.name=Aelita Chest
+item.AelitaPants.name=Aelita Pants
+item.AelitaBoots.name=Aelita Boots
+item.OddHelmet.name=Odd Helmet
+item.OddChest.name=Odd Chest
+item.OddPants.name=Odd Pants
+item.OddBoots.name=Odd Boots
+item.UlrichHelmet.name=Ulrich Helmet
+item.UlrichChest.name=Ulrich Chest
+item.UlrichPants.name=Ulrich Pants
+item.UlrichBoots.name=Ulrich Boots
+item.YumiHelmet.name=Yumi Helmet
+item.YumiChest.name=Yumi Chest
+item.YumiPants.name=Yumi Pants
+item.YumiBoots.name=Yumi Boots
+item.WilliamHelmet.name=William Helmet
+item.WilliamChest.name=William Chest
+item.WilliamPants.name=William Pants
+item.WilliamBoots.name=William Boots
+item.DataFragment.name=Data Fragment
+item.Uranium.name=Uranium
+item.UraniumCell.name=Uranium Cell
+item.DepletedUraniumCell.name=Depleted Uranium Cell
+item.Overboard.name=Overboard
+item.Skidbladnir.name=Skidbladnir
+item.QuantumMatrix.name=Quantum Matrix
+item.QuantumContainmentCell.name=Quantum Containment Cell
+item.LaserShooter.name=Laser Shooter
+item.DebugItem.name=Debug Item

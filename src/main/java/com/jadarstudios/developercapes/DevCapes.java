@@ -1,226 +1,148 @@
 /**
  * DeveloperCapes by Jadar
- * License: MIT License (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
- * version 2.1
+ * License: MIT License
+ * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
+ * version 4.0.0.x
  */
 package com.jadarstudios.developercapes;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.HashMap;
+import com.jadarstudios.developercapes.cape.CapeConfig;
+import com.jadarstudios.developercapes.cape.CapeConfigManager;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IImageBuffer;
-import net.minecraft.client.renderer.ThreadDownloadImageData;
-import net.minecraft.client.renderer.texture.TextureManager;
-import net.minecraft.client.renderer.texture.TextureObject;
-import net.minecraft.util.ResourceLocation;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 /**
- * This library adds capes for people you specify.
- * Use DevCapesUtil to add your capes if you do not call the addFileUrl method
- * in a client proxy.
- * 
- * @author Jadar
+ * DeveloperCapes is a library for Minecraft. It allows developers to quickly add capes for players they specify. DevCapes uses Minecraft Forge.
+ *
+ * @author jadar
  */
 public class DevCapes {
-
     private static DevCapes instance;
-    public static final double version = 2.1;
-    
-    public DevCapesVersionChecker versionChecker;
-    private HashMap<String, String> users;
-    private HashMap<String, ResourceLocation> capeResources;
-    private HashMap<String, ThreadDownloadImageData> downloadThreads;
 
-    private DevCapesTickHandler tickHandler = null;
+    public static final Logger logger = LogManager.getLogger("DevCapes");
 
-    /**
-     * Object constructor.
-     */
-    private DevCapes() {
-        users = new HashMap<String, String>();
-        capeResources = new HashMap<String, ResourceLocation>();
-        downloadThreads = new HashMap<String, ThreadDownloadImageData>();
-        
-        versionChecker = new DevCapesVersionChecker();
-        Thread vc = new Thread(versionChecker);
-        vc.setDaemon(true);
-        vc.setName("DevCapesVersionChecker");
-        vc.run();
+    protected DevCapes() {
+        MinecraftForge.EVENT_BUS.register(new RenderEventHandler());
     }
 
-    /**
-     * Get's the current DeveloperCapesAPI instance, or creates a new one if
-     * necessary.
-     */
     public static DevCapes getInstance() {
-        if (instance == null){
+        if (instance == null) {
             instance = new DevCapes();
         }
         return instance;
     }
 
     /**
-     * <b>DO NOT CALL THIS UNLESS YOU KNOW IT IS BEING CALLED FROM A CLIENT ONLY CLASS/METHOD!</b><br>
-     * <b>USE <i>"DevCapesUtil.addFileUrl(String);"</i> INSTEAD!</b><p>
-     * Set up capes. All cape URLs are in the txt file passed in.<br>
-     * <a href="https://github.com/jadar/DeveloperCapesAPI/blob/master/SampleCape.txt">Sample Cape Config</a>
+     * InputStream.close() needs to be called on this after you're done!
      * 
-     * @param parTxtUrl
-     *            The URL of the .txt file containing the groups, members of
-     *            said groups, and the group's cape URL.
+     * @return {@link InputStream} for the {@link URL}
      */
-    public void addFileUrl(String parTxtUrl) {
-        try{
-            URL url = new URL(parTxtUrl);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            String line;
+    public InputStream getStreamForURL(URL url) {
+        InputStream is = null;
+        try {
+            URLConnection connection = url.openConnection();
+            connection.setRequestProperty("User-Agent", System.getProperty("java.version"));
+            connection.connect();
 
-            String username = "";
-            String group = "";
-            String capeUrl = "";
-
-            while ((line = reader.readLine()) != null){
-
-                // excludes commented lines
-                if (!line.startsWith("#")){
-                    // loops through characters.
-                    for (int i = 0; i < line.length(); i++){
-                        // when char : is found do stuff.
-                        if (line.charAt(i) == '='){
-                            group = line.substring(0, i);
-                            String subLine = line.substring(i + 1);
-
-                            if (subLine.startsWith("http")){
-                                capeUrl = subLine;
-
-                                ResourceLocation r = new ResourceLocation("DevCapes/" + group);
-                                ThreadDownloadImageData t = makeDownloadThread(r, capeUrl, null, new DevCapesImageBufferDownload());
-
-                                this.addCapeResource(group, r);
-                                this.addDownloadThread(group, t);
-
-                                continue;
-                            }else{
-                                username = subLine.toLowerCase();
-                                addUser(username, group);
-                            }
-                        }
-                    }
-                }
-            }
-        }catch(IOException e){
+            is = connection.getInputStream();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return is;
+    }
 
-        // Makes sure to set up only one tick handler.
-        if (tickHandler == null){
-            // Creates the tick handler for capes.
-            tickHandler = new DevCapesTickHandler();
-            // Sets up the tick handler for capes.
-            TickRegistry.registerTickHandler(tickHandler, Side.CLIENT);
+    /**
+     * InputStream.close() needs to be called on this after you're done!
+     * 
+     * @return {@link InputStream} for the {@link File}
+     */
+    public InputStream getStreamForFile(File file) {
+        InputStream is = null;
+        try {
+            is = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return is;
+    }
+
+    @Deprecated
+    /**
+     * DEPRECATED: Please use {@link #registerConfig(String jsonUrl)} instead.<p>
+     * Registers a config with DevCapes.
+     *
+     * @param jsonUrl
+     *            The URL as a String that links to the Json file that you want
+     *            to add
+     * @param identifier
+     *            A unique Identifier, normally your mod id
+     * @return The id of the registered config
+     */
+    public int registerConfig(String jsonURL, String identifier) {
+        return this.registerConfig(jsonURL);
+    }
+
+    /**
+     * Registers a config with DevCapes.
+     *
+     * @param jsonUrl The URL as a String that links to the Json file that you want
+     *                to add
+     * @return The id of the registered config
+     */
+    public int registerConfig(String jsonUrl) {
+        int id = -1;
+        try {
+            URL url = new URL(jsonUrl);
+            id = this.registerConfig(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    @Deprecated
+    /**
+     * DEPRECATED: Please use {@link #registerConfig(URL url)} instead.<p>
+     * Registers a config with DevCapes.
+     *
+     * @param jsonUrl
+     *            A {@link URL} that links to the Json file that you want to add
+     * @param identifier
+     *            A unique Identifier, normally your mod id
+     * @return The id of the registered config
+     */
+    public int registerConfig(URL url, String identifier) {
+        return this.registerConfig(url);
+    }
+
+    /**
+     * Registers a config with DevCapes and returns the ID of the config.
+     *
+     * @param jsonUrl A {@link URL} that links to the Json file that you want to add
+     * @return The id of the registered config
+     */
+    public int registerConfig(URL jsonUrl) {
+        InputStream is = this.getStreamForURL(jsonUrl);
+        CapeConfig config = CapeConfigManager.getInstance().parseFromStream(is);
+
+        if (config == null) {
+            return -1;
         }
 
-    }
-    
-    /**
-     * Used to add user to users HashMap.
-     * 
-     * @param parUsername
-     *            The Username to add.
-     * @param parGroup
-     *            The group to add that Username to.
-     */
-    public void addUser(String parUsername, String parGroup) {
-        if (getUserGroup(parUsername) == null){
-            users.put(parUsername, parGroup);
-
+        int id = CapeConfigManager.getUniqueId();
+        try {
+            CapeConfigManager.getInstance().addConfig(id, config);
+        } catch (CapeConfigManager.InvalidCapeConfigIdException e) {
+            e.printStackTrace();
+            return -1;
         }
-    }
 
-    /**
-     * Used to get user from users HashMap.
-     * 
-     * @param parUsername
-     *            The Username to get from the users HashMap.
-     * @return The Username found in the users HashMap.
-     */
-    public String getUserGroup(String parUsername) {
-        return users.get(parUsername.toLowerCase());
-    }
-
-    /**
-     * 
-     * Adds a cape ResourceLocation that is predownloaded.
-     * 
-     * @param parGroup
-     * @param parResource
-     */
-    public void addCapeResource(String parGroup, ResourceLocation parResource) {
-        if (getCapeResource(parGroup) == null){
-            capeResources.put(parGroup, parResource);
-        }
-    }
-
-    /**
-     * 
-     * Gets a cape ResourceLocation.
-     * 
-     * @param parGroup
-     * @return
-     */
-    public ResourceLocation getCapeResource(String parGroup) {
-        return capeResources.get(parGroup);
-    }
-
-    /**
-     * 
-     * Adds an ThreadDownloadImageData. Needed to change cape.
-     * 
-     * @param parGroup
-     * @param parResource
-     */
-    public void addDownloadThread(String parGroup, ThreadDownloadImageData parResource) {
-        if (getDownloadThread(parGroup) == null){
-            downloadThreads.put(parGroup, parResource);
-        }
-    }
-
-    /**
-     * 
-     * Gets the ThreadDownloadImageData that is associated with the group.
-     * 
-     * @param parGroup
-     * @return
-     */
-    public ThreadDownloadImageData getDownloadThread(String parGroup) {
-        return downloadThreads.get(parGroup);
-    }
-
-    /**
-     * 
-     * Used to download images. Copied from AbstractClientPlayer to remove
-     * a conditional.
-     * 
-     * @param par0ResourceLocation
-     * @param par1Str
-     * @param par2ResourceLocation
-     * @param par3IImageBuffer
-     * @return
-     */
-    public static ThreadDownloadImageData makeDownloadThread(ResourceLocation par0ResourceLocation, String par1Str, ResourceLocation par2ResourceLocation, IImageBuffer par3IImageBuffer)
-    {
-        TextureManager texturemanager = Minecraft.getMinecraft().getTextureManager();
-
-        TextureObject object = new ThreadDownloadImageData(par1Str, par2ResourceLocation, par3IImageBuffer);
-        // Binds ResourceLocation to this.
-        texturemanager.loadTexture(par0ResourceLocation, object);
-
-        return (ThreadDownloadImageData)object;
+        return id;
     }
 }
